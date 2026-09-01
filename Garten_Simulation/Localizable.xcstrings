@@ -181268,6 +181268,39 @@
         }
       }
     },
+    "nutrient.chloride" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Chlorid"
+          }
+        }
+      }
+    },
+    "nutrient.chromium" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Chrom"
+          }
+        }
+      }
+    },
+    "nutrient.copper" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Kupfer"
+          }
+        }
+      }
+    },
     "nutrient.fiber" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -181290,24 +181323,24 @@
         }
       }
     },
-    "nutrient.index.summary" : {
+    "nutrient.iodine" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Weil du heute reichlich frisches Obst und Gemüse getrackt hast, erreichst du einen hervorragenden Nährstoff-Index von %lld."
+            "value" : "Jod"
           }
         }
       }
     },
-    "nutrient.index.title" : {
+    "nutrient.iron" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Nährstoff-Index"
+            "value" : "Eisen"
           }
         }
       }
@@ -181323,6 +181356,39 @@
         }
       }
     },
+    "nutrient.manganese" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Mangan"
+          }
+        }
+      }
+    },
+    "nutrient.molybdenum" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Molybdän"
+          }
+        }
+      }
+    },
+    "nutrient.phosphorus" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Phosphor"
+          }
+        }
+      }
+    },
     "nutrient.potassium" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -181330,6 +181396,28 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Kalium"
+          }
+        }
+      }
+    },
+    "nutrient.selenium" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Selen"
+          }
+        }
+      }
+    },
+    "nutrient.sodium" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Natrium"
           }
         }
       }
@@ -181400,6 +181488,83 @@
         }
       }
     },
+    "nutrient.vitamin_b1" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin B1 (Thiamin)"
+          }
+        }
+      }
+    },
+    "nutrient.vitamin_b2" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin B2 (Riboflavin)"
+          }
+        }
+      }
+    },
+    "nutrient.vitamin_b3" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin B3 (Niacin)"
+          }
+        }
+      }
+    },
+    "nutrient.vitamin_b5" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin B5 (Pantothensäure)"
+          }
+        }
+      }
+    },
+    "nutrient.vitamin_b6" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin B6"
+          }
+        }
+      }
+    },
+    "nutrient.vitamin_b7" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin B7 (Biotin)"
+          }
+        }
+      }
+    },
+    "nutrient.vitamin_b12" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin B12"
+          }
+        }
+      }
+    },
     "nutrient.vitamin_c" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -181411,6 +181576,28 @@
         }
       }
     },
+    "nutrient.vitamin_d" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin D"
+          }
+        }
+      }
+    },
+    "nutrient.vitamin_e" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vitamin E"
+          }
+        }
+      }
+    },
     "nutrient.vitamin_k" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -181418,6 +181605,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Vitamin K"
+          }
+        }
+      }
+    },
+    "nutrient.zinc" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Zink"
           }
         }
       }

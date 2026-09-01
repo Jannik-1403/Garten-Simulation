@@ -14,11 +14,11 @@ struct RingSegment: View {
         ZStack {
             // Blasser Hintergrund
             TrimmedArc(startAngle: startAngle, endAngle: endAngle)
-                .stroke(color.opacity(0.25), style: StrokeStyle(lineWidth: lineWidth, lineCap: .butt))
+                .stroke(color.opacity(0.25), style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
             
             // Gefüllter Balken
             TrimmedArc(startAngle: startAngle, endAngle: .degrees(startAngle.degrees + filledSpan))
-                .stroke(color, style: StrokeStyle(lineWidth: lineWidth, lineCap: .butt))
+                .stroke(color, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
         }
     }
 }
@@ -47,44 +47,38 @@ struct NutrientIndexView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             
-            // Oben: Großes Chart und Text rechts daneben
-            HStack(alignment: .center, spacing: 24) {
+            // Oben: Großes Chart und Text darunter
+            VStack(alignment: .center, spacing: 16) {
                 ZStack {
-                    RingSegment(scorePercentage: manager.vitaminScore / 100.0, startAngle: .degrees(5), endAngle: .degrees(115), color: vitaminColor)
+                    RingSegment(scorePercentage: manager.vitaminScore / 100.0, startAngle: .degrees(3), endAngle: .degrees(117), color: vitaminColor)
+                        .contentShape(Rectangle())
+                        .onTapGesture { selectedCategory = "Vitamine" }
                     
-                    RingSegment(scorePercentage: manager.mineralScore / 100.0, startAngle: .degrees(125), endAngle: .degrees(235), color: mineralColor)
+                    RingSegment(scorePercentage: manager.mineralScore / 100.0, startAngle: .degrees(123), endAngle: .degrees(237), color: mineralColor)
+                        .contentShape(Rectangle())
+                        .onTapGesture { selectedCategory = "Mineralstoffe" }
                     
-                    RingSegment(scorePercentage: manager.fiberScore / 100.0, startAngle: .degrees(245), endAngle: .degrees(355), color: fiberColor)
+                    RingSegment(scorePercentage: manager.fiberScore / 100.0, startAngle: .degrees(243), endAngle: .degrees(357), color: fiberColor)
+                        .contentShape(Rectangle())
+                        .onTapGesture { selectedCategory = "Ballaststoffe" }
                     
                     Text("\(manager.totalScore)")
-                        .font(.system(size: 46, weight: .bold))
+                        .font(.system(size: 52, weight: .bold))
                 }
-                .frame(width: 160, height: 160)
+                .frame(width: 180, height: 180)
                 
-                VStack(alignment: .leading) {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "info.circle.fill")
-                            .foregroundColor(Color(.systemGray4))
-                            .font(.title3)
-                    }
-                    Spacer()
-                    Text(getStatusText(score: manager.totalScore))
-                        .font(.system(size: 34, weight: .bold))
-                        .minimumScaleFactor(0.5)
-                    Spacer()
-                }
-                .frame(height: 160)
+                Text(getStatusText(score: manager.totalScore))
+                    .font(.system(size: 32, weight: .bold))
             }
+            .frame(maxWidth: .infinity)
             
             Divider()
             
-            // Legende
+            // Legende (ohne Subtitles)
             VStack(alignment: .leading, spacing: 16) {
                 LegendRow(
                     color: vitaminColor, 
                     title: String(localized: "nutrient.category.vitamins", defaultValue: "Vitamine"), 
-                    subtitle: "z.B. Vitamin C, Vitamin B12, Folsäure...",
                     score: Int(manager.vitaminScore)
                 ) {
                     selectedCategory = "Vitamine"
@@ -95,7 +89,6 @@ struct NutrientIndexView: View {
                 LegendRow(
                     color: mineralColor, 
                     title: String(localized: "nutrient.category.minerals", defaultValue: "Mineralstoffe"), 
-                    subtitle: "z.B. Magnesium, Calcium, Kalium...",
                     score: Int(manager.mineralScore)
                 ) {
                     selectedCategory = "Mineralstoffe"
@@ -106,7 +99,6 @@ struct NutrientIndexView: View {
                 LegendRow(
                     color: fiberColor, 
                     title: String(localized: "nutrient.category.fiber", defaultValue: "Ballaststoffe"), 
-                    subtitle: "Täglicher Bedarf: 30g",
                     score: Int(manager.fiberScore)
                 ) {
                     selectedCategory = "Ballaststoffe"
@@ -114,9 +106,15 @@ struct NutrientIndexView: View {
             }
         }
         .padding(24)
-        .background(Color(.systemBackground))
-        .cornerRadius(24)
-        .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 4)
+        .background(
+            ZStack {
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(Color(UIColor.systemGray4))
+                    .offset(y: 8)
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(Color(.systemBackground))
+            }
+        )
         .onAppear {
             manager.fetchAllNutrients()
         }
@@ -138,31 +136,24 @@ struct NutrientIndexView: View {
 struct LegendRow: View {
     var color: Color
     var title: String
-    var subtitle: String
     var score: Int
     var action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            VStack(alignment: .leading, spacing: 4) {
-                HStack(alignment: .center) {
-                    Circle()
-                        .fill(color)
-                        .frame(width: 16, height: 16)
-                    Text(title)
-                        .font(.title3)
-                        .bold()
-                        .foregroundColor(.primary)
-                    Spacer()
-                    Text("\(score)/100")
-                        .font(.title3)
-                        .bold()
-                        .foregroundColor(.primary)
-                }
-                Text(subtitle)
-                    .font(.subheadline)
+            HStack(alignment: .center) {
+                Circle()
+                    .fill(color)
+                    .frame(width: 16, height: 16)
+                Text(title)
+                    .font(.title3)
+                    .bold()
                     .foregroundColor(.primary)
-                    .padding(.leading, 24)
+                Spacer()
+                Text("\(score)/100")
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(.primary)
             }
         }
     }
@@ -181,19 +172,36 @@ struct CategoryDetailSheet: View {
         NavigationView {
             List {
                 Section {
+                    Button(action: {
+                        manager.injectTestData(for: categoryName)
+                    }) {
+                        Text("Testdaten laden")
+                            .font(.caption)
+                            .foregroundColor(.blue)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    
                     HStack {
                         Spacer()
                         ZStack {
                             Circle()
                                 .stroke(Color.gray.opacity(0.2), lineWidth: 16)
                             
-                            Circle()
-                                .trim(from: 0, to: CGFloat(getCategoryScore() / 100.0))
-                                .stroke(getCategoryColor(), style: StrokeStyle(lineWidth: 16, lineCap: .round))
-                                .rotationEffect(.degrees(-90))
-                            
-                            Text("\(Int(getCategoryScore()))")
-                                .font(.system(size: 36, weight: .bold))
+                            if getCategoryScore() > 0 {
+                                Circle()
+                                    .trim(from: 0, to: CGFloat(getCategoryScore() / 100.0))
+                                    .stroke(getCategoryColor(), style: StrokeStyle(lineWidth: 16, lineCap: .round))
+                                    .rotationEffect(.degrees(-90))
+                                
+                                Text("\(Int(getCategoryScore()))")
+                                    .font(.system(size: 36, weight: .bold))
+                            } else {
+                                Text(String(localized: "nutrient.nodata", defaultValue: "Noch keine\nDaten"))
+                                    .font(.subheadline)
+                                    .bold()
+                                    .foregroundColor(.secondary)
+                                    .multilineTextAlignment(.center)
+                            }
                         }
                         .frame(width: 120, height: 120)
                         .padding(.vertical, 16)

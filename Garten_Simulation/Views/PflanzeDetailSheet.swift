@@ -111,6 +111,17 @@ struct PflanzeDetailSheet: View {
                     }
                     
 
+                    // Obst & Gemüse / Nährstoffe
+                    if pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium {
+                        NutrientIndexView()
+                            .padding(.bottom, 16)
+                    }
+                    
+                    // Gesund kochen
+                    if pflanze.effectiveHealthMetric == .energy {
+                        GesundKochenCard()
+                            .padding(.bottom, 16)
+                    }
 
                     // To-Dos Accordion
                     if pflanze.showTodos {
@@ -284,20 +295,6 @@ struct PflanzeDetailSheet: View {
                         BodyTrackingWidgetGroup(pflanze: pflanze)
                             .environmentObject(gardenStore)
                             .environmentObject(settings)
-                    }
-                    
-                    // Obst & Gemüse / Nährstoffe
-                    if pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium {
-                        NutrientIndexView()
-                            .padding(.top, 16)
-                            .padding(.horizontal, 24)
-                    }
-                    
-                    // Gesund kochen
-                    if pflanze.effectiveHealthMetric == .energy {
-                        GesundKochenCard()
-                            .padding(.top, 16)
-                            .padding(.horizontal, 24)
                     }
 
                     // MARK: - Ziel-Punkte Banner

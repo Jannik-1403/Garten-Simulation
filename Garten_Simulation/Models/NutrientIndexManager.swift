@@ -68,6 +68,18 @@ class NutrientIndexManager: ObservableObject {
         objectWillChange.send()
     }
     
+    // NEU: Testdaten injizieren
+    func injectTestData(for category: String) {
+        if category == "Vitamine" {
+            for i in 0..<vitamins.count { vitamins[i].score = Double.random(in: 20...100) }
+        } else if category == "Mineralstoffe" {
+            for i in 0..<minerals.count { minerals[i].score = Double.random(in: 20...100) }
+        } else if category == "Ballaststoffe" {
+            fiber.score = Double.random(in: 20...100)
+        }
+        saveSettings()
+    }
+    
     private func defaultVitamins() -> [NutrientItem] {
         [
             NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_c", defaultValue: "Vitamin C"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminC.rawValue, targetDGE: 110.0, unitString: "mg"),
