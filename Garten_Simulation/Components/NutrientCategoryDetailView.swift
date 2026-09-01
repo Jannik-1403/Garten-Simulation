@@ -12,7 +12,6 @@ struct NutrientCategoryDetailView: View {
                 // Progress List instead of Ring Chart
                 NutrientProgressList(categoryName: categoryName, items: activeItems)
                     .padding(.top, 24)
-                    .padding(.top, 24)
                     .padding(.bottom, 16)
                     
                 if !activeItems.isEmpty {
@@ -23,7 +22,6 @@ struct NutrientCategoryDetailView: View {
                     )
                     .padding(.horizontal, 24)
                 }
-
             }
         }
         .navigationTitle(categoryName)
