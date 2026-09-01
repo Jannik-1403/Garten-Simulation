@@ -33,6 +33,7 @@ enum BodyMeasurementCategory: String, CaseIterable, Identifiable {
     case oberschenkel = "body.measure.oberschenkel"
     case waden       = "body.measure.waden"
     case taille      = "body.measure.taille"
+    case koerpergroesse = "body.measure.koerpergroesse"
 
     var id: String { rawValue }
 
@@ -45,6 +46,7 @@ enum BodyMeasurementCategory: String, CaseIterable, Identifiable {
         case .oberschenkel: return String(localized: "body.measure.oberschenkel", defaultValue: "Oberschenkel")
         case .waden:        return String(localized: "body.measure.waden",        defaultValue: "Waden")
         case .taille:       return String(localized: "body.measure.taille",       defaultValue: "Taille (Bauch)")
+        case .koerpergroesse: return String(localized: "body.measure.koerpergroesse", defaultValue: "Körpergröße")
         }
     }
 
@@ -65,6 +67,8 @@ enum BodyMeasurementCategory: String, CaseIterable, Identifiable {
             return prefix + String(localized: "body.measure.info.waden", defaultValue: "Im Stehen messen. Ferse leicht anheben, um den Muskel voll anzuspannen. Auch hier exakt die dickste Stelle des Wadenmuskels suchen.")
         case .taille:       
             return prefix + String(localized: "body.measure.info.taille", defaultValue: "Normal ausatmen, nicht den Bauch einziehen. Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel.")
+        case .koerpergroesse:
+            return String(localized: "body.measure.info.koerpergroesse", defaultValue: "Stell dich aufrecht an eine Wand ohne Schuhe. Miss den Abstand vom Boden bis zum höchsten Punkt des Kopfes.")
         }
     }
 }

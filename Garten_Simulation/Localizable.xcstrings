@@ -452862,6 +452862,208 @@
           }
         }
       }
+    },
+    "body.measure.koerpergroesse": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Körpergröße"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Height"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऊँचाई"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altezza"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身長"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lengte"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wzrost"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рост"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boy"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身高"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身高"
+          }
+        }
+      }
+    },
+    "body.measure.info.koerpergroesse": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stell dich aufrecht an eine Wand ohne Schuhe. Miss den Abstand vom Boden bis zum höchsten Punkt des Kopfes."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stand upright against a wall without shoes. Measure the distance from the floor to the highest point of your head."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Párate derecho contra una pared sin zapatos. Mide la distancia desde el suelo hasta el punto más alto de tu cabeza."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tenez-vous droit contre un mur sans chaussures. Mesurez la distance entre le sol et le point le plus haut de votre tête."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बिना जूतों के एक दीवार के सहारे सीधे खड़े हो जाएं। फर्श से अपने सिर के उच्चतम बिंदु तक की दूरी को मापें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mettiti dritto contro un muro senza scarpe. Misura la distanza dal pavimento al punto più alto della tua testa."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "靴を脱いで壁にまっすぐ立ちます。床から頭の最も高い位置までの距離を測ります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "신발을 벗고 벽에 똑바로 서십시오. 바닥에서 머리의 가장 높은 부분까지의 거리를 측정하십시오."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ga rechtop tegen een muur staan zonder schoenen. Meet de afstand van de vloer tot het hoogste punt van je hoofd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stań prosto przy ścianie bez butów. Zmierz odległość od podłogi do najwyższego punktu na głowie."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fique de pé reto contra uma parede sem sapatos. Meça a distância do chão até o ponto mais alto da sua cabeça."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fique de pé reto contra uma parede sem sapatos. Meça a distância do chão até o ponto mais alto da sua cabeça."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Встаньте прямо у стены без обуви. Измерьте расстояние от пола до самой высокой точки вашей головы."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayakkabısız olarak bir duvara dik durun. Yerden başınızın en yüksek noktasına kadar olan mesafeyi ölçün."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "脱鞋靠墙站直。测量从地面到头顶最高点的距离。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "脫鞋靠牆站直。測量從地面到頭頂最高點的距離。"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
