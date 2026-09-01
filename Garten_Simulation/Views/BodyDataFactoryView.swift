@@ -26,10 +26,10 @@ struct BodyDataFactoryView: View {
     @State private var showTargetSheet = false
     @State private var targetInput = ""
     @State private var targetDateInput = Date()
+    @State private var targetDateInput = Date()
     @State private var isManualEntriesExpanded = false
     /// Offset vom aktuellen Zeitraum: 0 = jetzt, -1 = letzte Periode, etc.
     @State private var periodOffset: Int = 0
-    @State private var dragOffset: CGFloat = 0
 
     // MARK: - Body
 
@@ -124,14 +124,8 @@ struct BodyDataFactoryView: View {
                 // Chart
                 if filteredData.isEmpty {
                     emptyStateView
-                        .offset(x: dragOffset)
-                        .contentShape(Rectangle())
-                        .highPriorityGesture(swipeGesture)
                 } else {
                     chartView
-                        .offset(x: dragOffset)
-                        .contentShape(Rectangle())
-                        .highPriorityGesture(swipeGesture)
                 }
                 
                 // Ziel (bei Gewicht & Körperumfängen)
@@ -171,140 +165,85 @@ struct BodyDataFactoryView: View {
             if type == .weight { fetchHealthWeight() }
         }
     }
-
-    // MARK: - Swipe Gesture
-    
-    private var swipeGesture: some Gesture {
-        DragGesture()
-            .onChanged { value in
-                guard canNavigatePeriods else { return }
-                
-                // Gummiband-Effekt (Resistance), wenn man nicht weiter kann
-                if (value.translation.width < 0 && periodOffset >= 0) ||
-                   (value.translation.width > 0 && !canGoPrevious) {
-                    dragOffset = value.translation.width * 0.25
-                } else {
-                    dragOffset = value.translation.width
-                }
-            }
-            .onEnded { value in
-                guard canNavigatePeriods else { return }
-                
-                let threshold: CGFloat = 50
-                var didChange = false
-                
-                if value.translation.width < -threshold && periodOffset < 0 {
-                    // Nächste Periode (nach rechts swipen, also Inhalt fliegt nach links)
-                    periodOffset += 1
-                    selectedDate = nil
-                    didChange = true
-                    dragOffset = UIScreen.main.bounds.width // Setze Startpunkt für Hereinfliegen
-                } else if value.translation.width > threshold && canGoPrevious {
-                    // Vorherige Periode (nach links swipen, Inhalt fliegt nach rechts)
-                    periodOffset -= 1
-                    selectedDate = nil
-                    didChange = true
-                    dragOffset = -UIScreen.main.bounds.width
-                }
-                
-                UIImpactFeedbackGenerator(style: didChange ? .medium : .light).impactOccurred()
-                
-                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                    dragOffset = 0
-                }
-            }
-    }
-
     // MARK: - Chart View
 
     @ViewBuilder
     private var chartView: some View {
-        Chart {
-            ForEach(filteredData, id: \.timestamp) { entry in
-                // Apple Health Style AreaMark (Verlauf unter der Linie)
-                AreaMark(
-                    x: .value("x", entry.timestamp),
-                    yStart: .value("yMin", yMin),
-                    yEnd: .value("yMax", entry.progress)
-                )
-                .interpolationMethod(.catmullRom)
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [Color.pink.opacity(0.3), Color.pink.opacity(0.0)],
-                        startPoint: .top,
-                        endPoint: .bottom
+        ScrollView(.horizontal, showsIndicators: false) {
+            Chart {
+                ForEach(scrollData, id: \.timestamp) { entry in
+                    LineMark(
+                        x: .value("x", entry.timestamp, unit: .day),
+                        y: .value("y", entry.progress)
                     )
-                )
+                    .interpolationMethod(.linear)
+                    .foregroundStyle(Color.pink)
+                    .lineStyle(StrokeStyle(lineWidth: 3, lineCap: .round))
 
-                LineMark(
-                    x: .value("x", entry.timestamp),
-                    y: .value("y", entry.progress)
-                )
-                .interpolationMethod(.catmullRom)
-                .foregroundStyle(Color.pink)
-                .lineStyle(StrokeStyle(lineWidth: 3, lineCap: .round))
-
-                PointMark(
-                    x: .value("x", entry.timestamp),
-                    y: .value("y", entry.progress)
-                )
-                .foregroundStyle(Color.pink)
-                .symbolSize(40)
-            }
-            
-            if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
-                RuleMark(x: .value("Selected", selectedEntry.timestamp))
-                    .foregroundStyle(Color(UIColor.systemGray4))
-                    .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
-                    .annotation(
-                        position: .top, spacing: 0,
-                        overflowResolution: .init(x: .fit(to: .chart), y: .disabled)
-                    ) {
-                        VStack(spacing: 4) {
-                            Text(String(format: "%.1f", selectedEntry.progress))
-                                .font(.system(size: 16, weight: .black, design: .rounded))
-                                .foregroundStyle(Color.pink)
-                            Text(selectedEntry.timestamp.formatted(.dateTime.day().month().year().locale(SettingsStore.shared.appLocale)))
-                                .font(.system(size: 10, weight: .semibold, design: .rounded))
-                                .foregroundStyle(.secondary)
+                    PointMark(
+                        x: .value("x", entry.timestamp, unit: .day),
+                        y: .value("y", entry.progress)
+                    )
+                    .foregroundStyle(Color.pink)
+                    .symbolSize(40)
+                }
+                
+                if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
+                    RuleMark(x: .value("Selected", selectedEntry.timestamp))
+                        .foregroundStyle(Color(UIColor.systemGray4))
+                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                        .annotation(
+                            position: .top, spacing: 0,
+                            overflowResolution: .init(x: .fit(to: .chart), y: .disabled)
+                        ) {
+                            VStack(spacing: 4) {
+                                Text(String(format: "%.1f", selectedEntry.progress))
+                                    .font(.system(size: 16, weight: .black, design: .rounded))
+                                    .foregroundStyle(Color.pink)
+                                Text(selectedEntry.timestamp.formatted(.dateTime.day().month().year().locale(SettingsStore.shared.appLocale)))
+                                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                    .fill(Color(UIColor.secondarySystemGroupedBackground))
+                                    .shadow(color: .black.opacity(0.1), radius: 3, y: 2)
+                            )
                         }
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .fill(Color(UIColor.secondarySystemGroupedBackground))
-                                .shadow(color: .black.opacity(0.1), radius: 3, y: 2)
-                        )
-                    }
+                }
             }
-        }
-        .chartXSelection(value: $selectedDate)
-        .chartXAxis {
-            AxisMarks(values: xAxisValues) { value in
-                AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
-                AxisValueLabel {
-                    if let date = value.as(Date.self) {
-                        Text(xAxisLabel(for: date))
-                            .font(.system(size: 11, weight: .semibold, design: .rounded))
-                            .foregroundStyle(Color(UIColor.systemGray2))
+            .frame(width: max(UIScreen.main.bounds.width - 32, CGFloat(scrollData.count) * 40))
+            .chartXSelection(value: $selectedDate)
+            .chartXAxis {
+                AxisMarks(values: .stride(by: .day, count: max(1, scrollData.count / 7))) { value in
+                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
+                    AxisValueLabel {
+                        if let date = value.as(Date.self) {
+                            Text(date.formatted(.dateTime.day().month()))
+                                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                .foregroundStyle(Color(UIColor.systemGray2))
+                        }
                     }
                 }
             }
-        }
-        .chartYAxis {
-            AxisMarks(position: .trailing) { value in
-                AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
-                AxisValueLabel {
-                    if let v = value.as(Double.self) {
-                        Text(String(format: "%.0f", v))
-                            .font(.system(size: 11, weight: .semibold, design: .rounded))
-                            .foregroundStyle(Color(UIColor.systemGray2))
+            .chartYAxis {
+                AxisMarks(position: .trailing) { value in
+                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
+                    AxisValueLabel {
+                        if let v = value.as(Double.self) {
+                            Text(String(format: "%.0f", v))
+                                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                .foregroundStyle(Color(UIColor.systemGray2))
+                        }
                     }
                 }
             }
+            .chartYScale(domain: yMin...yMax)
+            .padding(.trailing, 16) // Padding nur am Ende, damit der Start bündig abschließt
         }
-        .chartYScale(domain: yMin...yMax)
-        .chartXScale(domain: dateRange.start...dateRange.end)
+        .defaultScrollAnchor(.trailing)
         .frame(height: 250)
         .padding(.horizontal)
     }
@@ -514,6 +453,14 @@ struct BodyDataFactoryView: View {
         } else {
             return pflanze.bodyMeasurements[selectedMeasurement.rawValue] ?? []
         }
+    }
+
+    private var scrollData: [DailyProgressEntry] {
+        let rawData = allData
+        if timeRange == .sixM || timeRange == .j {
+            return aggregateByWeek(rawData)
+        }
+        return rawData
     }
 
     private var filteredData: [DailyProgressEntry] {
