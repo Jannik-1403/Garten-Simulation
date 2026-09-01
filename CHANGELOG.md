@@ -1,3 +1,8 @@
+## [2026-09-01] - Macro Recommendation Engine & HealthKit v4
+- **App Empfehlung:** Neuer `MacroCalculator` berechnet den TDEE und optimale Makro-Ziele (Kohlenhydrate, Protein, Fett) basierend auf der Mifflin-St. Jeor Formel unter Einbeziehung von Körpergröße, Gewicht, Alter und Geschlecht.
+- **Apple Health V4:** HealthKit Abfrage für detaillierte Körperdaten (Größe, Geburtsdatum, Geschlecht) und Fettsäuren erweitert.
+- **UI & Usability:** Nutzer können die errechnete App-Empfehlung nun per Knopfdruck direkt in der Detailansicht übernehmen. Fehlen Daten in Apple Health, fordert die App über einen dedizierten Button zur Freigabe auf.
+
 ## [2026-09-01] - Gesund Kochen Redesign & Macro Goals
 - **GesundKochenCard Redesign:** Die Kalorien-Ringe wurden entfernt, die Karte wurde in ein 3D-Design umgewandelt und die Farben für Protein, Kohlenhydrate und Fett wurden angepasst.
 - **MacroDetailView:** Neue Detailansicht für Makronährstoffe hinzugefügt, in der individuelle Tagesziele (Goals) via Slider/Buttons eingestellt werden können.
@@ -884,3 +889,6 @@
 - **UI Update**: Transferred the concentric rings statistics visualization from the Fruit & Vegetables habit to the Healthy Cooking habit, replacing the basic grid.
 - **Localization Fix**: Fixed a build error related to a missing value for the '-' key in the pt-BR localization within `Localizable.xcstrings`.
 - Körpergröße wurde als neue Kategorie bei den Körpermaßen im Krafttraining hinzugefügt. (Inklusive Übersetzungen in alle Projektsprachen)
+- Hinzufügen einer Kalorien-Berechnungs-Ansicht mit Apple Health Fallback für manuell eingetragene Körperdaten.
+- Kalorien-Balken zur GesundKochenCard hinzugefügt.
+- Aktualisierung von HealthManager und MacroCalculator für verbesserte Datenquellen-Erkennung.
