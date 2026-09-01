@@ -39,8 +39,8 @@ struct GesundKochenCard: View {
                         VStack(alignment: .center, spacing: 16) {
                             ZStack {
                                 let categories = [
-                                    (id: "protein", color: proteinColor, score: proteinScore),
                                     (id: "carbs", color: carbsColor, score: carbsScore),
+                                    (id: "protein", color: proteinColor, score: proteinScore),
                                     (id: "fat", color: fatColor, score: fatScore)
                                 ]
                                 
@@ -74,9 +74,8 @@ struct GesundKochenCard: View {
                         // Legende
                         VStack(alignment: .leading, spacing: 16) {
                             let legendCats = [
-                                (id: "energy", title: String(localized: "health.metric.energy", defaultValue: "Kalorien"), color: energyColor, val: healthManager.todaysEnergy, target: goalEnergy, unit: "kcal"),
-                                (id: "protein", title: String(localized: "health.metric.protein", defaultValue: "Protein"), color: proteinColor, val: healthManager.todaysProtein, target: goalProtein, unit: "g"),
                                 (id: "carbs", title: String(localized: "health.metric.carbs", defaultValue: "Kohlenhydrate"), color: carbsColor, val: healthManager.todaysCarbohydrates, target: goalCarbs, unit: "g"),
+                                (id: "protein", title: String(localized: "health.metric.protein", defaultValue: "Protein"), color: proteinColor, val: healthManager.todaysProtein, target: goalProtein, unit: "g"),
                                 (id: "fat", title: String(localized: "health.metric.fat", defaultValue: "Fette"), color: fatColor, val: healthManager.todaysFat, target: goalFat, unit: "g")
                             ]
                             
@@ -90,6 +89,8 @@ struct GesundKochenCard: View {
                                             .font(.title3)
                                             .bold()
                                             .foregroundColor(.primary)
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(0.5)
                                         Spacer()
                                         Text("\(Int(cat.val)) / \(Int(cat.target)) \(cat.unit)")
                                             .font(.title3)

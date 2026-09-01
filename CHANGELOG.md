@@ -1,3 +1,8 @@
+## [2026-09-01] - Gesund Kochen Redesign & Macro Goals
+- **GesundKochenCard Redesign:** Die Kalorien-Ringe wurden entfernt, die Karte wurde in ein 3D-Design umgewandelt und die Farben für Protein, Kohlenhydrate und Fett wurden angepasst.
+- **MacroDetailView:** Neue Detailansicht für Makronährstoffe hinzugefügt, in der individuelle Tagesziele (Goals) via Slider/Buttons eingestellt werden können.
+- **Apple Health Erweiterung:** Abfrage für gesättigte, einfach ungesättigte und mehrfach ungesättigte Fettsäuren implementiert und in der Fett-Detailansicht visualisiert.
+
 ## [2026-09-01] - App Tour Routing & Localization Texts
 - **App Tour Routing:** Fixed a bug where restarting the App Tour from the Developer Menu would keep the user on the Profile tab instead of switching to the Habits tab.
 - **Localization:** Updated the descriptions for the 'Schlechte Gewohnheiten' and 'Shop & Power-Ups' tour steps. Ensured 100% translation coverage across all 15 languages.

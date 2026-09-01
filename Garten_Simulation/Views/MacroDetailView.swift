@@ -51,9 +51,7 @@ struct MacroDetailView: View {
                         .padding(.vertical, 8)
                 }
                 .padding(24)
-                .background(Color(UIColor.systemBackground))
-                .cornerRadius(16)
-                .shadow(color: Color.black.opacity(0.05), radius: 10)
+                .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                 
                 // Set Goal
                 VStack(alignment: .leading, spacing: 16) {
@@ -94,9 +92,7 @@ struct MacroDetailView: View {
                     }
                 }
                 .padding(24)
-                .background(Color(UIColor.systemBackground))
-                .cornerRadius(16)
-                .shadow(color: Color.black.opacity(0.05), radius: 10)
+                .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                 
                 // Detailed Fats
                 if category == "fat" {
@@ -111,9 +107,7 @@ struct MacroDetailView: View {
                         detailRow(title: String(localized: "macro.fat.poly", defaultValue: "Mehrfach ungesättigte Fetts."), value: healthManager.todaysFatPolyunsaturated)
                     }
                     .padding(24)
-                    .background(Color(UIColor.systemBackground))
-                    .cornerRadius(16)
-                    .shadow(color: Color.black.opacity(0.05), radius: 10)
+                    .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                 }
             }
             .padding()
@@ -129,8 +123,8 @@ struct MacroDetailView: View {
     private var colorForCategory: Color {
         switch category {
         case "energy": return .red
-        case "protein": return .purple
-        case "carbs": return .orange
+        case "protein": return .orange
+        case "carbs": return .red
         case "fat": return .yellow
         default: return .gray
         }
