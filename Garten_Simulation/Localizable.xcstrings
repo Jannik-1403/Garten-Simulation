@@ -571,6 +571,16 @@
     "%.0f mg" : {
 
     },
+    "%.1f / %.1f %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$.1f / %2$.1f %3$@"
+          }
+        }
+      }
+    },
     "%.1f g" : {
 
     },
@@ -181301,6 +181311,17 @@
         }
       }
     },
+    "nutrient.detail.no_active" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Keine Nährstoffe aktiviert."
+          }
+        }
+      }
+    },
     "nutrient.fiber" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -181422,6 +181443,17 @@
         }
       }
     },
+    "nutrient.settings" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Einstellungen"
+          }
+        }
+      }
+    },
     "nutrient.sodium" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -181484,6 +181516,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Tagesziel:"
+          }
+        }
+      }
+    },
+    "nutrient.total" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Gesamt"
           }
         }
       }
@@ -362562,7 +362605,7 @@
         }
       }
     },
-    "Testdaten laden" : {
+    "Testdaten generieren" : {
 
     },
     "tier_bronze" : {

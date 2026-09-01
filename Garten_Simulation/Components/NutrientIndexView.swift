@@ -73,20 +73,26 @@ struct NutrientIndexView: View {
             
             Divider()
             
-            // Legende (nur aktive Kategorien)
+            // Legende (immer alle drei Kategorien anzeigen)
             VStack(alignment: .leading, spacing: 16) {
-                ForEach(Array(activeCategories.enumerated()), id: \.element.name) { index, cat in
-                    NavigationLink(destination: NutrientCategoryDetailView(categoryName: cat.name, manager: manager)) {
+                let legendCats = [
+                    ("Vitamine", vitaminColor, manager.vitaminScore),
+                    ("Mineralstoffe", mineralColor, manager.mineralScore),
+                    ("Ballaststoffe", fiberColor, manager.fiberScore)
+                ]
+                
+                ForEach(Array(legendCats.enumerated()), id: \.element.0) { index, cat in
+                    NavigationLink(destination: NutrientCategoryDetailView(categoryName: cat.0, manager: manager)) {
                         HStack(alignment: .center) {
                             Circle()
-                                .fill(cat.color)
+                                .fill(cat.1)
                                 .frame(width: 16, height: 16)
-                            Text(getLocalizedCategoryName(for: cat.name))
+                            Text(getLocalizedCategoryName(for: cat.0))
                                 .font(.title3)
                                 .bold()
                                 .foregroundColor(.primary)
                             Spacer()
-                            Text("\(Int(cat.score))/100")
+                            Text("\(Int(cat.2))/100")
                                 .font(.title3)
                                 .bold()
                                 .foregroundColor(.primary)
@@ -94,22 +100,13 @@ struct NutrientIndexView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     
-                    if index < activeCategories.count - 1 {
+                    if index < legendCats.count - 1 {
                         Divider()
                     }
                 }
             }
         }
         .padding(24)
-        .background(
-            ZStack {
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color(UIColor.systemGray4))
-                    .offset(y: 8)
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color(.systemBackground))
-            }
-        )
         .onAppear {
             manager.fetchAllNutrients()
         }
