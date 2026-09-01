@@ -191,13 +191,34 @@ struct BodyDataFactoryView: View {
         case .j: return 3600 * 24 * 365 // 1 Year
         }
     }
+    
+    private var chartXDomain: ClosedRange<Date> {
+        let minDate = scrollData.first?.timestamp ?? Date().addingTimeInterval(-visibleDomain)
+        let maxDate: Date
+        let now = Date()
+        let cal = Calendar.current
+        
+        switch timeRange {
+        case .t:
+            maxDate = cal.startOfDay(for: now).addingTimeInterval(3600 * 24 - 1)
+        case .w:
+            maxDate = cal.dateInterval(of: .weekOfYear, for: now)?.end.addingTimeInterval(-1) ?? now
+        case .m:
+            maxDate = cal.dateInterval(of: .month, for: now)?.end.addingTimeInterval(-1) ?? now
+        case .sixM, .j:
+            maxDate = cal.dateInterval(of: .year, for: now)?.end.addingTimeInterval(-1) ?? now
+        }
+        
+        let start = min(minDate, maxDate.addingTimeInterval(-visibleDomain))
+        return start...maxDate
+    }
 
     @ViewBuilder
     private var chartView: some View {
         Chart {
             ForEach(scrollData, id: \.timestamp) { entry in
                 LineMark(
-                    x: .value("x", entry.timestamp, unit: .day),
+                    x: .value("x", entry.timestamp),
                     y: .value("y", entry.progress)
                 )
                 .interpolationMethod(.linear)
@@ -205,7 +226,7 @@ struct BodyDataFactoryView: View {
                 .lineStyle(StrokeStyle(lineWidth: 3, lineCap: .round))
 
                 PointMark(
-                    x: .value("x", entry.timestamp, unit: .day),
+                    x: .value("x", entry.timestamp),
                     y: .value("y", entry.progress)
                 )
                 .foregroundStyle(Color.pink)
@@ -219,6 +240,7 @@ struct BodyDataFactoryView: View {
             }
         }
         .chartScrollableAxes(.horizontal)
+        .chartXScale(domain: chartXDomain)
         .chartXVisibleDomain(length: visibleDomain)
         .chartScrollPosition(initialX: Date())
         .chartXSelection(value: $selectedDate)
