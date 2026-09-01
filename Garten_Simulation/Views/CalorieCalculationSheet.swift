@@ -11,6 +11,7 @@ struct CalorieCalculationSheet: View {
     @State private var heightStr = ""
     @State private var ageStr = ""
     @State private var sexSelection = 0
+    @State private var bodyFatStr = ""
     
 
     private var recommendedEnergy: Double? {
@@ -18,6 +19,7 @@ struct CalorieCalculationSheet: View {
         let height = hm.activeHeight?.value ?? (hm.manualHeight > 0 ? hm.manualHeight : nil)
         let age = hm.activeAge?.value ?? (hm.manualAge > 0 ? hm.manualAge : nil)
         let sex = hm.activeSex?.value ?? (hm.manualSex > 0 ? hm.manualSex : nil)
+        let bodyFat = hm.manualBodyFat > 0 ? hm.manualBodyFat : nil
         
         guard let rec = MacroCalculator.calculateRecommendation(
             weightKg: weight,
@@ -26,7 +28,8 @@ struct CalorieCalculationSheet: View {
             biologicalSex: sex,
             weightGoalType: hm.weightGoalType,
             weightGoalTargetKg: hm.weightGoalTargetKg,
-            weightGoalDateInterval: hm.weightGoalDateInterval
+            weightGoalDateInterval: hm.weightGoalDateInterval,
+            bodyFatPercentage: bodyFat
         ) else {
             return nil
         }
@@ -100,6 +103,15 @@ struct CalorieCalculationSheet: View {
                             isNumber: true
                         )
                         
+                        // BODY FAT
+                        dataRow(
+                            title: String(localized: "calorie.calc.bodyfat", defaultValue: "Körperfettanteil"),
+                            unit: "%",
+                            hkValue: nil,
+                            manualBinding: $bodyFatStr,
+                            isNumber: true
+                        )
+                        
                         // SEX
                         let hkSex = hm.biologicalSex?.biologicalSex
                         let hasHkSex = hkSex != nil && hkSex != .notSet
@@ -143,7 +155,7 @@ struct CalorieCalculationSheet: View {
                             Text(String(localized: "calorie.calc.goal.title", defaultValue: "Mein Ziel"))
                                 .font(.headline)
                             
-                            if let linked = linkedHabit, let targetW = linked.targetWeight, let targetD = linked.targetWeightDate {
+                            if let linked = linkedHabit, let _ = linked.targetWeight, let _ = linked.targetWeightDate {
                                 HStack {
                                     Image(systemName: "link")
                                         .foregroundColor(.green)
@@ -152,60 +164,59 @@ struct CalorieCalculationSheet: View {
                                         .foregroundColor(.secondary)
                                 }
                                 .padding(.bottom, 8)
-                                
+                            }
+                            
+                            Picker("", selection: $hm.weightGoalType) {
+                                Text(String(localized: "calorie.calc.goal.maintain", defaultValue: "Gewicht halten")).tag(0)
+                                Text(String(localized: "calorie.calc.goal.lose", defaultValue: "Abnehmen")).tag(1)
+                                Text(String(localized: "calorie.calc.goal.gain", defaultValue: "Zunehmen")).tag(2)
+                            }
+                            .pickerStyle(.segmented)
+                            
+                            if hm.weightGoalType != 0 {
                                 HStack {
                                     Text(String(localized: "calorie.calc.goal.target_weight", defaultValue: "Ziel-Gewicht"))
                                         .font(.subheadline.bold())
                                     Spacer()
-                                    Text(String(format: "%.1f kg", targetW))
+                                    TextField("0", value: $hm.weightGoalTargetKg, format: .number)
+                                        .keyboardType(.decimalPad)
+                                        .multilineTextAlignment(.trailing)
                                         .font(.title3.bold())
+                                        .frame(width: 80)
+                                    Text("kg")
+                                        .foregroundColor(.secondary)
                                 }
                                 
                                 HStack {
                                     Text(String(localized: "calorie.calc.goal.target_date", defaultValue: "Ziel-Datum"))
                                         .font(.subheadline.bold())
                                     Spacer()
-                                    Text(targetD, format: .dateTime.day().month().year())
-                                        .font(.title3.bold())
+                                    DatePicker("", selection: Binding(
+                                        get: { Date(timeIntervalSince1970: hm.weightGoalDateInterval > 0 ? hm.weightGoalDateInterval : Date().timeIntervalSince1970 + 86400*30) },
+                                        set: { hm.weightGoalDateInterval = $0.timeIntervalSince1970 }
+                                    ), displayedComponents: .date)
                                 }
                                 
-                            } else {
-                                Picker("", selection: $hm.weightGoalType) {
-                                    Text(String(localized: "calorie.calc.goal.maintain", defaultValue: "Gewicht halten")).tag(0)
-                                    Text(String(localized: "calorie.calc.goal.lose", defaultValue: "Abnehmen")).tag(1)
-                                    Text(String(localized: "calorie.calc.goal.gain", defaultValue: "Zunehmen")).tag(2)
+                                let currentW = hm.activeWeight?.value ?? (hm.manualWeight > 0 ? hm.manualWeight : 0)
+                                if currentW > 0 && hm.weightGoalTargetKg > 0 && hm.weightGoalDateInterval > 0 {
+                                    let days = max(1, Calendar.current.dateComponents([.day], from: Date(), to: Date(timeIntervalSince1970: hm.weightGoalDateInterval)).day ?? 1)
+                                    let diff = abs(currentW - hm.weightGoalTargetKg)
+                                    let weeklyPace = (diff / Double(days)) * 7.0
+                                    
+                                    HStack {
+                                        Image(systemName: "speedometer")
+                                            .foregroundColor(weeklyPace > 1.0 ? .red : .green)
+                                        Text(String(localized: "calorie.calc.goal.pace", defaultValue: "Tempo: ~\(String(format: "%.2f", weeklyPace)) kg / Woche"))
+                                            .font(.subheadline.bold())
+                                            .foregroundColor(weeklyPace > 1.0 ? .red : .green)
+                                    }
+                                    .padding(.top, 4)
                                 }
-                                .pickerStyle(.segmented)
                                 
-                                if hm.weightGoalType != 0 {
-                                    HStack {
-                                        Text(String(localized: "calorie.calc.goal.target_weight", defaultValue: "Ziel-Gewicht"))
-                                            .font(.subheadline.bold())
-                                        Spacer()
-                                        TextField("0", value: $hm.weightGoalTargetKg, format: .number)
-                                            .keyboardType(.decimalPad)
-                                            .multilineTextAlignment(.trailing)
-                                            .font(.title3.bold())
-                                            .frame(width: 80)
-                                        Text("kg")
-                                            .foregroundColor(.secondary)
-                                    }
-                                    
-                                    HStack {
-                                        Text(String(localized: "calorie.calc.goal.target_date", defaultValue: "Ziel-Datum"))
-                                            .font(.subheadline.bold())
-                                        Spacer()
-                                        DatePicker("", selection: Binding(
-                                            get: { Date(timeIntervalSince1970: hm.weightGoalDateInterval > 0 ? hm.weightGoalDateInterval : Date().timeIntervalSince1970 + 86400*30) },
-                                            set: { hm.weightGoalDateInterval = $0.timeIntervalSince1970 }
-                                        ), displayedComponents: .date)
-                                    }
-                                    
-                                    Text(String(localized: "calorie.calc.goal.info", defaultValue: "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."))
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                        .padding(.top, 8)
-                                }
+                                Text(String(localized: "calorie.calc.goal.info", defaultValue: "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."))
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .padding(.top, 8)
                             }
                         }
                         .padding()
@@ -290,6 +301,7 @@ struct CalorieCalculationSheet: View {
         if hm.manualWeight > 0 { weightStr = String(format: "%.1f", hm.manualWeight).replacingOccurrences(of: ".0", with: "") }
         if hm.manualHeight > 0 { heightStr = String(format: "%.1f", hm.manualHeight).replacingOccurrences(of: ".0", with: "") }
         if hm.manualAge > 0 { ageStr = "\(hm.manualAge)" }
+        if hm.manualBodyFat > 0 { bodyFatStr = String(format: "%.1f", hm.manualBodyFat).replacingOccurrences(of: ".0", with: "") }
         sexSelection = hm.manualSex
     }
     
@@ -297,12 +309,14 @@ struct CalorieCalculationSheet: View {
         if let w = Double(weightStr.replacingOccurrences(of: ",", with: ".")) { hm.manualWeight = w }
         if let h = Double(heightStr.replacingOccurrences(of: ",", with: ".")) { hm.manualHeight = h }
         if let a = Int(ageStr) { hm.manualAge = a }
+        if let bf = Double(bodyFatStr.replacingOccurrences(of: ",", with: ".")) { hm.manualBodyFat = bf } else { hm.manualBodyFat = 0.0 }
         
         // Auto-update macro goals based on calculation
         let weight = hm.activeWeight?.value ?? (hm.manualWeight > 0 ? hm.manualWeight : nil)
         let height = hm.activeHeight?.value ?? (hm.manualHeight > 0 ? hm.manualHeight : nil)
         let age = hm.activeAge?.value ?? (hm.manualAge > 0 ? hm.manualAge : nil)
         let sex = hm.activeSex?.value ?? (hm.manualSex > 0 ? hm.manualSex : nil)
+        let bodyFat = hm.manualBodyFat > 0 ? hm.manualBodyFat : nil
         
         if let rec = MacroCalculator.calculateRecommendation(
             weightKg: weight,
@@ -311,7 +325,8 @@ struct CalorieCalculationSheet: View {
             biologicalSex: sex,
             weightGoalType: hm.weightGoalType,
             weightGoalTargetKg: hm.weightGoalTargetKg,
-            weightGoalDateInterval: hm.weightGoalDateInterval
+            weightGoalDateInterval: hm.weightGoalDateInterval,
+            bodyFatPercentage: bodyFat
         ) {
             UserDefaults.standard.set(rec.energy, forKey: "goal_energy")
             UserDefaults.standard.set(rec.protein, forKey: "goal_protein")

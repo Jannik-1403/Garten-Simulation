@@ -37,6 +37,7 @@ class HealthManager: ObservableObject {
     @AppStorage("manual_height_cm") var manualHeight: Double = 0.0
     @AppStorage("manual_age_years") var manualAge: Int = 0
     @AppStorage("manual_sex") var manualSex: Int = 0 // 0 = unknown, 1 = female, 2 = male
+    @AppStorage("manual_body_fat") var manualBodyFat: Double = 0.0
     
     // Weight Goal Data
     @AppStorage("weight_goal_type") var weightGoalType: Int = 0 // 0 = maintain, 1 = lose, 2 = gain

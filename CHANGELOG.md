@@ -911,3 +911,4 @@
   - TDEE aktualisiert sich nun automatisch beim Tippen von manuellen Körperdaten, selbst wenn Apple Health nicht verbunden ist.
 - **Historie Durchschnitt**:
   - Die Anzeige für Monate, 6 Monate und Jahre zeigt nun korrekterweise den *täglichen Durchschnitt* anstatt der Gesamtsumme (bspw. 15.000 kcal).
+- **Dynamischer Kalorienbedarf**: Die große Zahl auf der Berechnungsseite zeigt nun das endgültige Kalorienziel (z.B. 4100 kcal) basierend auf deinen Gewichtszielen anstatt des statischen TDEE-Werts. Auch der Text darunter wurde entsprechend aktualisiert.

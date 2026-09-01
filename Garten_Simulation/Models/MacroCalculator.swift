@@ -20,20 +20,28 @@ class MacroCalculator {
         activityMultiplier: Double = 1.3, // Standardwert für leichte Aktivität (Bürojob + 1-3x Sport)
         weightGoalType: Int = 0, // 0 = maintain, 1 = lose, 2 = gain
         weightGoalTargetKg: Double = 0.0,
-        weightGoalDateInterval: Double = 0.0
+        weightGoalDateInterval: Double = 0.0,
+        bodyFatPercentage: Double? = nil
     ) -> MacroRecommendation? {
         
         guard let weight = weightKg, let height = heightCm, let age = ageYears, let sex = biologicalSex, sex > 0 else {
             return nil
         }
         
-        // Mifflin-St Jeor Formel
-        var bmr: Double = (10 * weight) + (6.25 * height) - (5.0 * Double(age))
-        
-        if sex == 1 { // 1 = female in HKBiologicalSex
-            bmr -= 161
-        } else { // 2 = male
-            bmr += 5 
+        var bmr: Double = 0
+        if let bodyFat = bodyFatPercentage, bodyFat > 0 {
+            // Katch-McArdle Formel (genauer bei bekanntem Körperfettanteil)
+            let leanBodyMass = weight * (100.0 - bodyFat) / 100.0
+            bmr = 370.0 + (21.6 * leanBodyMass)
+        } else {
+            // Mifflin-St Jeor Formel
+            bmr = (10 * weight) + (6.25 * height) - (5.0 * Double(age))
+            
+            if sex == 1 { // 1 = female in HKBiologicalSex
+                bmr -= 161
+            } else { // 2 = male
+                bmr += 5 
+            }
         }
         
         let tdee = bmr * activityMultiplier
