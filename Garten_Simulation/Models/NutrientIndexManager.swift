@@ -69,6 +69,7 @@ class NutrientIndexManager: ObservableObject {
     }
     
     private func defaultVitamins() -> [NutrientItem] {
+        [
             NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_c", defaultValue: "Vitamin C"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminC.rawValue, targetDGE: 110.0, unitString: "mg"),
             NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_a", defaultValue: "Vitamin A"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminA.rawValue, targetDGE: 1000.0, unitString: "mcg"),
             NutrientItem(id: UUID(), name: String(localized: "nutrient.folate", defaultValue: "Folsäure"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryFolate.rawValue, targetDGE: 300.0, unitString: "mcg"),
