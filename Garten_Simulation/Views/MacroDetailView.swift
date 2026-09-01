@@ -94,6 +94,8 @@ struct MacroDetailView: View {
                 .padding(24)
                 .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                 
+                recommendationSection
+                
                 // Detailed Fats
                 if category == "fat" {
                     VStack(alignment: .leading, spacing: 16) {
@@ -159,5 +161,91 @@ struct MacroDetailView: View {
         case "fat": goalFat = tempGoal
         default: break
         }
+    }
+    
+    private func saveGoal(value: Double) {
+        tempGoal = value
+        switch category {
+        case "energy": goalEnergy = tempGoal
+        case "protein": goalProtein = tempGoal
+        case "carbs": goalCarbs = tempGoal
+        case "fat": goalFat = tempGoal
+        default: break
+        }
+    }
+    
+    private func recommendedValue(from rec: MacroRecommendation) -> Double {
+        switch category {
+        case "energy": return rec.energy
+        case "protein": return rec.protein
+        case "carbs": return rec.carbs
+        case "fat": return rec.fat
+        default: return 0
+        }
+    }
+    
+    @ViewBuilder
+    private var recommendationSection: some View {
+        let recommendation = MacroCalculator.calculateRecommendation(
+            weightKg: healthManager.latestBodyMass,
+            heightCm: healthManager.latestHeight,
+            ageYears: healthManager.age,
+            biologicalSex: healthManager.biologicalSex
+        )
+        
+        VStack(alignment: .leading, spacing: 16) {
+            Text(String(localized: "macro.recommendation.title", defaultValue: "App Empfehlung"))
+                .font(.headline)
+            
+            if let rec = recommendation {
+                let recValue = recommendedValue(from: rec)
+                
+                Text(String(localized: "macro.recommendation.desc", defaultValue: "Basierend auf deinen Körperdaten (Größe, Gewicht, Alter) empfehlen wir dir dieses Tagesziel."))
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                HStack {
+                    Text("\(Int(recValue)) \(unit)")
+                        .font(.title2.bold())
+                    
+                    Spacer()
+                    
+                    Item3DPillButton(
+                        farbe: colorForCategory,
+                        sekundaerFarbe: colorForCategory.opacity(0.8),
+                        groesse: 44,
+                        aktion: {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            saveGoal(value: recValue)
+                        }
+                    ) {
+                        Text(String(localized: "macro.recommendation.apply", defaultValue: "Übernehmen"))
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
+                }
+            } else {
+                Text(String(localized: "macro.recommendation.missing", defaultValue: "Wir benötigen deine Körpergröße, dein Alter und Gewicht aus Apple Health, um dir eine Empfehlung zu geben."))
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Item3DPillButton(
+                    farbe: Color(UIColor.systemBlue),
+                    sekundaerFarbe: Color(UIColor.systemBlue).opacity(0.8),
+                    groesse: 44,
+                    aktion: {
+                        healthManager.requestAuthorization()
+                    }
+                ) {
+                    Text(String(localized: "macro.recommendation.auth", defaultValue: "Daten freigeben"))
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+            }
+        }
+        .padding(24)
+        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
     }
 }

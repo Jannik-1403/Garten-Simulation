@@ -6,8 +6,8 @@ struct GesundKochenCard: View {
     var onUnlink: (() -> Void)? = nil
     
     let energyColor = Color.red
-    let proteinColor = Color.purple
-    let carbsColor = Color.orange
+    let proteinColor = Color.orange
+    let carbsColor = Color.red
     let fatColor = Color.yellow
     
     // Goals

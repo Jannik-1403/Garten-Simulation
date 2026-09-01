@@ -27,6 +27,31 @@ class HealthManager: ObservableObject {
     @Published var todaysFatMonounsaturated: Double = 0
     @Published var todaysFatPolyunsaturated: Double = 0
     
+    // Body Data
+    @Published var latestBodyMass: Double?
+    @Published var latestHeight: Double?
+    
+    var age: Int? {
+        do {
+            let birthdayComponents = try healthStore.dateOfBirthComponents()
+            if let date = birthdayComponents.date {
+                let age = Calendar.current.dateComponents([.year], from: date, to: Date()).year
+                return age
+            }
+        } catch {
+            return nil
+        }
+        return nil
+    }
+    
+    var biologicalSex: HKBiologicalSexObject? {
+        do {
+            return try healthStore.biologicalSex()
+        } catch {
+            return nil
+        }
+    }
+    
     private init() {
         checkAuthorizationStatus()
         if isAuthorized {
@@ -45,12 +70,13 @@ class HealthManager: ObservableObject {
         // Ein sicherer Weg ist, UserDefaults zu nutzen, um zu wissen, ob der Prompt schon gezeigt wurde.
         let hasRequested = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested")
         let hasRequestedV3 = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested_v3")
+        let hasRequestedV4 = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested_v4")
         
         if hasRequested {
             isAuthorized = true
             
-            // Wenn der User schon V1/V2 hat, aber die neuen Makro-Permissions (v3) noch nicht
-            if !hasRequestedV3 {
+            // Wenn der User schon V1/V2/V3 hat, aber die neuen Körperdaten/Fette (v4) noch nicht
+            if !hasRequestedV4 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.requestAuthorization()
                 }
@@ -74,6 +100,9 @@ class HealthManager: ObservableObject {
         let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
         let mindfulness = HKObjectType.categoryType(forIdentifier: .mindfulSession)!
         let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass)!
+        let height = HKObjectType.quantityType(forIdentifier: .height)!
+        let dateOfBirth = HKObjectType.characteristicType(forIdentifier: .dateOfBirth)!
+        let biologicalSex = HKObjectType.characteristicType(forIdentifier: .biologicalSex)!
         let workout = HKObjectType.workoutType()
         
         // --- Ernährungs-Typen (Makros, Vitamine, Mineralstoffe) ---
@@ -88,7 +117,7 @@ class HealthManager: ObservableObject {
             .dietaryCalcium, .dietaryIron, .dietaryMagnesium, .dietaryPhosphorus, .dietaryPotassium, .dietarySodium, .dietaryZinc
         ]
         
-        var typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, bodyMass, workout]
+        var typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, bodyMass, height, dateOfBirth, biologicalSex, workout]
         
         for id in nutritionIdentifiers {
             if let type = HKObjectType.quantityType(forIdentifier: id) {
@@ -103,6 +132,7 @@ class HealthManager: ObservableObject {
                     UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested")
                     UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v2")
                     UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v3")
+                    UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v4")
                     self?.fetchAllTodaysData()
                 } else {
                     print("HealthKit Auth Fehlgeschlagen: \(String(describing: error))")
@@ -123,6 +153,8 @@ class HealthManager: ObservableObject {
         fetchCalcium()
         fetchEnergy()
         fetchMacros()
+        fetchBodyMass()
+        fetchHeight()
         NutrientIndexManager.shared.fetchAllNutrients()
     }
     
@@ -142,6 +174,34 @@ class HealthManager: ObservableObject {
             }
         }
         
+        healthStore.execute(query)
+    }
+    
+    func fetchBodyMass() {
+        guard let bodyMassType = HKQuantityType.quantityType(forIdentifier: .bodyMass) else { return }
+        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let query = HKSampleQuery(sampleType: bodyMassType, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { _, samples, _ in
+            guard let sample = samples?.first as? HKQuantitySample else { return }
+            let kg = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+            DispatchQueue.main.async {
+                self.latestBodyMass = kg
+            }
+        }
+        healthStore.execute(query)
+    }
+    
+    func fetchHeight() {
+        guard let heightType = HKQuantityType.quantityType(forIdentifier: .height) else { return }
+        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let query = HKSampleQuery(sampleType: heightType, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { _, samples, _ in
+            guard let sample = samples?.first as? HKQuantitySample else { return }
+            let cm = sample.quantity.doubleValue(for: HKUnit.meterUnit(with: .centi))
+            DispatchQueue.main.async {
+                self.latestHeight = cm
+            }
+        }
         healthStore.execute(query)
     }
     

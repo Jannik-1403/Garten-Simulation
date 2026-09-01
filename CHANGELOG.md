@@ -883,3 +883,4 @@
 
 - **UI Update**: Transferred the concentric rings statistics visualization from the Fruit & Vegetables habit to the Healthy Cooking habit, replacing the basic grid.
 - **Localization Fix**: Fixed a build error related to a missing value for the '-' key in the pt-BR localization within `Localizable.xcstrings`.
+- Körpergröße wurde als neue Kategorie bei den Körpermaßen im Krafttraining hinzugefügt. (Inklusive Übersetzungen in alle Projektsprachen)
