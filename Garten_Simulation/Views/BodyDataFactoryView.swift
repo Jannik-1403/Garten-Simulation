@@ -125,11 +125,13 @@ struct BodyDataFactoryView: View {
                 if filteredData.isEmpty {
                     emptyStateView
                         .offset(x: dragOffset)
-                        .gesture(swipeGesture)
+                        .contentShape(Rectangle())
+                        .highPriorityGesture(swipeGesture)
                 } else {
                     chartView
                         .offset(x: dragOffset)
-                        .gesture(swipeGesture)
+                        .contentShape(Rectangle())
+                        .highPriorityGesture(swipeGesture)
                 }
                 
                 // Ziel (bei Gewicht & Körperumfängen)
