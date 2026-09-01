@@ -5,15 +5,21 @@ struct GesundKochenCard: View {
     @ObservedObject var healthManager = HealthManager.shared
     var onUnlink: (() -> Void)? = nil
     
-    let energyColor = Color.orange
-    let proteinColor = Color.red
-    let carbsColor = Color.green
+    let energyColor = Color.red
+    let proteinColor = Color.purple
+    let carbsColor = Color.orange
     let fatColor = Color.yellow
     
-    var energyScore: Double { healthManager.todaysEnergy / 2000.0 }
-    var proteinScore: Double { healthManager.todaysProtein / 100.0 }
-    var carbsScore: Double { healthManager.todaysCarbohydrates / 250.0 }
-    var fatScore: Double { healthManager.todaysFat / 70.0 }
+    // Goals
+    @AppStorage("goal_energy") private var goalEnergy: Double = 2000.0
+    @AppStorage("goal_protein") private var goalProtein: Double = 100.0
+    @AppStorage("goal_carbs") private var goalCarbs: Double = 250.0
+    @AppStorage("goal_fat") private var goalFat: Double = 70.0
+    
+    var energyScore: Double { healthManager.todaysEnergy / max(goalEnergy, 1) }
+    var proteinScore: Double { healthManager.todaysProtein / max(goalProtein, 1) }
+    var carbsScore: Double { healthManager.todaysCarbohydrates / max(goalCarbs, 1) }
+    var fatScore: Double { healthManager.todaysFat / max(goalFat, 1) }
     
     var totalScore: Int {
         let e = min(energyScore, 1.0)
@@ -33,21 +39,23 @@ struct GesundKochenCard: View {
                         VStack(alignment: .center, spacing: 16) {
                             ZStack {
                                 let categories = [
-                                    (color: energyColor, score: energyScore),
-                                    (color: proteinColor, score: proteinScore),
-                                    (color: carbsColor, score: carbsScore),
-                                    (color: fatColor, score: fatScore)
+                                    (id: "protein", color: proteinColor, score: proteinScore),
+                                    (id: "carbs", color: carbsColor, score: carbsScore),
+                                    (id: "fat", color: fatColor, score: fatScore)
                                 ]
                                 
                                 ForEach(Array(categories.enumerated()), id: \.offset) { index, cat in
                                     let paddingAmount = CGFloat(index * 24)
-                                    ConcentricRing(scorePercentage: cat.score, color: cat.color, lineWidth: 18)
-                                        .padding(paddingAmount)
-                                        .background(
-                                            Circle()
-                                                .stroke(Color.white.opacity(0.001), lineWidth: 18)
-                                                .padding(paddingAmount)
-                                        )
+                                    NavigationLink(destination: MacroDetailView(category: cat.id)) {
+                                        ConcentricRing(scorePercentage: cat.score, color: cat.color, lineWidth: 18)
+                                            .padding(paddingAmount)
+                                            .background(
+                                                Circle()
+                                                    .stroke(Color.white.opacity(0.001), lineWidth: 18)
+                                                    .padding(paddingAmount)
+                                            )
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                 }
                                 
                                 Text("\(totalScore)")
@@ -66,27 +74,30 @@ struct GesundKochenCard: View {
                         // Legende
                         VStack(alignment: .leading, spacing: 16) {
                             let legendCats = [
-                                (title: String(localized: "health.metric.energy", defaultValue: "Kalorien"), color: energyColor, val: healthManager.todaysEnergy, target: 2000.0, unit: "kcal"),
-                                (title: String(localized: "health.metric.protein", defaultValue: "Protein"), color: proteinColor, val: healthManager.todaysProtein, target: 100.0, unit: "g"),
-                                (title: String(localized: "health.metric.carbs", defaultValue: "Kohlenhydrate"), color: carbsColor, val: healthManager.todaysCarbohydrates, target: 250.0, unit: "g"),
-                                (title: String(localized: "health.metric.fat", defaultValue: "Fette"), color: fatColor, val: healthManager.todaysFat, target: 70.0, unit: "g")
+                                (id: "energy", title: String(localized: "health.metric.energy", defaultValue: "Kalorien"), color: energyColor, val: healthManager.todaysEnergy, target: goalEnergy, unit: "kcal"),
+                                (id: "protein", title: String(localized: "health.metric.protein", defaultValue: "Protein"), color: proteinColor, val: healthManager.todaysProtein, target: goalProtein, unit: "g"),
+                                (id: "carbs", title: String(localized: "health.metric.carbs", defaultValue: "Kohlenhydrate"), color: carbsColor, val: healthManager.todaysCarbohydrates, target: goalCarbs, unit: "g"),
+                                (id: "fat", title: String(localized: "health.metric.fat", defaultValue: "Fette"), color: fatColor, val: healthManager.todaysFat, target: goalFat, unit: "g")
                             ]
                             
-                            ForEach(Array(legendCats.enumerated()), id: \.element.title) { index, cat in
-                                HStack(alignment: .center) {
-                                    Circle()
-                                        .fill(cat.color)
-                                        .frame(width: 16, height: 16)
-                                    Text(cat.title)
-                                        .font(.title3)
-                                        .bold()
-                                        .foregroundColor(.primary)
-                                    Spacer()
-                                    Text("\(Int(cat.val)) / \(Int(cat.target)) \(cat.unit)")
-                                        .font(.title3)
-                                        .bold()
-                                        .foregroundColor(.primary)
+                            ForEach(Array(legendCats.enumerated()), id: \.element.id) { index, cat in
+                                NavigationLink(destination: MacroDetailView(category: cat.id)) {
+                                    HStack(alignment: .center) {
+                                        Circle()
+                                            .fill(cat.color)
+                                            .frame(width: 16, height: 16)
+                                        Text(cat.title)
+                                            .font(.title3)
+                                            .bold()
+                                            .foregroundColor(.primary)
+                                        Spacer()
+                                        Text("\(Int(cat.val)) / \(Int(cat.target)) \(cat.unit)")
+                                            .font(.title3)
+                                            .bold()
+                                            .foregroundColor(.primary)
+                                    }
                                 }
+                                .buttonStyle(PlainButtonStyle())
                                 
                                 if index < legendCats.count - 1 {
                                     Divider()
@@ -115,8 +126,7 @@ struct GesundKochenCard: View {
                         .padding(.trailing, 10)
                     }
                 }
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(16)
+                .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                 
             } else {
                 VStack(spacing: 12) {
@@ -148,8 +158,7 @@ struct GesundKochenCard: View {
                     .padding(.top, 8)
                 }
                 .padding()
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(16)
+                .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
             }
         }
     }

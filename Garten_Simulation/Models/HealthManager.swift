@@ -23,6 +23,10 @@ class HealthManager: ObservableObject {
     @Published var todaysCarbohydrates: Double = 0
     @Published var todaysFat: Double = 0
     
+    @Published var todaysFatSaturated: Double = 0
+    @Published var todaysFatMonounsaturated: Double = 0
+    @Published var todaysFatPolyunsaturated: Double = 0
+    
     private init() {
         checkAuthorizationStatus()
         if isAuthorized {
@@ -76,6 +80,8 @@ class HealthManager: ObservableObject {
         let nutritionIdentifiers: [HKQuantityTypeIdentifier] = [
             // Makros & Energie
             .dietaryEnergyConsumed, .dietaryProtein, .dietaryCarbohydrates, .dietaryFatTotal, .dietaryFiber,
+            // Detaillierte Fette
+            .dietaryFatSaturated, .dietaryFatMonounsaturated, .dietaryFatPolyunsaturated,
             // Vitamine
             .dietaryVitaminA, .dietaryVitaminB6, .dietaryVitaminB12, .dietaryVitaminC, .dietaryVitaminD, .dietaryVitaminE, .dietaryVitaminK,
             // Mineralstoffe
@@ -206,34 +212,29 @@ class HealthManager: ObservableObject {
     func fetchMacros() {
         guard let proteinType = HKQuantityType.quantityType(forIdentifier: .dietaryProtein),
               let carbsType = HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates),
-              let fatType = HKQuantityType.quantityType(forIdentifier: .dietaryFatTotal) else { return }
+              let fatType = HKQuantityType.quantityType(forIdentifier: .dietaryFatTotal),
+              let satFatType = HKQuantityType.quantityType(forIdentifier: .dietaryFatSaturated),
+              let monoFatType = HKQuantityType.quantityType(forIdentifier: .dietaryFatMonounsaturated),
+              let polyFatType = HKQuantityType.quantityType(forIdentifier: .dietaryFatPolyunsaturated) else { return }
         
         let startOfDay = Calendar.current.startOfDay(for: Date())
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
         
-        // Protein
-        let queryProtein = HKStatisticsQuery(quantityType: proteinType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            guard let result = result, let sum = result.sumQuantity() else { return }
-            let grams = sum.doubleValue(for: HKUnit.gram())
-            DispatchQueue.main.async { self.todaysProtein = grams }
+        // Helper function for queries
+        func queryMacro(type: HKQuantityType, completion: @escaping (Double) -> Void) {
+            let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+                let grams = result?.sumQuantity()?.doubleValue(for: HKUnit.gram()) ?? 0
+                DispatchQueue.main.async { completion(grams) }
+            }
+            healthStore.execute(query)
         }
-        healthStore.execute(queryProtein)
         
-        // Carbs
-        let queryCarbs = HKStatisticsQuery(quantityType: carbsType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            guard let result = result, let sum = result.sumQuantity() else { return }
-            let grams = sum.doubleValue(for: HKUnit.gram())
-            DispatchQueue.main.async { self.todaysCarbohydrates = grams }
-        }
-        healthStore.execute(queryCarbs)
-        
-        // Fat
-        let queryFat = HKStatisticsQuery(quantityType: fatType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            guard let result = result, let sum = result.sumQuantity() else { return }
-            let grams = sum.doubleValue(for: HKUnit.gram())
-            DispatchQueue.main.async { self.todaysFat = grams }
-        }
-        healthStore.execute(queryFat)
+        queryMacro(type: proteinType) { self.todaysProtein = $0 }
+        queryMacro(type: carbsType) { self.todaysCarbohydrates = $0 }
+        queryMacro(type: fatType) { self.todaysFat = $0 }
+        queryMacro(type: satFatType) { self.todaysFatSaturated = $0 }
+        queryMacro(type: monoFatType) { self.todaysFatMonounsaturated = $0 }
+        queryMacro(type: polyFatType) { self.todaysFatPolyunsaturated = $0 }
     }
     
     func fetchSleep() {

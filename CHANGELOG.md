@@ -875,3 +875,6 @@
 - **Localization**: Added missing string translations for new macro nutrients to 16 languages.
 
 - **Bugfix (HealthKit)**: Fixed an issue where the authorization prompt for the newly added macronutrients was not shown to users who had already granted permissions in a previous version.
+
+- **UI Update**: Transferred the concentric rings statistics visualization from the Fruit & Vegetables habit to the Healthy Cooking habit, replacing the basic grid.
+- **Localization Fix**: Fixed a build error related to a missing value for the '-' key in the pt-BR localization within `Localizable.xcstrings`.
