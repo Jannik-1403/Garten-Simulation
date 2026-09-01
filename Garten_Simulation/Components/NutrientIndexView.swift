@@ -14,11 +14,11 @@ struct RingSegment: View {
         ZStack {
             // Blasser Hintergrund
             TrimmedArc(startAngle: startAngle, endAngle: endAngle)
-                .stroke(color.opacity(0.25), style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                .stroke(color.opacity(0.25), style: StrokeStyle(lineWidth: lineWidth, lineCap: .butt))
             
             // Gefüllter Balken
             TrimmedArc(startAngle: startAngle, endAngle: .degrees(startAngle.degrees + filledSpan))
-                .stroke(color, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                .stroke(color, style: StrokeStyle(lineWidth: lineWidth, lineCap: .butt))
         }
     }
 }
@@ -45,59 +45,75 @@ struct NutrientIndexView: View {
     let fiberColor = Color(red: 0.98, green: 0.5, blue: 0.4)
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 24) {
             
-            HStack {
-                Text(String(localized: "nutrient.index.title", defaultValue: "Nährstoff-Index"))
-                    .font(.title2)
-                    .bold()
-                Spacer()
-                Image(systemName: "gearshape.fill")
-                    .foregroundColor(.gray)
-            }
-            
-            HStack(spacing: 24) {
+            // Oben: Großes Chart und Text rechts daneben
+            HStack(alignment: .center, spacing: 24) {
                 ZStack {
                     RingSegment(scorePercentage: manager.vitaminScore / 100.0, startAngle: .degrees(5), endAngle: .degrees(115), color: vitaminColor)
-                        .onTapGesture { selectedCategory = "Vitamine" }
                     
                     RingSegment(scorePercentage: manager.mineralScore / 100.0, startAngle: .degrees(125), endAngle: .degrees(235), color: mineralColor)
-                        .onTapGesture { selectedCategory = "Mineralstoffe" }
                     
                     RingSegment(scorePercentage: manager.fiberScore / 100.0, startAngle: .degrees(245), endAngle: .degrees(355), color: fiberColor)
-                        .onTapGesture { selectedCategory = "Ballaststoffe" }
                     
                     Text("\(manager.totalScore)")
-                        .font(.system(size: 38, weight: .bold))
+                        .font(.system(size: 46, weight: .bold))
                 }
-                .frame(width: 130, height: 130)
+                .frame(width: 160, height: 160)
                 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "info.circle.fill")
+                            .foregroundColor(Color(.systemGray4))
+                            .font(.title3)
+                    }
+                    Spacer()
                     Text(getStatusText(score: manager.totalScore))
-                        .font(.system(size: 28, weight: .bold))
+                        .font(.system(size: 34, weight: .bold))
+                        .minimumScaleFactor(0.5)
+                    Spacer()
                 }
-            }
-            .padding(.vertical, 10)
-            
-            VStack(alignment: .leading, spacing: 12) {
-                LegendRow(color: vitaminColor, title: String(localized: "nutrient.category.vitamins", defaultValue: "Vitamine"), score: Int(manager.vitaminScore)) {
-                    selectedCategory = "Vitamine"
-                }
-                LegendRow(color: mineralColor, title: String(localized: "nutrient.category.minerals", defaultValue: "Mineralstoffe"), score: Int(manager.mineralScore)) {
-                    selectedCategory = "Mineralstoffe"
-                }
-                LegendRow(color: fiberColor, title: String(localized: "nutrient.category.fiber", defaultValue: "Ballaststoffe"), score: Int(manager.fiberScore)) {
-                    selectedCategory = "Ballaststoffe"
-                }
+                .frame(height: 160)
             }
             
             Divider()
             
-            Text(String(localized: "nutrient.index.summary", defaultValue: "Weil du heute reichlich frisches Obst und Gemüse getrackt hast, erreichst du einen hervorragenden Nährstoff-Index von \(manager.totalScore)."))
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+            // Legende
+            VStack(alignment: .leading, spacing: 16) {
+                LegendRow(
+                    color: vitaminColor, 
+                    title: String(localized: "nutrient.category.vitamins", defaultValue: "Vitamine"), 
+                    subtitle: "z.B. Vitamin C, Vitamin B12, Folsäure...",
+                    score: Int(manager.vitaminScore)
+                ) {
+                    selectedCategory = "Vitamine"
+                }
+                
+                Divider()
+                
+                LegendRow(
+                    color: mineralColor, 
+                    title: String(localized: "nutrient.category.minerals", defaultValue: "Mineralstoffe"), 
+                    subtitle: "z.B. Magnesium, Calcium, Kalium...",
+                    score: Int(manager.mineralScore)
+                ) {
+                    selectedCategory = "Mineralstoffe"
+                }
+                
+                Divider()
+                
+                LegendRow(
+                    color: fiberColor, 
+                    title: String(localized: "nutrient.category.fiber", defaultValue: "Ballaststoffe"), 
+                    subtitle: "Täglicher Bedarf: 30g",
+                    score: Int(manager.fiberScore)
+                ) {
+                    selectedCategory = "Ballaststoffe"
+                }
+            }
         }
-        .padding(20)
+        .padding(24)
         .background(Color(.systemBackground))
         .cornerRadius(24)
         .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 4)
@@ -122,22 +138,31 @@ struct NutrientIndexView: View {
 struct LegendRow: View {
     var color: Color
     var title: String
+    var subtitle: String
     var score: Int
     var action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            HStack {
-                Circle()
-                    .fill(color)
-                    .frame(width: 12, height: 12)
-                Text(title)
-                    .font(.headline)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(alignment: .center) {
+                    Circle()
+                        .fill(color)
+                        .frame(width: 16, height: 16)
+                    Text(title)
+                        .font(.title3)
+                        .bold()
+                        .foregroundColor(.primary)
+                    Spacer()
+                    Text("\(score)/100")
+                        .font(.title3)
+                        .bold()
+                        .foregroundColor(.primary)
+                }
+                Text(subtitle)
+                    .font(.subheadline)
                     .foregroundColor(.primary)
-                Spacer()
-                Text("\(score)/100")
-                    .font(.headline)
-                    .foregroundColor(.primary)
+                    .padding(.leading, 24)
             }
         }
     }
@@ -155,16 +180,39 @@ struct CategoryDetailSheet: View {
     var body: some View {
         NavigationView {
             List {
-                if categoryName == "Vitamine" {
-                    ForEach($manager.vitamins) { $item in
-                        NutrientEditRow(item: $item) { manager.saveSettings() }
+                Section {
+                    HStack {
+                        Spacer()
+                        ZStack {
+                            Circle()
+                                .stroke(Color.gray.opacity(0.2), lineWidth: 16)
+                            
+                            Circle()
+                                .trim(from: 0, to: CGFloat(getCategoryScore() / 100.0))
+                                .stroke(getCategoryColor(), style: StrokeStyle(lineWidth: 16, lineCap: .round))
+                                .rotationEffect(.degrees(-90))
+                            
+                            Text("\(Int(getCategoryScore()))")
+                                .font(.system(size: 36, weight: .bold))
+                        }
+                        .frame(width: 120, height: 120)
+                        .padding(.vertical, 16)
+                        Spacer()
                     }
-                } else if categoryName == "Mineralstoffe" {
-                    ForEach($manager.minerals) { $item in
-                        NutrientEditRow(item: $item) { manager.saveSettings() }
+                }
+                
+                Section {
+                    if categoryName == "Vitamine" {
+                        ForEach($manager.vitamins) { $item in
+                            NutrientEditRow(item: $item) { manager.saveSettings() }
+                        }
+                    } else if categoryName == "Mineralstoffe" {
+                        ForEach($manager.minerals) { $item in
+                            NutrientEditRow(item: $item) { manager.saveSettings() }
+                        }
+                    } else if categoryName == "Ballaststoffe" {
+                        NutrientEditRow(item: $manager.fiber) { manager.saveSettings() }
                     }
-                } else if categoryName == "Ballaststoffe" {
-                    NutrientEditRow(item: $manager.fiber) { manager.saveSettings() }
                 }
             }
             .navigationTitle(categoryName)
@@ -176,6 +224,24 @@ struct CategoryDetailSheet: View {
                     }
                 }
             }
+        }
+    }
+    
+    private func getCategoryScore() -> Double {
+        switch categoryName {
+        case "Vitamine": return manager.vitaminScore
+        case "Mineralstoffe": return manager.mineralScore
+        case "Ballaststoffe": return manager.fiberScore
+        default: return 0
+        }
+    }
+    
+    private func getCategoryColor() -> Color {
+        switch categoryName {
+        case "Vitamine": return .blue
+        case "Mineralstoffe": return Color(red: 0.2, green: 0.8, blue: 0.6)
+        case "Ballaststoffe": return Color(red: 0.98, green: 0.5, blue: 0.4)
+        default: return .gray
         }
     }
 }
