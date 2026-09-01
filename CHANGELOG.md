@@ -859,3 +859,5 @@
 - Fixed alignment of dates under the bars in the Nutrient History Chart
 - Hinzufügen von DGE-Informationen zu den Nährstoff-Einstellungen
 - Nährstoff-Index-Ansicht ist nun an den Statistik-Toggle auf der Pflanzen-Detailseite gebunden
+- Hinzufügen des X-Buttons zum Entkoppeln von Apple Health für Obst & Gemüse
+- Synchronisation des Garten-Fortschrittsbalkens mit dem Nährstoff-Score

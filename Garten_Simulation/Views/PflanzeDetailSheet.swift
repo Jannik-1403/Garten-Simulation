@@ -113,7 +113,9 @@ struct PflanzeDetailSheet: View {
 
                     // Obst & Gemüse / Nährstoffe
                     if (pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium) && pflanze.showStats {
-                        NutrientIndexView()
+                        NutrientIndexView(onUnlink: {
+                            zeigeAppleHealthEntkoppelnAlert = true
+                        })
                             .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                             .padding(.horizontal, 24)
                             .padding(.bottom, 16)
@@ -590,18 +592,6 @@ struct PflanzeDetailSheet: View {
                                                 VStack {
                                                     if metric == .fiber || metric == .calcium || metric == .energy {
                                                         // Custom cards handle these metrics instead of HealthChartView
-                                                        HStack {
-                                                            Spacer()
-                                                            Button {
-                                                                zeigeAppleHealthEntkoppelnAlert = true
-                                                            } label: {
-                                                                Image(systemName: "xmark.circle.fill")
-                                                                    .font(.system(size: 24))
-                                                                    .foregroundStyle(Color(UIColor.tertiaryLabel))
-                                                            }
-                                                        }
-                                                        .padding(.horizontal, 24)
-                                                        .padding(.top, 8)
                                                     } else {
                                                         if !hourlyHealthData.isEmpty {
                                                             HealthChartView(

@@ -112,6 +112,7 @@ class HealthManager: ObservableObject {
         fetchFiber()
         fetchCalcium()
         fetchEnergy()
+        NutrientIndexManager.shared.fetchAllNutrients()
     }
     
     func fetchSteps() {

@@ -35,6 +35,7 @@ struct TrimmedArc: Shape {
 
 struct NutrientIndexView: View {
     @ObservedObject private var manager = NutrientIndexManager.shared
+    var onUnlink: (() -> Void)? = nil
     
     let vitaminColor = Color.blue
     let mineralColor = Color(red: 0.2, green: 0.8, blue: 0.6)
@@ -42,6 +43,26 @@ struct NutrientIndexView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
+            
+            if let onUnlink = onUnlink {
+                HStack {
+                    Spacer()
+                    Item3DButton(
+                        farbe: .red,
+                        sekundaerFarbe: Color.red.opacity(0.7),
+                        groesse: 36,
+                        isRectangular: false,
+                        aktion: {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            onUnlink()
+                        }
+                    ) {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
             
             // Oben: Großes Chart und Text darunter
             VStack(alignment: .center, spacing: 16) {

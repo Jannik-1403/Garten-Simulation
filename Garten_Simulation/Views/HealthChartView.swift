@@ -78,12 +78,19 @@ struct HealthChartView: View {
                 Spacer()
                 
                 if let onUnlink = onUnlink {
-                    Button {
-                        onUnlink()
-                    } label: {
+                    Item3DButton(
+                        farbe: .red,
+                        sekundaerFarbe: Color.red.opacity(0.7),
+                        groesse: 36,
+                        isRectangular: false,
+                        aktion: {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            onUnlink()
+                        }
+                    ) {
                         Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundStyle(Color.primary)
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.white)
                     }
                 }
             }
