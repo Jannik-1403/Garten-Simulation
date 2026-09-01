@@ -93,14 +93,21 @@ struct ObstGemueseHealthCard: View {
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                     
-                    Item3DButton(
-                        text: String(localized: "habit.fruit_veg.connect_btn", defaultValue: "Mit Apple Health verbinden"),
-                        icon: "heart.text.square.fill",
+                    Item3DPillButton(
                         farbe: .green,
+                        sekundaerFarbe: .green.opacity(0.8),
+                        groesse: 50,
                         aktion: {
                             healthManager.requestAuthorization()
                         }
-                    )
+                    ) {
+                        HStack {
+                            Image(systemName: "heart.text.square.fill")
+                            Text(String(localized: "habit.fruit_veg.connect_btn", defaultValue: "Mit Apple Health verbinden"))
+                        }
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    }
                     .padding(.top, 8)
                 }
                 .padding()
