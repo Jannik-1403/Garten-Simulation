@@ -892,3 +892,6 @@
 - Hinzufügen einer Kalorien-Berechnungs-Ansicht mit Apple Health Fallback für manuell eingetragene Körperdaten.
 - Kalorien-Balken zur GesundKochenCard hinzugefügt.
 - Aktualisierung von HealthManager und MacroCalculator für verbesserte Datenquellen-Erkennung.
+- CalorieDetailView hinzugefügt für Kalorien-Historie in 3D-Design.
+- GesundKochenCard Kalorien-Anzeige zu Balken umgebaut und mit CalorieDetailView verlinkt.
+- HealthManager.swift um fetchHistoricalData erweitert.
