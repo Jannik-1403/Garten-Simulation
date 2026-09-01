@@ -802,7 +802,47 @@ struct BodyDataFactoryView: View {
                 
                 // Wir ermitteln, ob der User zunehmen oder abnehmen will
                 let isGoalGain = (currentTarget ?? (entries.last?.progress ?? 0)) >= (entries.last?.progress ?? 0)
-                let status = getWeeklyStatus(delta: delta, isGoalGain: isGoalGain, type: type)
+                let oldStatus = getWeeklyStatus(delta: delta, isGoalGain: isGoalGain, type: type)
+                
+                var displayTitle = oldStatus.title
+                var displayDesc = oldStatus.desc
+                var displayColor = oldStatus.color
+                
+                if type == .weight, let targetW = currentTarget, let targetD = currentTargetDate {
+                    let logs = entries.map { WeightLogEntry(date: $0.timestamp, weight: $0.progress) }
+                    let goal = WeightGoal(targetWeight: targetW, targetDate: targetD)
+                    let trendSeries = WeightTrendEngine.calculateTrend(logs: logs)
+                    
+                    var recentChanges = [Double]()
+                    for i in (0..<4).reversed() {
+                        let d = Calendar.current.date(byAdding: .day, value: -(i * 7), to: now)!
+                        if let change = WeightTrendEngine.getWeeklyTrendChange(trendSeries: trendSeries, asOfDate: d) {
+                            recentChanges.append(change)
+                        }
+                    }
+                    
+                    let engineMessage = WeightTrendEngine.selectMessage(logs: logs, goal: goal, today: now, unit: unit, recentWeeklyChanges: recentChanges)
+                    
+                    displayDesc = engineMessage.localizedText
+                    
+                    switch engineMessage {
+                    case .insufficientData:
+                        displayTitle = String(localized: "weight.trend.title.insufficient", defaultValue: "Mehr Daten benötigt")
+                        displayColor = .secondary
+                    case .trendOnTrack, .goalClose, .goalReached, .goalDateAheadOfSchedule:
+                        displayTitle = String(localized: "weight.trend.title.good", defaultValue: "Alles im Plan")
+                        displayColor = .green
+                    case .trendStableWeeklyNoise, .plateauWarning:
+                        displayTitle = String(localized: "weight.trend.title.neutral", defaultValue: "Stabile Phase")
+                        displayColor = .yellow
+                    case .calorieDecreaseSuggested, .calorieIncreaseSuggested, .goalDateUnrealistic:
+                        displayTitle = String(localized: "weight.trend.title.adjust", defaultValue: "Anpassung empfohlen")
+                        displayColor = .orange
+                    case .goalUpdated:
+                        displayTitle = String(localized: "weight.trend.title.updated", defaultValue: "Ziel aktualisiert")
+                        displayColor = .blue
+                    }
+                }
                 
                 HStack(alignment: .center, spacing: 16) {
                     VStack(alignment: .center, spacing: 4) {
@@ -826,25 +866,25 @@ struct BodyDataFactoryView: View {
                             .textCase(.uppercase)
                         Text(String(format: "%.1f", current))
                             .font(.system(size: 20, weight: .black, design: .rounded))
-                            .foregroundStyle(status.color)
+                            .foregroundStyle(displayColor)
                     }
                     
                     Spacer()
                     
                     Text(delta > 0 ? String(format: "+%.1f", delta) : String(format: "%.1f", delta))
                         .font(.system(size: 24, weight: .black, design: .rounded))
-                        .foregroundStyle(status.color)
+                        .foregroundStyle(displayColor)
                 }
                 .padding(12)
                 .background(Color(UIColor.tertiarySystemGroupedBackground))
                 .cornerRadius(12)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(status.title)
+                    Text(displayTitle)
                         .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundStyle(status.color)
+                        .foregroundStyle(displayColor)
                     
-                    Text(status.desc)
+                    Text(displayDesc)
                         .font(.system(size: 13, design: .rounded))
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
