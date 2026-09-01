@@ -916,3 +916,8 @@
   - Ein Eingabefeld für Körperfettanteil wurde hinzugefügt. Wird dies ausgefüllt, nutzt der Rechner automatisch die genauere *Katch-McArdle Formel* statt Mifflin-St. Jeor.
   - Das Gewichtsziel ist nun immer bearbeitbar, selbst wenn es vom Krafttraining übernommen wurde.
   - Beim Einstellen des Ziel-Datums wird nun interaktiv darunter das Tempo in kg/Woche als Tachometer angezeigt (mit Warnfarbe bei ungesund hohem Tempo über 1 kg/Woche).
+- **Makroverteilung & Tempo-Eingabe (UX)**:
+  - Die Makroverteilung nutzt nun einen moderaten Standard-Split (50% Carbs, 30% Fett, 20% Protein) anstatt einer High-Protein-Fokussierung.
+  - Das Kalorienziel aktualisiert sich nun systemweit sofort ("live"), wenn im Krafttraining das Zielgewicht oder -datum geändert wird.
+  - Im Kalorienrechner ist das Ziel nun übersichtlich schreibgeschützt einsehbar. Mit einem Klick auf "Ziel ändern" gelangst du direkt in das Menü, um dein Gewichtsziel anzupassen.
+  - Im Krafttraining-Zielmenü kannst du jetzt zwischen "Datum" und "Tempo (Woche)" wechseln. Gibst du ein wöchentliches Tempo (z. B. 0.5 kg) ein, berechnet die App das entsprechende Zieldatum automatisch im Hintergrund!

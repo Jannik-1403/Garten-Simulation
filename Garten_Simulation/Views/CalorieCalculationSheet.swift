@@ -193,22 +193,21 @@ struct CalorieCalculationSheet: View {
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                                     .padding(.top, 8)
-                            } else {
-                                Text(String(localized: "calorie.calc.goal.none", defaultValue: "Kein aktives Gewichtsziel gesetzt."))
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
                             }
-                            
-                            Button(action: {
-                                showTargetSheet = true
-                            }) {
+                            Item3DButton(
+                                farbe: Color.red.darker(),
+                                sekundaerFarbe: Color.red.darker().darker(),
+                                groesse: 44,
+                                isRectangular: true,
+                                aktion: {
+                                    showTargetSheet = true
+                                }
+                            ) {
                                 Text(String(localized: "calorie.calc.goal.edit_btn", defaultValue: "Ziel ändern"))
                                     .font(.headline)
+                                    .foregroundColor(.white)
                                     .frame(maxWidth: .infinity)
                                     .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
                             }
                             .padding(.top, 8)
                             .disabled(linkedHabit == nil)
@@ -220,9 +219,7 @@ struct CalorieCalculationSheet: View {
                             hm.recalculateGoals()
                         }) {
                             if let habit = linkedHabit {
-                                NavigationStack {
-                                    BodyDataFactoryView(pflanze: habit, type: .weight)
-                                }
+                                WeightTargetEditView(pflanze: habit)
                             }
                         }
                     }
