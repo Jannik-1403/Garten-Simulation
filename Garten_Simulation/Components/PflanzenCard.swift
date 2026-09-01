@@ -9,6 +9,7 @@ struct PflanzenCard: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @ObservedObject var healthManager = HealthManager.shared
+    @ObservedObject var nutrientManager = NutrientIndexManager.shared
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var isVisualPressed = false
     @State private var isLocked = false
@@ -45,7 +46,17 @@ struct PflanzenCard: View {
     }
     
     private var healthProgress: Double? {
-        guard let metric = pflanze.effectiveHealthMetric, let target = pflanze.healthTarget, target > 0 else {
+        guard let metric = pflanze.effectiveHealthMetric else {
+            return nil
+        }
+        
+        // Verwende den Nutrient-Score für Obst & Gemüse (Fiber / Calcium)
+        if metric == .fiber || metric == .calcium {
+            let score = nutrientManager.totalScore
+            return Double(score) / 100.0
+        }
+        
+        guard let target = pflanze.healthTarget, target > 0 else {
             return nil
         }
         let baseCurrent = getBaseHealthCurrent(for: metric)

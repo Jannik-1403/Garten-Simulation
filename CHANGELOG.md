@@ -857,3 +857,5 @@
 - Bugfix: Veraltete `onChange` und `NavigationLink` Warnungen (iOS 16/17) behoben.
 - Bugfix: Doppelte Keys in `AppStrings.swift` entfernt.
 - Fixed alignment of dates under the bars in the Nutrient History Chart
+- Hinzufügen von DGE-Informationen zu den Nährstoff-Einstellungen
+- Nährstoff-Index-Ansicht ist nun an den Statistik-Toggle auf der Pflanzen-Detailseite gebunden

@@ -34,7 +34,7 @@ struct TrimmedArc: Shape {
 }
 
 struct NutrientIndexView: View {
-    @StateObject private var manager = NutrientIndexManager()
+    @ObservedObject private var manager = NutrientIndexManager.shared
     
     let vitaminColor = Color.blue
     let mineralColor = Color(red: 0.2, green: 0.8, blue: 0.6)

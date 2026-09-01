@@ -26,6 +26,7 @@ struct NutrientItem: Identifiable, Codable {
 }
 
 class NutrientIndexManager: ObservableObject {
+    static let shared = NutrientIndexManager()
     let healthStore = HKHealthStore()
     
     @Published var vitamins: [NutrientItem] = []

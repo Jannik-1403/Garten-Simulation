@@ -590,6 +590,18 @@ struct PflanzeDetailSheet: View {
                                                 VStack {
                                                     if metric == .fiber || metric == .calcium || metric == .energy {
                                                         // Custom cards handle these metrics instead of HealthChartView
+                                                        HStack {
+                                                            Spacer()
+                                                            Button {
+                                                                zeigeAppleHealthEntkoppelnAlert = true
+                                                            } label: {
+                                                                Image(systemName: "xmark.circle.fill")
+                                                                    .font(.system(size: 24))
+                                                                    .foregroundStyle(Color(UIColor.tertiaryLabel))
+                                                            }
+                                                        }
+                                                        .padding(.horizontal, 24)
+                                                        .padding(.top, 8)
                                                     } else {
                                                         if !hourlyHealthData.isEmpty {
                                                             HealthChartView(
