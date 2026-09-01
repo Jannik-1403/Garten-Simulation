@@ -286,9 +286,9 @@ struct PflanzeDetailSheet: View {
                             .environmentObject(settings)
                     }
                     
-                    // Obst & Gemüse
+                    // Obst & Gemüse / Nährstoffe
                     if pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium {
-                        ObstGemueseHealthCard()
+                        NutrientIndexView()
                             .padding(.top, 16)
                             .padding(.horizontal, 24)
                     }
