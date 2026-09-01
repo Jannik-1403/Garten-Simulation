@@ -71,11 +71,11 @@ class NutrientIndexManager: ObservableObject {
     // NEU: Testdaten injizieren
     func injectTestData(for category: String) {
         if category == "Vitamine" {
-            for i in 0..<vitamins.count { vitamins[i].score = Double.random(in: 20...100) }
+            for i in 0..<vitamins.count { vitamins[i].currentValue = Double.random(in: 0.2...1.0) * vitamins[i].targetDGE }
         } else if category == "Mineralstoffe" {
-            for i in 0..<minerals.count { minerals[i].score = Double.random(in: 20...100) }
+            for i in 0..<minerals.count { minerals[i].currentValue = Double.random(in: 0.2...1.0) * minerals[i].targetDGE }
         } else if category == "Ballaststoffe" {
-            fiber.score = Double.random(in: 20...100)
+            fiber.currentValue = Double.random(in: 0.2...1.0) * fiber.targetDGE
         }
         saveSettings()
     }
