@@ -23,6 +23,8 @@ struct HealthChartView: View {
         case .mindfulness:      return String(localized: "health.chart.title.mindfulness.plain",   defaultValue: "Achtsamkeit")
         case .running:          return String(localized: "health.chart.title.running.plain",       defaultValue: "Laufen")
         case .strengthTraining: return String(localized: "health.chart.title.strength.plain",      defaultValue: "Krafttraining")
+        case .fiber:            return String(localized: "health.chart.title.fiber.plain",         defaultValue: "Ballaststoffe")
+        case .calcium:          return String(localized: "health.chart.title.calcium.plain",       defaultValue: "Kalzium")
         }
     }
 
@@ -30,6 +32,8 @@ struct HealthChartView: View {
         switch metric {
         case .steps: return String(localized: "health.unit.steps", defaultValue: "Schritte")
         case .water: return String(localized: "health.unit.water",  defaultValue: "ml")
+        case .fiber: return String(localized: "health.unit.fiber",  defaultValue: "g")
+        case .calcium: return String(localized: "health.unit.calcium", defaultValue: "mg")
         default:     return String(localized: "health.unit.hours",  defaultValue: "Std")
         }
     }
