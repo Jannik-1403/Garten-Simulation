@@ -869,3 +869,7 @@
 - RoutinenView: Layout für Routine-Karten angepasst (Sterne vertikal platziert, Gewohnheiten-Zähler entfernt).
 
 - Fehlende Lokalisierungen (pt-BR und andere) in Localizable.xcstrings generiert und korrigiert, um Xcode-Buildfehler zu beheben.
+
+- **Apple Health Integration**: Added support for displaying daily dietary macronutrients (Proteins, Carbohydrates, Fats) in addition to Calories.
+- **UI Update**: Replaced the previous meal tracking prompt in the "Gesunder Koch" section with a new modern macro grid layout `MacroView`.
+- **Localization**: Added missing string translations for new macro nutrients to 16 languages.

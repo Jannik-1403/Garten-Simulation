@@ -40,13 +40,13 @@ class HealthManager: ObservableObject {
         // "isAuthorizedForReading" check. Wir nehmen an, wenn der User den Flow gemacht hat, ist er berechtigt.
         // Ein sicherer Weg ist, UserDefaults zu nutzen, um zu wissen, ob der Prompt schon gezeigt wurde.
         let hasRequested = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested")
-        let hasRequestedV2 = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested_v2")
+        let hasRequestedV3 = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested_v3")
         
         if hasRequested {
             isAuthorized = true
             
-            // Wenn der User schon V1 hat, aber die neuen Permissions (Gewicht etc.) noch nicht
-            if !hasRequestedV2 {
+            // Wenn der User schon V1/V2 hat, aber die neuen Makro-Permissions (v3) noch nicht
+            if !hasRequestedV3 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.requestAuthorization()
                 }
@@ -96,6 +96,7 @@ class HealthManager: ObservableObject {
                     self?.isAuthorized = true
                     UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested")
                     UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v2")
+                    UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v3")
                     self?.fetchAllTodaysData()
                 } else {
                     print("HealthKit Auth Fehlgeschlagen: \(String(describing: error))")
