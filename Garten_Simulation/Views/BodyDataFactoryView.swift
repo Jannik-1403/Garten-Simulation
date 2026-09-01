@@ -523,7 +523,7 @@ struct BodyDataFactoryView: View {
             return formatter.shortWeekdaySymbols[weekday - 1]
         case .m:
             let day = cal.component(.day, from: date)
-            return String(localized: "body.tracking.chart.day", defaultValue: "\(day).")
+            return String(format: String(localized: "body.tracking.chart.day", defaultValue: "%lld."), day)
         case .sixM:
             let formatter = DateFormatter()
             formatter.locale = SettingsStore.shared.appLocale
