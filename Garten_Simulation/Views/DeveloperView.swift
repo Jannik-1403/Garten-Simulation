@@ -39,6 +39,16 @@ struct DeveloperView: View {
                             Divider().padding(.leading, 44)
                             
                             Button {
+                                let manager = NutrientIndexManager()
+                                manager.injectAllTestData()
+                                FeedbackManager.shared.playSuccess()
+                            } label: {
+                                settingRow(title: "Nährstoff Testdaten generieren", icon: "flask", color: .purple)
+                            }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
                                 gardenStore.coinsGutschreiben(amount: 1000, beschreibung: "Debug: Coins erhalten")
                                 FeedbackManager.shared.playCoins()
                             } label: {

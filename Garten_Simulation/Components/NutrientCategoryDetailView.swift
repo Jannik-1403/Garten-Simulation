@@ -23,19 +23,7 @@ struct NutrientCategoryDetailView: View {
                     )
                     .padding(.horizontal, 24)
                 }
-                Button(action: {
-                    manager.injectTestData(for: categoryName)
-                }) {
-                    Text("Testdaten generieren")
-                        .font(.subheadline)
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue.opacity(0.1))
-                        .foregroundColor(.blue)
-                        .cornerRadius(16)
-                }
-                .padding(.horizontal, 24)
+
             }
         }
         .navigationTitle(categoryName)
