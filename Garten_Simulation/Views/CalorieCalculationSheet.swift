@@ -13,25 +13,25 @@ struct CalorieCalculationSheet: View {
     @State private var sexSelection = 0
     
 
-    private var tdee: Double? {
+    private var recommendedEnergy: Double? {
         let weight = hm.activeWeight?.value ?? (hm.manualWeight > 0 ? hm.manualWeight : nil)
         let height = hm.activeHeight?.value ?? (hm.manualHeight > 0 ? hm.manualHeight : nil)
         let age = hm.activeAge?.value ?? (hm.manualAge > 0 ? hm.manualAge : nil)
         let sex = hm.activeSex?.value ?? (hm.manualSex > 0 ? hm.manualSex : nil)
         
-        guard let w = weight, let h = height, let a = age, let s = sex else {
+        guard let rec = MacroCalculator.calculateRecommendation(
+            weightKg: weight,
+            heightCm: height,
+            ageYears: age,
+            biologicalSex: sex,
+            weightGoalType: hm.weightGoalType,
+            weightGoalTargetKg: hm.weightGoalTargetKg,
+            weightGoalDateInterval: hm.weightGoalDateInterval
+        ) else {
             return nil
         }
         
-        // Mifflin-St. Jeor
-        var bmr = (10.0 * w) + (6.25 * h) - (5.0 * Double(a))
-        if s == 2 { // Male
-            bmr += 5
-        } else { // Female
-            bmr -= 161
-        }
-        
-        return bmr * 1.55 // moderate activity multiplier
+        return rec.energy
     }
     
     var body: some View {
@@ -44,12 +44,12 @@ struct CalorieCalculationSheet: View {
                         Text(String(localized: "calorie.calc.title", defaultValue: "Dein Kalorienbedarf"))
                             .font(.system(size: 20, weight: .bold, design: .rounded))
                         
-                        if let tdee = tdee {
-                            Text("\(Int(tdee)) kcal")
+                        if let energy = recommendedEnergy {
+                            Text("\(Int(energy)) kcal")
                                 .font(.system(size: 48, weight: .black, design: .rounded))
                                 .foregroundStyle(Color.red.darker())
                             
-                            Text(String(localized: "calorie.calc.desc.success", defaultValue: "Dieser Wert (TDEE) wird basierend auf der Mifflin-St. Jeor Formel und deinen Körperdaten berechnet."))
+                            Text(String(localized: "calorie.calc.desc.success.new", defaultValue: "Dieser Wert wird basierend auf deinen Körperdaten und deinem Ziel berechnet."))
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)

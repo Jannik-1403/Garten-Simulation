@@ -106222,7 +106222,6 @@
       }
     },
     "calorie.calc.goal.gain": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -106275,7 +106274,6 @@
       }
     },
     "calorie.calc.goal.info": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -106328,7 +106326,6 @@
       }
     },
     "calorie.calc.goal.linked": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -106381,7 +106378,6 @@
       }
     },
     "calorie.calc.goal.lose": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -106434,7 +106430,6 @@
       }
     },
     "calorie.calc.goal.maintain": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -106487,7 +106482,6 @@
       }
     },
     "calorie.calc.goal.target_date": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -106540,7 +106534,6 @@
       }
     },
     "calorie.calc.goal.target_weight": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -106593,7 +106586,6 @@
       }
     },
     "calorie.calc.goal.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -107311,7 +107303,6 @@
       }
     },
     "calorie.detail.nav": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -107364,7 +107355,6 @@
       }
     },
     "calorie.history.consumed": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -107417,7 +107407,6 @@
       }
     },
     "calorie.history.target": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -107470,7 +107459,6 @@
       }
     },
     "calorie.history.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -107523,7 +107511,6 @@
       }
     },
     "calorie.history.today": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -163589,7 +163576,6 @@
       }
     },
     "habit.cook.connect_btn": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -163690,7 +163676,6 @@
       }
     },
     "habit.cook.connect_desc": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -163791,7 +163776,6 @@
       }
     },
     "habit.cook.connect_title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -169171,7 +169155,6 @@
       }
     },
     "health.chart.title.calcium.plain": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -169272,7 +169255,6 @@
       }
     },
     "health.chart.title.energy.plain": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -169373,7 +169355,6 @@
       }
     },
     "health.chart.title.fiber.plain": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -172292,7 +172273,6 @@
       }
     },
     "health.unit.calcium": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -172393,7 +172373,6 @@
       }
     },
     "health.unit.energy": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -172494,7 +172473,6 @@
       }
     },
     "health.unit.fiber": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -199463,7 +199441,6 @@
       }
     },
     "nutrient.settings.dge_info": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -432916,7 +432893,6 @@
       }
     },
     "unit.g": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -433017,7 +432993,6 @@
       }
     },
     "unit.mcg": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -433118,7 +433093,6 @@
       }
     },
     "unit.mg": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {

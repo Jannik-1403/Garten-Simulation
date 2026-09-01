@@ -904,3 +904,10 @@
 - **Auto-Sync mit Krafttraining**:
   - Das Gewichtsziel wird nun automatisch aus der Krafttraining-Gewohnheit ausgelesen, wenn diese vorhanden ist.
   - Das Kalorienziel in den Settings wird automatisch basierend auf dem TDEE bei Speicherung der Berechnung berechnet und übernommen.
+- **UI Verbesserungen Kalorien**:
+  - Der Fortschrittsbalken in der Gesundheitskarte hat nun denselben 3D-Stil wie der Quiz-Button erhalten.
+  - Das erreichte Grün ist nun im Standard-Grün (heller) anstatt Dunkelgrün.
+  - Die TDEE-Kalorienzahl in der Berechnungsseite wird nun in Dunkelrot statt Orange dargestellt.
+  - TDEE aktualisiert sich nun automatisch beim Tippen von manuellen Körperdaten, selbst wenn Apple Health nicht verbunden ist.
+- **Historie Durchschnitt**:
+  - Die Anzeige für Monate, 6 Monate und Jahre zeigt nun korrekterweise den *täglichen Durchschnitt* anstatt der Gesamtsumme (bspw. 15.000 kcal).
