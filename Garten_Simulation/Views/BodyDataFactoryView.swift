@@ -221,6 +221,21 @@ struct BodyDataFactoryView: View {
     private var chartView: some View {
         Chart {
             ForEach(filteredData, id: \.timestamp) { entry in
+                // Apple Health Style AreaMark (Verlauf unter der Linie)
+                AreaMark(
+                    x: .value("x", entry.timestamp),
+                    yStart: .value("yMin", yMin),
+                    yEnd: .value("yMax", entry.progress)
+                )
+                .interpolationMethod(.catmullRom)
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [Color.pink.opacity(0.3), Color.pink.opacity(0.0)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
+
                 LineMark(
                     x: .value("x", entry.timestamp),
                     y: .value("y", entry.progress)
