@@ -77,10 +77,10 @@ class MacroCalculator {
             energy = max(energy, 1500)
         }
         
-        // Makroverteilung (Moderat: 50% Kohlenhydrate, 30% Protein, 20% Fett)
-        let protein = (energy * 0.30) / 4.0
+        // Makroverteilung (Moderat: 50% Kohlenhydrate, 20% Protein, 30% Fett)
+        let protein = (energy * 0.20) / 4.0
         let carbs = (energy * 0.50) / 4.0
-        let fat = (energy * 0.20) / 9.0
+        let fat = (energy * 0.30) / 9.0
         
         return MacroRecommendation(energy: energy, protein: protein, carbs: carbs, fat: fat)
     }

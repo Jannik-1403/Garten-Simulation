@@ -12,6 +12,7 @@ struct CalorieCalculationSheet: View {
     @State private var ageStr = ""
     @State private var sexSelection = 0
     @State private var bodyFatStr = ""
+    @State private var showTargetSheet = false
     
 
     private var recommendedEnergy: Double? {
@@ -155,46 +156,21 @@ struct CalorieCalculationSheet: View {
                             Text(String(localized: "calorie.calc.goal.title", defaultValue: "Mein Ziel"))
                                 .font(.headline)
                             
-                            if let linked = linkedHabit, let _ = linked.targetWeight, let _ = linked.targetWeightDate {
-                                HStack {
-                                    Image(systemName: "link")
-                                        .foregroundColor(.green)
-                                    Text(String(localized: "calorie.calc.goal.linked", defaultValue: "Dein Ziel wurde automatisch von deinem Krafttraining übernommen."))
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
-                                .padding(.bottom, 8)
-                            }
-                            
-                            Picker("", selection: $hm.weightGoalType) {
-                                Text(String(localized: "calorie.calc.goal.maintain", defaultValue: "Gewicht halten")).tag(0)
-                                Text(String(localized: "calorie.calc.goal.lose", defaultValue: "Abnehmen")).tag(1)
-                                Text(String(localized: "calorie.calc.goal.gain", defaultValue: "Zunehmen")).tag(2)
-                            }
-                            .pickerStyle(.segmented)
-                            
                             if hm.weightGoalType != 0 {
                                 HStack {
-                                    Text(String(localized: "calorie.calc.goal.target_weight", defaultValue: "Ziel-Gewicht"))
+                                    Text(hm.weightGoalType == 1 ? String(localized: "calorie.calc.goal.lose", defaultValue: "Abnehmen") : String(localized: "calorie.calc.goal.gain", defaultValue: "Zunehmen"))
                                         .font(.subheadline.bold())
                                     Spacer()
-                                    TextField("0", value: $hm.weightGoalTargetKg, format: .number)
-                                        .keyboardType(.decimalPad)
-                                        .multilineTextAlignment(.trailing)
+                                    Text(String(format: "%.1f kg", hm.weightGoalTargetKg))
                                         .font(.title3.bold())
-                                        .frame(width: 80)
-                                    Text("kg")
-                                        .foregroundColor(.secondary)
                                 }
                                 
                                 HStack {
                                     Text(String(localized: "calorie.calc.goal.target_date", defaultValue: "Ziel-Datum"))
                                         .font(.subheadline.bold())
                                     Spacer()
-                                    DatePicker("", selection: Binding(
-                                        get: { Date(timeIntervalSince1970: hm.weightGoalDateInterval > 0 ? hm.weightGoalDateInterval : Date().timeIntervalSince1970 + 86400*30) },
-                                        set: { hm.weightGoalDateInterval = $0.timeIntervalSince1970 }
-                                    ), displayedComponents: .date)
+                                    Text(Date(timeIntervalSince1970: hm.weightGoalDateInterval), format: .dateTime.day().month().year())
+                                        .font(.title3.bold())
                                 }
                                 
                                 let currentW = hm.activeWeight?.value ?? (hm.manualWeight > 0 ? hm.manualWeight : 0)
@@ -217,10 +193,38 @@ struct CalorieCalculationSheet: View {
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                                     .padding(.top, 8)
+                            } else {
+                                Text(String(localized: "calorie.calc.goal.none", defaultValue: "Kein aktives Gewichtsziel gesetzt."))
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
                             }
+                            
+                            Button(action: {
+                                showTargetSheet = true
+                            }) {
+                                Text(String(localized: "calorie.calc.goal.edit_btn", defaultValue: "Ziel ändern"))
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                            .padding(.top, 8)
+                            .disabled(linkedHabit == nil)
                         }
                         .padding()
                         .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+                        .sheet(isPresented: $showTargetSheet, onDismiss: {
+                            loadManualInputs()
+                            hm.recalculateGoals()
+                        }) {
+                            if let habit = linkedHabit {
+                                NavigationStack {
+                                    BodyDataFactoryView(pflanze: habit, type: .weight)
+                                }
+                            }
+                        }
                     }
                 }
                 .padding()
@@ -311,27 +315,6 @@ struct CalorieCalculationSheet: View {
         if let a = Int(ageStr) { hm.manualAge = a }
         if let bf = Double(bodyFatStr.replacingOccurrences(of: ",", with: ".")) { hm.manualBodyFat = bf } else { hm.manualBodyFat = 0.0 }
         
-        // Auto-update macro goals based on calculation
-        let weight = hm.activeWeight?.value ?? (hm.manualWeight > 0 ? hm.manualWeight : nil)
-        let height = hm.activeHeight?.value ?? (hm.manualHeight > 0 ? hm.manualHeight : nil)
-        let age = hm.activeAge?.value ?? (hm.manualAge > 0 ? hm.manualAge : nil)
-        let sex = hm.activeSex?.value ?? (hm.manualSex > 0 ? hm.manualSex : nil)
-        let bodyFat = hm.manualBodyFat > 0 ? hm.manualBodyFat : nil
-        
-        if let rec = MacroCalculator.calculateRecommendation(
-            weightKg: weight,
-            heightCm: height,
-            ageYears: age,
-            biologicalSex: sex,
-            weightGoalType: hm.weightGoalType,
-            weightGoalTargetKg: hm.weightGoalTargetKg,
-            weightGoalDateInterval: hm.weightGoalDateInterval,
-            bodyFatPercentage: bodyFat
-        ) {
-            UserDefaults.standard.set(rec.energy, forKey: "goal_energy")
-            UserDefaults.standard.set(rec.protein, forKey: "goal_protein")
-            UserDefaults.standard.set(rec.carbs, forKey: "goal_carbs")
-            UserDefaults.standard.set(rec.fat, forKey: "goal_fat")
-        }
+        hm.recalculateGoals()
     }
 }

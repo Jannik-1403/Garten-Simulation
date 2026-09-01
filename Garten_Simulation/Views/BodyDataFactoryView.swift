@@ -26,6 +26,8 @@ struct BodyDataFactoryView: View {
     @State private var showTargetSheet = false
     @State private var targetInput = ""
     @State private var targetDateInput = Date()
+    @State private var targetInputMode = 0 // 0 = Date, 1 = Pace
+    @State private var paceInput = "0.5"
     @State private var isManualEntriesExpanded = false
     /// Offset vom aktuellen Zeitraum: 0 = jetzt, -1 = letzte Periode, etc.
     @State private var periodOffset: Int = 0
@@ -975,13 +977,50 @@ struct BodyDataFactoryView: View {
                 }
                 
                 Section(header: Text(String(localized: "body.tracking.target_date_title", defaultValue: "Zieldatum"))) {
-                    DatePicker(
-                        String(localized: "body.tracking.target_date", defaultValue: "Erreichen bis"),
-                        selection: $targetDateInput,
-                        in: Date()...,
-                        displayedComponents: .date
-                    )
-                    .environment(\.locale, SettingsStore.shared.appLocale)
+                    Picker("", selection: $targetInputMode) {
+                        Text(String(localized: "body.tracking.target_mode_date", defaultValue: "Datum")).tag(0)
+                        Text(String(localized: "body.tracking.target_mode_pace", defaultValue: "Tempo (Woche)")).tag(1)
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.bottom, 4)
+                    
+                    if targetInputMode == 0 {
+                        DatePicker(
+                            String(localized: "body.tracking.target_date", defaultValue: "Erreichen bis"),
+                            selection: $targetDateInput,
+                            in: Date()...,
+                            displayedComponents: .date
+                        )
+                        .environment(\.locale, SettingsStore.shared.appLocale)
+                    } else {
+                        HStack {
+                            Text(String(localized: "body.tracking.target_pace", defaultValue: "kg pro Woche:"))
+                            Spacer()
+                            TextField("0.5", text: $paceInput)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: 80)
+                        }
+                        
+                        if let pace = Double(paceInput.replacingOccurrences(of: ",", with: ".")), pace > 0, let targetW = Double(targetInput.replacingOccurrences(of: ",", with: ".")) {
+                            let currentW = currentValue ?? 0
+                            if currentW > 0 {
+                                let diff = abs(currentW - targetW)
+                                let weeks = diff / pace
+                                let days = weeks * 7.0
+                                let calculatedDate = Calendar.current.date(byAdding: .day, value: Int(days), to: Date()) ?? Date()
+                                
+                                HStack {
+                                    Text(String(localized: "body.tracking.target_calc_date", defaultValue: "Berechnetes Datum:"))
+                                    Spacer()
+                                    Text(calculatedDate, format: .dateTime.day().month().year())
+                                        .foregroundStyle(.secondary)
+                                }
+                                .font(.caption)
+                                .padding(.top, 4)
+                            }
+                        }
+                    }
                 }
                 
                 if currentTarget != nil {
@@ -1015,14 +1054,33 @@ struct BodyDataFactoryView: View {
                     Button(String(localized: "common.save", defaultValue: "Speichern")) {
                         let w = Double(targetInput.replacingOccurrences(of: ",", with: ".")) ?? 0
                         if w > 0 {
+                            var finalDate = targetDateInput
+                            if targetInputMode == 1, let pace = Double(paceInput.replacingOccurrences(of: ",", with: ".")), pace > 0 {
+                                let currentW = currentValue ?? 0
+                                if currentW > 0 {
+                                    let diff = abs(currentW - w)
+                                    let days = (diff / pace) * 7.0
+                                    finalDate = Calendar.current.date(byAdding: .day, value: Int(days), to: Date()) ?? targetDateInput
+                                }
+                            }
+                            
                             if type == .weight {
                                 pflanze.targetWeight = w
-                                pflanze.targetWeightDate = targetDateInput
+                                pflanze.targetWeightDate = finalDate
                             } else {
                                 pflanze.targetMeasurements[selectedMeasurement.rawValue] = w
-                                pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = targetDateInput
+                                pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = finalDate
                             }
                             gardenStore.savePlants()
+                            
+                            // Auto-Update calories globally if this is the target weight
+                            if type == .weight {
+                                HealthManager.shared.weightGoalTargetKg = w
+                                HealthManager.shared.weightGoalDateInterval = finalDate.timeIntervalSince1970
+                                let currentW = HealthManager.shared.activeWeight?.value ?? 0
+                                HealthManager.shared.weightGoalType = currentW > w ? 1 : (currentW < w ? 2 : 0)
+                                HealthManager.shared.recalculateGoals()
+                            }
                         }
                         showTargetSheet = false
                     }

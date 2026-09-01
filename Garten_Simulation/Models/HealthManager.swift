@@ -89,6 +89,30 @@ class HealthManager: ObservableObject {
         return nil
     }
     
+    func recalculateGoals() {
+        let weight = activeWeight?.value
+        let height = activeHeight?.value
+        let age = activeAge?.value
+        let sex = activeSex?.value
+        let bodyFat = manualBodyFat > 0 ? manualBodyFat : nil
+        
+        if let rec = MacroCalculator.calculateRecommendation(
+            weightKg: weight,
+            heightCm: height,
+            ageYears: age,
+            biologicalSex: sex,
+            weightGoalType: weightGoalType,
+            weightGoalTargetKg: weightGoalTargetKg,
+            weightGoalDateInterval: weightGoalDateInterval,
+            bodyFatPercentage: bodyFat
+        ) {
+            UserDefaults.standard.set(rec.energy, forKey: "goal_energy")
+            UserDefaults.standard.set(rec.protein, forKey: "goal_protein")
+            UserDefaults.standard.set(rec.carbs, forKey: "goal_carbs")
+            UserDefaults.standard.set(rec.fat, forKey: "goal_fat")
+        }
+    }
+    
     private init() {
         checkAuthorizationStatus()
         if isAuthorized {

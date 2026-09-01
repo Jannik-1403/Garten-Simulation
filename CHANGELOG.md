@@ -912,3 +912,7 @@
 - **Historie Durchschnitt**:
   - Die Anzeige für Monate, 6 Monate und Jahre zeigt nun korrekterweise den *täglichen Durchschnitt* anstatt der Gesamtsumme (bspw. 15.000 kcal).
 - **Dynamischer Kalorienbedarf**: Die große Zahl auf der Berechnungsseite zeigt nun das endgültige Kalorienziel (z.B. 4100 kcal) basierend auf deinen Gewichtszielen anstatt des statischen TDEE-Werts. Auch der Text darunter wurde entsprechend aktualisiert.
+- **Ziel-Gewicht UI & Katch-McArdle**:
+  - Ein Eingabefeld für Körperfettanteil wurde hinzugefügt. Wird dies ausgefüllt, nutzt der Rechner automatisch die genauere *Katch-McArdle Formel* statt Mifflin-St. Jeor.
+  - Das Gewichtsziel ist nun immer bearbeitbar, selbst wenn es vom Krafttraining übernommen wurde.
+  - Beim Einstellen des Ziel-Datums wird nun interaktiv darunter das Tempo in kg/Woche als Tachometer angezeigt (mit Warnfarbe bei ungesund hohem Tempo über 1 kg/Woche).

@@ -106031,6 +106031,17 @@
         }
       }
     },
+    "calorie.calc.bodyfat": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Körperfettanteil"
+          }
+        }
+      }
+    },
     "calorie.calc.desc.missing": {
       "extractionState": "manual",
       "localizations": {
@@ -106217,6 +106228,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "該值 (TDEE) 是根據 Mifflin-St. 計算得出的。 Jeor公式和您的身體數據被計算出來。"
+          }
+        }
+      }
+    },
+    "calorie.calc.desc.success.new": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Dieser Wert wird basierend auf deinen Körperdaten und deinem Ziel berechnet."
           }
         }
       }
@@ -106477,6 +106499,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gewicht halten"
+          }
+        }
+      }
+    },
+    "calorie.calc.goal.pace": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Tempo: ~%@ kg / Woche"
           }
         }
       }
