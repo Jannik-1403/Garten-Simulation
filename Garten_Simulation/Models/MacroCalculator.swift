@@ -16,32 +16,63 @@ class MacroCalculator {
         weightKg: Double?,
         heightCm: Double?,
         ageYears: Int?,
-        biologicalSex: HKBiologicalSexObject?,
-        activityMultiplier: Double = 1.3 // Standardwert für leichte Aktivität (Bürojob + 1-3x Sport)
+        biologicalSex: Int?,
+        activityMultiplier: Double = 1.3, // Standardwert für leichte Aktivität (Bürojob + 1-3x Sport)
+        weightGoalType: Int = 0, // 0 = maintain, 1 = lose, 2 = gain
+        weightGoalTargetKg: Double = 0.0,
+        weightGoalDateInterval: Double = 0.0
     ) -> MacroRecommendation? {
         
-        guard let weight = weightKg, let height = heightCm, let age = ageYears, let sexObject = biologicalSex else {
+        guard let weight = weightKg, let height = heightCm, let age = ageYears, let sex = biologicalSex, sex > 0 else {
             return nil
         }
-        
-        let sex = sexObject.biologicalSex
         
         // Mifflin-St Jeor Formel
         var bmr: Double = (10 * weight) + (6.25 * height) - (5.0 * Double(age))
         
-        if sex == .female {
+        if sex == 1 { // 1 = female in HKBiologicalSex
             bmr -= 161
-        } else {
+        } else { // 2 = male
             bmr += 5 
         }
         
         let tdee = bmr * activityMultiplier
         
+        // Weight Goal Adjustment
+        var energyOffset = 0.0
+        
+        if weightGoalType != 0 && weightGoalTargetKg > 0 && weightGoalDateInterval > 0 {
+            let targetDate = Date(timeIntervalSince1970: weightGoalDateInterval)
+            let daysUntilTarget = Calendar.current.dateComponents([.day], from: Date(), to: targetDate).day ?? 0
+            
+            if daysUntilTarget > 0 {
+                let weightDifference = abs(weight - weightGoalTargetKg)
+                let totalCaloriesDifference = weightDifference * 7700.0 // 1kg body fat = ~7700 kcal
+                let dailyOffset = totalCaloriesDifference / Double(daysUntilTarget)
+                
+                if weightGoalType == 1 && weight > weightGoalTargetKg {
+                    // Lose weight
+                    energyOffset = -dailyOffset
+                } else if weightGoalType == 2 && weight < weightGoalTargetKg {
+                    // Gain weight
+                    energyOffset = dailyOffset
+                }
+            }
+        }
+        
+        var energy = tdee + energyOffset
+        
+        // Safety Limits
+        if sex == 1 { // Female
+            energy = max(energy, 1200)
+        } else { // Male
+            energy = max(energy, 1500)
+        }
+        
         // Makroverteilung (Moderat: 50% Kohlenhydrate, 30% Protein, 20% Fett)
-        let energy = tdee
-        let protein = (tdee * 0.30) / 4.0
-        let carbs = (tdee * 0.50) / 4.0
-        let fat = (tdee * 0.20) / 9.0
+        let protein = (energy * 0.30) / 4.0
+        let carbs = (energy * 0.50) / 4.0
+        let fat = (energy * 0.20) / 9.0
         
         return MacroRecommendation(energy: energy, protein: protein, carbs: carbs, fat: fat)
     }

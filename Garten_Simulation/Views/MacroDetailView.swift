@@ -64,7 +64,7 @@ struct MacroDetailView: View {
                             sekundaerFarbe: Color(UIColor.systemGray5),
                             groesse: 44,
                             isRectangular: false,
-                            aktion: { adjustGoal(by: category == "energy" ? -100 : -5) }
+                            aktion: { adjustGoal(by: category == "energy" ? -10 : -1) }
                         ) {
                             Image(systemName: "minus")
                                 .font(.title3.bold())
@@ -83,7 +83,7 @@ struct MacroDetailView: View {
                             sekundaerFarbe: colorForCategory.opacity(0.8),
                             groesse: 44,
                             isRectangular: false,
-                            aktion: { adjustGoal(by: category == "energy" ? 100 : 5) }
+                            aktion: { adjustGoal(by: category == "energy" ? 10 : 1) }
                         ) {
                             Image(systemName: "plus")
                                 .font(.title3.bold())
@@ -124,7 +124,7 @@ struct MacroDetailView: View {
     
     private var colorForCategory: Color {
         switch category {
-        case "energy": return .red
+        case "energy": return healthManager.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green.darker()
         case "protein": return .orange
         case "carbs": return .red
         case "fat": return .yellow
@@ -187,10 +187,13 @@ struct MacroDetailView: View {
     @ViewBuilder
     private var recommendationSection: some View {
         let recommendation = MacroCalculator.calculateRecommendation(
-            weightKg: healthManager.latestBodyMass,
-            heightCm: healthManager.latestHeight,
-            ageYears: healthManager.age,
-            biologicalSex: healthManager.biologicalSex
+            weightKg: healthManager.activeWeight?.value,
+            heightCm: healthManager.activeHeight?.value,
+            ageYears: healthManager.activeAge?.value,
+            biologicalSex: healthManager.activeSex?.value,
+            weightGoalType: healthManager.weightGoalType,
+            weightGoalTargetKg: healthManager.weightGoalTargetKg,
+            weightGoalDateInterval: healthManager.weightGoalDateInterval
         )
         
         VStack(alignment: .leading, spacing: 16) {
@@ -211,10 +214,11 @@ struct MacroDetailView: View {
                     
                     Spacer()
                     
-                    Item3DPillButton(
+                    Item3DButton(
                         farbe: colorForCategory,
                         sekundaerFarbe: colorForCategory.opacity(0.8),
                         groesse: 44,
+                        isRectangular: true,
                         aktion: {
                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                             saveGoal(value: recValue)
@@ -223,26 +227,14 @@ struct MacroDetailView: View {
                         Text(String(localized: "macro.recommendation.apply", defaultValue: "Übernehmen"))
                             .font(.headline)
                             .foregroundColor(.white)
+                            .padding(.horizontal, 12)
                     }
                 }
             } else {
-                Text(String(localized: "macro.recommendation.missing", defaultValue: "Wir benötigen deine Körpergröße, dein Alter und Gewicht aus Apple Health, um dir eine Empfehlung zu geben."))
+                Text(String(localized: "macro.recommendation.missing.new", defaultValue: "Es fehlen einige Körperdaten, um dir eine genaue Empfehlung zu geben. Bitte ergänze sie in der Übersicht."))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
-                
-                Item3DPillButton(
-                    farbe: Color(UIColor.systemBlue),
-                    sekundaerFarbe: Color(UIColor.systemBlue).opacity(0.8),
-                    groesse: 44,
-                    aktion: {
-                        healthManager.requestAuthorization()
-                    }
-                ) {
-                    Text(String(localized: "macro.recommendation.auth", defaultValue: "Daten freigeben"))
-                        .font(.headline)
-                        .foregroundColor(.white)
-                }
             }
         }
         .padding(24)

@@ -5,6 +5,8 @@ struct GesundKochenCard: View {
     @ObservedObject var healthManager = HealthManager.shared
     var onUnlink: (() -> Void)? = nil
     
+    @State private var showCalorieDetail = false
+    
     let energyColor = Color.red
     let proteinColor = Color.orange
     let carbsColor = Color.red
@@ -35,8 +37,8 @@ struct GesundKochenCard: View {
                 ZStack(alignment: .topTrailing) {
                     VStack(alignment: .leading, spacing: 24) {
                         
-                        // Oben: Großes Chart und Text darunter
-                        VStack(alignment: .center, spacing: 16) {
+                        // Oben: Großes Chart und Text daneben/darunter
+                        HStack(alignment: .center, spacing: 16) {
                             ZStack {
                                 let categories = [
                                     (id: "carbs", color: carbsColor, score: carbsScore),
@@ -64,10 +66,37 @@ struct GesundKochenCard: View {
                             }
                             .frame(width: 250, height: 250)
                             
-                            Text(getStatusText(score: totalScore))
-                                .font(.system(size: 32, weight: .bold))
+                            Spacer()
                         }
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Button(action: { showCalorieDetail = true }) {
+                            VStack(spacing: 8) {
+                                HStack {
+                                    Text(String(localized: "health.metric.calories", defaultValue: "Kalorien"))
+                                        .font(.headline)
+                                        .foregroundColor(.primary)
+                                    Spacer()
+                                    Text("\(Int(healthManager.todaysEnergy)) / \(Int(goalEnergy)) kcal")
+                                        .font(.subheadline.bold())
+                                        .foregroundColor(healthManager.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green.darker())
+                                }
+                                
+                                GeometryReader { geo in
+                                    ZStack(alignment: .leading) {
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .fill(Color(UIColor.systemGray5))
+                                            .frame(height: 12)
+                                        
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .fill(healthManager.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green.darker())
+                                            .frame(width: max(0, min(geo.size.width, geo.size.width * CGFloat(healthManager.todaysEnergy / max(goalEnergy, 1)))), height: 12)
+                                    }
+                                }
+                                .frame(height: 12)
+                            }
+                        }
+                        .buttonStyle(PlainButtonStyle())
                         
                         Divider()
                         
@@ -128,6 +157,9 @@ struct GesundKochenCard: View {
                     }
                 }
                 .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+                .fullScreenCover(isPresented: $showCalorieDetail) {
+                    CalorieDetailView()
+                }
                 
             } else {
                 VStack(spacing: 12) {

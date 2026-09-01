@@ -1,6 +1,7 @@
 import Foundation
 import HealthKit
 import Combine
+import SwiftUI
 
 class HealthManager: ObservableObject {
     static let shared = HealthManager()
@@ -27,29 +28,64 @@ class HealthManager: ObservableObject {
     @Published var todaysFatMonounsaturated: Double = 0
     @Published var todaysFatPolyunsaturated: Double = 0
     
-    // Body Data
+    // Body Data (HealthKit)
     @Published var latestBodyMass: Double?
     @Published var latestHeight: Double?
+    
+    // Manual Data Fallbacks
+    @AppStorage("manual_weight_kg") var manualWeight: Double = 0.0
+    @AppStorage("manual_height_cm") var manualHeight: Double = 0.0
+    @AppStorage("manual_age_years") var manualAge: Int = 0
+    @AppStorage("manual_sex") var manualSex: Int = 0 // 0 = unknown, 1 = female, 2 = male
+    
+    // Weight Goal Data
+    @AppStorage("weight_goal_type") var weightGoalType: Int = 0 // 0 = maintain, 1 = lose, 2 = gain
+    @AppStorage("weight_goal_target_kg") var weightGoalTargetKg: Double = 0.0
+    @AppStorage("weight_goal_date_interval") var weightGoalDateInterval: Double = 0.0
     
     var age: Int? {
         do {
             let birthdayComponents = try healthStore.dateOfBirthComponents()
             if let date = birthdayComponents.date {
-                let age = Calendar.current.dateComponents([.year], from: date, to: Date()).year
-                return age
+                return Calendar.current.dateComponents([.year], from: date, to: Date()).year
             }
-        } catch {
-            return nil
-        }
-        return nil
+        } catch { }
+        return manualAge > 0 ? manualAge : nil
     }
     
     var biologicalSex: HKBiologicalSexObject? {
         do {
             return try healthStore.biologicalSex()
-        } catch {
-            return nil
+        } catch { }
+        return nil
+    }
+    
+    // Unified Values + Source Information
+    var activeWeight: (value: Double, source: String)? {
+        if let hk = latestBodyMass { return (hk, "Apple Health") }
+        if manualWeight > 0 { return (manualWeight, "App") }
+        return nil
+    }
+    
+    var activeHeight: (value: Double, source: String)? {
+        if let hk = latestHeight { return (hk, "Apple Health") }
+        if manualHeight > 0 { return (manualHeight, "App") }
+        return nil
+    }
+    
+    var activeAge: (value: Int, source: String)? {
+        if let hk = age, hk > 0 { return (hk, manualAge > 0 && hk == manualAge ? "App" : "Apple Health") }
+        if manualAge > 0 { return (manualAge, "App") }
+        return nil
+    }
+    
+    var activeSex: (value: Int, source: String)? {
+        // HKBiologicalSex: 1 = female, 2 = male, 3 = other
+        if let hk = biologicalSex, hk.biologicalSex != .notSet {
+            return (hk.biologicalSex.rawValue, "Apple Health")
         }
+        if manualSex > 0 { return (manualSex, "App") }
+        return nil
     }
     
     private init() {
@@ -721,5 +757,76 @@ extension HealthManager {
             }
             healthStore.execute(query)
         }
+    }
+    
+    /// Holt historische Daten aggregiert (z.B. täglich oder wöchentlich) über einen bestimmten Zeitraum.
+    func fetchHistoricalData(for metric: HealthMetricType, days: Int, interval: DateComponents, completion: @escaping ([(Date, Double)]) -> Void) {
+        guard isAuthorized else {
+            DispatchQueue.main.async { completion([]) }
+            return
+        }
+        
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        guard let startDate = calendar.date(byAdding: .day, value: -days, to: today) else {
+            DispatchQueue.main.async { completion([]) }
+            return
+        }
+        
+        let quantityType: HKQuantityType
+        let unit: HKUnit
+        
+        switch metric {
+        case .steps:
+            guard let qt = HKQuantityType.quantityType(forIdentifier: .stepCount) else { DispatchQueue.main.async { completion([]) }; return }
+            quantityType = qt
+            unit = .count()
+        case .water:
+            guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else { DispatchQueue.main.async { completion([]) }; return }
+            quantityType = qt
+            unit = .literUnit(with: .milli)
+        case .fiber:
+            guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryFiber) else { DispatchQueue.main.async { completion([]) }; return }
+            quantityType = qt
+            unit = .gram()
+        case .energy:
+            guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed) else { DispatchQueue.main.async { completion([]) }; return }
+            quantityType = qt
+            unit = .kilocalorie()
+        case .calcium:
+            guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryCalcium) else { DispatchQueue.main.async { completion([]) }; return }
+            quantityType = qt
+            unit = .gramUnit(with: .milli)
+        default:
+            // Für Sleep und Workouts müssten separate Sample-Queries gebaut werden.
+            // In diesem Fall beschränken wir uns für die Historie primär auf Kumulative Quantities.
+            DispatchQueue.main.async { completion([]) }
+            return
+        }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictStartDate)
+        let query = HKStatisticsCollectionQuery(
+            quantityType: quantityType,
+            quantitySamplePredicate: predicate,
+            options: .cumulativeSum,
+            anchorDate: startDate,
+            intervalComponents: interval
+        )
+        
+        query.initialResultsHandler = { _, results, _ in
+            var finalData: [(Date, Double)] = []
+            results?.enumerateStatistics(from: startDate, to: Date()) { statistics, _ in
+                if let sum = statistics.sumQuantity() {
+                    let value = sum.doubleValue(for: unit)
+                    finalData.append((statistics.startDate, value))
+                } else {
+                    // Fallback 0 for empty intervals
+                    finalData.append((statistics.startDate, 0))
+                }
+            }
+            DispatchQueue.main.async { completion(finalData) }
+        }
+        
+        healthStore.execute(query)
     }
 }
