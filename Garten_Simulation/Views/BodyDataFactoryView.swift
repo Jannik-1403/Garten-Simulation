@@ -256,11 +256,11 @@ struct BodyDataFactoryView: View {
                     }
             }
         }
+        .chartXSelection(value: $selectedDate)
         .chartScrollableAxes(.horizontal)
         .chartXScale(domain: chartXDomain)
         .chartXVisibleDomain(length: visibleDomain)
         .chartScrollPosition(initialX: Date())
-        .chartXSelection(value: $selectedDate)
         .chartXAxis {
             let component: Calendar.Component = timeRange == .t ? .hour : (timeRange == .sixM || timeRange == .j ? .month : .day)
             let count = timeRange == .t ? 6 : (timeRange == .w ? 1 : (timeRange == .m ? 7 : 1))
