@@ -62,20 +62,30 @@ class HealthManager: ObservableObject {
             return
         }
         
-        guard let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount),
-              let water = HKObjectType.quantityType(forIdentifier: .dietaryWater),
-              let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis),
-              let mindfulness = HKObjectType.categoryType(forIdentifier: .mindfulSession),
-              let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
-              let dietaryFiber = HKObjectType.quantityType(forIdentifier: .dietaryFiber),
-              let dietaryCalcium = HKObjectType.quantityType(forIdentifier: .dietaryCalcium),
-              let dietaryEnergy = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed) else {
-            return
-        }
-        
+        let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
+        let water = HKObjectType.quantityType(forIdentifier: .dietaryWater)!
+        let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
+        let mindfulness = HKObjectType.categoryType(forIdentifier: .mindfulSession)!
+        let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass)!
         let workout = HKObjectType.workoutType()
         
-        let typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, workout, bodyMass, dietaryFiber, dietaryCalcium, dietaryEnergy]
+        // --- Ernährungs-Typen (Makros, Vitamine, Mineralstoffe) ---
+        let nutritionIdentifiers: [HKQuantityTypeIdentifier] = [
+            // Makros & Energie
+            .dietaryEnergyConsumed, .dietaryProtein, .dietaryCarbohydrates, .dietaryFatTotal, .dietaryFiber,
+            // Vitamine
+            .dietaryVitaminA, .dietaryVitaminB6, .dietaryVitaminB12, .dietaryVitaminC, .dietaryVitaminD, .dietaryVitaminE, .dietaryVitaminK,
+            // Mineralstoffe
+            .dietaryCalcium, .dietaryIron, .dietaryMagnesium, .dietaryPhosphorus, .dietaryPotassium, .dietarySodium, .dietaryZinc
+        ]
+        
+        var typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, bodyMass, workout]
+        
+        for id in nutritionIdentifiers {
+            if let type = HKObjectType.quantityType(forIdentifier: id) {
+                typesToRead.insert(type)
+            }
+        }
         
         healthStore.requestAuthorization(toShare: nil, read: typesToRead) { [weak self] success, error in
             DispatchQueue.main.async {

@@ -1,103 +1,79 @@
 import SwiftUI
 import HealthKit
 
-struct PlantProgressCalculator {
-    // Wandelt Gramm Ballaststoffe in Portionen um (Max. 5 Portionen)
-    static func calculatePortions(from fiberGrams: Double) -> Int {
-        let portions = Int(fiberGrams / 5.0)
-        return min(max(portions, 0), 5) // Wert zwischen 0 und 5
-    }
-    
-    // Prozentualer Fortschritt für Ladebalken / Ringe
-    static func calculateProgress(from fiberGrams: Double, targetGrams: Double = 25.0) -> Double {
-        return min(fiberGrams / targetGrams, 1.0)
-    }
-}
-
 struct ObstGemueseHealthCard: View {
     @ObservedObject var healthManager = HealthManager.shared
     
-    // Für den manuellen Check-in an Tagen, wo Yazio keine Daten liefert
-    @AppStorage("manualFruitVegPortions") private var manualPortions: Int = 0
-    @AppStorage("manualFruitVegDate") private var manualDate: String = ""
-    
+    // Fiber (Ballaststoffe) -> 5 Portionen am Tag ca. 30g Ballaststoffe, oder laut Prompt ca. 8g für 2-3 Portionen
     var fiberGrams: Double {
         healthManager.todaysFiber
     }
     
+    // Calcium (Kalzium)
     var calciumMg: Double {
         healthManager.todaysCalcium
     }
     
-    // Berechnet die echten Portionen aus Health + manuell hinzugefügten
-    var currentPortions: Int {
-        let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-        let manual = (manualDate == dateString) ? manualPortions : 0
-        
-        let healthPortions = PlantProgressCalculator.calculatePortions(from: fiberGrams)
-        return min(healthPortions + manual, 5) // Maximal 5 Portionen
+    // Portionen-Approximation: 1 Portion ≈ 3g Ballaststoffe
+    var portions: Int {
+        let p = Int(fiberGrams / 3.0)
+        return min(p, 5) // max 5 portionen für Anzeige
     }
     
     var body: some View {
         VStack(spacing: 16) {
             if healthManager.isAuthorized {
-                VStack(spacing: 16) {
+                // Daten-Anzeige
+                VStack(spacing: 12) {
                     HStack {
-                        Text(String(localized: "habit.fruit_veg.title", defaultValue: "Deine Obst & Gemüse Pflanze"))
-                            .font(.title3)
+                        Image(systemName: "leaf.fill")
+                            .foregroundColor(.green)
+                            .font(.title2)
+                        Text(String(localized: "habit.fruit_veg.title", defaultValue: "Obst & Gemüse"))
+                            .font(.headline)
                             .bold()
                         Spacer()
                     }
                     
-                    // Live-Werte aus Apple Health (plus evtl. manuelle Portionen)
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack {
-                            Text(String(localized: "habit.fruit_veg.tracked", defaultValue: "Getrackte Ballaststoffe heute: \(fiberGrams, specifier: "%.1f")g"))
-                                .font(.headline)
-                            Spacer()
+                    HStack {
+                        // Ballaststoffe
+                        VStack(alignment: .leading) {
+                            Text(String(localized: "health.metric.fiber", defaultValue: "Ballaststoffe"))
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Text("\(fiberGrams, specifier: "%.1f") g")
+                                .font(.title3)
+                                .bold()
                         }
                         
-                        Text(String(localized: "habit.fruit_veg.portions_text", defaultValue: "Entspricht ca. \(currentPortions) von 5 Portionen"))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                        Spacer()
+                        
+                        // Kalzium
+                        VStack(alignment: .trailing) {
+                            Text(String(localized: "health.metric.calcium", defaultValue: "Kalzium"))
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Text("\(calciumMg, specifier: "%.0f") mg")
+                                .font(.title3)
+                                .bold()
+                        }
                     }
                     
-                    // 5-am-Tag Visualisierung mit Blättern
+                    // 5-am-Tag Visualisierung
                     HStack(spacing: 8) {
                         ForEach(1...5, id: \.self) { index in
-                            Image(systemName: index <= currentPortions ? "leaf.fill" : "leaf")
-                                .foregroundColor(index <= currentPortions ? .green : .gray.opacity(0.4))
-                                .font(.title)
+                            Image(systemName: index <= portions ? "apple.logo" : "circle.dashed")
+                                .foregroundColor(index <= portions ? .green : .gray.opacity(0.5))
+                                .font(.title2)
                         }
                     }
-                    .padding(.vertical, 4)
+                    .padding(.vertical, 8)
                     
-                    // Dynamischer Bewertungstipp
-                    Text(getTip(for: currentPortions))
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                    
-                    // Quick-Check-in Button (Fallback für 0 getrackte Ballaststoffe)
-                    if fiberGrams == 0 && currentPortions < 5 {
-                        Item3DPillButton(
-                            farbe: .blauPrimary,
-                            sekundaerFarbe: .blauPrimary.darker(),
-                            groesse: 44,
-                            aktion: {
-                                addManualPortion()
-                            }
-                        ) {
-                            HStack {
-                                Image(systemName: "plus.circle.fill")
-                                Text(String(localized: "habit.fruit_veg.quick_add", defaultValue: "Händisch eintragen: +1 Portion"))
-                            }
-                            .font(.subheadline)
-                            .bold()
-                            .foregroundColor(.white)
-                        }
-                        .padding(.top, 8)
+                    if fiberGrams < 10 {
+                        Text(String(localized: "habit.fruit_veg.tip", defaultValue: "Tipp: Füge deiner nächsten Mahlzeit eine Handvoll Beeren, einen Apfel oder Gemüsesticks als Snack hinzu."))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
                     }
                 }
                 .padding()
@@ -138,38 +114,6 @@ struct ObstGemueseHealthCard: View {
                 .background(Color(.secondarySystemBackground))
                 .cornerRadius(16)
             }
-        }
-        .onAppear {
-            if healthManager.isAuthorized {
-                // Update triggers
-                healthManager.fetchFiber()
-                healthManager.fetchCalcium()
-            }
-        }
-    }
-    
-    // Bewertung & Tipps basierend auf den Daten
-    private func getTip(for portions: Int) -> String {
-        switch portions {
-        case 0...1:
-            return String(localized: "habit.fruit_veg.tip.low", defaultValue: "Tipp: Bisher wenig Ballaststoffe. Schneide dir einen Apfel auf oder iss eine Handvoll Beeren.")
-        case 2...3:
-            return String(localized: "habit.fruit_veg.tip.medium", defaultValue: "Guter Start! Füge deinem Abendessen etwas Gemüse wie Paprika, Brokkoli oder Linsen hinzu.")
-        case 4...5:
-            return String(localized: "habit.fruit_veg.tip.high", defaultValue: "Stark! Du hast dein Ziel für heute erreicht. Deine Pflanze blüht voll auf!")
-        default:
-            return ""
-        }
-    }
-    
-    private func addManualPortion() {
-        let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-        if manualDate != dateString {
-            manualDate = dateString
-            manualPortions = 0
-        }
-        if manualPortions < 5 {
-            manualPortions += 1
         }
     }
 }

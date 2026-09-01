@@ -589,30 +589,34 @@ struct PflanzeDetailSheet: View {
                                             let effectiveMetric = pflanze.effectiveHealthMetric
                                             if let metric = effectiveMetric {
                                                 VStack {
-                                                    if !hourlyHealthData.isEmpty {
-                                                        HealthChartView(
-                                                            data: hourlyHealthData,
-                                                            metric: metric,
-                                                            target: pflanze.healthTarget,
-                                                            hourlyAverageData: hourlyAvgData,
-                                                            onEditTarget: { showTargetEdit = true },
-                                                            onUnlink: { zeigeAppleHealthEntkoppelnAlert = true }
-                                                        )
-                                                        .padding(.horizontal, 16)
-                                                        .padding(.vertical, 4)
+                                                    if metric == .fiber || metric == .calcium || metric == .energy {
+                                                        // Custom cards handle these metrics instead of HealthChartView
                                                     } else {
-                                                        // Laden-Indikator
-                                                        HStack {
-                                                            Spacer()
-                                                            VStack(spacing: 8) {
-                                                                ProgressView()
-                                                                Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
-                                                                    .font(.system(size: 13, weight: .medium, design: .rounded))
-                                                                    .foregroundStyle(.secondary)
+                                                        if !hourlyHealthData.isEmpty {
+                                                            HealthChartView(
+                                                                data: hourlyHealthData,
+                                                                metric: metric,
+                                                                target: pflanze.healthTarget,
+                                                                hourlyAverageData: hourlyAvgData,
+                                                                onEditTarget: { showTargetEdit = true },
+                                                                onUnlink: { zeigeAppleHealthEntkoppelnAlert = true }
+                                                            )
+                                                            .padding(.horizontal, 16)
+                                                            .padding(.vertical, 4)
+                                                        } else {
+                                                            // Laden-Indikator
+                                                            HStack {
+                                                                Spacer()
+                                                                VStack(spacing: 8) {
+                                                                    ProgressView()
+                                                                    Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
+                                                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                                                        .foregroundStyle(.secondary)
+                                                                }
+                                                                Spacer()
                                                             }
-                                                            Spacer()
+                                                            .padding(40)
                                                         }
-                                                        .padding(40)
                                                     }
                                                 }
                                                 
