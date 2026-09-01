@@ -565,6 +565,7 @@
         }
       }
     },
+    "%.0f kcal": {},
     "%.0f mg": {},
     "%.1f g": {},
     "%@": {
@@ -151854,6 +151855,83 @@
         }
       }
     },
+    "habit.cook.confirmed": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Gesunde Mahlzeit bestätigt!"
+          }
+        }
+      }
+    },
+    "habit.cook.connect_btn": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Mit Apple Health verbinden"
+          }
+        }
+      }
+    },
+    "habit.cook.connect_desc": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Verbinde Apple Health, um Mahlzeiten automatisch zu erkennen."
+          }
+        }
+      }
+    },
+    "habit.cook.connect_title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Kochen tracken"
+          }
+        }
+      }
+    },
+    "habit.cook.question": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Mahlzeit getrackt! War sie frisch gekocht?"
+          }
+        }
+      }
+    },
+    "habit.cook.tip": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Noch keine große Mahlzeit getrackt (>350 kcal)."
+          }
+        }
+      }
+    },
+    "habit.cook.title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Gesund kochen"
+          }
+        }
+      }
+    },
     "habit.custom.todo": {
       "extractionState": "manual",
       "localizations": {
@@ -156547,6 +156625,17 @@
         }
       }
     },
+    "health.chart.title.energy.plain": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Kalorien"
+          }
+        }
+      }
+    },
     "health.chart.title.fiber.plain": {
       "extractionState": "extracted_with_value",
       "localizations": {
@@ -157793,6 +157882,17 @@
         }
       }
     },
+    "health.metric.energy": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Getrackte Kalorien"
+          }
+        }
+      }
+    },
     "health.metric.fiber": {
       "extractionState": "manual",
       "localizations": {
@@ -158747,6 +158847,17 @@
           "stringUnit": {
             "state": "new",
             "value": "mg"
+          }
+        }
+      }
+    },
+    "health.unit.energy": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "kcal"
           }
         }
       }
