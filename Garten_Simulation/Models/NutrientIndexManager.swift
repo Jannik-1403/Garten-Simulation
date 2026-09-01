@@ -121,6 +121,11 @@ class NutrientIndexManager: ObservableObject {
         NutrientItem(id: UUID(), name: String(localized: "nutrient.fiber", defaultValue: "Ballaststoffe"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryFiber.rawValue, targetDGE: 30.0, unitString: "g")
     }
     
+    // NEU: Checks, ob Kategorien aktiv sind
+    var hasActiveVitamins: Bool { vitamins.contains { $0.isEnabled } }
+    var hasActiveMinerals: Bool { minerals.contains { $0.isEnabled } }
+    var hasActiveFiber: Bool { fiber.isEnabled }
+    
     // Berechnete Scores (0 - 100)
     var vitaminScore: Double {
         let active = vitamins.filter { $0.isEnabled }

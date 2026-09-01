@@ -35,7 +35,6 @@ struct TrimmedArc: Shape {
 
 struct NutrientIndexView: View {
     @StateObject private var manager = NutrientIndexManager()
-    @State private var selectedCategory: String? = nil
     
     let vitaminColor = Color.blue
     let mineralColor = Color(red: 0.2, green: 0.8, blue: 0.6)
@@ -47,23 +46,23 @@ struct NutrientIndexView: View {
             // Oben: Großes Chart und Text darunter
             VStack(alignment: .center, spacing: 16) {
                 ZStack {
-                    // Outer Ring (Vitamine)
-                    ConcentricRing(scorePercentage: manager.vitaminScore / 100.0, color: vitaminColor, lineWidth: 18)
-                        .padding(0)
-                        .background(Circle().stroke(Color.white.opacity(0.001), lineWidth: 18).padding(0).onTapGesture { selectedCategory = "Vitamine" })
-                    
-                    // Middle Ring (Mineralstoffe)
-                    ConcentricRing(scorePercentage: manager.mineralScore / 100.0, color: mineralColor, lineWidth: 18)
-                        .padding(24)
-                        .background(Circle().stroke(Color.white.opacity(0.001), lineWidth: 18).padding(24).onTapGesture { selectedCategory = "Mineralstoffe" })
-                    
-                    // Inner Ring (Ballaststoffe)
-                    ConcentricRing(scorePercentage: manager.fiberScore / 100.0, color: fiberColor, lineWidth: 18)
-                        .padding(48)
-                        .background(Circle().stroke(Color.white.opacity(0.001), lineWidth: 18).padding(48).onTapGesture { selectedCategory = "Ballaststoffe" })
+                    ForEach(Array(activeCategories.enumerated()), id: \.element.name) { index, cat in
+                        let paddingAmount = CGFloat(index * 24)
+                        NavigationLink(destination: NutrientCategoryDetailView(categoryName: cat.name, manager: manager)) {
+                            ConcentricRing(scorePercentage: cat.score / 100.0, color: cat.color, lineWidth: 18)
+                                .padding(paddingAmount)
+                                .background(
+                                    Circle()
+                                        .stroke(Color.white.opacity(0.001), lineWidth: 18)
+                                        .padding(paddingAmount)
+                                )
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
                     
                     Text("\(manager.totalScore)")
                         .font(.system(size: 42, weight: .bold))
+                        .allowsHitTesting(false)
                 }
                 .frame(width: 210, height: 210)
                 
@@ -74,34 +73,30 @@ struct NutrientIndexView: View {
             
             Divider()
             
-            // Legende (ohne Subtitles)
+            // Legende (nur aktive Kategorien)
             VStack(alignment: .leading, spacing: 16) {
-                LegendRow(
-                    color: vitaminColor, 
-                    title: String(localized: "nutrient.category.vitamins", defaultValue: "Vitamine"), 
-                    score: Int(manager.vitaminScore)
-                ) {
-                    selectedCategory = "Vitamine"
-                }
-                
-                Divider()
-                
-                LegendRow(
-                    color: mineralColor, 
-                    title: String(localized: "nutrient.category.minerals", defaultValue: "Mineralstoffe"), 
-                    score: Int(manager.mineralScore)
-                ) {
-                    selectedCategory = "Mineralstoffe"
-                }
-                
-                Divider()
-                
-                LegendRow(
-                    color: fiberColor, 
-                    title: String(localized: "nutrient.category.fiber", defaultValue: "Ballaststoffe"), 
-                    score: Int(manager.fiberScore)
-                ) {
-                    selectedCategory = "Ballaststoffe"
+                ForEach(Array(activeCategories.enumerated()), id: \.element.name) { index, cat in
+                    NavigationLink(destination: NutrientCategoryDetailView(categoryName: cat.name, manager: manager)) {
+                        HStack(alignment: .center) {
+                            Circle()
+                                .fill(cat.color)
+                                .frame(width: 16, height: 16)
+                            Text(getLocalizedCategoryName(for: cat.name))
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Text("\(Int(cat.score))/100")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    if index < activeCategories.count - 1 {
+                        Divider()
+                    }
                 }
             }
         }
@@ -118,8 +113,22 @@ struct NutrientIndexView: View {
         .onAppear {
             manager.fetchAllNutrients()
         }
-        .sheet(item: $selectedCategory) { category in
-            CategoryDetailSheet(categoryName: category, manager: manager)
+    }
+    
+    private var activeCategories: [(name: String, color: Color, score: Double)] {
+        var cats: [(name: String, color: Color, score: Double)] = []
+        if manager.hasActiveVitamins { cats.append(("Vitamine", vitaminColor, manager.vitaminScore)) }
+        if manager.hasActiveMinerals { cats.append(("Mineralstoffe", mineralColor, manager.mineralScore)) }
+        if manager.hasActiveFiber { cats.append(("Ballaststoffe", fiberColor, manager.fiberScore)) }
+        return cats
+    }
+    
+    private func getLocalizedCategoryName(for name: String) -> String {
+        switch name {
+        case "Vitamine": return String(localized: "nutrient.category.vitamins", defaultValue: "Vitamine")
+        case "Mineralstoffe": return String(localized: "nutrient.category.minerals", defaultValue: "Mineralstoffe")
+        case "Ballaststoffe": return String(localized: "nutrient.category.fiber", defaultValue: "Ballaststoffe")
+        default: return name
         }
     }
     
@@ -133,184 +142,7 @@ struct NutrientIndexView: View {
     }
 }
 
-struct LegendRow: View {
-    var color: Color
-    var title: String
-    var score: Int
-    var action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            HStack(alignment: .center) {
-                Circle()
-                    .fill(color)
-                    .frame(width: 16, height: 16)
-                Text(title)
-                    .font(.title3)
-                    .bold()
-                    .foregroundColor(.primary)
-                Spacer()
-                Text("\(score)/100")
-                    .font(.title3)
-                    .bold()
-                    .foregroundColor(.primary)
-            }
-        }
-    }
-}
 
-extension String: Identifiable {
-    public var id: String { self }
-}
-
-struct CategoryDetailSheet: View {
-    let categoryName: String
-    @ObservedObject var manager: NutrientIndexManager
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        NavigationView {
-            List {
-                Section {
-                    Button(action: {
-                        manager.injectTestData(for: categoryName)
-                    }) {
-                        Text("Testdaten laden")
-                            .font(.caption)
-                            .foregroundColor(.blue)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    
-                    HStack {
-                        Spacer()
-                        ZStack {
-                            Circle()
-                                .stroke(Color.gray.opacity(0.2), lineWidth: 16)
-                            
-                            if getCategoryScore() > 0 {
-                                Circle()
-                                    .trim(from: 0, to: CGFloat(getCategoryScore() / 100.0))
-                                    .stroke(getCategoryColor(), style: StrokeStyle(lineWidth: 16, lineCap: .round))
-                                    .rotationEffect(.degrees(-90))
-                                
-                                Text("\(Int(getCategoryScore()))")
-                                    .font(.system(size: 36, weight: .bold))
-                            } else {
-                                Text(String(localized: "nutrient.nodata", defaultValue: "Noch keine\nDaten"))
-                                    .font(.subheadline)
-                                    .bold()
-                                    .foregroundColor(.secondary)
-                                    .multilineTextAlignment(.center)
-                            }
-                        }
-                        .frame(width: 120, height: 120)
-                        .padding(.vertical, 16)
-                        Spacer()
-                    }
-                }
-                
-                Section {
-                    if categoryName == "Vitamine" {
-                        ForEach($manager.vitamins) { $item in
-                            NutrientEditRow(item: $item) { manager.saveSettings() }
-                        }
-                    } else if categoryName == "Mineralstoffe" {
-                        ForEach($manager.minerals) { $item in
-                            NutrientEditRow(item: $item) { manager.saveSettings() }
-                        }
-                    } else if categoryName == "Ballaststoffe" {
-                        NutrientEditRow(item: $manager.fiber) { manager.saveSettings() }
-                    }
-                }
-            }
-            .navigationTitle(categoryName)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(String(localized: "common.done", defaultValue: "Fertig")) {
-                        dismiss()
-                    }
-                }
-            }
-        }
-    }
-    
-    private func getCategoryScore() -> Double {
-        switch categoryName {
-        case "Vitamine": return manager.vitaminScore
-        case "Mineralstoffe": return manager.mineralScore
-        case "Ballaststoffe": return manager.fiberScore
-        default: return 0
-        }
-    }
-    
-    private func getCategoryColor() -> Color {
-        switch categoryName {
-        case "Vitamine": return .blue
-        case "Mineralstoffe": return Color(red: 0.2, green: 0.8, blue: 0.6)
-        case "Ballaststoffe": return Color(red: 0.98, green: 0.5, blue: 0.4)
-        default: return .gray
-        }
-    }
-}
-
-struct NutrientEditRow: View {
-    @Binding var item: NutrientItem
-    var onSave: () -> Void
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            Toggle(isOn: Binding(
-                get: { item.isEnabled },
-                set: { newValue in
-                    item.isEnabled = newValue
-                    onSave()
-                }
-            )) {
-                HStack {
-                    ZStack {
-                        Circle()
-                            .stroke(Color.gray.opacity(0.2), lineWidth: 4)
-                            .frame(width: 30, height: 30)
-                        
-                        Circle()
-                            .trim(from: 0, to: CGFloat(item.score / 100.0))
-                            .stroke(Color.blue, style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                            .frame(width: 30, height: 30)
-                            .rotationEffect(.degrees(-90))
-                    }
-                    Text(item.name).bold()
-                }
-            }
-            
-            if item.isEnabled {
-                HStack {
-                    Text(String(localized: "nutrient.target", defaultValue: "Tagesziel:"))
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    TextField("Ziel", value: Binding(
-                        get: { item.targetDGE },
-                        set: { newValue in
-                            item.targetDGE = max(newValue, 0.1)
-                            onSave()
-                        }
-                    ), format: .number)
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.trailing)
-                        .frame(width: 80)
-                        .padding(4)
-                        .background(Color(.tertiarySystemFill))
-                        .cornerRadius(6)
-                    Text(item.unitString)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-            }
-        }
-        .padding(.vertical, 4)
-    }
-}
 
 #Preview {
     NutrientIndexView()
