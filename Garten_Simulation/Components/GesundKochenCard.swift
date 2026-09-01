@@ -3,22 +3,11 @@ import HealthKit
 
 struct GesundKochenCard: View {
     @ObservedObject var healthManager = HealthManager.shared
-    @AppStorage("hasConfirmedHealthyMeal") private var hasConfirmedHealthyMeal: Bool = false
-    
-    // Einfache Metrik für Kalorien als Indikator
-    var energyKcal: Double {
-        healthManager.todaysEnergy
-    }
-    
-    // Hybrid Ansatz: Hat der User eine Hauptmahlzeit eingetragen?
-    var hasMajorMeal: Bool {
-        energyKcal > 350
-    }
     
     var body: some View {
         VStack(spacing: 16) {
             if healthManager.isAuthorized {
-                VStack(spacing: 12) {
+                VStack(spacing: 16) {
                     HStack {
                         Image(systemName: "flame.fill")
                             .foregroundColor(.orange)
@@ -29,72 +18,35 @@ struct GesundKochenCard: View {
                         Spacer()
                     }
                     
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(String(localized: "health.metric.energy", defaultValue: "Getrackte Kalorien"))
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                            Text("\(energyKcal, specifier: "%.0f") kcal")
-                                .font(.title3)
-                                .bold()
+                    VStack(spacing: 12) {
+                        HStack(spacing: 12) {
+                            MacroView(
+                                title: String(localized: "health.metric.energy", defaultValue: "Kalorien"),
+                                value: healthManager.todaysEnergy,
+                                unit: "kcal",
+                                color: .orange
+                            )
+                            MacroView(
+                                title: String(localized: "health.metric.protein", defaultValue: "Protein"),
+                                value: healthManager.todaysProtein,
+                                unit: "g",
+                                color: .red
+                            )
                         }
-                        Spacer()
-                    }
-                    
-                    if hasMajorMeal {
-                        if hasConfirmedHealthyMeal {
-                            HStack {
-                                Image(systemName: "checkmark.seal.fill")
-                                    .foregroundColor(.green)
-                                Text(String(localized: "habit.cook.confirmed", defaultValue: "Gesunde Mahlzeit bestätigt!"))
-                                    .font(.subheadline)
-                                    .bold()
-                                    .foregroundColor(.green)
-                            }
-                            .padding()
-                            .background(Color.green.opacity(0.1))
-                            .cornerRadius(8)
-                        } else {
-                            VStack(spacing: 8) {
-                                Text(String(localized: "habit.cook.question", defaultValue: "Mahlzeit getrackt! War sie frisch gekocht?"))
-                                    .font(.subheadline)
-                                    .multilineTextAlignment(.center)
-                                
-                                HStack {
-                                    Item3DButton(
-                                        farbe: .green,
-                                        sekundaerFarbe: .green.opacity(0.8),
-                                        groesse: 44,
-                                        isRectangular: true,
-                                        aktion: { hasConfirmedHealthyMeal = true }
-                                    ) {
-                                        Text(String(localized: "common.yes", defaultValue: "Ja"))
-                                            .bold()
-                                            .foregroundColor(.white)
-                                    }
-                                    
-                                    Item3DButton(
-                                        farbe: .red,
-                                        sekundaerFarbe: .red.opacity(0.8),
-                                        groesse: 44,
-                                        isRectangular: true,
-                                        aktion: { /* Ignorieren */ }
-                                    ) {
-                                        Text(String(localized: "common.no", defaultValue: "Nein"))
-                                            .bold()
-                                            .foregroundColor(.white)
-                                    }
-                                }
-                            }
-                            .padding()
-                            .background(Color.orange.opacity(0.1))
-                            .cornerRadius(8)
+                        HStack(spacing: 12) {
+                            MacroView(
+                                title: String(localized: "health.metric.carbs", defaultValue: "Kohlenhydrate"),
+                                value: healthManager.todaysCarbohydrates,
+                                unit: "g",
+                                color: .green
+                            )
+                            MacroView(
+                                title: String(localized: "health.metric.fat", defaultValue: "Fette"),
+                                value: healthManager.todaysFat,
+                                unit: "g",
+                                color: .yellow
+                            )
                         }
-                    } else {
-                        Text(String(localized: "habit.cook.tip", defaultValue: "Noch keine große Mahlzeit getrackt (>350 kcal)."))
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
                     }
                 }
                 .padding()
@@ -135,5 +87,33 @@ struct GesundKochenCard: View {
                 .cornerRadius(16)
             }
         }
+    }
+}
+
+struct MacroView: View {
+    var title: String
+    var value: Double
+    var unit: String
+    var color: Color
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            HStack(alignment: .firstTextBaseline, spacing: 2) {
+                Text("\(value, specifier: "%.0f")")
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(color)
+                Text(unit)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(12)
+        .background(Color(.tertiarySystemBackground))
+        .cornerRadius(12)
     }
 }

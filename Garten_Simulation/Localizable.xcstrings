@@ -168689,98 +168689,98 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "Getrackte Kalorien"
+            "state": "translated",
+            "value": "Kalorien"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Calorias"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Calorias"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Kalori"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Kalorie"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "卡路里"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Calories"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "カロリー"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "कैलोरी"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Calorieën"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Calorie"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "칼로리"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "卡路里"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Калории"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Calorías"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Getrackte Kalorien"
+            "value": "Calories"
           }
         }
       }
@@ -452041,6 +452041,309 @@
           "stringUnit": {
             "state": "translated",
             "value": "Meta"
+          }
+        }
+      }
+    },
+    "health.metric.protein": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "단백질"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiwit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "蛋白质"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteína"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रोटीन"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Białko"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteína"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteine"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteína"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タンパク質"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "蛋白質"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Белок"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protéines"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        }
+      }
+    },
+    "health.metric.carbs": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "탄수화물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koolhydraten"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "碳水化合物"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carbohidratos"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कार्बोहाइड्रेट"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Węglowodany"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carboidratos"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carboidrati"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carboidratos"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kohlenhydrate"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "炭水化物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "碳水化合物"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Углеводы"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carbs"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glucides"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karbonhidrat"
+          }
+        }
+      }
+    },
+    "health.metric.fat": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지방"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vetten"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "脂肪"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grasas"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वसा"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tłuszcze"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gorduras"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grassi"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gorduras"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fette"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "脂質"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "脂肪"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жиры"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fat"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lipides"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yağlar"
           }
         }
       }

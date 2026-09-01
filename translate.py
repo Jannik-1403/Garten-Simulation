@@ -1,47 +1,49 @@
 import json
 
-langs = ["en", "es", "fr", "hi", "it", "ja", "ko", "pt-BR", "ru", "zh-Hans"]
-
-# Standard English dictionary, I will just copy "de" for the others if I don't want to translate them perfectly, but I'll try some standard terms for EN.
-dict_en = {
-    "nutrient.calcium": "Calcium", "nutrient.chloride": "Chloride", "nutrient.chromium": "Chromium",
-    "nutrient.copper": "Copper", "nutrient.fiber": "Dietary Fiber", "nutrient.folate": "Folate",
-    "nutrient.iodine": "Iodine", "nutrient.iron": "Iron", "nutrient.magnesium": "Magnesium",
-    "nutrient.manganese": "Manganese", "nutrient.molybdenum": "Molybdenum", "nutrient.no_data": "No Data",
-    "nutrient.phosphorus": "Phosphorus", "nutrient.potassium": "Potassium", "nutrient.selenium": "Selenium",
-    "nutrient.settings": "Settings", "nutrient.sodium": "Sodium", "nutrient.status.good": "Good",
-    "nutrient.status.low": "Low", "nutrient.status.medium": "Medium", "nutrient.status.veryhigh": "Very High",
-    "nutrient.target": "Target:", "nutrient.vitamin_a": "Vitamin A", "nutrient.vitamin_b1": "Vitamin B1 (Thiamin)",
-    "nutrient.vitamin_b12": "Vitamin B12", "nutrient.vitamin_b2": "Vitamin B2 (Riboflavin)",
-    "nutrient.vitamin_b3": "Vitamin B3 (Niacin)", "nutrient.vitamin_b5": "Vitamin B5 (Pantothenic Acid)",
-    "nutrient.vitamin_b6": "Vitamin B6", "nutrient.vitamin_b7": "Vitamin B7 (Biotin)",
-    "nutrient.vitamin_c": "Vitamin C", "nutrient.vitamin_d": "Vitamin D", "nutrient.vitamin_e": "Vitamin E",
-    "nutrient.vitamin_k": "Vitamin K", "nutrient.zinc": "Zinc",
-    "time.month": "Month", "time.week": "Week", "time.year": "Year"
-}
-
-with open('Garten_Simulation/Localizable.xcstrings', 'r', encoding='utf-8') as f:
+path = "/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Localizable.xcstrings"
+with open(path, "r") as f:
     data = json.load(f)
 
-for key, val in data['strings'].items():
-    if key in dict_en or key.startswith("nutrient.") or key.startswith("time."):
-        localizations = val.get('localizations', {})
-        # ensure "de" state is translated
-        if "de" in localizations:
-            localizations["de"]["stringUnit"]["state"] = "translated"
-        
-        # fallback string
-        en_str = dict_en.get(key, localizations.get("de", {}).get("stringUnit", {}).get("value", key))
-        
-        for lang in langs:
-            if lang not in localizations:
-                localizations[lang] = {"stringUnit": {"state": "translated", "value": en_str}}
-            else:
-                localizations[lang]["stringUnit"]["state"] = "translated"
-        
-        val["localizations"] = localizations
-        val["extractionState"] = "manual"
+new_keys = {
+    "health.metric.energy": {
+        "de": "Kalorien", "en": "Calories", "fr": "Calories", "es": "Calorías",
+        "it": "Calorie", "pt": "Calorias", "pt-BR": "Calorias", "nl": "Calorieën",
+        "ru": "Калории", "tr": "Kalori", "pl": "Kalorie", "ja": "カロリー",
+        "ko": "칼로리", "zh-Hans": "卡路里", "zh-Hant": "卡路里", "hi": "कैलोरी"
+    },
+    "health.metric.protein": {
+        "de": "Protein", "en": "Protein", "fr": "Protéines", "es": "Proteína",
+        "it": "Proteine", "pt": "Proteína", "pt-BR": "Proteína", "nl": "Eiwit",
+        "ru": "Белок", "tr": "Protein", "pl": "Białko", "ja": "タンパク質",
+        "ko": "단백질", "zh-Hans": "蛋白质", "zh-Hant": "蛋白質", "hi": "प्रोटीन"
+    },
+    "health.metric.carbs": {
+        "de": "Kohlenhydrate", "en": "Carbs", "fr": "Glucides", "es": "Carbohidratos",
+        "it": "Carboidrati", "pt": "Carboidratos", "pt-BR": "Carboidratos", "nl": "Koolhydraten",
+        "ru": "Углеводы", "tr": "Karbonhidrat", "pl": "Węglowodany", "ja": "炭水化物",
+        "ko": "탄수화물", "zh-Hans": "碳水化合物", "zh-Hant": "碳水化合物", "hi": "कार्बोहाइड्रेट"
+    },
+    "health.metric.fat": {
+        "de": "Fette", "en": "Fat", "fr": "Lipides", "es": "Grasas",
+        "it": "Grassi", "pt": "Gorduras", "pt-BR": "Gorduras", "nl": "Vetten",
+        "ru": "Жиры", "tr": "Yağlar", "pl": "Tłuszcze", "ja": "脂質",
+        "ko": "지방", "zh-Hans": "脂肪", "zh-Hant": "脂肪", "hi": "वसा"
+    }
+}
 
-with open('Garten_Simulation/Localizable.xcstrings', 'w', encoding='utf-8') as f:
+for key, trans in new_keys.items():
+    if key not in data["strings"]:
+        data["strings"][key] = {"extractionState": "manual", "localizations": {}}
+    
+    for lang, val in trans.items():
+        data["strings"][key]["localizations"][lang] = {
+            "stringUnit": {
+                "state": "translated",
+                "value": val
+            }
+        }
+
+with open(path, "w") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 
+print("Translations updated with proper languages successfully.")

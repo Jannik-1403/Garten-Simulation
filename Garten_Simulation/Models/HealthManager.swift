@@ -19,6 +19,9 @@ class HealthManager: ObservableObject {
     @Published var todaysFiber: Double = 0
     @Published var todaysCalcium: Double = 0
     @Published var todaysEnergy: Double = 0
+    @Published var todaysProtein: Double = 0
+    @Published var todaysCarbohydrates: Double = 0
+    @Published var todaysFat: Double = 0
     
     private init() {
         checkAuthorizationStatus()
@@ -112,6 +115,7 @@ class HealthManager: ObservableObject {
         fetchFiber()
         fetchCalcium()
         fetchEnergy()
+        fetchMacros()
         NutrientIndexManager.shared.fetchAllNutrients()
     }
     
@@ -196,6 +200,39 @@ class HealthManager: ObservableObject {
             }
         }
         healthStore.execute(query)
+    }
+    
+    func fetchMacros() {
+        guard let proteinType = HKQuantityType.quantityType(forIdentifier: .dietaryProtein),
+              let carbsType = HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates),
+              let fatType = HKQuantityType.quantityType(forIdentifier: .dietaryFatTotal) else { return }
+        
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+        
+        // Protein
+        let queryProtein = HKStatisticsQuery(quantityType: proteinType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+            guard let result = result, let sum = result.sumQuantity() else { return }
+            let grams = sum.doubleValue(for: HKUnit.gram())
+            DispatchQueue.main.async { self.todaysProtein = grams }
+        }
+        healthStore.execute(queryProtein)
+        
+        // Carbs
+        let queryCarbs = HKStatisticsQuery(quantityType: carbsType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+            guard let result = result, let sum = result.sumQuantity() else { return }
+            let grams = sum.doubleValue(for: HKUnit.gram())
+            DispatchQueue.main.async { self.todaysCarbohydrates = grams }
+        }
+        healthStore.execute(queryCarbs)
+        
+        // Fat
+        let queryFat = HKStatisticsQuery(quantityType: fatType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+            guard let result = result, let sum = result.sumQuantity() else { return }
+            let grams = sum.doubleValue(for: HKUnit.gram())
+            DispatchQueue.main.async { self.todaysFat = grams }
+        }
+        healthStore.execute(queryFat)
     }
     
     func fetchSleep() {

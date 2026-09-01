@@ -866,3 +866,6 @@
 - Layout-Anpassung: Der Apple-Health Entkoppeln Button (rotes X) ist nun bei allen Graphen noch etwas weiter oben rechts in der Ecke platziert.
 - Alle Bezeichnungen von Vitaminen, Mineralstoffen und Einheiten wurden in alle Sprachen übersetzt.
 - Die Achsen-Beschriftungen bei den Diagrammen (Tage/Monate) sind jetzt einheitlich (ohne zufällige dicke Markierungen).
+- RoutinenView: Layout für Routine-Karten angepasst (Sterne vertikal platziert, Gewohnheiten-Zähler entfernt).
+
+- Fehlende Lokalisierungen (pt-BR und andere) in Localizable.xcstrings generiert und korrigiert, um Xcode-Buildfehler zu beheben.
