@@ -390,7 +390,7 @@ struct RoutineExpandableSection: View {
                         Button {
                             onPriorityTap?()
                         } label: {
-                            HStack(spacing: 2) {
+                            VStack(spacing: -4) {
                                 ForEach(0..<(routine?.priority.activeStars ?? 1), id: \.self) { _ in
                                     Image("Powerup")
                                         .resizable()
@@ -408,15 +408,7 @@ struct RoutineExpandableSection: View {
                     
                     Spacer()
                     
-                    if !habits.isEmpty {
-                        Text(verbatim: "\(habits.count)")
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(color)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 4)
-                            .background(Color.white)
-                            .clipShape(Capsule())
-                    }
+
                     
                     Image(systemName: "chevron.down")
                         .font(.system(size: 14, weight: .bold))
