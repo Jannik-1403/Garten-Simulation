@@ -1,6 +1,5 @@
 import SwiftUI
 
-struct RingSegment: View {
 struct ConcentricRing: View {
     var scorePercentage: Double
     var color: Color

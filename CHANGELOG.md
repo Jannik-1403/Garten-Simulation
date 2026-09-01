@@ -38,6 +38,10 @@
 - **App Tour Routing:** Fixed a bug where restarting the App Tour from the Developer Menu would keep the user on the Profile tab instead of switching to the Habits tab.
 - **Localization:** Updated the descriptions for the 'Schlechte Gewohnheiten' and 'Shop & Power-Ups' tour steps. Ensured 100% translation coverage across all 15 languages.
 
+## [2026-09-01] - App Tour Routing & Localization Texts
+- **App Tour Routing:** Fixed a bug where restarting the App Tour from the Developer Menu would keep the user on the Profile tab instead of switching to the Habits tab.
+- **Localization:** Updated the descriptions for the 'Schlechte Gewohnheiten' and 'Shop & Power-Ups' tour steps. Ensured 100% translation coverage across all 15 languages.
+
 
 ## [Unreleased] - 2026-09-01
 - Neugestaltung des Splash Screens mit 3D-Dreiecken, weißem diagonalen Spalt und animiertem 3D-Balken.
