@@ -897,3 +897,10 @@
 - HealthManager.swift um fetchHistoricalData erweitert.
 - UI Fixes für Kalorien Detail-Ansicht, GesundKochenCard und Makro-Ziele gem. Feedback.
 - Gewichtsziele für Kalorienberechnung integriert. Kalorien UI in Grün geändert. 3D Container in DetailView entfernt.
+- **Kalorien-Detailansicht**: 
+  - Die Balkendiagramme sind jetzt wischbar (Swipen).
+  - Dynamische Farben hinzugefügt: Dunkelrot (Ziel nicht erreicht), Dunkelgrün (Ziel erreicht/überschritten).
+  - Die X-Achse der Diagramme ist jetzt benutzerfreundlich beschriftet (z.B. "Mo", "Di" für Wochenansicht).
+- **Auto-Sync mit Krafttraining**:
+  - Das Gewichtsziel wird nun automatisch aus der Krafttraining-Gewohnheit ausgelesen, wenn diese vorhanden ist.
+  - Das Kalorienziel in den Settings wird automatisch basierend auf dem TDEE bei Speicherung der Berechnung berechnet und übernommen.

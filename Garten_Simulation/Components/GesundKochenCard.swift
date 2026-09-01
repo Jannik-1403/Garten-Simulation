@@ -79,21 +79,37 @@ struct GesundKochenCard: View {
                                     Spacer()
                                     Text("\(Int(healthManager.todaysEnergy)) / \(Int(goalEnergy)) kcal")
                                         .font(.subheadline.bold())
-                                        .foregroundColor(healthManager.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green.darker())
+                                        .foregroundColor(healthManager.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green)
                                 }
                                 
                                 GeometryReader { geo in
+                                    let progress = CGFloat(healthManager.todaysEnergy / max(goalEnergy, 1))
+                                    let clampedProgress = max(0, min(1, progress))
+                                    let barColor = healthManager.todaysEnergy < goalEnergy ? Color.red : Color.green
+                                    
                                     ZStack(alignment: .leading) {
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .fill(Color(UIColor.systemGray5))
-                                            .frame(height: 12)
+                                        // 3D Track (Background)
+                                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                            .fill(Color(UIColor.systemGray4))
+                                            .frame(height: 16)
+                                            .offset(y: 4)
+                                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                            .fill(Color(UIColor.systemGray6))
+                                            .frame(height: 16)
                                         
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .fill(healthManager.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green.darker())
-                                            .frame(width: max(0, min(geo.size.width, geo.size.width * CGFloat(healthManager.todaysEnergy / max(goalEnergy, 1)))), height: 12)
+                                        // 3D Fill (Progress)
+                                        if progress > 0 {
+                                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                                .fill(barColor.darker())
+                                                .frame(width: max(0, min(geo.size.width, geo.size.width * clampedProgress)), height: 16)
+                                                .offset(y: 4)
+                                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                                .fill(barColor)
+                                                .frame(width: max(0, min(geo.size.width, geo.size.width * clampedProgress)), height: 16)
+                                        }
                                     }
                                 }
-                                .frame(height: 12)
+                                .frame(height: 20)
                             }
                         }
                         .buttonStyle(PlainButtonStyle())

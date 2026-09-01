@@ -14,10 +14,10 @@ struct CalorieCalculationSheet: View {
     
 
     private var tdee: Double? {
-        let weight = hm.activeWeight?.value
-        let height = hm.activeHeight?.value
-        let age = hm.activeAge?.value
-        let sex = hm.activeSex?.value
+        let weight = hm.activeWeight?.value ?? (hm.manualWeight > 0 ? hm.manualWeight : nil)
+        let height = hm.activeHeight?.value ?? (hm.manualHeight > 0 ? hm.manualHeight : nil)
+        let age = hm.activeAge?.value ?? (hm.manualAge > 0 ? hm.manualAge : nil)
+        let sex = hm.activeSex?.value ?? (hm.manualSex > 0 ? hm.manualSex : nil)
         
         guard let w = weight, let h = height, let a = age, let s = sex else {
             return nil
@@ -47,7 +47,7 @@ struct CalorieCalculationSheet: View {
                         if let tdee = tdee {
                             Text("\(Int(tdee)) kcal")
                                 .font(.system(size: 48, weight: .black, design: .rounded))
-                                .foregroundStyle(.orange)
+                                .foregroundStyle(Color.red.darker())
                             
                             Text(String(localized: "calorie.calc.desc.success", defaultValue: "Dieser Wert (TDEE) wird basierend auf der Mifflin-St. Jeor Formel und deinen Körperdaten berechnet."))
                                 .font(.subheadline)
@@ -299,11 +299,16 @@ struct CalorieCalculationSheet: View {
         if let a = Int(ageStr) { hm.manualAge = a }
         
         // Auto-update macro goals based on calculation
+        let weight = hm.activeWeight?.value ?? (hm.manualWeight > 0 ? hm.manualWeight : nil)
+        let height = hm.activeHeight?.value ?? (hm.manualHeight > 0 ? hm.manualHeight : nil)
+        let age = hm.activeAge?.value ?? (hm.manualAge > 0 ? hm.manualAge : nil)
+        let sex = hm.activeSex?.value ?? (hm.manualSex > 0 ? hm.manualSex : nil)
+        
         if let rec = MacroCalculator.calculateRecommendation(
-            weightKg: hm.activeWeight?.value,
-            heightCm: hm.activeHeight?.value,
-            ageYears: hm.activeAge?.value,
-            biologicalSex: hm.activeSex?.value,
+            weightKg: weight,
+            heightCm: height,
+            ageYears: age,
+            biologicalSex: sex,
             weightGoalType: hm.weightGoalType,
             weightGoalTargetKg: hm.weightGoalTargetKg,
             weightGoalDateInterval: hm.weightGoalDateInterval

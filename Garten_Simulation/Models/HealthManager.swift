@@ -817,7 +817,11 @@ extension HealthManager {
             var finalData: [(Date, Double)] = []
             results?.enumerateStatistics(from: startDate, to: Date()) { statistics, _ in
                 if let sum = statistics.sumQuantity() {
-                    let value = sum.doubleValue(for: unit)
+                    var value = sum.doubleValue(for: unit)
+                    if interval.weekOfYear != nil || interval.month != nil {
+                        let daysInInterval = calendar.dateComponents([.day], from: statistics.startDate, to: statistics.endDate).day ?? 1
+                        value /= Double(max(1, daysInInterval))
+                    }
                     finalData.append((statistics.startDate, value))
                 } else {
                     // Fallback 0 for empty intervals
