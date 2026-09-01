@@ -1,3 +1,33 @@
+
+## [Unreleased] - 2026-09-01
+- Neugestaltung des Splash Screens mit 3D-Dreiecken, weißem diagonalen Spalt und animiertem 3D-Balken.
+## 2026-09-01 – Swipe-Navigation für Körper-Statistiken
+
+- **Vor/Zurück-Pfeile entfernt**: Die Buttons wurden aus dem Header entfernt, um das Design aufzuräumen.
+- **Flüssige Swipe-Geste**: Das Diagramm kann nun durch Wischen nach links oder rechts durch die Zeiträume navigiert werden.
+- **Echtzeit-Feedback**: Das Diagramm folgt dem Finger während des Wischens.
+- **Gummiband-Effekt**: Wenn keine älteren Daten vorhanden sind oder man bereits in der aktuellen Periode ist, gibt es einen Resistance-Effekt beim Wischen.
+- **Haptisches Feedback**: Beim erfolgreichen Wechsel der Seite gibt es ein spürbares Feedback.
+
+## 2026-09-01 – Perioden-Navigation in Körper-Statistiken
+
+- **Vor/Zurück-Navigation** durch Zeiträume in Gewicht & Körperumfang-Ansicht
+- **Pfeil links** → vorherige Periode (deaktiviert wenn keine Daten vorhanden)
+- **Pfeil rechts** → neuere Periode (deaktiviert bei aktueller Periode)
+- **Intelligentes Label**: Bei aktueller Periode "Diese Woche / Dieser Monat", bei vergangener Periode konkrete Datumsangabe (z.B. "August 2026" oder "18.–24. Aug 2026")
+- **Reset** des Offset-Counters beim Wechsel des Zeitraum-Pickers (W/M/J)
+- **Kein Navigation** bei 6-Monats- und Tagesansicht (nicht sinnvoll)
+- **HealthKit-Fetch**: Zeitraum von 1 Jahr auf 3 Jahre erweitert, damit auch ältere Daten navigierbar sind
+
+## 2026-09-01 – Lokalisierung: Error-500-Bereinigung & fehlende Übersetzungen
+
+- **673 Error-500-Einträge entfernt**: Kaputte API-Übersetzungsversuche aus alten Skripten wurden aus Localizable.xcstrings gelöscht
+- **117 Keys vollständig übersetzt**: Alle fehlenden Übersetzungen für body.tracking, assessment.source, assessment.insight etc. in allen 15 Sprachen (de, en, es, fr, hi, it, ja, ko, nl, pl, pt, ru, tr, zh-Hans, zh-Hant) ergänzt
+- **body.tracking.chart.day**: Swift-Code-Bug behoben (String(localized:) mit String-Interpolation → String(format:) mit %lld)
+- **body.tracking.unit.kg/cm**: Fehlende Spracheinträge in 12 Sprachen ergänzt
+- **body.measure.info.prefix**: Fehlende englische Übersetzung hinzugefügt
+- **Ergebnis**: Keine Error-500-Texte mehr sichtbar in der App; korrekte Übersetzungen in allen Sprachen
+
 ## 2026-08-30 15:08:15 - Brustumfang & Info-Texte
 - Neuer Körperumfang 'Brustumfang' hinzugefügt.
 - Info-Texte (i-Icon) mit genauen Messanleitungen für alle Körperumfänge eingebaut.
