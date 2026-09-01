@@ -181378,6 +181378,17 @@
         }
       }
     },
+    "nutrient.nodata" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Noch keine\nDaten"
+          }
+        }
+      }
+    },
     "nutrient.phosphorus" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -362550,6 +362561,9 @@
           }
         }
       }
+    },
+    "Testdaten laden" : {
+
     },
     "tier_bronze" : {
       "comment" : "",

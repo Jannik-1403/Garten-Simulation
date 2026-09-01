@@ -1,24 +1,22 @@
 import SwiftUI
 
 struct RingSegment: View {
+struct ConcentricRing: View {
     var scorePercentage: Double
-    var startAngle: Angle
-    var endAngle: Angle
     var color: Color
     var lineWidth: CGFloat = 18
     
     var body: some View {
-        let totalSpan = endAngle.degrees - startAngle.degrees
-        let filledSpan = totalSpan * min(max(scorePercentage, 0.0), 1.0)
-        
         ZStack {
             // Blasser Hintergrund
-            TrimmedArc(startAngle: startAngle, endAngle: endAngle)
+            Circle()
                 .stroke(color.opacity(0.25), style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
             
             // Gefüllter Balken
-            TrimmedArc(startAngle: startAngle, endAngle: .degrees(startAngle.degrees + filledSpan))
+            Circle()
+                .trim(from: 0, to: CGFloat(min(max(scorePercentage, 0.0), 1.0)))
                 .stroke(color, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                .rotationEffect(.degrees(-90))
         }
     }
 }
@@ -50,22 +48,25 @@ struct NutrientIndexView: View {
             // Oben: Großes Chart und Text darunter
             VStack(alignment: .center, spacing: 16) {
                 ZStack {
-                    RingSegment(scorePercentage: manager.vitaminScore / 100.0, startAngle: .degrees(3), endAngle: .degrees(117), color: vitaminColor)
-                        .contentShape(Rectangle())
-                        .onTapGesture { selectedCategory = "Vitamine" }
+                    // Outer Ring (Vitamine)
+                    ConcentricRing(scorePercentage: manager.vitaminScore / 100.0, color: vitaminColor, lineWidth: 18)
+                        .padding(0)
+                        .background(Circle().stroke(Color.white.opacity(0.001), lineWidth: 18).padding(0).onTapGesture { selectedCategory = "Vitamine" })
                     
-                    RingSegment(scorePercentage: manager.mineralScore / 100.0, startAngle: .degrees(123), endAngle: .degrees(237), color: mineralColor)
-                        .contentShape(Rectangle())
-                        .onTapGesture { selectedCategory = "Mineralstoffe" }
+                    // Middle Ring (Mineralstoffe)
+                    ConcentricRing(scorePercentage: manager.mineralScore / 100.0, color: mineralColor, lineWidth: 18)
+                        .padding(24)
+                        .background(Circle().stroke(Color.white.opacity(0.001), lineWidth: 18).padding(24).onTapGesture { selectedCategory = "Mineralstoffe" })
                     
-                    RingSegment(scorePercentage: manager.fiberScore / 100.0, startAngle: .degrees(243), endAngle: .degrees(357), color: fiberColor)
-                        .contentShape(Rectangle())
-                        .onTapGesture { selectedCategory = "Ballaststoffe" }
+                    // Inner Ring (Ballaststoffe)
+                    ConcentricRing(scorePercentage: manager.fiberScore / 100.0, color: fiberColor, lineWidth: 18)
+                        .padding(48)
+                        .background(Circle().stroke(Color.white.opacity(0.001), lineWidth: 18).padding(48).onTapGesture { selectedCategory = "Ballaststoffe" })
                     
                     Text("\(manager.totalScore)")
-                        .font(.system(size: 52, weight: .bold))
+                        .font(.system(size: 42, weight: .bold))
                 }
-                .frame(width: 180, height: 180)
+                .frame(width: 210, height: 210)
                 
                 Text(getStatusText(score: manager.totalScore))
                     .font(.system(size: 32, weight: .bold))
