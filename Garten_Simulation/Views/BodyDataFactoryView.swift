@@ -245,7 +245,10 @@ struct BodyDataFactoryView: View {
         .chartScrollPosition(initialX: Date())
         .chartXSelection(value: $selectedDate)
         .chartXAxis {
-            AxisMarks(values: .stride(by: timeRange == .t ? .hour : .day, count: timeRange == .t ? 6 : (timeRange == .w ? 1 : 7))) { value in
+            let component: Calendar.Component = timeRange == .t ? .hour : (timeRange == .sixM || timeRange == .j ? .month : .day)
+            let count = timeRange == .t ? 6 : (timeRange == .w ? 1 : (timeRange == .m ? 7 : 1))
+            
+            AxisMarks(values: .stride(by: component, count: count)) { value in
                 AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
                 AxisValueLabel {
                     if let date = value.as(Date.self) {
@@ -255,8 +258,10 @@ struct BodyDataFactoryView: View {
                             Text(date.formatted(.dateTime.weekday(.short)))
                         } else if timeRange == .m {
                             Text(date.formatted(.dateTime.day()))
-                        } else {
+                        } else if timeRange == .sixM {
                             Text(date.formatted(.dateTime.month(.abbreviated)))
+                        } else {
+                            Text(date.formatted(.dateTime.month(.narrow)))
                         }
                     }
                 }
@@ -490,8 +495,10 @@ struct BodyDataFactoryView: View {
 
     private var scrollData: [DailyProgressEntry] {
         let rawData = allData
-        if timeRange == .sixM || timeRange == .j {
+        if timeRange == .sixM {
             return aggregateByWeek(rawData)
+        } else if timeRange == .j {
+            return aggregateByMonth(rawData)
         }
         return rawData
     }
@@ -500,8 +507,10 @@ struct BodyDataFactoryView: View {
         let range = dateRange
         let rawData = allData.filter { $0.timestamp >= range.start && $0.timestamp <= range.end }
         
-        if timeRange == .sixM || timeRange == .j {
+        if timeRange == .sixM {
             return aggregateByWeek(rawData)
+        } else if timeRange == .j {
+            return aggregateByMonth(rawData)
         }
         
         return rawData
@@ -520,6 +529,21 @@ struct BodyDataFactoryView: View {
         return grouped.map { (weekStart, entries) in
             let avgProgress = entries.reduce(0) { $0 + $1.progress } / Double(entries.count)
             return DailyProgressEntry(timestamp: weekStart, progress: avgProgress)
+        }.sorted { $0.timestamp < $1.timestamp }
+    }
+
+    private func aggregateByMonth(_ data: [DailyProgressEntry]) -> [DailyProgressEntry] {
+        guard !data.isEmpty else { return [] }
+        let calendar = Calendar.current
+        
+        let grouped = Dictionary(grouping: data) { entry -> Date in
+            let comps = calendar.dateComponents([.year, .month], from: entry.timestamp)
+            return calendar.date(from: comps) ?? entry.timestamp
+        }
+        
+        return grouped.map { (monthStart, entries) in
+            let avgProgress = entries.reduce(0) { $0 + $1.progress } / Double(entries.count)
+            return DailyProgressEntry(timestamp: monthStart, progress: avgProgress)
         }.sorted { $0.timestamp < $1.timestamp }
     }
 
