@@ -1,0 +1,1259 @@
+{
+  "%lld / %lld": {
+    "de": "%1$lld / %2$lld",
+    "missing": [
+      "hi",
+      "it",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "%lld / 5": {
+    "de": "%lld / 5",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "%lld %@": {
+    "de": "%lld %@",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "%lld Unkraut": {
+    "de": "%lld Unkraut",
+    "missing": [
+      "fr",
+      "ja",
+      "ko",
+      "nl"
+    ]
+  },
+  "app.name": {
+    "de": "Grovy",
+    "missing": [
+      "pt"
+    ]
+  },
+  "apple.health.suggestion": {
+    "de": "Tipp: %@ tracken!",
+    "missing": [
+      "es",
+      "fr",
+      "ko",
+      "pl",
+      "pt",
+      "tr"
+    ]
+  },
+  "apple.health.unit.mindfulness": {
+    "de": "min",
+    "missing": [
+      "fr",
+      "it",
+      "pt"
+    ]
+  },
+  "assessment.finance.worst.kontrolle": {
+    "de": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren.",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hant"
+    ]
+  },
+  "assessment.finance.worst.risiko": {
+    "de": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau.",
+    "missing": [
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.fitness.worst.intensitaet": {
+    "de": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper.",
+    "missing": [
+      "es",
+      "hi",
+      "it",
+      "ja"
+    ]
+  },
+  "assessment.health.worst.praevention": {
+    "de": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung.",
+    "missing": [
+      "ru",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.health.worst.regeneration": {
+    "de": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve.",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ko",
+      "nl",
+      "pt",
+      "tr",
+      "zh-Hant"
+    ]
+  },
+  "assessment.insight.empty": {
+    "de": "Im Moment sieht alles gut aus! Bleib am Ball.",
+    "missing": [
+      "fr",
+      "it",
+      "tr"
+    ]
+  },
+  "assessment.insight.finance.no_habit.desc": {
+    "de": "Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle.",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "tr"
+    ]
+  },
+  "assessment.insight.finance.no_habit.title": {
+    "de": "Keine Finanz-Gewohnheit",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "pt",
+      "tr"
+    ]
+  },
+  "assessment.insight.focus_active.title": {
+    "de": "Guter Fokus",
+    "missing": [
+      "es",
+      "tr"
+    ]
+  },
+  "assessment.insight.header": {
+    "de": "Was man verbessern kann",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "pt"
+    ]
+  },
+  "assessment.insight.health.no_habit.desc": {
+    "de": "Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital.",
+    "missing": [
+      "it",
+      "pt",
+      "tr"
+    ]
+  },
+  "assessment.insight.health.no_habit.title": {
+    "de": "Fehlende Basis",
+    "missing": [
+      "fr",
+      "it",
+      "pt",
+      "tr"
+    ]
+  },
+  "assessment.insight.lifestyle.review.desc": {
+    "de": "Deine Umgebung formt dich. Optimiere deinen Alltag weiter.",
+    "missing": [
+      "fr",
+      "tr"
+    ]
+  },
+  "assessment.insight.lifestyle.review.title": {
+    "de": "Umgebung prüfen",
+    "missing": [
+      "it",
+      "pt"
+    ]
+  },
+  "assessment.insight.low_streak.desc": {
+    "de": "Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!",
+    "missing": [
+      "fr",
+      "it",
+      "tr"
+    ]
+  },
+  "assessment.insight.low_streak.title": {
+    "de": "Streak in Gefahr",
+    "missing": [
+      "es",
+      "it"
+    ]
+  },
+  "assessment.insight.no_focus.desc": {
+    "de": "Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz.",
+    "missing": [
+      "pt"
+    ]
+  },
+  "assessment.insight.no_focus.title": {
+    "de": "Fokus-Modus ungenutzt",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "pt",
+      "tr"
+    ]
+  },
+  "assessment.lifestyle.worst.einfluss": {
+    "de": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie.",
+    "missing": [
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.lifestyle.worst.standards": {
+    "de": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen.",
+    "missing": [
+      "hi",
+      "it",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru"
+    ]
+  },
+  "assessment.lifestyle.worst.umfeld": {
+    "de": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst.",
+    "missing": [
+      "es",
+      "ja"
+    ]
+  },
+  "assessment.mental.worst.ego": {
+    "de": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar.",
+    "missing": [
+      "ru",
+      "zh-Hans"
+    ]
+  },
+  "assessment.mental.worst.fokus": {
+    "de": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv.",
+    "missing": [
+      "es"
+    ]
+  },
+  "assessment.mental.worst.resilienz": {
+    "de": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt.",
+    "missing": [
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.roadmap.add_habit": {
+    "de": "Challenge annehmen",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.roadmap.habit_added": {
+    "de": "Hinzugefügt!",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.roadmap.phase1.title": {
+    "de": "Phase 1: Bewusstsein",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.roadmap.phase2.title": {
+    "de": "Phase 2: Aktion",
+    "missing": [
+      "hi",
+      "ja",
+      "ko"
+    ]
+  },
+  "assessment.score.ego": {
+    "de": "Ego",
+    "missing": [
+      "pl",
+      "tr"
+    ]
+  },
+  "assessment.score.standards": {
+    "de": "Standards",
+    "missing": [
+      "fr"
+    ]
+  },
+  "assessment.score.title": {
+    "de": "Score",
+    "missing": [
+      "fr"
+    ]
+  },
+  "assessment.source.calculation": {
+    "de": "Berechnung",
+    "missing": [
+      "it",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.cat.avg": {
+    "de": "Durchschnitt: Score zwischen 0 und −10",
+    "missing": [
+      "fr",
+      "it",
+      "ko",
+      "nl",
+      "pl",
+      "ru",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.cat.below_avg": {
+    "de": "Unterdurchschnitt: Score unter −10",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.cat.top10": {
+    "de": "Top 10％: Score über +15",
+    "missing": [
+      "hi",
+      "ja",
+      "tr",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.cat.top30": {
+    "de": "Top 30％: Score über 0",
+    "missing": [
+      "ko",
+      "ru"
+    ]
+  },
+  "assessment.source.fin.percentile": {
+    "de": "Dein Percentil = (Score + 41) / 82",
+    "missing": [
+      "ko",
+      "pl",
+      "tr",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.fin.q1": {
+    "de": "Frage 1: Reaktion auf unerwartete Rückzahlung",
+    "missing": [
+      "es",
+      "fr",
+      "ko"
+    ]
+  },
+  "assessment.source.fin.q2": {
+    "de": "Frage 2: Investment-App-Verhalten",
+    "missing": [
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.fin.q6": {
+    "de": "Frage 6: Verhalten bei Lifestyle-Creep (Risikoabsicherung)",
+    "missing": [
+      "ja",
+      "ko",
+      "nl",
+      "pt"
+    ]
+  },
+  "assessment.source.fin.q7": {
+    "de": "Frage 7: Status vs. vernünftige Ausgaben",
+    "missing": [
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.fin.q12": {
+    "de": "Frage 12: Die Gier-Falle (riskante Investments)",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "nl",
+      "ru",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.fit.q_cons": {
+    "de": "Konsistenz-Fragen: Trainings-Häufigkeit und Regelmäßigkeit",
+    "missing": [
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.fit.q_int": {
+    "de": "Intensitäts-Fragen: Anstrengungsgrad deiner Workouts",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ko",
+      "pt",
+      "ru"
+    ]
+  },
+  "assessment.source.fit.q_resp": {
+    "de": "Verantwortungs-Fragen: Eigenverantwortung für Fitness",
+    "missing": [
+      "it"
+    ]
+  },
+  "assessment.source.fit.resp": {
+    "de": "Eigenverantwortung:",
+    "missing": [
+      "pt",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.gro.disc": {
+    "de": "Disziplin:",
+    "missing": [
+      "es",
+      "hi",
+      "it",
+      "ja",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.gro.eff": {
+    "de": "Effizienz:",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.gro.exec": {
+    "de": "Umsetzung:",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.gro.q_disc": {
+    "de": "Disziplin-Fragen: Konsistenz, auch ohne Motivation",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.gro.q_eff": {
+    "de": "Effizienz-Fragen: Zeitnutzung und Priorisierung",
+    "missing": [
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "pt",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.gro.q_exec": {
+    "de": "Umsetzungs-Fragen: Planung vs. tatsächliches Handeln",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.hea.nutri": {
+    "de": "Kraftstoff (Ernährung):",
+    "missing": [
+      "it",
+      "nl",
+      "pt",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.hea.prev": {
+    "de": "Prävention:",
+    "missing": [
+      "fr",
+      "ko",
+      "pl",
+      "tr"
+    ]
+  },
+  "assessment.source.hea.q_nutri": {
+    "de": "Ernährungs-Fragen: Mahlzeitenplanung & Zucker",
+    "missing": [
+      "ko",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.hea.q_regen": {
+    "de": "Regenerations-Fragen: Pausen, Dehnen, Prävention",
+    "missing": [
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.hea.q_sleep": {
+    "de": "Schlaf-Fragen: Schlafdauer und Schlafqualität",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.hea.sleep": {
+    "de": "Regeneration (Schlaf):",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.lif.env": {
+    "de": "Umfeld:",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.lif.inf": {
+    "de": "Einflussbereich:",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.lif.q_env": {
+    "de": "Umfeld-Fragen: Wer umgibt dich, welchen Einfluss haben sie?",
+    "missing": [
+      "hi",
+      "it",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.lif.q_std": {
+    "de": "Standards-Fragen: Wie hoch setzt du die Messlatte?",
+    "missing": [
+      "pl",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.lif.std": {
+    "de": "Standards:",
+    "missing": [
+      "ko",
+      "pl"
+    ]
+  },
+  "assessment.source.max_possible": {
+    "de": "Maximum möglich:",
+    "missing": [
+      "es",
+      "nl",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.men.ego": {
+    "de": "Ego/Mindset:",
+    "missing": [
+      "ko"
+    ]
+  },
+  "assessment.source.men.focus": {
+    "de": "Fokus:",
+    "missing": [
+      "fr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.men.q_ego": {
+    "de": "Ego-Fragen: Selbstreflexion und Mindset",
+    "missing": [
+      "es"
+    ]
+  },
+  "assessment.source.men.q_focus": {
+    "de": "Fokus-Fragen: Ablenkbarkeit und Tiefarbeit",
+    "missing": [
+      "ko"
+    ]
+  },
+  "assessment.source.men.q_resil": {
+    "de": "Resilienz-Fragen: Reaktion auf Rückschläge & Stress",
+    "missing": [
+      "ja",
+      "ko",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.men.resil": {
+    "de": "Resilienz:",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.min_possible": {
+    "de": "Minimum möglich:",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.points": {
+    "de": "Punkte",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.questions": {
+    "de": "Fragen im Assessment",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.raw_scores": {
+    "de": "Deine Rohscores",
+    "missing": [
+      "fr"
+    ]
+  },
+  "assessment.source.sum_3_scores": {
+    "de": "Summe aller 3 Rohscores:",
+    "missing": [
+      "es",
+      "ko",
+      "nl",
+      "ru",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.weakest_1": {
+    "de": "Dein schwächster Rohscore bestimmt die Schwäche.",
+    "missing": [
+      "es",
+      "hi",
+      "nl",
+      "pl",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "assessment.source.weakest_2": {
+    "de": "Alle drei Parameter werden miteinander verglichen.",
+    "missing": [
+      "fr",
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "tr",
+      "zh-Hans"
+    ]
+  },
+  "assessment.source.weakest_3": {
+    "de": "Der niedrigste Wert = größtes Verbesserungspotenzial.",
+    "missing": [
+      "hi",
+      "it",
+      "nl",
+      "pl",
+      "ru",
+      "tr"
+    ]
+  },
+  "assessment.source.weakest_area": {
+    "de": "Dein schwächster Bereich",
+    "missing": [
+      "es",
+      "it",
+      "ru"
+    ]
+  },
+  "backup.auto.name_prefix": {
+    "de": "Backup",
+    "missing": [
+      "pt"
+    ]
+  },
+  "body.measure.info.taille": {
+    "de": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel.",
+    "missing": [
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.measure.info.unterarm": {
+    "de": "Miss an der dicksten Stelle deines Unterarms.",
+    "missing": [
+      "es",
+      "fr",
+      "nl",
+      "pl",
+      "zh-Hans"
+    ]
+  },
+  "body.measure.info.waden": {
+    "de": "Miss an der dicksten Stelle deiner Wade.",
+    "missing": [
+      "es",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.timerange.j": {
+    "de": "J",
+    "missing": [
+      "it",
+      "ja",
+      "nl",
+      "pl",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.timerange.m": {
+    "de": "M",
+    "missing": [
+      "fr",
+      "it",
+      "ja",
+      "nl",
+      "pl",
+      "pt",
+      "tr"
+    ]
+  },
+  "body.timerange.sixm": {
+    "de": "6 M.",
+    "missing": [
+      "fr",
+      "it",
+      "nl",
+      "pt",
+      "tr"
+    ]
+  },
+  "body.timerange.t": {
+    "de": "T",
+    "missing": [
+      "fr",
+      "hi",
+      "tr"
+    ]
+  },
+  "body.tracking.action.build": {
+    "de": "aufzubauen",
+    "missing": [
+      "ru"
+    ]
+  },
+  "body.tracking.action.gain": {
+    "de": "zuzunehmen",
+    "missing": [
+      "tr"
+    ]
+  },
+  "body.tracking.action.lose": {
+    "de": "abzunehmen",
+    "missing": [
+      "it",
+      "nl"
+    ]
+  },
+  "body.tracking.action.reduce": {
+    "de": "zu reduzieren",
+    "missing": [
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.button.target": {
+    "de": "Ziel",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "ja",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.change_rate_desc": {
+    "de": "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden Rate.",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.current": {
+    "de": "AKTUELL",
+    "missing": [
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.delete_target": {
+    "de": "Ziel löschen",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.easy_desc": {
+    "de": "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das ist ein sehr entspanntes Tempo, du könntest dir bei Bedarf auch etwas mehr zutrauen.",
+    "missing": [
+      "es"
+    ]
+  },
+  "body.tracking.easy_desc_adaptive": {
+    "de": "Um dein Ziel zu erreichen, musst du ca. %1$.2f %2$@ pro Woche %3$@. Das ist sehr entspannt, du könntest es theoretisch auch in %4$d Wochen schaffen.",
+    "missing": [
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.easy_goal": {
+    "de": "Sehr entspanntes Tempo",
+    "missing": [
+      "ko",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.edit_target": {
+    "de": "Ziel bearbeiten",
+    "missing": [
+      "es",
+      "hi",
+      "ja",
+      "ko",
+      "pl",
+      "pt",
+      "ru",
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.last_week": {
+    "de": "Letzte Woche",
+    "missing": [
+      "ko",
+      "tr"
+    ]
+  },
+  "body.tracking.progress.wrong_way_lose": {
+    "de": "Falsche Richtung: Du hast %1$.2f %2$@ zugenommen, statt %3$.2f %2$@ abzunehmen.",
+    "missing": [
+      "tr"
+    ]
+  },
+  "body.tracking.since_2days": {
+    "de": "seit vorgestern",
+    "missing": [
+      "zh-Hant"
+    ]
+  },
+  "body.tracking.target_title": {
+    "de": "Ziel",
+    "missing": [
+      "es",
+      "fr",
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "common.hour_short": {
+    "de": "h",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "pt",
+      "zh-Hans"
+    ]
+  },
+  "common.min": {
+    "de": "min",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "pt"
+    ]
+  },
+  "common.ml": {
+    "de": "ml",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "tr"
+    ]
+  },
+  "common.wed": {
+    "de": "M",
+    "missing": [
+      "fr",
+      "it"
+    ]
+  },
+  "Grovy": {
+    "de": "Grovy",
+    "missing": [
+      "ja",
+      "ko",
+      "pl",
+      "pt",
+      "tr"
+    ]
+  },
+  "health.unit.water": {
+    "de": "ml",
+    "missing": [
+      "es",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "pt",
+      "tr"
+    ]
+  },
+  "prog_strength_run_300": {
+    "de": "300m",
+    "missing": [
+      "zh-Hans"
+    ]
+  }
+}

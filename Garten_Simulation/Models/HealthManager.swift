@@ -16,6 +16,8 @@ class HealthManager: ObservableObject {
     @Published var todaysMindfulness: Double = 0
     @Published var todaysRunning: Double = 0
     @Published var todaysStrengthTraining: Double = 0
+    @Published var todaysFiber: Double = 0
+    @Published var todaysCalcium: Double = 0
     
     private init() {
         checkAuthorizationStatus()
@@ -63,13 +65,15 @@ class HealthManager: ObservableObject {
               let water = HKObjectType.quantityType(forIdentifier: .dietaryWater),
               let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis),
               let mindfulness = HKObjectType.categoryType(forIdentifier: .mindfulSession),
-              let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass) else {
+              let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
+              let dietaryFiber = HKObjectType.quantityType(forIdentifier: .dietaryFiber),
+              let dietaryCalcium = HKObjectType.quantityType(forIdentifier: .dietaryCalcium) else {
             return
         }
         
         let workout = HKObjectType.workoutType()
         
-        let typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, workout, bodyMass]
+        let typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, workout, bodyMass, dietaryFiber, dietaryCalcium]
         
         healthStore.requestAuthorization(toShare: nil, read: typesToRead) { [weak self] success, error in
             DispatchQueue.main.async {
@@ -93,6 +97,8 @@ class HealthManager: ObservableObject {
         fetchMindfulness()
         fetchWorkout(activityType: .running)
         fetchWorkout(activityType: .traditionalStrengthTraining)
+        fetchFiber()
+        fetchCalcium()
     }
     
     func fetchSteps() {
@@ -130,6 +136,36 @@ class HealthManager: ObservableObject {
             }
         }
         
+        healthStore.execute(query)
+    }
+    
+    func fetchFiber() {
+        guard let fiberType = HKQuantityType.quantityType(forIdentifier: .dietaryFiber) else { return }
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: fiberType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+            guard let result = result, let sum = result.sumQuantity() else { return }
+            let grams = sum.doubleValue(for: HKUnit.gram())
+            DispatchQueue.main.async {
+                self.todaysFiber = grams
+            }
+        }
+        healthStore.execute(query)
+    }
+    
+    func fetchCalcium() {
+        guard let calciumType = HKQuantityType.quantityType(forIdentifier: .dietaryCalcium) else { return }
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: calciumType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+            guard let result = result, let sum = result.sumQuantity() else { return }
+            let mg = sum.doubleValue(for: HKUnit.gramUnit(with: .milli))
+            DispatchQueue.main.async {
+                self.todaysCalcium = mg
+            }
+        }
         healthStore.execute(query)
     }
     
@@ -229,6 +265,12 @@ class HealthManager: ObservableObject {
         case .strengthTraining:
             fetchWorkout(activityType: .traditionalStrengthTraining)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { completion(self.todaysStrengthTraining) }
+        case .fiber:
+            fetchFiber()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { completion(self.todaysFiber) }
+        case .calcium:
+            fetchCalcium()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { completion(self.todaysCalcium) }
         }
     }
     
@@ -240,7 +282,9 @@ class HealthManager: ObservableObject {
             return
         }
         guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount),
-              let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
+              let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater),
+              let fiberType = HKQuantityType.quantityType(forIdentifier: .dietaryFiber),
+              let calciumType = HKQuantityType.quantityType(forIdentifier: .dietaryCalcium) else {
             DispatchQueue.main.async { completion(nil) }
             return
         }
@@ -277,6 +321,16 @@ class HealthManager: ObservableObject {
             let pred = HKQuery.predicateForSamples(withStart: sevenDaysAgo, end: today, options: .strictStartDate)
             let q = HKStatisticsCollectionQuery(quantityType: waterType, quantitySamplePredicate: pred, options: .cumulativeSum, anchorDate: sevenDaysAgo, intervalComponents: intervalComponents)
             q.initialResultsHandler = { _, r, _ in handleStats(r, unit: .literUnit(with: .milli)) }
+            self.healthStore.execute(q)
+        case .fiber:
+            let pred = HKQuery.predicateForSamples(withStart: sevenDaysAgo, end: today, options: .strictStartDate)
+            let q = HKStatisticsCollectionQuery(quantityType: fiberType, quantitySamplePredicate: pred, options: .cumulativeSum, anchorDate: sevenDaysAgo, intervalComponents: intervalComponents)
+            q.initialResultsHandler = { _, r, _ in handleStats(r, unit: .gram()) }
+            self.healthStore.execute(q)
+        case .calcium:
+            let pred = HKQuery.predicateForSamples(withStart: sevenDaysAgo, end: today, options: .strictStartDate)
+            let q = HKStatisticsCollectionQuery(quantityType: calciumType, quantitySamplePredicate: pred, options: .cumulativeSum, anchorDate: sevenDaysAgo, intervalComponents: intervalComponents)
+            q.initialResultsHandler = { _, r, _ in handleStats(r, unit: .gramUnit(with: .milli)) }
             self.healthStore.execute(q)
         default:
             DispatchQueue.main.async { completion(nil) }
@@ -389,13 +443,32 @@ extension HealthManager {
         }
         
         switch metric {
-        case .steps, .water:
+        case .steps, .water, .fiber, .calcium:
             let isSteps = (metric == .steps)
-            guard let quantityType = isSteps ? HKQuantityType.quantityType(forIdentifier: .stepCount) : HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
-                DispatchQueue.main.async { completion([]) }
-                return
+            let isWater = (metric == .water)
+            let isFiber = (metric == .fiber)
+            
+            let quantityType: HKQuantityType
+            let unit: HKUnit
+            
+            if isSteps {
+                guard let qt = HKQuantityType.quantityType(forIdentifier: .stepCount) else { DispatchQueue.main.async { completion([]) }; return }
+                quantityType = qt
+                unit = .count()
+            } else if isWater {
+                guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else { DispatchQueue.main.async { completion([]) }; return }
+                quantityType = qt
+                unit = .literUnit(with: .milli)
+            } else if isFiber {
+                guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryFiber) else { DispatchQueue.main.async { completion([]) }; return }
+                quantityType = qt
+                unit = .gram()
+            } else {
+                guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryCalcium) else { DispatchQueue.main.async { completion([]) }; return }
+                quantityType = qt
+                unit = .gramUnit(with: .milli)
             }
-            let unit = isSteps ? HKUnit.count() : HKUnit.literUnit(with: .milli)
+            
             var interval = DateComponents()
             interval.hour = 1
             let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)

@@ -266,6 +266,8 @@ enum HealthMetricType: String, Codable, CaseIterable {
     case mindfulness = "mindfulness"
     case running = "running"
     case strengthTraining = "strengthTraining"
+    case fiber = "fiber"
+    case calcium = "calcium"
     
     var localizationKey: String {
         switch self {
@@ -275,6 +277,8 @@ enum HealthMetricType: String, Codable, CaseIterable {
         case .mindfulness: return "health.metric.mindfulness"
         case .running: return "health.metric.running"
         case .strengthTraining: return "health.metric.strengthTraining"
+        case .fiber: return "health.metric.fiber"
+        case .calcium: return "health.metric.calcium"
         }
     }
 }
