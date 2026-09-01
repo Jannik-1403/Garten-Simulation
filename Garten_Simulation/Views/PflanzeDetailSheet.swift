@@ -112,7 +112,7 @@ struct PflanzeDetailSheet: View {
                     
 
                     // Obst & Gemüse / Nährstoffe
-                    if pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium {
+                    if (pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium) && pflanze.showStats {
                         NutrientIndexView()
                             .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                             .padding(.horizontal, 24)

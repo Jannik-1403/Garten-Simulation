@@ -38,16 +38,23 @@ struct NutrientCategoryDetailView: View {
         .sheet(isPresented: $showSettings) {
             NavigationView {
                 List {
-                    if categoryName == "Vitamine" {
-                        ForEach($manager.vitamins) { $item in
-                            NutrientEditRow(item: $item) { manager.saveSettings() }
+                    Section {
+                        if categoryName == "Vitamine" {
+                            ForEach($manager.vitamins) { $item in
+                                NutrientEditRow(item: $item) { manager.saveSettings() }
+                            }
+                        } else if categoryName == "Mineralstoffe" {
+                            ForEach($manager.minerals) { $item in
+                                NutrientEditRow(item: $item) { manager.saveSettings() }
+                            }
+                        } else if categoryName == "Ballaststoffe" {
+                            NutrientEditRow(item: $manager.fiber) { manager.saveSettings() }
                         }
-                    } else if categoryName == "Mineralstoffe" {
-                        ForEach($manager.minerals) { $item in
-                            NutrientEditRow(item: $item) { manager.saveSettings() }
-                        }
-                    } else if categoryName == "Ballaststoffe" {
-                        NutrientEditRow(item: $manager.fiber) { manager.saveSettings() }
+                    } footer: {
+                        Text(String(localized: "nutrient.settings.dge_info", defaultValue: "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."))
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                            .padding(.top, 8)
                     }
                 }
                 .navigationTitle(String(localized: "nutrient.settings", defaultValue: "Einstellungen"))
