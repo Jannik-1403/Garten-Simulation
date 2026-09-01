@@ -873,3 +873,5 @@
 - **Apple Health Integration**: Added support for displaying daily dietary macronutrients (Proteins, Carbohydrates, Fats) in addition to Calories.
 - **UI Update**: Replaced the previous meal tracking prompt in the "Gesunder Koch" section with a new modern macro grid layout `MacroView`.
 - **Localization**: Added missing string translations for new macro nutrients to 16 languages.
+
+- **Bugfix (HealthKit)**: Fixed an issue where the authorization prompt for the newly added macronutrients was not shown to users who had already granted permissions in a previous version.
