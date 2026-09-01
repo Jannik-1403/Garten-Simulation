@@ -4,7 +4,7 @@ struct NutrientCategoryDetailView: View {
     let categoryName: String
     @ObservedObject var manager: NutrientIndexManager
     @State private var showSettings = false
-    @State private var isListExpanded = true
+    @State private var selectedHistoryIndex: Int = 6 // Index of today in the history array (7 days ago to today)
     
     var body: some View {
         ScrollView {
@@ -16,62 +16,13 @@ struct NutrientCategoryDetailView: View {
                     .padding(.bottom, 16)
                     
                 if !activeItems.isEmpty {
-                    NutrientHistoryChart(manager: manager, categoryName: categoryName)
-                        .padding(.horizontal, 24)
+                    NutrientHistoryChart(
+                        manager: manager, 
+                        categoryName: categoryName,
+                        selectedIndex: $selectedHistoryIndex
+                    )
+                    .padding(.horizontal, 24)
                 }
-                
-                // Details List
-                VStack(spacing: 16) {
-                    if activeItems.isEmpty {
-                        Text(String(localized: "nutrient.detail.no_active", defaultValue: "Keine Nährstoffe aktiviert."))
-                            .foregroundColor(.secondary)
-                    } else {
-                        DisclosureGroup(isExpanded: $isListExpanded) {
-                            VStack(spacing: 12) {
-                                ForEach(Array(activeItems.enumerated()), id: \.element.id) { index, item in
-                                    HStack {
-                                        Circle()
-                                            .fill(getColor(for: index, total: activeItems.count))
-                                            .frame(width: 12, height: 12)
-                                        
-                                        Text(item.name)
-                                            .font(.headline)
-                                        
-                                        Spacer()
-                                        
-                                        VStack(alignment: .trailing) {
-                                            Text("\(Int(item.score))/100")
-                                                .font(.headline)
-                                            Text("\(item.currentValue, specifier: "%.1f") / \(item.targetDGE, specifier: "%.1f") \(item.unitString)")
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                        }
-                                    }
-                                    .padding()
-                                    .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
-                                }
-                            }
-                            .padding(.top, 12)
-                        } label: {
-                            Text(String(localized: "nutrient.detail.list_title", defaultValue: "Details & Werte"))
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                        }
-                        .padding()
-                        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
-                    }
-                }
-                .padding(.horizontal, 24)
-                
-                // Info Text DGE
-                Text(String(localized: "nutrient.dge.info", defaultValue: "Die empfohlenen Tagesziele basieren auf den Referenzwerten der Deutschen Gesellschaft für Ernährung (DGE). Die Werte werden automatisch über Apple Health synchronisiert."))
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
-                    .padding(.bottom, 24)
-                
-                // Test Data Button
                 Button(action: {
                     manager.injectTestData(for: categoryName)
                 }) {
@@ -127,12 +78,26 @@ struct NutrientCategoryDetailView: View {
     }
     
     private var activeItems: [NutrientItem] {
+        var items: [NutrientItem] = []
         switch categoryName {
-        case "Vitamine": return manager.vitamins.filter { $0.isEnabled }
-        case "Mineralstoffe": return manager.minerals.filter { $0.isEnabled }
-        case "Ballaststoffe": return manager.fiber.isEnabled ? [manager.fiber] : []
-        default: return []
+        case "Vitamine": items = manager.vitamins.filter { $0.isEnabled }
+        case "Mineralstoffe": items = manager.minerals.filter { $0.isEnabled }
+        case "Ballaststoffe": items = manager.fiber.isEnabled ? [manager.fiber] : []
+        default: break
         }
+        
+        // Mock historical data interaction
+        if selectedHistoryIndex != 6 {
+            let daysAgo = 6 - selectedHistoryIndex
+            items = items.map { item in
+                var modified = item
+                let variation = Double(daysAgo * 7 % 30) - 15.0 // Fake variation
+                modified.currentValue = max(0, item.currentValue * (1.0 + variation / 100.0))
+                return modified
+            }
+        }
+        
+        return items
     }
     
     private func getColor(for index: Int, total: Int) -> Color {
@@ -160,15 +125,12 @@ struct SegmentedRingChart: View {
             if items.isEmpty {
                 Circle()
                     .stroke(Color.gray.opacity(0.2), lineWidth: 30)
-                
-                Text(String(localized: "nutrient.nodata", defaultValue: "Noch keine\nDaten"))
-                    .font(.subheadline)
-                    .bold()
+                Text(String(localized: "nutrient.no_data", defaultValue: "Keine Daten"))
+                    .font(.headline)
                     .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
             } else {
                 let segmentAngle = 360.0 / Double(items.count)
-                let gapAngle = 0.0 // No gaps anymore
+                let gapAngle = items.count > 1 ? 16.0 : 0.0
                 
                 ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
                     let startDegrees = Double(index) * segmentAngle + (gapAngle / 2)
@@ -176,25 +138,22 @@ struct SegmentedRingChart: View {
                     let color = getColor(for: index, total: items.count)
                     
                     let maxLineWidth: CGFloat = 30
-                    let fillWidth = maxLineWidth * CGFloat(max(min(item.score / 100.0, 1.0), 0.01))
-                    let radiusOffset = (fillWidth - maxLineWidth) / 2
+                    let fillRatio = max(min(item.score / 100.0, 1.0), 0.01)
+                    let filledDegrees = startDegrees + ((endDegrees - startDegrees) * fillRatio)
                     
                     // Background Arc (full width, very transparent)
                     SegmentArc(startAngle: .degrees(startDegrees), endAngle: .degrees(endDegrees))
-                        .stroke(color.opacity(0.15), style: StrokeStyle(lineWidth: maxLineWidth, lineCap: .butt))
+                        .stroke(color.opacity(0.2), style: StrokeStyle(lineWidth: maxLineWidth, lineCap: .round))
                     
-                    // Filled Arc (grows from inside to outside)
-                    SegmentArc(startAngle: .degrees(startDegrees), endAngle: .degrees(endDegrees), radiusOffset: radiusOffset)
-                        .stroke(color, style: StrokeStyle(lineWidth: fillWidth, lineCap: .butt))
+                    // Filled Arc (grows circumferentially)
+                    SegmentArc(startAngle: .degrees(startDegrees), endAngle: .degrees(filledDegrees))
+                        .stroke(color, style: StrokeStyle(lineWidth: maxLineWidth, lineCap: .round))
                 }
                 
                 // Average Score in center
                 VStack {
                     Text("\(Int(averageScore))")
                         .font(.system(size: 48, weight: .bold))
-                    Text(String(localized: "nutrient.total", defaultValue: "Gesamt"))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
                 }
             }
         }
@@ -294,41 +253,106 @@ struct NutrientEditRow: View {
 struct NutrientHistoryChart: View {
     @ObservedObject var manager: NutrientIndexManager
     let categoryName: String
+    @Binding var selectedIndex: Int
+    @State private var timeRange: Int = 0 // 0: Woche, 1: Monat, 2: Jahr
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(String(localized: "nutrient.history.title", defaultValue: "Letzte 7 Tage"))
-                .font(.headline)
+        VStack(alignment: .center, spacing: 16) {
+            Picker("Zeitraum", selection: $timeRange) {
+                Text(String(localized: "time.week", defaultValue: "Woche")).tag(0)
+                Text(String(localized: "time.month", defaultValue: "Monat")).tag(1)
+                Text(String(localized: "time.year", defaultValue: "Jahr")).tag(2)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 20)
+            .onChange(of: timeRange) { _ in
+                selectedIndex = itemCount - 1
+            }
             
-            HStack(alignment: .bottom, spacing: 8) {
-                // Mock History Data (should ideally come from manager, but for now we generate deterministic mock data if none exists)
-                ForEach(0..<7, id: \.self) { i in
-                    let isToday = i == 6
-                    let dayScore = isToday ? getCurrentScore() : getMockScore(forDaysAgo: 6 - i)
+            HStack(alignment: .bottom, spacing: barSpacing) {
+                ForEach(0..<itemCount, id: \.self) { i in
+                    let isSelected = i == selectedIndex
+                    let dayScore = (i == itemCount - 1) ? getCurrentScore() : getMockScore(forDaysAgo: (itemCount - 1) - i)
                     
                     VStack(spacing: 8) {
                         GeometryReader { geometry in
                             VStack {
                                 Spacer()
                                 RoundedRectangle(cornerRadius: 4)
-                                    .fill(isToday ? getCategoryColor() : Color(UIColor.systemGray4))
+                                    .fill(isSelected ? getCategoryColor() : Color(UIColor.systemGray4))
                                     .frame(height: max(geometry.size.height * CGFloat(dayScore / 100.0), 4))
                             }
                         }
                         .frame(height: 100)
                         
-                        Text(getWeekday(daysAgo: 6 - i))
-                            .font(.caption2)
-                            .foregroundColor(isToday ? .primary : .secondary)
-                            .bold(isToday)
+                        if shouldShowLabel(for: i) {
+                            Text(getLabel(index: i))
+                                .font(.system(size: 8))
+                                .foregroundColor(isSelected ? .primary : .secondary)
+                                .bold(isSelected)
+                                .lineLimit(1)
+                        } else {
+                            Text(" ")
+                                .font(.system(size: 8))
+                        }
+                    }
+                    .onTapGesture {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            selectedIndex = i
+                        }
                     }
                 }
             }
+            .frame(maxWidth: .infinity)
         }
         .padding()
         .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
     }
     
+    private var itemCount: Int {
+        switch timeRange {
+        case 0: return 7
+        case 1: return 30
+        case 2: return 12
+        default: return 7
+        }
+    }
+    
+    private var barSpacing: CGFloat {
+        switch timeRange {
+        case 0: return 8
+        case 1: return 2
+        case 2: return 6
+        default: return 8
+        }
+    }
+    
+    private func shouldShowLabel(for index: Int) -> Bool {
+        if timeRange == 1 {
+            // Show label every 5 days for month view to avoid crowding
+            return index % 5 == 0 || index == 29
+        }
+        return true
+    }
+    
+    private func getLabel(index: Int) -> String {
+        let ago = (itemCount - 1) - index
+        let date = Calendar.current.date(byAdding: .day, value: -ago, to: Date()) ?? Date()
+        
+        let formatter = DateFormatter()
+        if timeRange == 0 {
+            formatter.dateFormat = "EE"
+            return formatter.string(from: date)
+        } else if timeRange == 1 {
+            formatter.dateFormat = "d."
+            return formatter.string(from: date)
+        } else {
+            let monthDate = Calendar.current.date(byAdding: .month, value: -ago, to: Date()) ?? Date()
+            formatter.dateFormat = "MMM"
+            return formatter.string(from: monthDate)
+        }
+    }
     private func getCurrentScore() -> Double {
         switch categoryName {
         case "Vitamine": return manager.vitaminScore
