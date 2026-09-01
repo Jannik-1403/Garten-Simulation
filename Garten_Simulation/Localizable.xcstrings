@@ -1158,12 +1158,6 @@
             "value": "%1$lld / %2$lld"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld / %2$lld"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -1171,6 +1165,12 @@
           }
         },
         "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld / %2$lld"
+          }
+        },
+        "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "%1$lld / %2$lld"
@@ -1243,12 +1243,6 @@
             "value": "%lld / 5"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/5"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -1319,6 +1313,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld / 5"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/5"
           }
         }
       }
@@ -1440,6 +1440,12 @@
             "value": "%lld malezas"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld mauvaises herbes"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -1450,6 +1456,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld erbacce"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 雑草"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 잡초"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld onkruid"
           }
         },
         "pl": {
@@ -1486,30 +1510,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld 雜草"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld mauvaises herbes"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 雑草"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 잡초"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld onkruid"
           }
         }
       }
@@ -6932,6 +6932,12 @@
             "value": "Grovy"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy"
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -6954,12 +6960,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "格羅維"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grovy"
           }
         }
       }
@@ -7643,6 +7643,18 @@
             "value": "Tip: Track %@!"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Consejo: registra %@!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Astuce : Enregistrez %@ !"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -7661,46 +7673,16 @@
             "value": "ヒント: %@! をトラックします。"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tip: volg %@!"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Совет: отслеживайте%@!"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "提示：追踪%@！"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "提示：跟踪%@！"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¡Consejo: registra %@!"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Astuce : Enregistrez %@ !"
-          }
-        },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "팁: %@ 추적하기!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: volg %@!"
           }
         },
         "pl": {
@@ -7715,10 +7697,28 @@
             "value": "Dica: rastreie %@!"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совет: отслеживайте%@!"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "İpucu: %@ takip et!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提示：追踪%@！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提示：跟踪%@！"
           }
         }
       }
@@ -8029,10 +8029,22 @@
             "value": "mín."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "मिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
           }
         },
         "ja": {
@@ -8054,6 +8066,12 @@
           }
         },
         "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        },
+        "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "min"
@@ -8081,24 +8099,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "分分鐘"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
           }
         }
       }
@@ -21042,10 +21042,28 @@
             "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A menudo no tienes control sobre tus finanzas. Esto lleva al consumo ciego y al autosabotaje. Es hora de aceptar la realidad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous n'avez souvent pas de vue d'ensemble sur vos finances. Cela conduit à une consommation aveugle et à l'auto-sabotage. Il est temps d'accepter la réalité."
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "आपको अक्सर अपने वित्त का कोई अवलोकन नहीं होता है। इससे अंधाधुंध उपभोग और आत्म-विनाश होता है। यह वास्तविकता को स्वीकार करने का समय है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spesso non hai una visione d'insieme delle tue finanze. Questo porta a un consumo cieco e all'autosabotaggio. È ora di accettare la realtà."
           }
         },
         "ja": {
@@ -21064,30 +21082,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vaak heeft u geen overzicht over uw financiën. Dit leidt tot blinde consumptie en zelfsabotage. Het is tijd om de realiteit te accepteren."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "您常常无法全面了解自己的财务状况。这会导致盲目消费和自我破坏。是时候接受现实了。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A menudo no tienes control sobre tus finanzas. Esto lleva al consumo ciego y al autosabotaje. Es hora de aceptar la realidad."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vous n'avez souvent pas de vue d'ensemble sur vos finances. Cela conduit à une consommation aveugle et à l'auto-sabotage. Il est temps d'accepter la réalité."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spesso non hai una visione d'insieme delle tue finanze. Questo porta a un consumo cieco e all'autosabotaggio. È ora di accettare la realtà."
           }
         },
         "pl": {
@@ -21112,6 +21106,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Genellikle finanslarınıza genel bir bakışınız olmaz. Bu, körü körüne tüketime ve öz sabotaja yol açar. Gerçeği kabul etme zamanı."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您常常无法全面了解自己的财务状况。这会导致盲目消费和自我破坏。是时候接受现实了。"
           }
         },
         "zh-Hant": {
@@ -21141,12 +21141,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Actúas impulsivamente y asumes riesgos no calculados. La dopamina a corto plazo destruye la creación de riqueza a largo plazo."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вы действуете импульсивно и идете на необдуманный риск. Кратковременный дофамин разрушает ваше долгосрочное создание богатства."
           }
         },
         "fr": {
@@ -21195,6 +21189,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Você age impulsivamente e assume riscos não calculados. A dopamina de curto prazo destrói sua construção de patrimônio de longo prazo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы действуете импульсивно и идете на необдуманный риск. Кратковременный дофамин разрушает ваше долгосрочное создание богатства."
           }
         },
         "tr": {
@@ -31299,10 +31299,34 @@
             "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No te estás desafiando realmente. Si siempre te quedas en la zona de confort, tu cuerpo estancará."
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Vous ne vous mettez pas vraiment au défi. Si vous restez toujours dans votre zone de confort, votre corps va stagner."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप खुद को वास्तव में चुनौती नहीं दे रहे। अगर आप हमेशा कम्फर्ट जोन में रहते हैं, तो आपका शरीर रुक जाएगा।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ti stai davvero sfidando. Se rimani sempre nella zona di comfort, il tuo corpo ristagna."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本当に自分に挑戦していません。コンフォートゾーンにいつもいると、体が停滞します。"
           }
         },
         "ko": {
@@ -31351,30 +31375,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你並沒有真正挑戰自己。如果你總是待在舒適區，你的身體就會停滯不前。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No te estás desafiando realmente. Si siempre te quedas en la zona de confort, tu cuerpo estancará."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आप खुद को वास्तव में चुनौती नहीं दे रहे। अगर आप हमेशा कम्फर्ट जोन में रहते हैं, तो आपका शरीर रुक जाएगा।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non ti stai davvero sfidando. Se rimani sempre nella zona di comfort, il tuo corpo ristagna."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "本当に自分に挑戦していません。コンフォートゾーンにいつもいると、体が停滞します。"
           }
         }
       }
@@ -52352,12 +52352,6 @@
             "value": "Você ignora os sinais de alarme do seu corpo e espera até que seja tarde demais. A prevenção é mais barata do que a cura."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你忽視了身體的警報信號，等到為時已晚。預防比治療便宜。"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -52375,6 +52369,12 @@
             "state": "translated",
             "value": "你忽视身体的警告信号，等到为时已晚。预防比治疗便宜。"
           }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你忽視了身體的警報信號，等到為時已晚。預防比治療便宜。"
+          }
         }
       }
     },
@@ -52391,30 +52391,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "睡眠と休息を犠牲にします。再生がなければ体は燃え尽きてしまいます。予備で走っています。"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poświęcasz swój sen i odpoczynek. Bez regeneracji organizm się wypala. Jeździsz na rezerwie."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вы жертвуете своим сном и отдыхом. Без регенерации ваше тело сгорает. Вы бежите в резерве."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你牺牲了你的睡眠和休息。如果没有再生，你的身体就会耗尽。你正在预备队跑步。"
           }
         },
         "es": {
@@ -52441,6 +52417,12 @@
             "value": "Sacrifichi il tuo sonno e il tuo recupero. Senza rigenerazione, il tuo corpo si esaurisce. Stai funzionando di riserva."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠と休息を犠牲にします。再生がなければ体は燃え尽きてしまいます。予備で走っています。"
+          }
+        },
         "ko": {
           "stringUnit": {
             "state": "translated",
@@ -52453,16 +52435,34 @@
             "value": "Je offert je slaap en herstel op. Zonder regeneratie brandt je lichaam op. Je loopt op reserve."
           }
         },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poświęcasz swój sen i odpoczynek. Bez regeneracji organizm się wypala. Jeździsz na rezerwie."
+          }
+        },
         "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "Você sacrifica seu sono e recuperação. Sem regeneração, seu corpo se esgota. Você está operando na reserva."
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы жертвуете своим сном и отдыхом. Без регенерации ваше тело сгорает. Вы бежите в резерве."
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Uyku ve iyileşmeni feda ediyorsun. Yenilenme olmadan vücudun tükenir. Rezervlerde çalışıyorsun."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你牺牲了你的睡眠和休息。如果没有再生，你的身体就会耗尽。你正在预备队跑步。"
           }
         },
         "zh-Hant": {
@@ -53064,10 +53064,22 @@
             "value": "¡Todo pinta bien de momento! Manténganse al tanto."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour le moment, tout semble bien ! Continue comme ça."
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "अभी सब कुछ अच्छा लग रहा है! इसे जारी रखें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al momento sembra che tutto vada bene! Continua così."
           }
         },
         "ja": {
@@ -53106,6 +53118,12 @@
             "value": "На данный момент все выглядит отлично! Так держать."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şu an her şey yolunda görünüyor! Devam et."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -53116,24 +53134,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "目前看起來都不錯！繼續保持。"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pour le moment, tout semble bien ! Continue comme ça."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Al momento sembra che tutto vada bene! Continua così."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Şu an her şey yolunda görünüyor! Devam et."
           }
         }
       }
@@ -53153,10 +53153,28 @@
             "value": "Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no has añadido ningún hábito financiero. Este es el primer paso hacia el control."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous n'avez pas encore ajouté d'habitude financière. C'est le premier pas vers le contrôle."
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "आपने अभी तक कोई वित्तीय आदत नहीं जोड़ी है। नियंत्रण की दिशा में यह पहला कदम है。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non hai ancora aggiunto nessuna abitudine finanziaria. Questo è il primo passo verso il controllo."
           }
         },
         "ja": {
@@ -53195,6 +53213,12 @@
             "value": "Вы еще не добавили финансовую привычку. Это первый шаг к контролю."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz finansal alışkanlık eklemediniz. Bu, kontrolün ilk adımıdır."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -53205,30 +53229,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你還沒有添加財務習慣。這是控制的第一步。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aún no has añadido ningún hábito financiero. Este es el primer paso hacia el control."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vous n'avez pas encore ajouté d'habitude financière. C'est le premier pas vers le contrôle."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non hai ancora aggiunto nessuna abitudine finanziaria. Questo è il primo passo verso il controllo."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Henüz finansal alışkanlık eklemediniz. Bu, kontrolün ilk adımıdır."
           }
         }
       }
@@ -53248,10 +53248,28 @@
             "value": "Keine Finanz-Gewohnheit"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin hábito financiero"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas d'habitude financière"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "कोई वित्तीय आदत नहीं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna abitudine finanziaria"
           }
         },
         "ja": {
@@ -53278,10 +53296,22 @@
             "value": "Brak nawyków finansowych"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem hábito financeiro"
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Нет финансовых привычек"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finansal alışkanlık yok"
           }
         },
         "zh-Hans": {
@@ -53294,36 +53324,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "沒有財務習慣"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sin hábito financiero"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas d'habitude financière"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nessuna abitudine finanziaria"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sem hábito financeiro"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Finansal alışkanlık yok"
           }
         }
       }
@@ -53438,6 +53438,12 @@
             "value": "Guter Fokus"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buen enfoque"
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
@@ -53492,6 +53498,12 @@
             "value": "Хорошая концентрация"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İyi odak"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -53502,18 +53514,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "良好的專注"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Buen enfoque"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İyi odak"
           }
         }
       }
@@ -53533,10 +53533,28 @@
             "value": "Was man verbessern kann"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo que se puede mejorar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce qu'on peut améliorer"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "सुधार के क्षेत्र"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cosa si può migliorare"
           }
         },
         "ja": {
@@ -53563,6 +53581,12 @@
             "value": "Obszary do poprawy"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O que pode ser melhorado"
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -53585,30 +53609,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "需要改進的地方"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lo que se puede mejorar"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ce qu'on peut améliorer"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cosa si può migliorare"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O que pode ser melhorado"
           }
         }
       }
@@ -53646,6 +53646,12 @@
             "value": "आपने स्वास्थ्य या फिटनेस से जुड़ी कोई आदत सक्रिय नहीं की है। आपका शरीर आपकी पूंजी है。"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non hai attivato né abitudini di salute né di fitness. Il tuo corpo è il tuo capitale."
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
@@ -53670,10 +53676,22 @@
             "value": "Nie aktywowałeś żadnych nawyków związanych ze zdrowiem lub kondycją. Twoje ciało to twój kapitał."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você não ativou hábitos de saúde nem fitness. Seu corpo é seu capital."
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Вы не активировали привычки для здоровья или фитнеса. Ваше тело - ваш капитал."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sağlık veya fitness alışkanlığı etkinleştirmediniz. Vücudunuz sizin sermayenizdir."
           }
         },
         "zh-Hans": {
@@ -53686,24 +53704,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你還沒有激活健康或健身習慣。身體是你的資本。"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non hai attivato né abitudini di salute né di fitness. Il tuo corpo è il tuo capitale."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você não ativou hábitos de saúde nem fitness. Seu corpo é seu capital."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sağlık veya fitness alışkanlığı etkinleştirmediniz. Vücudunuz sizin sermayenizdir."
           }
         }
       }
@@ -53729,10 +53729,22 @@
             "value": "base faltante"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Base manquante"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "बुनियाद की कमी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Base mancante"
           }
         },
         "ja": {
@@ -53759,10 +53771,22 @@
             "value": "Brak podstaw"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Base ausente"
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Отсутствует база"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eksik temel"
           }
         },
         "zh-Hans": {
@@ -53775,30 +53799,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "缺乏基礎"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Base manquante"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Base mancante"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Base ausente"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eksik temel"
           }
         }
       }
@@ -53822,6 +53822,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tu entorno te moldea. Continúe optimizando su vida diaria."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre environnement vous façonne. Continuez à optimiser votre quotidien."
           }
         },
         "hi": {
@@ -53872,6 +53878,12 @@
             "value": "Ваше окружение формирует вас. Продолжайте оптимизировать свою повседневную жизнь."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çevreniz sizi şekillendirir. Günlük hayatınızı optimize etmeye devam edin."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -53882,18 +53894,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "環境塑造你。繼續優化你的日常生活。"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Votre environnement vous façonne. Continuez à optimiser votre quotidien."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Çevreniz sizi şekillendirir. Günlük hayatınızı optimize etmeye devam edin."
           }
         }
       }
@@ -53931,6 +53931,12 @@
             "value": "पर्यावरण की जाँच करें"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla l'ambiente"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
@@ -53953,6 +53959,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sprawdź środowisko"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar ambiente"
           }
         },
         "ru": {
@@ -53978,18 +53990,6 @@
             "state": "translated",
             "value": "檢查環境"
           }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Controlla l'ambiente"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verificar ambiente"
-          }
         }
       }
     },
@@ -54014,10 +54014,22 @@
             "value": "Tienes el hábito de tener una racha de menos de 3 días. ¡No dejes que los derriben!"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous êtes en dessous de 3 jours de streak pour une habitude. Ne laissez pas tomber !"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "आपकी किसी आदत की स्ट्रीक 3 दिनों से कम है। इसे टूटने न दें!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sei sotto i 3 giorni di streak per un'abitudine. Non lasciarlo andare!"
           }
         },
         "ja": {
@@ -54056,6 +54068,12 @@
             "value": "Ваша серия для одной из привычек меньше 3 дней. Не прерывайте ее!"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir alışkanlıkta 3 gün altında streaksiniz. Bırakma!"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -54066,24 +54084,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你的一個習慣連續天數不到3天。不要讓它中斷！"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vous êtes en dessous de 3 jours de streak pour une habitude. Ne laissez pas tomber !"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sei sotto i 3 giorni di streak per un'abitudine. Non lasciarlo andare!"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bir alışkanlıkta 3 gün altında streaksiniz. Bırakma!"
           }
         }
       }
@@ -54103,6 +54103,12 @@
             "value": "Streak in Gefahr"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Racha en peligro"
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
@@ -54113,6 +54119,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "लगातार रिकॉर्ड खतरे में"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Streak in pericolo"
           }
         },
         "ja": {
@@ -54167,18 +54179,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "連續記錄處於危險中"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Racha en peligro"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Streak in pericolo"
           }
         }
       }
@@ -54436,6 +54436,12 @@
             "value": "Nie rozpocząłeś jeszcze żadnych sesji skupienia. Głęboka praca to klucz do większej wydajności."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você ainda não iniciou nenhuma sessão de foco. O trabalho profundo é a chave para mais eficiência."
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -54459,12 +54465,6 @@
             "state": "translated",
             "value": "你還沒有開始專注階段。深度工作是提高效率的關鍵。"
           }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você ainda não iniciou nenhuma sessão de foco. O trabalho profundo é a chave para mais eficiência."
-          }
         }
       }
     },
@@ -54483,10 +54483,28 @@
             "value": "Fokus-Modus ungenutzt"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de enfoque sin usar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode focus inutilisé"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "फ़ोकस मोड अप्रयुक्त"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità focus non utilizzata"
           }
         },
         "ja": {
@@ -54513,10 +54531,22 @@
             "value": "Tryb skupienia nieużywany"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de foco não utilizado"
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Режим фокусировки не используется"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odak modu kullanılmıyor"
           }
         },
         "zh-Hans": {
@@ -54529,36 +54559,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "專注模式未使用"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Modo de enfoque sin usar"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mode focus inutilisé"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Modalità focus non utilizzata"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Modo de foco não utilizado"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Odak modu kullanılmıyor"
           }
         }
       }
@@ -64463,12 +64463,6 @@
             "value": "Te dejas controlar demasiado por factores externos. Toma el control de tu tiempo y energía."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kendinizin dış etkenler tarafından çok fazla kontrol edilmesine izin veriyorsunuz. Zamanınızın ve enerjinizin kontrolünü elinize alın."
-          }
-        },
         "fr": {
           "stringUnit": {
             "state": "translated",
@@ -64523,6 +64517,12 @@
             "value": "Вы слишком сильно поддаётесь внешним факторам. Возьмите контроль над своим временем и энергией."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kendinizin dış etkenler tarafından çok fazla kontrol edilmesine izin veriyorsunuz. Zamanınızın ve enerjinizin kontrolünü elinize alın."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -64564,30 +64564,6 @@
             "value": "Vous vous contentez de trop peu. Élevez vos standards pour vivre une vie meilleure."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "あまりにも少ないことで満足してしまいます。より良い生活を送るために基準を上げましょう。"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Çok az şeye razı oluyorsun. Daha iyi bir hayat yaşamak için standartlarınızı yükseltin."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你满足的太少了。提高标准，过上更好的生活。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你滿足的太少了。提高標準，過更好的生活。"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -64598,6 +64574,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sei soddisfatto di troppo poco. Alza i tuoi standard per vivere una vita migliore."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あまりにも少ないことで満足してしまいます。より良い生活を送るために基準を上げましょう。"
           }
         },
         "ko": {
@@ -64629,6 +64611,24 @@
             "state": "translated",
             "value": "Вы довольствуетесь слишком малым. Повышайте свои стандарты, чтобы жить лучше."
           }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çok az şeye razı oluyorsun. Daha iyi bir hayat yaşamak için standartlarınızı yükseltin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你满足的太少了。提高标准，过上更好的生活。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你滿足的太少了。提高標準，過更好的生活。"
+          }
         }
       }
     },
@@ -64647,6 +64647,12 @@
             "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu entorno te arrastra hacia abajo. Eres el promedio de las 5 personas con las que más tiempo pasas."
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
@@ -64663,6 +64669,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Il tuo ambiente ti sta trascinando verso il basso. Sei la media delle 5 persone con cui trascorri più tempo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "環境があなたを引き下げています。あなたは最も時間を過ごす5人の平均です。"
           }
         },
         "ko": {
@@ -64711,18 +64723,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你的環境正在拖累你。您是與您相處時間最多的 5 個人的平均值。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu entorno te arrastra hacia abajo. Eres el promedio de las 5 personas con las que más tiempo pasas."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "環境があなたを引き下げています。あなたは最も時間を過ごす5人の平均です。"
           }
         }
       }
@@ -74867,28 +74867,28 @@
             "value": "Você torna sua autoestima muito dependente das opiniões dos outros. Isso o torna controlável."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kendi değerinizi başkalarının görüşlerine fazla bağımlı hale getiriyorsunuz. Bu sizi kontrol edilebilir kılar."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你讓自己的自我價值過度依賴他人的意見。這讓你變得可控。"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Вы слишком сильно привязываете свою самооценку к мнению других. Это делает вас управляемым."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kendi değerinizi başkalarının görüşlerine fazla bağımlı hale getiriyorsunuz. Bu sizi kontrol edilebilir kılar."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "你过于依赖他人的看法来判断自我价值。这让你变得可被控制。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你讓自己的自我價值過度依賴他人的意見。這讓你變得可控。"
           }
         }
       }
@@ -74906,6 +74906,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te distraes fácilmente y pierdes de vista tu objetivo. Tu enfoque es actualmente demasiado reactivo."
           }
         },
         "fr": {
@@ -74978,12 +74984,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你很容易分心並忘記你的目標。您目前的注意力過於被動。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Te distraes fácilmente y pierdes de vista tu objetivo. Tu enfoque es actualmente demasiado reactivo."
           }
         }
       }
@@ -75576,12 +75576,6 @@
             "value": "Phase 1: Bewusstsein"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "第一階段：意識"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -75653,6 +75647,12 @@
             "state": "translated",
             "value": "阶段 1：意识"
           }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第一階段：意識"
+          }
         }
       }
     },
@@ -75683,10 +75683,28 @@
             "value": "Phase 2 : Actions"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चरण 2: क्रिया"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Fase 2: Azione"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フェーズ 2: 行動"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "단계 2: 행동"
           }
         },
         "nl": {
@@ -75729,24 +75747,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "第二階段：行動"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "चरण 2: क्रिया"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "フェーズ 2: 行動"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "단계 2: 행동"
           }
         }
       }
@@ -76286,6 +76286,12 @@
             "value": "Ego"
           }
         },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ego"
+          }
+        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -76298,6 +76304,12 @@
             "value": "Эго"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ego"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -76308,18 +76320,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "自我"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ego"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ego"
           }
         }
       }
@@ -77402,6 +77402,12 @@
             "value": "Estándares"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standards"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -77467,12 +77473,6 @@
             "state": "translated",
             "value": "標準"
           }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standards"
-          }
         }
       }
     },
@@ -77496,6 +77496,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Puntuación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score"
           }
         },
         "hi": {
@@ -77562,12 +77568,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "分數"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Score"
           }
         }
       }
@@ -77989,28 +77989,16 @@
             "value": "गणना"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "計算"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "hesaplama"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "計算"
-          }
-        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Calcolo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "計算"
           }
         },
         "ko": {
@@ -78043,10 +78031,22 @@
             "value": "Расчёт"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hesaplama"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "计算"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "計算"
           }
         }
       }
@@ -78072,40 +78072,28 @@
             "value": "Promedio: puntuación entre 0 y −10"
           }
         },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "औसत: 0 और -10 के बीच स्कोर"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平均: 0 ～ −10 のスコア"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Média: pontuação entre 0 e -10"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平均：分數在 0 到 −10 之間"
-          }
-        },
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Moyenne : Score entre 0 et −10"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "औसत: 0 और -10 के बीच स्कोर"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Media: Score tra 0 e −10"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均: 0 ～ −10 のスコア"
           }
         },
         "ko": {
@@ -78126,6 +78114,12 @@
             "value": "Średni: wynik między 0 a −10"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média: pontuação entre 0 e -10"
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -78143,6 +78137,12 @@
             "state": "translated",
             "value": "平均：得分在0到−10之间"
           }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均：分數在 0 到 −10 之間"
+          }
         }
       }
     },
@@ -78159,24 +78159,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Unterdurchschnitt: Score unter −10"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平均以下: スコアが -10 未満"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "평균 미만: 점수가 -10 미만"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "低於平均值：得分低於−10"
           }
         },
         "es": {
@@ -78201,6 +78183,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sotto la media: Score inferiore a −10"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均以下: スコアが -10 未満"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "평균 미만: 점수가 -10 미만"
           }
         },
         "nl": {
@@ -78238,6 +78232,12 @@
             "state": "translated",
             "value": "低于平均：得分低于−10"
           }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "低於平均值：得分低於−10"
+          }
         }
       }
     },
@@ -78268,10 +78268,22 @@
             "value": "Top 10 % : score supérieur à +15"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शीर्ष 10%: Score +15 से ऊपर"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Top 10%: punteggio superiore a +15"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "トップ10%：スコア+15以上"
           }
         },
         "ko": {
@@ -78304,28 +78316,16 @@
             "value": "Топ-10%: оценка больше +15."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "前10％：得分超过+15"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "शीर्ष 10%: Score +15 से ऊपर"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "トップ10%：スコア+15以上"
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "İlk 10%: +15'in üzerinde puan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前10％：得分超过+15"
           }
         },
         "zh-Hant": {
@@ -78381,6 +78381,12 @@
             "value": "上位30％：スコア0以上"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "상위 30%: Score 0 초과"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
@@ -78399,6 +78405,12 @@
             "value": "Top 30％: Pontuação acima de 0"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Топ 30%: Очки выше 0"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
@@ -78415,18 +78427,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "前30％：得分超過0"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "상위 30%: Score 0 초과"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Топ 30%: Очки выше 0"
           }
         }
       }
@@ -78761,10 +78761,22 @@
             "value": "あなたのパーセンタイル = (スコア + 41) / 82"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "당신의 백분위수 = (점수 + 41) / 82"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Uw percentiel = (Score + 41) / 82"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój percentyl = (wynik + 41) / 82"
           }
         },
         "pt": {
@@ -78779,28 +78791,16 @@
             "value": "Ваш процентиль = (Оценка + 41) / 82"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "您的百​​分位数 = (分数 + 41) / 82"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "당신의 백분위수 = (점수 + 41) / 82"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twój percentyl = (wynik + 41) / 82"
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Persantiliniz = (Puan + 41) / 82"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您的百​​分位数 = (分数 + 41) / 82"
           }
         },
         "zh-Hant": {
@@ -78826,6 +78826,18 @@
             "value": "Frage 1: Reaktion auf unerwartete Rückzahlung"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta 1: Reacción ante reembolso inesperado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Question 1 : Réaction face à un remboursement inattendu"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -78842,6 +78854,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "質問 1: 予期せぬ返済に対する対応"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "질문 1: 예기치 않은 상환에 대한 반응"
           }
         },
         "nl": {
@@ -78884,24 +78902,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "問題一：對意外還款的反應"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pregunta 1: Reacción ante reembolso inesperado"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Question 1 : Réaction face à un remboursement inattendu"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "질문 1: 예기치 않은 상환에 대한 반응"
           }
         }
       }
@@ -79230,10 +79230,34 @@
             "value": "Domanda 6: Comportamento in caso di lifestyle creep (protezione dai rischi)"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "質問6：ライフスタイル・クリープ時の行動（リスクカバー）"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "질문 6: 라이프스타일 크리프 시 행동 (위험 보장)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vraag 6: Gedrag bij lifestyle creep (risicodekking)"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
             "value": "Pytanie 6: Zachowanie w przypadku zmiany stylu życia (ochrona przed ryzykiem)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergunta 6: Comportamento com lifestyle creep (cobertura de risco)"
           }
         },
         "ru": {
@@ -79258,30 +79282,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "問題 6：生活方式改變時的行為（風險保護）"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "質問6：ライフスタイル・クリープ時の行動（リスクカバー）"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "질문 6: 라이프스타일 크리프 시 행동 (위험 보장)"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vraag 6: Gedrag bij lifestyle creep (risicodekking)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pergunta 6: Comportamento com lifestyle creep (cobertura de risco)"
           }
         }
       }
@@ -79396,36 +79396,6 @@
             "value": "Frage 12: Die Gier-Falle (riskante Investments)"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "질문 12: 탐욕의 함정(위험한 투자)"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pytanie 12: Pułapka chciwości (ryzykowne inwestycje)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pergunta 12: A armadilha da ganância (investimentos de risco)"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Soru 12: Açgözlülük tuzağı (riskli yatırımlar)"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "問題12：貪婪陷阱（高風險投資）"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -79456,10 +79426,28 @@
             "value": "質問12：欲望の罠（リスクのある投資）"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "질문 12: 탐욕의 함정(위험한 투자)"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Vraag 12: De gulzigheidsval (risicovolle investeringen)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pytanie 12: Pułapka chciwości (ryzykowne inwestycje)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pergunta 12: A armadilha da ganância (investimentos de risco)"
           }
         },
         "ru": {
@@ -79468,10 +79456,22 @@
             "value": "Вопрос 12: Ловушка жадности (рискованные инвестиции)"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soru 12: Açgözlülük tuzağı (riskli yatırımlar)"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "问题12：贪婪陷阱（风险投资）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "問題12：貪婪陷阱（高風險投資）"
           }
         }
       }
@@ -79966,42 +79966,6 @@
             "value": "Intensitäts-Fragen: Anstrengungsgrad deiner Workouts"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "強度に関する質問: ワークアウトの努力のレベル"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intensiteitsvragen: mate van inspanning tijdens uw trainingen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pytania dotyczące intensywności: Poziom wysiłku podczas treningów"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yoğunluk Soruları: Antrenmanlarınızdaki efor düzeyi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "强度问题：锻炼的努力程度"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "強度問題：運動的努力程度"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -80026,10 +79990,28 @@
             "value": "Domande sull'intensità: Livello di sforzo dei tuoi allenamenti"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "強度に関する質問: ワークアウトの努力のレベル"
+          }
+        },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "강도 질문: 운동의 노력 수준"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensiteitsvragen: mate van inspanning tijdens uw trainingen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pytania dotyczące intensywności: Poziom wysiłku podczas treningów"
           }
         },
         "pt": {
@@ -80042,6 +80024,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вопросы об интенсивности: уровень нагрузки на тренировках"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yoğunluk Soruları: Antrenmanlarınızdaki efor düzeyi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "强度问题：锻炼的努力程度"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "強度問題：運動的努力程度"
           }
         }
       }
@@ -80077,6 +80077,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "जिम्मेदारी प्रश्न: फिटनेस के लिए व्यक्तिगत जिम्मेदारी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domande di responsabilità: Responsabilità personale per il fitness"
           }
         },
         "ja": {
@@ -80131,12 +80137,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "責任問題：個人健身責任"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Domande di responsabilità: Responsabilità personale per il fitness"
           }
         }
       }
@@ -80204,22 +80204,16 @@
             "value": "Odpowiedzialność osobista:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Личная ответственность:"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "個人責任："
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "Responsabilidade:"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Личная ответственность:"
           }
         },
         "tr": {
@@ -80232,6 +80226,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "责任感："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "個人責任："
           }
         }
       }
@@ -80251,22 +80251,16 @@
             "value": "Disziplin:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Discipline:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "규율:"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Disciplina:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discipline:"
           }
         },
         "hi": {
@@ -80285,6 +80279,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "規律："
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "규율:"
           }
         },
         "nl": {
@@ -80344,12 +80344,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Effizienz:"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "效率："
           }
         },
         "es": {
@@ -80423,6 +80417,12 @@
             "state": "translated",
             "value": "效率："
           }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "效率："
+          }
         }
       }
     },
@@ -80439,12 +80439,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Umsetzung:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "구현:"
           }
         },
         "es": {
@@ -80475,6 +80469,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "実行："
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "구현:"
           }
         },
         "nl": {
@@ -80536,24 +80536,6 @@
             "value": "Disziplin-Fragen: Konsistenz, auch ohne Motivation"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Domande disciplinari: Coerenza, anche senza motivazione"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "しつけに関する質問: モチベーションがなくても一貫性を保つこと"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Disiplin soruları: Motivasyon olmasa bile tutarlılık"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -80570,6 +80552,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "अनुशासन प्रश्न: प्रेरणा के बिना भी निरंतरता"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domande disciplinari: Coerenza, anche senza motivazione"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "しつけに関する質問: モチベーションがなくても一貫性を保つこと"
           }
         },
         "ko": {
@@ -80600,6 +80594,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вопросы о дисциплине: последовательность даже без мотивации"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disiplin soruları: Motivasyon olmasa bile tutarlılık"
           }
         },
         "zh-Hans": {
@@ -80637,10 +80637,22 @@
             "value": "Cuestiones de eficiencia: uso del tiempo y priorización"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questions d'efficacité : Utilisation du temps et priorisation"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "दक्षता के मुद्दे: समय का उपयोग और प्राथमिकता"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domande sull'efficienza: Utilizzo del tempo e definizione delle priorità"
           }
         },
         "ja": {
@@ -80653,24 +80665,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "효율성 문제: 시간 사용 및 우선순위 지정"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Проблемы эффективности: использование времени и расстановка приоритетов"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Questions d'efficacité : Utilisation du temps et priorisation"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Domande sull'efficienza: Utilizzo del tempo e definizione delle priorità"
           }
         },
         "nl": {
@@ -80689,6 +80683,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Questões de eficiência: Uso do tempo e priorização"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проблемы эффективности: использование времени и расстановка приоритетов"
           }
         },
         "tr": {
@@ -80726,36 +80726,6 @@
             "value": "Umsetzungs-Fragen: Planung vs. tatsächliches Handeln"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "구현 질문: 계획 및 실제 조치"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Implementatievragen: planning versus daadwerkelijke actie"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kwestie wdrożeniowe: planowanie a faktyczne działanie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Questões de implementação: planejamento versus ação real"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вопросы реализации: планирование и фактические действия"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -80784,6 +80754,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "実行の質問：計画対実際の行動"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "구현 질문: 계획 및 실제 조치"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Implementatievragen: planning versus daadwerkelijke actie"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kwestie wdrożeniowe: planowanie a faktyczne działanie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questões de implementação: planejamento versus ação real"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вопросы реализации: планирование и фактические действия"
           }
         },
         "tr": {
@@ -80839,6 +80839,12 @@
             "value": "ईंधन (पोषण):"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carburante (nutrizione):"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
@@ -80851,10 +80857,22 @@
             "value": "연료(영양):"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brandstof (voeding):"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
             "value": "Paliwo (odżywianie):"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Combustível (nutrição):"
           }
         },
         "ru": {
@@ -80869,34 +80887,16 @@
             "value": "Yakıt (Beslenme):"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "燃料（營養）："
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Carburante (nutrizione):"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Brandstof (voeding):"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Combustível (nutrição):"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "能量（营养）："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "燃料（營養）："
           }
         }
       }
@@ -80922,6 +80922,12 @@
             "value": "Prevención:"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prévention :"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -80940,10 +80946,22 @@
             "value": "防止："
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "예방:"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Preventie:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profilaktyka:"
           }
         },
         "pt": {
@@ -80958,6 +80976,12 @@
             "value": "Профилактика:"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önleme:"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -80968,30 +80992,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "預防："
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Prévention :"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "예방:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Profilaktyka:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Önleme:"
           }
         }
       }
@@ -81041,6 +81041,12 @@
             "value": "栄養に関する質問: 食事計画と砂糖"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영양 질문: 식사 계획 및 설탕"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
@@ -81075,12 +81081,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "营养问题：膳食计划和糖"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "영양 질문: 식사 계획 및 설탕"
           }
         },
         "zh-Hant": {
@@ -81688,30 +81688,6 @@
             "value": "Questions environnementales : Qui vous entoure, quelle influence ont-ils ?"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "環境に関する質問: あなたの周りには誰がいますか? 彼らはどのような影響を与えていますか?"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Экологические вопросы: Кто вас окружает, какое влияние они оказывают?"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Çevresel sorular: Sizi kim çevreliyor, ne gibi etkileri var?"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "環境問題：你周遭有哪些人，他們有什麼影響？"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -81722,6 +81698,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Domande sull'ambiente: Chi ti circonda, quale influenza hanno?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "環境に関する質問: あなたの周りには誰がいますか? 彼らはどのような影響を与えていますか?"
           }
         },
         "ko": {
@@ -81748,10 +81730,28 @@
             "value": "Questões de ambiente: Quem te rodeia, que influência têm?"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экологические вопросы: Кто вас окружает, какое влияние они оказывают?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çevresel sorular: Sizi kim çevreliyor, ne gibi etkileri var?"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "环境问题：谁围绕着你，他们有什么影响？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "環境問題：你周遭有哪些人，他們有什麼影響？"
           }
         }
       }
@@ -81908,6 +81908,12 @@
             "value": "Normenvragen: Hoe hoog leg jij de lat?"
           }
         },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pytania o standardy: Jak wysoko ustawiasz poprzeczkę?"
+          }
+        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -81930,12 +81936,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "标准问题：您设定的标准有多高？"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pytania o standardy: Jak wysoko ustawiasz poprzeczkę?"
           }
         },
         "zh-Hant": {
@@ -81991,10 +81991,22 @@
             "value": "規格:"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기준:"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Normen:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standardy:"
           }
         },
         "pt": {
@@ -82026,18 +82038,6 @@
             "state": "translated",
             "value": "標準："
           }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "기준:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standardy:"
-          }
         }
       }
     },
@@ -82054,6 +82054,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Maximum möglich:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máximo posible:"
           }
         },
         "fr": {
@@ -82086,6 +82092,12 @@
             "value": "가능한 최대값:"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum mogelijk:"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -82110,28 +82122,16 @@
             "value": "Mümkün olan maksimum:"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最大可能："
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Máximo posible:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Maximum mogelijk:"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "最高可能："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最大可能："
           }
         }
       }
@@ -82181,6 +82181,12 @@
             "value": "エゴ/考え方:"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "에고/마인드셋:"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
@@ -82222,12 +82228,6 @@
             "state": "translated",
             "value": "自我/心態："
           }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "에고/마인드셋:"
-          }
         }
       }
     },
@@ -82250,6 +82250,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enfocar:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus :"
           }
         },
         "hi": {
@@ -82306,22 +82312,16 @@
             "value": "Odak:"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "重點："
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Focus :"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "专注："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重點："
           }
         }
       }
@@ -82339,6 +82339,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ego-Fragen: Selbstreflexion und Mindset"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preguntas de ego: Autoreflexión y mentalidad"
           }
         },
         "fr": {
@@ -82412,12 +82418,6 @@
             "state": "translated",
             "value": "自我問題：自我反思與心態"
           }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Preguntas de ego: Autoreflexión y mentalidad"
-          }
         }
       }
     },
@@ -82466,6 +82466,12 @@
             "value": "焦点を当てる質問: 気を散らしやすいことと深い仕事"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중 질문: 주의 산만함과 심층 작업"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
@@ -82506,12 +82512,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "焦點問題：注意力分散和深度工作"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "집중 질문: 주의 산만함과 심층 작업"
           }
         }
       }
@@ -82555,12 +82555,6 @@
             "value": "Domande sulla resilienza: reazione alle battute d'arresto e allo stress"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Veerkrachtvragen: Reactie op tegenslagen en stress"
-          }
-        },
         "ja": {
           "stringUnit": {
             "state": "translated",
@@ -82571,6 +82565,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "회복력 질문: 좌절과 스트레스에 대한 반응"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veerkrachtvragen: Reactie op tegenslagen en stress"
           }
         },
         "pl": {
@@ -82626,12 +82626,6 @@
             "value": "Resilienz:"
           }
         },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "लचीलापन:"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -82642,6 +82636,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Résilience :"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लचीलापन:"
           }
         },
         "it": {
@@ -82911,24 +82911,6 @@
             "value": "Fragen im Assessment"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вопросы в оценке"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Değerlendirmedeki sorular"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "评估中的问题"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -82983,6 +82965,24 @@
             "value": "Perguntas no assessment"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вопросы в оценке"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değerlendirmedeki sorular"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "评估中的问题"
+          }
+        },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
@@ -83010,6 +83010,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tus puntuaciones brutas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos scores bruts"
           }
         },
         "hi": {
@@ -83076,12 +83082,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你的原始分數"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vos scores bruts"
           }
         }
       }
@@ -83196,6 +83196,12 @@
             "value": "Summe aller 3 Rohscores:"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suma de los 3 scores brutos:"
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
@@ -83220,30 +83226,6 @@
             "value": "3 つの生スコアすべての合計:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suma wszystkich 3 surowych wyników:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Total de todas as 3 pontuações brutas:"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "所有 3 個原始分數的總和："
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suma de los 3 scores brutos:"
-          }
-        },
         "ko": {
           "stringUnit": {
             "state": "translated",
@@ -83254,6 +83236,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Som van alle 3 scores:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suma wszystkich 3 surowych wyników:"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total de todas as 3 pontuações brutas:"
           }
         },
         "ru": {
@@ -83272,6 +83266,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "所有3个分数的总和："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有 3 個原始分數的總和："
           }
         }
       }
@@ -83386,10 +83386,22 @@
             "value": "Dein schwächster Rohscore bestimmt die Schwäche."
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu puntuación bruta más débil determina la debilidad."
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Votre score brut le plus faible détermine votre faiblesse."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका सबसे कमजोर रॉ स्कोर कमजोरी को निर्धारित करता है।"
           }
         },
         "it": {
@@ -83410,30 +83422,6 @@
             "value": "가장 약한 원시 점수가 약점을 결정합니다."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua pontuação bruta mais fraca determina sua fraqueza."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ваш самый слабый исходный результат определяет вашу слабость."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu puntuación bruta más débil determina la debilidad."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपका सबसे कमजोर रॉ स्कोर कमजोरी को निर्धारित करता है।"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
@@ -83444,6 +83432,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Twój najsłabszy wynik surowy determinuje słabość."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua pontuação bruta mais fraca determina sua fraqueza."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваш самый слабый исходный результат определяет вашу слабость."
           }
         },
         "tr": {
@@ -83487,30 +83487,6 @@
             "value": "Los tres parámetros se comparan entre sí."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tutti e tre i parametri vengono confrontati tra loro."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todos os três parâmetros são comparados entre si."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Все три параметра сравниваются между собой."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "所有三個參數都相互比較。"
-          }
-        },
         "fr": {
           "stringUnit": {
             "state": "translated",
@@ -83521,6 +83497,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "तीनों पैरामीटर आपस में तुलना किए जाते हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutti e tre i parametri vengono confrontati tra loro."
           }
         },
         "ja": {
@@ -83547,6 +83529,18 @@
             "value": "Wszystkie trzy parametry są ze sobą porównywane."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os três parâmetros são comparados entre si."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все три параметра сравниваются между собой."
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
@@ -83557,6 +83551,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "所有三个参数相互比较。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有三個參數都相互比較。"
           }
         }
       }
@@ -83588,36 +83588,6 @@
             "value": "La valeur la plus basse = le plus grand potentiel d'amélioration."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最低値 = 改善の可能性が最も大きい。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "가장 낮은 값 = 개선 가능성이 가장 높습니다."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O valor mais baixo = maior potencial de melhoria."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最低值=最大的改进潜力。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最低值=最大的改進潛力。"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -83628,6 +83598,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Il valore più basso = maggior potenziale di miglioramento."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最低値 = 改善の可能性が最も大きい。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가장 낮은 값 = 개선 가능성이 가장 높습니다."
           }
         },
         "nl": {
@@ -83642,6 +83624,12 @@
             "value": "Najniższa wartość = największy potencjał poprawy."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O valor mais baixo = maior potencial de melhoria."
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -83652,6 +83640,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "En düşük değer = en büyük iyileştirme potansiyeli."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最低值=最大的改进潜力。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最低值=最大的改進潛力。"
           }
         }
       }
@@ -83671,6 +83671,12 @@
             "value": "Dein schwächster Bereich"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu área más débil"
+          }
+        },
         "fr": {
           "stringUnit": {
             "state": "translated",
@@ -83681,6 +83687,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपका सबसे कमजोर क्षेत्र"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua area più debole"
           }
         },
         "ja": {
@@ -83713,6 +83725,12 @@
             "value": "Sua área mais fraca"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваша самая слабая область"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
@@ -83729,24 +83747,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你最薄弱的地方"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu área más débil"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La tua area più debole"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ваша самая слабая область"
           }
         }
       }
@@ -85249,6 +85249,12 @@
             "value": "Kopia"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup"
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -85271,12 +85277,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "備份檔案"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Backup"
           }
         }
       }
@@ -88225,6 +88225,12 @@
             "value": "Nimm ein flexibles Maßband, miss im kalten Zustand ohne Pump und setz das Band immer absolut waagerecht an. "
           }
         },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Take a flexible measuring tape, measure when cold without pumping, and always place the tape absolutely horizontally. "
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -88301,12 +88307,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "使用柔性捲尺，在冷時進行測量而不用泵送，並且始終將捲尺絕對水平放置。"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Take a flexible measuring tape, measure when cold without pumping, and always place the tape absolutely horizontally. "
           }
         }
       }
@@ -88516,6 +88516,18 @@
             "value": "Measure at the thickest part of your forearm."
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mide en la parte más gruesa de tu antebrazo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurez à la partie la plus épaisse de votre avant-bras."
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -88540,6 +88552,18 @@
             "value": "팔뚝의 가장 두꺼운 부분을 측정하세요."
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meet op het dikste gedeelte van uw onderarm."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zmierz w najgrubszym miejscu przedramienia."
+          }
+        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -88558,40 +88582,16 @@
             "value": "Önkolunuzun en kalın kısmından ölçün."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "測量前臂最粗的部分。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mide en la parte más gruesa de tu antebrazo."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mesurez à la partie la plus épaisse de votre avant-bras."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meet op het dikste gedeelte van uw onderarm."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zmierz w najgrubszym miejscu przedramienia."
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "在前臂最粗处测量。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量前臂最粗的部分。"
           }
         }
       }
@@ -88611,16 +88611,16 @@
             "value": "Miss an der dicksten Stelle deiner Wade."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mesurez à la partie la plus épaisse de votre mollet."
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Mide en la parte más gruesa de tu pantorrilla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurez à la partie la plus épaisse de votre mollet."
           }
         },
         "hi": {
@@ -89194,24 +89194,6 @@
             "value": "जे"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "제이"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "J."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Дж"
-          }
-        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -89224,6 +89206,12 @@
             "value": "年"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "제이"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
@@ -89234,6 +89222,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "R"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "J."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дж"
           }
         },
         "tr": {
@@ -89277,40 +89277,16 @@
             "value": "METRO"
           }
         },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "एम"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "중"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "М"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "中号"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "中號"
-          }
-        },
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "M"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एम"
           }
         },
         "it": {
@@ -89323,6 +89299,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "月"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "중"
           }
         },
         "nl": {
@@ -89343,10 +89325,28 @@
             "value": "M"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "М"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "A"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中号"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中號"
           }
         }
       }
@@ -89372,10 +89372,22 @@
             "value": "6M."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 M."
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "6 एम."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 M."
           }
         },
         "ja": {
@@ -89390,16 +89402,34 @@
             "value": "6M"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 M."
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
             "value": "6 m."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 M."
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "6 М."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 A."
           }
         },
         "zh-Hans": {
@@ -89412,36 +89442,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "6M。"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "6 M."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "6 M."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "6 M."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "6 M."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "6 A."
           }
         }
       }
@@ -89465,6 +89465,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "t"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज"
           }
         },
         "it": {
@@ -89509,6 +89521,12 @@
             "value": "Т"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "B"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -89519,24 +89537,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "時間"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आज"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "B"
           }
         }
       }
@@ -89705,6 +89705,12 @@
             "value": "construir"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "наращивать"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
@@ -89721,12 +89727,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "建造"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "наращивать"
           }
         }
       }
@@ -89806,6 +89806,12 @@
             "value": "увеличить"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kilo almak için"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -89816,12 +89822,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "增加"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "kilo almak için"
           }
         }
       }
@@ -89859,6 +89859,12 @@
             "value": "उड़ान भरने के लिए"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "perdere peso"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
@@ -89869,6 +89875,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "이륙하다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "af te vallen"
           }
         },
         "pl": {
@@ -89905,18 +89917,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "起飛"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "perdere peso"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "af te vallen"
           }
         }
       }
@@ -90313,18 +90313,6 @@
             "value": "Ziel"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obiettivo"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "목표"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -90343,10 +90331,22 @@
             "value": "लक्ष्य"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo"
+          }
+        },
         "ja": {
           "stringUnit": {
             "state": "translated",
             "value": "目標"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표"
           }
         },
         "nl": {
@@ -90489,7 +90489,6 @@
       }
     },
     "body.tracking.chart.day": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -90610,12 +90609,6 @@
             "value": "ACTUEL"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ТЕКУЩЕЕ"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -90658,6 +90651,12 @@
             "value": "ATUAL"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ТЕКУЩЕЕ"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
@@ -90690,12 +90689,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ziel löschen"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Удалить цель"
           }
         },
         "es": {
@@ -90752,6 +90745,12 @@
             "value": "Excluir meta"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить цель"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
@@ -90785,6 +90784,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das ist ein sehr entspanntes Tempo, du könntest dir bei Bedarf auch etwas mehr zutrauen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para alcanzar tu meta, debes cambiar aproximadamente %.2f %@ por semana %@. Este es un ritmo muy relajado, si lo deseas también podrías exigirte un poco más."
           }
         },
         "fr": {
@@ -90857,12 +90862,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "為了實現你的目標，你需要%@大約。每週 %.2f %@。這是一個非常放鬆的節奏，如果有必要的話你可以更有自信一點。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Para alcanzar tu meta, debes cambiar aproximadamente %.2f %@ por semana %@. Este es un ritmo muy relajado, si lo deseas también podrías exigirte un poco más."
           }
         }
       }
@@ -91007,16 +91006,16 @@
             "value": "とてもリラックスしたペース"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zeer ontspannen tempo"
-          }
-        },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "매우 여유로운 속도"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeer ontspannen tempo"
           }
         },
         "pl": {
@@ -91072,46 +91071,28 @@
             "value": "Ziel bearbeiten"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Modifier la cible"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Modifica destinazione"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Doel bewerken"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hedefi düzenle"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "编辑目标"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Editar meta"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier la cible"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "लक्ष्य संपादित करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica destinazione"
           }
         },
         "ja": {
@@ -91124,6 +91105,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "목표 편집"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doel bewerken"
           }
         },
         "pl": {
@@ -91142,6 +91129,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Редактировать цель"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedefi düzenle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑目标"
           }
         },
         "zh-Hant": {
@@ -91196,6 +91195,12 @@
             "value": "先週"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 주"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
@@ -91220,6 +91225,12 @@
             "value": "На прошлой неделе"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geçen hafta"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -91230,18 +91241,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "上個星期"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "지난 주"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geçen hafta"
           }
         }
       }
@@ -92834,6 +92833,12 @@
             "value": "Не в ту сторону: Вы набрали %1$.2f %2$@ вместо того, чтобы сбросить %3$.2f %2$@."
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yanlış yön: %3$.2f %2$@ vermek yerine %1$.2f %2$@ aldınız."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -92844,12 +92849,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "錯誤方向：您獲得了%1$.2f %2$@，而不是損失了%3$.2f %2$@。"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yanlış yön: %3$.2f %2$@ vermek yerine %1$.2f %2$@ aldınız."
           }
         }
       }
@@ -95128,12 +95127,6 @@
             "value": "Ziel"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obiettivo"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -95150,6 +95143,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "लक्ष्य"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo"
           }
         },
         "ja": {
@@ -95875,18 +95874,6 @@
             "value": "cm"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "厘米"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "厘米"
-          }
-        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -95957,6 +95944,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "cm"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "厘米"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "厘米"
           }
         }
       }
@@ -95970,18 +95969,6 @@
             "value": "kg"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "公斤"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "公斤"
-          }
-        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -96052,6 +96039,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "kg"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公斤"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公斤"
           }
         }
       }
@@ -107535,10 +107534,28 @@
             "value": "h"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "एच"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
           }
         },
         "ja": {
@@ -107565,6 +107582,12 @@
             "value": "godz."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -107577,40 +107600,16 @@
             "value": "sa"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "小時"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "h"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "h"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "h"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "h"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "时"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小時"
           }
         }
       }
@@ -108109,10 +108108,28 @@
             "value": "min"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "मिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
           }
         },
         "ja": {
@@ -108125,6 +108142,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "분"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
           }
         },
         "ru": {
@@ -108149,42 +108184,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "分分鐘"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "min"
           }
         }
       }
@@ -108491,10 +108490,28 @@
             "value": "ml"
           }
         },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "एमएल"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
           }
         },
         "ja": {
@@ -108509,48 +108526,6 @@
             "value": "밀리리터"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ml"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "мл"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毫升"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毫升"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ml"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ml"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ml"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
@@ -108563,10 +108538,34 @@
             "value": "ml"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "мл"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "ml"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毫升"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毫升"
           }
         }
       }
@@ -110886,10 +110885,22 @@
             "value": "X"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "M"
+          }
+        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "एम"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "M"
           }
         },
         "ja": {
@@ -110944,18 +110955,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "中號"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "M"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "M"
           }
         }
       }
@@ -150558,30 +150557,6 @@
             "value": "Grovy"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grovy"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Грови"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "格罗维"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "格羅維"
-          }
-        },
         "ja": {
           "stringUnit": {
             "state": "translated",
@@ -150589,6 +150564,12 @@
           }
         },
         "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy"
+          }
+        },
+        "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Grovy"
@@ -150606,10 +150587,28 @@
             "value": "Grovy"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Грови"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Grovy"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "格罗维"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "格羅維"
           }
         }
       }
@@ -157592,42 +157591,6 @@
             "value": "ml"
           }
         },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "एमएल"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ミリリットル"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "밀리리터"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "мл"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毫升"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毫升"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -157640,10 +157603,28 @@
             "value": "ml"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एमएल"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "ml"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ミリリットル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "밀리리터"
           }
         },
         "nl": {
@@ -157664,10 +157645,28 @@
             "value": "ml"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "мл"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "ml"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毫升"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毫升"
           }
         }
       }
@@ -285348,16 +285347,16 @@
             "value": "300 m"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "300m"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "300米"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "300m"
           }
         }
       }
@@ -417156,6 +417155,1051 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標"
+          }
+        }
+      }
+    },
+    "insufficient_data": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nicht genügend Daten. Trag dein Gewicht weiter täglich ein – in etwa %1$@ Tagen kannst du einen verlässlichen Trend sehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not enough data yet. Keep logging your weight daily — check back in about %1$@ days for a reliable trend."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay suficientes datos. Sigue registrando tu peso a diario; en unos %1$@ días tendrás una tendencia fiable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore assez de données. Continue à enregistrer ton poids chaque jour — reviens dans environ %1$@ jours pour une tendance fiable."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी पर्याप्त डेटा नहीं है। रोज़ अपना वज़न दर्ज करते रहें — लगभग %1$@ दिनों में आपको एक भरोसेमंद ट्रेंड दिखेगा।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ci sono ancora abbastanza dati. Continua a registrare il tuo peso ogni giorno — tra circa %1$@ giorni avrai una tendenza affidabile."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだデータが十分ではありません。毎日体重を記録し続けてください。あと約%1$@日で信頼できるトレンドが表示されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아직 데이터가 충분하지 않습니다. 매일 체중을 계속 기록해 주세요 — 약 %1$@일 후면 신뢰할 수 있는 추세를 확인할 수 있어요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nog niet genoeg gegevens. Blijf je gewicht dagelijks bijhouden — over ongeveer %1$@ dagen zie je een betrouwbare trend."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Za mało danych. Zapisuj swoją wagę codziennie — za około %1$@ dni zobaczysz wiarygodny trend."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não há dados suficientes. Continue registrando seu peso todos os dias — em cerca de %1$@ dias você terá uma tendência confiável."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пока недостаточно данных. Продолжайте ежедневно записывать вес — примерно через %1$@ дн. появится надёжный тренд."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz yeterli veri yok. Kilonu her gün kaydetmeye devam et — yaklaşık %1$@ gün sonra güvenilir bir eğilim göreceksin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数据还不够。请继续每天记录体重——大约 %1$@ 天后即可看到可靠的趋势。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "資料還不夠。請持續每天記錄體重——大約 %1$@ 天後即可看到可靠的趨勢。"
+          }
+        }
+      }
+    },
+    "trend_on_track": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist auf Kurs. Dein Trend liegt bei %1$@ %2$@/Woche – genau im Rahmen deines Ziels."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're on track. Your trend is %1$@ %2$@/week, right in line with your goal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vas por buen camino. Tu tendencia es de %1$@ %2$@/semana, justo en línea con tu objetivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu es sur la bonne voie. Ta tendance est de %1$@ %2$@/semaine, en ligne avec ton objectif."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप सही रास्ते पर हैं। आपका ट्रेंड %1$@ %2$@/सप्ताह है, जो आपके लक्ष्य के अनुरूप है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sei sulla buona strada. La tua tendenza è di %1$@ %2$@/settimana, in linea con il tuo obiettivo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "順調です。あなたのトレンドは%1$@ %2$@/週で、目標に沿っています。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잘 하고 계세요. 현재 추세는 주당 %1$@ %2$@로, 목표와 정확히 일치합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je ligt op koers. Je trend is %1$@ %2$@/week, precies in lijn met je doel."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jesteś na dobrej drodze. Twój trend wynosi %1$@ %2$@/tydzień, zgodnie z Twoim celem."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você está no caminho certo. Sua tendência é de %1$@ %2$@/semana, alinhada com sua meta."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы на верном пути. Ваш тренд составляет %1$@ %2$@/нед., что соответствует вашей цели."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doğru yoldasın. Eğilimin haftada %1$@ %2$@, tam olarak hedefinle uyumlu."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的进度很顺利。你的趋势为每周 %1$@ %2$@,与目标一致。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的進度很順利。你的趨勢為每週 %1$@ %2$@,與目標一致。"
+          }
+        }
+      }
+    },
+    "trend_stable_weekly_noise": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Wert dieser Woche ist eine normale Schwankung (Wasser, Nahrung, Hormone). Dein zugrunde liegender Trend liegt weiterhin bei %1$@ %2$@/Woche – keine Anpassung nötig."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week's number looks like normal day-to-day fluctuation (water, food, hormones). Your underlying trend is still %1$@ %2$@/week — no change needed."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El valor de esta semana parece una fluctuación normal (agua, comida, hormonas). Tu tendencia real sigue siendo de %1$@ %2$@/semana — no hace falta ningún cambio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le chiffre de cette semaine ressemble à une fluctuation normale (eau, alimentation, hormones). Ta tendance de fond reste à %1$@ %2$@/semaine — aucun changement nécessaire."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस सप्ताह की संख्या सामान्य उतार-चढ़ाव (पानी, भोजन, हार्मोन) जैसी लगती है। आपका असली ट्रेंड अभी भी %1$@ %2$@/सप्ताह है — किसी बदलाव की ज़रूरत नहीं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il valore di questa settimana sembra una normale oscillazione (acqua, cibo, ormoni). La tua tendenza di fondo resta %1$@ %2$@/settimana — nessuna modifica necessaria."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週の数値は通常の変動(水分、食事、ホルモンなど)によるものと考えられます。実際のトレンドは引き続き%1$@ %2$@/週です — 変更の必要はありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 주 수치는 정상적인 변동(수분, 식사, 호르몬 등)으로 보입니다. 실제 추세는 여전히 주당 %1$@ %2$@이며, 조정이 필요하지 않습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het cijfer van deze week lijkt op een normale schommeling (vocht, voeding, hormonen). Je onderliggende trend blijft %1$@ %2$@/week — geen aanpassing nodig."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wynik z tego tygodnia wygląda na normalne wahanie (woda, jedzenie, hormony). Twój rzeczywisty trend to nadal %1$@ %2$@/tydzień — żadna zmiana nie jest potrzebna."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O número desta semana parece uma flutuação normal (água, alimentação, hormônios). Sua tendência real continua em %1$@ %2$@/semana — nenhuma mudança é necessária."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показатель этой недели похож на обычное колебание (вода, питание, гормоны). Ваш реальный тренд по-прежнему %1$@ %2$@/нед. — изменений не требуется."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu haftaki değer normal bir dalgalanma gibi görünüyor (su, yemek, hormonlar). Asıl eğilimin hâlâ haftada %1$@ %2$@ — herhangi bir değişiklik gerekmiyor."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本周的数值看起来只是正常的波动(水分、饮食、激素等)。你的实际趋势仍为每周 %1$@ %2$@——无需调整。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週的數值看起來只是正常的波動(水分、飲食、荷爾蒙等)。你的實際趨勢仍為每週 %1$@ %2$@——不需要調整。"
+          }
+        }
+      }
+    },
+    "calorie_decrease_suggested": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basierend auf deinem Trend der letzten %1$@ Wochen empfehlen wir, deine täglichen Kalorien um etwa %2$@ kcal zu senken, um dein Ziel bis %3$@ zu erreichen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based on your trend over the last %1$@ weeks, we recommend lowering your daily calories by about %2$@ kcal to stay on track for your goal by %3$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Según tu tendencia de las últimas %1$@ semanas, te recomendamos reducir tus calorías diarias en unas %2$@ kcal para alcanzar tu objetivo antes del %3$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D'après ta tendance des %1$@ dernières semaines, nous te recommandons de réduire tes calories quotidiennes d'environ %2$@ kcal pour atteindre ton objectif d'ici le %3$@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले %1$@ हफ्तों के आपके ट्रेंड के आधार पर, हम सुझाव देते हैं कि %3$@ तक अपने लक्ष्य तक पहुँचने के लिए अपनी दैनिक कैलोरी लगभग %2$@ kcal कम करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In base alla tua tendenza delle ultime %1$@ settimane, ti consigliamo di ridurre le calorie giornaliere di circa %2$@ kcal per raggiungere il tuo obiettivo entro il %3$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去%1$@週間のトレンドに基づき、%3$@までに目標を達成するために、1日の摂取カロリーを約%2$@kcal減らすことをおすすめします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 %1$@주간의 추세를 기준으로, %3$@까지 목표를 달성하려면 하루 섭취 칼로리를 약 %2$@kcal 줄이는 것을 권장합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op basis van je trend van de afgelopen %1$@ weken raden we aan je dagelijkse calorieën met ongeveer %2$@ kcal te verlagen om je doel voor %3$@ te halen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na podstawie Twojego trendu z ostatnich %1$@ tygodni zalecamy zmniejszenie dziennej liczby kalorii o około %2$@ kcal, aby osiągnąć cel do %3$@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com base na sua tendência das últimas %1$@ semanas, recomendamos reduzir suas calorias diárias em cerca de %2$@ kcal para atingir sua meta até %3$@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На основе вашего тренда за последние %1$@ нед. рекомендуем снизить дневную калорийность примерно на %2$@ ккал, чтобы достичь цели к %3$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son %1$@ haftalık eğilimine göre, %3$@ tarihine kadar hedefine ulaşmak için günlük kalorini yaklaşık %2$@ kcal azaltmanı öneririz."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据你过去 %1$@ 周的趋势,建议将每日热量减少约 %2$@ 千卡,以便在 %3$@ 前达成目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根據你過去 %1$@ 週的趨勢,建議將每日熱量減少約 %2$@ 大卡,以便在 %3$@ 前達成目標。"
+          }
+        }
+      }
+    },
+    "calorie_increase_suggested": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basierend auf deinem Trend der letzten %1$@ Wochen empfehlen wir, deine täglichen Kalorien um etwa %2$@ kcal zu erhöhen, um dein Ziel bis %3$@ zu erreichen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based on your trend over the last %1$@ weeks, we recommend raising your daily calories by about %2$@ kcal to stay on track for your goal by %3$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Según tu tendencia de las últimas %1$@ semanas, te recomendamos aumentar tus calorías diarias en unas %2$@ kcal para alcanzar tu objetivo antes del %3$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D'après ta tendance des %1$@ dernières semaines, nous te recommandons d'augmenter tes calories quotidiennes d'environ %2$@ kcal pour atteindre ton objectif d'ici le %3$@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले %1$@ हफ्तों के आपके ट्रेंड के आधार पर, हम सुझाव देते हैं कि %3$@ तक अपने लक्ष्य तक पहुँचने के लिए अपनी दैनिक कैलोरी लगभग %2$@ kcal बढ़ाएँ।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In base alla tua tendenza delle ultime %1$@ settimane, ti consigliamo di aumentare le calorie giornaliere di circa %2$@ kcal per raggiungere il tuo obiettivo entro il %3$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去%1$@週間のトレンドに基づき、%3$@までに目標を達成するために、1日の摂取カロリーを約%2$@kcal増やすことをおすすめします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 %1$@주간의 추세를 기준으로, %3$@까지 목표를 달성하려면 하루 섭취 칼로리를 약 %2$@kcal 늘리는 것을 권장합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op basis van je trend van de afgelopen %1$@ weken raden we aan je dagelijkse calorieën met ongeveer %2$@ kcal te verhogen om je doel voor %3$@ te halen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na podstawie Twojego trendu z ostatnich %1$@ tygodni zalecamy zwiększenie dziennej liczby kalorii o około %2$@ kcal, aby osiągnąć cel do %3$@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com base na sua tendência das últimas %1$@ semanas, recomendamos aumentar suas calorias diárias em cerca de %2$@ kcal para atingir sua meta até %3$@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На основе вашего тренда за последние %1$@ нед. рекомендуем увеличить дневную калорийность примерно на %2$@ ккал, чтобы достичь цели к %3$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son %1$@ haftalık eğilimine göre, %3$@ tarihine kadar hedefine ulaşmak için günlük kalorini yaklaşık %2$@ kcal artırmanı öneririz."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据你过去 %1$@ 周的趋势,建议将每日热量增加约 %2$@ 千卡,以便在 %3$@ 前达成目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根據你過去 %1$@ 週的趨勢,建議將每日熱量增加約 %2$@ 大卡,以便在 %3$@ 前達成目標。"
+          }
+        }
+      }
+    },
+    "plateau_warning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Trend hat sich in den letzten %1$@ Wochen kaum verändert. Das kann passieren, auch wenn du alles richtig machst – hält es an, schlagen wir bald eine Kalorienanpassung vor."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your trend has barely moved over the last %1$@ weeks. This can happen even when you're doing everything right — if it continues, we'll suggest a calorie adjustment soon."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu tendencia apenas se ha movido en las últimas %1$@ semanas. Esto puede pasar incluso haciendo todo bien — si continúa, pronto te sugeriremos un ajuste de calorías."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta tendance a très peu bougé au cours des %1$@ dernières semaines. Cela peut arriver même en faisant tout comme il faut — si ça continue, nous te proposerons bientôt un ajustement calorique."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले %1$@ हफ्तों में आपका ट्रेंड लगभग नहीं बदला है। यह तब भी हो सकता है जब आप सब कुछ सही कर रहे हों — अगर यह जारी रहा, तो हम जल्द ही कैलोरी में बदलाव का सुझाव देंगे।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua tendenza è rimasta quasi invariata nelle ultime %1$@ settimane. Può succedere anche facendo tutto correttamente — se continua, ti suggeriremo presto una modifica delle calorie."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去%1$@週間、トレンドはほとんど変化していません。すべて正しく行っていてもこうしたことは起こり得ます。この状態が続く場合は、近いうちにカロリー調整をご提案します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 %1$@주 동안 추세가 거의 변하지 않았습니다. 모든 것을 제대로 하고 있어도 이런 일은 생길 수 있어요 — 계속된다면 곧 칼로리 조정을 제안해 드릴게요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je trend is de afgelopen %1$@ weken nauwelijks veranderd. Dat kan gebeuren, ook als je alles goed doet — als dit aanhoudt, stellen we binnenkort een calorie-aanpassing voor."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój trend prawie się nie zmienił przez ostatnie %1$@ tygodni. Może się to zdarzyć, nawet gdy wszystko robisz dobrze — jeśli to się utrzyma, wkrótce zaproponujemy zmianę kalorii."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua tendência quase não mudou nas últimas %1$@ semanas. Isso pode acontecer mesmo fazendo tudo certo — se continuar, sugeriremos em breve um ajuste de calorias."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваш тренд почти не менялся последние %1$@ нед. Такое может случиться, даже если вы всё делаете правильно — если это продолжится, мы скоро предложим изменить калорийность."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eğilimin son %1$@ haftadır neredeyse hiç değişmedi. Her şeyi doğru yaparken bile bu olabilir — devam ederse yakında bir kalori ayarlaması önereceğiz."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 %1$@ 周你的趋势几乎没有变化。即使一切都做得很好,也可能出现这种情况——如果持续下去,我们会尽快建议调整热量摄入。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去 %1$@ 週你的趨勢幾乎沒有變化。即使一切都做得很好,也可能發生這種情況——如果持續下去,我們會盡快建議調整熱量攝取。"
+          }
+        }
+      }
+    },
+    "goal_close": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast geschafft – nur noch %1$@ %2$@ bis zu deinem Ziel von %3$@ %2$@."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almost there — just %1$@ %2$@ to go until your goal of %3$@ %2$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya casi lo logras — solo te faltan %1$@ %2$@ para tu objetivo de %3$@ %2$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu y es presque — plus que %1$@ %2$@ avant ton objectif de %3$@ %2$@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बस थोड़ा और — आपके %3$@ %2$@ के लक्ष्य तक पहुँचने में सिर्फ %1$@ %2$@ बाकी है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ci sei quasi — mancano solo %1$@ %2$@ al tuo obiettivo di %3$@ %2$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "もう少しです — 目標の%3$@ %2$@まで、あと%1$@ %2$@です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "거의 다 왔어요 — 목표 %3$@ %2$@까지 %1$@ %2$@만 남았습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bijna klaar — nog maar %1$@ %2$@ te gaan tot je doel van %3$@ %2$@."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Już prawie — zostało tylko %1$@ %2$@ do Twojego celu %3$@ %2$@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quase lá — faltam apenas %1$@ %2$@ para sua meta de %3$@ %2$@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Почти у цели — осталось всего %1$@ %2$@ до цели %3$@ %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neredeyse tamam — %3$@ %2$@ hedefine sadece %1$@ %2$@ kaldı."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就快到了——距离你的目标 %3$@ %2$@ 还差 %1$@ %2$@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就快到了——距離你的目標 %3$@ %2$@ 還差 %1$@ %2$@。"
+          }
+        }
+      }
+    },
+    "goal_reached": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast dein Zielgewicht von %1$@ %2$@ erreicht! 🎉"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've reached your goal weight of %1$@ %2$@! 🎉"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Has alcanzado tu peso objetivo de %1$@ %2$@! 🎉"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu as atteint ton poids cible de %1$@ %2$@ ! 🎉"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने अपना लक्ष्य वज़न %1$@ %2$@ हासिल कर लिया है! 🎉"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai raggiunto il tuo peso obiettivo di %1$@ %2$@! 🎉"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標体重の%1$@ %2$@を達成しました!🎉"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표 체중 %1$@ %2$@을 달성했습니다! 🎉"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt je streefgewicht van %1$@ %2$@ bereikt! 🎉"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gratulacje! Osiągnięto docelową wagę: %1$@ %2$@. 🎉"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você atingiu seu peso meta de %1$@ %2$@! 🎉"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель достигнута: вес %1$@ %2$@! 🎉"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ %2$@ hedef kilona ulaştın! 🎉"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已达成目标体重 %1$@ %2$@!🎉"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已達成目標體重 %1$@ %2$@!🎉"
+          }
+        }
+      }
+    },
+    "goal_date_unrealistic": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei deinem aktuellen Trend ist es unwahrscheinlich, dass du %1$@ %2$@ bis %3$@ erreichst. Passe dein Zieldatum oder deine täglichen Kalorien an."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At your current trend, reaching %1$@ %2$@ by %3$@ looks unlikely. Consider adjusting your target date or your daily calories."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con tu tendencia actual, es poco probable que alcances %1$@ %2$@ antes del %3$@. Considera ajustar tu fecha objetivo o tus calorías diarias."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Au rythme actuel, atteindre %1$@ %2$@ d'ici le %3$@ semble peu probable. Envisage d'ajuster ta date cible ou tes calories quotidiennes."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके मौजूदा ट्रेंड के हिसाब से, %3$@ तक %1$@ %2$@ तक पहुँचना मुश्किल लग रहा है। अपनी लक्ष्य तिथि या दैनिक कैलोरी में बदलाव पर विचार करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con la tendenza attuale, raggiungere %1$@ %2$@ entro il %3$@ sembra improbabile. Valuta di modificare la data obiettivo o le calorie giornaliere."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在のトレンドでは、%3$@までに%1$@ %2$@に到達するのは難しそうです。目標日または1日の摂取カロリーの見直しをご検討ください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재 추세대로라면 %3$@까지 %1$@ %2$@에 도달하기 어려울 것 같습니다. 목표 날짜나 하루 섭취 칼로리 조정을 고려해 보세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bij je huidige trend is het onwaarschijnlijk dat je %1$@ %2$@ voor %3$@ haalt. Overweeg je streefdatum of je dagelijkse calorieën aan te passen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przy obecnym trendzie osiągnięcie %1$@ %2$@ do %3$@ wygląda na mało prawdopodobne. Rozważ zmianę daty docelowej lub dziennych kalorii."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com sua tendência atual, atingir %1$@ %2$@ até %3$@ parece improvável. Considere ajustar sua data meta ou suas calorias diárias."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "При текущем тренде достижение %1$@ %2$@ к %3$@ выглядит маловероятным. Рассмотрите изменение целевой даты или дневной калорийности."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mevcut eğilimine göre, %3$@ tarihine kadar %1$@ %2$@ hedefine ulaşman pek olası görünmüyor. Hedef tarihini veya günlük kalorini gözden geçirmeyi düşün."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按照目前的趋势,在 %3$@ 前达到 %1$@ %2$@ 的可能性不大。可以考虑调整目标日期或每日热量。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按照目前的趨勢,在 %3$@ 前達到 %1$@ %2$@ 的可能性不大。可以考慮調整目標日期或每日熱量。"
+          }
+        }
+      }
+    },
+    "goal_date_ahead_of_schedule": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du liegst vor dem Zeitplan – bei diesem Tempo könntest du dein Ziel schon vor dem %1$@ erreichen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're ahead of schedule — at this rate, you could reach your goal before %1$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vas adelantado — a este ritmo, podrías alcanzar tu objetivo antes del %1$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu es en avance — à ce rythme, tu pourrais atteindre ton objectif avant le %1$@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप समय से आगे चल रहे हैं — इस रफ़्तार से आप %1$@ से पहले ही अपना लक्ष्य पा सकते हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sei in anticipo sui tempi — a questo ritmo potresti raggiungere il tuo obiettivo prima del %1$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "予定より順調に進んでいます — このペースなら%1$@より前に目標を達成できる可能性があります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "계획보다 앞서 있어요 — 이 속도라면 %1$@ 전에 목표를 달성할 수 있습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je loopt voor op schema — in dit tempo kun je je doel al vóór %1$@ bereiken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jesteś przed harmonogramem — w tym tempie możesz osiągnąć cel jeszcze przed %1$@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você está adiantado — nesse ritmo, pode atingir sua meta antes de %1$@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы опережаете график — при таком темпе вы можете достичь цели раньше %1$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planının önündesin — bu hızla hedefine %1$@ tarihinden önce ulaşabilirsin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的进度超前——照这个速度,你可能会在 %1$@ 之前达成目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的進度超前——照這個速度,你可能會在 %1$@ 之前達成目標。"
+          }
+        }
+      }
+    },
+    "goal_updated": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel aktualisiert: %1$@ %2$@ bis %3$@ (Zieltempo: %4$@ %2$@/Woche)."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal updated: %1$@ %2$@ by %3$@ (target pace: %4$@ %2$@/week)."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo actualizado: %1$@ %2$@ antes del %3$@ (ritmo objetivo: %4$@ %2$@/semana)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif mis à jour : %1$@ %2$@ d'ici le %3$@ (rythme cible : %4$@ %2$@/semaine)."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य अपडेट किया गया: %3$@ तक %1$@ %2$@ (लक्ष्य गति: %4$@ %2$@/सप्ताह)।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo aggiornato: %1$@ %2$@ entro il %3$@ (ritmo obiettivo: %4$@ %2$@/settimana)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標を更新しました:%3$@までに%1$@ %2$@(目標ペース:%4$@ %2$@/週)。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표가 업데이트되었습니다: %3$@까지 %1$@ %2$@ (목표 속도: 주당 %4$@ %2$@)."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doel bijgewerkt: %1$@ %2$@ voor %3$@ (streeftempo: %4$@ %2$@/week)."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cel zaktualizowany: %1$@ %2$@ do %3$@ (docelowe tempo: %4$@ %2$@/tydzień)."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta atualizada: %1$@ %2$@ até %3$@ (ritmo alvo: %4$@ %2$@/semana)."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель обновлена: %1$@ %2$@ к %3$@ (целевой темп: %4$@ %2$@/нед.)."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedef güncellendi: %3$@ tarihine kadar %1$@ %2$@ (hedef hız: haftada %4$@ %2$@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标已更新:%3$@ 前达到 %1$@ %2$@(目标速度:每周 %4$@ %2$@)。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標已更新:%3$@ 前達到 %1$@ %2$@(目標速度:每週 %4$@ %2$@)。"
           }
         }
       }
