@@ -181323,17 +181323,6 @@
         }
       }
     },
-    "nutrient.history.title" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Historie"
-          }
-        }
-      }
-    },
     "nutrient.iodine" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -181389,13 +181378,13 @@
         }
       }
     },
-    "nutrient.nodata" : {
+    "nutrient.no_data" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Noch keine\nDaten"
+            "value" : "Keine Daten"
           }
         }
       }
@@ -181506,17 +181495,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Tagesziel:"
-          }
-        }
-      }
-    },
-    "nutrient.total" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Gesamt"
           }
         }
       }

@@ -9,9 +9,9 @@ struct NutrientCategoryDetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
-                // Segmented Donut Chart
-                SegmentedRingChart(categoryName: categoryName, items: activeItems)
-                    .frame(height: 240)
+                // Progress List instead of Ring Chart
+                NutrientProgressList(categoryName: categoryName, items: activeItems)
+                    .padding(.top, 24)
                     .padding(.top, 24)
                     .padding(.bottom, 16)
                     
@@ -116,53 +116,51 @@ struct NutrientCategoryDetailView: View {
     }
 }
 
-struct SegmentedRingChart: View {
+struct NutrientProgressList: View {
     let categoryName: String
     let items: [NutrientItem]
     
     var body: some View {
-        ZStack {
+        VStack(spacing: 16) {
             if items.isEmpty {
-                Circle()
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 30)
                 Text(String(localized: "nutrient.no_data", defaultValue: "Keine Daten"))
                     .font(.headline)
                     .foregroundColor(.secondary)
             } else {
-                let segmentAngle = 360.0 / Double(items.count)
-                let gapAngle = items.count > 1 ? 16.0 : 0.0
-                
                 ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
-                    let startDegrees = Double(index) * segmentAngle + (gapAngle / 2)
-                    let endDegrees = Double(index + 1) * segmentAngle - (gapAngle / 2)
                     let color = getColor(for: index, total: items.count)
+                    let fillRatio = max(min(item.score / 100.0, 1.0), 0.0)
                     
-                    let maxLineWidth: CGFloat = 30
-                    let fillRatio = max(min(item.score / 100.0, 1.0), 0.01)
-                    let filledDegrees = startDegrees + ((endDegrees - startDegrees) * fillRatio)
-                    
-                    // Background Arc (full width, very transparent)
-                    SegmentArc(startAngle: .degrees(startDegrees), endAngle: .degrees(endDegrees))
-                        .stroke(color.opacity(0.2), style: StrokeStyle(lineWidth: maxLineWidth, lineCap: .round))
-                    
-                    // Filled Arc (grows circumferentially)
-                    SegmentArc(startAngle: .degrees(startDegrees), endAngle: .degrees(filledDegrees))
-                        .stroke(color, style: StrokeStyle(lineWidth: maxLineWidth, lineCap: .round))
-                }
-                
-                // Average Score in center
-                VStack {
-                    Text("\(Int(averageScore))")
-                        .font(.system(size: 48, weight: .bold))
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text(item.name)
+                                .font(.subheadline)
+                                .bold()
+                            Spacer()
+                            Text("\(item.currentValue, specifier: "%.1f") / \(item.targetDGE, specifier: "%.1f") \(item.unitString)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(color.opacity(0.2))
+                                    .frame(height: 12)
+                                
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(color)
+                                    .frame(width: max(0, geo.size.width * CGFloat(fillRatio)), height: 12)
+                            }
+                        }
+                        .frame(height: 12)
+                    }
                 }
             }
         }
-        .padding(16) // Room for stroke
-    }
-    
-    private var averageScore: Double {
-        guard !items.isEmpty else { return 0 }
-        return items.reduce(0.0) { $0 + $1.score } / Double(items.count)
+        .padding()
+        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+        .padding(.horizontal, 24)
     }
     
     private func getColor(for index: Int, total: Int) -> Color {
@@ -175,20 +173,6 @@ struct SegmentedRingChart: View {
         } else {
             return Color(red: 0.98, green: 0.5, blue: 0.4)
         }
-    }
-}
-
-struct SegmentArc: Shape {
-    var startAngle: Angle
-    var endAngle: Angle
-    var radiusOffset: CGFloat = 0
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let center = CGPoint(x: rect.midX, y: rect.midY)
-        let radius = (min(rect.width, rect.height) / 2) + radiusOffset
-        path.addArc(center: center, radius: radius, startAngle: startAngle - .degrees(90), endAngle: endAngle - .degrees(90), clockwise: false)
-        return path
     }
 }
 
@@ -349,7 +333,7 @@ struct NutrientHistoryChart: View {
             return formatter.string(from: date)
         } else {
             let monthDate = Calendar.current.date(byAdding: .month, value: -ago, to: Date()) ?? Date()
-            formatter.dateFormat = "MMM"
+            formatter.dateFormat = "MMMMM"
             return formatter.string(from: monthDate)
         }
     }
