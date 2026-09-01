@@ -24,6 +24,7 @@ struct BodyDataFactoryView: View {
     @State private var selectedDate: Date? = nil
     
     @State private var showTargetSheet = false
+    @State private var targetInput = ""
     @State private var targetDateInput = Date()
     @State private var isManualEntriesExpanded = false
     /// Offset vom aktuellen Zeitraum: 0 = jetzt, -1 = letzte Periode, etc.
