@@ -177,7 +177,10 @@ struct BodyDataFactoryView: View {
         }
         .onAppear {
             if type == .weight { fetchHealthWeight() }
-          // MARK: - Chart View
+        }
+    }
+
+    // MARK: - Chart View
 
     private var visibleDomain: TimeInterval {
         switch timeRange {
