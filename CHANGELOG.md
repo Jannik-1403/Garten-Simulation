@@ -896,3 +896,4 @@
 - GesundKochenCard Kalorien-Anzeige zu Balken umgebaut und mit CalorieDetailView verlinkt.
 - HealthManager.swift um fetchHistoricalData erweitert.
 - UI Fixes für Kalorien Detail-Ansicht, GesundKochenCard und Makro-Ziele gem. Feedback.
+- Gewichtsziele für Kalorienberechnung integriert. Kalorien UI in Grün geändert. 3D Container in DetailView entfernt.
