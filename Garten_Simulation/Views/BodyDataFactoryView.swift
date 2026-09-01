@@ -99,24 +99,39 @@ struct BodyDataFactoryView: View {
                         .kerning(1.2)
 
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        let avg = currentAverage
-                        if avg > 0 {
-                            Text(String(format: "%.1f", avg))
+                        if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
+                            Text(String(format: "%.1f", selectedEntry.progress))
                                 .font(.system(size: 42, weight: .black, design: .rounded))
                                 .foregroundStyle(.pink)
                             Text(unit)
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundStyle(.pink.opacity(0.7))
                         } else {
-                            Text(String(localized: "body.tracking.no_data", defaultValue: "Keine Daten"))
-                                .font(.system(size: 32, weight: .black, design: .rounded))
-                                .foregroundStyle(Color(UIColor.systemGray3))
+                            let avg = currentAverage
+                            if avg > 0 {
+                                Text(String(format: "%.1f", avg))
+                                    .font(.system(size: 42, weight: .black, design: .rounded))
+                                    .foregroundStyle(.pink)
+                                Text(unit)
+                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.pink.opacity(0.7))
+                            } else {
+                                Text(String(localized: "body.tracking.no_data", defaultValue: "Keine Daten"))
+                                    .font(.system(size: 32, weight: .black, design: .rounded))
+                                    .foregroundStyle(Color(UIColor.systemGray3))
+                            }
                         }
                     }
 
-                    Text(dateRangeLabel)
-                        .font(.system(size: 13, weight: .semibold, design: .rounded))
-                        .foregroundStyle(.secondary)
+                    if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
+                        Text(selectedEntry.timestamp.formatted(.dateTime.day().month().year().hour().minute().locale(SettingsStore.shared.appLocale)))
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text(dateRangeLabel)
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .padding(.horizontal)
 
@@ -162,87 +177,81 @@ struct BodyDataFactoryView: View {
         }
         .onAppear {
             if type == .weight { fetchHealthWeight() }
+          // MARK: - Chart View
+
+    private var visibleDomain: TimeInterval {
+        switch timeRange {
+        case .t: return 3600 * 24 // 1 Day
+        case .w: return 3600 * 24 * 7 // 1 Week
+        case .m: return 3600 * 24 * 31 // ~1 Month
+        case .sixM: return 3600 * 24 * 30 * 6 // 6 Months
+        case .j: return 3600 * 24 * 365 // 1 Year
         }
     }
-    // MARK: - Chart View
 
     @ViewBuilder
     private var chartView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            Chart {
-                ForEach(scrollData, id: \.timestamp) { entry in
-                    LineMark(
-                        x: .value("x", entry.timestamp, unit: .day),
-                        y: .value("y", entry.progress)
-                    )
-                    .interpolationMethod(.linear)
-                    .foregroundStyle(Color.pink)
-                    .lineStyle(StrokeStyle(lineWidth: 3, lineCap: .round))
+        Chart {
+            ForEach(scrollData, id: \.timestamp) { entry in
+                LineMark(
+                    x: .value("x", entry.timestamp, unit: .day),
+                    y: .value("y", entry.progress)
+                )
+                .interpolationMethod(.linear)
+                .foregroundStyle(Color.pink)
+                .lineStyle(StrokeStyle(lineWidth: 3, lineCap: .round))
 
-                    PointMark(
-                        x: .value("x", entry.timestamp, unit: .day),
-                        y: .value("y", entry.progress)
-                    )
-                    .foregroundStyle(Color.pink)
-                    .symbolSize(40)
-                }
-                
-                if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
-                    RuleMark(x: .value("Selected", selectedEntry.timestamp))
-                        .foregroundStyle(Color(UIColor.systemGray4))
-                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
-                        .annotation(
-                            position: .top, spacing: 0,
-                            overflowResolution: .init(x: .fit(to: .chart), y: .disabled)
-                        ) {
-                            VStack(spacing: 4) {
-                                Text(String(format: "%.1f", selectedEntry.progress))
-                                    .font(.system(size: 16, weight: .black, design: .rounded))
-                                    .foregroundStyle(Color.pink)
-                                Text(selectedEntry.timestamp.formatted(.dateTime.day().month().year().locale(SettingsStore.shared.appLocale)))
-                                    .font(.system(size: 10, weight: .semibold, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                            }
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .fill(Color(UIColor.secondarySystemGroupedBackground))
-                                    .shadow(color: .black.opacity(0.1), radius: 3, y: 2)
-                            )
-                        }
-                }
+                PointMark(
+                    x: .value("x", entry.timestamp, unit: .day),
+                    y: .value("y", entry.progress)
+                )
+                .foregroundStyle(Color.pink)
+                .symbolSize(40)
             }
-            .frame(width: max(UIScreen.main.bounds.width - 32, CGFloat(scrollData.count) * 40))
-            .chartXSelection(value: $selectedDate)
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .day, count: max(1, scrollData.count / 7))) { value in
-                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
-                    AxisValueLabel {
-                        if let date = value.as(Date.self) {
-                            Text(date.formatted(.dateTime.day().month()))
-                                .font(.system(size: 11, weight: .semibold, design: .rounded))
-                                .foregroundStyle(Color(UIColor.systemGray2))
-                        }
-                    }
-                }
+            
+            if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
+                RuleMark(x: .value("Selected", selectedEntry.timestamp))
+                    .foregroundStyle(Color(UIColor.systemGray4))
+                    .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
             }
-            .chartYAxis {
-                AxisMarks(position: .trailing) { value in
-                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
-                    AxisValueLabel {
-                        if let v = value.as(Double.self) {
-                            Text(String(format: "%.0f", v))
-                                .font(.system(size: 11, weight: .semibold, design: .rounded))
-                                .foregroundStyle(Color(UIColor.systemGray2))
-                        }
-                    }
-                }
-            }
-            .chartYScale(domain: yMin...yMax)
-            .padding(.trailing, 16) // Padding nur am Ende, damit der Start bündig abschließt
         }
-        .defaultScrollAnchor(.trailing)
+        .chartScrollableAxes(.horizontal)
+        .chartXVisibleDomain(length: visibleDomain)
+        .chartScrollPosition(initialX: Date())
+        .chartXSelection(value: $selectedDate)
+        .chartXAxis {
+            AxisMarks(values: .stride(by: timeRange == .t ? .hour : .day, count: timeRange == .t ? 6 : (timeRange == .w ? 1 : 7))) { value in
+                AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
+                AxisValueLabel {
+                    if let date = value.as(Date.self) {
+                        if timeRange == .t {
+                            Text(date.formatted(.dateTime.hour()))
+                        } else if timeRange == .w {
+                            Text(date.formatted(.dateTime.weekday(.short)))
+                        } else if timeRange == .m {
+                            Text(date.formatted(.dateTime.day()))
+                        } else {
+                            Text(date.formatted(.dateTime.month(.abbreviated)))
+                        }
+                    }
+                }
+                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                .foregroundStyle(Color(UIColor.systemGray2))
+            }
+        }
+        .chartYAxis {
+            AxisMarks(position: .trailing) { value in
+                AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
+                AxisValueLabel {
+                    if let v = value.as(Double.self) {
+                        Text(String(format: "%.0f", v))
+                            .font(.system(size: 11, weight: .semibold, design: .rounded))
+                            .foregroundStyle(Color(UIColor.systemGray2))
+                    }
+                }
+            }
+        }
+        .chartYScale(domain: yMin...yMax)
         .frame(height: 250)
         .padding(.horizontal)
     }
