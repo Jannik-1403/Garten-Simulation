@@ -129,18 +129,18 @@ class NutrientIndexManager: ObservableObject {
         
         healthStore.requestAuthorization(toShare: nil, read: typesToRead) { success, _ in
             if success {
-                self.fetchTodaySum(for: &self.fiber, updateBlock: { updated in
+                self.fetchTodaySum(for: self.fiber, updateBlock: { updated in
                     self.fiber = updated
                 })
                 
                 for i in self.vitamins.indices {
-                    self.fetchTodaySum(for: &self.vitamins[i], updateBlock: { updated in
+                    self.fetchTodaySum(for: self.vitamins[i], updateBlock: { updated in
                         self.vitamins[i] = updated
                     })
                 }
                 
                 for i in self.minerals.indices {
-                    self.fetchTodaySum(for: &self.minerals[i], updateBlock: { updated in
+                    self.fetchTodaySum(for: self.minerals[i], updateBlock: { updated in
                         self.minerals[i] = updated
                     })
                 }
@@ -148,7 +148,7 @@ class NutrientIndexManager: ObservableObject {
         }
     }
     
-    private func fetchTodaySum(for item: inout NutrientItem, updateBlock: @escaping (NutrientItem) -> Void) {
+    private func fetchTodaySum(for item: NutrientItem, updateBlock: @escaping (NutrientItem) -> Void) {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: item.hkType) else { return }
         
         let now = Date()
