@@ -242,27 +242,23 @@ struct NutrientHistoryChart: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.horizontal, 20)
-            .onChange(of: timeRange) { _ in
+            .onChange(of: timeRange) { _, _ in
                 selectedIndex = itemCount - 1
             }
             
+            // Combined HStack for bars and labels — guarantees perfect alignment
             HStack(alignment: .bottom, spacing: barSpacing) {
                 ForEach(0..<itemCount, id: \.self) { i in
                     let isSelected = i == selectedIndex
                     let dayScore = (i == itemCount - 1) ? getCurrentScore() : getMockScore(forDaysAgo: (itemCount - 1) - i)
+                    let fillRatio = CGFloat(max(min(dayScore / 100.0, 1.0), 0.0))
                     
                     VStack(spacing: 8) {
-                        GeometryReader { geometry in
-                            VStack {
-                                Spacer()
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(isSelected ? getCategoryColor() : Color(UIColor.systemGray4))
-                                    .frame(height: max(geometry.size.height * CGFloat(dayScore / 100.0), 4))
-                            }
-                        }
-                        .frame(height: 100)
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(isSelected ? getCategoryColor() : Color(UIColor.systemGray4))
+                            .frame(height: max(100 * fillRatio, 4))
                         
-                        ZStack(alignment: .top) {
+                        ZStack {
                             if shouldShowLabel(for: i) {
                                 Text(getLabel(index: i))
                                     .font(.system(size: 8))
@@ -274,6 +270,8 @@ struct NutrientHistoryChart: View {
                         }
                         .frame(height: 12)
                     }
+                    .frame(maxWidth: .infinity, alignment: .bottom)
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             selectedIndex = i
@@ -281,7 +279,7 @@ struct NutrientHistoryChart: View {
                     }
                 }
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 120, alignment: .bottom)
         }
         .padding()
         .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
