@@ -27,6 +27,8 @@ struct BodyDataFactoryView: View {
     @State private var targetInput = ""
     @State private var targetDateInput = Date()
     @State private var isManualEntriesExpanded = false
+    /// Offset vom aktuellen Zeitraum: 0 = jetzt, -1 = letzte Periode, etc.
+    @State private var periodOffset: Int = 0
 
     // MARK: - Body
 
@@ -44,6 +46,8 @@ struct BodyDataFactoryView: View {
                 .padding(.horizontal)
                 .padding(.top, 8)
                 .onChange(of: timeRange) { _, _ in
+                    periodOffset = 0
+                    selectedDate = nil
                     if type == .weight { fetchHealthWeight() }
                 }
 
@@ -87,7 +91,7 @@ struct BodyDataFactoryView: View {
                     .padding(.bottom, 8)
                 }
 
-                // Stats Header – zeigt Durchschnitt
+                // Stats Header – zeigt Durchschnitt + Periode-Navigation
                 VStack(alignment: .leading, spacing: 4) {
                     Text(String(localized: "body.tracking.average", defaultValue: "DURCHSCHNITT"))
                         .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -110,9 +114,52 @@ struct BodyDataFactoryView: View {
                         }
                     }
 
-                    Text(dateRangeLabel)
-                        .font(.system(size: 13, weight: .semibold, design: .rounded))
-                        .foregroundStyle(.secondary)
+                    // Periode-Navigation: ← Label →
+                    if canNavigatePeriods {
+                        HStack(spacing: 6) {
+                            Button {
+                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    periodOffset -= 1
+                                    selectedDate = nil
+                                }
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .font(.system(size: 13, weight: .bold))
+                                    .foregroundStyle(canGoPrevious ? Color.pink : Color(UIColor.systemGray4))
+                                    .frame(width: 28, height: 28)
+                                    .background(Color(UIColor.tertiarySystemGroupedBackground))
+                                    .clipShape(Circle())
+                            }
+                            .disabled(!canGoPrevious)
+
+                            Text(dateRangeLabel)
+                                .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                                .frame(minWidth: 100)
+
+                            Button {
+                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    periodOffset = min(0, periodOffset + 1)
+                                    selectedDate = nil
+                                }
+                            } label: {
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 13, weight: .bold))
+                                    .foregroundStyle(periodOffset < 0 ? Color.pink : Color(UIColor.systemGray4))
+                                    .frame(width: 28, height: 28)
+                                    .background(Color(UIColor.tertiarySystemGroupedBackground))
+                                    .clipShape(Circle())
+                            }
+                            .disabled(periodOffset >= 0)
+                        }
+                    } else {
+                        Text(dateRangeLabel)
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .padding(.horizontal)
 
@@ -330,34 +377,56 @@ struct BodyDataFactoryView: View {
         .presentationDetents([.medium])
     }
 
-    private var dateRange: (start: Date, end: Date) {
-        let cal = Calendar.current
+    // MARK: - Perioden-Navigation Helpers
+
+    /// Ob die aktuelle timeRange überhaupt Navigation unterstützt (nicht bei 6M oder T)
+    private var canNavigatePeriods: Bool {
+        timeRange == .w || timeRange == .m || timeRange == .j
+    }
+
+    /// Ob man in der Vergangenheit noch Daten hat
+    private var canGoPrevious: Bool {
+        guard canNavigatePeriods else { return false }
+        let prevRange = dateRangeForOffset(periodOffset - 1)
+        return allData.contains { $0.timestamp >= prevRange.start && $0.timestamp <= prevRange.end }
+    }
+
+    private func dateRangeForOffset(_ offset: Int) -> (start: Date, end: Date) {
+        let cal: Calendar = {
+            var c = Calendar.current
+            c.firstWeekday = 2 // Montag
+            return c
+        }()
         let now = Date()
         var start: Date
         var end: Date
-        
+
         switch timeRange {
         case .t:
-            start = cal.startOfDay(for: now)
-            end = cal.date(byAdding: .day, value: 1, to: start)?.addingTimeInterval(-1) ?? now
+            // Tag-Offset
+            let base = cal.startOfDay(for: now)
+            start = cal.date(byAdding: .day, value: offset, to: base) ?? base
+            end = cal.date(byAdding: .day, value: 1, to: start)?.addingTimeInterval(-1) ?? start
         case .w:
-            // Configure week to start on Monday
-            var calendar = Calendar.current
-            calendar.firstWeekday = 2 // Monday
-            if let interval = calendar.dateInterval(of: .weekOfYear, for: now) {
-                start = interval.start
-                end = interval.end.addingTimeInterval(-1)
+            // Woche-Offset: aktuelle Woche + offset * 7 Tage
+            if let currentInterval = cal.dateInterval(of: .weekOfYear, for: now) {
+                let baseStart = currentInterval.start
+                start = cal.date(byAdding: .weekOfYear, value: offset, to: baseStart) ?? baseStart
+                end = cal.date(byAdding: .weekOfYear, value: 1, to: start)?.addingTimeInterval(-1) ?? start
             } else {
                 start = now; end = now
             }
         case .m:
-            if let interval = cal.dateInterval(of: .month, for: now) {
-                start = interval.start
-                end = interval.end.addingTimeInterval(-1)
+            // Monat-Offset
+            if let currentInterval = cal.dateInterval(of: .month, for: now) {
+                let baseStart = currentInterval.start
+                start = cal.date(byAdding: .month, value: offset, to: baseStart) ?? baseStart
+                end = cal.date(byAdding: .month, value: 1, to: start)?.addingTimeInterval(-1) ?? start
             } else {
                 start = now; end = now
             }
         case .sixM:
+            // 6M navigiert nicht, immer relativ zu jetzt
             if let monthStart = cal.dateInterval(of: .month, for: now)?.start {
                 start = cal.date(byAdding: .month, value: -5, to: monthStart) ?? now
                 end = cal.dateInterval(of: .month, for: now)?.end.addingTimeInterval(-1) ?? now
@@ -365,14 +434,20 @@ struct BodyDataFactoryView: View {
                 start = now; end = now
             }
         case .j:
-            if let interval = cal.dateInterval(of: .year, for: now) {
-                start = interval.start
-                end = interval.end.addingTimeInterval(-1)
+            // Jahr-Offset
+            if let currentInterval = cal.dateInterval(of: .year, for: now) {
+                let baseStart = currentInterval.start
+                start = cal.date(byAdding: .year, value: offset, to: baseStart) ?? baseStart
+                end = cal.date(byAdding: .year, value: 1, to: start)?.addingTimeInterval(-1) ?? start
             } else {
                 start = now; end = now
             }
         }
         return (start, end)
+    }
+
+    private var dateRange: (start: Date, end: Date) {
+        dateRangeForOffset(periodOffset)
     }
 
     // MARK: - HealthKit Fetch (Gewicht)
@@ -382,8 +457,8 @@ struct BodyDataFactoryView: View {
         guard let bodyMassType = HKQuantityType.quantityType(forIdentifier: .bodyMass) else { return }
 
         isLoadingHealth = true
-        // Fetch 1 year of data so local filtering works when timeRange changes
-        let start = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
+        // Fetch 3 years of data so navigation into the past works
+        let start = Calendar.current.date(byAdding: .year, value: -3, to: Date()) ?? Date()
         let predicate = HKQuery.predicateForSamples(withStart: start, end: Date(), options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
 
@@ -464,12 +539,41 @@ struct BodyDataFactoryView: View {
     }
 
     private var dateRangeLabel: String {
+        let locale = SettingsStore.shared.appLocale
+        let formatter = DateFormatter()
+        formatter.locale = locale
+        let range = dateRange
+
+        // Bei offset == 0 → generische Bezeichnung
+        if periodOffset == 0 {
+            switch timeRange {
+            case .t:    return String(localized: "body.tracking.today", defaultValue: "Heute")
+            case .w:    return String(localized: "body.tracking.this_week", defaultValue: "Diese Woche")
+            case .m:    return String(localized: "body.tracking.this_month", defaultValue: "Dieser Monat")
+            case .sixM: return String(localized: "body.tracking.six_months", defaultValue: "6 Monate")
+            case .j:    return String(localized: "body.tracking.this_year", defaultValue: "Dieses Jahr")
+            }
+        }
+
+        // Bei offset < 0 → konkretes Datum anzeigen
         switch timeRange {
-        case .t:    return String(localized: "body.tracking.today", defaultValue: "Heute")
-        case .w:    return String(localized: "body.tracking.this_week", defaultValue: "Diese Woche")
-        case .m:    return String(localized: "body.tracking.this_month", defaultValue: "Dieser Monat")
-        case .sixM: return String(localized: "body.tracking.six_months", defaultValue: "6 Monate")
-        case .j:    return String(localized: "body.tracking.this_year", defaultValue: "Dieses Jahr")
+        case .t:
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            return formatter.string(from: range.start)
+        case .w:
+            // "KW 34 · Aug 2026" oder "18.–24. Aug"
+            let startStr = range.start.formatted(.dateTime.day().month().locale(locale))
+            let endStr = range.end.formatted(.dateTime.day().month().year().locale(locale))
+            return "\(startStr) – \(endStr)"
+        case .m:
+            formatter.dateFormat = "MMMM yyyy"
+            return formatter.string(from: range.start)
+        case .sixM:
+            return String(localized: "body.tracking.six_months", defaultValue: "6 Monate")
+        case .j:
+            formatter.dateFormat = "yyyy"
+            return formatter.string(from: range.start)
         }
     }
 
