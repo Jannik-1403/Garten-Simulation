@@ -24,11 +24,11 @@ struct BodyDataFactoryView: View {
     @State private var selectedDate: Date? = nil
     
     @State private var showTargetSheet = false
-    @State private var targetInput = ""
     @State private var targetDateInput = Date()
     @State private var isManualEntriesExpanded = false
     /// Offset vom aktuellen Zeitraum: 0 = jetzt, -1 = letzte Periode, etc.
     @State private var periodOffset: Int = 0
+    @State private var dragOffset: CGFloat = 0
 
     // MARK: - Body
 
@@ -114,60 +114,21 @@ struct BodyDataFactoryView: View {
                         }
                     }
 
-                    // Periode-Navigation: ← Label →
-                    if canNavigatePeriods {
-                        HStack(spacing: 6) {
-                            Button {
-                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    periodOffset -= 1
-                                    selectedDate = nil
-                                }
-                            } label: {
-                                Image(systemName: "chevron.left")
-                                    .font(.system(size: 13, weight: .bold))
-                                    .foregroundStyle(canGoPrevious ? Color.pink : Color(UIColor.systemGray4))
-                                    .frame(width: 28, height: 28)
-                                    .background(Color(UIColor.tertiarySystemGroupedBackground))
-                                    .clipShape(Circle())
-                            }
-                            .disabled(!canGoPrevious)
-
-                            Text(dateRangeLabel)
-                                .font(.system(size: 13, weight: .semibold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .lineLimit(1)
-                                .frame(minWidth: 100)
-
-                            Button {
-                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    periodOffset = min(0, periodOffset + 1)
-                                    selectedDate = nil
-                                }
-                            } label: {
-                                Image(systemName: "chevron.right")
-                                    .font(.system(size: 13, weight: .bold))
-                                    .foregroundStyle(periodOffset < 0 ? Color.pink : Color(UIColor.systemGray4))
-                                    .frame(width: 28, height: 28)
-                                    .background(Color(UIColor.tertiarySystemGroupedBackground))
-                                    .clipShape(Circle())
-                            }
-                            .disabled(periodOffset >= 0)
-                        }
-                    } else {
-                        Text(dateRangeLabel)
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                    }
+                    Text(dateRangeLabel)
+                        .font(.system(size: 13, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
                 }
                 .padding(.horizontal)
 
                 // Chart
                 if filteredData.isEmpty {
                     emptyStateView
+                        .offset(x: dragOffset)
+                        .gesture(swipeGesture)
                 } else {
                     chartView
+                        .offset(x: dragOffset)
+                        .gesture(swipeGesture)
                 }
                 
                 // Ziel (bei Gewicht & Körperumfängen)
@@ -206,6 +167,49 @@ struct BodyDataFactoryView: View {
         .onAppear {
             if type == .weight { fetchHealthWeight() }
         }
+    }
+
+    // MARK: - Swipe Gesture
+    
+    private var swipeGesture: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                guard canNavigatePeriods else { return }
+                
+                // Gummiband-Effekt (Resistance), wenn man nicht weiter kann
+                if (value.translation.width < 0 && periodOffset >= 0) ||
+                   (value.translation.width > 0 && !canGoPrevious) {
+                    dragOffset = value.translation.width * 0.25
+                } else {
+                    dragOffset = value.translation.width
+                }
+            }
+            .onEnded { value in
+                guard canNavigatePeriods else { return }
+                
+                let threshold: CGFloat = 50
+                var didChange = false
+                
+                if value.translation.width < -threshold && periodOffset < 0 {
+                    // Nächste Periode (nach rechts swipen, also Inhalt fliegt nach links)
+                    periodOffset += 1
+                    selectedDate = nil
+                    didChange = true
+                    dragOffset = UIScreen.main.bounds.width // Setze Startpunkt für Hereinfliegen
+                } else if value.translation.width > threshold && canGoPrevious {
+                    // Vorherige Periode (nach links swipen, Inhalt fliegt nach rechts)
+                    periodOffset -= 1
+                    selectedDate = nil
+                    didChange = true
+                    dragOffset = -UIScreen.main.bounds.width
+                }
+                
+                UIImpactFeedbackGenerator(style: didChange ? .medium : .light).impactOccurred()
+                
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                    dragOffset = 0
+                }
+            }
     }
 
     // MARK: - Chart View
