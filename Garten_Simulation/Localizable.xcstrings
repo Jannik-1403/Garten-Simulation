@@ -106563,17 +106563,6 @@
         }
       }
     },
-    "calorie.calc.goal.none" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Kein aktives Gewichtsziel gesetzt."
-          }
-        }
-      }
-    },
     "calorie.calc.goal.pace" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -185976,7 +185965,6 @@
       }
     },
     "kg" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

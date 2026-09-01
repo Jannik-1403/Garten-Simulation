@@ -11,7 +11,6 @@ struct CalorieCalculationSheet: View {
     @State private var heightStr = ""
     @State private var ageStr = ""
     @State private var sexSelection = 0
-    @State private var bodyFatStr = ""
     @State private var showTargetSheet = false
     
 
@@ -105,13 +104,32 @@ struct CalorieCalculationSheet: View {
                         )
                         
                         // BODY FAT
-                        dataRow(
-                            title: String(localized: "calorie.calc.bodyfat", defaultValue: "Körperfettanteil"),
-                            unit: "%",
-                            hkValue: nil,
-                            manualBinding: $bodyFatStr,
-                            isNumber: true
-                        )
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Text(String(localized: "calorie.calc.bodyfat", defaultValue: "Körperfettanteil"))
+                                    .font(.headline)
+                                Spacer()
+                                if let cf = hm.calculatedBodyFat {
+                                    Text(String(format: "%.1f %%", cf))
+                                        .font(.title2.bold())
+                                        .foregroundColor(Color.green.darker())
+                                } else {
+                                    Text("-")
+                                        .font(.title2.bold())
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            if hm.calculatedBodyFat != nil {
+                                Text(String(localized: "calorie.calc.bodyfat_linked", defaultValue: "Wird automatisch über deinen Taillenumfang (Krafttraining) und dein Gewicht berechnet."))
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            } else {
+                                Text(String(localized: "calorie.calc.bodyfat_missing", defaultValue: "Erfasse deinen Taillenumfang im Krafttraining-Ziel, um den Körperfettanteil automatisch zu berechnen."))
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 4)
                         
                         // SEX
                         let hkSex = hm.biologicalSex?.biologicalSex
@@ -302,7 +320,6 @@ struct CalorieCalculationSheet: View {
         if hm.manualWeight > 0 { weightStr = String(format: "%.1f", hm.manualWeight).replacingOccurrences(of: ".0", with: "") }
         if hm.manualHeight > 0 { heightStr = String(format: "%.1f", hm.manualHeight).replacingOccurrences(of: ".0", with: "") }
         if hm.manualAge > 0 { ageStr = "\(hm.manualAge)" }
-        if hm.manualBodyFat > 0 { bodyFatStr = String(format: "%.1f", hm.manualBodyFat).replacingOccurrences(of: ".0", with: "") }
         sexSelection = hm.manualSex
     }
     
@@ -310,7 +327,8 @@ struct CalorieCalculationSheet: View {
         if let w = Double(weightStr.replacingOccurrences(of: ",", with: ".")) { hm.manualWeight = w }
         if let h = Double(heightStr.replacingOccurrences(of: ",", with: ".")) { hm.manualHeight = h }
         if let a = Int(ageStr) { hm.manualAge = a }
-        if let bf = Double(bodyFatStr.replacingOccurrences(of: ",", with: ".")) { hm.manualBodyFat = bf } else { hm.manualBodyFat = 0.0 }
+        
+        hm.manualBodyFat = 0.0 // Ensure manual is cleared if it was set before
         
         hm.recalculateGoals()
     }
