@@ -242,12 +242,18 @@ struct NutrientHistoryChart: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
-            Picker("Zeitraum", selection: $timeRange) {
-                Text(String(localized: "time.week", defaultValue: "Woche")).tag(0)
-                Text(String(localized: "time.month", defaultValue: "Monat")).tag(1)
-                Text(String(localized: "time.year", defaultValue: "Jahr")).tag(2)
+            VStack(spacing: 8) {
+                Text(getSelectedDateString())
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                
+                Picker("Zeitraum", selection: $timeRange) {
+                    Text(String(localized: "time.week", defaultValue: "Woche")).tag(0)
+                    Text(String(localized: "time.month", defaultValue: "Monat")).tag(1)
+                    Text(String(localized: "time.year", defaultValue: "Jahr")).tag(2)
+                }
+                .pickerStyle(SegmentedPickerStyle())
             }
-            .pickerStyle(SegmentedPickerStyle())
             .frame(maxWidth: .infinity)
             .padding(.horizontal, 20)
             .onChange(of: timeRange) { _ in
@@ -270,16 +276,17 @@ struct NutrientHistoryChart: View {
                         }
                         .frame(height: 100)
                         
-                        if shouldShowLabel(for: i) {
-                            Text(getLabel(index: i))
-                                .font(.system(size: 8))
-                                .foregroundColor(isSelected ? .primary : .secondary)
-                                .bold(isSelected)
-                                .lineLimit(1)
-                        } else {
-                            Text(" ")
-                                .font(.system(size: 8))
+                        ZStack(alignment: .top) {
+                            if shouldShowLabel(for: i) {
+                                Text(getLabel(index: i))
+                                    .font(.system(size: 8))
+                                    .foregroundColor(isSelected ? .primary : .secondary)
+                                    .bold(isSelected)
+                                    .lineLimit(1)
+                                    .fixedSize(horizontal: true, vertical: false)
+                            }
                         }
+                        .frame(height: 12)
                     }
                     .onTapGesture {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
@@ -314,8 +321,8 @@ struct NutrientHistoryChart: View {
     
     private func shouldShowLabel(for index: Int) -> Bool {
         if timeRange == 1 {
-            // Show label every 5 days for month view to avoid crowding
-            return index % 5 == 0 || index == 29
+            // Show label every 7 days for month view to avoid crowding
+            return index % 7 == 0 || index == 29
         }
         return true
     }
@@ -335,6 +342,21 @@ struct NutrientHistoryChart: View {
             let monthDate = Calendar.current.date(byAdding: .month, value: -ago, to: Date()) ?? Date()
             formatter.dateFormat = "MMMMM"
             return formatter.string(from: monthDate)
+        }
+    }
+    
+    private func getSelectedDateString() -> String {
+        let ago = (itemCount - 1) - selectedIndex
+        if timeRange == 2 {
+            let monthDate = Calendar.current.date(byAdding: .month, value: -ago, to: Date()) ?? Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM yyyy"
+            return formatter.string(from: monthDate)
+        } else {
+            let date = Calendar.current.date(byAdding: .day, value: -ago, to: Date()) ?? Date()
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            return formatter.string(from: date)
         }
     }
     private func getCurrentScore() -> Double {

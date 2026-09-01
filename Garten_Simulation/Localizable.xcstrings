@@ -571,6 +571,16 @@
     "%.0f mg" : {
 
     },
+    "%.1f / %.1f %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$.1f / %2$.1f %3$@"
+          }
+        }
+      }
+    },
     "%.1f g" : {
 
     },
