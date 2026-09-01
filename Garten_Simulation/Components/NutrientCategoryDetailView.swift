@@ -270,7 +270,6 @@ struct NutrientHistoryChart: View {
                                 Text(getLabel(index: i))
                                     .font(.system(size: 8))
                                     .foregroundColor(isSelected ? .primary : .secondary)
-                                    .bold(isSelected)
                                     .lineLimit(1)
                                     .fixedSize(horizontal: true, vertical: false)
                             }

@@ -4,10 +4,10 @@ import Combine
 
 struct NutrientItem: Identifiable, Codable {
     let id: UUID
-    let name: String
+    var name: String
     let hkTypeIdentifier: String
     var targetDGE: Double
-    let unitString: String
+    var unitString: String
     var currentValue: Double = 0.0
     var isEnabled: Bool = true
     
@@ -37,23 +37,46 @@ class NutrientIndexManager: ObservableObject {
     
     init() {
         // Init default fiber
-        self.fiber = NutrientItem(id: UUID(), name: "Ballaststoffe", hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryFiber.rawValue, targetDGE: 30.0, unitString: "g")
+        self.fiber = NutrientItem(id: UUID(), name: "Ballaststoffe", hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryFiber.rawValue, targetDGE: 30.0, unitString: String(localized: "unit.g", defaultValue: "g"))
         
         loadSettings()
     }
     
     private func loadSettings() {
+        let defVitamins = defaultVitamins()
+        let defMinerals = defaultMinerals()
+        let defFiber = defaultFiber()
+        
         if let data = UserDefaults.standard.data(forKey: defaultsKey),
            let savedState = try? JSONDecoder().decode([String: [NutrientItem]].self, from: data) {
             
-            self.vitamins = savedState["vitamins"] ?? defaultVitamins()
-            self.minerals = savedState["minerals"] ?? defaultMinerals()
-            self.fiber = savedState["fiber"]?.first ?? defaultFiber()
+            var loadedVits = savedState["vitamins"] ?? defVitamins
+            for i in loadedVits.indices {
+                if let match = defVitamins.first(where: { $0.hkTypeIdentifier == loadedVits[i].hkTypeIdentifier }) {
+                    loadedVits[i].name = match.name
+                    loadedVits[i].unitString = match.unitString
+                }
+            }
+            self.vitamins = loadedVits
+            
+            var loadedMins = savedState["minerals"] ?? defMinerals
+            for i in loadedMins.indices {
+                if let match = defMinerals.first(where: { $0.hkTypeIdentifier == loadedMins[i].hkTypeIdentifier }) {
+                    loadedMins[i].name = match.name
+                    loadedMins[i].unitString = match.unitString
+                }
+            }
+            self.minerals = loadedMins
+            
+            var loadedFiber = savedState["fiber"]?.first ?? defFiber
+            loadedFiber.name = defFiber.name
+            loadedFiber.unitString = defFiber.unitString
+            self.fiber = loadedFiber
             
         } else {
-            self.vitamins = defaultVitamins()
-            self.minerals = defaultMinerals()
-            self.fiber = defaultFiber()
+            self.vitamins = defVitamins
+            self.minerals = defMinerals
+            self.fiber = defFiber
         }
     }
     
@@ -97,43 +120,43 @@ class NutrientIndexManager: ObservableObject {
     
     private func defaultVitamins() -> [NutrientItem] {
         [
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_c", defaultValue: "Vitamin C"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminC.rawValue, targetDGE: 110.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_a", defaultValue: "Vitamin A"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminA.rawValue, targetDGE: 1000.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.folate", defaultValue: "Folsäure"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryFolate.rawValue, targetDGE: 300.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_k", defaultValue: "Vitamin K"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminK.rawValue, targetDGE: 70.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b1", defaultValue: "Vitamin B1 (Thiamin)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryThiamin.rawValue, targetDGE: 1.2, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b2", defaultValue: "Vitamin B2 (Riboflavin)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryRiboflavin.rawValue, targetDGE: 1.4, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b3", defaultValue: "Vitamin B3 (Niacin)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryNiacin.rawValue, targetDGE: 15.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b5", defaultValue: "Vitamin B5 (Pantothensäure)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryPantothenicAcid.rawValue, targetDGE: 5.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b6", defaultValue: "Vitamin B6"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminB6.rawValue, targetDGE: 1.6, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b7", defaultValue: "Vitamin B7 (Biotin)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryBiotin.rawValue, targetDGE: 40.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b12", defaultValue: "Vitamin B12"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminB12.rawValue, targetDGE: 4.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_d", defaultValue: "Vitamin D"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminD.rawValue, targetDGE: 20.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_e", defaultValue: "Vitamin E"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminE.rawValue, targetDGE: 14.0, unitString: "mg")
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_c", defaultValue: "Vitamin C"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminC.rawValue, targetDGE: 110.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_a", defaultValue: "Vitamin A"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminA.rawValue, targetDGE: 1000.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.folate", defaultValue: "Folsäure"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryFolate.rawValue, targetDGE: 300.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_k", defaultValue: "Vitamin K"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminK.rawValue, targetDGE: 70.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b1", defaultValue: "Vitamin B1 (Thiamin)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryThiamin.rawValue, targetDGE: 1.2, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b2", defaultValue: "Vitamin B2 (Riboflavin)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryRiboflavin.rawValue, targetDGE: 1.4, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b3", defaultValue: "Vitamin B3 (Niacin)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryNiacin.rawValue, targetDGE: 15.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b5", defaultValue: "Vitamin B5 (Pantothensäure)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryPantothenicAcid.rawValue, targetDGE: 5.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b6", defaultValue: "Vitamin B6"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminB6.rawValue, targetDGE: 1.6, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b7", defaultValue: "Vitamin B7 (Biotin)"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryBiotin.rawValue, targetDGE: 40.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_b12", defaultValue: "Vitamin B12"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminB12.rawValue, targetDGE: 4.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_d", defaultValue: "Vitamin D"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminD.rawValue, targetDGE: 20.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.vitamin_e", defaultValue: "Vitamin E"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryVitaminE.rawValue, targetDGE: 14.0, unitString: String(localized: "unit.mg", defaultValue: "mg"))
         ]
     }
     
     private func defaultMinerals() -> [NutrientItem] {
         [
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.potassium", defaultValue: "Kalium"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryPotassium.rawValue, targetDGE: 4000.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.magnesium", defaultValue: "Magnesium"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryMagnesium.rawValue, targetDGE: 350.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.calcium", defaultValue: "Calcium"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryCalcium.rawValue, targetDGE: 1000.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.chloride", defaultValue: "Chlorid"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryChloride.rawValue, targetDGE: 2300.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.copper", defaultValue: "Kupfer"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryCopper.rawValue, targetDGE: 1.5, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.iodine", defaultValue: "Jod"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryIodine.rawValue, targetDGE: 200.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.iron", defaultValue: "Eisen"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryIron.rawValue, targetDGE: 15.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.manganese", defaultValue: "Mangan"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryManganese.rawValue, targetDGE: 3.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.molybdenum", defaultValue: "Molybdän"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryMolybdenum.rawValue, targetDGE: 65.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.phosphorus", defaultValue: "Phosphor"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryPhosphorus.rawValue, targetDGE: 700.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.selenium", defaultValue: "Selen"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietarySelenium.rawValue, targetDGE: 70.0, unitString: "mcg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.sodium", defaultValue: "Natrium"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietarySodium.rawValue, targetDGE: 1500.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.zinc", defaultValue: "Zink"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryZinc.rawValue, targetDGE: 14.0, unitString: "mg"),
-            NutrientItem(id: UUID(), name: String(localized: "nutrient.chromium", defaultValue: "Chrom"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryChromium.rawValue, targetDGE: 40.0, unitString: "mcg")
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.potassium", defaultValue: "Kalium"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryPotassium.rawValue, targetDGE: 4000.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.magnesium", defaultValue: "Magnesium"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryMagnesium.rawValue, targetDGE: 350.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.calcium", defaultValue: "Calcium"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryCalcium.rawValue, targetDGE: 1000.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.chloride", defaultValue: "Chlorid"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryChloride.rawValue, targetDGE: 2300.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.copper", defaultValue: "Kupfer"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryCopper.rawValue, targetDGE: 1.5, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.iodine", defaultValue: "Jod"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryIodine.rawValue, targetDGE: 200.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.iron", defaultValue: "Eisen"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryIron.rawValue, targetDGE: 15.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.manganese", defaultValue: "Mangan"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryManganese.rawValue, targetDGE: 3.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.molybdenum", defaultValue: "Molybdän"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryMolybdenum.rawValue, targetDGE: 65.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.phosphorus", defaultValue: "Phosphor"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryPhosphorus.rawValue, targetDGE: 700.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.selenium", defaultValue: "Selen"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietarySelenium.rawValue, targetDGE: 70.0, unitString: String(localized: "unit.mcg", defaultValue: "µg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.sodium", defaultValue: "Natrium"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietarySodium.rawValue, targetDGE: 1500.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.zinc", defaultValue: "Zink"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryZinc.rawValue, targetDGE: 14.0, unitString: String(localized: "unit.mg", defaultValue: "mg")),
+            NutrientItem(id: UUID(), name: String(localized: "nutrient.chromium", defaultValue: "Chrom"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryChromium.rawValue, targetDGE: 40.0, unitString: String(localized: "unit.mcg", defaultValue: "µg"))
         ]
     }
     
     private func defaultFiber() -> NutrientItem {
-        NutrientItem(id: UUID(), name: String(localized: "nutrient.fiber", defaultValue: "Ballaststoffe"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryFiber.rawValue, targetDGE: 30.0, unitString: "g")
+        NutrientItem(id: UUID(), name: String(localized: "nutrient.fiber", defaultValue: "Ballaststoffe"), hkTypeIdentifier: HKQuantityTypeIdentifier.dietaryFiber.rawValue, targetDGE: 30.0, unitString: String(localized: "unit.g", defaultValue: "g"))
     }
     
     // NEU: Checks, ob Kategorien aktiv sind
