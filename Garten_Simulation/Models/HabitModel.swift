@@ -268,6 +268,7 @@ enum HealthMetricType: String, Codable, CaseIterable {
     case strengthTraining = "strengthTraining"
     case fiber = "fiber"
     case calcium = "calcium"
+    case energy = "energy"
     
     var localizationKey: String {
         switch self {
@@ -279,6 +280,7 @@ enum HealthMetricType: String, Codable, CaseIterable {
         case .strengthTraining: return "health.metric.strengthTraining"
         case .fiber: return "health.metric.fiber"
         case .calcium: return "health.metric.calcium"
+        case .energy: return "health.metric.energy"
         }
     }
 }
@@ -315,6 +317,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             return .mindfulness
         } else if nameLower.contains("schritte") || nameLower.contains("spazieren") || nameLower.contains("steps") {
             return .steps
+        } else if nameLower.contains("obst") || nameLower.contains("gemüse") || nameLower.contains("fruit") || nameLower.contains("veg") || nameLower.contains("ballaststoff") {
+            return .fiber
+        } else if nameLower.contains("kochen") || nameLower.contains("cook") || nameLower.contains("ernährung") || nameLower.contains("mahlzeit") {
+            return .energy
         }
         return nil
     }

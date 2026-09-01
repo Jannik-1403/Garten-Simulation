@@ -25,6 +25,7 @@ struct HealthChartView: View {
         case .strengthTraining: return String(localized: "health.chart.title.strength.plain",      defaultValue: "Krafttraining")
         case .fiber:            return String(localized: "health.chart.title.fiber.plain",         defaultValue: "Ballaststoffe")
         case .calcium:          return String(localized: "health.chart.title.calcium.plain",       defaultValue: "Kalzium")
+        case .energy:           return String(localized: "health.chart.title.energy.plain",        defaultValue: "Kalorien")
         }
     }
 
@@ -34,6 +35,7 @@ struct HealthChartView: View {
         case .water: return String(localized: "health.unit.water",  defaultValue: "ml")
         case .fiber: return String(localized: "health.unit.fiber",  defaultValue: "g")
         case .calcium: return String(localized: "health.unit.calcium", defaultValue: "mg")
+        case .energy: return String(localized: "health.unit.energy", defaultValue: "kcal")
         default:     return String(localized: "health.unit.hours",  defaultValue: "Std")
         }
     }

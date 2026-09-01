@@ -18,6 +18,7 @@ class HealthManager: ObservableObject {
     @Published var todaysStrengthTraining: Double = 0
     @Published var todaysFiber: Double = 0
     @Published var todaysCalcium: Double = 0
+    @Published var todaysEnergy: Double = 0
     
     private init() {
         checkAuthorizationStatus()
@@ -67,13 +68,14 @@ class HealthManager: ObservableObject {
               let mindfulness = HKObjectType.categoryType(forIdentifier: .mindfulSession),
               let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
               let dietaryFiber = HKObjectType.quantityType(forIdentifier: .dietaryFiber),
-              let dietaryCalcium = HKObjectType.quantityType(forIdentifier: .dietaryCalcium) else {
+              let dietaryCalcium = HKObjectType.quantityType(forIdentifier: .dietaryCalcium),
+              let dietaryEnergy = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed) else {
             return
         }
         
         let workout = HKObjectType.workoutType()
         
-        let typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, workout, bodyMass, dietaryFiber, dietaryCalcium]
+        let typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, workout, bodyMass, dietaryFiber, dietaryCalcium, dietaryEnergy]
         
         healthStore.requestAuthorization(toShare: nil, read: typesToRead) { [weak self] success, error in
             DispatchQueue.main.async {
@@ -99,6 +101,7 @@ class HealthManager: ObservableObject {
         fetchWorkout(activityType: .traditionalStrengthTraining)
         fetchFiber()
         fetchCalcium()
+        fetchEnergy()
     }
     
     func fetchSteps() {
@@ -164,6 +167,21 @@ class HealthManager: ObservableObject {
             let mg = sum.doubleValue(for: HKUnit.gramUnit(with: .milli))
             DispatchQueue.main.async {
                 self.todaysCalcium = mg
+            }
+        }
+        healthStore.execute(query)
+    }
+    
+    func fetchEnergy() {
+        guard let energyType = HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed) else { return }
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: energyType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+            guard let result = result, let sum = result.sumQuantity() else { return }
+            let kcal = sum.doubleValue(for: HKUnit.kilocalorie())
+            DispatchQueue.main.async {
+                self.todaysEnergy = kcal
             }
         }
         healthStore.execute(query)
@@ -271,6 +289,9 @@ class HealthManager: ObservableObject {
         case .calcium:
             fetchCalcium()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { completion(self.todaysCalcium) }
+        case .energy:
+            fetchEnergy()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { completion(self.todaysEnergy) }
         }
     }
     
@@ -284,7 +305,8 @@ class HealthManager: ObservableObject {
         guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount),
               let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater),
               let fiberType = HKQuantityType.quantityType(forIdentifier: .dietaryFiber),
-              let calciumType = HKQuantityType.quantityType(forIdentifier: .dietaryCalcium) else {
+              let calciumType = HKQuantityType.quantityType(forIdentifier: .dietaryCalcium),
+              let energyType = HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed) else {
             DispatchQueue.main.async { completion(nil) }
             return
         }
@@ -331,6 +353,11 @@ class HealthManager: ObservableObject {
             let pred = HKQuery.predicateForSamples(withStart: sevenDaysAgo, end: today, options: .strictStartDate)
             let q = HKStatisticsCollectionQuery(quantityType: calciumType, quantitySamplePredicate: pred, options: .cumulativeSum, anchorDate: sevenDaysAgo, intervalComponents: intervalComponents)
             q.initialResultsHandler = { _, r, _ in handleStats(r, unit: .gramUnit(with: .milli)) }
+            self.healthStore.execute(q)
+        case .energy:
+            let pred = HKQuery.predicateForSamples(withStart: sevenDaysAgo, end: today, options: .strictStartDate)
+            let q = HKStatisticsCollectionQuery(quantityType: energyType, quantitySamplePredicate: pred, options: .cumulativeSum, anchorDate: sevenDaysAgo, intervalComponents: intervalComponents)
+            q.initialResultsHandler = { _, r, _ in handleStats(r, unit: .kilocalorie()) }
             self.healthStore.execute(q)
         default:
             DispatchQueue.main.async { completion(nil) }
@@ -443,10 +470,11 @@ extension HealthManager {
         }
         
         switch metric {
-        case .steps, .water, .fiber, .calcium:
+        case .steps, .water, .fiber, .calcium, .energy:
             let isSteps = (metric == .steps)
             let isWater = (metric == .water)
             let isFiber = (metric == .fiber)
+            let isEnergy = (metric == .energy)
             
             let quantityType: HKQuantityType
             let unit: HKUnit
@@ -463,6 +491,10 @@ extension HealthManager {
                 guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryFiber) else { DispatchQueue.main.async { completion([]) }; return }
                 quantityType = qt
                 unit = .gram()
+            } else if isEnergy {
+                guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed) else { DispatchQueue.main.async { completion([]) }; return }
+                quantityType = qt
+                unit = .kilocalorie()
             } else {
                 guard let qt = HKQuantityType.quantityType(forIdentifier: .dietaryCalcium) else { DispatchQueue.main.async { completion([]) }; return }
                 quantityType = qt

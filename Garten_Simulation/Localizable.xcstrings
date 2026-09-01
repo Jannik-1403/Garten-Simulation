@@ -565,6 +565,8 @@
         }
       }
     },
+    "%.0f mg": {},
+    "%.1f g": {},
     "%@": {
       "localizations": {
         "de": {
@@ -99678,6 +99680,196 @@
         }
       }
     },
+    "calorie_decrease_suggested": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basierend auf deinem Trend der letzten %1$@ Wochen empfehlen wir, deine täglichen Kalorien um etwa %2$@ kcal zu senken, um dein Ziel bis %3$@ zu erreichen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based on your trend over the last %1$@ weeks, we recommend lowering your daily calories by about %2$@ kcal to stay on track for your goal by %3$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Según tu tendencia de las últimas %1$@ semanas, te recomendamos reducir tus calorías diarias en unas %2$@ kcal para alcanzar tu objetivo antes del %3$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D'après ta tendance des %1$@ dernières semaines, nous te recommandons de réduire tes calories quotidiennes d'environ %2$@ kcal pour atteindre ton objectif d'ici le %3$@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले %1$@ हफ्तों के आपके ट्रेंड के आधार पर, हम सुझाव देते हैं कि %3$@ तक अपने लक्ष्य तक पहुँचने के लिए अपनी दैनिक कैलोरी लगभग %2$@ kcal कम करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In base alla tua tendenza delle ultime %1$@ settimane, ti consigliamo di ridurre le calorie giornaliere di circa %2$@ kcal per raggiungere il tuo obiettivo entro il %3$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去%1$@週間のトレンドに基づき、%3$@までに目標を達成するために、1日の摂取カロリーを約%2$@kcal減らすことをおすすめします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 %1$@주간의 추세를 기준으로, %3$@까지 목표를 달성하려면 하루 섭취 칼로리를 약 %2$@kcal 줄이는 것을 권장합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op basis van je trend van de afgelopen %1$@ weken raden we aan je dagelijkse calorieën met ongeveer %2$@ kcal te verlagen om je doel voor %3$@ te halen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na podstawie Twojego trendu z ostatnich %1$@ tygodni zalecamy zmniejszenie dziennej liczby kalorii o około %2$@ kcal, aby osiągnąć cel do %3$@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com base na sua tendência das últimas %1$@ semanas, recomendamos reduzir suas calorias diárias em cerca de %2$@ kcal para atingir sua meta até %3$@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На основе вашего тренда за последние %1$@ нед. рекомендуем снизить дневную калорийность примерно на %2$@ ккал, чтобы достичь цели к %3$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son %1$@ haftalık eğilimine göre, %3$@ tarihine kadar hedefine ulaşmak için günlük kalorini yaklaşık %2$@ kcal azaltmanı öneririz."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据你过去 %1$@ 周的趋势,建议将每日热量减少约 %2$@ 千卡,以便在 %3$@ 前达成目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根據你過去 %1$@ 週的趨勢,建議將每日熱量減少約 %2$@ 大卡,以便在 %3$@ 前達成目標。"
+          }
+        }
+      }
+    },
+    "calorie_increase_suggested": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basierend auf deinem Trend der letzten %1$@ Wochen empfehlen wir, deine täglichen Kalorien um etwa %2$@ kcal zu erhöhen, um dein Ziel bis %3$@ zu erreichen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based on your trend over the last %1$@ weeks, we recommend raising your daily calories by about %2$@ kcal to stay on track for your goal by %3$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Según tu tendencia de las últimas %1$@ semanas, te recomendamos aumentar tus calorías diarias en unas %2$@ kcal para alcanzar tu objetivo antes del %3$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D'après ta tendance des %1$@ dernières semaines, nous te recommandons d'augmenter tes calories quotidiennes d'environ %2$@ kcal pour atteindre ton objectif d'ici le %3$@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले %1$@ हफ्तों के आपके ट्रेंड के आधार पर, हम सुझाव देते हैं कि %3$@ तक अपने लक्ष्य तक पहुँचने के लिए अपनी दैनिक कैलोरी लगभग %2$@ kcal बढ़ाएँ।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In base alla tua tendenza delle ultime %1$@ settimane, ti consigliamo di aumentare le calorie giornaliere di circa %2$@ kcal per raggiungere il tuo obiettivo entro il %3$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去%1$@週間のトレンドに基づき、%3$@までに目標を達成するために、1日の摂取カロリーを約%2$@kcal増やすことをおすすめします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 %1$@주간의 추세를 기준으로, %3$@까지 목표를 달성하려면 하루 섭취 칼로리를 약 %2$@kcal 늘리는 것을 권장합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op basis van je trend van de afgelopen %1$@ weken raden we aan je dagelijkse calorieën met ongeveer %2$@ kcal te verhogen om je doel voor %3$@ te halen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na podstawie Twojego trendu z ostatnich %1$@ tygodni zalecamy zwiększenie dziennej liczby kalorii o około %2$@ kcal, aby osiągnąć cel do %3$@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com base na sua tendência das últimas %1$@ semanas, recomendamos aumentar suas calorias diárias em cerca de %2$@ kcal para atingir sua meta até %3$@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На основе вашего тренда за последние %1$@ нед. рекомендуем увеличить дневную калорийность примерно на %2$@ ккал, чтобы достичь цели к %3$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son %1$@ haftalık eğilimine göre, %3$@ tarihine kadar hedefine ulaşmak için günlük kalorini yaklaşık %2$@ kcal artırmanı öneririz."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据你过去 %1$@ 周的趋势,建议将每日热量增加约 %2$@ 千卡,以便在 %3$@ 前达成目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根據你過去 %1$@ 週的趨勢,建議將每日熱量增加約 %2$@ 大卡,以便在 %3$@ 前達成目標。"
+          }
+        }
+      }
+    },
     "canvas.show_all": {
       "comment": "",
       "extractionState": "manual",
@@ -145965,6 +146157,481 @@
         }
       }
     },
+    "goal_close": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast geschafft – nur noch %1$@ %2$@ bis zu deinem Ziel von %3$@ %2$@."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almost there — just %1$@ %2$@ to go until your goal of %3$@ %2$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya casi lo logras — solo te faltan %1$@ %2$@ para tu objetivo de %3$@ %2$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu y es presque — plus que %1$@ %2$@ avant ton objectif de %3$@ %2$@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बस थोड़ा और — आपके %3$@ %2$@ के लक्ष्य तक पहुँचने में सिर्फ %1$@ %2$@ बाकी है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ci sei quasi — mancano solo %1$@ %2$@ al tuo obiettivo di %3$@ %2$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "もう少しです — 目標の%3$@ %2$@まで、あと%1$@ %2$@です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "거의 다 왔어요 — 목표 %3$@ %2$@까지 %1$@ %2$@만 남았습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bijna klaar — nog maar %1$@ %2$@ te gaan tot je doel van %3$@ %2$@."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Już prawie — zostało tylko %1$@ %2$@ do Twojego celu %3$@ %2$@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quase lá — faltam apenas %1$@ %2$@ para sua meta de %3$@ %2$@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Почти у цели — осталось всего %1$@ %2$@ до цели %3$@ %2$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neredeyse tamam — %3$@ %2$@ hedefine sadece %1$@ %2$@ kaldı."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就快到了——距离你的目标 %3$@ %2$@ 还差 %1$@ %2$@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就快到了——距離你的目標 %3$@ %2$@ 還差 %1$@ %2$@。"
+          }
+        }
+      }
+    },
+    "goal_date_ahead_of_schedule": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du liegst vor dem Zeitplan – bei diesem Tempo könntest du dein Ziel schon vor dem %1$@ erreichen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're ahead of schedule — at this rate, you could reach your goal before %1$@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vas adelantado — a este ritmo, podrías alcanzar tu objetivo antes del %1$@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu es en avance — à ce rythme, tu pourrais atteindre ton objectif avant le %1$@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप समय से आगे चल रहे हैं — इस रफ़्तार से आप %1$@ से पहले ही अपना लक्ष्य पा सकते हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sei in anticipo sui tempi — a questo ritmo potresti raggiungere il tuo obiettivo prima del %1$@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "予定より順調に進んでいます — このペースなら%1$@より前に目標を達成できる可能性があります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "계획보다 앞서 있어요 — 이 속도라면 %1$@ 전에 목표를 달성할 수 있습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je loopt voor op schema — in dit tempo kun je je doel al vóór %1$@ bereiken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jesteś przed harmonogramem — w tym tempie możesz osiągnąć cel jeszcze przed %1$@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você está adiantado — nesse ritmo, pode atingir sua meta antes de %1$@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы опережаете график — при таком темпе вы можете достичь цели раньше %1$@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planının önündesin — bu hızla hedefine %1$@ tarihinden önce ulaşabilirsin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的进度超前——照这个速度,你可能会在 %1$@ 之前达成目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的進度超前——照這個速度,你可能會在 %1$@ 之前達成目標。"
+          }
+        }
+      }
+    },
+    "goal_date_unrealistic": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei deinem aktuellen Trend ist es unwahrscheinlich, dass du %1$@ %2$@ bis %3$@ erreichst. Passe dein Zieldatum oder deine täglichen Kalorien an."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At your current trend, reaching %1$@ %2$@ by %3$@ looks unlikely. Consider adjusting your target date or your daily calories."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con tu tendencia actual, es poco probable que alcances %1$@ %2$@ antes del %3$@. Considera ajustar tu fecha objetivo o tus calorías diarias."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Au rythme actuel, atteindre %1$@ %2$@ d'ici le %3$@ semble peu probable. Envisage d'ajuster ta date cible ou tes calories quotidiennes."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके मौजूदा ट्रेंड के हिसाब से, %3$@ तक %1$@ %2$@ तक पहुँचना मुश्किल लग रहा है। अपनी लक्ष्य तिथि या दैनिक कैलोरी में बदलाव पर विचार करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con la tendenza attuale, raggiungere %1$@ %2$@ entro il %3$@ sembra improbabile. Valuta di modificare la data obiettivo o le calorie giornaliere."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在のトレンドでは、%3$@までに%1$@ %2$@に到達するのは難しそうです。目標日または1日の摂取カロリーの見直しをご検討ください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재 추세대로라면 %3$@까지 %1$@ %2$@에 도달하기 어려울 것 같습니다. 목표 날짜나 하루 섭취 칼로리 조정을 고려해 보세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bij je huidige trend is het onwaarschijnlijk dat je %1$@ %2$@ voor %3$@ haalt. Overweeg je streefdatum of je dagelijkse calorieën aan te passen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przy obecnym trendzie osiągnięcie %1$@ %2$@ do %3$@ wygląda na mało prawdopodobne. Rozważ zmianę daty docelowej lub dziennych kalorii."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com sua tendência atual, atingir %1$@ %2$@ até %3$@ parece improvável. Considere ajustar sua data meta ou suas calorias diárias."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "При текущем тренде достижение %1$@ %2$@ к %3$@ выглядит маловероятным. Рассмотрите изменение целевой даты или дневной калорийности."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mevcut eğilimine göre, %3$@ tarihine kadar %1$@ %2$@ hedefine ulaşman pek olası görünmüyor. Hedef tarihini veya günlük kalorini gözden geçirmeyi düşün."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按照目前的趋势,在 %3$@ 前达到 %1$@ %2$@ 的可能性不大。可以考虑调整目标日期或每日热量。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按照目前的趨勢,在 %3$@ 前達到 %1$@ %2$@ 的可能性不大。可以考慮調整目標日期或每日熱量。"
+          }
+        }
+      }
+    },
+    "goal_reached": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast dein Zielgewicht von %1$@ %2$@ erreicht! 🎉"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've reached your goal weight of %1$@ %2$@! 🎉"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Has alcanzado tu peso objetivo de %1$@ %2$@! 🎉"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu as atteint ton poids cible de %1$@ %2$@ ! 🎉"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने अपना लक्ष्य वज़न %1$@ %2$@ हासिल कर लिया है! 🎉"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai raggiunto il tuo peso obiettivo di %1$@ %2$@! 🎉"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標体重の%1$@ %2$@を達成しました!🎉"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표 체중 %1$@ %2$@을 달성했습니다! 🎉"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt je streefgewicht van %1$@ %2$@ bereikt! 🎉"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gratulacje! Osiągnięto docelową wagę: %1$@ %2$@. 🎉"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você atingiu seu peso meta de %1$@ %2$@! 🎉"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель достигнута: вес %1$@ %2$@! 🎉"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ %2$@ hedef kilona ulaştın! 🎉"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已达成目标体重 %1$@ %2$@!🎉"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已達成目標體重 %1$@ %2$@!🎉"
+          }
+        }
+      }
+    },
+    "goal_updated": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel aktualisiert: %1$@ %2$@ bis %3$@ (Zieltempo: %4$@ %2$@/Woche)."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal updated: %1$@ %2$@ by %3$@ (target pace: %4$@ %2$@/week)."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo actualizado: %1$@ %2$@ antes del %3$@ (ritmo objetivo: %4$@ %2$@/semana)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif mis à jour : %1$@ %2$@ d'ici le %3$@ (rythme cible : %4$@ %2$@/semaine)."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य अपडेट किया गया: %3$@ तक %1$@ %2$@ (लक्ष्य गति: %4$@ %2$@/सप्ताह)।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo aggiornato: %1$@ %2$@ entro il %3$@ (ritmo obiettivo: %4$@ %2$@/settimana)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標を更新しました:%3$@までに%1$@ %2$@(目標ペース:%4$@ %2$@/週)。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표가 업데이트되었습니다: %3$@까지 %1$@ %2$@ (목표 속도: 주당 %4$@ %2$@)."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doel bijgewerkt: %1$@ %2$@ voor %3$@ (streeftempo: %4$@ %2$@/week)."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cel zaktualizowany: %1$@ %2$@ do %3$@ (docelowe tempo: %4$@ %2$@/tydzień)."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta atualizada: %1$@ %2$@ até %3$@ (ritmo alvo: %4$@ %2$@/semana)."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель обновлена: %1$@ %2$@ к %3$@ (целевой темп: %4$@ %2$@/нед.)."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedef güncellendi: %3$@ tarihine kadar %1$@ %2$@ (hedef hız: haftada %4$@ %2$@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标已更新:%3$@ 前达到 %1$@ %2$@(目标速度:每周 %4$@ %2$@)。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標已更新:%3$@ 前達到 %1$@ %2$@(目標速度:每週 %4$@ %2$@)。"
+          }
+        }
+      }
+    },
     "goal.custom.5year.placeholder": {
       "localizations": {
         "de": {
@@ -151570,6 +152237,481 @@
         }
       }
     },
+    "habit.fruit_veg.connect_btn": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mit Apple Health verbinden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect to Apple Health"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar con Apple Health"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecter à Apple Health"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health से कनेक्ट करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connetti ad Apple Health"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Healthに接続"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health에 연결"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koppelen met Apple Health"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Połącz z Apple Health"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar ao Apple Health"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключить Apple Health"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health'e Bağlan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接到Apple Health"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連接到Apple Health"
+          }
+        }
+      }
+    },
+    "habit.fruit_veg.connect_desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde Apple Health, um Ballaststoffe und Kalzium aus deiner Ernährung auszulesen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect Apple Health to read fiber and calcium from your diet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecta Apple Health para leer la fibra y el calcio de tu dieta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectez Apple Health pour lire les fibres et le calcium de votre alimentation."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने आहार से फाइबर और कैल्शियम पढ़ने के लिए Apple Health को कनेक्ट करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connetti Apple Health per leggere le fibre e il calcio dalla tua dieta."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Healthを接続して、食事から食物繊維とカルシウムを読み取ります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health를 연결하여 식단에서 식이섬유와 칼슘을 읽어오세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koppel Apple Health om vezels en calcium uit je dieet te lezen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Połącz Apple Health, aby odczytywać błonnik i wapń ze swojej diety."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecte o Apple Health para ler as fibras e o cálcio da sua dieta."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключите Apple Health, чтобы считывать клетчатку и кальций из вашего рациона."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diyetinizden lif ve kalsiyumu okumak için Apple Health'i bağlayın."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接Apple Health以读取您饮食中的膳食纤维和钙。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連接Apple Health以讀取您飲食中的膳食纖維和鈣。"
+          }
+        }
+      }
+    },
+    "habit.fruit_veg.connect_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obst & Gemüse tracken"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track Fruits & Veggies"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rastrear Frutas y Verduras"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suivre les Fruits & Légumes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फल और सब्जियां ट्रैक करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traccia Frutta e Verdura"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "果物と野菜を記録"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "과일 및 채소 추적"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruit & Groenten volgen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Śledź Owoce i Warzywa"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rastrear Frutas e Legumes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отслеживать фрукты и овощи"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meyve ve Sebzeleri Takip Et"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "记录水果和蔬菜"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄水果和蔬菜"
+          }
+        }
+      }
+    },
+    "habit.fruit_veg.tip": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipp: Füge deiner nächsten Mahlzeit eine Handvoll Beeren, einen Apfel oder Gemüsesticks als Snack hinzu."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Add a handful of berries, an apple, or veggie sticks as a snack to your next meal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consejo: Añade un puñado de bayas, una manzana o palitos de verdura como aperitivo a tu próxima comida."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conseil : Ajoutez une poignée de baies, une pomme ou des bâtonnets de légumes comme collation à votre prochain repas."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुझाव: अपने अगले भोजन में नाश्ते के रूप में एक मुट्ठी जामुन, एक सेब या वेजी स्टिक्स शामिल करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consiglio: Aggiungi una manciata di frutti di bosco, una mela o bastoncini di verdura come spuntino al tuo prossimo pasto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヒント：次の食事のおやつとして、ベリーを一掴み、リンゴ、または野菜スティックを追加しましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "팁: 다음 식사에 베리 한 줌, 사과, 또는 채소 스틱을 간식으로 추가하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Voeg een handje bessen, een appel of groentesticks toe als snack bij je volgende maaltijd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wskazówka: Dodaj garść jagód, jabłko lub słupki warzywne jako przekąskę do następnego posiłku."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dica: Adicione um punhado de frutas vermelhas, uma maçã ou palitos de vegetais como lanche na sua próxima refeição."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совет: Добавьте горсть ягод, яблоко или овощные палочки в качестве перекуса к следующему приему пищи."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İpucu: Bir sonraki öğününüze atıştırmalık olarak bir avuç orman meyvesi, bir elma veya sebze çubukları ekleyin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提示：在您的下一餐中加入一把浆果、一个苹果或蔬菜条作为零食。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提示：在您的下一餐中加入一把漿果、一個蘋果或蔬菜條作為零食。"
+          }
+        }
+      }
+    },
+    "habit.fruit_veg.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obst & Gemüse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruits & Veggies"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutas y Verduras"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruits & Légumes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फल और सब्जियां"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutta e Verdura"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "果物と野菜"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "과일 및 채소"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruit & Groenten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Owoce i Warzywa"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutas e Legumes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фрукты и овощи"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meyve ve Sebze"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水果和蔬菜"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水果和蔬菜"
+          }
+        }
+      }
+    },
     "habit.geld_sparen": {
       "comment": "",
       "extractionState": "manual",
@@ -155394,6 +156536,28 @@
         }
       }
     },
+    "health.chart.title.calcium.plain": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Kalzium"
+          }
+        }
+      }
+    },
+    "health.chart.title.fiber.plain": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Ballaststoffe"
+          }
+        }
+      }
+    },
     "health.chart.title.mindfulness": {
       "extractionState": "manual",
       "localizations": {
@@ -156534,6 +157698,196 @@
         }
       }
     },
+    "health.metric.calcium": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalzium"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calcium"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calcio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calcium"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कैल्शियम"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calcio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カルシウム"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "칼슘"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calcium"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wapń"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cálcio"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кальций"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalsiyum"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "钙"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鈣"
+          }
+        }
+      }
+    },
+    "health.metric.fiber": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballaststoffe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fiber"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fibra"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fibres"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फाइबर"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fibre"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食物繊維"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식이섬유"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vezels"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Błonnik"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fibra"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Клетчатка"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lif"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "膳食纤维"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "膳食纖維"
+          }
+        }
+      }
+    },
     "health.metric.mindfulness": {
       "extractionState": "manual",
       "localizations": {
@@ -157382,6 +158736,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "設定每日目標"
+          }
+        }
+      }
+    },
+    "health.unit.calcium": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "mg"
+          }
+        }
+      }
+    },
+    "health.unit.fiber": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "g"
           }
         }
       }
@@ -162468,6 +163844,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "刺蝟姿勢揮舞"
+          }
+        }
+      }
+    },
+    "insufficient_data": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nicht genügend Daten. Trag dein Gewicht weiter täglich ein – in etwa %1$@ Tagen kannst du einen verlässlichen Trend sehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not enough data yet. Keep logging your weight daily — check back in about %1$@ days for a reliable trend."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay suficientes datos. Sigue registrando tu peso a diario; en unos %1$@ días tendrás una tendencia fiable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore assez de données. Continue à enregistrer ton poids chaque jour — reviens dans environ %1$@ jours pour une tendance fiable."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी पर्याप्त डेटा नहीं है। रोज़ अपना वज़न दर्ज करते रहें — लगभग %1$@ दिनों में आपको एक भरोसेमंद ट्रेंड दिखेगा।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ci sono ancora abbastanza dati. Continua a registrare il tuo peso ogni giorno — tra circa %1$@ giorni avrai una tendenza affidabile."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだデータが十分ではありません。毎日体重を記録し続けてください。あと約%1$@日で信頼できるトレンドが表示されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아직 데이터가 충분하지 않습니다. 매일 체중을 계속 기록해 주세요 — 약 %1$@일 후면 신뢰할 수 있는 추세를 확인할 수 있어요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nog niet genoeg gegevens. Blijf je gewicht dagelijks bijhouden — over ongeveer %1$@ dagen zie je een betrouwbare trend."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Za mało danych. Zapisuj swoją wagę codziennie — za około %1$@ dni zobaczysz wiarygodny trend."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não há dados suficientes. Continue registrando seu peso todos os dias — em cerca de %1$@ dias você terá uma tendência confiável."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пока недостаточно данных. Продолжайте ежедневно записывать вес — примерно через %1$@ дн. появится надёжный тренд."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz yeterli veri yok. Kilonu her gün kaydetmeye devam et — yaklaşık %1$@ gün sonra güvenilir bir eğilim göreceksin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数据还不够。请继续每天记录体重——大约 %1$@ 天后即可看到可靠的趋势。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "資料還不夠。請持續每天記錄體重——大約 %1$@ 天後即可看到可靠的趨勢。"
           }
         }
       }
@@ -232946,6 +234417,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "無糖 = 場地保持清潔 – 無糖 + 運動"
+          }
+        }
+      }
+    },
+    "plateau_warning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Trend hat sich in den letzten %1$@ Wochen kaum verändert. Das kann passieren, auch wenn du alles richtig machst – hält es an, schlagen wir bald eine Kalorienanpassung vor."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your trend has barely moved over the last %1$@ weeks. This can happen even when you're doing everything right — if it continues, we'll suggest a calorie adjustment soon."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu tendencia apenas se ha movido en las últimas %1$@ semanas. Esto puede pasar incluso haciendo todo bien — si continúa, pronto te sugeriremos un ajuste de calorías."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta tendance a très peu bougé au cours des %1$@ dernières semaines. Cela peut arriver même en faisant tout comme il faut — si ça continue, nous te proposerons bientôt un ajustement calorique."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले %1$@ हफ्तों में आपका ट्रेंड लगभग नहीं बदला है। यह तब भी हो सकता है जब आप सब कुछ सही कर रहे हों — अगर यह जारी रहा, तो हम जल्द ही कैलोरी में बदलाव का सुझाव देंगे।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua tendenza è rimasta quasi invariata nelle ultime %1$@ settimane. Può succedere anche facendo tutto correttamente — se continua, ti suggeriremo presto una modifica delle calorie."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去%1$@週間、トレンドはほとんど変化していません。すべて正しく行っていてもこうしたことは起こり得ます。この状態が続く場合は、近いうちにカロリー調整をご提案します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 %1$@주 동안 추세가 거의 변하지 않았습니다. 모든 것을 제대로 하고 있어도 이런 일은 생길 수 있어요 — 계속된다면 곧 칼로리 조정을 제안해 드릴게요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je trend is de afgelopen %1$@ weken nauwelijks veranderd. Dat kan gebeuren, ook als je alles goed doet — als dit aanhoudt, stellen we binnenkort een calorie-aanpassing voor."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój trend prawie się nie zmienił przez ostatnie %1$@ tygodni. Może się to zdarzyć, nawet gdy wszystko robisz dobrze — jeśli to się utrzyma, wkrótce zaproponujemy zmianę kalorii."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua tendência quase não mudou nas últimas %1$@ semanas. Isso pode acontecer mesmo fazendo tudo certo — se continuar, sugeriremos em breve um ajuste de calorias."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваш тренд почти не менялся последние %1$@ нед. Такое может случиться, даже если вы всё делаете правильно — если это продолжится, мы скоро предложим изменить калорийность."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eğilimin son %1$@ haftadır neredeyse hiç değişmedi. Her şeyi doğru yaparken bile bu olabilir — devam ederse yakında bir kalori ayarlaması önereceğiz."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 %1$@ 周你的趋势几乎没有变化。即使一切都做得很好,也可能出现这种情况——如果持续下去,我们会尽快建议调整热量摄入。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去 %1$@ 週你的趨勢幾乎沒有變化。即使一切都做得很好,也可能發生這種情況——如果持續下去,我們會盡快建議調整熱量攝取。"
           }
         }
       }
@@ -394537,6 +396103,196 @@
         }
       }
     },
+    "trend_on_track": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist auf Kurs. Dein Trend liegt bei %1$@ %2$@/Woche – genau im Rahmen deines Ziels."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're on track. Your trend is %1$@ %2$@/week, right in line with your goal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vas por buen camino. Tu tendencia es de %1$@ %2$@/semana, justo en línea con tu objetivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu es sur la bonne voie. Ta tendance est de %1$@ %2$@/semaine, en ligne avec ton objectif."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप सही रास्ते पर हैं। आपका ट्रेंड %1$@ %2$@/सप्ताह है, जो आपके लक्ष्य के अनुरूप है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sei sulla buona strada. La tua tendenza è di %1$@ %2$@/settimana, in linea con il tuo obiettivo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "順調です。あなたのトレンドは%1$@ %2$@/週で、目標に沿っています。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잘 하고 계세요. 현재 추세는 주당 %1$@ %2$@로, 목표와 정확히 일치합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je ligt op koers. Je trend is %1$@ %2$@/week, precies in lijn met je doel."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jesteś na dobrej drodze. Twój trend wynosi %1$@ %2$@/tydzień, zgodnie z Twoim celem."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você está no caminho certo. Sua tendência é de %1$@ %2$@/semana, alinhada com sua meta."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы на верном пути. Ваш тренд составляет %1$@ %2$@/нед., что соответствует вашей цели."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doğru yoldasın. Eğilimin haftada %1$@ %2$@, tam olarak hedefinle uyumlu."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的进度很顺利。你的趋势为每周 %1$@ %2$@,与目标一致。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的進度很順利。你的趨勢為每週 %1$@ %2$@,與目標一致。"
+          }
+        }
+      }
+    },
+    "trend_stable_weekly_noise": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Wert dieser Woche ist eine normale Schwankung (Wasser, Nahrung, Hormone). Dein zugrunde liegender Trend liegt weiterhin bei %1$@ %2$@/Woche – keine Anpassung nötig."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week's number looks like normal day-to-day fluctuation (water, food, hormones). Your underlying trend is still %1$@ %2$@/week — no change needed."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El valor de esta semana parece una fluctuación normal (agua, comida, hormonas). Tu tendencia real sigue siendo de %1$@ %2$@/semana — no hace falta ningún cambio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le chiffre de cette semaine ressemble à une fluctuation normale (eau, alimentation, hormones). Ta tendance de fond reste à %1$@ %2$@/semaine — aucun changement nécessaire."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस सप्ताह की संख्या सामान्य उतार-चढ़ाव (पानी, भोजन, हार्मोन) जैसी लगती है। आपका असली ट्रेंड अभी भी %1$@ %2$@/सप्ताह है — किसी बदलाव की ज़रूरत नहीं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il valore di questa settimana sembra una normale oscillazione (acqua, cibo, ormoni). La tua tendenza di fondo resta %1$@ %2$@/settimana — nessuna modifica necessaria."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週の数値は通常の変動(水分、食事、ホルモンなど)によるものと考えられます。実際のトレンドは引き続き%1$@ %2$@/週です — 変更の必要はありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 주 수치는 정상적인 변동(수분, 식사, 호르몬 등)으로 보입니다. 실제 추세는 여전히 주당 %1$@ %2$@이며, 조정이 필요하지 않습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het cijfer van deze week lijkt op een normale schommeling (vocht, voeding, hormonen). Je onderliggende trend blijft %1$@ %2$@/week — geen aanpassing nodig."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wynik z tego tygodnia wygląda na normalne wahanie (woda, jedzenie, hormony). Twój rzeczywisty trend to nadal %1$@ %2$@/tydzień — żadna zmiana nie jest potrzebna."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O número desta semana parece uma flutuação normal (água, alimentação, hormônios). Sua tendência real continua em %1$@ %2$@/semana — nenhuma mudança é necessária."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показатель этой недели похож на обычное колебание (вода, питание, гормоны). Ваш реальный тренд по-прежнему %1$@ %2$@/нед. — изменений не требуется."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu haftaki değer normal bir dalgalanma gibi görünüyor (su, yemek, hormonlar). Asıl eğilimin hâlâ haftada %1$@ %2$@ — herhangi bir değişiklik gerekmiyor."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本周的数值看起来只是正常的波动(水分、饮食、激素等)。你的实际趋势仍为每周 %1$@ %2$@——无需调整。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週的數值看起來只是正常的波動(水分、飲食、荷爾蒙等)。你的實際趨勢仍為每週 %1$@ %2$@——不需要調整。"
+          }
+        }
+      }
+    },
     "trigger.add": {
       "comment": "",
       "extractionState": "manual",
@@ -409926,6 +411682,766 @@
         }
       }
     },
+    "weight.trend.desc.active": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein geglätteter Trend liegt aktuell bei %1$@ %2$@/Woche."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your smoothed trend is currently %1$@ %2$@/week."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu tendencia suavizada es actualmente de %1$@ %2$@/semana."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta tendance lissée est actuellement de %1$@ %2$@/semaine."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका स्मूथ ट्रेंड वर्तमान में %1$@ %2$@/सप्ताह है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua tendenza smussata è attualmente di %1$@ %2$@/settimana."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平滑化されたトレンドは現在%1$@ %2$@/週です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "평활화된 추세는 현재 주당 %1$@ %2$@입니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je afgevlakte trend is momenteel %1$@ %2$@/week."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój wygładzony trend wynosi obecnie %1$@ %2$@/tydzień."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua tendência suavizada é atualmente de %1$@ %2$@/semana."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваш сглаженный тренд сейчас составляет %1$@ %2$@/нед."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düzeltilmiş eğilimin şu anda haftada %1$@ %2$@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你平滑后的趋势目前为每周 %1$@ %2$@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你平滑後的趨勢目前為每週 %1$@ %2$@。"
+          }
+        }
+      }
+    },
+    "weight.trend.desc.insufficient": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trag dein Gewicht weiter täglich ein, um einen verlässlichen Trend zu sehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep logging your weight daily to see a reliable trend."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sigue registrando tu peso a diario para ver una tendencia fiable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue à enregistrer ton poids chaque jour pour voir une tendance fiable."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "भरोसेमंद ट्रेंड देखने के लिए रोज़ अपना वज़न दर्ज करते रहें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua a registrare il tuo peso ogni giorno per vedere una tendenza affidabile."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "信頼できるトレンドを表示するには、引き続き毎日体重を記録してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "신뢰할 수 있는 추세를 보려면 매일 체중을 계속 기록하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blijf je gewicht dagelijks bijhouden om een betrouwbare trend te zien."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zapisuj swoją wagę codziennie, aby zobaczyć wiarygodny trend."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue registrando seu peso todos os dias para ver uma tendência confiável."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Продолжайте ежедневно записывать вес, чтобы увидеть надёжный тренд."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Güvenilir bir eğilim görmek için kilonu her gün kaydetmeye devam et."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请继续每天记录体重，以查看可靠的趋势。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請繼續每天記錄體重，以查看可靠的趨勢。"
+          }
+        }
+      }
+    },
+    "weight.trend.title.active": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Wochentrend"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your weekly trend"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu tendencia semanal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta tendance hebdomadaire"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका साप्ताहिक ट्रेंड"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua tendenza settimanale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週のトレンド"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주간 추세"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je wekelijkse trend"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój tygodniowy trend"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua tendência semanal"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваш недельный тренд"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haftalık eğilimin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的每周趋势"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的每週趨勢"
+          }
+        }
+      }
+    },
+    "weight.trend.title.adjust": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anpassung empfohlen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjustment recommended"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajuste recomendado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustement recommandé"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुधार की सिफारिश की गई"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regolazione consigliata"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "調整をお勧めします"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "조정 권장"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aanpassing aanbevolen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zalecana korekta"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajuste recomendado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рекомендуется корректировка"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlama önerilir"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建议调整"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建議調整"
+          }
+        }
+      }
+    },
+    "weight.trend.title.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles im Plan"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On track"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por buen camino"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En bonne voie"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सही दिशा में"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sulla buona strada"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "順調です"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "순조롭습니다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op koers"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na dobrej drodze"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No caminho certo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "По плану"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan dahilinde"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "进展顺利"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "進展順利"
+          }
+        }
+      }
+    },
+    "weight.trend.title.insufficient": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More data needed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más datos necesarios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus de données requises"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "और डेटा की आवश्यकता है"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più dati necessari"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "データが不足しています"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "데이터가 더 필요합니다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meer gegevens nodig"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Potrzeba więcej danych"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais dados necessários"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нужно больше данных"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha fazla veri gerekiyor"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要更多数据"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要更多資料"
+          }
+        }
+      }
+    },
+    "weight.trend.title.neutral": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabile Phase"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stable phase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase estable"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase stable"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्थिर चरण"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase stabile"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安定期"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "안정기"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiele fase"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza stabilna"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase estável"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стабильная фаза"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sabit evre"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平稳期"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平穩期"
+          }
+        }
+      }
+    },
+    "weight.trend.title.updated": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel aktualisiert"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal updated"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo actualizado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif mis à jour"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य अपडेट किया गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo aggiornato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標が更新されました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표 업데이트됨"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doel bijgewerkt"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cel zaktualizowany"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta atualizada"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель обновлена"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedef güncellendi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标已更新"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標已更新"
+          }
+        }
+      }
+    },
     "wheel_drehen": {
       "comment": "",
       "extractionState": "manual",
@@ -417155,2476 +419671,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標"
-          }
-        }
-      }
-    },
-    "insufficient_data": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Noch nicht genügend Daten. Trag dein Gewicht weiter täglich ein – in etwa %1$@ Tagen kannst du einen verlässlichen Trend sehen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not enough data yet. Keep logging your weight daily — check back in about %1$@ days for a reliable trend."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aún no hay suficientes datos. Sigue registrando tu peso a diario; en unos %1$@ días tendrás una tendencia fiable."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas encore assez de données. Continue à enregistrer ton poids chaque jour — reviens dans environ %1$@ jours pour une tendance fiable."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अभी पर्याप्त डेटा नहीं है। रोज़ अपना वज़न दर्ज करते रहें — लगभग %1$@ दिनों में आपको एक भरोसेमंद ट्रेंड दिखेगा।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non ci sono ancora abbastanza dati. Continua a registrare il tuo peso ogni giorno — tra circa %1$@ giorni avrai una tendenza affidabile."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "まだデータが十分ではありません。毎日体重を記録し続けてください。あと約%1$@日で信頼できるトレンドが表示されます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "아직 데이터가 충분하지 않습니다. 매일 체중을 계속 기록해 주세요 — 약 %1$@일 후면 신뢰할 수 있는 추세를 확인할 수 있어요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nog niet genoeg gegevens. Blijf je gewicht dagelijks bijhouden — over ongeveer %1$@ dagen zie je een betrouwbare trend."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Za mało danych. Zapisuj swoją wagę codziennie — za około %1$@ dni zobaczysz wiarygodny trend."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ainda não há dados suficientes. Continue registrando seu peso todos os dias — em cerca de %1$@ dias você terá uma tendência confiável."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пока недостаточно данных. Продолжайте ежедневно записывать вес — примерно через %1$@ дн. появится надёжный тренд."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Henüz yeterli veri yok. Kilonu her gün kaydetmeye devam et — yaklaşık %1$@ gün sonra güvenilir bir eğilim göreceksin."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "数据还不够。请继续每天记录体重——大约 %1$@ 天后即可看到可靠的趋势。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "資料還不夠。請持續每天記錄體重——大約 %1$@ 天後即可看到可靠的趨勢。"
-          }
-        }
-      }
-    },
-    "trend_on_track": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du bist auf Kurs. Dein Trend liegt bei %1$@ %2$@/Woche – genau im Rahmen deines Ziels."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You're on track. Your trend is %1$@ %2$@/week, right in line with your goal."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vas por buen camino. Tu tendencia es de %1$@ %2$@/semana, justo en línea con tu objetivo."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu es sur la bonne voie. Ta tendance est de %1$@ %2$@/semaine, en ligne avec ton objectif."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आप सही रास्ते पर हैं। आपका ट्रेंड %1$@ %2$@/सप्ताह है, जो आपके लक्ष्य के अनुरूप है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sei sulla buona strada. La tua tendenza è di %1$@ %2$@/settimana, in linea con il tuo obiettivo."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "順調です。あなたのトレンドは%1$@ %2$@/週で、目標に沿っています。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "잘 하고 계세요. 현재 추세는 주당 %1$@ %2$@로, 목표와 정확히 일치합니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je ligt op koers. Je trend is %1$@ %2$@/week, precies in lijn met je doel."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jesteś na dobrej drodze. Twój trend wynosi %1$@ %2$@/tydzień, zgodnie z Twoim celem."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você está no caminho certo. Sua tendência é de %1$@ %2$@/semana, alinhada com sua meta."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вы на верном пути. Ваш тренд составляет %1$@ %2$@/нед., что соответствует вашей цели."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Doğru yoldasın. Eğilimin haftada %1$@ %2$@, tam olarak hedefinle uyumlu."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的进度很顺利。你的趋势为每周 %1$@ %2$@,与目标一致。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的進度很順利。你的趨勢為每週 %1$@ %2$@,與目標一致。"
-          }
-        }
-      }
-    },
-    "trend_stable_weekly_noise": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Der Wert dieser Woche ist eine normale Schwankung (Wasser, Nahrung, Hormone). Dein zugrunde liegender Trend liegt weiterhin bei %1$@ %2$@/Woche – keine Anpassung nötig."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This week's number looks like normal day-to-day fluctuation (water, food, hormones). Your underlying trend is still %1$@ %2$@/week — no change needed."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "El valor de esta semana parece una fluctuación normal (agua, comida, hormonas). Tu tendencia real sigue siendo de %1$@ %2$@/semana — no hace falta ningún cambio."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le chiffre de cette semaine ressemble à une fluctuation normale (eau, alimentation, hormones). Ta tendance de fond reste à %1$@ %2$@/semaine — aucun changement nécessaire."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "इस सप्ताह की संख्या सामान्य उतार-चढ़ाव (पानी, भोजन, हार्मोन) जैसी लगती है। आपका असली ट्रेंड अभी भी %1$@ %2$@/सप्ताह है — किसी बदलाव की ज़रूरत नहीं।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Il valore di questa settimana sembra una normale oscillazione (acqua, cibo, ormoni). La tua tendenza di fondo resta %1$@ %2$@/settimana — nessuna modifica necessaria."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今週の数値は通常の変動(水分、食事、ホルモンなど)によるものと考えられます。実際のトレンドは引き続き%1$@ %2$@/週です — 変更の必要はありません。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이번 주 수치는 정상적인 변동(수분, 식사, 호르몬 등)으로 보입니다. 실제 추세는 여전히 주당 %1$@ %2$@이며, 조정이 필요하지 않습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Het cijfer van deze week lijkt op een normale schommeling (vocht, voeding, hormonen). Je onderliggende trend blijft %1$@ %2$@/week — geen aanpassing nodig."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wynik z tego tygodnia wygląda na normalne wahanie (woda, jedzenie, hormony). Twój rzeczywisty trend to nadal %1$@ %2$@/tydzień — żadna zmiana nie jest potrzebna."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O número desta semana parece uma flutuação normal (água, alimentação, hormônios). Sua tendência real continua em %1$@ %2$@/semana — nenhuma mudança é necessária."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Показатель этой недели похож на обычное колебание (вода, питание, гормоны). Ваш реальный тренд по-прежнему %1$@ %2$@/нед. — изменений не требуется."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bu haftaki değer normal bir dalgalanma gibi görünüyor (su, yemek, hormonlar). Asıl eğilimin hâlâ haftada %1$@ %2$@ — herhangi bir değişiklik gerekmiyor."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "本周的数值看起来只是正常的波动(水分、饮食、激素等)。你的实际趋势仍为每周 %1$@ %2$@——无需调整。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "本週的數值看起來只是正常的波動(水分、飲食、荷爾蒙等)。你的實際趨勢仍為每週 %1$@ %2$@——不需要調整。"
-          }
-        }
-      }
-    },
-    "calorie_decrease_suggested": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Basierend auf deinem Trend der letzten %1$@ Wochen empfehlen wir, deine täglichen Kalorien um etwa %2$@ kcal zu senken, um dein Ziel bis %3$@ zu erreichen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Based on your trend over the last %1$@ weeks, we recommend lowering your daily calories by about %2$@ kcal to stay on track for your goal by %3$@."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Según tu tendencia de las últimas %1$@ semanas, te recomendamos reducir tus calorías diarias en unas %2$@ kcal para alcanzar tu objetivo antes del %3$@."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "D'après ta tendance des %1$@ dernières semaines, nous te recommandons de réduire tes calories quotidiennes d'environ %2$@ kcal pour atteindre ton objectif d'ici le %3$@."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पिछले %1$@ हफ्तों के आपके ट्रेंड के आधार पर, हम सुझाव देते हैं कि %3$@ तक अपने लक्ष्य तक पहुँचने के लिए अपनी दैनिक कैलोरी लगभग %2$@ kcal कम करें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In base alla tua tendenza delle ultime %1$@ settimane, ti consigliamo di ridurre le calorie giornaliere di circa %2$@ kcal per raggiungere il tuo obiettivo entro il %3$@."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "過去%1$@週間のトレンドに基づき、%3$@までに目標を達成するために、1日の摂取カロリーを約%2$@kcal減らすことをおすすめします。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "지난 %1$@주간의 추세를 기준으로, %3$@까지 목표를 달성하려면 하루 섭취 칼로리를 약 %2$@kcal 줄이는 것을 권장합니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Op basis van je trend van de afgelopen %1$@ weken raden we aan je dagelijkse calorieën met ongeveer %2$@ kcal te verlagen om je doel voor %3$@ te halen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na podstawie Twojego trendu z ostatnich %1$@ tygodni zalecamy zmniejszenie dziennej liczby kalorii o około %2$@ kcal, aby osiągnąć cel do %3$@."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Com base na sua tendência das últimas %1$@ semanas, recomendamos reduzir suas calorias diárias em cerca de %2$@ kcal para atingir sua meta até %3$@."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "На основе вашего тренда за последние %1$@ нед. рекомендуем снизить дневную калорийность примерно на %2$@ ккал, чтобы достичь цели к %3$@."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Son %1$@ haftalık eğilimine göre, %3$@ tarihine kadar hedefine ulaşmak için günlük kalorini yaklaşık %2$@ kcal azaltmanı öneririz."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "根据你过去 %1$@ 周的趋势,建议将每日热量减少约 %2$@ 千卡,以便在 %3$@ 前达成目标。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "根據你過去 %1$@ 週的趨勢,建議將每日熱量減少約 %2$@ 大卡,以便在 %3$@ 前達成目標。"
-          }
-        }
-      }
-    },
-    "calorie_increase_suggested": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Basierend auf deinem Trend der letzten %1$@ Wochen empfehlen wir, deine täglichen Kalorien um etwa %2$@ kcal zu erhöhen, um dein Ziel bis %3$@ zu erreichen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Based on your trend over the last %1$@ weeks, we recommend raising your daily calories by about %2$@ kcal to stay on track for your goal by %3$@."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Según tu tendencia de las últimas %1$@ semanas, te recomendamos aumentar tus calorías diarias en unas %2$@ kcal para alcanzar tu objetivo antes del %3$@."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "D'après ta tendance des %1$@ dernières semaines, nous te recommandons d'augmenter tes calories quotidiennes d'environ %2$@ kcal pour atteindre ton objectif d'ici le %3$@."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पिछले %1$@ हफ्तों के आपके ट्रेंड के आधार पर, हम सुझाव देते हैं कि %3$@ तक अपने लक्ष्य तक पहुँचने के लिए अपनी दैनिक कैलोरी लगभग %2$@ kcal बढ़ाएँ।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In base alla tua tendenza delle ultime %1$@ settimane, ti consigliamo di aumentare le calorie giornaliere di circa %2$@ kcal per raggiungere il tuo obiettivo entro il %3$@."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "過去%1$@週間のトレンドに基づき、%3$@までに目標を達成するために、1日の摂取カロリーを約%2$@kcal増やすことをおすすめします。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "지난 %1$@주간의 추세를 기준으로, %3$@까지 목표를 달성하려면 하루 섭취 칼로리를 약 %2$@kcal 늘리는 것을 권장합니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Op basis van je trend van de afgelopen %1$@ weken raden we aan je dagelijkse calorieën met ongeveer %2$@ kcal te verhogen om je doel voor %3$@ te halen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na podstawie Twojego trendu z ostatnich %1$@ tygodni zalecamy zwiększenie dziennej liczby kalorii o około %2$@ kcal, aby osiągnąć cel do %3$@."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Com base na sua tendência das últimas %1$@ semanas, recomendamos aumentar suas calorias diárias em cerca de %2$@ kcal para atingir sua meta até %3$@."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "На основе вашего тренда за последние %1$@ нед. рекомендуем увеличить дневную калорийность примерно на %2$@ ккал, чтобы достичь цели к %3$@."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Son %1$@ haftalık eğilimine göre, %3$@ tarihine kadar hedefine ulaşmak için günlük kalorini yaklaşık %2$@ kcal artırmanı öneririz."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "根据你过去 %1$@ 周的趋势,建议将每日热量增加约 %2$@ 千卡,以便在 %3$@ 前达成目标。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "根據你過去 %1$@ 週的趨勢,建議將每日熱量增加約 %2$@ 大卡,以便在 %3$@ 前達成目標。"
-          }
-        }
-      }
-    },
-    "plateau_warning": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein Trend hat sich in den letzten %1$@ Wochen kaum verändert. Das kann passieren, auch wenn du alles richtig machst – hält es an, schlagen wir bald eine Kalorienanpassung vor."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your trend has barely moved over the last %1$@ weeks. This can happen even when you're doing everything right — if it continues, we'll suggest a calorie adjustment soon."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu tendencia apenas se ha movido en las últimas %1$@ semanas. Esto puede pasar incluso haciendo todo bien — si continúa, pronto te sugeriremos un ajuste de calorías."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ta tendance a très peu bougé au cours des %1$@ dernières semaines. Cela peut arriver même en faisant tout comme il faut — si ça continue, nous te proposerons bientôt un ajustement calorique."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पिछले %1$@ हफ्तों में आपका ट्रेंड लगभग नहीं बदला है। यह तब भी हो सकता है जब आप सब कुछ सही कर रहे हों — अगर यह जारी रहा, तो हम जल्द ही कैलोरी में बदलाव का सुझाव देंगे।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La tua tendenza è rimasta quasi invariata nelle ultime %1$@ settimane. Può succedere anche facendo tutto correttamente — se continua, ti suggeriremo presto una modifica delle calorie."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "過去%1$@週間、トレンドはほとんど変化していません。すべて正しく行っていてもこうしたことは起こり得ます。この状態が続く場合は、近いうちにカロリー調整をご提案します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "지난 %1$@주 동안 추세가 거의 변하지 않았습니다. 모든 것을 제대로 하고 있어도 이런 일은 생길 수 있어요 — 계속된다면 곧 칼로리 조정을 제안해 드릴게요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je trend is de afgelopen %1$@ weken nauwelijks veranderd. Dat kan gebeuren, ook als je alles goed doet — als dit aanhoudt, stellen we binnenkort een calorie-aanpassing voor."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twój trend prawie się nie zmienił przez ostatnie %1$@ tygodni. Może się to zdarzyć, nawet gdy wszystko robisz dobrze — jeśli to się utrzyma, wkrótce zaproponujemy zmianę kalorii."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua tendência quase não mudou nas últimas %1$@ semanas. Isso pode acontecer mesmo fazendo tudo certo — se continuar, sugeriremos em breve um ajuste de calorias."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ваш тренд почти не менялся последние %1$@ нед. Такое может случиться, даже если вы всё делаете правильно — если это продолжится, мы скоро предложим изменить калорийность."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eğilimin son %1$@ haftadır neredeyse hiç değişmedi. Her şeyi doğru yaparken bile bu olabilir — devam ederse yakında bir kalori ayarlaması önereceğiz."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "过去 %1$@ 周你的趋势几乎没有变化。即使一切都做得很好,也可能出现这种情况——如果持续下去,我们会尽快建议调整热量摄入。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "過去 %1$@ 週你的趨勢幾乎沒有變化。即使一切都做得很好,也可能發生這種情況——如果持續下去,我們會盡快建議調整熱量攝取。"
-          }
-        }
-      }
-    },
-    "goal_close": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fast geschafft – nur noch %1$@ %2$@ bis zu deinem Ziel von %3$@ %2$@."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Almost there — just %1$@ %2$@ to go until your goal of %3$@ %2$@."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ya casi lo logras — solo te faltan %1$@ %2$@ para tu objetivo de %3$@ %2$@."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu y es presque — plus que %1$@ %2$@ avant ton objectif de %3$@ %2$@."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "बस थोड़ा और — आपके %3$@ %2$@ के लक्ष्य तक पहुँचने में सिर्फ %1$@ %2$@ बाकी है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ci sei quasi — mancano solo %1$@ %2$@ al tuo obiettivo di %3$@ %2$@."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "もう少しです — 目標の%3$@ %2$@まで、あと%1$@ %2$@です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "거의 다 왔어요 — 목표 %3$@ %2$@까지 %1$@ %2$@만 남았습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bijna klaar — nog maar %1$@ %2$@ te gaan tot je doel van %3$@ %2$@."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Już prawie — zostało tylko %1$@ %2$@ do Twojego celu %3$@ %2$@."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quase lá — faltam apenas %1$@ %2$@ para sua meta de %3$@ %2$@."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Почти у цели — осталось всего %1$@ %2$@ до цели %3$@ %2$@."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neredeyse tamam — %3$@ %2$@ hedefine sadece %1$@ %2$@ kaldı."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "就快到了——距离你的目标 %3$@ %2$@ 还差 %1$@ %2$@。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "就快到了——距離你的目標 %3$@ %2$@ 還差 %1$@ %2$@。"
-          }
-        }
-      }
-    },
-    "goal_reached": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du hast dein Zielgewicht von %1$@ %2$@ erreicht! 🎉"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You've reached your goal weight of %1$@ %2$@! 🎉"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¡Has alcanzado tu peso objetivo de %1$@ %2$@! 🎉"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu as atteint ton poids cible de %1$@ %2$@ ! 🎉"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपने अपना लक्ष्य वज़न %1$@ %2$@ हासिल कर लिया है! 🎉"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hai raggiunto il tuo peso obiettivo di %1$@ %2$@! 🎉"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目標体重の%1$@ %2$@を達成しました!🎉"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "목표 체중 %1$@ %2$@을 달성했습니다! 🎉"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je hebt je streefgewicht van %1$@ %2$@ bereikt! 🎉"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gratulacje! Osiągnięto docelową wagę: %1$@ %2$@. 🎉"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você atingiu seu peso meta de %1$@ %2$@! 🎉"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Цель достигнута: вес %1$@ %2$@! 🎉"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ %2$@ hedef kilona ulaştın! 🎉"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你已达成目标体重 %1$@ %2$@!🎉"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你已達成目標體重 %1$@ %2$@!🎉"
-          }
-        }
-      }
-    },
-    "goal_date_unrealistic": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bei deinem aktuellen Trend ist es unwahrscheinlich, dass du %1$@ %2$@ bis %3$@ erreichst. Passe dein Zieldatum oder deine täglichen Kalorien an."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "At your current trend, reaching %1$@ %2$@ by %3$@ looks unlikely. Consider adjusting your target date or your daily calories."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Con tu tendencia actual, es poco probable que alcances %1$@ %2$@ antes del %3$@. Considera ajustar tu fecha objetivo o tus calorías diarias."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Au rythme actuel, atteindre %1$@ %2$@ d'ici le %3$@ semble peu probable. Envisage d'ajuster ta date cible ou tes calories quotidiennes."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपके मौजूदा ट्रेंड के हिसाब से, %3$@ तक %1$@ %2$@ तक पहुँचना मुश्किल लग रहा है। अपनी लक्ष्य तिथि या दैनिक कैलोरी में बदलाव पर विचार करें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Con la tendenza attuale, raggiungere %1$@ %2$@ entro il %3$@ sembra improbabile. Valuta di modificare la data obiettivo o le calorie giornaliere."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "現在のトレンドでは、%3$@までに%1$@ %2$@に到達するのは難しそうです。目標日または1日の摂取カロリーの見直しをご検討ください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "현재 추세대로라면 %3$@까지 %1$@ %2$@에 도달하기 어려울 것 같습니다. 목표 날짜나 하루 섭취 칼로리 조정을 고려해 보세요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bij je huidige trend is het onwaarschijnlijk dat je %1$@ %2$@ voor %3$@ haalt. Overweeg je streefdatum of je dagelijkse calorieën aan te passen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przy obecnym trendzie osiągnięcie %1$@ %2$@ do %3$@ wygląda na mało prawdopodobne. Rozważ zmianę daty docelowej lub dziennych kalorii."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Com sua tendência atual, atingir %1$@ %2$@ até %3$@ parece improvável. Considere ajustar sua data meta ou suas calorias diárias."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "При текущем тренде достижение %1$@ %2$@ к %3$@ выглядит маловероятным. Рассмотрите изменение целевой даты или дневной калорийности."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mevcut eğilimine göre, %3$@ tarihine kadar %1$@ %2$@ hedefine ulaşman pek olası görünmüyor. Hedef tarihini veya günlük kalorini gözden geçirmeyi düşün."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按照目前的趋势,在 %3$@ 前达到 %1$@ %2$@ 的可能性不大。可以考虑调整目标日期或每日热量。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按照目前的趨勢,在 %3$@ 前達到 %1$@ %2$@ 的可能性不大。可以考慮調整目標日期或每日熱量。"
-          }
-        }
-      }
-    },
-    "goal_date_ahead_of_schedule": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du liegst vor dem Zeitplan – bei diesem Tempo könntest du dein Ziel schon vor dem %1$@ erreichen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You're ahead of schedule — at this rate, you could reach your goal before %1$@."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vas adelantado — a este ritmo, podrías alcanzar tu objetivo antes del %1$@."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu es en avance — à ce rythme, tu pourrais atteindre ton objectif avant le %1$@."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आप समय से आगे चल रहे हैं — इस रफ़्तार से आप %1$@ से पहले ही अपना लक्ष्य पा सकते हैं।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sei in anticipo sui tempi — a questo ritmo potresti raggiungere il tuo obiettivo prima del %1$@."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "予定より順調に進んでいます — このペースなら%1$@より前に目標を達成できる可能性があります。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "계획보다 앞서 있어요 — 이 속도라면 %1$@ 전에 목표를 달성할 수 있습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je loopt voor op schema — in dit tempo kun je je doel al vóór %1$@ bereiken."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jesteś przed harmonogramem — w tym tempie możesz osiągnąć cel jeszcze przed %1$@."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você está adiantado — nesse ritmo, pode atingir sua meta antes de %1$@."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вы опережаете график — при таком темпе вы можете достичь цели раньше %1$@."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Planının önündesin — bu hızla hedefine %1$@ tarihinden önce ulaşabilirsin."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的进度超前——照这个速度,你可能会在 %1$@ 之前达成目标。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的進度超前——照這個速度,你可能會在 %1$@ 之前達成目標。"
-          }
-        }
-      }
-    },
-    "goal_updated": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ziel aktualisiert: %1$@ %2$@ bis %3$@ (Zieltempo: %4$@ %2$@/Woche)."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Goal updated: %1$@ %2$@ by %3$@ (target pace: %4$@ %2$@/week)."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objetivo actualizado: %1$@ %2$@ antes del %3$@ (ritmo objetivo: %4$@ %2$@/semana)."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objectif mis à jour : %1$@ %2$@ d'ici le %3$@ (rythme cible : %4$@ %2$@/semaine)."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "लक्ष्य अपडेट किया गया: %3$@ तक %1$@ %2$@ (लक्ष्य गति: %4$@ %2$@/सप्ताह)।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obiettivo aggiornato: %1$@ %2$@ entro il %3$@ (ritmo obiettivo: %4$@ %2$@/settimana)."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目標を更新しました:%3$@までに%1$@ %2$@(目標ペース:%4$@ %2$@/週)。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "목표가 업데이트되었습니다: %3$@까지 %1$@ %2$@ (목표 속도: 주당 %4$@ %2$@)."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Doel bijgewerkt: %1$@ %2$@ voor %3$@ (streeftempo: %4$@ %2$@/week)."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cel zaktualizowany: %1$@ %2$@ do %3$@ (docelowe tempo: %4$@ %2$@/tydzień)."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meta atualizada: %1$@ %2$@ até %3$@ (ritmo alvo: %4$@ %2$@/semana)."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Цель обновлена: %1$@ %2$@ к %3$@ (целевой темп: %4$@ %2$@/нед.)."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hedef güncellendi: %3$@ tarihine kadar %1$@ %2$@ (hedef hız: haftada %4$@ %2$@)."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目标已更新:%3$@ 前达到 %1$@ %2$@(目标速度:每周 %4$@ %2$@)。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目標已更新:%3$@ 前達到 %1$@ %2$@(目標速度:每週 %4$@ %2$@)。"
-          }
-        }
-      }
-    },
-    "weight.trend.title.insufficient": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mehr Daten benötigt"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "More data needed"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Más datos necesarios"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plus de données requises"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "और डेटा की आवश्यकता है"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Più dati necessari"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "データが不足しています"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "데이터가 더 필요합니다"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meer gegevens nodig"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Potrzeba więcej danych"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mais dados necessários"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нужно больше данных"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daha fazla veri gerekiyor"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "需要更多数据"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "需要更多資料"
-          }
-        }
-      }
-    },
-    "weight.trend.title.good": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alles im Plan"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "On track"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Por buen camino"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "En bonne voie"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सही दिशा में"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sulla buona strada"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "順調です"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "순조롭습니다"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Op koers"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na dobrej drodze"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No caminho certo"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "По плану"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plan dahilinde"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "进展顺利"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "進展順利"
-          }
-        }
-      }
-    },
-    "weight.trend.title.neutral": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stabile Phase"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stable phase"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fase estable"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phase stable"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "स्थिर चरण"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fase stabile"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "安定期"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "안정기"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stabiele fase"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faza stabilna"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fase estável"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Стабильная фаза"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sabit evre"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平稳期"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平穩期"
-          }
-        }
-      }
-    },
-    "weight.trend.title.adjust": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anpassung empfohlen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adjustment recommended"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ajuste recomendado"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ajustement recommandé"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सुधार की सिफारिश की गई"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regolazione consigliata"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "調整をお勧めします"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "조정 권장"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aanpassing aanbevolen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zalecana korekta"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ajuste recomendado"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Рекомендуется корректировка"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ayarlama önerilir"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "建议调整"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "建議調整"
-          }
-        }
-      }
-    },
-    "weight.trend.title.updated": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ziel aktualisiert"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Goal updated"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objetivo actualizado"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objectif mis à jour"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "लक्ष्य अपडेट किया गया"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obiettivo aggiornato"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目標が更新されました"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "목표 업데이트됨"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Doel bijgewerkt"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cel zaktualizowany"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meta atualizada"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Цель обновлена"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hedef güncellendi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目标已更新"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目標已更新"
-          }
-        }
-      }
-    },
-    "weight.trend.title.active": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein Wochentrend"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your weekly trend"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu tendencia semanal"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ta tendance hebdomadaire"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपका साप्ताहिक ट्रेंड"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La tua tendenza settimanale"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今週のトレンド"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주간 추세"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je wekelijkse trend"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twój tygodniowy trend"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua tendência semanal"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ваш недельный тренд"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Haftalık eğilimin"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的每周趋势"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的每週趨勢"
-          }
-        }
-      }
-    },
-    "weight.trend.desc.insufficient": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trag dein Gewicht weiter täglich ein, um einen verlässlichen Trend zu sehen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Keep logging your weight daily to see a reliable trend."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sigue registrando tu peso a diario para ver una tendencia fiable."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continue à enregistrer ton poids chaque jour pour voir une tendance fiable."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "भरोसेमंद ट्रेंड देखने के लिए रोज़ अपना वज़न दर्ज करते रहें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continua a registrare il tuo peso ogni giorno per vedere una tendenza affidabile."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "信頼できるトレンドを表示するには、引き続き毎日体重を記録してください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "신뢰할 수 있는 추세를 보려면 매일 체중을 계속 기록하세요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blijf je gewicht dagelijks bijhouden om een betrouwbare trend te zien."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zapisuj swoją wagę codziennie, aby zobaczyć wiarygodny trend."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continue registrando seu peso todos os dias para ver uma tendência confiável."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Продолжайте ежедневно записывать вес, чтобы увидеть надёжный тренд."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Güvenilir bir eğilim görmek için kilonu her gün kaydetmeye devam et."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "请继续每天记录体重，以查看可靠的趋势。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "請繼續每天記錄體重，以查看可靠的趨勢。"
-          }
-        }
-      }
-    },
-    "weight.trend.desc.active": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein geglätteter Trend liegt aktuell bei %1$@ %2$@/Woche."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your smoothed trend is currently %1$@ %2$@/week."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu tendencia suavizada es actualmente de %1$@ %2$@/semana."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ta tendance lissée est actuellement de %1$@ %2$@/semaine."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपका स्मूथ ट्रेंड वर्तमान में %1$@ %2$@/सप्ताह है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La tua tendenza smussata è attualmente di %1$@ %2$@/settimana."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平滑化されたトレンドは現在%1$@ %2$@/週です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "평활화된 추세는 현재 주당 %1$@ %2$@입니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je afgevlakte trend is momenteel %1$@ %2$@/week."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twój wygładzony trend wynosi obecnie %1$@ %2$@/tydzień."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua tendência suavizada é atualmente de %1$@ %2$@/semana."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ваш сглаженный тренд сейчас составляет %1$@ %2$@/нед."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Düzeltilmiş eğilimin şu anda haftada %1$@ %2$@."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你平滑后的趋势目前为每周 %1$@ %2$@。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你平滑後的趨勢目前為每週 %1$@ %2$@。"
-          }
-        }
-      }
-    },
-    "habit.fruit_veg.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obst & Gemüse"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fruits & Veggies"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Frutas y Verduras"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fruits & Légumes"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Frutta e Verdura"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "果物と野菜"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "과일 및 채소"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fruit & Groenten"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Owoce i Warzywa"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Frutas e Legumes"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Фрукты и овощи"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meyve ve Sebze"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "水果和蔬菜"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "水果和蔬菜"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "फल और सब्जियां"
-          }
-        }
-      }
-    },
-    "health.metric.fiber": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ballaststoffe"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fiber"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fibra"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fibres"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fibre"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "食物繊維"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "식이섬유"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vezels"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Błonnik"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fibra"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Клетчатка"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lif"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "膳食纤维"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "膳食纖維"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "फाइबर"
-          }
-        }
-      }
-    },
-    "health.metric.calcium": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kalzium"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Calcium"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Calcio"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Calcium"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Calcio"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "カルシウム"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "칼슘"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Calcium"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wapń"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cálcio"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Кальций"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kalsiyum"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "钙"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "鈣"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कैल्शियम"
-          }
-        }
-      }
-    },
-    "habit.fruit_veg.tip": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tipp: Füge deiner nächsten Mahlzeit eine Handvoll Beeren, einen Apfel oder Gemüsesticks als Snack hinzu."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tip: Add a handful of berries, an apple, or veggie sticks as a snack to your next meal."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Consejo: Añade un puñado de bayas, una manzana o palitos de verdura como aperitivo a tu próxima comida."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conseil : Ajoutez une poignée de baies, une pomme ou des bâtonnets de légumes comme collation à votre prochain repas."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Consiglio: Aggiungi una manciata di frutti di bosco, una mela o bastoncini di verdura come spuntino al tuo prossimo pasto."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ヒント：次の食事のおやつとして、ベリーを一掴み、リンゴ、または野菜スティックを追加しましょう。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "팁: 다음 식사에 베리 한 줌, 사과, 또는 채소 스틱을 간식으로 추가하세요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tip: Voeg een handje bessen, een appel of groentesticks toe als snack bij je volgende maaltijd."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wskazówka: Dodaj garść jagód, jabłko lub słupki warzywne jako przekąskę do następnego posiłku."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dica: Adicione um punhado de frutas vermelhas, uma maçã ou palitos de vegetais como lanche na sua próxima refeição."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Совет: Добавьте горсть ягод, яблоко или овощные палочки в качестве перекуса к следующему приему пищи."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İpucu: Bir sonraki öğününüze atıştırmalık olarak bir avuç orman meyvesi, bir elma veya sebze çubukları ekleyin."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "提示：在您的下一餐中加入一把浆果、一个苹果或蔬菜条作为零食。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "提示：在您的下一餐中加入一把漿果、一個蘋果或蔬菜條作為零食。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सुझाव: अपने अगले भोजन में नाश्ते के रूप में एक मुट्ठी जामुन, एक सेब या वेजी स्टिक्स शामिल करें।"
-          }
-        }
-      }
-    },
-    "habit.fruit_veg.connect_title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obst & Gemüse tracken"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Track Fruits & Veggies"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rastrear Frutas y Verduras"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suivre les Fruits & Légumes"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Traccia Frutta e Verdura"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "果物と野菜を記録"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "과일 및 채소 추적"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fruit & Groenten volgen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Śledź Owoce i Warzywa"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rastrear Frutas e Legumes"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Отслеживать фрукты и овощи"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meyve ve Sebzeleri Takip Et"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "记录水果和蔬菜"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "記錄水果和蔬菜"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "फल और सब्जियां ट्रैक करें"
-          }
-        }
-      }
-    },
-    "habit.fruit_veg.connect_desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verbinde Apple Health, um Ballaststoffe und Kalzium aus deiner Ernährung auszulesen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Connect Apple Health to read fiber and calcium from your diet."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conecta Apple Health para leer la fibra y el calcio de tu dieta."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Connectez Apple Health pour lire les fibres et le calcium de votre alimentation."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Connetti Apple Health per leggere le fibre e il calcio dalla tua dieta."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Healthを接続して、食事から食物繊維とカルシウムを読み取ります。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Health를 연결하여 식단에서 식이섬유와 칼슘을 읽어오세요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Koppel Apple Health om vezels en calcium uit je dieet te lezen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Połącz Apple Health, aby odczytywać błonnik i wapń ze swojej diety."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conecte o Apple Health para ler as fibras e o cálcio da sua dieta."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Подключите Apple Health, чтобы считывать клетчатку и кальций из вашего рациона."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Diyetinizden lif ve kalsiyumu okumak için Apple Health'i bağlayın."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "连接Apple Health以读取您饮食中的膳食纤维和钙。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "連接Apple Health以讀取您飲食中的膳食纖維和鈣。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अपने आहार से फाइबर और कैल्शियम पढ़ने के लिए Apple Health को कनेक्ट करें।"
-          }
-        }
-      }
-    },
-    "habit.fruit_veg.connect_btn": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mit Apple Health verbinden"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Connect to Apple Health"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conectar con Apple Health"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Connecter à Apple Health"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Connetti ad Apple Health"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Healthに接続"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Health에 연결"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Koppelen met Apple Health"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Połącz z Apple Health"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conectar ao Apple Health"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Подключить Apple Health"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Health'e Bağlan"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "连接到Apple Health"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "連接到Apple Health"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Health से कनेक्ट करें"
           }
         }
       }

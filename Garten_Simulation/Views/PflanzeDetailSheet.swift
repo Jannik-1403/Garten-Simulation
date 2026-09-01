@@ -285,6 +285,20 @@ struct PflanzeDetailSheet: View {
                             .environmentObject(gardenStore)
                             .environmentObject(settings)
                     }
+                    
+                    // Obst & Gemüse
+                    if pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium {
+                        ObstGemueseHealthCard()
+                            .padding(.top, 16)
+                            .padding(.horizontal, 24)
+                    }
+                    
+                    // Gesund kochen
+                    if pflanze.effectiveHealthMetric == .energy {
+                        GesundKochenCard()
+                            .padding(.top, 16)
+                            .padding(.horizontal, 24)
+                    }
 
                     // MARK: - Ziel-Punkte Banner
                     if pflanze.showGoals {

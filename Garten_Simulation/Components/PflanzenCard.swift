@@ -40,6 +40,7 @@ struct PflanzenCard: View {
         case .strengthTraining: return healthManager.todaysStrengthTraining
         case .fiber: return healthManager.todaysFiber
         case .calcium: return healthManager.todaysCalcium
+        case .energy: return healthManager.todaysEnergy
         }
     }
     
