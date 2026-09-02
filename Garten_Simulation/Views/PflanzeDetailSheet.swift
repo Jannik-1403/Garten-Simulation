@@ -122,7 +122,7 @@ struct PflanzeDetailSheet: View {
                     }
                     
                     // Gesund kochen
-                    if pflanze.effectiveHealthMetric == .energy {
+                    if pflanze.effectiveHealthMetric == .energy && pflanze.showStats {
                         GesundKochenCard(onUnlink: {
                             zeigeAppleHealthEntkoppelnAlert = true
                         })

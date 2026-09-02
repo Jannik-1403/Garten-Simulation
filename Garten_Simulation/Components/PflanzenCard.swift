@@ -11,6 +11,7 @@ struct PflanzenCard: View {
     @ObservedObject var healthManager = HealthManager.shared
     @ObservedObject var nutrientManager = NutrientIndexManager.shared
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
+    @AppStorage("goal_energy") private var goalEnergy: Double = 2000.0
     @State private var isVisualPressed = false
     @State private var isLocked = false
     @State private var pflanzenPosition: CGPoint = .zero
@@ -54,6 +55,12 @@ struct PflanzenCard: View {
         if metric == .fiber || metric == .calcium {
             let score = nutrientManager.totalScore
             return Double(score) / 100.0
+        }
+        
+        // Kalorien/Gesund Kochen
+        if metric == .energy {
+            let goal = max(goalEnergy, 1.0)
+            return min(1.0, max(0.0, healthManager.todaysEnergy / goal))
         }
         
         guard let target = pflanze.healthTarget, target > 0 else {
