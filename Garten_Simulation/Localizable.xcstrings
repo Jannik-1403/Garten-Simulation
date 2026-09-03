@@ -146925,7 +146925,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.generic.title"
+            "value": "Начать фокус"
           }
         },
         "tr": {
@@ -197698,13 +197698,13 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Calcium"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wapń"
           }
         },
         "pt": {
@@ -197805,7 +197805,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Błonnik"
           }
         },
         "pt": {
@@ -197906,7 +197906,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Minerały"
           }
         },
         "pt": {
@@ -198411,7 +198411,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Błonnik"
           }
         },
         "pt": {
@@ -200466,7 +200466,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "維生素B1 (硫胺素)"
           }
         }
       }
@@ -200959,7 +200959,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "B7 Vitamini (Biyotin)"
           }
         },
         "zh-Hans": {
@@ -201030,19 +201030,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Vitamine B12"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Witamina B12"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Vitamina B12"
           }
         },
         "pt-BR": {
@@ -201060,7 +201060,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "B12 Vitamini"
           }
         },
         "zh-Hans": {
@@ -201072,7 +201072,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "維生素B12"
           }
         }
       }
@@ -201143,7 +201143,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Vitamina C"
           }
         },
         "pt-BR": {
@@ -201161,7 +201161,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "C Vitamini"
           }
         },
         "zh-Hans": {
@@ -201173,7 +201173,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "維生素C"
           }
         }
       }
@@ -201232,19 +201232,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Vitamine D"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Witamina D"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Vitamina D"
           }
         },
         "pt-BR": {
@@ -201262,7 +201262,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "D Vitamini"
           }
         },
         "zh-Hans": {
@@ -201274,7 +201274,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "維生素D"
           }
         }
       }
@@ -201333,13 +201333,13 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Vitamine E"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Witamina E"
           }
         },
         "pt": {
@@ -201363,7 +201363,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "E Vitamini"
           }
         },
         "zh-Hans": {
@@ -201375,7 +201375,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "維生素E"
           }
         }
       }
@@ -201434,19 +201434,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Vitamine K"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Witamina K"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Vitamina K"
           }
         },
         "pt-BR": {
@@ -234597,7 +234597,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "pfad.ice.desc"
+            "value": "Лед для серии защищает вашу серию. Вы не потеряете ее, если пропустите день полива.\n\nВы получаете 1 новый лед за каждую завершенную неделю (7-дневное кольцо). Одновременно может быть активно не более 3 льдов."
           }
         },
         "tr": {
@@ -234609,7 +234609,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "pfad.ice.desc"
+            "value": "连击冰可以保护您的连击。如果您某天没有浇水，您不会失去连击。\n\n每完成一周（7天连击圈），您将获得1个新冰。最多可以同时激活3个冰。"
           }
         },
         "zh-Hant": {
@@ -234649,7 +234649,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "pfad.ice.title"
+            "value": "स्ट्रीक आइस"
           }
         },
         "it": {
@@ -234697,7 +234697,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "pfad.ice.title"
+            "value": "Лед для серии"
           }
         },
         "tr": {
@@ -234709,7 +234709,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "pfad.ice.title"
+            "value": "连击冰"
           }
         },
         "zh-Hant": {
@@ -291679,7 +291679,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "1食分は100%%生で食べられます"
+            "value": "1食分は%@生で食べられます"
           }
         },
         "ko": {
@@ -291715,7 +291715,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Одна порция съедается полностью сырой."
+            "value": "Одна порция съедается на %@ в сыром виде"
           }
         },
         "tr": {
@@ -324100,7 +324100,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "午後2時までに必要な水分の少なくとも60%%を摂取するようにしてください。これにより、夕方の飲酒や夜間のトイレに行くことがなくなります。"
+            "value": "午後2時までに必要な水分の少なくとも%@を摂取するようにしてください。これにより、夕方の飲酒や夜間のトイレに行くことがなくなります。"
           }
         },
         "ko": {
@@ -324201,7 +324201,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "午後2時までに60%%飲酒"
+            "value": "午後2時までに%@飲酒"
           }
         },
         "ko": {
@@ -324243,7 +324243,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yüzde 60'ı öğleden sonra 2'den önce sarhoş"
+            "value": "Saat 14:00'ten önce %@ içildi"
           }
         },
         "zh-Hans": {
@@ -362293,7 +362293,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "settings.manage_subscription"
+            "value": "Abonnement beheren"
           }
         },
         "pl": {
@@ -362317,7 +362317,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "settings.manage_subscription"
+            "value": "Управление подпиской"
           }
         },
         "tr": {
@@ -449964,7 +449964,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_history_title"
+            "value": "Настроить виджет истории"
           }
         },
         "tr": {
@@ -450065,7 +450065,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_routine_desc"
+            "value": "Выберите рутину и фон."
           }
         },
         "tr": {
@@ -450166,7 +450166,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_routine_title"
+            "value": "Настроить виджет рутины"
           }
         },
         "tr": {
@@ -450267,7 +450267,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_streak_title"
+            "value": "Настроить виджет серии"
           }
         },
         "tr": {
@@ -450368,7 +450368,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_water_desc"
+            "value": "Выберите фон."
           }
         },
         "tr": {
@@ -450469,7 +450469,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_water_title"
+            "value": "Настроить виджет воды"
           }
         },
         "tr": {
@@ -451580,7 +451580,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_alltime"
+            "value": "За все время"
           }
         },
         "tr": {
@@ -451681,7 +451681,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_month"
+            "value": "Этот месяц"
           }
         },
         "tr": {
@@ -451782,7 +451782,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_today"
+            "value": "Сегодня"
           }
         },
         "tr": {
@@ -451883,7 +451883,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_type"
+            "value": "Период"
           }
         },
         "tr": {
@@ -451984,7 +451984,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_week"
+            "value": "Эта неделя"
           }
         },
         "tr": {
@@ -452388,7 +452388,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_routine_type"
+            "value": "Рутина"
           }
         },
         "tr": {
@@ -452899,7 +452899,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_style_dark"
+            "value": "Темный (черный)"
           }
         },
         "tr": {
@@ -453000,7 +453000,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_style_light"
+            "value": "Светлый (белый)"
           }
         },
         "tr": {
@@ -453101,7 +453101,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_style_type"
+            "value": "Стиль фона"
           }
         },
         "tr": {
