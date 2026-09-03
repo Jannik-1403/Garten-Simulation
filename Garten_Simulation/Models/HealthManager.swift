@@ -64,13 +64,11 @@ class HealthManager: ObservableObject {
     // Unified Values + Source Information
     var activeWeight: (value: Double, source: String)? {
         if let hk = latestBodyMass { return (hk, "Apple Health") }
-        if manualWeight > 0 { return (manualWeight, "App") }
         return nil
     }
     
     var activeHeight: (value: Double, source: String)? {
         if let hk = latestHeight { return (hk, "Apple Health") }
-        if manualHeight > 0 { return (manualHeight, "App") }
         return nil
     }
     

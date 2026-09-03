@@ -81,7 +81,8 @@ struct CalorieCalculationSheet: View {
                             unit: "kg",
                             hkValue: hm.latestBodyMass,
                             manualBinding: $weightStr,
-                            isNumber: true
+                            isNumber: true,
+                            forceReadOnly: true
                         )
                         
                         // HEIGHT
@@ -90,7 +91,8 @@ struct CalorieCalculationSheet: View {
                             unit: "cm",
                             hkValue: hm.latestHeight,
                             manualBinding: $heightStr,
-                            isNumber: true
+                            isNumber: true,
+                            forceReadOnly: true
                         )
                         
                         // AGE
@@ -235,13 +237,13 @@ struct CalorieCalculationSheet: View {
     }
     
     @ViewBuilder
-    private func dataRow(title: String, unit: String, hkValue: Double?, manualBinding: Binding<String>, isNumber: Bool) -> some View {
+    private func dataRow(title: String, unit: String, hkValue: Double?, manualBinding: Binding<String>, isNumber: Bool, forceReadOnly: Bool = false) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(title)
                     .font(.headline)
                 Spacer()
-                if hkValue != nil {
+                if forceReadOnly || hkValue != nil {
                     Image(systemName: "heart.fill")
                         .foregroundColor(.red)
                 } else {
@@ -250,27 +252,44 @@ struct CalorieCalculationSheet: View {
                 }
             }
             
-            if let val = hkValue {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(String(format: "%.1f", val).replacingOccurrences(of: ".0", with: ""))
-                        .font(.title2.bold())
-                    Text(unit)
-                        .foregroundColor(.secondary)
+            if forceReadOnly {
+                if let val = hkValue {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(String(format: "%.1f", val).replacingOccurrences(of: ".0", with: ""))
+                            .font(.title2.bold())
+                        Text(unit)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 8)
+                } else {
+                    Text(String(localized: "calorie.calc.missing_health_data", defaultValue: "Bitte in Apple Health eintragen"))
+                        .font(.subheadline)
+                        .foregroundColor(.orange)
+                        .padding(.vertical, 8)
                 }
-                .padding(.vertical, 8)
             } else {
-                HStack {
-                    TextField("0", text: manualBinding)
-                        .keyboardType(isNumber ? .decimalPad : .default)
-                        .font(.title2.bold())
-                        .onChange(of: manualBinding.wrappedValue) { _, _ in
-                            saveManualInputs()
-                        }
-                    Text(unit)
-                        .foregroundColor(.secondary)
+                if let val = hkValue {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(String(format: "%.1f", val).replacingOccurrences(of: ".0", with: ""))
+                            .font(.title2.bold())
+                        Text(unit)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 8)
+                } else {
+                    HStack {
+                        TextField("0", text: manualBinding)
+                            .keyboardType(isNumber ? .decimalPad : .default)
+                            .font(.title2.bold())
+                            .onChange(of: manualBinding.wrappedValue) { _, _ in
+                                saveManualInputs()
+                            }
+                        Text(unit)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 8)
+                    .overlay(Rectangle().frame(height: 1).foregroundColor(Color(UIColor.separator)), alignment: .bottom)
                 }
-                .padding(.vertical, 8)
-                .overlay(Rectangle().frame(height: 1).foregroundColor(Color(UIColor.separator)), alignment: .bottom)
             }
         }
         .padding()

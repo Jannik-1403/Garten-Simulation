@@ -422,7 +422,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2660;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					1424D41B2F6EA14200908588 = {
 						CreatedOnToolsVersion = 26.3;
@@ -652,6 +652,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -717,6 +718,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -748,7 +750,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Garten_Simulation/Info.plist;
@@ -791,7 +792,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Garten_Simulation/Info.plist;
@@ -831,7 +831,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -857,7 +856,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -882,7 +880,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Garten-SimulationUITests";
@@ -906,7 +903,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Garten-SimulationUITests";
@@ -933,7 +929,6 @@
 				CODE_SIGN_ENTITLEMENTS = GartenWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GartenWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GartenWidget;
@@ -971,7 +966,6 @@
 				CODE_SIGN_ENTITLEMENTS = GartenWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GartenWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GartenWidget;
@@ -1008,7 +1002,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScreenTimeMonitor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeMonitor;
@@ -1044,7 +1037,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScreenTimeMonitor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeMonitor;
@@ -1080,7 +1072,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrovyDNSFilter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GrovyDNSFilter;
@@ -1114,7 +1105,6 @@
 				CODE_SIGN_ENTITLEMENTS = GrovyDNSFilter/GrovyDNSFilter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrovyDNSFilter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GrovyDNSFilter;

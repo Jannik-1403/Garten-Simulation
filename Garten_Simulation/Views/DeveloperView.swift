@@ -27,74 +27,7 @@ struct DeveloperView: View {
             ScrollView {
                 VStack(spacing: 24) {
                     
-                    // Section 0: Nährstoff-Testdaten
-                    settingsSection(title: String(localized: "developer.section.nutrients", defaultValue: "Nährstoff-Testdaten")) {
-                        VStack(spacing: 0) {
-                            Button {
-                                nutrientManager.injectAllTestData()
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(
-                                    title: String(localized: "developer.nutrients.inject_all", defaultValue: "Alle Nährstoffe mit Testdaten befüllen"),
-                                    icon: "flask.fill",
-                                    color: .blue
-                                )
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                nutrientManager.injectTestData(for: "Vitamine")
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(
-                                    title: String(localized: "developer.nutrients.inject_vitamins", defaultValue: "Vitamine mit Testdaten befüllen"),
-                                    icon: "pill.fill",
-                                    color: Color(hue: 0.6, saturation: 0.8, brightness: 0.9)
-                                )
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                nutrientManager.injectTestData(for: "Mineralstoffe")
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(
-                                    title: String(localized: "developer.nutrients.inject_minerals", defaultValue: "Mineralstoffe mit Testdaten befüllen"),
-                                    icon: "circle.hexagongrid.fill",
-                                    color: Color(hue: 0.35, saturation: 0.8, brightness: 0.75)
-                                )
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                nutrientManager.injectTestData(for: "Ballaststoffe")
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(
-                                    title: String(localized: "developer.nutrients.inject_fiber", defaultValue: "Ballaststoffe mit Testdaten befüllen"),
-                                    icon: "leaf.fill",
-                                    color: Color(red: 0.98, green: 0.5, blue: 0.4)
-                                )
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                nutrientManager.resetAllNutrients()
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(
-                                    title: String(localized: "developer.nutrients.reset", defaultValue: "Alle Nährstoffe zurücksetzen"),
-                                    icon: "trash.fill",
-                                    color: .red
-                                )
-                            }
-                        }
-                    }
-                    
+
                     // Section 1: General simulation controls
                     settingsSection(title: "Allgemeine Steuerung") {
                         VStack(spacing: 0) {

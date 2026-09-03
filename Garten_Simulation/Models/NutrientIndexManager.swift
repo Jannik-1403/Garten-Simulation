@@ -92,31 +92,6 @@ class NutrientIndexManager: ObservableObject {
         objectWillChange.send()
     }
     
-    // NEU: Testdaten injizieren
-    func injectTestData(for category: String) {
-        if category == "Vitamine" {
-            for i in 0..<vitamins.count { vitamins[i].currentValue = Double.random(in: 0.2...1.0) * vitamins[i].targetDGE }
-        } else if category == "Mineralstoffe" {
-            for i in 0..<minerals.count { minerals[i].currentValue = Double.random(in: 0.2...1.0) * minerals[i].targetDGE }
-        } else if category == "Ballaststoffe" {
-            fiber.currentValue = Double.random(in: 0.2...1.0) * fiber.targetDGE
-        }
-        saveSettings()
-    }
-    
-    func injectAllTestData() {
-        for i in 0..<vitamins.count { vitamins[i].currentValue = Double.random(in: 0.2...1.0) * vitamins[i].targetDGE }
-        for i in 0..<minerals.count { minerals[i].currentValue = Double.random(in: 0.2...1.0) * minerals[i].targetDGE }
-        fiber.currentValue = Double.random(in: 0.2...1.0) * fiber.targetDGE
-        saveSettings()
-    }
-    
-    func resetAllNutrients() {
-        for i in 0..<vitamins.count { vitamins[i].currentValue = 0 }
-        for i in 0..<minerals.count { minerals[i].currentValue = 0 }
-        fiber.currentValue = 0
-        saveSettings()
-    }
     
     private func defaultVitamins() -> [NutrientItem] {
         [
