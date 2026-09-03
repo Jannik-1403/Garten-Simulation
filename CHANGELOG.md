@@ -935,3 +935,8 @@
 - App-Name 'Grovy' in Localizable.xcstrings für alle nicht-chinesischen Sprachen auf die originale Schreibweise vereinheitlicht.
 - 55 kaputte oder durch deep-translator verfälschte Übersetzungen ('Error 500' Server-Fehler in Texten, fehlende Platzhalter, unübersetzte technische Keys) im gesamten String Catalog manuell korrigiert.
 - Letzte 15 kaputte Strings (durch Validator-Prompt identifiziert) in allen 15 Zielsprachen manuell im String Catalog Localizable.xcstrings übersetzt und korrigiert.
+- Nährstoff-Testdaten entfernt (nur noch echtes Apple Health).
+- Gewicht und Körpergröße werden im Kalorien-Sheet nur noch direkt aus Apple Health geladen, manuelle Fallbacks wurden entfernt.
+- Kalorien-Tracking für 'Gesund kochen' validiert und Übersetzung für fehlende Gesundheitsdaten hinzugefügt.
+- Lokalisierungs-Fix: String Catalog (Localizable.xcstrings) korrigiert, um fehlende oder identische englische/deutsche Strings für Italienisch und alle 15 weiteren Sprachen (To-Dos, Kalorien, Makros, Vitamine etc.) korrekt anzuzeigen.
+- Lokalisierungs-Fix (Teil 2): Katalog-Werte nun auf die tatsächlichen Translation-Keys gemapped (z.B. plant.detail.todo.add statt Add To-Do) für To-Dos, Kalorien, Makros und Vitamine, sodass in der UI die echten Übersetzungen geladen werden.
