@@ -116,7 +116,7 @@ struct LifestyleAssessmentQuizView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    QuizQuestionCard(text: NSLocalizedString(currentQuestion.textKey, comment: ""))
+                    QuizQuestionCard(text: PercentHelper.localizedWithPercents(currentQuestion.textKey))
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
                         .offset(x: cardOffset)
@@ -125,7 +125,7 @@ struct LifestyleAssessmentQuizView: View {
                     VStack(spacing: 10) {
                         ForEach(shuffledAnswers) { answer in
                             QuizAnswerButton(
-                                text: NSLocalizedString(answer.textKey, comment: ""),
+                                text: PercentHelper.localizedWithPercents(answer.textKey),
                                 isSelected: selectedAnswerID == answer.id,
                                 color: .green,
                                 shadowColor: Color(hex: "#4CAF50"),

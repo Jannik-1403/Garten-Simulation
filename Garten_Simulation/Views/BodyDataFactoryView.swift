@@ -293,7 +293,7 @@ struct BodyDataFactoryView: View {
                 AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
                 AxisValueLabel {
                     if let v = value.as(Double.self) {
-                        Text(String(format: "%.0f", v))
+                        Text(verbatim: String(format: "%.0f", v))
                             .font(.system(size: 11, weight: .semibold, design: .rounded))
                             .foregroundStyle(Color(UIColor.systemGray2))
                     }
@@ -996,7 +996,7 @@ struct BodyDataFactoryView: View {
                         HStack {
                             Text(String(localized: "body.tracking.target_pace", defaultValue: "kg pro Woche:"))
                             Spacer()
-                            TextField("0.5", text: $paceInput)
+                            TextField("", text: $paceInput, prompt: Text(verbatim: "0.5"))
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                                 .frame(width: 80)

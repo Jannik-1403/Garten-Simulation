@@ -923,5 +923,11 @@
   - Der "Ziel ändern"-Button ist nun in dunkelrot und hat einen 3D-Effekt.
   - Klickt man auf den Button, öffnet sich nun direkt der kompakte Editor (statt der gesamten Krafttraining-Seite). Änderungen hierin werden sofort mit der Krafttraining-Seite synchronisiert.
   - Im Krafttraining-Zielmenü kannst du jetzt zwischen "Datum" und "Tempo (Woche)" wechseln. Gibst du ein wöchentliches Tempo (z. B. 0.5 kg) ein, berechnet die App das entsprechende Zieldatum automatisch im Hintergrund!
-  - Die manuelle Eingabe des Körperfettanteils wurde entfernt. Stattdessen wird der Körperfettanteil nun automatisch über die wissenschaftliche YMCA-Formel berechnet, sobald ein Nutzer seinen Taillenumfang im Krafttraining-Feature erfasst und ein Körpergewicht hinterlegt hat. Dieser geschätzte Wert fließt direkt in die Kalorienberechnung ein.
+  - Die Anzeige und Berechnung des Körperfettanteils in "Daten & Kalorien" wurde vollständig aus der App entfernt.
   - Der Hinweistext zur Apple Health Synchronisation in den Profil-Einstellungen wurde aktualisiert, um Nutzer besser darüber aufzuklären, dass nun auch Körper- und Ernährungsdaten (Gewicht, Größe, Alter, Geschlecht) verknüpft werden.
+
+## Gesund Kochen Tracking Update (Kalorien)
+- Fortschrittsbalken im Garten für 'Gesund Kochen' (Kalorien) basiert nun auf den aktuell getrackten Health-Kalorien und dem in den Einstellungen definierten Kalorienziel.
+- In der Detailansicht der Gewohnheit wird das Makro-Diagramm nun korrekt ausgeblendet, sobald die Statistik in den Optionen deaktiviert wird.
+- Alle Warnungen bezüglich Prozent-Zeichen in Localizable.xcstrings auf saubere Weise durch ein neues PercentHelper Konstrukt gelöst.
+- Speicherleck / Compile-Hang durch veraltete Riesen-Dictionaries in AppStrings.swift behoben.

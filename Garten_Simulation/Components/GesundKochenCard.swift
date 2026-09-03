@@ -77,7 +77,7 @@ struct GesundKochenCard: View {
                                         .font(.headline)
                                         .foregroundColor(.primary)
                                     Spacer()
-                                    Text("\(Int(healthManager.todaysEnergy)) / \(Int(goalEnergy)) kcal")
+                                    Text(verbatim: "\(Int(healthManager.todaysEnergy)) / \(Int(goalEnergy)) kcal")
                                         .font(.subheadline.bold())
                                         .foregroundColor(healthManager.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green)
                                 }

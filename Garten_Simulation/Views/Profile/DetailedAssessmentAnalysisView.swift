@@ -145,25 +145,25 @@ struct DetailedAssessmentAnalysisView: View {
                 icon: result.strengthIcon,
                 iconColor: .green,
                 title: String(localized: "assessment.analysis.strength_title", defaultValue: "Deine Stärke"),
-                subtitle: String(localized: String.LocalizationValue(result.topStrengthKey)))
+                subtitle: PercentHelper.localizedWithPercents(result.topStrengthKey))
 
             AnalysisRowItem(
                 icon: result.weaknessIcon,
                 iconColor: .red,
                 title: String(localized: "assessment.analysis.weakness_title", defaultValue: "Deine Schwäche"),
-                subtitle: String(localized: String.LocalizationValue(result.biggestWeaknessKey)))
+                subtitle: PercentHelper.localizedWithPercents(result.biggestWeaknessKey))
 
             AnalysisRowItem(
                 icon: "exclamationmark.triangle.fill",
                 iconColor: .orange,
                 title: String(localized: "assessment.analysis.pitfall_title", defaultValue: "Was du vermeiden musst"),
-                subtitle: String(localized: String.LocalizationValue(result.pitfallKey)))
+                subtitle: PercentHelper.localizedWithPercents(result.pitfallKey))
 
             BenchmarkCard(
                 percentile: result.benchmarkPercentile,
                 label: result.benchmarkLabel,
                 labelColor: color,
-                description: String(localized: String.LocalizationValue(result.benchmarkKey)))
+                description: PercentHelper.localizedWithPercents(result.benchmarkKey))
         }
         .padding(.horizontal, 20)
     }

@@ -1725,7 +1725,7 @@ struct StatDetailFullscreenView: View {
                                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                                     .foregroundStyle(.primary)
                                 
-                                Text(tx.betrag > 0 ? "(+\(tx.betrag))" : "(\(tx.betrag))")
+                                Text(verbatim: tx.betrag > 0 ? "(+\(tx.betrag))" : "(\(tx.betrag))")
                                     .font(.system(size: 13, weight: .bold, design: .rounded))
                                     .foregroundStyle(tx.betrag > 0 ? Color.gruenPrimary : .red)
                             }

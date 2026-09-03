@@ -1,0 +1,4 @@
+2026-09-02 21:41:52.939 appintentsmetadataprocessor[4316:57604] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+2026-09-02 21:41:54.230 appintentsmetadataprocessor[4364:57819] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+warning: Unable to find extract.actionsdata in '--input-data-path' directory path (in target 'Garten_Simulation' from project 'Garten_Simulation')
+warning: Unable to read App Intents metadata. AppShortcuts phrases will go through basic validation. (in target 'Garten_Simulation' from project 'Garten_Simulation')

@@ -130,7 +130,7 @@ struct NutrientProgressList: View {
                                 .font(.subheadline)
                                 .bold()
                             Spacer()
-                            Text("\(item.currentValue, specifier: "%.1f") / \(item.targetDGE, specifier: "%.1f") \(item.unitString)")
+                            Text(verbatim: "\(String(format: "%.1f", item.currentValue)) / \(String(format: "%.1f", item.targetDGE)) \(item.unitString)")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }

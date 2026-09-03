@@ -137,7 +137,7 @@ struct MacroDetailView: View {
             Text(title)
                 .foregroundColor(.secondary)
             Spacer()
-            Text("\(value, specifier: "%.1f") g")
+            Text(verbatim: "\(String(format: "%.1f", value)) g")
                 .bold()
         }
     }

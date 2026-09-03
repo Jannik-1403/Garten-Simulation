@@ -335,7 +335,7 @@ struct InventoryItemDetailSheet: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
-                    Text(total > 0 ? "\(streakDays)" : "-")
+                    Text(verbatim: total > 0 ? "\(streakDays)" : "-")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                 }
                 Text(String(localized: "habit.stats.streak").uppercased())

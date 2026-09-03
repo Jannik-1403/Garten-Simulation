@@ -41,7 +41,7 @@ struct ObstGemueseHealthCard: View {
                             Text(String(localized: "health.metric.fiber", defaultValue: "Ballaststoffe"))
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
-                            Text("\(fiberGrams, specifier: "%.1f") g")
+                            Text(verbatim: "\(String(format: "%.1f", fiberGrams)) g")
                                 .font(.title3)
                                 .bold()
                         }
@@ -53,7 +53,7 @@ struct ObstGemueseHealthCard: View {
                             Text(String(localized: "health.metric.calcium", defaultValue: "Kalzium"))
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
-                            Text("\(calciumMg, specifier: "%.0f") mg")
+                            Text(verbatim: "\(String(format: "%.0f", calciumMg)) mg")
                                 .font(.title3)
                                 .bold()
                         }

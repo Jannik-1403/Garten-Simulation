@@ -48,7 +48,7 @@ struct CalorieCalculationSheet: View {
                             .font(.system(size: 20, weight: .bold, design: .rounded))
                         
                         if let energy = recommendedEnergy {
-                            Text("\(Int(energy)) kcal")
+                            Text(verbatim: "\(Int(energy)) kcal")
                                 .font(.system(size: 48, weight: .black, design: .rounded))
                                 .foregroundStyle(Color.red.darker())
                             
@@ -57,7 +57,7 @@ struct CalorieCalculationSheet: View {
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
                         } else {
-                            Text("??? kcal")
+                            Text(String(localized: "calories_unknown_placeholder", defaultValue: "??? kcal"))
                                 .font(.system(size: 48, weight: .black, design: .rounded))
                                 .foregroundStyle(.gray)
                             
@@ -151,7 +151,7 @@ struct CalorieCalculationSheet: View {
                                     Text(hm.weightGoalType == 1 ? String(localized: "calorie.calc.goal.lose", defaultValue: "Abnehmen") : String(localized: "calorie.calc.goal.gain", defaultValue: "Zunehmen"))
                                         .font(.subheadline.bold())
                                     Spacer()
-                                    Text(String(format: "%.1f kg", hm.weightGoalTargetKg))
+                                    Text(verbatim: String(format: "%.1f kg", hm.weightGoalTargetKg))
                                         .font(.title3.bold())
                                 }
                                 

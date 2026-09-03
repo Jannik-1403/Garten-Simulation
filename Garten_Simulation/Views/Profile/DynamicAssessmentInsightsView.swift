@@ -28,11 +28,11 @@ struct DynamicAssessmentInsightsView: View {
                                 .scaleEffect(insight.iconName == "Goal" ? 2.2 : 1.0)
                             
                             VStack(alignment: .leading, spacing: 6) {
-                                Text(String(localized: String.LocalizationValue(insight.titleKey)))
+                                Text(PercentHelper.localizedWithPercents(insight.titleKey))
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                 
-                                Text(String(localized: String.LocalizationValue(insight.descriptionKey)))
+                                Text(PercentHelper.localizedWithPercents(insight.descriptionKey))
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                                     .fixedSize(horizontal: false, vertical: true)

@@ -50,7 +50,7 @@ struct WeightTargetEditView: View {
                         HStack {
                             Text(String(localized: "body.tracking.target_pace", defaultValue: "kg pro Woche:"))
                             Spacer()
-                            TextField("0.5", text: $paceInput)
+                            TextField("", text: $paceInput, prompt: Text(verbatim: "0.5"))
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                                 .frame(width: 80)

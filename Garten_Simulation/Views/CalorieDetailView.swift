@@ -124,7 +124,7 @@ struct CalorieDetailView: View {
                                 Text(String(localized: "calorie.history.consumed", defaultValue: "Konsumiert"))
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
-                                Text("\(Int(hm.todaysEnergy)) kcal")
+                                Text(verbatim: "\(Int(hm.todaysEnergy)) kcal")
                                     .font(.title2.bold())
                                     .foregroundColor(hm.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green.darker())
                             }
@@ -133,7 +133,7 @@ struct CalorieDetailView: View {
                                 Text(String(localized: "calorie.history.target", defaultValue: "Ziel"))
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
-                                Text("\(Int(goalEnergy)) kcal")
+                                Text(verbatim: "\(Int(goalEnergy)) kcal")
                                     .font(.title2.bold())
                                     .foregroundColor(hm.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green.darker())
                             }

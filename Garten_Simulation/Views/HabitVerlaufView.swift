@@ -189,7 +189,7 @@ struct HabitVerlaufView: View {
             )
             divider
             statCell(
-                value: "\(consistencyPct)%",
+                value: (Double(consistencyPct) / 100.0).formatted(.percent.precision(.fractionLength(0))),
                 label: String(localized: "verlauf.stat.rate"),
                 color: .blauPrimary
             )

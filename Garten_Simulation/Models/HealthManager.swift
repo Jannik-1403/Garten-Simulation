@@ -130,7 +130,7 @@ class HealthManager: ObservableObject {
         // "isAuthorizedForReading" check. Wir nehmen an, wenn der User den Flow gemacht hat, ist er berechtigt.
         // Ein sicherer Weg ist, UserDefaults zu nutzen, um zu wissen, ob der Prompt schon gezeigt wurde.
         let hasRequested = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested")
-        let hasRequestedV3 = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested_v3")
+        _ = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested_v3")
         let hasRequestedV4 = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested_v4")
         
         if hasRequested {
