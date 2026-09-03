@@ -25299,91 +25299,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "I curse, get up, freeze and do the planned workout %@."
+            "value": "I curse, get up, freeze, and power through the planned workout %@ of the time."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Maldigo, me levanto, me congelo y hago el entrenamiento planificado al %@."
+            "value": "Maldigo, me levanto, me congelo y logro completar el entrenamiento planificado el %@ del tiempo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je maudis, je me lève, je me fige et je fais l'entraînement prévu à %@."
+            "value": "Je jure, je me lève, j'ai froid et je viens à bout de l'entraînement prévu %@ du temps."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मैं शाप देता हूं, उठता हूं, जम जाता हूं और नियोजित कसरत %@ करता हूं।"
+            "value": "मैं कोसता हूँ, उठता हूँ, जमता हूँ और योजनाबद्ध कसरत को %@ बार पूरा करता हूँ।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Impreco, mi alzo, mi blocco e faccio l'allenamento pianificato al %@."
+            "value": "Impreco, mi alzo, mi congelo e porto a termine l'allenamento previsto il %@ delle volte."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "私は悪態をつき、起き上がり、固まり、計画したトレーニングを%@実行します。"
+            "value": "文句を言い、起き上がり、凍えながら、予定されたワークアウトを%@の割合でやり遂げます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "욕하고, 일어나고, 얼어붙고, 계획한 운동을 %@ 한다."
+            "value": "욕을 하고, 일어나서, 얼어붙으면서도 예정된 운동을 %@의 비율로 해냅니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ik vloek, sta op, bevries en doe de geplande training %@."
+            "value": "Ik vloek, sta op, heb het koud en zet de geplande workout voor %@ door."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Przeklinam, wstaję, zamarzam i realizuję zaplanowany trening na %@."
+            "value": "Przeklinam, wstaję, marznę i wykonuję zaplanowany trening przez %@ czasu."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Amaldiçoo, levanto, congelo e faço %@ o treino planejado."
+            "value": "Amaldiçoo, levanto-me, congelo e consigo completar o treino planeado %@ do tempo."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Amaldiçoo, levanto, congelo e faço %@ o treino planejado."
+            "value": "Eu xingo, me levanto, congelo e consigo completar o treino planejado %@ do tempo."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Я ругаюсь, встаю, мёрзну и выполняю запланированную тренировку на %@."
+            "value": "Я ругаюсь, встаю, мерзну и выполняю запланированную тренировку на %@."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lanet ediyorum, kalkıyorum, donuyorum ve planladığım antrenmanı %@100 yapıyorum."
+            "value": "Küfrediyorum, kalkıyorum, donuyorum ve planlanan antrenmanı zamanın %@'sinde tamamlıyorum."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "我咒骂，起身，感到寒冷，并且百分之百完成计划中的锻炼。"
+            "value": "我咒骂、起床、挨冻，并在 %@ 的时间里坚持完成计划的锻炼。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "我咒罵著，站起來，一動也不動，%@ 完成計畫的鍛鍊。"
+            "value": "我咒罵、起床、挨凍，並在 %@ 的時間裡堅持完成計劃的鍛煉。"
           }
         }
       }
@@ -52611,91 +52611,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "I spend a lot of time outside, but I also look at my smartphone %@ of the time when I walk."
+            "value": "I spend a lot of time outdoors, but I also look at my smartphone %@ of the time while walking."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Paso mucho tiempo al aire libre, pero también miro mi teléfono inteligente el %@ del tiempo cuando camino."
+            "value": "Paso mucho tiempo al aire libre, pero también miro mi smartphone el %@ del tiempo mientras camino."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je passe beaucoup de temps dehors, mais je regarde aussi mon smartphone %@ du temps lorsque je marche."
+            "value": "Je passe beaucoup de temps dehors, mais je regarde aussi mon smartphone %@ du temps en marchant."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मैं बहुत सारा समय बाहर बिताता हूं, लेकिन जब मैं चलता हूं तो %@ समय अपने स्मार्टफोन पर भी देखता हूं।"
+            "value": "मैं बाहर बहुत समय बिताता हूँ, लेकिन चलते समय %@ बार अपने स्मार्टफोन को भी देखता हूँ।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trascorro molto tempo fuori, ma guardo anche il mio smartphone il %@ delle volte quando cammino."
+            "value": "Passo molto tempo all'aperto, ma guardo anche il mio smartphone il %@ del tempo mentre cammino."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "私は外で過ごす時間が多いですが、歩いているときも9割はスマホを見ています。"
+            "value": "私はよく外に出ますが、歩きながら%@の割合でスマートフォンを見てしまいます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "저는 밖에서 많은 시간을 보내지만, 걸을 때에도 %@의 시간을 스마트폰을 봅니다."
+            "value": "저는 야외에서 많은 시간을 보내지만, 걸을 때 %@의 비율로 스마트폰을 봅니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ik breng veel tijd buiten door, maar kijk ook %@ van de tijd op mijn smartphone als ik loop."
+            "value": "Ik ben veel buiten, maar ik kijk ook %@ van de tijd op mijn smartphone tijdens het lopen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dużo czasu spędzam na świeżym powietrzu, ale podczas spaceru przez %@ czasu patrzę też na smartfon."
+            "value": "Spędzam dużo czasu na zewnątrz, ale podczas chodzenia przez %@ czasu patrzę też w smartfona."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passo muito tempo fora de casa, mas também olho para o meu smartphone %@ do tempo quando caminho."
+            "value": "Passo muito tempo ao ar livre, mas também olho para o meu smartphone %@ do tempo enquanto caminho."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passo muito tempo fora de casa, mas também olho para o meu smartphone %@ do tempo quando caminho."
+            "value": "Passo muito tempo ao ar livre, mas também olho para o meu smartphone %@ do tempo enquanto caminho."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Я много времени провожу на улице, но при этом %@ времени, когда иду, смотрю на свой смартфон."
+            "value": "Я провожу много времени на улице, но при ходьбе также смотрю в свой смартфон %@ времени."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zamanımın çoğunu dışarıda geçiriyorum ama aynı zamanda yürürken %@90 oranında akıllı telefonuma da bakıyorum."
+            "value": "Dışarıda çok zaman geçiririm ama yürürken de zamanımın %@'sini akıllı telefonuma bakarak geçiririm."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "我经常在户外，但走路时有%@的时间都在看我的智能手机。"
+            "value": "我花很多时间在户外，但在走路时我也有 %@ 的时间在看智能手机。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "我大部分時間都在戶外，但走路時 %@ 的時間我也會看智慧型手機。"
+            "value": "我花很多時間在戶外，但在走路時我也有 %@ 的時間在看智慧型手機。"
           }
         }
       }
@@ -65327,91 +65327,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "I consume %@. I just scroll through other people's lives."
+            "value": "I consume %@ of the time. I just scroll through other people's lives."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consumo el %@. Simplemente me desplazo por la vida de otras personas."
+            "value": "Consumo el %@ del tiempo. Solo desplazo por la vida de otras personas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je consomme à %@. Je fais juste défiler la vie des autres."
+            "value": "Je consomme %@ du temps. Je ne fais que faire défiler la vie des autres."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मैं %@ उपभोग करता हूँ। मैं बस अन्य लोगों के जीवन का अवलोकन करता हूँ।"
+            "value": "मैं %@ समय उपभोग करता हूँ। मैं बस दूसरों के जीवन को स्क्रॉल करता हूँ।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consumo il %@. Scorro semplicemente le vite degli altri."
+            "value": "Consumo il %@ del tempo. Scorro semplicemente le vite di altre persone."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@消費してます。他の人の人生をスクロールするだけです。"
+            "value": "私は%@の時間を消費しています。他の人の人生をスクロールしているだけです。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "나는 %@ 소비한다. 나는 단지 다른 사람들의 삶을 스크롤할 뿐입니다."
+            "value": "저는 %@의 시간을 소비합니다. 다른 사람들의 삶을 스크롤할 뿐입니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ik consumeer %@. Ik scroll gewoon door de levens van anderen."
+            "value": "Ik consumeer %@ van de tijd. Ik scroll gewoon door de levens van andere mensen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumuję na %@. Po prostu przeglądam życie innych ludzi."
+            "value": "Konsumuję przez %@ czasu. Przeglądam tylko życia innych ludzi."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eu consumo %@. Eu apenas folheio a vida de outras pessoas."
+            "value": "Eu consumo %@ do tempo. Apenas faço scroll pelas vidas de outras pessoas."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eu consumo %@. Eu apenas folheio a vida de outras pessoas."
+            "value": "Eu consumo %@ do tempo. Apenas faço scroll pelas vidas de outras pessoas."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Я потребляю на %@. Я только прокручиваю жизни других людей."
+            "value": "Я потребляю %@ времени. Я просто пролистываю жизни других людей."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@100 tüketiyorum. Başkalarının hayatlarına göz atıyorum."
+            "value": "Zamanımın %@'sini tüketiyorum. Sadece diğer insanların hayatlarında kaydırıyorum."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "我百分之百在消费。我只是浏览别人的生活。"
+            "value": "我消耗了 %@ 的时间。我只是在滑动别人的生活。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "我消耗%@。我只是瀏覽別人的生活。"
+            "value": "我消耗了 %@ 的時間。我只是在滑動別人的生活。"
           }
         }
       }
@@ -77249,91 +77249,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are in a heated discussion. Five people loudly support opinion A. You know %@ that opinion B is correct."
+            "value": "You are in a heated discussion. Five people loudly argue for opinion A. You know to %@ that opinion B is correct."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estás en una acalorada discusión. Cinco personas apoyan en voz alta la opinión A. Usted sabe al %@ que la opinión B es correcta."
+            "value": "Estás en una discusión acalorada. Cinco personas defienden en voz alta la opinión A. Sabes al %@ que la opinión B es correcta."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous êtes dans une discussion animée. Cinq personnes soutiennent haut et fort l’opinion A. Vous savez à %@ que l’opinion B est correcte."
+            "value": "Tu es dans une discussion animée. Cinq personnes défendent bruyamment l'opinion A. Tu sais à %@ que l'opinion B est correcte."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आप गरमागरम चर्चा में हैं. पांच लोग जोर-शोर से राय ए का समर्थन करते हैं। आप %@ जानते हैं कि राय बी सही है।"
+            "value": "आप एक गरमागरम चर्चा में हैं। पाँच लोग ज़ोर-शोर से राय A का समर्थन कर रहे हैं। आप %@ जानते हैं कि राय B सही है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sei in una discussione accesa. Cinque persone sostengono fortemente l'opinione A. Sai al %@ che l'opinione B è corretta."
+            "value": "Sei in una discussione accesa. Cinque persone sostengono ad alta voce l'opinione A. Sai al %@ che l'opinione B è corretta."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "あなたは白熱した議論をしています。 5 人が意見 A を声高に支持します。あなたは意見 B が正しいことを %@ 知っています。"
+            "value": "白熱した議論をしています。5人が声高に意見Aを主張しています。あなたは意見Bが正しいことを%@確信しています。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "당신은 열띤 토론을 벌이고 있습니다. 5명이 A의견을 큰 소리로 지지합니다. 당신은 B의견이 옳다는 것을 %@ 알고 있습니다."
+            "value": "격렬한 토론 중입니다. 다섯 명이 큰 소리로 의견 A를 주장합니다. 당신은 의견 B가 맞다는 것을 %@ 알고 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je bent verwikkeld in een verhitte discussie. Vijf mensen steunen luidkeels mening A. Je weet %@ dat mening B juist is."
+            "value": "Je zit in een verhitte discussie. Vijf mensen verdedigen luidruchtig mening A. Je weet voor %@ zeker dat mening B juist is."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jesteś w gorącej dyskusji. Pięć osób głośno popiera opinię A. Wiesz na %@, że opinia B jest słuszna."
+            "value": "Jesteś w trakcie gorącej dyskusji. Pięć osób głośno broni opinii A. W %@ wiesz, że opinia B jest poprawna."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Você está em uma discussão acalorada. Cinco pessoas apoiam veementemente a opinião A. Você sabe %@ que a opinião B está correta."
+            "value": "Estás numa discussão acesa. Cinco pessoas defendem em voz alta a opinião A. Tu sabes com %@ de certeza que a opinião B está correta."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Você está em uma discussão acalorada. Cinco pessoas apoiam veementemente a opinião A. Você sabe %@ que a opinião B está correta."
+            "value": "Você está em uma discussão acalorada. Cinco pessoas defendem em voz alta a opinião A. Você sabe com %@ de certeza que a opinião B está correta."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ты участвуешь в горячей дискуссии. Пять человек громко отстаивают мнение A. Ты на %@ уверен, что мнение B правильно."
+            "value": "Вы находитесь в жаркой дискуссии. Пять человек громко отстаивают мнение А. Вы на %@ знаете, что мнение Б правильное."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hararetli bir tartışmanın içindesiniz. Beş kişi yüksek sesle A fikrini destekliyor. B görüşünün doğru olduğunu %@100 biliyorsunuz."
+            "value": "Ateşli bir tartışmanın içindesiniz. Beş kişi yüksek sesle A fikrini savunuyor. B fikrinin doğru olduğunu %@ biliyorsunuz."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你正处于一场激烈的讨论中。五个人大声表达意见A。你百分之百确定意见B是正确的。"
+            "value": "您正处于一场激烈的讨论中。五个人大声支持观点 A。您有 %@ 确定观点 B 是正确的。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你們正在進行激烈的討論。五個人大聲支持觀點A。你知道觀點B是%@正確的。"
+            "value": "您正處於一場激烈的討論中。五個人大聲支持觀點 A。您有 %@ 確定觀點 B 是正確的。"
           }
         }
       }
@@ -102082,13 +102082,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ Off"
+            "value": "%@ Discount"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ de descuento"
+            "value": "%@ de Descuento"
           }
         },
         "fr": {
@@ -102106,13 +102106,13 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sconto del %@"
+            "value": "Sconto %@ "
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@オフ"
+            "value": "%@ 割引"
           }
         },
         "ko": {
@@ -102130,7 +102130,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ Zniżki"
+            "value": "%@ zniżki"
           }
         },
         "pt": {
@@ -102154,7 +102154,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%%20 İndirim"
+            "value": "%@ İndirim"
           }
         },
         "zh-Hans": {
@@ -127872,91 +127872,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fill fiber with test data"
+            "value": "Inject fiber with test data"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rellenar fibra con datos de prueba"
+            "value": "Inyectar fibra con datos de prueba"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Remplir les fibres avec des données de test"
+            "value": "Injecter des fibres avec des données de test"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "परीक्षण डेटा के साथ फाइबर भरें"
+            "value": "फाइबर को परीक्षण डेटा के साथ इंजेक्ट करें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Riempi le fibre con dati di test"
+            "value": "Inserisci fibre con dati di test"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "食物繊維にテストデータを入力"
+            "value": "テストデータで食物繊維を注入"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "식이 섬유를 테스트 데이터로 채우기"
+            "value": "테스트 데이터로 식이섬유 주입"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vezels vullen met testdata"
+            "value": "Vezels injecteren met testgegevens"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wypełnij błonnik danymi testowymi"
+            "value": "Wprowadź błonnik z danymi testowymi"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Preencher fibras com dados de teste"
+            "value": "Injetar fibra com dados de teste"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Preencher fibras com dados de teste"
+            "value": "Injetar fibra com dados de teste"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Заполните волокно тестовыми данными"
+            "value": "Ввести клетчатку с тестовыми данными"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lifi test verileriyle doldur"
+            "value": "Test verileriyle lifi enjekte et"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "用测试数据填充光纤"
+            "value": "使用测试数据注入膳食纤维"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "使用測試數據注入膳食纖維"
           }
         }
       }
@@ -127973,91 +127973,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fill minerals with test data"
+            "value": "Inject minerals with test data"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rellenar minerales con datos de prueba"
+            "value": "Inyectar minerales con datos de prueba"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Remplir les minéraux avec des données de test"
+            "value": "Injecter des minéraux avec des données de test"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "परीक्षण डेटा के साथ खनिज भरें"
+            "value": "खनिजों को परीक्षण डेटा के साथ इंजेक्ट करें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Riempi i minerali con dati di test"
+            "value": "Inserisci minerali con dati di test"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ミネラルにテストデータを入力"
+            "value": "テストデータでミネラルを注入"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "미네랄을 테스트 데이터로 채우기"
+            "value": "테스트 데이터로 미네랄 주입"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralen vullen met testdata"
+            "value": "Mineralen injecteren met testgegevens"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wypełnij minerały danymi testowymi"
+            "value": "Wprowadź minerały z danymi testowymi"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Preencher minerais com dados de teste"
+            "value": "Injetar minerais com dados de teste"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Preencher minerais com dados de teste"
+            "value": "Injetar minerais com dados de teste"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Заполните минералы данными испытаний"
+            "value": "Ввести минералы с тестовыми данными"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralleri test verileriyle doldur"
+            "value": "Test verileriyle mineralleri enjekte et"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "使用测试数据注入矿物质"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "使用測試數據注入礦物質"
           }
         }
       }
@@ -128074,91 +128074,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fill vitamins with test data"
+            "value": "Inject vitamins with test data"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rellenar vitaminas con datos de prueba"
+            "value": "Inyectar vitaminas con datos de prueba"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Remplir les vitamines avec des données de test"
+            "value": "Injecter des vitamines avec des données de test"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "विटामिन को परीक्षण डेटा के साथ इंजेक्ट करें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Riempi le vitamine con dati di test"
+            "value": "Inserisci vitamine con dati di test"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ビタミンにテストデータを入力"
+            "value": "テストデータでビタミンを注入"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "비타민을 테스트 데이터로 채우기"
+            "value": "테스트 데이터로 비타민 주입"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamines vullen met testdata"
+            "value": "Vitaminen injecteren met testgegevens"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wypełnij witaminy danymi testowymi"
+            "value": "Wprowadź witaminy z danymi testowymi"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Preencher vitaminas com dados de teste"
+            "value": "Injetar vitaminas com dados de teste"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Preencher vitaminas com dados de teste"
+            "value": "Injetar vitaminas com dados de teste"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ввести витамины с тестовыми данными"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitaminleri test verileriyle doldur"
+            "value": "Test verileriyle vitaminleri enjekte et"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "使用测试数据注入维生素"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "使用測試數據注入維生素"
           }
         }
       }
@@ -128193,7 +128193,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "सभी पोषक तत्वों को रीसेट करें"
           }
         },
         "it": {
@@ -128205,13 +128205,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "全ての栄養素をリセット"
+            "value": "すべての栄養素をリセット"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "모든 영양소 초기화"
+            "value": "모든 영양소 재설정"
           }
         },
         "nl": {
@@ -128241,7 +128241,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Сбросить все питательные вещества"
           }
         },
         "tr": {
@@ -128253,7 +128253,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "重置所有营养素"
           }
         },
         "zh-Hant": {
@@ -128502,7 +128502,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dati di test dei nutrienti"
+            "value": "Dati test nutrienti"
           }
         },
         "ja": {
@@ -128520,13 +128520,13 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voedingsstof testdata"
+            "value": "Voedingsstoffen testgegevens"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Testowe dane odżywcze"
+            "value": "Dane testowe składników odżywczych"
           }
         },
         "pt": {
@@ -128544,25 +128544,25 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Данные испытаний питательных веществ"
+            "value": "Тестовые данные питательных веществ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Besin Test Verisi"
+            "value": "Besin Test Verileri"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "营养成分测试数据"
+            "value": "营养素测试数据"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "營養素測試數據"
           }
         }
       }
@@ -146659,91 +146659,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Focus session: %@"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Sesión de enfoque: %@"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Session de concentration : %@"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ध्यान.सामान्य.इनाम"
+            "value": "फोकस सत्र: %@"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Sessione di focus: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "フォーカスセッション: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "포커스 세션: %@"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Focussessie: %@"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Sesja skupienia: %@"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Sessão de foco: %@"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Sessão de foco: %@"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "фокус.общая.награда"
+            "value": "Фокус-сессия: %@"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "Odak seansı: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fokus-Session: %@"
+            "value": "专注环节：%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus-Session: %@"
+            "value": "專注環節： %@ "
           }
         }
       }
@@ -146771,13 +146771,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Que souhaitez-vous accomplir lors de cette session ?"
+            "value": "Que souhaites-tu accomplir pendant cette session ?"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फ़ोकस.सामान्य.उपशीर्षक"
+            "value": "आप इस सत्र में क्या हासिल करना चाहते हैं?"
           }
         },
         "it": {
@@ -146795,7 +146795,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "이번 세션에서 무엇을 달성하고 싶나요?"
+            "value": "이 세션에서 무엇을 달성하고 싶으신가요?"
           }
         },
         "nl": {
@@ -146813,37 +146813,37 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O que você quer alcançar nesta sessão?"
+            "value": "O que queres alcançar nesta sessão?"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O que você quer alcançar nesta sessão?"
+            "value": "O que você deseja alcançar nesta sessão?"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.generic.subtitle"
+            "value": "Чего вы хотите достичь на этой сессии?"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bu oturumda ne başarmak istiyorsunuz?"
+            "value": "Bu seansta ne başarmak istiyorsun?"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "焦点.通用.字幕"
+            "value": "您想在本次环节中实现什么目标？"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你想在這次會議中實現什麼？"
+            "value": "您想在本次環節中實現什麼目標？"
           }
         }
       }
@@ -147059,91 +147059,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Warning] I am too weak for ninety-nine percent of my tasks. I cancel: X-Y-Z instead of A-B-C. My focus drops to zero point zero; I choose #failure over #growth. Why? Because my dopamine level is < ten percent."
+            "value": "[Warning] I am too weak for ninety-nine percent of my tasks. I cancel: X-Y-Z instead of A-B-C. My focus drops to zero point zero; I choose #Failure over #Growth. Why? Because my dopamine level is < ten percent."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Advertencia] Estoy demasiado débil para el noventa y nueve por ciento de mis tareas. Cancelo: X-Y-Z en lugar de A-B-C. Mi atención cae al cero punto cero; Elijo el #fracaso antes que el #crecimiento. ¿Por qué? Porque mi nivel de dopamina es <diez por ciento."
+            "value": "[Advertencia] Soy demasiado débil para el noventa y nueve por ciento de mis tareas. Cancelo: X-Y-Z en lugar de A-B-C. Mi enfoque cae a cero punto cero; elijo el #Fracaso sobre el #Crecimiento. ¿Por qué? Porque mi nivel de dopamina es < diez por ciento."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Avertissement] Je suis trop faible pour quatre-vingt-dix-neuf pour cent de mes tâches. J'annule: X-Y-Z au lieu de A-B-C. Ma concentration tombe à zéro point zéro ; Je choisis l’#échec plutôt que la #croissance. Pourquoi? Parce que mon niveau de dopamine est < dix pour cent."
+            "value": "[Attention] Je suis trop faible pour quatre-vingt-dix-neuf pour cent de mes tâches. J'annule : X-Y-Z au lieu de A-B-C. Ma concentration tombe à zéro virgule zéro ; je choisis l'#Échec plutôt que la #Croissance. Pourquoi ? Parce que mon taux de dopamine est < dix pour cent."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "[चेतावनी] मैं अपने निन्यानवे प्रतिशत कार्यों के लिए बहुत कमज़ोर हूँ। मैं रद्द करता हूं: ए-बी-सी के बजाय एक्स-वाई-जेड। मेरा ध्यान शून्य दशमलव शून्य पर चला जाता है; मैं #विकास के स्थान पर #असफलता को चुनता हूं। क्यों? क्योंकि मेरा डोपामाइन स्तर <दस प्रतिशत है।"
+            "value": "[चेतावनी] मैं अपने निन्यानवे प्रतिशत कार्यों के लिए बहुत कमजोर हूँ। मैं रद्द करता हूँ: A-B-C के बजाय X-Y-Z। मेरा फोकस शून्य बिंदु शून्य तक गिर जाता है; मैं #विकास के बजाय #विफलता चुनता हूँ। क्यों? क्योंकि मेरा डोपामाइन स्तर < दस प्रतिशत है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Avvertimento] Sono troppo debole per il novantanove per cento dei miei compiti. Annullo: X-Y-Z invece di A-B-C. La mia attenzione scende al punto zero; Scelgo il #fallimento piuttosto che la #crescita. Perché? Perché il mio livello di dopamina è <10%%."
+            "value": "[Attenzione] Sono troppo debole per il novantanove percento dei miei compiti. Annulla: X-Y-Z invece di A-B-C. La mia concentrazione scende a zero virgola zero; scelgo il #Fallimento rispetto alla #Crescita. Perché? Perché il mio livello di dopamina è < del dieci percento."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "[警告] 私は自分の仕事の 99%% に対して弱すぎます。 A-B-C の代わりに X-Y-Z をキャンセルします。私の集中力はゼロポイントゼロに落ちます。私は成長よりも失敗を選びます。なぜ？私のドーパミンレベルが10パーセント未満だからです。"
+            "value": "[警告] 私はタスクの99パーセントに対して弱すぎます。キャンセルします：A-B-CではなくX-Y-Z。私の集中力は0.0に低下します。私は#成長よりも#失敗を選びます。なぜですか？私のドーパミンレベルが10パーセント未満だからです。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "[경고] 나는 내 작업의 99%%를 수행하기에는 너무 약합니다. 취소합니다: A-B-C 대신 X-Y-Z. 내 초점은 0점 0점으로 떨어집니다. 나는 #성장보다 #실패를 선택한다. 왜? 내 도파민 수치가 10퍼센트 미만이거든요."
+            "value": "[경고] 저는 제 작업의 99퍼센트에 너무 약합니다. 취소합니다: A-B-C 대신 X-Y-Z. 제 집중력은 0.0으로 떨어집니다. 저는 #성장보다 #실패를 선택합니다. 왜 그럴까요? 제 도파민 수치가 10퍼센트 미만이기 때문입니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Waarschuwing] Ik ben te zwak voor negenennegentig procent van mijn taken. Ik annuleer: X-Y-Z in plaats van A-B-C. Mijn focus zakt naar nul komma nul; Ik kies voor #falen boven #groei. Waarom? Omdat mijn dopamineniveau < tien procent is."
+            "value": "[Waarschuwing] Ik ben te zwak voor negenennegentig procent van mijn taken. Ik breek af: X-Y-Z in plaats van A-B-C. Mijn focus zakt naar nul komma nul; ik kies #Falen boven #Groei. Waarom? Omdat mijn dopaminespiegel < tien procent is."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Uwaga] Jestem za słaby na dziewięćdziesiąt dziewięć procent moich zadań. Anuluję: X-Y-Z zamiast A-B-C. Moja koncentracja spada do punktu zerowego; Wybieram #porażkę zamiast #rozwoju. Dlaczego? Ponieważ mój poziom dopaminy wynosi < dziesięć procent."
+            "value": "[Ostrzeżenie] Jestem zbyt słaby na dziewięćdziesiąt dziewięć procent moich zadań. Anuluję: X-Y-Z zamiast A-B-C. Moje skupienie spada do zera przecinek zero; wybieram #Porażkę zamiast #Wzrostu. Dlaczego? Ponieważ mój poziom dopaminy wynosi < dziesięć procent."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Aviso] Estou muito fraco para noventa e nove por cento das minhas tarefas. Eu cancelo: X-Y-Z em vez de A-B-C. Meu foco cai para zero ponto zero; Eu escolho #fracasso em vez de #crescimento. Por que? Porque meu nível de dopamina é <dez por cento."
+            "value": "[Aviso] Sou fraco demais para noventa e nove por cento das minhas tarefas. Cancelo: X-Y-Z em vez de A-B-C. Meu foco cai para zero vírgula zero; escolho o #Fracasso em vez do #Crescimento. Por quê? Porque meu nível de dopamina é < dez por cento."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Aviso] Estou muito fraco para noventa e nove por cento das minhas tarefas. Eu cancelo: X-Y-Z em vez de A-B-C. Meu foco cai para zero ponto zero; Eu escolho #fracasso em vez de #crescimento. Por que? Porque meu nível de dopamina é <dez por cento."
+            "value": "[Aviso] Sou fraco demais para noventa e nove por cento das minhas tarefas. Cancelo: X-Y-Z em vez de A-B-C. Meu foco cai para zero vírgula zero; escolho o #Fracasso em vez do #Crescimento. Por quê? Porque meu nível de dopamina é < dez por cento."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Предупреждение] Я слишком слаб для девяноста девяти процентов своих задач. Отменяю: X-Y-Z вместо A-B-C. Мое внимание падает до нуля; Я предпочитаю #неудачи #росту. Почему? Потому что мой уровень дофамина < десяти процентов."
+            "value": "[Внимание] Я слишком слаб для девяноста девяти процентов своих задач. Я отменяю: X-Y-Z вместо A-B-C. Мой фокус падает до ноля целых ноль десятых; я выбираю #Провал вместо #Роста. Почему? Потому что мой уровень дофамина < десяти процентов."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Uyarı] Görevlerimin yüzde doksan dokuzu için çok zayıfım. İptal ediyorum: A-B-C yerine X-Y-Z. Odak noktam sıfır nokta sıfıra düşüyor; #Büyüme yerine #başarısızlığı seçiyorum. Neden? Çünkü dopamin seviyem yüzde onun altında."
+            "value": "[Uyarı] Görevlerimin yüzde doksan dokuzu için çok zayıfım. İptal ediyorum: A-B-C yerine X-Y-Z. Odak noktam sıfır nokta sıfıra düşüyor; #Büyüme yerine #Başarısızlık'ı seçiyorum. Neden mi? Çünkü dopamin seviyem yüzde ondan düşük."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "[警告]我太弱了，无法完成百分之九十九的任务。我取消：X-Y-Z 而不是 A-B-C。我的注意力下降到零点零；我选择#failure而不是#growth。为什么？因为我的多巴胺水平<百分之十。"
+            "value": "[警告] 我对百分之九十九的任务来说太软弱了。我取消：X-Y-Z 而不是 A-B-C。我的专注力降至零点零；我选择 #失败 而不是 #成长。为什么？因为我的多巴胺水平 < 百分之十。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "[警告]我太弱了，無法完成百分之九十九的任務。我取消：X-Y-Z 而不是 A-B-C。我的注意力下降到零點零；我選擇#failure而不是#growth。為什麼？因為我的多巴胺水平<百分之十。"
+            "value": "[警告] 我對百分之九十九的任務來說太軟弱了。我取消：X-Y-Z 而不是 A-B-C。我的專注力降至零點零；我選擇 #失敗 而不是 #成長。為什麼？因為我的多巴胺水平 < 百分之十。"
           }
         }
       }
@@ -197555,37 +197555,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't forget \"%@\"! "
+            "value": "Don't forget \"%@\"!"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¡No olvides \"%@\"! "
+            "value": "¡No olvides \"%@\"!"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "N'oublie pas \"%@\" ! "
+            "value": "N'oublie pas \"%@\" !"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"%@\" मत भूलना!"
+            "value": "\"%@\" को न भूलें!"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Non dimenticare \"%@\"!  "
+            "value": "Non dimenticare \"%@\"!"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "忘れてはいけない！"
+            "value": "「%@」を忘れないで！"
           }
         },
         "ko": {
@@ -197603,43 +197603,43 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nie zapomnij o „%@”!"
+            "value": "Nie zapomnij o \"%@\"!"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Não te esqueças de \"%@\"!  "
+            "value": "Não te esqueças de \"%@\"!"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Não te esqueças de \"%@\"!  "
+            "value": "Não se esqueça de \"%@\"!"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Не забывай \"%@\"!"
+            "value": "Не забудьте \"%@\"!"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"%@\" ifadesini unutmayın!"
+            "value": "\"%@\" öğesini unutma!"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "不要忘记“%@”！"
+            "value": "别忘了“%@”！"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "不要忘記“%@”！"
+            "value": "別忘了「%@」！"
           }
         }
       }
@@ -234531,67 +234531,67 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "The Streak Ice protects your streak. You won't lose it if you miss watering for one day.\n\nYou earn 1 new Ice for every completed week (7-day ring). A maximum of 3 Ice can be active at the same time."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "El Hielo de Racha protege tu racha. No la perderás si te olvidas de regar un día.\n\nGanas 1 hielo nuevo por cada semana completada (anillo de 7 días). Puede haber un máximo de 3 hielos activos al mismo tiempo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "La Glace de Série protège ta série. Tu ne la perdras pas si tu oublies d'arroser un jour.\n\nTu gagnes 1 nouvelle glace pour chaque semaine complétée (anneau de 7 jours). Un maximum de 3 glaces peuvent être actives en même temps."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "pfad.ice.desc"
+            "value": "स्ट्राक आइस आपके स्ट्रीक की रक्षा करता है। अगर आप एक दिन पानी देना भूल जाते हैं, तो आप इसे नहीं खोएंगे।\n\nआप प्रत्येक पूर्ण सप्ताह (7-दिन की रिंग) के लिए 1 नया आइस कमाते हैं। एक ही समय में अधिकतम 3 आइस सक्रिय हो सकते हैं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "Il Ghiaccio della Serie protegge la tua serie. Non la perderai se salti un giorno di annaffiatura.\n\nGuadagni 1 nuovo ghiaccio per ogni settimana completata (anello di 7 giorni). Un massimo di 3 ghiacci possono essere attivi contemporaneamente."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "ストリークアイスはあなたのストリークを保護します。1日水やりを忘れてもストリークは失われません。\n\n1週間（7日間のリング）を完了するごとに新しいアイスを1つ獲得します。同時に最大3つのアイスをアクティブにできます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "스트릭 얼음은 연속 기록을 보호합니다. 하루 물주기를 건너뛰어도 연속 기록을 잃지 않습니다.\n\n완료된 매주(7일 링)마다 1개의 새로운 얼음을 얻습니다. 동시에 최대 3개의 얼음을 활성화할 수 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "Het Streak-IJs beschermt je streak. Je verliest hem niet als je een dag niet water geeft.\n\nJe verdient 1 nieuw ijs voor elke voltooide week (7-dagen ring). Maximaal 3 ijsjes kunnen tegelijkertijd actief zijn."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "Lód Serii chroni Twoją serię. Nie stracisz jej, jeśli zapomnisz podlać przez jeden dzień.\n\nZdobywasz 1 nowy lód za każdy ukończony tydzień (7-dniowy pierścień). Maksymalnie 3 lody mogą być aktywne w tym samym czasie."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "O Gelo de Sequência protege a tua sequência. Não a perdes se não regares durante um dia.\n\nGanhas 1 gelo novo por cada semana completada (anel de 7 dias). Um máximo de 3 gelos podem estar ativos ao mesmo tempo."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "O Gelo de Sequência protege a sua sequência. Você não a perde se deixar de regar por um dia.\n\nVocê ganha 1 gelo novo para cada semana concluída (anel de 7 dias). No máximo 3 gelos podem estar ativos ao mesmo tempo."
           }
         },
         "ru": {
@@ -234603,7 +234603,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "Seri Buzu serinizi korur. Bir gün sulamayı kaçırırsanız serinizi kaybetmezsiniz.\n\nTamamlanan her hafta (7 günlük halka) için 1 yeni buz kazanırsınız. Aynı anda maksimum 3 buz aktif olabilir."
           }
         },
         "zh-Hans": {
@@ -234615,7 +234615,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Streak-Ice protects your streak. You don't lose it if you skip a day.\n\nYou receive 1 new ice for every completed week (7-day ring). A maximum of 3 ice can be active at once."
+            "value": "連擊冰可以保護您的連擊。如果您某天沒有澆水，您不會失去連擊。\n\n每完成一週（7天連擊圈），您將獲得1個新冰。最多可以同時啟動3個冰。"
           }
         }
       }
