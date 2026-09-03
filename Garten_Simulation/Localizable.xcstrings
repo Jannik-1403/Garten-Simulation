@@ -118617,97 +118617,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Speichern"
+            "value": "SPEICHERN"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "GUARDAR"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "ENREGISTRER"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SALVA"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save"
+            "value": "SAVE"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "保存"
+            "value": "SAVE"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "儲存"
+            "value": "SAVE"
           }
         }
       }
@@ -197662,7 +197662,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calcium"
+            "value": "Kalzium"
           }
         },
         "en": {
@@ -197674,7 +197674,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calcium"
+            "value": "Calcio"
           }
         },
         "fr": {
@@ -197692,7 +197692,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calcium"
+            "value": "Calcio"
           }
         },
         "ja": {
@@ -197716,13 +197716,13 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wapń"
+            "value": "Calcium"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cálcio"
+            "value": "Calcium"
           }
         },
         "pt-BR": {
@@ -197740,7 +197740,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalsiyum"
+            "value": "Calcium"
           }
         },
         "zh-Hans": {
@@ -197752,7 +197752,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鈣"
+            "value": "Calcium"
           }
         }
       }
@@ -197870,91 +197870,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerals"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerales"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minéraux"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerals"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerali"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerals"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerals"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "mineralen"
+            "value": "Minerals"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minerały"
+            "value": "Minerals"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "minerais"
+            "value": "Minerals"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerals"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerals"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "mineraller"
+            "value": "Minerals"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mineralstoffe"
+            "value": "Minerals"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "礦物質"
+            "value": "Minerals"
           }
         }
       }
@@ -197971,25 +197971,25 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitamins"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitaminas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitamines"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitamins"
           }
         },
         "it": {
@@ -198001,61 +198001,61 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitamins"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitamins"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitaminen"
+            "value": "Vitamins"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witaminy"
+            "value": "Vitamins"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitaminas"
+            "value": "Vitamins"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitamins"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitamins"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitaminler"
+            "value": "Vitamins"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine"
+            "value": "Vitamins"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素"
+            "value": "Vitamins"
           }
         }
       }
@@ -198078,13 +198078,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chloride"
+            "value": "Cloruro"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chloride"
+            "value": "Chlorure"
           }
         },
         "hi": {
@@ -198096,7 +198096,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chloride"
+            "value": "Cloruro"
           }
         },
         "ja": {
@@ -198120,13 +198120,13 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chlorek"
+            "value": "Chloride"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cloreto"
+            "value": "Chloride"
           }
         },
         "pt-BR": {
@@ -198144,7 +198144,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Klorür"
+            "value": "Chloride"
           }
         },
         "zh-Hans": {
@@ -198156,7 +198156,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "氯化物"
+            "value": "Chloride"
           }
         }
       }
@@ -198179,13 +198179,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chromium"
+            "value": "Cromo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chromium"
+            "value": "Chrome"
           }
         },
         "hi": {
@@ -198197,7 +198197,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chromium"
+            "value": "Cromo"
           }
         },
         "ja": {
@@ -198215,19 +198215,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chroom"
+            "value": "Chromium"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chrom"
+            "value": "Chromium"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cromo"
+            "value": "Chromium"
           }
         },
         "pt-BR": {
@@ -198245,7 +198245,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Krom"
+            "value": "Chromium"
           }
         },
         "zh-Hans": {
@@ -198257,7 +198257,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鉻"
+            "value": "Chromium"
           }
         }
       }
@@ -198280,13 +198280,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Copper"
+            "value": "Cobre"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Copper"
+            "value": "Cuivre"
           }
         },
         "hi": {
@@ -198298,7 +198298,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Copper"
+            "value": "Rame"
           }
         },
         "ja": {
@@ -198316,19 +198316,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "koper"
+            "value": "Copper"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "miedź"
+            "value": "Copper"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "cobre"
+            "value": "Copper"
           }
         },
         "pt-BR": {
@@ -198346,7 +198346,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "bakır"
+            "value": "Copper"
           }
         },
         "zh-Hans": {
@@ -198358,7 +198358,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "銅"
+            "value": "Copper"
           }
         }
       }
@@ -198482,7 +198482,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Folate"
+            "value": "Folato"
           }
         },
         "fr": {
@@ -198500,7 +198500,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Folate"
+            "value": "Folato"
           }
         },
         "ja": {
@@ -198518,19 +198518,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foliumzuur"
+            "value": "Folate"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kwas foliowy"
+            "value": "Folate"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ácido fólico"
+            "value": "Folate"
           }
         },
         "pt-BR": {
@@ -198548,7 +198548,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Folik asit"
+            "value": "Folate"
           }
         },
         "zh-Hans": {
@@ -198560,7 +198560,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "葉酸"
+            "value": "Folate"
           }
         }
       }
@@ -198583,13 +198583,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iodine"
+            "value": "Yodo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iodine"
+            "value": "Iode"
           }
         },
         "hi": {
@@ -198601,7 +198601,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iodine"
+            "value": "Iodio"
           }
         },
         "ja": {
@@ -198619,19 +198619,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jodium"
+            "value": "Iodine"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jod"
+            "value": "Iodine"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iodo"
+            "value": "Iodine"
           }
         },
         "pt-BR": {
@@ -198649,7 +198649,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İyot"
+            "value": "Iodine"
           }
         },
         "zh-Hans": {
@@ -198661,7 +198661,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "碘"
+            "value": "Iodine"
           }
         }
       }
@@ -198684,13 +198684,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron"
+            "value": "Hierro"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron"
+            "value": "Fer"
           }
         },
         "hi": {
@@ -198702,7 +198702,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron"
+            "value": "Ferro"
           }
         },
         "ja": {
@@ -198720,19 +198720,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisen"
+            "value": "Iron"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisena"
+            "value": "Iron"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisen"
+            "value": "Iron"
           }
         },
         "pt-BR": {
@@ -198750,7 +198750,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisen"
+            "value": "Iron"
           }
         },
         "zh-Hans": {
@@ -198762,7 +198762,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "艾森"
+            "value": "Iron"
           }
         }
       }
@@ -198785,13 +198785,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Magnesium"
+            "value": "Magnesio"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Magnesium"
+            "value": "Magnésium"
           }
         },
         "hi": {
@@ -198803,7 +198803,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Magnesium"
+            "value": "Magnesio"
           }
         },
         "ja": {
@@ -198827,13 +198827,13 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Magnez"
+            "value": "Magnesium"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Magnésio"
+            "value": "Magnesium"
           }
         },
         "pt-BR": {
@@ -198851,7 +198851,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Magnezyum"
+            "value": "Magnesium"
           }
         },
         "zh-Hans": {
@@ -198863,7 +198863,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鎂"
+            "value": "Magnesium"
           }
         }
       }
@@ -198886,13 +198886,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manganese"
+            "value": "Manganeso"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manganese"
+            "value": "Manganèse"
           }
         },
         "hi": {
@@ -198922,19 +198922,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Manganese"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Manganese"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Manganese"
           }
         },
         "pt-BR": {
@@ -198952,7 +198952,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Manganese"
           }
         },
         "zh-Hans": {
@@ -198964,7 +198964,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "曼甘"
+            "value": "Manganese"
           }
         }
       }
@@ -198987,13 +198987,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Molybdenum"
+            "value": "Molibdeno"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Molybdenum"
+            "value": "Molybdène"
           }
         },
         "hi": {
@@ -199005,7 +199005,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Molybdenum"
+            "value": "Molibdeno"
           }
         },
         "ja": {
@@ -199023,19 +199023,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "molybdeen"
+            "value": "Molybdenum"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "molibden"
+            "value": "Molybdenum"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "molibdênio"
+            "value": "Molybdenum"
           }
         },
         "pt-BR": {
@@ -199053,7 +199053,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "molibden"
+            "value": "Molybdenum"
           }
         },
         "zh-Hans": {
@@ -199065,7 +199065,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鉬"
+            "value": "Molybdenum"
           }
         }
       }
@@ -199189,13 +199189,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phosphorus"
+            "value": "Fósforo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phosphorus"
+            "value": "Phosphore"
           }
         },
         "hi": {
@@ -199207,7 +199207,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phosphorus"
+            "value": "Fosforo"
           }
         },
         "ja": {
@@ -199225,19 +199225,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fosfor"
+            "value": "Phosphorus"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fosfor"
+            "value": "Phosphorus"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fósforo"
+            "value": "Phosphorus"
           }
         },
         "pt-BR": {
@@ -199255,7 +199255,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fosfor"
+            "value": "Phosphorus"
           }
         },
         "zh-Hans": {
@@ -199267,7 +199267,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "磷"
+            "value": "Phosphorus"
           }
         }
       }
@@ -199290,7 +199290,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potassium"
+            "value": "Potasio"
           }
         },
         "fr": {
@@ -199308,7 +199308,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potassium"
+            "value": "Potassio"
           }
         },
         "ja": {
@@ -199332,13 +199332,13 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potas"
+            "value": "Potassium"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potássio"
+            "value": "Potassium"
           }
         },
         "pt-BR": {
@@ -199356,7 +199356,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potasyum"
+            "value": "Potassium"
           }
         },
         "zh-Hans": {
@@ -199368,7 +199368,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鉀"
+            "value": "Potassium"
           }
         }
       }
@@ -199391,13 +199391,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selenium"
+            "value": "Selenio"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selenium"
+            "value": "Sélénium"
           }
         },
         "hi": {
@@ -199409,7 +199409,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selenium"
+            "value": "Selenio"
           }
         },
         "ja": {
@@ -199433,13 +199433,13 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selen"
+            "value": "Selenium"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selênio"
+            "value": "Selenium"
           }
         },
         "pt-BR": {
@@ -199457,7 +199457,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selenyum"
+            "value": "Selenium"
           }
         },
         "zh-Hans": {
@@ -199469,7 +199469,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "碳粉匣"
+            "value": "Selenium"
           }
         }
       }
@@ -199492,13 +199492,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Settings"
+            "value": "Ajustes"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Settings"
+            "value": "Paramètres"
           }
         },
         "hi": {
@@ -199510,7 +199510,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Settings"
+            "value": "Impostazioni"
           }
         },
         "ja": {
@@ -199528,19 +199528,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instellingen"
+            "value": "Settings"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ustawienia"
+            "value": "Settings"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Configurações"
+            "value": "Settings"
           }
         },
         "pt-BR": {
@@ -199558,7 +199558,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ayarlar"
+            "value": "Settings"
           }
         },
         "zh-Hans": {
@@ -199570,7 +199570,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "設定"
+            "value": "Settings"
           }
         }
       }
@@ -199693,7 +199693,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sodium"
+            "value": "Sodio"
           }
         },
         "fr": {
@@ -199711,7 +199711,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sodium"
+            "value": "Sodio"
           }
         },
         "ja": {
@@ -199729,19 +199729,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Natrium"
+            "value": "Sodium"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sód"
+            "value": "Sodium"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sódio"
+            "value": "Sodium"
           }
         },
         "pt-BR": {
@@ -199759,7 +199759,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sodyum"
+            "value": "Sodium"
           }
         },
         "zh-Hans": {
@@ -199771,7 +199771,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鈉"
+            "value": "Sodium"
           }
         }
       }
@@ -200198,13 +200198,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Target:"
+            "value": "Objetivo:"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Target:"
+            "value": "Objectif:"
           }
         },
         "hi": {
@@ -200216,7 +200216,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Target:"
+            "value": "Obiettivo:"
           }
         },
         "ja": {
@@ -200234,19 +200234,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dagelijks doel:"
+            "value": "Target:"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cel dzienny:"
+            "value": "Target:"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meta diária:"
+            "value": "Target:"
           }
         },
         "pt-BR": {
@@ -200264,7 +200264,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Günlük hedef:"
+            "value": "Target:"
           }
         },
         "zh-Hans": {
@@ -200276,7 +200276,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "每日目標："
+            "value": "Target:"
           }
         }
       }
@@ -200299,13 +200299,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin A"
+            "value": "Vitamina A"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin A"
+            "value": "Vitamine A"
           }
         },
         "hi": {
@@ -200317,7 +200317,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin A"
+            "value": "Vitamina A"
           }
         },
         "ja": {
@@ -200335,19 +200335,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine A"
+            "value": "Vitamin A"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina A"
+            "value": "Vitamin A"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina A"
+            "value": "Vitamin A"
           }
         },
         "pt-BR": {
@@ -200365,7 +200365,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "A vitamini"
+            "value": "Vitamin A"
           }
         },
         "zh-Hans": {
@@ -200377,7 +200377,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素A"
+            "value": "Vitamin A"
           }
         }
       }
@@ -200388,97 +200388,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamin"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamin"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Tiamina"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamine"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamin"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Tiamina"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamin"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamin"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine B1 (Thiamine)"
+            "value": "Thiamin"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina B1 (tiamina)"
+            "value": "Thiamin"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B1 (Tiamina)"
+            "value": "Thiamin"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamin"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamin"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B1 Vitamini (Tiamin)"
+            "value": "Thiamin"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B1 (Thiamin)"
+            "value": "Thiamin"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素B1 (硫胺素)"
+            "value": "Thiamin"
           }
         }
       }
@@ -200489,97 +200489,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavina"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavine"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavina"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine B2 (riboflavine)"
+            "value": "Riboflavin"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina B2 (ryboflawina)"
+            "value": "Riboflavin"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B2 (Riboflavina)"
+            "value": "Riboflavin"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B2 Vitamini (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B2 (Riboflavin)"
+            "value": "Riboflavin"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素 B2（核黃素）"
+            "value": "Riboflavin"
           }
         }
       }
@@ -200590,97 +200590,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacin"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacin"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacina"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacine"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacin"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacina"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacin"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacin"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine B3 (niacine)"
+            "value": "Niacin"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina B3 (niacyna)"
+            "value": "Niacin"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B3 (Niacina)"
+            "value": "Niacin"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacin"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacin"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B3 Vitamini (Niasin)"
+            "value": "Niacin"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B3 (Niacin)"
+            "value": "Niacin"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素 B3（菸鹼酸）"
+            "value": "Niacin"
           }
         }
       }
@@ -200703,13 +200703,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B5 (Pantothenic Acid)"
+            "value": "Vitamina B5"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B5 (Pantothenic Acid)"
+            "value": "Vitamine B5"
           }
         },
         "hi": {
@@ -200721,7 +200721,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B5 (Pantothenic Acid)"
+            "value": "Vitamina B5 (Acido pantotenico)"
           }
         },
         "ja": {
@@ -200739,19 +200739,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine B5 (pantotheenzuur)"
+            "value": "Vitamin B5 (Pantothenic Acid)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina B5 (kwas pantotenowy)"
+            "value": "Vitamin B5 (Pantothenic Acid)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B5 (ácido pantotênico)"
+            "value": "Vitamin B5 (Pantothenic Acid)"
           }
         },
         "pt-BR": {
@@ -200769,7 +200769,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B5 Vitamini (pantotenik asit)"
+            "value": "Vitamin B5 (Pantothenic Acid)"
           }
         },
         "zh-Hans": {
@@ -200781,7 +200781,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素 B5（泛酸）"
+            "value": "Vitamin B5 (Pantothenic Acid)"
           }
         }
       }
@@ -200804,13 +200804,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B6"
+            "value": "Vitamina B6"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B6"
+            "value": "Vitamine B6"
           }
         },
         "hi": {
@@ -200822,7 +200822,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B6"
+            "value": "Vitamina B6"
           }
         },
         "ja": {
@@ -200840,19 +200840,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine B6"
+            "value": "Vitamin B6"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina B6"
+            "value": "Vitamin B6"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B6"
+            "value": "Vitamin B6"
           }
         },
         "pt-BR": {
@@ -200870,7 +200870,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B6 Vitamini"
+            "value": "Vitamin B6"
           }
         },
         "zh-Hans": {
@@ -200882,7 +200882,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素B6"
+            "value": "Vitamin B6"
           }
         }
       }
@@ -200893,97 +200893,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotin"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotin"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotina"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotine"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotin"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotina"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotin"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotin"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine B7 (Biotine)"
+            "value": "Biotin"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina B7 (Biotyna)"
+            "value": "Biotin"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B7 (Biotina)"
+            "value": "Biotin"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotin"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotin"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B7 Vitamini (Biyotin)"
+            "value": "Biotin"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B7 (Biotin)"
+            "value": "Biotin"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素 B7（生物素）"
+            "value": "Biotin"
           }
         }
       }
@@ -201006,13 +201006,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B12"
+            "value": "Vitamina B12"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B12"
+            "value": "Vitamine B12"
           }
         },
         "hi": {
@@ -201024,7 +201024,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B12"
+            "value": "Vitamina B12"
           }
         },
         "ja": {
@@ -201042,19 +201042,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine B12"
+            "value": "Vitamin B12"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina B12"
+            "value": "Vitamin B12"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B12"
+            "value": "Vitamin B12"
           }
         },
         "pt-BR": {
@@ -201072,7 +201072,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B12 Vitamini"
+            "value": "Vitamin B12"
           }
         },
         "zh-Hans": {
@@ -201084,7 +201084,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素B12"
+            "value": "Vitamin B12"
           }
         }
       }
@@ -201107,13 +201107,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin C"
+            "value": "Vitamina C"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin C"
+            "value": "Vitamine C"
           }
         },
         "hi": {
@@ -201125,7 +201125,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin C"
+            "value": "Vitamina C"
           }
         },
         "ja": {
@@ -201143,19 +201143,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine C"
+            "value": "Vitamin C"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina C"
+            "value": "Vitamin C"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina C"
+            "value": "Vitamin C"
           }
         },
         "pt-BR": {
@@ -201173,7 +201173,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "C Vitamini"
+            "value": "Vitamin C"
           }
         },
         "zh-Hans": {
@@ -201185,7 +201185,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素C"
+            "value": "Vitamin C"
           }
         }
       }
@@ -201208,13 +201208,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin D"
+            "value": "Vitamina D"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin D"
+            "value": "Vitamine D"
           }
         },
         "hi": {
@@ -201226,7 +201226,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin D"
+            "value": "Vitamina D"
           }
         },
         "ja": {
@@ -201244,19 +201244,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine D"
+            "value": "Vitamin D"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina D"
+            "value": "Vitamin D"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina D"
+            "value": "Vitamin D"
           }
         },
         "pt-BR": {
@@ -201274,7 +201274,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "D Vitamini"
+            "value": "Vitamin D"
           }
         },
         "zh-Hans": {
@@ -201286,7 +201286,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素D"
+            "value": "Vitamin D"
           }
         }
       }
@@ -201309,13 +201309,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin E"
+            "value": "Vitamina E"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin E"
+            "value": "Vitamine E"
           }
         },
         "hi": {
@@ -201327,7 +201327,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin E"
+            "value": "Vitamina E"
           }
         },
         "ja": {
@@ -201345,19 +201345,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine E"
+            "value": "Vitamin E"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina E"
+            "value": "Vitamin E"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina E"
+            "value": "Vitamin E"
           }
         },
         "pt-BR": {
@@ -201375,7 +201375,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "E Vitamini"
+            "value": "Vitamin E"
           }
         },
         "zh-Hans": {
@@ -201387,7 +201387,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素E"
+            "value": "Vitamin E"
           }
         }
       }
@@ -201410,13 +201410,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin K"
+            "value": "Vitamina K"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin K"
+            "value": "Vitamine K"
           }
         },
         "hi": {
@@ -201428,7 +201428,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin K"
+            "value": "Vitamina K"
           }
         },
         "ja": {
@@ -201446,19 +201446,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine K"
+            "value": "Vitamin K"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witamina K"
+            "value": "Vitamin K"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina K"
+            "value": "Vitamin K"
           }
         },
         "pt-BR": {
@@ -201476,7 +201476,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "K vitamini"
+            "value": "Vitamin K"
           }
         },
         "zh-Hans": {
@@ -201488,7 +201488,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素K"
+            "value": "Vitamin K"
           }
         }
       }
@@ -201529,7 +201529,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zinc"
+            "value": "Zinco"
           }
         },
         "ja": {
@@ -201547,19 +201547,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zink"
+            "value": "Zinc"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cynk"
+            "value": "Zinc"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zinco"
+            "value": "Zinc"
           }
         },
         "pt-BR": {
@@ -201577,7 +201577,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Çinko"
+            "value": "Zinc"
           }
         },
         "zh-Hans": {
@@ -201589,7 +201589,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鋅"
+            "value": "Zinc"
           }
         }
       }
@@ -244817,13 +244817,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Add To-Do"
+            "value": "Añadir Tarea"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Add To-Do"
+            "value": "Ajouter une Tâche"
           }
         },
         "hi": {
@@ -244835,7 +244835,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Add To-Do"
+            "value": "Aggiungi To-Do"
           }
         },
         "ja": {
@@ -244889,13 +244889,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "新增待办事项"
+            "value": "Add To-Do"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "新增待辦事項"
+            "value": "Add To-Do"
           }
         }
       }
@@ -245017,13 +245017,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enter To-Do..."
+            "value": "Introducir Tarea..."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enter To-Do..."
+            "value": "Entrer la Tâche..."
           }
         },
         "hi": {
@@ -245035,7 +245035,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enter To-Do..."
+            "value": "Inserisci To-Do..."
           }
         },
         "ja": {
@@ -245089,13 +245089,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "输入待办事项..."
+            "value": "Enter To-Do..."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "輸入待辦事項..."
+            "value": "Enter To-Do..."
           }
         }
       }
@@ -348303,13 +348303,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Custom To-Do"
+            "value": "Tarea Personalizada"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Custom To-Do"
+            "value": "Tâche Personnalisée"
           }
         },
         "hi": {
@@ -348321,7 +348321,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Custom To-Do"
+            "value": "To-Do Personalizzato"
           }
         },
         "ja": {
@@ -348375,13 +348375,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "自定义待办事项"
+            "value": "Custom To-Do"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "自訂待辦事項"
+            "value": "Custom To-Do"
           }
         }
       }
@@ -348699,91 +348699,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "ej. Solo la basura residual"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "ex. Uniquement les déchets résiduels"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "es. Solo i rifiuti residui"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. only residual waste"
+            "value": "e.g. Only the residual waste"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "例如：仅限不可回收垃圾"
+            "value": "e.g. Only the residual waste"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "例如：僅限不可回收垃圾"
+            "value": "e.g. Only the residual waste"
           }
         }
       }
@@ -349107,7 +349107,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nombre de Tareas"
+            "value": "Nombre de Tarea"
           }
         },
         "fr": {
@@ -349207,13 +349207,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. Take out the trash"
+            "value": "ej. Sacar la basura"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. Take out the trash"
+            "value": "ex. Sortir les poubelles"
           }
         },
         "hi": {
@@ -349225,7 +349225,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. Take out the trash"
+            "value": "es. Buttare la spazzatura"
           }
         },
         "ja": {
@@ -349279,13 +349279,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "例如：倒垃圾"
+            "value": "e.g. Take out the trash"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "例如：倒垃圾"
+            "value": "e.g. Take out the trash"
           }
         }
       }
@@ -349307,13 +349307,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Custom To-Do"
+            "value": "Tarea Personalizada"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Custom To-Do"
+            "value": "Tâche Personnalisée"
           }
         },
         "hi": {
@@ -349325,7 +349325,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Custom To-Do"
+            "value": "To-Do Personalizzato"
           }
         },
         "ja": {
@@ -349379,13 +349379,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "自定义待办事项"
+            "value": "Custom To-Do"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "自定義待辦事項"
+            "value": "Custom To-Do"
           }
         }
       }
@@ -405738,7 +405738,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pour quelle habitude ? (Optionnel)"
+            "value": "Pour quelle habitude? (Optionnel)"
           }
         },
         "hi": {
@@ -405750,7 +405750,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "For which habit? (Optional)"
+            "value": "Per quale abitudine? (Opzionale)"
           }
         },
         "ja": {
@@ -405804,13 +405804,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "为了什么习惯？(可选)"
+            "value": "For which habit? (Optional)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "為了什麼習慣？(可選)"
+            "value": "For which habit? (Optional)"
           }
         }
       }
@@ -457912,6 +457912,107 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dietary Fiber"
+          }
+        }
+      }
+    },
+    "health.chart.title.minerals.plain": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mineralstoffe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minéraux"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerali"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
           }
         }
       }
