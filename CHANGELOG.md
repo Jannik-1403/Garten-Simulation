@@ -932,3 +932,4 @@
 - Alle Warnungen bezüglich Prozent-Zeichen in Localizable.xcstrings auf saubere Weise durch ein neues PercentHelper Konstrukt gelöst.
 - Speicherleck / Compile-Hang durch veraltete Riesen-Dictionaries in AppStrings.swift behoben.
 - Alle restlichen 4 Einträge im String-Katalog in allen Sprachen vollständig auf 100% übersetzt.
+- App-Name 'Grovy' in Localizable.xcstrings für alle nicht-chinesischen Sprachen auf die originale Schreibweise vereinheitlicht.
