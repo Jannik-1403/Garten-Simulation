@@ -92,6 +92,12 @@
             "state": "translated",
             "value": ""
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ""
+          }
         }
       }
     },
@@ -182,6 +188,12 @@
           }
         },
         "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " "
+          }
+        },
+        "de": {
           "stringUnit": {
             "state": "translated",
             "value": " "
@@ -996,8 +1008,8 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "%1$lld / %2$lld %3$@"
+            "state": "translated",
+            "value": "%lld / %lld %@"
           }
         },
         "en": {
@@ -99868,8 +99880,8 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "Berechnetes Datum:"
+            "state": "translated",
+            "value": "Calculated Date:"
           }
         },
         "en": {
@@ -100269,8 +100281,8 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "Datum"
+            "state": "translated",
+            "value": "Date"
           }
         },
         "en": {
@@ -100370,8 +100382,8 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "Tempo (Woche)"
+            "state": "translated",
+            "value": "Pace (Weekly)"
           }
         },
         "en": {
@@ -100471,8 +100483,8 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "kg pro Woche:"
+            "state": "translated",
+            "value": "kg per week:"
           }
         },
         "en": {
@@ -105827,8 +105839,8 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "Dieser Wert wird basierend auf deinen Körperdaten und deinem Ziel berechnet."
+            "state": "translated",
+            "value": "This value is calculated based on your body data and goal."
           }
         },
         "en": {
@@ -105928,8 +105940,8 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "Ziel ändern"
+            "state": "translated",
+            "value": "Change Goal"
           }
         },
         "en": {
@@ -106035,91 +106047,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zunehmen"
+            "value": "Gain Weight"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zunehmen"
+            "value": "Ganar Peso"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zunehmen"
+            "value": "Prendre du Poids"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "वजन बढ़ाएं"
+            "value": "Gain Weight"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zunehmen"
+            "value": "Prendere Peso"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "増量"
+            "value": "Gain Weight"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "체중 증량"
+            "value": "Gain Weight"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aankomen"
+            "value": "Gain Weight"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zunehmen"
+            "value": "Gain Weight"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ganhar Peso"
+            "value": "Gain Weight"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zunehmen"
+            "value": "Gain Weight"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Набор веса"
+            "value": "Gain Weight"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zunehmen"
+            "value": "Gain Weight"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "增重"
+            "value": "Gain Weight"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "增重"
+            "value": "Gain Weight"
           }
         }
       }
@@ -106135,91 +106147,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."
+            "value": "Tus calorías diarias se ajustarán automáticamente."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."
+            "value": "Vos calories quotidiennes seront ajustées automatiquement."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपके दैनिक कैलोरी और मैक्रोज़ आपके लक्ष्य की तारीख के आधार पर स्वचालित रूप से समायोजित किए जाते हैं।"
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."
+            "value": "Le tue calorie e macronutrienti giornalieri verranno adattati automaticamente in base alla tua data di scadenza."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "目標日に基づいて、毎日のカロリーとマクロが自動的に調整されます。"
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "목표 날짜에 따라 일일 칼로리와 매크로가 자동으로 조정됩니다."
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je dagelijkse calorieën en macro's worden automatisch aangepast op basis van je streefdatum."
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Suas calorias diárias e macros são ajustadas automaticamente com base na data do seu objetivo."
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ваши ежедневные калории и макросы автоматически корректируются на основе вашей целевой даты."
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine täglichen Kalorien und Makros werden automatisch basierend auf deinem Ziel-Datum angepasst."
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "您的每日卡路里和常量营养素将根据您的目标日期自动调整。"
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "您的每日卡路里和常量營養素將根據您的目標日期自動調整。"
+            "value": "Your daily calories and macros will automatically adjust based on your target date."
           }
         }
       }
@@ -106235,91 +106247,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abnehmen"
+            "value": "Lose Weight"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abnehmen"
+            "value": "Perder Peso"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abnehmen"
+            "value": "Perdre du Poids"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "वजन घटाएं"
+            "value": "Lose Weight"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abnehmen"
+            "value": "Dimagrire"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "減量"
+            "value": "Lose Weight"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "체중 감량"
+            "value": "Lose Weight"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Afvallen"
+            "value": "Lose Weight"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abnehmen"
+            "value": "Lose Weight"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Perder Peso"
+            "value": "Lose Weight"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abnehmen"
+            "value": "Lose Weight"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Похудение"
+            "value": "Lose Weight"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abnehmen"
+            "value": "Lose Weight"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "减重"
+            "value": "Lose Weight"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "減重"
+            "value": "Lose Weight"
           }
         }
       }
@@ -106329,8 +106341,8 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
-            "value": "Tempo: ~%@ kg / Woche"
+            "state": "translated",
+            "value": "Pace: ~%@ kg / week"
           }
         },
         "en": {
@@ -106436,91 +106448,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel-Datum"
+            "value": "Target Date"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel-Datum"
+            "value": "Fecha Objetivo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel-Datum"
+            "value": "Date Cible"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "लक्ष्य की तारीख"
+            "value": "Target Date"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel-Datum"
+            "value": "Data di Scadenza"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "目標日"
+            "value": "Target Date"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "목표 날짜"
+            "value": "Target Date"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Streefdatum"
+            "value": "Target Date"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel-Datum"
+            "value": "Target Date"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Data do Objetivo"
+            "value": "Target Date"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel-Datum"
+            "value": "Target Date"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Целевая дата"
+            "value": "Target Date"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel-Datum"
+            "value": "Target Date"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "目标日期"
+            "value": "Target Date"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "目標日期"
+            "value": "Target Date"
           }
         }
       }
@@ -106536,91 +106548,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mein Ziel"
+            "value": "My Goal"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mein Ziel"
+            "value": "Mi Objetivo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mein Ziel"
+            "value": "Mon Objectif"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मेरा लक्ष्य"
+            "value": "My Goal"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mein Ziel"
+            "value": "Il mio Obiettivo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "私の目標"
+            "value": "My Goal"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "내 목표"
+            "value": "My Goal"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mijn doel"
+            "value": "My Goal"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mein Ziel"
+            "value": "My Goal"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meu Objetivo"
+            "value": "My Goal"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mein Ziel"
+            "value": "My Goal"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Моя цель"
+            "value": "My Goal"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mein Ziel"
+            "value": "My Goal"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "我的目标"
+            "value": "My Goal"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "我的目標"
+            "value": "My Goal"
           }
         }
       }
@@ -106738,91 +106750,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Datos y Calorías"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Données & Calories"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Dati & Calorie"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dados e Calorias"
+            "value": "Data & Calories"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daten & Kalorien"
+            "value": "Data & Calories"
           }
         }
       }
@@ -107343,91 +107355,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Details"
+            "value": "Calorie Details"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Details"
+            "value": "Detalles de Calorías"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Details"
+            "value": "Détails des Calories"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कैलोरी विवरण"
+            "value": "Calorie Details"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Details"
+            "value": "Dettagli Calorie"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "カロリー詳細"
+            "value": "Calorie Details"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "칼로리 세부정보"
+            "value": "Calorie Details"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calorie details"
+            "value": "Calorie Details"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Details"
+            "value": "Calorie Details"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Detalhes das Calorias"
+            "value": "Calorie Details"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Details"
+            "value": "Calorie Details"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Детали калорий"
+            "value": "Calorie Details"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Details"
+            "value": "Calorie Details"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "卡路里详情"
+            "value": "Calorie Details"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "卡路里詳情"
+            "value": "Calorie Details"
           }
         }
       }
@@ -107443,91 +107455,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumiert"
+            "value": "Consumed"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumiert"
+            "value": "Consumido"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumiert"
+            "value": "Consommé"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "खपत"
+            "value": "Consumed"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumiert"
+            "value": "Consumato"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "摂取済み"
+            "value": "Consumed"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "소비됨"
+            "value": "Consumed"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geconsumeerd"
+            "value": "Consumed"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumiert"
+            "value": "Consumed"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consumido"
+            "value": "Consumed"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumiert"
+            "value": "Consumed"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Потреблено"
+            "value": "Consumed"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumiert"
+            "value": "Consumed"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "已消耗"
+            "value": "Consumed"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "已消耗"
+            "value": "Consumed"
           }
         }
       }
@@ -107643,91 +107655,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Historie"
+            "value": "Calorie History"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Historie"
+            "value": "Historial de Calorías"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Historie"
+            "value": "Historique des Calories"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कैलोरी इतिहास"
+            "value": "Calorie History"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Historie"
+            "value": "Cronologia Calorie"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "カロリー履歴"
+            "value": "Calorie History"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "칼로리 기록"
+            "value": "Calorie History"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Caloriehistorie"
+            "value": "Calorie History"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Historie"
+            "value": "Calorie History"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Histórico de Calorias"
+            "value": "Calorie History"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Historie"
+            "value": "Calorie History"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "История калорий"
+            "value": "Calorie History"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien Historie"
+            "value": "Calorie History"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "卡路里历史"
+            "value": "Calorie History"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "卡路里歷史"
+            "value": "Calorie History"
           }
         }
       }
@@ -107743,91 +107755,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Today"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Hoy"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Aujourd'hui"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आज"
+            "value": "Today"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Oggi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "今日"
+            "value": "Today"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "오늘"
+            "value": "Today"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vandaag"
+            "value": "Today"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Today"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hoje"
+            "value": "Today"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Today"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сегодня"
+            "value": "Today"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Today"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "今天"
+            "value": "Today"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "今天"
+            "value": "Today"
           }
         }
       }
@@ -107837,7 +107849,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "??? kcal"
           }
         },
@@ -169380,91 +169392,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Fibra dietética"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Fibres alimentaires"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Fibre alimentari"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         }
       }
@@ -197757,91 +197769,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Fibra dietética"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Fibres alimentaires"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Fibre alimentari"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "vezel"
+            "value": "Dietary Fiber"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Błonnik"
+            "value": "Dietary Fiber"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "fibra"
+            "value": "Dietary Fiber"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "lif"
+            "value": "Dietary Fiber"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe"
+            "value": "Dietary Fiber"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "纖維"
+            "value": "Dietary Fiber"
           }
         }
       }
@@ -198369,13 +198381,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dietary Fiber"
+            "value": "Fibra dietética"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dietary Fiber"
+            "value": "Fibres alimentaires"
           }
         },
         "hi": {
@@ -198387,7 +198399,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dietary Fiber"
+            "value": "Fibre alimentari"
           }
         },
         "ja": {
@@ -198405,19 +198417,19 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "vezel"
+            "value": "Dietary Fiber"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Błonnik"
+            "value": "Dietary Fiber"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "fibra"
+            "value": "Dietary Fiber"
           }
         },
         "pt-BR": {
@@ -198435,7 +198447,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "lif"
+            "value": "Dietary Fiber"
           }
         },
         "zh-Hans": {
@@ -198447,7 +198459,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "纖維"
+            "value": "Dietary Fiber"
           }
         }
       }
@@ -199574,91 +199586,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "Los objetivos se basan en las recomendaciones de la DGE."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "Les objectifs sont basés sur les recommandations de la DGE."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "Gli obiettivi si basano sulle raccomandazioni della DGE."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Ziele basieren auf den Empfehlungen der DGE (Deutsche Gesellschaft für Ernährung)."
+            "value": "The targets are based on the recommendations of the DGE."
           }
         }
       }
@@ -348581,7 +348593,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beschreibung"
+            "value": "Beschreibung (Optional)"
           }
         },
         "en": {
@@ -348593,13 +348605,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Description (Optional)"
+            "value": "Descripción (Opcional)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Description (Optional)"
+            "value": "Description (Optionnel)"
           }
         },
         "hi": {
@@ -348611,7 +348623,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Description (Optional)"
+            "value": "Descrizione (Opzionale)"
           }
         },
         "ja": {
@@ -348665,13 +348677,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "描述 (可选)"
+            "value": "Description (Optional)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "描述 (可選)"
+            "value": "Description (Optional)"
           }
         }
       }
@@ -348995,13 +349007,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plant Icon"
+            "value": "Icono de planta"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plant Icon"
+            "value": "Icône de plante"
           }
         },
         "hi": {
@@ -349013,7 +349025,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plant Icon"
+            "value": "Icona della pianta"
           }
         },
         "ja": {
@@ -349031,7 +349043,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plant Icon"
+            "value": "Plant Icoon"
           }
         },
         "pl": {
@@ -349067,13 +349079,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "植物图标"
+            "value": "Plant Icon"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "植物圖標"
+            "value": "Plant Icon"
           }
         }
       }
@@ -349083,7 +349095,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Name des To-Dos"
+            "value": "To-Do Name"
           }
         },
         "en": {
@@ -349095,13 +349107,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Do Name"
+            "value": "Nombre de Tareas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Do Name"
+            "value": "Nom de la Tâche"
           }
         },
         "hi": {
@@ -349113,7 +349125,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Do Name"
+            "value": "Nome To-Do"
           }
         },
         "ja": {
@@ -349167,13 +349179,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "待办事项名称"
+            "value": "To-Do Name"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "待辦事項名稱"
+            "value": "To-Do Name"
           }
         }
       }
@@ -390242,37 +390254,37 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सोम, मंग, बुध, गुरु, शुक्र, शनि, रवि"
+            "value": "सो,मं,बु,गु,शु,श,र"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "M,T,W,T,F,S,S"
+            "value": "L,M,M,G,V,S,D"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "M、T、W、T、F、S、S"
+            "value": "月,火,水,木,金,土,日"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "남,티,승,티,에프,에스,에스"
+            "value": "월,화,수,목,금,토,일"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "M,T,W,T,F,S,S"
+            "value": "M,D,W,D,V,Z,Z"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "M, T, W, T, F, S, S"
+            "value": "P,W,Ś,C,P,S,N"
           }
         },
         "pt": {
@@ -390296,19 +390308,19 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "M,T,W,T,F,S,S"
+            "value": "P,S,Ç,P,C,C,P"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "中、中、中、中、中、中、中、中"
+            "value": "一,二,三,四,五,六,日"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "中、中、中、中、中、中、中、中"
+            "value": "一,二,三,四,五,六,日"
           }
         }
       }
@@ -456218,6 +456230,1688 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inserire in Apple Health"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enter in Apple Health"
+          }
+        }
+      }
+    },
+    "nutrient.minerals": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mineralstoffe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minéraux"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerali"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        }
+      }
+    },
+    "Add To-Do": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do hinzufügen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir Tarea"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter une Tâche"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi To-Do"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        }
+      }
+    },
+    "For which habit? (Optional)": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Für welche Gewohnheit? (Optional)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Para qué hábito? (Opcional)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour quelle habitude? (Optionnel)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per quale abitudine? (Opzionale)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit? (Optional)"
+          }
+        }
+      }
+    },
+    "Enter To-Do...": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do eingeben..."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introducir Tarea..."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrer la Tâche..."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci To-Do..."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        }
+      }
+    },
+    "SAVE": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SPEICHERN"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GUARDAR"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ENREGISTRER"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SALVA"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAVE"
+          }
+        }
+      }
+    },
+    "Custom To-Do": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eigenes To-Do"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarea Personalizada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tâche Personnalisée"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Personalizzato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom To-Do"
+          }
+        }
+      }
+    },
+    "To-Do Name": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre de Tarea"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom de la Tâche"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome To-Do"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Do Name"
+          }
+        }
+      }
+    },
+    "Description (Optional)": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beschreibung (Optional)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descripción (Opcional)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optionnel)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descrizione (Opzionale)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (Optional)"
+          }
+        }
+      }
+    },
+    "Plant Icon": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pflanzen-Icon"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icono de planta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icône de plante"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icona della pianta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant Icon"
+          }
+        }
+      }
+    },
+    "Vitamin B5 (Pantothenic Acid)": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothensäure)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamina B5"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamine B5"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamina B5 (Acido pantotenico)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B5 (Pantothenic Acid)"
+          }
+        }
+      }
+    },
+    "Thiamin": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiamina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiamina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamin"
+          }
+        }
+      }
+    },
+    "Riboflavin": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riboflavin"
+          }
+        }
+      }
+    },
+    "Niacin": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niacin"
+          }
+        }
+      }
+    },
+    "Vitamin B6": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamina B6"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamine B6"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamina B6"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamin B6"
+          }
+        }
+      }
+    },
+    "Mineralstoffe": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mineralstoffe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minéraux"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerali"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minerals"
+          }
+        }
+      }
+    },
+    "Ballaststoffe": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballaststoffe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fibra dietética"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fibres alimentaires"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fibre alimentari"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dietary Fiber"
           }
         }
       }
