@@ -931,3 +931,4 @@
 - In der Detailansicht der Gewohnheit wird das Makro-Diagramm nun korrekt ausgeblendet, sobald die Statistik in den Optionen deaktiviert wird.
 - Alle Warnungen bezüglich Prozent-Zeichen in Localizable.xcstrings auf saubere Weise durch ein neues PercentHelper Konstrukt gelöst.
 - Speicherleck / Compile-Hang durch veraltete Riesen-Dictionaries in AppStrings.swift behoben.
+- Alle restlichen 4 Einträge im String-Katalog in allen Sprachen vollständig auf 100% übersetzt.
