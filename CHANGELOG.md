@@ -933,3 +933,4 @@
 - Speicherleck / Compile-Hang durch veraltete Riesen-Dictionaries in AppStrings.swift behoben.
 - Alle restlichen 4 Einträge im String-Katalog in allen Sprachen vollständig auf 100% übersetzt.
 - App-Name 'Grovy' in Localizable.xcstrings für alle nicht-chinesischen Sprachen auf die originale Schreibweise vereinheitlicht.
+- 55 kaputte oder durch deep-translator verfälschte Übersetzungen ('Error 500' Server-Fehler in Texten, fehlende Platzhalter, unübersetzte technische Keys) im gesamten String Catalog manuell korrigiert.
