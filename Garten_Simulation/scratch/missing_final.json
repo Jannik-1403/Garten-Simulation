@@ -1,0 +1,42 @@
+[
+  {
+    "key": "schwierigkeit.bestaetigen",
+    "language": "tr",
+    "original_text": "Schwierigkeit bestätigen"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "tr",
+    "original_text": "Diese Gewohnheit (Alkohol trinken) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "ja",
+    "original_text": "Diese Gewohnheit (Zu viel Fast Food) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "ko",
+    "original_text": "Diese Gewohnheit (Zu viel Fast Food) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "ja",
+    "original_text": "**Schlechte Gewohnheit loswerden (Spam & Ablenkung)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Digital Detox)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "ja",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "ko",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "tr",
+    "original_text": "Wiederherstellung erfolgreich"
+  }
+]

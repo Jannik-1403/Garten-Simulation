@@ -74,7 +74,7 @@ struct GoalPointsBannerView: View {
                 
                 if let w = weight, w != .none {
                     let col: Color = w == .massive ? .green : .orange
-                    Text(verbatim: "\(w.rawValue) Pkt")
+                    Text("\(w.rawValue) \(String(localized: "common.points.short", defaultValue: "Pkt"))")
                         .font(.system(size: 18, weight: .black, design: .rounded))
                         .foregroundColor(col)
                 } else {
@@ -132,9 +132,9 @@ struct GoalWeightEditSheet: View {
                 
                 // Saubere 3 Buttons nebeneinander
                 HStack(spacing: 10) {
-                    weightButton(weight: .massive, label: "20 Pkt", color: .green)
-                    weightButton(weight: .bit, label: "5 Pkt", color: .orange)
-                    weightButton(weight: .none, label: "0 Pkt", color: .red)
+                    weightButton(weight: .massive, label: "20 \(String(localized: "common.points.short", defaultValue: "Pkt"))", color: .green)
+                    weightButton(weight: .bit, label: "5 \(String(localized: "common.points.short", defaultValue: "Pkt"))", color: .orange)
+                    weightButton(weight: .none, label: "0 \(String(localized: "common.points.short", defaultValue: "Pkt"))", color: .red)
                 }
                 .padding(.horizontal, 16)
                 

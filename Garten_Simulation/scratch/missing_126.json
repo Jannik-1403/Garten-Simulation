@@ -1,0 +1,587 @@
+[
+  {
+    "key": " ",
+    "language": "es",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "fr",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "hi",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "it",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "ja",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "ko",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "nl",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "pl",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "pt",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "pt-BR",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "ru",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "tr",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "zh-Hans",
+    "original_text": " "
+  },
+  {
+    "key": " ",
+    "language": "zh-Hant",
+    "original_text": " "
+  },
+  {
+    "key": "schwierigkeit.bestaetigen",
+    "language": "tr",
+    "original_text": "Schwierigkeit bestätigen"
+  },
+  {
+    "key": "spin_button_no_spins",
+    "language": "it",
+    "original_text": "Keine Drehs – Level aufsteigen!"
+  },
+  {
+    "key": "stats.consistency.perfect",
+    "language": "nl",
+    "original_text": "Perfekt!"
+  },
+  {
+    "key": "streak.view.see_more",
+    "language": "it",
+    "original_text": "Siehe mehr"
+  },
+  {
+    "key": "titel.dahlie",
+    "language": "it",
+    "original_text": "Dahlien-Dämon"
+  },
+  {
+    "key": "titel.magnolia",
+    "language": "it",
+    "original_text": "Magnolien-Magier"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "pt-BR",
+    "original_text": "Diese Gewohnheit (Alkohol trinken) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "tr",
+    "original_text": "Diese Gewohnheit (Alkohol trinken) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.alkohol_flatrate.obj_desc",
+    "language": "it",
+    "original_text": "Ein Hauch von Kunst und Zeitlosigkeit."
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "ja",
+    "original_text": "Diese Gewohnheit (Zu viel Fast Food) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "ko",
+    "original_text": "Diese Gewohnheit (Zu viel Fast Food) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "nl",
+    "original_text": "Diese Gewohnheit (Zu viel Fast Food) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "ja",
+    "original_text": "**Schlechte Gewohnheit loswerden (Spam & Ablenkung)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Digital Detox)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.luxus_uhr.impact",
+    "language": "nl",
+    "original_text": "Diese Gewohnheit (Statussymbole kaufen) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.party_pass.obj_desc",
+    "language": "it",
+    "original_text": "Ein schöner Weg durchs Grüne."
+  },
+  {
+    "key": "trash.party_pass.obj_name",
+    "language": "it",
+    "original_text": "Trittstein-Pfad"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "fr",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Party)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Me-Time & Selfcare)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "it",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Party)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Me-Time & Selfcare)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "ja",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Party)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Me-Time & Selfcare)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "ko",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Party)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Me-Time & Selfcare)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "nl",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Party)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Me-Time & Selfcare)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "pt",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Party)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Me-Time & Selfcare)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "pt-BR",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Party)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Me-Time & Selfcare)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "tr",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Party)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Me-Time & Selfcare)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "fr",
+    "original_text": "Diese Gewohnheit (Zu viel Koffein) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "it",
+    "original_text": "Diese Gewohnheit (Zu viel Koffein) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "nl",
+    "original_text": "Diese Gewohnheit (Zu viel Koffein) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "pl",
+    "original_text": "Diese Gewohnheit (Zu viel Koffein) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "pt",
+    "original_text": "Diese Gewohnheit (Zu viel Koffein) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "pt-BR",
+    "original_text": "Diese Gewohnheit (Zu viel Koffein) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "tr",
+    "original_text": "Diese Gewohnheit (Zu viel Koffein) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.obj_name",
+    "language": "it",
+    "original_text": "Gartenhütte"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "fr",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Koffein)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Schlafroutine)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "it",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Koffein)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Schlafroutine)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "ko",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Koffein)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Schlafroutine)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "nl",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Koffein)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Schlafroutine)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "pl",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Koffein)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Schlafroutine)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "pt",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Koffein)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Schlafroutine)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "pt-BR",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Koffein)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Schlafroutine)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "tr",
+    "original_text": "**Schlechte Gewohnheit loswerden (Zu viel Koffein)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Schlafroutine)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "fr",
+    "original_text": "Diese Gewohnheit (Rauchen) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "it",
+    "original_text": "Diese Gewohnheit (Rauchen) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "ja",
+    "original_text": "Diese Gewohnheit (Rauchen) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "ko",
+    "original_text": "Diese Gewohnheit (Rauchen) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "nl",
+    "original_text": "Diese Gewohnheit (Rauchen) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "pt",
+    "original_text": "Diese Gewohnheit (Rauchen) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "pt-BR",
+    "original_text": "Diese Gewohnheit (Rauchen) kostet dich langfristig Energie, Zeit und Geld. Sie hindert dich daran, dein volles Potenzial auszuschöpfen."
+  },
+  {
+    "key": "trash.zigaretten_automat.obj_desc",
+    "language": "it",
+    "original_text": "Spendet Schatten an heißen Tagen."
+  },
+  {
+    "key": "trash.zigaretten_automat.obj_name",
+    "language": "it",
+    "original_text": "Sonnenschirm"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "fr",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "it",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "ja",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "ko",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "nl",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "pl",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "pt",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "pt-BR",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "tr",
+    "original_text": "**Schlechte Gewohnheit loswerden (Rauchen)**\n1. Unsichtbar machen: Entferne die Auslöser aus deinem Sichtfeld.\n2. Unattraktiv machen: Mache dir die negativen Folgen bewusst.\n3. Schwierig machen: Baue Hürden ein (z.B. Apps löschen, Stecker ziehen).\n4. Unbefriedigend machen: Verbinde die Ausführung mit einer Strafe.\n\n**Gute Gewohnheit etablieren (Atemübungen)**\n1. Offensichtlich machen: Platziere den Auslöser gut sichtbar.\n2. Attraktiv machen: Verbinde es mit etwas, das du magst.\n3. Einfach machen: Reduziere die Hürden auf ein Minimum (z.B. nur 2 Minuten).\n4. Befriedigend machen: Belohne dich direkt im Anschluss."
+  },
+  {
+    "key": "trigger.fatigue",
+    "language": "fr",
+    "original_text": "Müdigkeit"
+  },
+  {
+    "key": "trigger.selection_title",
+    "language": "nl",
+    "original_text": "Auslöser"
+  },
+  {
+    "key": "trigger.stress",
+    "language": "it",
+    "original_text": "Stress"
+  },
+  {
+    "key": "wasser.giessvorgang",
+    "language": "it",
+    "original_text": "Gießvorgänge"
+  },
+  {
+    "key": "wasser.karte.titel",
+    "language": "it",
+    "original_text": "GIESSWASSER"
+  },
+  {
+    "key": "wasser.leer.body",
+    "language": "it",
+    "original_text": "Gieße deine Pflanzen, um Statistiken zu sehen."
+  },
+  {
+    "key": "wasser.leer.body",
+    "language": "pt-BR",
+    "original_text": "Gieße deine Pflanzen, um Statistiken zu sehen."
+  },
+  {
+    "key": "wasser.leer.titel",
+    "language": "it",
+    "original_text": "Bisher kein Wasser"
+  },
+  {
+    "key": "wasser.leer.titel",
+    "language": "pt",
+    "original_text": "Bisher kein Wasser"
+  },
+  {
+    "key": "wasser.leer.titel",
+    "language": "pt-BR",
+    "original_text": "Bisher kein Wasser"
+  },
+  {
+    "key": "wasser.meine.pflanzen",
+    "language": "it",
+    "original_text": "Meine Pflanzen"
+  },
+  {
+    "key": "wasser.zyklus.singular",
+    "language": "it",
+    "original_text": "1 Gießvorgang"
+  },
+  {
+    "key": "weather.detail.difficult",
+    "language": "it",
+    "original_text": "Erschwert"
+  },
+  {
+    "key": "weather.detail.watering",
+    "language": "it",
+    "original_text": "GIESSEN"
+  },
+  {
+    "key": "weather.duerre.title",
+    "language": "it",
+    "original_text": "Dürre-Alarm!"
+  },
+  {
+    "key": "weather.new_event",
+    "language": "it",
+    "original_text": "Neues Wetter-Event!"
+  },
+  {
+    "key": "weather.normal.subtitle",
+    "language": "it",
+    "original_text": "Alles wächst wie geplant"
+  },
+  {
+    "key": "weather.normal.title",
+    "language": "it",
+    "original_text": "Ruhiger Tag"
+  },
+  {
+    "key": "weather.perfekt.subtitle",
+    "language": "it",
+    "original_text": "Heute doppelte Belohnung!"
+  },
+  {
+    "key": "weather.perfekt.title",
+    "language": "it",
+    "original_text": "Perfektes Wetter!"
+  },
+  {
+    "key": "weather.regen.subtitle",
+    "language": "it",
+    "original_text": "Heute gibt es doppelte XP!"
+  },
+  {
+    "key": "weather.rule.duerre",
+    "language": "it",
+    "original_text": "Dürre-Alarm: Heute zweimal gießen."
+  },
+  {
+    "key": "weather.rule.normal",
+    "language": "it",
+    "original_text": "Alles normal. Einmal gießen."
+  },
+  {
+    "key": "weather.rule.perfekt",
+    "language": "it",
+    "original_text": "Perfektes Wetter: Heute doppelte Coins."
+  },
+  {
+    "key": "weather.rule.schnee",
+    "language": "it",
+    "original_text": "Frost: Nur die Hälfte der Coins erhalten."
+  },
+  {
+    "key": "weather.rule.sturm",
+    "language": "it",
+    "original_text": "Sturm: Wenn eine Pflanze stirbt, verlierst du 2 Leben statt 1."
+  },
+  {
+    "key": "weather.sturm.subtitle",
+    "language": "it",
+    "original_text": "Pflanzentod kostet 2 Leben!"
+  },
+  {
+    "key": "weather.sturm.title",
+    "language": "it",
+    "original_text": "Sturm im Anmarsch"
+  },
+  {
+    "key": "weather.today_is",
+    "language": "it",
+    "original_text": "Heute gilt"
+  },
+  {
+    "key": "wheel.bot_use",
+    "language": "it",
+    "original_text": "Bot einsetzen: Nochmal drehen!"
+  },
+  {
+    "key": "wheel.go_to_shop",
+    "language": "it",
+    "original_text": "Geh in den Shop und kaufe welche!"
+  },
+  {
+    "key": "wheel.no_items",
+    "language": "it",
+    "original_text": "Du hast noch keine Gegenstände."
+  },
+  {
+    "key": "wheel.powerups.title",
+    "language": "it",
+    "original_text": "Power-Ups verwenden"
+  },
+  {
+    "key": "widget_interactive_routine_title",
+    "language": "fr",
+    "original_text": "Routine (Pro)"
+  },
+  {
+    "key": "widget_water_alltime",
+    "language": "fr",
+    "original_text": "GESAMT"
+  },
+  {
+    "key": "widget_water_alltime",
+    "language": "pt",
+    "original_text": "GESAMT"
+  },
+  {
+    "key": "widget_water_alltime",
+    "language": "pt-BR",
+    "original_text": "GESAMT"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "fr",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "it",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "ja",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "ko",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "nl",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "pt",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "pt-BR",
+    "original_text": "Wiederherstellung erfolgreich"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "tr",
+    "original_text": "Wiederherstellung erfolgreich"
+  }
+]

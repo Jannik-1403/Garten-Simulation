@@ -1,0 +1,282 @@
+[
+  {
+    "key": "screenTime.limit.confirm.message",
+    "language": "ru",
+    "translated_text": "После установки лимита ты не сможешь увеличить его сегодня!"
+  },
+  {
+    "key": "screenTime.limit.confirm.title",
+    "language": "hi",
+    "translated_text": "क्या आप वाकई सुनिश्चित हैं?"
+  },
+  {
+    "key": "screenTime.schedule.locked.info",
+    "language": "es",
+    "translated_text": "No se pueden realizar cambios durante el periodo activo."
+  },
+  {
+    "key": "screenTime.strictMode.title",
+    "language": "hi",
+    "translated_text": "सुरक्षा मोड"
+  },
+  {
+    "key": "screenTime.strictMode.title",
+    "language": "ru",
+    "translated_text": "Защитный режим"
+  },
+  {
+    "key": "shop.badge.popular",
+    "language": "es",
+    "translated_text": "Popular"
+  },
+  {
+    "key": "shop.tab.plants.short",
+    "language": "hi",
+    "translated_text": "अच्छे"
+  },
+  {
+    "key": "support.reason.general",
+    "language": "es",
+    "translated_text": "General"
+  },
+  {
+    "key": "tab.heute",
+    "language": "es",
+    "translated_text": "Hoy"
+  },
+  {
+    "key": "time.month",
+    "language": "ru",
+    "translated_text": "Месяц"
+  },
+  {
+    "key": "time.week",
+    "language": "es",
+    "translated_text": "Semana"
+  },
+  {
+    "key": "time.week",
+    "language": "hi",
+    "translated_text": "सप्ताह"
+  },
+  {
+    "key": "time.week",
+    "language": "ru",
+    "translated_text": "Неделя"
+  },
+  {
+    "key": "time.week",
+    "language": "zh-Hans",
+    "translated_text": "周"
+  },
+  {
+    "key": "time.year",
+    "language": "es",
+    "translated_text": "Año"
+  },
+  {
+    "key": "time.year",
+    "language": "hi",
+    "translated_text": "वर्ष"
+  },
+  {
+    "key": "time.year",
+    "language": "ru",
+    "translated_text": "Год"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "hi",
+    "translated_text": "सामान्य कार्य"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "ru",
+    "translated_text": "Общие задачи"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "es",
+    "translated_text": "Completa tus hábitos deslizando la barra de progreso de la tarjeta hacia la derecha para hacer crecer la planta."
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "hi",
+    "translated_text": "अपनी आदतें पूरी करने के लिए कार्ड पर प्रगति बार को दाईं ओर खिसकाएं, ताकि पौधा बड़ा हो सके।"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "ru",
+    "translated_text": "Выполняй свои привычки, сдвигая полосу прогресса на карточке вправо, чтобы растение росло."
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "zh-Hans",
+    "translated_text": "通过将卡片上的进度条向右滑动来完成你的习惯，让植物成长。"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "zh-Hant",
+    "translated_text": "透過將卡片上的進度條向右滑動來完成你的習慣，讓植物成長。"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Beber alcohol) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Beber alcohol)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Beber té)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Maratones de series) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Tirarse en el sofá) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Tirarse en el sofá)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Estiramientos)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Demasiada comida rápida)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Snack saludable)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Doomscrolling) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Demasiada televisión) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Demasiada televisión)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Leer un libro)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Bebidas energéticas) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Comida rápida)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Cocinar sano)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Pedir a domicilio) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Pedir a domicilio)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Meal prep (preparación de comidas))**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.junk_mail_abo.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Spam y distracciones) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Apuestas/cajas de botín) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Apuestas/cajas de botín)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Ahorrar)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Viajes en coche sin sentido) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Viajes en coche sin sentido)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Salir a caminar)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Comprar símbolos de estatus)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Practicar la gratitud)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Picar por la noche) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Picar por la noche)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Ayuno intermitente)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Feed de noticias negativas)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Diario positivo)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Compras online) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Demasiadas fiestas)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Tiempo para ti y autocuidado)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Demasiada cafeína) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "es",
+    "translated_text": "**Elimina el mal hábito (Demasiada cafeína)**\n1. Hazlo invisible: Elimina los desencadenantes de tu campo de visión.\n2. Hazlo poco atractivo: Sé consciente de las consecuencias negativas.\n3. Hazlo difícil: Añade obstáculos (p. ej. elimina apps, desconecta el enchufe).\n4. Hazlo insatisfactorio: Vincula la acción a un castigo.\n\n**Establece el buen hábito (Rutina de sueño)**\n1. Hazlo evidente: Coloca el desencadenante bien visible.\n2. Hazlo atractivo: Asócialo con algo que te guste.\n3. Hazlo fácil: Reduce los obstáculos al mínimo (p. ej. solo 2 minutos).\n4. Hazlo satisfactorio: Recompénsate justo después."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "es",
+    "translated_text": "Este hábito (Fumar) te cuesta energía, tiempo y dinero a largo plazo. Te impide desarrollar todo tu potencial."
+  },
+  {
+    "key": "widget_water_alltime",
+    "language": "es",
+    "translated_text": "TOTAL"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "hi",
+    "translated_text": "पुनर्स्थापना सफल"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "ru",
+    "translated_text": "Восстановление выполнено успешно"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "zh-Hans",
+    "translated_text": "恢复成功"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "zh-Hant",
+    "translated_text": "恢復成功"
+  }
+]

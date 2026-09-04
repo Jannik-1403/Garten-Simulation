@@ -1,0 +1,842 @@
+[
+  {
+    "key": "%lld/100",
+    "lang": "ru",
+    "base_text": "%lld/100",
+    "translated_text": "%%лд/100",
+    "issue": "Placeholders mismatch: Base has ['%lld'], ru has []"
+  },
+  {
+    "key": "+%lld",
+    "lang": "ru",
+    "base_text": "+%lld",
+    "translated_text": "+%%ллд",
+    "issue": "Placeholders mismatch: Base has ['%lld'], ru has []"
+  },
+  {
+    "key": "assessment.finance.q2.c",
+    "lang": "it",
+    "base_text": "Klingt interessant – aber ich tue letztlich nichts.",
+    "translated_text": "Sembra interessante, ma alla fine non faccio nulla.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.finance.q12.d",
+    "lang": "it",
+    "base_text": "Ich bitte um Bedenkzeit, mache aber aus Angst vor Betrug am Ende nichts.",
+    "translated_text": "Chiedo tempo per pensarci, ma alla fine non faccio nulla per paura di truffe.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.fitness.q1.d",
+    "lang": "zh-Hans",
+    "base_text": "Ich fluche, stehe auf, friere und ziehe das geplante Workout zu %@ durch.",
+    "translated_text": "我咒骂，起身，感到寒冷，并且百分之百完成计划中的锻炼。",
+    "issue": "Placeholders mismatch: Base has ['%@'], zh-Hans has []"
+  },
+  {
+    "key": "assessment.growth.q8.b",
+    "lang": "nl",
+    "base_text": "Ich nutze die Zeit, um mental herunterzufahren und einfach nur meine Umgebung zu beobachten (Boredom-Training).",
+    "translated_text": "Ik gebruik de tijd om me mentaal af te sluiten en alleen maar mijn omgeving te observeren (vervelingstraining).",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "assessment.growth.q13.d",
+    "lang": "it",
+    "base_text": "Ich ändere nichts, weil 'die heutige Welt nun mal so funktioniert'.",
+    "translated_text": "Non cambio nulla perché \"è così che funziona il mondo oggi\".",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.growth.q14.c",
+    "lang": "it",
+    "base_text": "Ich fange an aufzuräumen, verliere mich in Details und habe abends das Gefühl, nichts geschafft zu haben.",
+    "translated_text": "Comincio a riordinare, mi perdo nei dettagli e la sera mi sembra di non aver concluso nulla.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.growth.weakness.efficiency",
+    "lang": "it",
+    "base_text": "Du bist chronisch 'busy', schaffst aber nichts. Du verwechselst Beschäftigung mit Produktivität.",
+    "translated_text": "Sei cronicamente 'occupato' ma non ottieni nulla. Confodi l'agitazione con la produttività.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.growth.weakness.execution",
+    "lang": "it",
+    "base_text": "Du planst zu viel und handelst zu wenig. Die beste Idee bringt nichts ohne Umsetzung.",
+    "translated_text": "Troppa pianificazione, poca azione. La migliore idea non vale nulla senza esecuzione.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.health.q4",
+    "lang": "it",
+    "base_text": "Du bist extrem hungrig, hast nichts vorbereitet und bist unterwegs. Vor dir ist ein Fast-Food-Laden und ein Supermarkt.",
+    "translated_text": "Sei estremamente affamato, non hai nulla di preparato e sei in movimento. Di fronte a te c'è un fast food e un supermercato.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.health.q9.b",
+    "lang": "it",
+    "base_text": "Ich google meine Symptome, gerate in Panik, tue aber praktisch nichts.",
+    "translated_text": "Cerco su Google i miei sintomi, panico, ma non faccio praticamente nulla.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.health.q11.d",
+    "lang": "ja",
+    "base_text": "Ich bin viel draußen, schaue aber auch beim Gehen zu %@ auf mein Smartphone.",
+    "translated_text": "私は外で過ごす時間が多いですが、歩いているときも9割はスマホを見ています。",
+    "issue": "Placeholders mismatch: Base has ['%@'], ja has []"
+  },
+  {
+    "key": "assessment.lifestyle.q7.c",
+    "lang": "it",
+    "base_text": "Ich sage nichts und ärgere mich still.",
+    "translated_text": "Non dico nulla e sono silenziosamente infastidito.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "assessment.lifestyle.q11.a",
+    "lang": "zh-Hans",
+    "base_text": "Ich konsumiere zu %@. Ich scrolle nur durch die Leben anderer Leute.",
+    "translated_text": "我百分之百在消费。我只是浏览别人的生活。",
+    "issue": "Placeholders mismatch: Base has ['%@.'], zh-Hans has []"
+  },
+  {
+    "key": "assessment.mental.q13",
+    "lang": "zh-Hans",
+    "base_text": "Du bist in einer hitzigen Diskussion. Fünf Leute vertreten lautstark Meinung A. Du weißt zu %@, dass Meinung B richtig ist.",
+    "translated_text": "你正处于一场激烈的讨论中。五个人大声表达意见A。你百分之百确定意见B是正确的。",
+    "issue": "Placeholders mismatch: Base has ['%@'], zh-Hans has []"
+  },
+  {
+    "key": "boost.blinkist.discount",
+    "lang": "tr",
+    "base_text": "%@ Rabatt",
+    "translated_text": "%%20 İndirim",
+    "issue": "Placeholders mismatch: Base has ['%@'], tr has []"
+  },
+  {
+    "key": "character.category.%@",
+    "lang": "de",
+    "base_text": "character.category.%@",
+    "translated_text": "character.category.%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "character.category.%@",
+    "lang": "en",
+    "base_text": "character.category.%@",
+    "translated_text": "character.category.%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "developer.nutrients.inject_fiber",
+    "lang": "zh-Hant",
+    "base_text": "Ballaststoffe mit Testdaten befüllen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.inject_minerals",
+    "lang": "zh-Hans",
+    "base_text": "Mineralstoffe mit Testdaten befüllen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.inject_minerals",
+    "lang": "zh-Hant",
+    "base_text": "Mineralstoffe mit Testdaten befüllen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.inject_vitamins",
+    "lang": "hi",
+    "base_text": "Vitamine mit Testdaten befüllen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.inject_vitamins",
+    "lang": "ru",
+    "base_text": "Vitamine mit Testdaten befüllen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.inject_vitamins",
+    "lang": "zh-Hans",
+    "base_text": "Vitamine mit Testdaten befüllen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.inject_vitamins",
+    "lang": "zh-Hant",
+    "base_text": "Vitamine mit Testdaten befüllen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.reset",
+    "lang": "hi",
+    "base_text": "Alle Nährstoffe zurücksetzen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.reset",
+    "lang": "ru",
+    "base_text": "Alle Nährstoffe zurücksetzen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.nutrients.reset",
+    "lang": "zh-Hans",
+    "base_text": "Alle Nährstoffe zurücksetzen",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "developer.section.nutrients",
+    "lang": "zh-Hant",
+    "base_text": "Nährstoff-Testdaten",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "focus.generic.reward",
+    "lang": "hi",
+    "base_text": "Fokus-Session: %@",
+    "translated_text": "ध्यान.सामान्य.इनाम",
+    "issue": "Placeholders mismatch: Base has ['%@'], hi has []"
+  },
+  {
+    "key": "focus.generic.reward",
+    "lang": "ru",
+    "base_text": "Fokus-Session: %@",
+    "translated_text": "фокус.общая.награда",
+    "issue": "Placeholders mismatch: Base has ['%@'], ru has []"
+  },
+  {
+    "key": "focus.generic.subtitle",
+    "lang": "ru",
+    "base_text": "Was möchtest du in dieser Session erreichen?",
+    "translated_text": "focus.generic.subtitle",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "focus.generic.title",
+    "lang": "ru",
+    "base_text": "Fokus Starten",
+    "translated_text": "focus.generic.title",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "focus.giveup.walkofshame.sentence3",
+    "lang": "en",
+    "base_text": "Fehler-Code vierhundertvier: Willenskraft nicht gefunden! Ich tausche meine erste Priorität gegen zehn Min. sinnlosen Feed-Scroll. Ist das schlau? Nein. Mache ich es trotzdem? Ja!! (Tschüss, wertvolle Zeit...)",
+    "translated_text": "Error code four hundred and four: Willpower not found! I swap my first priority for ten minutes of pointless feed scrolling. Is that smart? No. Do I do it anyway? Yes!! (Bye, valuable time...)",
+    "issue": "Contains suspicious word 'error '"
+  },
+  {
+    "key": "igel_pose_liegen",
+    "lang": "de",
+    "base_text": "igel_pose_liegen",
+    "translated_text": "igel_pose_liegen",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "igel_pose_liegen",
+    "lang": "en",
+    "base_text": "igel_pose_liegen",
+    "translated_text": "igel_pose_liegen",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "igel_pose_rennen",
+    "lang": "de",
+    "base_text": "igel_pose_rennen",
+    "translated_text": "igel_pose_rennen",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "igel_pose_rennen",
+    "lang": "en",
+    "base_text": "igel_pose_rennen",
+    "translated_text": "igel_pose_rennen",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "igel_pose_schlafen",
+    "lang": "de",
+    "base_text": "igel_pose_schlafen",
+    "translated_text": "igel_pose_schlafen",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "igel_pose_schlafen",
+    "lang": "en",
+    "base_text": "igel_pose_schlafen",
+    "translated_text": "igel_pose_schlafen",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "igel_pose_winken",
+    "lang": "de",
+    "base_text": "igel_pose_winken",
+    "translated_text": "igel_pose_winken",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "igel_pose_winken",
+    "lang": "en",
+    "base_text": "igel_pose_winken",
+    "translated_text": "igel_pose_winken",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "month.%lld",
+    "lang": "de",
+    "base_text": "month.%lld",
+    "translated_text": "month.%lld",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "month.%lld",
+    "lang": "en",
+    "base_text": "month.%lld",
+    "translated_text": "month.%lld",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "Neues Hauptziel...",
+    "lang": "de",
+    "base_text": "Neues Hauptziel...",
+    "translated_text": "Neues Hauptziel...",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "notification.wait.3.title",
+    "lang": "ja",
+    "base_text": "Vergiss \"%@\" nicht!",
+    "translated_text": "忘れてはいけない！",
+    "issue": "Placeholders mismatch: Base has ['%@'], ja has []"
+  },
+  {
+    "key": "nutrient.calcium",
+    "lang": "nl",
+    "base_text": "Calcium",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.calcium",
+    "lang": "pl",
+    "base_text": "Calcium",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.category.fiber",
+    "lang": "pl",
+    "base_text": "Ballaststoffe",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.category.minerals",
+    "lang": "pl",
+    "base_text": "Mineralstoffe",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.fiber",
+    "lang": "pl",
+    "base_text": "Ballaststoffe",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_b1",
+    "lang": "zh-Hant",
+    "base_text": "Vitamin B1 (Thiamin)",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_b7",
+    "lang": "tr",
+    "base_text": "Vitamin B7 (Biotin)",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_b12",
+    "lang": "nl",
+    "base_text": "Vitamin B12",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_b12",
+    "lang": "pl",
+    "base_text": "Vitamin B12",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_b12",
+    "lang": "pt",
+    "base_text": "Vitamin B12",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_b12",
+    "lang": "tr",
+    "base_text": "Vitamin B12",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_b12",
+    "lang": "zh-Hant",
+    "base_text": "Vitamin B12",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_c",
+    "lang": "pt",
+    "base_text": "Vitamin C",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_c",
+    "lang": "tr",
+    "base_text": "Vitamin C",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_c",
+    "lang": "zh-Hant",
+    "base_text": "Vitamin C",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_d",
+    "lang": "nl",
+    "base_text": "Vitamin D",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_d",
+    "lang": "pl",
+    "base_text": "Vitamin D",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_d",
+    "lang": "pt",
+    "base_text": "Vitamin D",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_d",
+    "lang": "tr",
+    "base_text": "Vitamin D",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_d",
+    "lang": "zh-Hant",
+    "base_text": "Vitamin D",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_e",
+    "lang": "nl",
+    "base_text": "Vitamin E",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_e",
+    "lang": "pl",
+    "base_text": "Vitamin E",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_e",
+    "lang": "tr",
+    "base_text": "Vitamin E",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_e",
+    "lang": "zh-Hant",
+    "base_text": "Vitamin E",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_k",
+    "lang": "nl",
+    "base_text": "Vitamin K",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_k",
+    "lang": "pl",
+    "base_text": "Vitamin K",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "nutrient.vitamin_k",
+    "lang": "pt",
+    "base_text": "Vitamin K",
+    "translated_text": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+    "issue": "Contains suspicious word 'server'"
+  },
+  {
+    "key": "onboarding.screentime.error",
+    "lang": "en",
+    "base_text": "iOS hat die Berechtigung verweigert. Fehlermeldung: %@.\n\nBitte überprüfe deine Berechtigungen in den Einstellungen.",
+    "translated_text": "iOS denied permission. Error message: %@.\n\nPlease check your permissions in Settings.",
+    "issue": "Contains suspicious word 'error '"
+  },
+  {
+    "key": "pfad_phase_beschreibung_%@",
+    "lang": "de",
+    "base_text": "pfad_phase_beschreibung_%@",
+    "translated_text": "pfad_phase_beschreibung_%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad_phase_beschreibung_%@",
+    "lang": "en",
+    "base_text": "pfad_phase_beschreibung_%@",
+    "translated_text": "pfad_phase_beschreibung_%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad_phase_tag_titel_%@",
+    "lang": "de",
+    "base_text": "pfad_phase_tag_titel_%@",
+    "translated_text": "pfad_phase_tag_titel_%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad_phase_tag_titel_%@",
+    "lang": "en",
+    "base_text": "pfad_phase_tag_titel_%@",
+    "translated_text": "pfad_phase_tag_titel_%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad_schwierigkeit_%@",
+    "lang": "de",
+    "base_text": "pfad_schwierigkeit_%@",
+    "translated_text": "pfad_schwierigkeit_%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad_schwierigkeit_%@",
+    "lang": "en",
+    "base_text": "pfad_schwierigkeit_%@",
+    "translated_text": "pfad_schwierigkeit_%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad_schwierigkeit_%@_desc",
+    "lang": "de",
+    "base_text": "pfad_schwierigkeit_%@_desc",
+    "translated_text": "pfad_schwierigkeit_%@_desc",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad_schwierigkeit_%@_desc",
+    "lang": "en",
+    "base_text": "pfad_schwierigkeit_%@_desc",
+    "translated_text": "pfad_schwierigkeit_%@_desc",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad.ice.desc",
+    "lang": "hi",
+    "base_text": "Das Streak-Eis schützt deinen Streak. Du verlierst ihn nicht, wenn du an einem Tag nicht gießt.\n\nDu erhältst 1 neues Eis für jede vollendete Woche (7 Tage Ring). Maximal 3 Eis können gleichzeitig aktiv sein.",
+    "translated_text": "pfad.ice.desc",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad.ice.desc",
+    "lang": "ru",
+    "base_text": "Das Streak-Eis schützt deinen Streak. Du verlierst ihn nicht, wenn du an einem Tag nicht gießt.\n\nDu erhältst 1 neues Eis für jede vollendete Woche (7 Tage Ring). Maximal 3 Eis können gleichzeitig aktiv sein.",
+    "translated_text": "pfad.ice.desc",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad.ice.desc",
+    "lang": "zh-Hans",
+    "base_text": "Das Streak-Eis schützt deinen Streak. Du verlierst ihn nicht, wenn du an einem Tag nicht gießt.\n\nDu erhältst 1 neues Eis für jede vollendete Woche (7 Tage Ring). Maximal 3 Eis können gleichzeitig aktiv sein.",
+    "translated_text": "pfad.ice.desc",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad.ice.title",
+    "lang": "hi",
+    "base_text": "Streak-Eis",
+    "translated_text": "pfad.ice.title",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad.ice.title",
+    "lang": "ru",
+    "base_text": "Streak-Eis",
+    "translated_text": "pfad.ice.title",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "pfad.ice.title",
+    "lang": "zh-Hans",
+    "base_text": "Streak-Eis",
+    "translated_text": "pfad.ice.title",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "prog_deepwork_d1_desc",
+    "lang": "it",
+    "base_text": "Erledige die absolut wichtigste und schwerste Aufgabe des Tages direkt in deiner ersten Deep Work Session. Schiebe nichts auf.",
+    "translated_text": "Completa il compito in assoluto più importante e più difficile della giornata proprio nella tua prima sessione di lavoro profondo. Non rimandare nulla.",
+    "issue": "Contains suspicious word ' null'"
+  },
+  {
+    "key": "prog_nutrition_d4_t2",
+    "lang": "ja",
+    "base_text": "Eine Portion zu%@ roh gegessen",
+    "translated_text": "1食分は100%%生で食べられます",
+    "issue": "Placeholders mismatch: Base has ['%@'], ja has []"
+  },
+  {
+    "key": "prog_nutrition_d4_t2",
+    "lang": "ru",
+    "base_text": "Eine Portion zu%@ roh gegessen",
+    "translated_text": "Одна порция съедается полностью сырой.",
+    "issue": "Placeholders mismatch: Base has ['%@'], ru has []"
+  },
+  {
+    "key": "prog_water_d2_desc",
+    "lang": "ja",
+    "base_text": "Versuche, mindestens%@ deines Wasserbedarfs vor 14 Uhr zu decken. Das verhindert abendliches Trinken und nächtliche Klobesuche.",
+    "translated_text": "午後2時までに必要な水分の少なくとも60%%を摂取するようにしてください。これにより、夕方の飲酒や夜間のトイレに行くことがなくなります。",
+    "issue": "Placeholders mismatch: Base has ['%@'], ja has []"
+  },
+  {
+    "key": "prog_water_d2_t1",
+    "lang": "ja",
+    "base_text": "%@ vor 14:00 Uhr getrunken",
+    "translated_text": "午後2時までに60%%飲酒",
+    "issue": "Placeholders mismatch: Base has ['%@'], ja has []"
+  },
+  {
+    "key": "prog_water_d2_t1",
+    "lang": "tr",
+    "base_text": "%@ vor 14:00 Uhr getrunken",
+    "translated_text": "Yüzde 60'ı öğleden sonra 2'den önce sarhoş",
+    "issue": "Placeholders mismatch: Base has ['%@'], tr has []"
+  },
+  {
+    "key": "rarity.%@",
+    "lang": "de",
+    "base_text": "rarity.%@",
+    "translated_text": "rarity.%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "rarity.%@",
+    "lang": "en",
+    "base_text": "rarity.%@",
+    "translated_text": "rarity.%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "settings.manage_subscription",
+    "lang": "nl",
+    "base_text": "Abo verwalten",
+    "translated_text": "settings.manage_subscription",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "settings.manage_subscription",
+    "lang": "ru",
+    "base_text": "Abo verwalten",
+    "translated_text": "settings.manage_subscription",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "streak.motivation.%lld",
+    "lang": "de",
+    "base_text": "streak.motivation.%lld",
+    "translated_text": "streak.motivation.%lld",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "streak.motivation.%lld",
+    "lang": "en",
+    "base_text": "streak.motivation.%lld",
+    "translated_text": "streak.motivation.%lld",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "streak.motivation.%lld",
+    "lang": "it",
+    "base_text": "streak.motivation.%lld",
+    "translated_text": "streak.motivation.%lld",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "Suchen...",
+    "lang": "de",
+    "base_text": "Suchen...",
+    "translated_text": "Suchen...",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "weather.rule.%@",
+    "lang": "de",
+    "base_text": "weather.rule.%@",
+    "translated_text": "weather.rule.%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "weather.rule.%@",
+    "lang": "en",
+    "base_text": "weather.rule.%@",
+    "translated_text": "weather.rule.%@",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_intent_history_title",
+    "lang": "ru",
+    "base_text": "Verlauf-Widget anpassen",
+    "translated_text": "widget_intent_history_title",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_intent_routine_desc",
+    "lang": "ru",
+    "base_text": "Wähle eine Routine und den Hintergrund.",
+    "translated_text": "widget_intent_routine_desc",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_intent_routine_title",
+    "lang": "ru",
+    "base_text": "Routine-Widget anpassen",
+    "translated_text": "widget_intent_routine_title",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_intent_streak_title",
+    "lang": "ru",
+    "base_text": "Streak-Widget anpassen",
+    "translated_text": "widget_intent_streak_title",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_intent_water_desc",
+    "lang": "ru",
+    "base_text": "Hintergrund wählen.",
+    "translated_text": "widget_intent_water_desc",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_intent_water_title",
+    "lang": "ru",
+    "base_text": "Wasser-Widget anpassen",
+    "translated_text": "widget_intent_water_title",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_period_alltime",
+    "lang": "ru",
+    "base_text": "Gesamt",
+    "translated_text": "widget_period_alltime",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_period_month",
+    "lang": "ru",
+    "base_text": "Dieser Monat",
+    "translated_text": "widget_period_month",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_period_today",
+    "lang": "ru",
+    "base_text": "Heute",
+    "translated_text": "widget_period_today",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_period_type",
+    "lang": "ru",
+    "base_text": "Zeitraum",
+    "translated_text": "widget_period_type",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_period_week",
+    "lang": "ru",
+    "base_text": "Diese Woche",
+    "translated_text": "widget_period_week",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_routine_type",
+    "lang": "ru",
+    "base_text": "Routine",
+    "translated_text": "widget_routine_type",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_style_dark",
+    "lang": "ru",
+    "base_text": "Dunkel (Schwarz)",
+    "translated_text": "widget_style_dark",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_style_light",
+    "lang": "ru",
+    "base_text": "Hell (Weiß)",
+    "translated_text": "widget_style_light",
+    "issue": "Value identical to technical key"
+  },
+  {
+    "key": "widget_style_type",
+    "lang": "ru",
+    "base_text": "Hintergrund-Stil",
+    "translated_text": "widget_style_type",
+    "issue": "Value identical to technical key"
+  }
+]

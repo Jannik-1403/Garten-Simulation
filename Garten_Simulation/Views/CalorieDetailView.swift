@@ -53,7 +53,13 @@ struct CalorieDetailView: View {
                     // Timeframe Selector
                     Picker("", selection: $selectedTimeframe) {
                         ForEach(CalorieTimeframe.allCases, id: \.self) { tf in
-                            Text(tf.rawValue).tag(tf)
+                            let localizedLabel = switch tf {
+                            case .week: String(localized: "timeframe.1w", defaultValue: "1W")
+                            case .month: String(localized: "timeframe.1m", defaultValue: "1M")
+                            case .sixMonths: String(localized: "timeframe.6m", defaultValue: "6M")
+                            case .year: String(localized: "timeframe.1y", defaultValue: "1J")
+                            }
+                            Text(localizedLabel).tag(tf)
                         }
                     }
                     .pickerStyle(.segmented)
@@ -184,7 +190,7 @@ struct CalorieDetailView: View {
     
     private func formatXAxisLabel(date: Date, tf: CalorieTimeframe) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "de_DE")
+        formatter.locale = SettingsStore.shared.appLocale
         switch tf {
         case .week:
             formatter.dateFormat = "EE"

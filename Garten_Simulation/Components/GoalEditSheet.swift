@@ -196,7 +196,7 @@ struct HabitWeightRow: View {
                         isRectangular: true,
                         aktion: { onSelect(weight) }
                     ) {
-                        Text(weight == .massive ? "20 Pkt" : (weight == .bit ? "5 Pkt" : "0 Pkt"))
+                        Text(weight == .massive ? "20 \(String(localized: "common.points.short", defaultValue: "Pkt"))" : (weight == .bit ? "5 \(String(localized: "common.points.short", defaultValue: "Pkt"))" : "0 \(String(localized: "common.points.short", defaultValue: "Pkt"))"))
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundColor(isSelected ? .white : baseColor)
                             .frame(maxWidth: .infinity)

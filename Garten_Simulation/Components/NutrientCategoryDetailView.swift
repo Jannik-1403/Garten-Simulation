@@ -6,6 +6,15 @@ struct NutrientCategoryDetailView: View {
     @State private var showSettings = false
     @State private var selectedHistoryIndex: Int = 6 // Index of today in the history array (7 days ago to today)
     
+    private var localizedCategoryName: String {
+        switch categoryName {
+        case "Vitamine": return String(localized: "nutrient.category.vitamins", defaultValue: "Vitamine")
+        case "Mineralstoffe": return String(localized: "nutrient.category.minerals", defaultValue: "Mineralstoffe")
+        case "Ballaststoffe": return String(localized: "nutrient.category.fiber", defaultValue: "Ballaststoffe")
+        default: return categoryName
+        }
+    }
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
@@ -24,7 +33,7 @@ struct NutrientCategoryDetailView: View {
                 }
             }
         }
-        .navigationTitle(categoryName)
+        .navigationTitle(localizedCategoryName)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -322,6 +331,7 @@ struct NutrientHistoryChart: View {
         let date = Calendar.current.date(byAdding: .day, value: -ago, to: Date()) ?? Date()
         
         let formatter = DateFormatter()
+        formatter.locale = SettingsStore.shared.appLocale
         if timeRange == 0 {
             formatter.dateFormat = "EE"
             return formatter.string(from: date)
@@ -340,11 +350,13 @@ struct NutrientHistoryChart: View {
         if timeRange == 2 {
             let monthDate = Calendar.current.date(byAdding: .month, value: -ago, to: Date()) ?? Date()
             let formatter = DateFormatter()
+            formatter.locale = SettingsStore.shared.appLocale
             formatter.dateFormat = "MMMM yyyy"
             return formatter.string(from: monthDate)
         } else {
             let date = Calendar.current.date(byAdding: .day, value: -ago, to: Date()) ?? Date()
             let formatter = DateFormatter()
+            formatter.locale = SettingsStore.shared.appLocale
             formatter.dateStyle = .medium
             return formatter.string(from: date)
         }
@@ -377,6 +389,7 @@ struct NutrientHistoryChart: View {
     private func getWeekday(daysAgo: Int) -> String {
         let date = Calendar.current.date(byAdding: .day, value: -daysAgo, to: Date()) ?? Date()
         let formatter = DateFormatter()
+        formatter.locale = SettingsStore.shared.appLocale
         formatter.dateFormat = "EE"
         return formatter.string(from: date)
     }

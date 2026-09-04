@@ -1,0 +1,494 @@
+[
+  {
+    "key": "intent_water_already_done",
+    "language": "es",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "fr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "it",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "ja",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "ko",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "nl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "pl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "pt",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "pt-BR",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_already_done",
+    "language": "tr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "es",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "fr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "it",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "ja",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "ko",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "nl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "pl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "pt",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "pt-BR",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_fail",
+    "language": "tr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "es",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "fr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "it",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "ja",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "ko",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "nl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "pl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "pt",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "pt-BR",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "intent_water_success",
+    "language": "tr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "es",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "fr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "hi",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "ja",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "ko",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "nl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "pl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "pt",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "pt-BR",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "ru",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "tr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "zh-Hans",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1m",
+    "language": "zh-Hant",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "es",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "fr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "hi",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "ja",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "ko",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "nl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "pl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "pt",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "pt-BR",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "ru",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "tr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "zh-Hans",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1w",
+    "language": "zh-Hant",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "es",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "fr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "hi",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "ja",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "ko",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "nl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "pl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "pt",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "pt-BR",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "ru",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "tr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "zh-Hans",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.1y",
+    "language": "zh-Hant",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "es",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "fr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "hi",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "ja",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "ko",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "nl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "pl",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "pt",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "pt-BR",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "ru",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "tr",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "zh-Hans",
+    "original_text": "",
+    "current_text": ""
+  },
+  {
+    "key": "timeframe.6m",
+    "language": "zh-Hant",
+    "original_text": "",
+    "current_text": ""
+  }
+]

@@ -1,0 +1,967 @@
+[
+  {
+    "key": "settings.notifications",
+    "language": "it",
+    "translated_text": "Notifiche"
+  },
+  {
+    "key": "sex.none",
+    "language": "it",
+    "translated_text": "Seleziona"
+  },
+  {
+    "key": "spin_button_keine",
+    "language": "it",
+    "translated_text": "Nessun tentativo!"
+  },
+  {
+    "key": "spin_button_later",
+    "language": "it",
+    "translated_text": "Più tardi"
+  },
+  {
+    "key": "spin_button_no_spins",
+    "language": "it",
+    "translated_text": "Nessuna girata – sali di livello!"
+  },
+  {
+    "key": "spin.result.muenzen.titel",
+    "language": "it",
+    "translated_text": "Bonus monete!"
+  },
+  {
+    "key": "spin.result.nichts.untertitel",
+    "language": "it",
+    "translated_text": "Oggi il tuo giardino è al sicuro."
+  },
+  {
+    "key": "spin.result.unkraut.titel",
+    "language": "it",
+    "translated_text": "Oh no! Erbacce individuate."
+  },
+  {
+    "key": "stats.leben",
+    "language": "it",
+    "translated_text": "Vite"
+  },
+  {
+    "key": "streak.complete",
+    "language": "it",
+    "translated_text": "Tutte le piante annaffiate!"
+  },
+  {
+    "key": "streak.increase.days",
+    "language": "it",
+    "translated_text": "Giorni di streak"
+  },
+  {
+    "key": "streak.motivation.0",
+    "language": "it",
+    "translated_text": "Continua così!"
+  },
+  {
+    "key": "streak.motivation.1",
+    "language": "it",
+    "translated_text": "Ogni giorno un po' meglio."
+  },
+  {
+    "key": "streak.motivation.2",
+    "language": "it",
+    "translated_text": "Perseverare ripaga!"
+  },
+  {
+    "key": "streak.motivation.3",
+    "language": "it",
+    "translated_text": "Sei più forte di quanto pensi."
+  },
+  {
+    "key": "streak.motivation.4",
+    "language": "it",
+    "translated_text": "Le erbacce non crescono nei giardini curati."
+  },
+  {
+    "key": "streak.motivation.5",
+    "language": "it",
+    "translated_text": "La routine batte la motivazione."
+  },
+  {
+    "key": "streak.motivation.6",
+    "language": "it",
+    "translated_text": "Piccoli passi, grande impatto."
+  },
+  {
+    "key": "streak.motivation.7",
+    "language": "it",
+    "translated_text": "Il tuo giardino cresce con te!"
+  },
+  {
+    "key": "streak.motivation.8",
+    "language": "it",
+    "translated_text": "La costanza è la chiave."
+  },
+  {
+    "key": "streak.motivation.9",
+    "language": "it",
+    "translated_text": "Oggi è un buon giorno per fare progressi."
+  },
+  {
+    "key": "streak.plural.label",
+    "language": "it",
+    "translated_text": "Giorni"
+  },
+  {
+    "key": "streak.popup.new_record",
+    "language": "it",
+    "translated_text": "Giorno!"
+  },
+  {
+    "key": "streak.singular",
+    "language": "it",
+    "translated_text": "1 Giorno"
+  },
+  {
+    "key": "streak.view.back_to_month",
+    "language": "it",
+    "translated_text": "Torna al mese"
+  },
+  {
+    "key": "streak.view.see_less",
+    "language": "it",
+    "translated_text": "Meno"
+  },
+  {
+    "key": "streak.view.see_more",
+    "language": "it",
+    "translated_text": "Vedi altro"
+  },
+  {
+    "key": "streak.view.year_overview",
+    "language": "it",
+    "translated_text": "Visualizza tutto l'anno"
+  },
+  {
+    "key": "stufe.bronze1",
+    "language": "it",
+    "translated_text": "Bronzo"
+  },
+  {
+    "key": "stufe.bronze2",
+    "language": "it",
+    "translated_text": "Bronzo"
+  },
+  {
+    "key": "stufe.bronze3",
+    "language": "it",
+    "translated_text": "Bronzo"
+  },
+  {
+    "key": "stufe.gold1",
+    "language": "it",
+    "translated_text": "Oro"
+  },
+  {
+    "key": "stufe.gold2",
+    "language": "it",
+    "translated_text": "Oro"
+  },
+  {
+    "key": "stufe.gold3",
+    "language": "it",
+    "translated_text": "Oro"
+  },
+  {
+    "key": "support.desc",
+    "language": "it",
+    "translated_text": "Descrivi la tua richiesta nel modo più dettagliato possibile."
+  },
+  {
+    "key": "support.email",
+    "language": "it",
+    "translated_text": "Il tuo indirizzo e-mail"
+  },
+  {
+    "key": "support.email.desc",
+    "language": "it",
+    "translated_text": "Utilizziamo questo indirizzo solo per risponderti."
+  },
+  {
+    "key": "support.reason",
+    "language": "it",
+    "translated_text": "Motivo"
+  },
+  {
+    "key": "support.reason.feedback",
+    "language": "it",
+    "translated_text": "Feedback / Suggerimento"
+  },
+  {
+    "key": "support.reason.question",
+    "language": "it",
+    "translated_text": "Domanda"
+  },
+  {
+    "key": "support.send",
+    "language": "it",
+    "translated_text": "Invia messaggio"
+  },
+  {
+    "key": "support.subject",
+    "language": "it",
+    "translated_text": "Oggetto"
+  },
+  {
+    "key": "support.success.msg",
+    "language": "it",
+    "translated_text": "Il tuo messaggio è stato inviato a jannik.schill.2010@gmail.com. Ti risponderemo presto!"
+  },
+  {
+    "key": "support.success.title",
+    "language": "it",
+    "translated_text": "Inviato!"
+  },
+  {
+    "key": "tab.heute",
+    "language": "it",
+    "translated_text": "Oggi"
+  },
+  {
+    "key": "timer.mode.standard",
+    "language": "it",
+    "translated_text": "Standard"
+  },
+  {
+    "key": "titel.agave",
+    "language": "it",
+    "translated_text": "Astronauta dell'Agave"
+  },
+  {
+    "key": "titel.aloe",
+    "language": "it",
+    "translated_text": "Dottore dell'Aloe"
+  },
+  {
+    "key": "titel.aloe_vera",
+    "language": "it",
+    "translated_text": "Dottore dell'Aloe"
+  },
+  {
+    "key": "titel.anfaenger",
+    "language": "it",
+    "translated_text": "Novellino"
+  },
+  {
+    "key": "titel.apfelbaum",
+    "language": "it",
+    "translated_text": "Aristocratico del Melo"
+  },
+  {
+    "key": "titel.auswahl.titel",
+    "language": "it",
+    "translated_text": "Seleziona titolo"
+  },
+  {
+    "key": "titel.bambus",
+    "language": "it",
+    "translated_text": "Sussurratore di Bambù"
+  },
+  {
+    "key": "titel.bambus_schilf",
+    "language": "it",
+    "translated_text": "Sciamano delle Canne"
+  },
+  {
+    "key": "titel.bambusgras",
+    "language": "it",
+    "translated_text": "Gran Maestro dell'Erba"
+  },
+  {
+    "key": "titel.bambusorchidee",
+    "language": "it",
+    "translated_text": "Doppia Diva"
+  },
+  {
+    "key": "titel.basilikum",
+    "language": "it",
+    "translated_text": "Boss del Basilico"
+  },
+  {
+    "key": "titel.bodendecker",
+    "language": "it",
+    "translated_text": "Boss del Tappezzante"
+  },
+  {
+    "key": "titel.bonsai",
+    "language": "it",
+    "translated_text": "Sensei del Bonsai"
+  },
+  {
+    "key": "titel.dahlie",
+    "language": "it",
+    "translated_text": "Demone della Dalia"
+  },
+  {
+    "key": "titel.diamant.pflanze",
+    "language": "it",
+    "translated_text": "Pianta di Diamante"
+  },
+  {
+    "key": "titel.drachenpflanze",
+    "language": "it",
+    "translated_text": "Domatore di Draghi"
+  },
+  {
+    "key": "titel.edelweiss",
+    "language": "it",
+    "translated_text": "Soldato Élite della Stella Alpina"
+  },
+  {
+    "key": "titel.efeu",
+    "language": "it",
+    "translated_text": "Imperatore dell'Edera"
+  },
+  {
+    "key": "titel.eiche",
+    "language": "it",
+    "translated_text": "Eterno Guardiano della Quercia"
+  },
+  {
+    "key": "titel.erdbeere",
+    "language": "it",
+    "translated_text": "Nobiltà della Fragola"
+  },
+  {
+    "key": "titel.farn",
+    "language": "it",
+    "translated_text": "Principe della Felce"
+  },
+  {
+    "key": "titel.feigenkaktus",
+    "language": "it",
+    "translated_text": "Filosofo del Deserto"
+  },
+  {
+    "key": "titel.geranium",
+    "language": "it",
+    "translated_text": "Genio del Geranio"
+  },
+  {
+    "key": "titel.hanfpalme",
+    "language": "it",
+    "translated_text": "Eroe della Palma di Canapa"
+  },
+  {
+    "key": "titel.ingwer",
+    "language": "it",
+    "translated_text": "Icona dello Zenzero"
+  },
+  {
+    "key": "titel.jasmin",
+    "language": "it",
+    "translated_text": "Jedi del Gelsomino"
+  },
+  {
+    "key": "titel.kaktus",
+    "language": "it",
+    "translated_text": "Barone delle Spine"
+  },
+  {
+    "key": "titel.kirschlorbeer",
+    "language": "it",
+    "translated_text": "Imperatore del Lauroceraso"
+  },
+  {
+    "key": "titel.klee",
+    "language": "it",
+    "translated_text": "Re del Trifoglio"
+  },
+  {
+    "key": "titel.lavendel",
+    "language": "it",
+    "translated_text": "Lord della Lavanda"
+  },
+  {
+    "key": "titel.lorbeer",
+    "language": "it",
+    "translated_text": "Portatore della Corona d'Alloro"
+  },
+  {
+    "key": "titel.lotus",
+    "language": "it",
+    "translated_text": "Leggenda del Loto"
+  },
+  {
+    "key": "titel.magnolia",
+    "language": "it",
+    "translated_text": "Mago della Magnolia"
+  },
+  {
+    "key": "titel.minze",
+    "language": "it",
+    "translated_text": "Monarca della Menta"
+  },
+  {
+    "key": "titel.monstera",
+    "language": "it",
+    "translated_text": "Mente Geniale della Monstera"
+  },
+  {
+    "key": "titel.mystic",
+    "language": "it",
+    "translated_text": "Maestro del Mistico"
+  },
+  {
+    "key": "titel.neu.freigeschaltet",
+    "language": "it",
+    "translated_text": "Nuovo titolo!"
+  },
+  {
+    "key": "titel.neu.untertitel",
+    "language": "it",
+    "translated_text": "Hai portato una pianta al livello Diamante!"
+  },
+  {
+    "key": "titel.palme",
+    "language": "it",
+    "translated_text": "Pirata della Palma"
+  },
+  {
+    "key": "titel.papyrus",
+    "language": "it",
+    "translated_text": "Faraone del Papiro"
+  },
+  {
+    "key": "titel.passionsblume",
+    "language": "it",
+    "translated_text": "Professionista della Passiflora"
+  },
+  {
+    "key": "titel.pfingstrose",
+    "language": "it",
+    "translated_text": "Profeta della Peonia"
+  },
+  {
+    "key": "titel.rose",
+    "language": "it",
+    "translated_text": "Cavaliere della Rosa"
+  },
+  {
+    "key": "titel.seerose",
+    "language": "it",
+    "translated_text": "Mago della Ninfea"
+  },
+  {
+    "key": "titel.standard",
+    "language": "it",
+    "translated_text": "Titolo standard"
+  },
+  {
+    "key": "titel.tomate",
+    "language": "it",
+    "translated_text": "Tiranno del Pomodoro"
+  },
+  {
+    "key": "titel.tulpe",
+    "language": "it",
+    "translated_text": "Titano del Tulipano"
+  },
+  {
+    "key": "titel.weinrebe",
+    "language": "it",
+    "translated_text": "Saggio della Vite"
+  },
+  {
+    "key": "titel.wisteria",
+    "language": "it",
+    "translated_text": "Saggio del Glicine"
+  },
+  {
+    "key": "titel.zimt",
+    "language": "it",
+    "translated_text": "Campione della Cannella"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "it",
+    "translated_text": "To-Do generali"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "it",
+    "translated_text": "Completa le tue abitudini facendo scorrere la barra di progresso sulla scheda verso destra, per far crescere la pianta."
+  },
+  {
+    "key": "transaction.revive",
+    "language": "it",
+    "translated_text": "Pianta rianimata"
+  },
+  {
+    "key": "transaction.shop_purchase",
+    "language": "it",
+    "translated_text": "Acquisto nel negozio"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Bere alcolici) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.alkohol_flatrate.obj_desc",
+    "language": "it",
+    "translated_text": "Un tocco di arte e senza tempo."
+  },
+  {
+    "key": "trash.alkohol_flatrate.obj_name",
+    "language": "it",
+    "translated_text": "Statua di pietra"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Bere alcolici)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Bere tè)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Guardare serie senza sosta) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.binge_streaming.obj_desc",
+    "language": "it",
+    "translated_text": "Perfetta per un pisolino."
+  },
+  {
+    "key": "trash.binge_streaming.obj_name",
+    "language": "it",
+    "translated_text": "Amaca"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Guardare serie senza sosta)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Dedicarsi a un hobby)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Stare sdraiati sul divano) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.couch_abo.obj_desc",
+    "language": "it",
+    "translated_text": "Un rifugio sicuro per i ricci."
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Troppo fast food) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Troppo fast food)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Snack sano)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Doomscrolling) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.doomscrolling_handy.obj_name",
+    "language": "it",
+    "translated_text": "Mulino a vento"
+  },
+  {
+    "key": "trash.doomscrolling_handy.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Doomscrolling)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Meditare)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Troppa televisione) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.endlos_scroll_tv.obj_desc",
+    "language": "it",
+    "translated_text": "Attira amici cinguettanti."
+  },
+  {
+    "key": "trash.endlos_scroll_tv.obj_name",
+    "language": "it",
+    "translated_text": "Casetta per uccelli"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Troppa televisione)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Leggere un libro)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.energy_drink_kiste.obj_name",
+    "language": "it",
+    "translated_text": "Gnomo da giardino"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Energy drink)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Bere acqua)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Fast food) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.fast_food_abo.obj_desc",
+    "language": "it",
+    "translated_text": "Un rilassante gorgoglio per il tuo giardino. (+1 moneta)"
+  },
+  {
+    "key": "trash.fast_food_abo.obj_name",
+    "language": "it",
+    "translated_text": "Fontana"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Fast food)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Cucinare sano)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Ordinare a domicilio) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.obj_desc",
+    "language": "it",
+    "translated_text": "Un'illuminazione infuocata per la notte."
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.obj_name",
+    "language": "it",
+    "translated_text": "Torcia da giardino"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Ordinare a domicilio)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Meal prep (preparazione dei pasti))**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.junk_mail_abo.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Spam e distrazioni) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.junk_mail_abo.obj_desc",
+    "language": "it",
+    "translated_text": "Un rinfresco per una pausa."
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Spam e distrazioni)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Digital detox)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Gioco d'azzardo/Lootbox) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.lootbox_zockerabo.obj_desc",
+    "language": "it",
+    "translated_text": "Spazio extra per fiori selvatici."
+  },
+  {
+    "key": "trash.lootbox_zockerabo.obj_name",
+    "language": "it",
+    "translated_text": "Vaso da fiori"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Gioco d'azzardo/Lootbox)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Risparmiare)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Giri in auto senza scopo) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.luxus_auto.obj_desc",
+    "language": "it",
+    "translated_text": "Dona una luce soffusa alla sera."
+  },
+  {
+    "key": "trash.luxus_auto.obj_name",
+    "language": "it",
+    "translated_text": "Lanterna"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Giri in auto senza scopo)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Fare una passeggiata)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.luxus_uhr.obj_desc",
+    "language": "it",
+    "translated_text": "Aiutanti ronzanti per l'impollinazione. (+1 moneta)"
+  },
+  {
+    "key": "trash.luxus_uhr.obj_name",
+    "language": "it",
+    "translated_text": "Casetta delle api"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Spuntini notturni) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.nacht_snack_box.obj_desc",
+    "language": "it",
+    "translated_text": "Delimita il tuo giardino in sicurezza."
+  },
+  {
+    "key": "trash.nacht_snack_box.obj_name",
+    "language": "it",
+    "translated_text": "Recinto di legno"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Spuntini notturni)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Digiuno intermittente)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Feed di notizie negative) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.negativitaets_feed.obj_desc",
+    "language": "it",
+    "translated_text": "Collega diverse zone del giardino."
+  },
+  {
+    "key": "trash.negativitaets_feed.obj_name",
+    "language": "it",
+    "translated_text": "Ponte"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Feed di notizie negative)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Diario positivo)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Shopping online) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.online_shopping_app.obj_name",
+    "language": "it",
+    "translated_text": "Laghetto di ninfee"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Shopping online)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Risparmiare denaro)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Troppe feste) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.party_pass.obj_desc",
+    "language": "it",
+    "translated_text": "Un bel sentiero nel verde."
+  },
+  {
+    "key": "trash.party_pass.obj_name",
+    "language": "it",
+    "translated_text": "Sentiero di pietre"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Troppe feste)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Tempo per sé e cura di sé)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Troppa caffeina) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.obj_name",
+    "language": "it",
+    "translated_text": "Capanno da giardino"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Troppa caffeina)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Routine del sonno)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "it",
+    "translated_text": "Questa abitudine (Fumare) ti costa energia, tempo e denaro a lungo termine. Ti impedisce di sfruttare appieno il tuo potenziale."
+  },
+  {
+    "key": "trash.zigaretten_automat.obj_desc",
+    "language": "it",
+    "translated_text": "Offre ombra nelle giornate calde."
+  },
+  {
+    "key": "trash.zigaretten_automat.obj_name",
+    "language": "it",
+    "translated_text": "Ombrellone"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "it",
+    "translated_text": "**Elimina la cattiva abitudine (Fumare)**\n1. Rendila invisibile: Rimuovi i trigger dal tuo campo visivo.\n2. Rendila poco attraente: Prendi consapevolezza delle conseguenze negative.\n3. Rendila difficile: Aggiungi ostacoli (es. elimina le app, stacca la spina).\n4. Rendila insoddisfacente: Collega l'azione a una punizione.\n\n**Stabilisci la buona abitudine (Esercizi di respirazione)**\n1. Rendila evidente: Posiziona il trigger ben visibile.\n2. Rendila attraente: Associala a qualcosa che ti piace.\n3. Rendila facile: Riduci gli ostacoli al minimo (es. solo 2 minuti).\n4. Rendila soddisfacente: Premiati subito dopo."
+  },
+  {
+    "key": "trigger.stress",
+    "language": "it",
+    "translated_text": "Stress"
+  },
+  {
+    "key": "wasser.giessvorgang",
+    "language": "it",
+    "translated_text": "Annaffiature"
+  },
+  {
+    "key": "wasser.karte.titel",
+    "language": "it",
+    "translated_text": "ACQUA PER ANNAFFIARE"
+  },
+  {
+    "key": "wasser.leer.body",
+    "language": "it",
+    "translated_text": "Annaffia le tue piante per vedere le statistiche."
+  },
+  {
+    "key": "wasser.leer.titel",
+    "language": "it",
+    "translated_text": "Nessuna acqua finora"
+  },
+  {
+    "key": "wasser.meine.pflanzen",
+    "language": "it",
+    "translated_text": "Le mie piante"
+  },
+  {
+    "key": "wasser.zyklus.singular",
+    "language": "it",
+    "translated_text": "1 Annaffiatura"
+  },
+  {
+    "key": "weather.detail.difficult",
+    "language": "it",
+    "translated_text": "Difficile"
+  },
+  {
+    "key": "weather.detail.watering",
+    "language": "it",
+    "translated_text": "ANNAFFIARE"
+  },
+  {
+    "key": "weather.duerre.title",
+    "language": "it",
+    "translated_text": "Allarme siccità!"
+  },
+  {
+    "key": "weather.new_event",
+    "language": "it",
+    "translated_text": "Nuovo evento meteo!"
+  },
+  {
+    "key": "weather.normal.subtitle",
+    "language": "it",
+    "translated_text": "Tutto cresce come previsto"
+  },
+  {
+    "key": "weather.normal.title",
+    "language": "it",
+    "translated_text": "Giornata tranquilla"
+  },
+  {
+    "key": "weather.perfekt.subtitle",
+    "language": "it",
+    "translated_text": "Oggi ricompensa doppia!"
+  },
+  {
+    "key": "weather.perfekt.title",
+    "language": "it",
+    "translated_text": "Tempo perfetto!"
+  },
+  {
+    "key": "weather.regen.subtitle",
+    "language": "it",
+    "translated_text": "Oggi XP doppi!"
+  },
+  {
+    "key": "weather.rule.duerre",
+    "language": "it",
+    "translated_text": "Allarme siccità: oggi annaffia due volte."
+  },
+  {
+    "key": "weather.rule.normal",
+    "language": "it",
+    "translated_text": "Tutto normale. Annaffia una volta."
+  },
+  {
+    "key": "weather.rule.perfekt",
+    "language": "it",
+    "translated_text": "Tempo perfetto: oggi monete doppie."
+  },
+  {
+    "key": "weather.rule.schnee",
+    "language": "it",
+    "translated_text": "Gelo: ricevi solo la metà delle monete."
+  },
+  {
+    "key": "weather.rule.sturm",
+    "language": "it",
+    "translated_text": "Tempesta: se una pianta muore, perdi 2 vite invece di 1."
+  },
+  {
+    "key": "weather.sturm.subtitle",
+    "language": "it",
+    "translated_text": "La morte di una pianta costa 2 vite!"
+  },
+  {
+    "key": "weather.sturm.title",
+    "language": "it",
+    "translated_text": "Tempesta in arrivo"
+  },
+  {
+    "key": "weather.today_is",
+    "language": "it",
+    "translated_text": "Oggi vale"
+  },
+  {
+    "key": "wheel.bot_use",
+    "language": "it",
+    "translated_text": "Usa il bot: gira di nuovo!"
+  },
+  {
+    "key": "wheel.go_to_shop",
+    "language": "it",
+    "translated_text": "Vai al negozio e comprane!"
+  },
+  {
+    "key": "wheel.no_items",
+    "language": "it",
+    "translated_text": "Non hai ancora nessun oggetto."
+  },
+  {
+    "key": "wheel.powerups.title",
+    "language": "it",
+    "translated_text": "Usa i power-up"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "it",
+    "translated_text": "Ripristino riuscito"
+  }
+]

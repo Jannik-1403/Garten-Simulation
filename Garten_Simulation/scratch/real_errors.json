@@ -1,0 +1,3476 @@
+[
+  {
+    "key": "routine.custom_items.category",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "routine.todo.description.placeholder",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "schwierigkeit.bestaetigen",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.limit.confirm.message",
+    "language": "ru",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.limit.confirm.title",
+    "language": "hi",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.limit.confirm.title",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.limit.confirm.title",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.schedule.locked.info",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.schedule.locked.info",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.schedule.locked.title",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.strictMode.active",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.strictMode.active",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.strictMode.active",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.strictMode.desc",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.strictMode.title",
+    "language": "hi",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.strictMode.title",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "screenTime.strictMode.title",
+    "language": "ru",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "settings.notifications",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "sex.none",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "sex.none",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "sex.none",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.badge.popular",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.badge.popular",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.category.powerups",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.category.powerups",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.seeds.desc",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.seeds.desc",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.tab.header",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.tab.items.short",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.tab.items.short",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.tab.plants.short",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "shop.tab.plants.short",
+    "language": "hi",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "spin_button_keine",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "spin_button_later",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "spin_button_later",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "spin_button_no_spins",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "spin.result.muenzen.titel",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "spin.result.nichts.untertitel",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "spin.result.unkraut.titel",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "statistik_periode_woche",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "stats.consistency.perfect",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "stats.leben",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.complete",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.format.month_year",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.format.month_year",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.increase.days",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.mode.week",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.0",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.1",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.2",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.3",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.4",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.5",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.6",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.7",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.8",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.motivation.9",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.plural.label",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.popup.new_record",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.singular",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.view.back_to_month",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.view.see_less",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.view.see_more",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "streak.view.year_overview",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "stufe.bronze1",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "stufe.bronze2",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "stufe.bronze3",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "stufe.gold1",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "stufe.gold2",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "stufe.gold3",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.email",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.email.desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.reason",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.reason.feedback",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.reason.general",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.reason.question",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.reason.question",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.send",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.subject",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.success.msg",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "support.success.title",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tab.heute",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tab.heute",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.month",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.month",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.month",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.month",
+    "language": "ru",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.week",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.week",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.week",
+    "language": "hi",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.week",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.week",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.week",
+    "language": "ru",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.week",
+    "language": "zh-Hans",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.year",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.year",
+    "language": "hi",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.year",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.year",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.year",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "time.year",
+    "language": "ru",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "timer.mode.standard",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "timer.mode.standard",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "timer.mode.standard",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.agave",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.aloe",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.aloe_vera",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.anfaenger",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.apfelbaum",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.auswahl.titel",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.bambus",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.bambus_schilf",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.bambusgras",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.bambusorchidee",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.bambusorchidee",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.basilikum",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.bodendecker",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.bonsai",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.dahlie",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.diamant.pflanze",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.drachenpflanze",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.edelweiss",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.edelweiss",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.efeu",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.eiche",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.erdbeere",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.farn",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.feigenkaktus",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.geranium",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.hanfpalme",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.ingwer",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.jasmin",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.kaktus",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.kirschlorbeer",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.klee",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.lavendel",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.lorbeer",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.lotus",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.magnolia",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.minze",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.monstera",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.mystic",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.neu.freigeschaltet",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.neu.untertitel",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.palme",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.papyrus",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.passionsblume",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.pfingstrose",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.rose",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.seerose",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.standard",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.tomate",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.tulpe",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.weinrebe",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.wisteria",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "titel.zimt",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "hi",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "ru",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "todos.tab.general",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "hi",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "ru",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "zh-Hans",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "tour_1_desc",
+    "language": "zh-Hant",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "transaction.revive",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "transaction.shop_purchase",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.alkohol_flatrate.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.binge_streaming.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.couch_abo.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doener_dauerkarte.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.doomscrolling_handy.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.endlos_scroll_tv.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.energy_drink_kiste.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fast_food_abo.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.fastfood_lieferdienst.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.junk_mail_abo.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.lootbox_zockerabo.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_auto.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.luxus_uhr.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.nacht_snack_box.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.negativitaets_feed.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.online_shopping_app.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.party_pass.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.impact",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.schlaf_killer_koffein.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.impact",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.obj_desc",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.obj_name",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "pl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trash.zigaretten_automat.tips",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trigger.fatigue",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trigger.selection_title",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "trigger.stress",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.giessvorgang",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.karte.titel",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.leer.body",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.leer.body",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.leer.titel",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.leer.titel",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.leer.titel",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.meine.pflanzen",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wasser.zyklus.singular",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.detail.difficult",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.detail.watering",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.duerre.title",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.new_event",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.normal.subtitle",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.normal.title",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.perfekt.subtitle",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.perfekt.title",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.regen.subtitle",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.rule.duerre",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.rule.normal",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.rule.perfekt",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.rule.schnee",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.rule.sturm",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.sturm.subtitle",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.sturm.title",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "weather.today_is",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wheel.bot_use",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wheel.go_to_shop",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wheel.no_items",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "wheel.powerups.title",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "widget_interactive_routine_title",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "widget_water_alltime",
+    "language": "es",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "widget_water_alltime",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "widget_water_alltime",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "widget_water_alltime",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "fr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "hi",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "it",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "ja",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "ko",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "nl",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "pt",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "pt-BR",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "ru",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "tr",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "zh-Hans",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  },
+  {
+    "key": "Wiederherstellung erfolgreich",
+    "language": "zh-Hant",
+    "brokenValue": "Error 500 (Server Error)!!1500.That\u2019s an error.There was an error. Please try again later.That\u2019s all we know.",
+    "reason": "server error"
+  }
+]

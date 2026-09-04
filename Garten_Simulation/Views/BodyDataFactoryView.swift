@@ -244,7 +244,7 @@ struct BodyDataFactoryView: View {
                             Text("\(String(format: "%.1f", selectedEntry.progress)) \(unit)")
                                 .font(.system(size: 14, weight: .bold, design: .rounded))
                                 .foregroundStyle(Color.pink)
-                            Text(selectedEntry.timestamp.formatted(timeRange == .t ? .dateTime.hour().minute() : .dateTime.day().month().year()))
+                            Text(selectedEntry.timestamp.formatted(timeRange == .t ? .dateTime.hour().minute().locale(SettingsStore.shared.appLocale) : .dateTime.day().month().year().locale(SettingsStore.shared.appLocale)))
                                 .font(.system(size: 10, weight: .medium, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
@@ -271,16 +271,17 @@ struct BodyDataFactoryView: View {
                 AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
                 AxisValueLabel {
                     if let date = value.as(Date.self) {
+                        let locale = SettingsStore.shared.appLocale
                         if timeRange == .t {
-                            Text(date.formatted(.dateTime.hour()))
+                            Text(date.formatted(.dateTime.hour().locale(locale)))
                         } else if timeRange == .w {
-                            Text(date.formatted(.dateTime.weekday(.short)))
+                            Text(date.formatted(.dateTime.weekday(.short).locale(locale)))
                         } else if timeRange == .m {
-                            Text(date.formatted(.dateTime.day()))
+                            Text(date.formatted(.dateTime.day().locale(locale)))
                         } else if timeRange == .sixM {
-                            Text(date.formatted(.dateTime.month(.abbreviated)))
+                            Text(date.formatted(.dateTime.month(.abbreviated).locale(locale)))
                         } else {
-                            Text(date.formatted(.dateTime.month(.narrow)))
+                            Text(date.formatted(.dateTime.month(.narrow).locale(locale)))
                         }
                     }
                 }

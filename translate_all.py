@@ -71,6 +71,7 @@ for key, value in data["strings"].items():
                 target_lang = lang
                 if lang == "zh-Hans": target_lang = "zh-CN"
                 elif lang == "zh-Hant": target_lang = "zh-TW"
+                elif lang == "pt-BR": target_lang = "pt"
                 
                 cache_key = f"{default_text}_{target_lang}"
                 if cache_key in translator_cache:
