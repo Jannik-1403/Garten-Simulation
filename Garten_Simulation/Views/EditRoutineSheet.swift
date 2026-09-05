@@ -500,7 +500,7 @@ struct AvailableHabitRow: View {
                 
                 Image(systemName: "plus.circle.fill")
                     .font(.title2)
-                    .foregroundStyle(Color.appMainColor)
+                    .foregroundStyle(plant.color)
             }
             .padding(.horizontal, 16)
         }
