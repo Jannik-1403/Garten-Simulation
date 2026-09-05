@@ -341,83 +341,70 @@ struct RoutineExpandableSection: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Item3DButton(
-                farbe: color,
-                sekundaerFarbe: color.darker(),
-                groesse: 90, // Hauptkachel-Höhe (Schatten = 90 * 0.08 = 7.2)
-                isRectangular: true,
-                aktion: {
-                    withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
-                        isExpanded.toggle()
-                    }
+            Button(action: {
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
+                    isExpanded.toggle()
                 }
-            ) {
-                HStack(spacing: 14) {
-                    // Links: Weiterer kleiner 3D-Button für das Icon
-                    Item3DButton(
-                        farbe: color.darker(),
-                        sekundaerFarbe: color.darker().darker(),
-                        groesse: 56, // Rund und quadratisch
-                        isRectangular: false, // Rund
-                        isDisabled: false, // NICHT true, sonst wird er grau
-                        aktion: {} // Leere Aktion
-                    ) {
-                        Image("allgemeineMorgenroutine")
-                            .resizable()
-                            .scaledToFit()
-                            .scaleEffect(1.2) // Icon größer machen
-                    }
-                    .allowsHitTesting(false) // Deaktiviert Klicks ohne Grauschleier
-                    .padding(.leading, 0)
-                    
-                    // Mitte: Titel und Aufgaben-Zähler
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(String(localized: String.LocalizationValue(titleKey)))
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-                            .lineLimit(1)
-                        
-                        Text("\(habits.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten"))")
-                            .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.8))
-                    }
-                    
-                    Spacer()
-                }
-                .padding(.vertical, 12)
-            }
-            .zIndex(1) // Kachel ist unter dem Sterne-Reiter
-            
-            // Neuer Reiter unter der Kachel für die Sterne
-            if let _ = routine {
-                HStack {
-                    Spacer()
-                    // PillButton umschließt den Inhalt eng, ideal für die Sterne
-                    Item3DPillButton(
-                        farbe: color,
-                        sekundaerFarbe: color.darker(),
-                        groesse: 36, // Sehr kompakte Höhe
-                        shadowDepthFactor: (90.0 * 0.08) / 36.0, // Exakt gleicher Schatten wie Hauptkachel (7.2 pt)
-                        aktion: {
-                            onPriorityTap?()
+            }) {
+                VStack(spacing: 0) {
+                    // Haus-Inhalt
+                    HStack(spacing: 14) {
+                        Item3DButton(
+                            farbe: color.darker(),
+                            sekundaerFarbe: color.darker().darker(),
+                            groesse: 56,
+                            isRectangular: false,
+                            isDisabled: false,
+                            aktion: {}
+                        ) {
+                            Image("allgemeineMorgenroutine")
+                                .resizable()
+                                .scaledToFit()
+                                .scaleEffect(1.2)
                         }
-                    ) {
+                        .allowsHitTesting(false)
+                        .padding(.leading, 12) // Etwas padding nach links für den Icon-Button
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(String(localized: String.LocalizationValue(titleKey)))
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                                .lineLimit(1)
+                            
+                            Text("\(habits.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten"))")
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.white.opacity(0.8))
+                        }
+                        
+                        Spacer()
+                    }
+                    .frame(height: 90) // Konstante Höhe für das Haus
+                    
+                    // Balkon-Inhalt (Sterne)
+                    if let routine = routine {
                         HStack(spacing: 2) {
-                            ForEach(0..<(routine?.priority.activeStars ?? 1), id: \.self) { _ in
+                            ForEach(0..<(routine.priority.activeStars), id: \.self) { _ in
                                 Image("Powerup")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 18, height: 18) // Sterne kleiner
-                                    .foregroundColor(routine?.priority.color ?? .white)
+                                    .frame(width: 18, height: 18)
+                                    .foregroundColor(routine.priority.color)
                             }
                         }
-                        .padding(.horizontal, 4) // Leichtes Padding in der Pille
+                        .frame(width: CGFloat(max(1, routine.priority.activeStars)) * 26.0 + 32.0, height: 36)
+                        .padding(.top, -18) // Ausrichten an der Balkon-Grafik
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            onPriorityTap?()
+                        }
+                    } else {
+                        // Spacer, falls keine Routine da ist, um Layout konsistent zu halten (sollte eigtl. nie passieren)
+                        Spacer().frame(height: 36).padding(.top, -18)
                     }
-                    .padding(.top, -14) // Zieht den Reiter ÜBER den unteren Schatten der Kachel, verschmilzt optisch
-                    Spacer()
                 }
-                .zIndex(2) // Reiter ist ÜBER der Kachel, um deren Schatten an der Andockstelle zu verdecken
             }
+            .buttonStyle(RoutineBalkonButtonStyle(color: color, starsCount: routine?.priority.activeStars ?? 1))
+            .zIndex(2)
             
             if isExpanded {
                 VStack(spacing: 12) {
@@ -1167,3 +1154,50 @@ struct SelectableHabitCard: View {
     }
 }
 
+
+// MARK: - Routine Balkon ButtonStyle
+struct RoutineBalkonButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    let color: Color
+    let starsCount: Int
+    
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed
+        let shadowDepth: CGFloat = 8
+        let balkonBreite: CGFloat = CGFloat(max(1, starsCount)) * 26.0 + 32.0 
+        
+        ZStack(alignment: .top) {
+            // Shadow Layer (Haus + Balkon)
+            VStack(spacing: 0) {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(color.darker())
+                    .frame(height: 90)
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(color.darker())
+                    .frame(width: balkonBreite, height: 36)
+                    .padding(.top, -18)
+            }
+            .offset(y: shadowDepth)
+            
+            // Top Layer (Haus + Balkon)
+            VStack(spacing: 0) {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(color)
+                    .frame(height: 90)
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(color)
+                    .frame(width: balkonBreite, height: 36)
+                    .padding(.top, -18)
+            }
+            .overlay(alignment: .top) {
+                configuration.label
+            }
+            .offset(y: isPressed ? shadowDepth : 0)
+        }
+        .padding(.bottom, shadowDepth)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
+        .sensoryFeedback(trigger: isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.8) : nil
+        }
+    }
+}

@@ -957,3 +957,5 @@
 - **Routine-Kachel Design Update**: Das Layout der Routine-Kacheln wurde weiter verfeinert. Das Icon ist nun kleiner, nach links gerückt und nutzt das allgemeine Routine-Icon mit einer dynamischen Farbe (heller als die Kachel). Das Aufklapp-Pfeilsymbol wurde entfernt und der Titel-Text wurde zur besseren Lesbarkeit minimal verkleinert.
 
 - **Routine-Kachel Feinabstimmung**: Der Icon-Button in der Routine-Kachel ist nun wieder komplett rund, etwas dunkler eingefärbt und das Icon selbst wurde vergrößert. Die Prioritäts-Sterne wurden aus der Hauptkachel entfernt und befinden sich nun in einem separaten, dynamisch breiten Button, der sich exakt mittig unten an die Kachel andockt.
+
+- **Routine-Kachel Bugfixes**: Fehler behoben, bei dem der Icon-Button grau anstatt farbig gerendert wurde. Der Sterne-Reiter wurde deutlich verkleinert, passt sich nun automatisch an die Anzahl der Sterne an und schließt optisch nahtlos an die 3D-Kante der Hauptkachel an.
