@@ -261,24 +261,23 @@ struct EditRoutineSheet: View {
                     ZStack {
                         Color.appHintergrund.ignoresSafeArea()
                         ScrollView {
-                            let unassigned = availableHabits.filter { !isHabitAssigned($0) }
-                            if unassigned.isEmpty {
+                            if availableHabits.filter({ !isHabitAssigned($0) }).isEmpty {
                                 VStack(spacing: 20) {
                                     Image(systemName: "leaf.circle")
                                         .font(.system(size: 64))
-                                        .foregroundStyle(.secondary.opacity(0.5))
+                                        .foregroundStyle(Color.secondary.opacity(0.5))
                                     Text(String(localized: "routine.edit.habits.empty_available", defaultValue: "Keine Gewohnheiten zur Verfügung"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(Color.secondary)
                                         .multilineTextAlignment(.center)
                                 }
                                 .padding(40)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                             } else {
                                 VStack(spacing: 12) {
-                                    ForEach(unassigned) { plant in
+                                    ForEach(availableHabits.filter({ !isHabitAssigned($0) })) { plant in
                                         Item3DButton(
-                                            farbe: .white,
+                                            farbe: Color.white,
                                             sekundaerFarbe: Color(white: 0.9),
                                             groesse: 76,
                                             isRectangular: true,
@@ -302,13 +301,13 @@ struct EditRoutineSheet: View {
                                                 if settings.showHabitInsteadOfName {
                                                     Text(String(localized: String.LocalizationValue(plant.displayedHabitName)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                        .foregroundStyle(.primary)
+                                                        .foregroundStyle(Color.primary)
                                                         .lineLimit(1)
                                                         .minimumScaleFactor(0.45)
                                                 } else {
                                                     Text(String(localized: String.LocalizationValue(plant.name)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                        .foregroundStyle(.primary)
+                                                        .foregroundStyle(Color.primary)
                                                         .lineLimit(1)
                                                         .minimumScaleFactor(0.45)
                                                 }

@@ -963,3 +963,5 @@
 - **Komplettes Redesign: Haus-mit-Balkon 3D Shape**: Das Kachel-Design wurde grundlegend neu geschrieben. Statt zwei getrennten Buttons zu nutzen, wurde der `RoutineBalkonButtonStyle` implementiert. Dieser verschmilzt die Hauptkachel (das 'Haus') und den Reiter für die Sterne (den 'Balkon') nahtlos in ein einziges durchgehendes 3D-Objekt. Dieses Shape hat eine konsistente Outline, einen einheitlichen 3D-Schatten im unteren Drittel, reagiert einheitlich auf Klicks und passt die Balkonbreite dynamisch an die Anzahl der Sterne an.
 
 - **Routine-Kachel Bugfix**: Das Icon ist nun deutlich größer. Der Sterne-Balkon unten wird nun komplett ausgeblendet, falls es sich um die Kachel 'Ohne Routine' handelt, da dort keine Sterne vergeben werden können.
+
+- **Habit Picker UI & Lokalisierung**: Die Auswahlliste zum Hinzufügen von To-Dos zu Routinen wurde auf ein schickes weißes 3D-Button-Design umgestellt. Die Pflanzen-Icons sitzen jetzt auf passend farbigen, abgerundeten Rechtecken. Außerdem wurde ein Leer-Zustand ("Keine Gewohnheiten zur Verfügung") eingefügt und automatisch für alle 16 unterstützten Sprachen zu 100% in die `Localizable.xcstrings` übersetzt.
