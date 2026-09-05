@@ -344,7 +344,7 @@ struct RoutineExpandableSection: View {
             Item3DButton(
                 farbe: color,
                 sekundaerFarbe: color.darker(),
-                groesse: 100, // Deutlich höher für das neue breite Layout
+                groesse: 90, // Ein kleines bisschen flacher, da Text kleiner
                 isRectangular: true,
                 aktion: {
                     withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
@@ -352,26 +352,27 @@ struct RoutineExpandableSection: View {
                     }
                 }
             ) {
-                HStack(spacing: 16) {
-                    // Links: Weiterer kleiner 3D-Button für das Icon (in weiß/hellgrau)
+                HStack(spacing: 14) {
+                    // Links: Weiterer kleiner 3D-Button für das Icon (heller als Hauptfarbe)
                     Item3DButton(
-                        farbe: Color(white: 0.95),
-                        sekundaerFarbe: Color(white: 0.85),
-                        groesse: 64,
+                        farbe: color.lighter(by: 0.2), // Heller statt grau
+                        sekundaerFarbe: color,
+                        groesse: 56, // Etwas kleiner
                         isRectangular: true,
-                        isDisabled: true, // Damit er nicht klickbar ist, sondern nur anzeigt
+                        isDisabled: true, // Nicht klickbar
                         aktion: nil
                     ) {
-                        Image(systemName: icon)
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundStyle(color) // Das Icon im Button hat die Farbe der Routine
+                        Image("allgemeineMorgenroutine")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(10) // Icon etwas kleiner machen durch Padding
                     }
-                    .padding(.leading, 8)
+                    .padding(.leading, 0)
                     
                     // Mitte: Titel und Aufgaben-Zähler
                     VStack(alignment: .leading, spacing: 4) {
                         Text(String(localized: String.LocalizationValue(titleKey)))
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .font(.system(size: 18, weight: .bold, design: .rounded)) // Text etwas kleiner
                             .foregroundStyle(.white)
                             .lineLimit(1)
                         
@@ -387,7 +388,7 @@ struct RoutineExpandableSection: View {
                         Button {
                             onPriorityTap?()
                         } label: {
-                            HStack(spacing: -4) { // Horizontal angeordnet, leicht überlappend oder nah beieinander
+                            HStack(spacing: -4) {
                                 ForEach(0..<(routine?.priority.activeStars ?? 1), id: \.self) { _ in
                                     Image("Powerup")
                                         .resizable()
@@ -398,14 +399,8 @@ struct RoutineExpandableSection: View {
                             }
                         }
                     }
-                    
-                    Image(systemName: "chevron.down")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(.white)
-                        .rotationEffect(.degrees(isExpanded ? 180 : 0))
-                        .padding(.trailing, 8)
                 }
-                .padding(.vertical, 16)
+                .padding(.vertical, 12)
             }
             
             if isExpanded {
