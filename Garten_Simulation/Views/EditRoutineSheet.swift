@@ -456,3 +456,53 @@ struct CreateRoutineCustomToDoSheetWrapper: View {
             }
     }
 }
+
+// MARK: - Available Habit Row
+struct AvailableHabitRow: View {
+    @EnvironmentObject var settings: SettingsStore
+    let plant: HabitModel
+    let onAdd: () -> Void
+    
+    var body: some View {
+        Item3DButton(
+            farbe: Color.white,
+            sekundaerFarbe: Color(white: 0.9),
+            groesse: 76,
+            isRectangular: true,
+            aktion: onAdd
+        ) {
+            HStack(spacing: 16) {
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(plant.color.opacity(0.15))
+                    .frame(width: 56, height: 56)
+                    .overlay {
+                        Image(plant.plantImageName)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(10)
+                    }
+                
+                if settings.showHabitInsteadOfName {
+                    Text(String(localized: String.LocalizationValue(plant.displayedHabitName)))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.45)
+                } else {
+                    Text(String(localized: String.LocalizationValue(plant.name)))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.45)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "plus.circle.fill")
+                    .font(.title2)
+                    .foregroundStyle(Color.appMainColor)
+            }
+            .padding(.horizontal, 16)
+        }
+    }
+}

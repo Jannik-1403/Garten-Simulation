@@ -965,3 +965,5 @@
 - **Routine-Kachel Bugfix**: Das Icon ist nun deutlich größer. Der Sterne-Balkon unten wird nun komplett ausgeblendet, falls es sich um die Kachel 'Ohne Routine' handelt, da dort keine Sterne vergeben werden können.
 
 - **Habit Picker UI & Lokalisierung**: Die Auswahlliste zum Hinzufügen von To-Dos zu Routinen wurde auf ein schickes weißes 3D-Button-Design umgestellt. Die Pflanzen-Icons sitzen jetzt auf passend farbigen, abgerundeten Rechtecken. Außerdem wurde ein Leer-Zustand ("Keine Gewohnheiten zur Verfügung") eingefügt und automatisch für alle 16 unterstützten Sprachen zu 100% in die `Localizable.xcstrings` übersetzt.
+
+- **Routine-Kachel Bugfix**: Compiler-Fehler (Type-Checker Timeout) beim Hinzufügen von Gewohnheiten behoben, indem das komplexe UI in eine separate View (`AvailableHabitRow`) ausgelagert wurde.
