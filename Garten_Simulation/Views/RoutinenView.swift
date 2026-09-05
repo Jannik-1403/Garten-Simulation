@@ -360,7 +360,7 @@ struct RoutineExpandableSection: View {
                             Image("allgemeineMorgenroutine")
                                 .resizable()
                                 .scaledToFit()
-                                .scaleEffect(1.2)
+                                .scaleEffect(1.4)
                         }
                         .allowsHitTesting(false)
                         .padding(.leading, 12) // Etwas padding nach links für den Icon-Button
@@ -403,7 +403,7 @@ struct RoutineExpandableSection: View {
                     }
                 }
             }
-            .buttonStyle(RoutineBalkonButtonStyle(color: color, starsCount: routine?.priority.activeStars ?? 1))
+            .buttonStyle(RoutineBalkonButtonStyle(color: color, starsCount: routine?.priority.activeStars ?? 1, hasBalkon: routine != nil))
             .zIndex(2)
             
             if isExpanded {
@@ -1160,6 +1160,7 @@ struct RoutineBalkonButtonStyle: ButtonStyle {
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     let color: Color
     let starsCount: Int
+    var hasBalkon: Bool = true // Parameter um den Balkon bedingt auszublenden
     
     func makeBody(configuration: Configuration) -> some View {
         let isPressed = configuration.isPressed
@@ -1172,10 +1173,13 @@ struct RoutineBalkonButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(color.darker())
                     .frame(height: 90)
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .fill(color.darker())
-                    .frame(width: balkonBreite, height: 36)
-                    .padding(.top, -18)
+                
+                if hasBalkon {
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                        .fill(color.darker())
+                        .frame(width: balkonBreite, height: 36)
+                        .padding(.top, -18)
+                }
             }
             .offset(y: shadowDepth)
             
@@ -1184,10 +1188,13 @@ struct RoutineBalkonButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(color)
                     .frame(height: 90)
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .fill(color)
-                    .frame(width: balkonBreite, height: 36)
-                    .padding(.top, -18)
+                
+                if hasBalkon {
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                        .fill(color)
+                        .frame(width: balkonBreite, height: 36)
+                        .padding(.top, -18)
+                }
             }
             .overlay(alignment: .top) {
                 configuration.label

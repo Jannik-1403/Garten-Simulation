@@ -959,3 +959,5 @@
 - **Routine-Kachel Feinabstimmung**: Der Icon-Button in der Routine-Kachel ist nun wieder komplett rund, etwas dunkler eingefärbt und das Icon selbst wurde vergrößert. Die Prioritäts-Sterne wurden aus der Hauptkachel entfernt und befinden sich nun in einem separaten, dynamisch breiten Button, der sich exakt mittig unten an die Kachel andockt.
 
 - **Routine-Kachel Bugfixes**: Fehler behoben, bei dem der Icon-Button grau anstatt farbig gerendert wurde. Der Sterne-Reiter wurde deutlich verkleinert, passt sich nun automatisch an die Anzahl der Sterne an und schließt optisch nahtlos an die 3D-Kante der Hauptkachel an.
+
+- **Komplettes Redesign: Haus-mit-Balkon 3D Shape**: Das Kachel-Design wurde grundlegend neu geschrieben. Statt zwei getrennten Buttons zu nutzen, wurde der `RoutineBalkonButtonStyle` implementiert. Dieser verschmilzt die Hauptkachel (das 'Haus') und den Reiter für die Sterne (den 'Balkon') nahtlos in ein einziges durchgehendes 3D-Objekt. Dieses Shape hat eine konsistente Outline, einen einheitlichen 3D-Schatten im unteren Drittel, reagiert einheitlich auf Klicks und passt die Balkonbreite dynamisch an die Anzahl der Sterne an.
