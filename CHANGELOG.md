@@ -943,3 +943,9 @@
 - Alle korrupten 'Error 500' Übersetzungen in Localizable.xcstrings wurden repariert und in alle Projektsprachen übersetzt.
 - Hinzugefügt: Fastlane Snapshot Setup (Snapfile, SnapshotHelper.swift)
 - Hinzugefügt: SnapshotTests.swift für automatisierte UI-Tests in Garten_Simulation
+
+* **Fixes & Verbesserungen (Lokalisierung):**
+  * Fehler behoben, durch den Fastlane-Screenshots die Initialdaten aus vorherigen Sprachen in die nächste Sprache übernommen haben (z. B. portugiesische Habit-Titel in russischen Screenshots oder japanische Zeichen im niederländischen Durchlauf). `SharedUserDefaults` wird im Screenshot-Modus nun sauber zurückgesetzt.
+  * Harte englische Kalendermonate ("September") in anderen Sprachen behoben: `StreakView` verwendet nun dynamisch die jeweilige Sprache (`settings.appLanguage`), anstatt auf Englisch zurückzufallen.
+  * Übersetzung für "Kalorien" (`health.metric.calories`) in `Localizable.xcstrings` für Russisch, Französisch, Hindi und Türkisch korrigiert (statt fälschlicherweise den deutschen Begriff zu verwenden).
+  * Japanische "ToDo" Übersetzung zu "タスク" korrigiert.
