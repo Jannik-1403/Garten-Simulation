@@ -949,3 +949,7 @@
   * Harte englische Kalendermonate ("September") in anderen Sprachen behoben: `StreakView` verwendet nun dynamisch die jeweilige Sprache (`settings.appLanguage`), anstatt auf Englisch zurückzufallen.
   * Übersetzung für "Kalorien" (`health.metric.calories`) in `Localizable.xcstrings` für Russisch, Französisch, Hindi und Türkisch korrigiert (statt fälschlicherweise den deutschen Begriff zu verwenden).
   * Japanische "ToDo" Übersetzung zu "タスク" korrigiert.
+
+- **Routine Onboarding UI**: Das Layout der Routine-Vorschläge wurde von einfachen zentrierten Buttons auf ansprechende, vertikale Cards mit viel Platz für Text und Icon umgestellt. Dadurch brechen die Titel nicht mehr hässlich um.
+
+- **Routine Onboarding Entfernung & Redesign**: Das Routine-Onboarding wurde komplett entfernt. Man gelangt nun direkt in die Routinen-Übersicht. Die Kacheln dort wurden überarbeitet: sie sind nun breite Item3D-Buttons mit integriertem Icon-Button, Text und Priority-Sternen rechts, sowie einer Aufgaben-Anzeige.

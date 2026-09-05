@@ -141,15 +141,11 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1424D42C2F6EA14300908588 /* Garten_SimulationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Garten_SimulationTests;
 			sourceTree = "<group>";
 		};
 		1424D4362F6EA14300908588 /* Garten_SimulationUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Garten_SimulationUITests;
 			sourceTree = "<group>";
 		};

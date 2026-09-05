@@ -61,7 +61,6 @@ struct RoutinenView: View {
     @State private var routines: [RoutineUIData] = []
     
     @State private var showCreateSheet = false
-    @State private var showOnboarding = false
     
     // All scheduled habits
     private var timelinePlants: [HabitModel] {
@@ -260,41 +259,9 @@ struct RoutinenView: View {
             }
             .onAppear {
                 loadRoutines()
-                // Zeige Onboarding wenn noch nicht abgeschlossen und wir auf Tab 4 sind, UND keine Tour aktiv ist
-                if !settings.routineOnboardingAbgeschlossen && gardenStore.selectedTab == 4 && !interactiveTourManager.isActive {
-                    showOnboarding = true
-                }
             }
             .onChange(of: routines) { _, _ in
                 saveRoutines()
-            }
-            .onChange(of: settings.routineOnboardingAbgeschlossen) { _, newValue in
-                // Wenn Flag auf false gesetzt wird (z.B. nach Reset), nur Onboarding zeigen wenn auf Tab 4
-                if !newValue && gardenStore.selectedTab == 4 && !interactiveTourManager.isActive {
-                    showOnboarding = true
-                }
-            }
-            .onChange(of: interactiveTourManager.isActive) { _, isActive in
-                // Wenn Tour beendet wird und wir auf Tab 4 sind, Onboarding triggern
-                if !isActive && gardenStore.selectedTab == 4 && !settings.routineOnboardingAbgeschlossen {
-                    showOnboarding = true
-                }
-            }
-            .onChange(of: gardenStore.selectedTab) { _, newTab in
-                // Wenn der Nutzer zu Tab 4 (Routinen) navigiert und Onboarding nötig ist
-                if newTab == 4 && !settings.routineOnboardingAbgeschlossen && !interactiveTourManager.isActive {
-                    showOnboarding = true
-                }
-            }
-            .fullScreenCover(isPresented: $showOnboarding) {
-                RoutineOnboardingView(
-                    savedRoutines: $routines,
-                    customRoutinesData: $customRoutinesData,
-                    onFinish: {
-                        settings.routineOnboardingAbgeschlossen = true
-                        showOnboarding = false
-                    }
-                )
             }
         }
     }
@@ -377,7 +344,7 @@ struct RoutineExpandableSection: View {
             Item3DButton(
                 farbe: color,
                 sekundaerFarbe: color.darker(),
-                groesse: 76,
+                groesse: 100, // Deutlich höher für das neue breite Layout
                 isRectangular: true,
                 aktion: {
                     withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
@@ -386,36 +353,59 @@ struct RoutineExpandableSection: View {
                 }
             ) {
                 HStack(spacing: 16) {
+                    // Links: Weiterer kleiner 3D-Button für das Icon (in weiß/hellgrau)
+                    Item3DButton(
+                        farbe: Color(white: 0.95),
+                        sekundaerFarbe: Color(white: 0.85),
+                        groesse: 64,
+                        isRectangular: true,
+                        isDisabled: true, // Damit er nicht klickbar ist, sondern nur anzeigt
+                        aktion: nil
+                    ) {
+                        Image(systemName: icon)
+                            .font(.system(size: 28, weight: .bold))
+                            .foregroundStyle(color) // Das Icon im Button hat die Farbe der Routine
+                    }
+                    .padding(.leading, 8)
+                    
+                    // Mitte: Titel und Aufgaben-Zähler
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(String(localized: String.LocalizationValue(titleKey)))
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                            .lineLimit(1)
+                        
+                        Text("\(habits.count) \(String(localized: "routine.habits", defaultValue: "Aufgaben"))")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.8))
+                    }
+                    
+                    Spacer()
+                    
+                    // Rechts: Sterne (Priorität)
                     if let _ = routine {
                         Button {
                             onPriorityTap?()
                         } label: {
-                            VStack(spacing: -4) {
+                            HStack(spacing: -4) { // Horizontal angeordnet, leicht überlappend oder nah beieinander
                                 ForEach(0..<(routine?.priority.activeStars ?? 1), id: \.self) { _ in
                                     Image("Powerup")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 20, height: 20)
-                                        .foregroundColor(routine?.priority.color ?? .primary)
+                                        .frame(width: 24, height: 24)
+                                        .foregroundColor(routine?.priority.color ?? .white)
                                 }
                             }
                         }
                     }
                     
-                    Text(String(localized: String.LocalizationValue(titleKey)))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white)
-                    
-                    Spacer()
-                    
-
-                    
                     Image(systemName: "chevron.down")
                         .font(.system(size: 14, weight: .bold))
                         .foregroundStyle(.white)
                         .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                        .padding(.trailing, 8)
                 }
-                .padding(16)
+                .padding(.vertical, 16)
             }
             
             if isExpanded {
