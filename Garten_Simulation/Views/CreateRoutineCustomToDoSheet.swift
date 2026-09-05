@@ -32,9 +32,16 @@ struct CreateRoutineCustomToDoSheet: View {
                             TextField(String(localized: "routine.todo.name.placeholder", defaultValue: "z.B. Müll rausbringen"), text: $todoName)
                                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                                 .padding(16)
-                                .background(Color(white: 0.95))
-                                .cornerRadius(16)
-                        }
+                                .background(
+                                    ZStack(alignment: .top) {
+                                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                            .fill(Color(white: 0.85))
+                                            .offset(y: 6)
+                                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                            .fill(Color.white)
+                                    }
+                                    .padding(.bottom, 6)
+                                )
                         .padding(.horizontal, 24)
                         .padding(.top, 24)
                         
@@ -47,9 +54,16 @@ struct CreateRoutineCustomToDoSheet: View {
                             TextField(String(localized: "routine.todo.description.placeholder", defaultValue: "z.B. Nur den Restmüll"), text: $todoDescription)
                                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                                 .padding(16)
-                                .background(Color(white: 0.95))
-                                .cornerRadius(16)
-                        }
+                                .background(
+                                    ZStack(alignment: .top) {
+                                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                            .fill(Color(white: 0.85))
+                                            .offset(y: 6)
+                                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                            .fill(Color.white)
+                                    }
+                                    .padding(.bottom, 6)
+                                )
                         .padding(.horizontal, 24)
                         .padding(.top, 8)
                         
@@ -63,21 +77,23 @@ struct CreateRoutineCustomToDoSheet: View {
                             LazyVGrid(columns: [GridItem(.adaptive(minimum: 60))], spacing: 16) {
                                 ForEach(availablePlants, id: \.id) { plant in
                                     let isSelected = selectedPlantID == plant.id
+                                    let baseColor = Color(hex: plant.symbolColor)
                                     
-                                    Button {
-                                        withAnimation {
-                                            selectedPlantID = plant.id
+                                    Item3DButton(
+                                        farbe: isSelected ? baseColor.opacity(0.8) : baseColor.opacity(0.15),
+                                        sekundaerFarbe: isSelected ? baseColor.darker() : baseColor.opacity(0.15).darker(),
+                                        groesse: 60,
+                                        isRectangular: true,
+                                        aktion: {
+                                            withAnimation {
+                                                selectedPlantID = plant.id
+                                            }
                                         }
-                                    } label: {
+                                    ) {
                                         ZStack {
                                             if isSelected {
                                                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                    .fill(Color.green.opacity(0.2))
-                                                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                    .strokeBorder(Color.green, lineWidth: 3)
-                                            } else {
-                                                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                    .fill(Color(white: 0.95))
+                                                    .strokeBorder(Color.primary.opacity(0.5), lineWidth: 3)
                                             }
                                             
                                             Image(plant.assetName ?? plant.symbolName)
@@ -86,7 +102,6 @@ struct CreateRoutineCustomToDoSheet: View {
                                                 .frame(width: 40, height: 40)
                                                 .scaleEffect(plant.id == "plant.seeds" ? 0.6 : 1.0)
                                         }
-                                        .frame(height: 60)
                                     }
                                 }
                             }
@@ -120,6 +135,8 @@ struct CreateRoutineCustomToDoSheet: View {
                 selectedPlantID = availablePlants.first?.id
             }
         }
+    }
+}
     }
 }
 
