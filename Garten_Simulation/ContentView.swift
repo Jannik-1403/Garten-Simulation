@@ -292,30 +292,35 @@ struct MainAppTabView: View {
                 .tabItem {
                     Label(String(localized: "tab.habits", defaultValue: "Gewohnheiten"), systemImage: "target")
                 }
+                .accessibilityIdentifier("tab_habits")
 
             RoutinenView()
                 .tag(4)
                 .tabItem {
                     Label(String(localized: "tab.routines"), systemImage: "list.bullet.clipboard.fill")
                 }
+                .accessibilityIdentifier("tab_routines")
 
             TodosTabView()
                 .tag(5)
                 .tabItem {
                     Label(String(localized: "tab.todos", defaultValue: "To-Dos"), systemImage: "checklist")
                 }
+                .accessibilityIdentifier("tab_todos")
 
             UnifiedShopView()
                 .tag(1)
                 .tabItem {
                     Label(String(localized: "tab.shop"), systemImage: "cart.fill")
                 }
+                .accessibilityIdentifier("tab_shop")
 
             ProfilView()
                 .tag(3)
                 .tabItem {
                     Label(String(localized: "tab.profil"), systemImage: "person.fill")
                 }
+                .accessibilityIdentifier("tab_profile")
         }
         .applyBottomTabBar()
         .tint(.primary)

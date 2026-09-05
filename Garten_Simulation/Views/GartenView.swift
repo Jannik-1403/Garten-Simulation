@@ -521,6 +521,7 @@ struct GartenView: View {
             onGiessen: { gardenStore.giessen(pflanze: pflanze) },
             onTap: { ausgewaehltePflanze = pflanze }
         )
+        .accessibilityIdentifier("habit_\(pflanze.name)")
         .tourAnchor(.intro, condition: isFirst)
         .id(isFirst ? TourStep.intro : nil)
     }

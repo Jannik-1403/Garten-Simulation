@@ -146,6 +146,7 @@ struct ProfilView: View {
                             .font(.system(size: 20, weight: .black))
                             .foregroundStyle(.primary)
                     }
+                    .accessibilityIdentifier("button_settings")
                 }
             }
 

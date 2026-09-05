@@ -112,6 +112,22 @@ class HealthManager: ObservableObject {
     }
     
     private init() {
+        if CommandLine.arguments.contains("-isScreenshotMode") {
+            self.isAuthorized = true
+            self.todaysSteps = 8421
+            self.todaysWater = 1800
+            self.todaysSleep = 7.5
+            self.todaysMindfulness = 15
+            self.todaysRunning = 45
+            self.todaysEnergy = 2100
+            self.todaysProtein = 120
+            self.todaysCarbohydrates = 200
+            self.todaysFat = 65
+            self.latestBodyMass = 72.5
+            self.latestHeight = 180
+            return
+        }
+        
         checkAuthorizationStatus()
         if isAuthorized {
             fetchAllTodaysData()

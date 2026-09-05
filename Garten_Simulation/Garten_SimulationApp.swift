@@ -77,6 +77,15 @@ struct Garten_SimulationApp: App {
     init() {
         // Ensure standard iOS navigation elements (back chevrons, texts) are black
         UINavigationBar.appearance().tintColor = UIColor.label
+        
+        if CommandLine.arguments.contains("-isScreenshotMode") {
+            SharedUserDefaults.suite.removePersistentDomain(forName: SharedUserDefaults.suiteName)
+            SharedUserDefaults.suite.synchronize()
+            
+            UserDefaults.standard.set(true, forKey: "onboardingAbgeschlossen")
+            UserDefaults.standard.set(true, forKey: "appTourPromptShown")
+            UserDefaults.standard.set(true, forKey: "appTourAbgeschlossen")
+        }
     }
 
     @Environment(\.scenePhase) private var scenePhase

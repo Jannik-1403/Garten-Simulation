@@ -201,5 +201,19 @@ class GoalStore: ObservableObject {
             self.habitLinks = decoded.habitLinks
             self.goalLogs = decoded.goalLogs
         }
+        
+        // Fastlane Screenshot Test Daten injizieren
+        if CommandLine.arguments.contains("-isScreenshotMode") && activeGoals.isEmpty {
+            let mockGoal = GoalModel(
+                title: "App Store Feature",
+                type: .year
+            )
+            self.activeGoals.append(mockGoal)
+            
+            // Add a mock habit link so it has some points
+            self.linkHabitToGoal(habitId: "plant.apfelbaum", goalId: mockGoal.id, weight: .massive, frequency: 5, retroactiveDates: (0..<10).map { Calendar.current.date(byAdding: .day, value: -$0, to: Date())! })
+            
+            self.saveData()
+        }
     }
 }

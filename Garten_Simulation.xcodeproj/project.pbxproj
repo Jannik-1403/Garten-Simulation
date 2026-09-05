@@ -21,6 +21,7 @@
 		148AD6E130123F580090539C /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148AD6E030123F580090539C /* NetworkExtension.framework */; };
 		148AD6E930123F580090539C /* GrovyDNSFilter.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 148AD6DF30123F580090539C /* GrovyDNSFilter.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3BBD8C98B5B1151FFFE518F3 /* GardenActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */; };
+		824FFFF3FBF34603ADC9FD25 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122D821C3C1A47840399D6AB /* SnapshotHelper.swift */; };
 		E5D9A07FC6B975E98C6A6FC5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 50FDD34E6435628D45362380 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		122D821C3C1A47840399D6AB /* SnapshotHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		1424D41C2F6EA14200908588 /* Grovy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grovy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1424D4292F6EA14300908588 /* Garten_SimulationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Garten_SimulationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1424D4332F6EA14300908588 /* Garten_SimulationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Garten_SimulationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,11 +141,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1424D42C2F6EA14300908588 /* Garten_SimulationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Garten_SimulationTests;
 			sourceTree = "<group>";
 		};
 		1424D4362F6EA14300908588 /* Garten_SimulationUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Garten_SimulationUITests;
 			sourceTree = "<group>";
 		};
@@ -252,6 +258,7 @@
 				451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */,
 				146DE99F3001867100FEDA83 /* Products.storekit */,
 				50FDD34E6435628D45362380 /* Localizable.xcstrings */,
+				122D821C3C1A47840399D6AB /* SnapshotHelper.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -560,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				824FFFF3FBF34603ADC9FD25 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -343,13 +343,7 @@ struct StreakView: View {
     
     private func monthYearString(from date: Date) -> String {
         let formatter = DateFormatter()
-        let localeId: String
-        switch settings.appLanguage {
-        case "de": localeId = "de_DE"
-        case "es": localeId = "es_ES"
-        default:   localeId = "en_US"
-        }
-        formatter.locale = Locale(identifier: localeId)
+        formatter.locale = Locale(identifier: settings.appLanguage)
         formatter.dateFormat = String(localized: "streak.format.month_year")
         return formatter.string(from: date)
     }
@@ -587,7 +581,7 @@ struct YearlyCalendarView: View {
     
     private func monthName(for month: Int) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: Bundle.main.preferredLocalizations.first ?? "en")
+        formatter.locale = Locale(identifier: settings.appLanguage)
         return formatter.standaloneMonthSymbols[month - 1]
     }
 }

@@ -941,3 +941,5 @@
 - Lokalisierungs-Fix: String Catalog (Localizable.xcstrings) korrigiert, um fehlende oder identische englische/deutsche Strings für Italienisch und alle 15 weiteren Sprachen (To-Dos, Kalorien, Makros, Vitamine etc.) korrekt anzuzeigen.
 - Lokalisierungs-Fix (Teil 2): Katalog-Werte nun auf die tatsächlichen Translation-Keys gemapped (z.B. plant.detail.todo.add statt Add To-Do) für To-Dos, Kalorien, Makros und Vitamine, sodass in der UI die echten Übersetzungen geladen werden.
 - Alle korrupten 'Error 500' Übersetzungen in Localizable.xcstrings wurden repariert und in alle Projektsprachen übersetzt.
+- Hinzugefügt: Fastlane Snapshot Setup (Snapfile, SnapshotHelper.swift)
+- Hinzugefügt: SnapshotTests.swift für automatisierte UI-Tests in Garten_Simulation

@@ -2,8 +2,9 @@ import XCTest
 
 final class SnapshotTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
+    @MainActor
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         
         let app = XCUIApplication()
         setupSnapshot(app)
@@ -15,7 +16,6 @@ final class SnapshotTests: XCTestCase {
     func testTakeScreenshots() {
         let app = XCUIApplication()
         
-        // Füge einen Interruption Monitor hinzu, falls System-Dialoge aufpoppen (z.B. Benachrichtigungen)
         addUIInterruptionMonitor(withDescription: "System Dialog") { alert in
             if alert.buttons["Allow"].exists {
                 alert.buttons["Allow"].tap()
@@ -32,50 +32,65 @@ final class SnapshotTests: XCTestCase {
             return false
         }
         
-        // Tippen um den Interruption Monitor auszulösen
         app.tap()
         
-        // 1. Warte, bis die App geladen ist (z.B. indem wir prüfen, ob die Tab-Bar da ist)
-        let tabBar = app.tabBars.firstMatch
-        XCTAssertTrue(tabBar.waitForExistence(timeout: 10), "Die App hat nicht rechtzeitig geladen.")
+        // Warte, bis die App geladen ist
+        XCTAssertTrue(app.buttons["tab_habits"].waitForExistence(timeout: 10))
+        sleep(2)
         
-        sleep(3) // Kurz warten, bis alle Animationen durch sind
+        // Habits Tab (Standard) -> Gesund kochen
+        app.buttons["habit_Gesund kochen"].tap()
+        sleep(1)
+        snapshot("01_Plant_GesundKochen")
+        app.buttons["button_back"].tap()
+        sleep(1)
         
-        // Mache den ersten Screenshot mit snapshot("01_Dashboard")
-        snapshot("01_Dashboard")
+        // Krafttraining
+        app.buttons["habit_Krafttraining"].tap()
+        sleep(1)
+        snapshot("02_Plant_Krafttraining")
+        app.buttons["button_back"].tap()
+        sleep(1)
         
-        // 2. Tippe auf den Tab "Routinen" (anstelle von "statsTabButton")
-        let routinenTab = tabBar.buttons["Routinen"]
-        if routinenTab.exists {
-            routinenTab.tap()
-            sleep(2)
-            // Mache den zweiten Screenshot mit snapshot("02_Statistics") (hier für Routinen adaptiert)
-            snapshot("02_Routines")
-        }
+        // Obst und Gemüse
+        app.buttons["habit_Obst und Gemüse"].tap()
+        sleep(1)
+        snapshot("03_Plant_ObstGemuese")
+        app.buttons["button_back"].tap()
+        sleep(1)
         
-        // 3. Tippe auf den Tab "To-Dos" (anstelle von "addHabitButton")
-        let todosTab = tabBar.buttons["To-Dos"]
-        if todosTab.exists {
-            todosTab.tap()
-            sleep(2)
-            // Mache den dritten Screenshot mit snapshot("03_AddHabit") (hier für To-Dos adaptiert)
-            snapshot("03_Todos")
-        }
+        // Routinen
+        app.buttons["tab_routines"].tap()
+        sleep(1)
+        snapshot("04_Routinen")
         
-        // Optional: Einen weiteren Screenshot für den Shop
-        let shopTab = tabBar.buttons["Shop"]
-        if shopTab.exists {
-            shopTab.tap()
-            sleep(2)
-            snapshot("04_Shop")
-        }
+        // ToDos
+        app.buttons["tab_todos"].tap()
+        sleep(1)
+        snapshot("05_ToDos")
         
-        // Optional: Einen weiteren Screenshot für das Profil
-        let profileTab = tabBar.buttons["Profil"]
-        if profileTab.exists {
-            profileTab.tap()
-            sleep(2)
-            snapshot("05_Profile")
-        }
+        // Profil
+        app.buttons["tab_profile"].tap()
+        sleep(1)
+        snapshot("06_Profil")
+        
+        // Streak
+        app.buttons["tab_habits"].tap()
+        sleep(1)
+        app.buttons["button_streak"].tap()
+        sleep(1)
+        snapshot("07_Streak")
+        // Dismiss the streak sheet
+        app.swipeDown()
+        sleep(1)
+        
+        // Settings & Screentime
+        app.buttons["tab_profile"].tap()
+        sleep(1)
+        app.buttons["button_settings"].tap()
+        sleep(1)
+        app.buttons["button_screentime"].tap()
+        sleep(1)
+        snapshot("08_Bildschirmzeit")
     }
 }

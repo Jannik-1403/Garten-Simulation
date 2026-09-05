@@ -31,6 +31,7 @@ struct GartenStatsBar: View {
             .onTapGesture {
                 onStreakTap?()
             }
+            .accessibilityIdentifier("button_streak")
             
             glasseDivider
             

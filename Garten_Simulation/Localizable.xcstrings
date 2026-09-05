@@ -110220,7 +110220,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "新しいTo-Doを追加..."
+            "value": "新しいタスクを追加..."
           }
         },
         "ko": {
@@ -110322,7 +110322,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "あなたのTo-Do"
+            "value": "あなたのタスク"
           }
         },
         "ko": {
@@ -164946,7 +164946,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "カスタムToDo"
+            "value": "カスタムタスク"
           }
         },
         "ko": {
@@ -169991,7 +169991,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien"
+            "value": "Calories"
           }
         },
         "es": {
@@ -171612,19 +171612,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "calorías"
+            "value": "Calorías"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien"
+            "value": "Calories"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien"
+            "value": "कैलोरी"
           }
         },
         "it": {
@@ -171666,19 +171666,19 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien"
+            "value": "Calorias"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien"
+            "value": "Калории"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalorien"
+            "value": "Kalori"
           }
         },
         "zh-Hans": {
@@ -243301,7 +243301,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ToDo"
+            "value": "タスク"
           }
         },
         "ko": {
@@ -246045,7 +246045,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Doを追加する"
+            "value": "タスクを追加する"
           }
         },
         "ko": {
@@ -246145,7 +246145,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Doを編集する"
+            "value": "タスクを編集する"
           }
         },
         "ko": {
@@ -246345,7 +246345,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ToDo"
+            "value": "タスク"
           }
         },
         "ko": {
@@ -350135,7 +350135,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ToDoの名前を変更"
+            "value": "タスクの名前を変更"
           }
         },
         "ko": {
@@ -350236,7 +350236,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "このToDoの新しい名前を入力してください。"
+            "value": "このタスクの新しい名前を入力してください。"
           }
         },
         "ko": {
@@ -350436,7 +350436,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ToDo名"
+            "value": "タスク名"
           }
         },
         "ko": {
@@ -395238,7 +395238,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ToDo"
+            "value": "タスク"
           }
         },
         "ko": {
@@ -434898,7 +434898,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "やるべきこと"
+            "value": "タスク"
           }
         },
         "ko": {

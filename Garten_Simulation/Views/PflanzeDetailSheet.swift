@@ -325,6 +325,7 @@ struct PflanzeDetailSheet: View {
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
                             }
+                            .accessibilityIdentifier("FocusTimerButton")
                             .tourAnchor(.focusTimer)
                             .id(TourStep.focusTimer)
                             

@@ -102,6 +102,7 @@ struct SettingsView: View {
                                         .contentShape(Rectangle())
                                     }
                                     .buttonStyle(.plain)
+                                    .accessibilityIdentifier("button_screentime")
                                     
                                     Divider().padding(.leading, 44)
                                     

@@ -126,6 +126,7 @@ class SettingsStore: ObservableObject {
         self.appTourPromptShown = UserDefaults.standard.bool(forKey: "appTourPromptShown")
         self.appTourAbgeschlossen = UserDefaults.standard.bool(forKey: "appTourAbgeschlossen")
         self.routineOnboardingAbgeschlossen = UserDefaults.standard.bool(forKey: "routineOnboardingAbgeschlossen")
+        
         self.ausgewaehltesZiel = UserDefaults.standard.string(forKey: "ausgewaehltesZiel") ?? ""
         self.erinnerungsZeitInternal = UserDefaults.standard.object(forKey: "erinnerungsZeit") as? Double ?? (8 * 3600)
         

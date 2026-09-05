@@ -18,6 +18,7 @@ struct StandardNavigationModifier: ViewModifier {
                                 .foregroundStyle(.primary)
                         }
                         .buttonStyle(.plain)
+                        .accessibilityIdentifier("button_back")
                     }
                 }
             }
