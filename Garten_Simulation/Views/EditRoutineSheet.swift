@@ -261,20 +261,44 @@ struct EditRoutineSheet: View {
                     ZStack {
                         Color.appHintergrund.ignoresSafeArea()
                         ScrollView {
-                            VStack(spacing: 12) {
-                                ForEach(availableHabits) { plant in
-                                    if !isHabitAssigned(plant) {
-                                        Button {
-                                            if !isHabitAssigned(plant) {
+                            let unassigned = availableHabits.filter { !isHabitAssigned($0) }
+                            if unassigned.isEmpty {
+                                VStack(spacing: 20) {
+                                    Image(systemName: "leaf.circle")
+                                        .font(.system(size: 64))
+                                        .foregroundStyle(.secondary.opacity(0.5))
+                                    Text(String(localized: "routine.edit.habits.empty_available", defaultValue: "Keine Gewohnheiten zur Verfügung"))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .padding(40)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            } else {
+                                VStack(spacing: 12) {
+                                    ForEach(unassigned) { plant in
+                                        Item3DButton(
+                                            farbe: .white,
+                                            sekundaerFarbe: Color(white: 0.9),
+                                            groesse: 76,
+                                            isRectangular: true,
+                                            aktion: {
                                                 assignedHabits.append(plant)
+                                                showHabitPicker = false
                                             }
-                                            showHabitPicker = false
-                                        } label: {
+                                        ) {
                                             HStack(spacing: 16) {
-                                                Image(plant.plantImageName)
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 48, height: 48)
+                                                // Icon in farbigem Rechteck
+                                                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                                    .fill(plant.color.opacity(0.15))
+                                                    .frame(width: 56, height: 56)
+                                                    .overlay {
+                                                        Image(plant.plantImageName)
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .padding(10)
+                                                    }
+                                                
                                                 if settings.showHabitInsteadOfName {
                                                     Text(String(localized: String.LocalizationValue(plant.displayedHabitName)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -288,16 +312,19 @@ struct EditRoutineSheet: View {
                                                         .lineLimit(1)
                                                         .minimumScaleFactor(0.45)
                                                 }
+                                                
                                                 Spacer()
+                                                
+                                                Image(systemName: "plus.circle.fill")
+                                                    .font(.title2)
+                                                    .foregroundStyle(Color.appMainColor)
                                             }
-                                            .padding()
-                                            .background(Color(white: 0.95))
-                                            .cornerRadius(16)
+                                            .padding(.horizontal, 16)
                                         }
                                     }
                                 }
+                                .padding(24)
                             }
-                            .padding(24)
                         }
                     }
                     .navigationTitle(String(localized: "routine.edit.habit.add_single"))
