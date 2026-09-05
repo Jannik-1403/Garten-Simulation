@@ -40,76 +40,85 @@ struct RoutineOnboardingView: View {
                             ForEach($routines) { $routine in
                                 let isSelected = selectedRoutineIDs.contains(routine.id)
                                 
-                                Item3DButton(
-                                    farbe: .white,
-                                    sekundaerFarbe: Color(white: 0.9),
-                                    groesse: 80,
-                                    isRectangular: true,
-                                    aktion: {
-                                        if isSelected {
-                                            selectedRoutineIDs.remove(routine.id)
-                                        } else {
-                                            selectedRoutineIDs.insert(routine.id)
-                                        }
+                                Button {
+                                    if isSelected {
+                                        selectedRoutineIDs.remove(routine.id)
+                                    } else {
+                                        selectedRoutineIDs.insert(routine.id)
                                     }
-                                ) {
-                                    HStack(spacing: 16) {
-                                        // Checkbox
-                                        Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                                            .font(.system(size: 28))
-                                            .foregroundStyle(isSelected ? Color.orange : Color.gray.opacity(0.5))
-                                        
-                                        // Icon
-                                        Group {
-                                            if routine.titleKey == "routine.morning" || routine.titleKey.lowercased() == "morgenroutine" {
-                                                Image("MorgenRoutine")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            } else if routine.titleKey == "routine.evening" || routine.titleKey.lowercased() == "abendroutine" {
-                                                Image("AbendRoutine")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            } else if routine.titleKey == "routine.gym" || routine.titleKey.lowercased() == "gymroutine" {
-                                                Image("GymRoutine")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            } else {
-                                                Image("allgemeineMorgenroutine")
-                                                    .resizable()
-                                                    .scaledToFit()
+                                } label: {
+                                    VStack(alignment: .leading, spacing: 16) {
+                                        HStack(alignment: .top) {
+                                            // Icon (zentriert)
+                                            Group {
+                                                if routine.titleKey == "routine.morning" || routine.titleKey.lowercased() == "morgenroutine" {
+                                                    Image("MorgenRoutine")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                } else if routine.titleKey == "routine.evening" || routine.titleKey.lowercased() == "abendroutine" {
+                                                    Image("AbendRoutine")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                } else if routine.titleKey == "routine.gym" || routine.titleKey.lowercased() == "gymroutine" {
+                                                    Image("GymRoutine")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                } else {
+                                                    Image("allgemeineMorgenroutine")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                }
                                             }
-                                        }
-                                        .frame(width: 48, height: 48)
-                                        
-                                        // Title
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text(String(localized: String.LocalizationValue(routine.titleKey)))
-                                                .font(.system(size: 18, weight: .bold, design: .rounded))
-                                                .foregroundStyle(.primary)
+                                            .frame(height: 100)
+                                            .frame(maxWidth: .infinity, alignment: .center)
                                             
-                                            if !routine.assignedHabitIDs.isEmpty {
-                                                Text("\(routine.assignedHabitIDs.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten"))")
-                                                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                                                    .foregroundStyle(.secondary)
-                                            }
+                                            // Checkbox (oben rechts)
+                                            Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                                                .font(.system(size: 28))
+                                                .foregroundStyle(isSelected ? Color.orange : Color.gray.opacity(0.3))
                                         }
                                         
-                                        Spacer()
-                                        
-                                        // Edit Button
-                                        Image(systemName: "pencil")
-                                            .font(.system(size: 18, weight: .bold))
-                                            .foregroundStyle(.gray)
-                                            .padding(10)
-                                            .background(Color(white: 0.95))
-                                            .clipShape(Circle())
-                                            .onTapGesture {
-                                                routineToEdit = routine
+                                        // Title & Edit Button
+                                        VStack(alignment: .leading, spacing: 8) {
+                                            Text(String(localized: String.LocalizationValue(routine.titleKey)))
+                                                .font(.system(size: 22, weight: .bold, design: .rounded))
+                                                .foregroundStyle(.primary)
+                                                .fixedSize(horizontal: false, vertical: true)
+                                            
+                                            HStack {
+                                                if !routine.assignedHabitIDs.isEmpty {
+                                                    Text("\(routine.assignedHabitIDs.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten"))")
+                                                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                                                        .foregroundStyle(.secondary)
+                                                }
+                                                
+                                                Spacer()
+                                                
+                                                Button {
+                                                    routineToEdit = routine
+                                                } label: {
+                                                    Image(systemName: "pencil")
+                                                        .font(.system(size: 16, weight: .bold))
+                                                        .foregroundStyle(.gray)
+                                                        .padding(10)
+                                                        .background(Color(white: 0.95))
+                                                        .clipShape(Circle())
+                                                }
                                             }
+                                        }
                                     }
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 4)
+                                    .padding(20)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                            .fill(.white)
+                                            .shadow(color: isSelected ? Color.orange.opacity(0.3) : Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
+                                    )
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                            .stroke(isSelected ? Color.orange : Color.clear, lineWidth: 3)
+                                    )
                                 }
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                         .padding(24)

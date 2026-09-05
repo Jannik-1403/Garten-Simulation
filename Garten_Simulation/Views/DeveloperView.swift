@@ -44,6 +44,26 @@ struct DeveloperView: View {
                                     color: .blue
                                 )
                             }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                if let bundleID = Bundle.main.bundleIdentifier {
+                                    UserDefaults.standard.removePersistentDomain(forName: bundleID)
+                                }
+                                SharedUserDefaults.suite.removePersistentDomain(forName: SharedUserDefaults.suiteName)
+                                
+                                FeedbackManager.shared.playError()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    exit(0)
+                                }
+                            } label: {
+                                settingRow(
+                                    title: "App-Daten komplett löschen",
+                                    icon: "trash.fill",
+                                    color: .red
+                                )
+                            }
                         }
                     }
                 }
