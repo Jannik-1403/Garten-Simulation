@@ -344,7 +344,7 @@ struct RoutineExpandableSection: View {
             Item3DButton(
                 farbe: color,
                 sekundaerFarbe: color.darker(),
-                groesse: 90, // Ein kleines bisschen flacher, da Text kleiner
+                groesse: 90, // Hauptkachel-Höhe (Schatten = 90 * 0.08 = 7.2)
                 isRectangular: true,
                 aktion: {
                     withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
@@ -353,20 +353,21 @@ struct RoutineExpandableSection: View {
                 }
             ) {
                 HStack(spacing: 14) {
-                    // Links: Weiterer kleiner 3D-Button für das Icon (rund, dunkler als Hauptfarbe, großes Icon)
+                    // Links: Weiterer kleiner 3D-Button für das Icon
                     Item3DButton(
                         farbe: color.darker(),
                         sekundaerFarbe: color.darker().darker(),
-                        groesse: 56, // Etwas kleiner, dadurch ist er schön quadratisch/rund
-                        isRectangular: false, // Rund machen (ein Quadrat)
-                        isDisabled: true, // Nicht klickbar
-                        aktion: nil
+                        groesse: 56, // Rund und quadratisch
+                        isRectangular: false, // Rund
+                        isDisabled: false, // NICHT true, sonst wird er grau
+                        aktion: {} // Leere Aktion
                     ) {
                         Image("allgemeineMorgenroutine")
                             .resizable()
                             .scaledToFit()
-                            .scaleEffect(1.2) // Icon größer machen, geht evtl. über den Rand
+                            .scaleEffect(1.2) // Icon größer machen
                     }
+                    .allowsHitTesting(false) // Deaktiviert Klicks ohne Grauschleier
                     .padding(.leading, 0)
                     
                     // Mitte: Titel und Aufgaben-Zähler
@@ -385,35 +386,37 @@ struct RoutineExpandableSection: View {
                 }
                 .padding(.vertical, 12)
             }
-            .zIndex(2) // Damit die Kachel über dem unteren Sterne-Reiter liegt
+            .zIndex(1) // Kachel ist unter dem Sterne-Reiter
             
             // Neuer Reiter unter der Kachel für die Sterne
             if let _ = routine {
                 HStack {
                     Spacer()
-                    Item3DButton(
+                    // PillButton umschließt den Inhalt eng, ideal für die Sterne
+                    Item3DPillButton(
                         farbe: color,
                         sekundaerFarbe: color.darker(),
-                        groesse: 44, // Kleinerer Button für die Sterne
-                        isRectangular: true,
+                        groesse: 36, // Sehr kompakte Höhe
+                        shadowDepthFactor: (90.0 * 0.08) / 36.0, // Exakt gleicher Schatten wie Hauptkachel (7.2 pt)
                         aktion: {
                             onPriorityTap?()
                         }
                     ) {
-                        HStack(spacing: 0) {
+                        HStack(spacing: 2) {
                             ForEach(0..<(routine?.priority.activeStars ?? 1), id: \.self) { _ in
                                 Image("Powerup")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 24, height: 24)
+                                    .frame(width: 18, height: 18) // Sterne kleiner
                                     .foregroundColor(routine?.priority.color ?? .white)
                             }
                         }
+                        .padding(.horizontal, 4) // Leichtes Padding in der Pille
                     }
-                    .padding(.top, -12) // Schiebt sich an die Kachel heran
+                    .padding(.top, -14) // Zieht den Reiter ÜBER den unteren Schatten der Kachel, verschmilzt optisch
                     Spacer()
                 }
-                .zIndex(1)
+                .zIndex(2) // Reiter ist ÜBER der Kachel, um deren Schatten an der Andockstelle zu verdecken
             }
             
             if isExpanded {

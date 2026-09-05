@@ -955,3 +955,5 @@
 - **Routine Onboarding Entfernung & Redesign**: Das Routine-Onboarding wurde komplett entfernt. Man gelangt nun direkt in die Routinen-Übersicht. Die Kacheln dort wurden überarbeitet: sie sind nun breite Item3D-Buttons mit integriertem Icon-Button, Text und Priority-Sternen rechts, sowie einer Aufgaben-Anzeige.
 
 - **Routine-Kachel Design Update**: Das Layout der Routine-Kacheln wurde weiter verfeinert. Das Icon ist nun kleiner, nach links gerückt und nutzt das allgemeine Routine-Icon mit einer dynamischen Farbe (heller als die Kachel). Das Aufklapp-Pfeilsymbol wurde entfernt und der Titel-Text wurde zur besseren Lesbarkeit minimal verkleinert.
+
+- **Routine-Kachel Feinabstimmung**: Der Icon-Button in der Routine-Kachel ist nun wieder komplett rund, etwas dunkler eingefärbt und das Icon selbst wurde vergrößert. Die Prioritäts-Sterne wurden aus der Hauptkachel entfernt und befinden sich nun in einem separaten, dynamisch breiten Button, der sich exakt mittig unten an die Kachel andockt.
