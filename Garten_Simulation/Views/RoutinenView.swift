@@ -353,54 +353,67 @@ struct RoutineExpandableSection: View {
                 }
             ) {
                 HStack(spacing: 14) {
-                    // Links: Weiterer kleiner 3D-Button für das Icon (heller als Hauptfarbe)
+                    // Links: Weiterer kleiner 3D-Button für das Icon (rund, dunkler als Hauptfarbe, großes Icon)
                     Item3DButton(
-                        farbe: color.lighter(by: 0.2), // Heller statt grau
-                        sekundaerFarbe: color,
-                        groesse: 56, // Etwas kleiner
-                        isRectangular: true,
+                        farbe: color.darker(),
+                        sekundaerFarbe: color.darker().darker(),
+                        groesse: 56, // Etwas kleiner, dadurch ist er schön quadratisch/rund
+                        isRectangular: false, // Rund machen (ein Quadrat)
                         isDisabled: true, // Nicht klickbar
                         aktion: nil
                     ) {
                         Image("allgemeineMorgenroutine")
                             .resizable()
                             .scaledToFit()
-                            .padding(10) // Icon etwas kleiner machen durch Padding
+                            .scaleEffect(1.2) // Icon größer machen, geht evtl. über den Rand
                     }
                     .padding(.leading, 0)
                     
                     // Mitte: Titel und Aufgaben-Zähler
                     VStack(alignment: .leading, spacing: 4) {
                         Text(String(localized: String.LocalizationValue(titleKey)))
-                            .font(.system(size: 18, weight: .bold, design: .rounded)) // Text etwas kleiner
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
                             .lineLimit(1)
                         
-                        Text("\(habits.count) \(String(localized: "routine.habits", defaultValue: "Aufgaben"))")
+                        Text("\(habits.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten"))")
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.white.opacity(0.8))
                     }
                     
                     Spacer()
-                    
-                    // Rechts: Sterne (Priorität)
-                    if let _ = routine {
-                        Button {
+                }
+                .padding(.vertical, 12)
+            }
+            .zIndex(2) // Damit die Kachel über dem unteren Sterne-Reiter liegt
+            
+            // Neuer Reiter unter der Kachel für die Sterne
+            if let _ = routine {
+                HStack {
+                    Spacer()
+                    Item3DButton(
+                        farbe: color,
+                        sekundaerFarbe: color.darker(),
+                        groesse: 44, // Kleinerer Button für die Sterne
+                        isRectangular: true,
+                        aktion: {
                             onPriorityTap?()
-                        } label: {
-                            HStack(spacing: -4) {
-                                ForEach(0..<(routine?.priority.activeStars ?? 1), id: \.self) { _ in
-                                    Image("Powerup")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 24, height: 24)
-                                        .foregroundColor(routine?.priority.color ?? .white)
-                                }
+                        }
+                    ) {
+                        HStack(spacing: 0) {
+                            ForEach(0..<(routine?.priority.activeStars ?? 1), id: \.self) { _ in
+                                Image("Powerup")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(routine?.priority.color ?? .white)
                             }
                         }
                     }
+                    .padding(.top, -12) // Schiebt sich an die Kachel heran
+                    Spacer()
                 }
-                .padding(.vertical, 12)
+                .zIndex(1)
             }
             
             if isExpanded {

@@ -953,3 +953,5 @@
 - **Routine Onboarding UI**: Das Layout der Routine-Vorschläge wurde von einfachen zentrierten Buttons auf ansprechende, vertikale Cards mit viel Platz für Text und Icon umgestellt. Dadurch brechen die Titel nicht mehr hässlich um.
 
 - **Routine Onboarding Entfernung & Redesign**: Das Routine-Onboarding wurde komplett entfernt. Man gelangt nun direkt in die Routinen-Übersicht. Die Kacheln dort wurden überarbeitet: sie sind nun breite Item3D-Buttons mit integriertem Icon-Button, Text und Priority-Sternen rechts, sowie einer Aufgaben-Anzeige.
+
+- **Routine-Kachel Design Update**: Das Layout der Routine-Kacheln wurde weiter verfeinert. Das Icon ist nun kleiner, nach links gerückt und nutzt das allgemeine Routine-Icon mit einer dynamischen Farbe (heller als die Kachel). Das Aufklapp-Pfeilsymbol wurde entfernt und der Titel-Text wurde zur besseren Lesbarkeit minimal verkleinert.
