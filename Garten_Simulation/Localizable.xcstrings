@@ -100618,7 +100618,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ペース (毎週)"
+            "value": "ペース (週間)"
           }
         },
         "ko": {
@@ -100630,13 +100630,13 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tempo (Wekelijks)"
+            "value": "Tempo (wekelijks)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tempo (Tydzień)"
+            "value": "Tempo (tygodniowe)"
           }
         },
         "pt": {
@@ -100672,7 +100672,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "節奏 (每週)"
+            "value": "進度 (每週)"
           }
         }
       }
@@ -106061,7 +106061,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "यह मान आपके शरीर के डेटा और लक्ष्य के आधार पर गणना किया जाता है।"
+            "value": "यह मान आपके शरीर के डेटा और लक्ष्य के आधार पर गणना की जाती है।"
           }
         },
         "it": {
@@ -106073,31 +106073,31 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "この値は、身体データと目標に基づいて計算されます。"
+            "value": "この値は、あなたの身体データと目標に基づいて計算されます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "이 값은 신체 데이터 및 목표를 기반으로 계산됩니다."
+            "value": "이 값은 귀하의 신체 데이터 및 목표를 기반으로 계산됩니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deze waarde wordt berekend op basis van uw lichaamsgegevens en doel."
+            "value": "Deze waarde wordt berekend op basis van je lichaamsgegevens en doel."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ta wartość jest obliczana na podstawie danych ciała i celu."
+            "value": "Ta wartość jest obliczana na podstawie danych Twojego ciała i celu."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Este valor é calculado com base nos seus dados corporais e objetivo."
+            "value": "Este valor é calculado com base nos dados do seu corpo e objetivo."
           }
         },
         "pt-BR": {
@@ -106109,7 +106109,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Это значение рассчитывается на основе данных вашего тела и цели."
+            "value": "Это значение рассчитывается на основе ваших телесных данных и цели."
           }
         },
         "tr": {
@@ -106127,7 +106127,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "該值根據您的身體數據和目標進行計算。"
+            "value": "該值是根據您的身體數據和目標計算得出的。"
           }
         }
       }
@@ -106215,7 +106215,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hedefi Değiştir"
+            "value": "Hedefi değiştir"
           }
         },
         "zh-Hans": {
@@ -458524,6 +458524,60 @@
             "state": "translated",
             "value": "作弊"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चीट्स"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "チート"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "치트"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cheats"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kody"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cheats"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Читы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hileler"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "作弊"
+          }
         }
       }
     },
@@ -458570,6 +458624,60 @@
           "stringUnit": {
             "state": "translated",
             "value": "+ 100,000 金币"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100,000 सिक्के"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100,000 コイン"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100,000 코인"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100.000 Munten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100 000 Monet"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100.000 Moedas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100 000 Монет"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100.000 Jeton"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ 100,000 金幣"
           }
         }
       }
