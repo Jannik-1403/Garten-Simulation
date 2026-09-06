@@ -156,6 +156,13 @@ struct NutrientProgressList: View {
                             }
                         }
                         .frame(height: 12)
+                        
+                        if let sources = item.sources, !sources.isEmpty {
+                            Text(sources)
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                                .lineLimit(2)
+                        }
                     }
                 }
             }

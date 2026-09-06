@@ -198682,7 +198682,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "calcium"
+            "value": "Calcium"
           }
         },
         "hi": {
@@ -198712,37 +198712,37 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "calcium"
+            "value": "Calcium"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "wapń"
+            "value": "Wapń"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "cálcio"
+            "value": "Cálcio"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "cálcio"
+            "value": "Cálcio"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "кальций"
+            "value": "Кальций"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "kalsiyum"
+            "value": "Kalsiyum"
           }
         },
         "zh-Hans": {
@@ -199104,7 +199104,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "塩化"
+            "value": "塩化物"
           }
         },
         "ko": {
@@ -199140,7 +199140,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хлористый"
+            "value": "Хлорид"
           }
         },
         "tr": {
@@ -199193,7 +199193,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "क्रोम"
+            "value": "क्रोमियम"
           }
         },
         "it": {
@@ -199229,7 +199229,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cromo"
+            "value": "Crómio"
           }
         },
         "pt-BR": {
@@ -199294,7 +199294,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ताँबा"
+            "value": "तांबा"
           }
         },
         "it": {
@@ -199318,37 +199318,37 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "koper"
+            "value": "Koper"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "miedź"
+            "value": "Miedź"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "cobre"
+            "value": "Cobre"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "cobre"
+            "value": "Cobre"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "медь"
+            "value": "Медь"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "bakır"
+            "value": "Bakır"
           }
         },
         "zh-Hans": {
@@ -199377,7 +199377,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dietary Fiber"
+            "value": "Dietary fiber"
           }
         },
         "es": {
@@ -199395,73 +199395,73 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फाइबर"
+            "value": "आहार फाइबर"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fibre alimentari"
+            "value": "Fibra alimentare"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ファイバ"
+            "value": "食物繊維"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "섬유"
+            "value": "식이섬유"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "vezel"
+            "value": "Voedingsvezels"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "błonnik"
+            "value": "Błonnik pokarmowy"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "fibra"
+            "value": "Fibra alimentar"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "fibra"
+            "value": "Fibra alimentar"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "волокно"
+            "value": "Пищевые волокна"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "lif"
+            "value": "Diyet lifi"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "纤维"
+            "value": "膳食纤维"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "纖維"
+            "value": "膳食纖維"
           }
         }
       }
@@ -199478,13 +199478,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Folate"
+            "value": "Folic acid"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Folato"
+            "value": "Ácido fólico"
           }
         },
         "fr": {
@@ -199502,7 +199502,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Folato"
+            "value": "Acido folico"
           }
         },
         "ja": {
@@ -199698,7 +199698,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "एइसें"
+            "value": "आयरन"
           }
         },
         "it": {
@@ -199710,61 +199710,61 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "アイゼン"
+            "value": "鉄"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "아이젠"
+            "value": "철분"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisen"
+            "value": "IJzer"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisena"
+            "value": "Żelazo"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisen"
+            "value": "Ferro"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisen"
+            "value": "Ferro"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Эйзен"
+            "value": "Железо"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eisen"
+            "value": "Demir"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "艾森"
+            "value": "铁"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "艾森"
+            "value": "鐵"
           }
         }
       }
@@ -199799,7 +199799,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मैगनीशियम"
+            "value": "मैग्नीशियम"
           }
         },
         "it": {
@@ -199900,13 +199900,13 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मंगन"
+            "value": "मैंगनीज़"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Manganese"
           }
         },
         "ja": {
@@ -199924,7 +199924,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Mangaan"
           }
         },
         "pl": {
@@ -199936,37 +199936,37 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Manganês"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Manganês"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Манган"
+            "value": "Марганец"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mangan"
+            "value": "Manganez"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "曼甘"
+            "value": "锰"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "曼甘"
+            "value": "錳"
           }
         }
       }
@@ -200126,37 +200126,37 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "molybdeen"
+            "value": "Molybdeen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "molibden"
+            "value": "Molibden"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "molibdênio"
+            "value": "Molibdénio"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "molibdênio"
+            "value": "Molibdênio"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "молибден"
+            "value": "Молибден"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "molibden"
+            "value": "Molibden"
           }
         },
         "zh-Hans": {
@@ -200304,7 +200304,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "भास्वर"
+            "value": "फॉस्फोरस"
           }
         },
         "it": {
@@ -200316,13 +200316,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "蛍光体"
+            "value": "リン"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "인광 물질"
+            "value": "인"
           }
         },
         "nl": {
@@ -200405,7 +200405,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पोटेशियम"
+            "value": "पोटैशियम"
           }
         },
         "it": {
@@ -200429,7 +200429,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potassium"
+            "value": "Kalium"
           }
         },
         "pl": {
@@ -200524,7 +200524,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "셀렌"
+            "value": "셀레늄"
           }
         },
         "nl": {
@@ -200542,7 +200542,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selênio"
+            "value": "Selénio"
           }
         },
         "pt-BR": {
@@ -200572,7 +200572,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "碳粉匣"
+            "value": "硒"
           }
         }
       }
@@ -201462,13 +201462,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Витамин А"
+            "value": "Витамин A"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "A vitamini"
+            "value": "Vitamin A"
           }
         },
         "zh-Hans": {
@@ -201497,7 +201497,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thiamin"
+            "value": "Thiamine (Vitamin B1)"
           }
         },
         "es": {
@@ -201527,13 +201527,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "チアミン"
+            "value": "チアミン（ビタミンB1）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "티아민"
+            "value": "티아민(비타민 B1)"
           }
         },
         "nl": {
@@ -201575,13 +201575,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "硫胺素"
+            "value": "硫胺素（维生素B1）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "硫胺素"
+            "value": "硫胺素（維生素B1）"
           }
         }
       }
@@ -201598,7 +201598,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Riboflavin"
+            "value": "Riboflavin (Vitamin B2)"
           }
         },
         "es": {
@@ -201628,13 +201628,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "リボフラビン"
+            "value": "リボフラビン（ビタミンB2）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "리보플라빈"
+            "value": "리보플라빈(비타민 B2)"
           }
         },
         "nl": {
@@ -201676,13 +201676,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "核黄素"
+            "value": "核黄素（维生素B2）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "核黃素"
+            "value": "核黃素（維生素B2）"
           }
         }
       }
@@ -201699,7 +201699,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Niacin"
+            "value": "Niacin (Vitamin B3)"
           }
         },
         "es": {
@@ -201729,13 +201729,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ナイアシン"
+            "value": "ナイアシン（ビタミンB3）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "니아신"
+            "value": "나이아신(비타민 B3)"
           }
         },
         "nl": {
@@ -201777,13 +201777,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "烟酸"
+            "value": "烟酸（维生素B3）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "菸鹼酸"
+            "value": "菸鹼酸（維生素B3）"
           }
         }
       }
@@ -201800,19 +201800,19 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamin B5 (Pantothenic Acid)"
+            "value": "Vitamin B5 (Pantothenic acid)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B5"
+            "value": "Vitamina B5 (ácido pantoténico)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamine B5"
+            "value": "Vitamine B5 (acide pantothénique)"
           }
         },
         "hi": {
@@ -201824,7 +201824,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B5 (Acido pantotenico)"
+            "value": "Vitamina B5 (acido pantotenico)"
           }
         },
         "ja": {
@@ -201854,7 +201854,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitamina B5 (ácido pantotênico)"
+            "value": "Vitamina B5 (ácido pantoténico)"
           }
         },
         "pt-BR": {
@@ -201872,19 +201872,19 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B5 Vitamini (pantotenik asit)"
+            "value": "Vitamin B5 (pantotenik asit)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "维生素 B5（泛酸）"
+            "value": "维生素B5（泛酸）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "維生素 B5（泛酸）"
+            "value": "維生素B5（泛酸）"
           }
         }
       }
@@ -201967,13 +201967,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Витамин В6"
+            "value": "Витамин B6"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B6 Vitamini"
+            "value": "Vitamin B6"
           }
         },
         "zh-Hans": {
@@ -202121,7 +202121,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विटामिन बी 12"
+            "value": "विटामिन बी12"
           }
         },
         "it": {
@@ -202169,13 +202169,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Витамин В12"
+            "value": "Витамин B12"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "B12 Vitamini"
+            "value": "Vitamin B12"
           }
         },
         "zh-Hans": {
@@ -202240,7 +202240,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "비타민C"
+            "value": "비타민 C"
           }
         },
         "nl": {
@@ -202270,13 +202270,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Витамин С"
+            "value": "Витамин C"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "C vitamini"
+            "value": "Vitamin C"
           }
         },
         "zh-Hans": {
@@ -202371,13 +202371,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Витамин Д"
+            "value": "Витамин D"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "D vitamini"
+            "value": "Vitamin D"
           }
         },
         "zh-Hans": {
@@ -202472,13 +202472,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Витамин Е"
+            "value": "Витамин E"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "E vitamini"
+            "value": "Vitamin E"
           }
         },
         "zh-Hans": {
@@ -202543,7 +202543,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "비타민K"
+            "value": "비타민 K"
           }
         },
         "nl": {
@@ -202573,13 +202573,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Витамин К"
+            "value": "Витамин K"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "K vitamini"
+            "value": "Vitamin K"
           }
         },
         "zh-Hans": {
@@ -202614,7 +202614,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "zinc"
+            "value": "Zinc"
           }
         },
         "fr": {
@@ -202638,7 +202638,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ジンク"
+            "value": "亜鉛"
           }
         },
         "ko": {
@@ -458678,6 +458678,2834 @@
           "stringUnit": {
             "state": "translated",
             "value": "+ 100,000 金幣"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_c": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paprika, Orangen, Brokkoli, Schwarze Johannisbeeren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bell peppers, Oranges, Broccoli, Blackcurrants"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pimientos, Naranjas, Brócoli, Grosellas negras"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poivrons, Oranges, Brocoli, Cassis"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शिमला मिर्च, संतरा, ब्रोकली, ब्लैककरंट"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peperoni, Arance, Broccoli, Ribes nero"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "パプリカ, オレンジ, ブロッコリー, カシス"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "파프리카, 오렌지, 브로콜리, 블랙커런트"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paprika's, Sinaasappels, Broccoli, Zwarte bessen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Papryka, Pomarańcze, Brokuły, Czarne porzeczki"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pimentos, Laranjas, Brócolos, Groselha-preta"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pimentões, Laranjas, Brócolis, Cassis"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Болгарский перец, Апельсины, Брокколи, Чёрная смородина"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dolmalık biber, Portakal, Brokoli, Frenk üzümü (siyah)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "甜椒, 橙子, 西兰花, 黑加仑"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "甜椒, 柳橙, 綠花椰菜, 黑醋栗"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_a": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leber, Karotten, Süßkartoffeln, Grünkohl"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liver, Carrots, Sweet potatoes, Kale"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hígado, Zanahorias, Boniatos, Col rizada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foie, Carottes, Patates douces, Chou frisé"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कलेजी (लिवर), गाजर, शकरकंद, केल"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fegato, Carote, Patate dolci, Cavolo riccio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "レバー, にんじん, サツマイモ, ケール"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "간, 당근, 고구마, 케일"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lever, Wortelen, Zoete aardappelen, Boerenkool"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wątróbka, Marchew, Bataty, Jarmuż"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fígado, Cenouras, Batata-doce, Couve-galega"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fígado, Cenouras, Batata-doce, Couve"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Печень, Морковь, Батат, Кейл (листовая капуста)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karaciğer, Havuç, Tatlı patates, Kara lahana"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肝脏, 胡萝卜, 红薯, 羽衣甘蓝"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肝臟, 胡蘿蔔, 地瓜, 羽衣甘藍"
+          }
+        }
+      }
+    },
+    "nutrient.sources.folate": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grünes Blattgemüse, Hülsenfrüchte, Spargel, Leber"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leafy greens, Legumes, Asparagus, Liver"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verduras de hoja verde, Legumbres, Espárragos, Hígado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Légumes à feuilles vertes, Légumineuses, Asperges, Foie"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हरी पत्तेदार सब्जियाँ, दालें (फलियां), शतावरी, कलेजी (लिवर)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verdure a foglia verde, Legumi, Asparagi, Fegato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "葉物野菜, 豆類, アスパラガス, レバー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잎채소, 콩류, 아스파라거스, 간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bladgroenten, Peulvruchten, Asperges, Lever"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warzywa liściaste, Rośliny strączkowe, Szparagi, Wątróbka"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetais de folhas verdes, Leguminosas, Espargos, Fígado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folhas verdes, Leguminosas, Aspargos, Fígado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Листовая зелень, Бобовые, Спаржа, Печень"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeşil yapraklı sebzeler, Baklagiller, Kuşkonmaz, Karaciğer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "绿叶蔬菜, 豆类, 芦笋, 肝脏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "綠葉蔬菜, 豆類, 蘆筍, 肝臟"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_k": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grünkohl, Spinat, Brokkoli, Sauerkraut"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kale, Spinach, Broccoli, Sauerkraut"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Col rizada, Espinacas, Brócoli, Chucrut"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chou frisé, Épinards, Brocoli, Choucroute"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "केल, पालक, ब्रोकली, खट्टी पत्तागोभी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cavolo riccio, Spinaci, Broccoli, Crauti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ケール, ほうれん草, ブロッコリー, ザワークラウト"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "케일, 시금치, 브로콜리, 사워크라우트"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boerenkool, Spinazie, Broccoli, Zuurkool"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jarmuż, Szpinak, Brokuły, Kiszona kapusta"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couve-galega, Espinafre, Brócolos, Chucrute"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couve, Espinafre, Brócolis, Chucrute"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кейл (листовая капуста), Шпинат, Брокколи, Квашеная капуста"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kara lahana, Ispanak, Brokoli, Lahana turşusu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "羽衣甘蓝, 菠菜, 西兰花, 酸菜"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "羽衣甘藍, 菠菜, 綠花椰菜, 酸菜"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_b1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vollkornprodukte, Schweinefleisch, Hülsenfrüchte, Nüsse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole grains, Pork, Legumes, Nuts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereales integrales, Cerdo, Legumbres, Frutos secos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Céréales complètes, Porc, Légumineuses, Fruits à coque"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साबुत अनाज, सूअर का मांस, दालें (फलियां), मेवे (नट्स)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereali integrali, Carne di maiale, Legumi, Frutta secca"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全粒穀物, 豚肉, 豆類, ナッツ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "통곡물, 돼지고기, 콩류, 견과류"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volkoren producten, Varkensvlees, Peulvruchten, Noten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produkty pełnoziarniste, Wieprzowina, Rośliny strączkowe, Orzechy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereais integrais, Carne de porco, Leguminosas, Frutos secos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grãos integrais, Carne de porco, Leguminosas, Castanhas e nozes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цельнозерновые продукты, Свинина, Бобовые, Орехи"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tam tahıllar, Domuz eti, Baklagiller, Kuruyemişler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全谷物, 猪肉, 豆类, 坚果"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全穀類, 豬肉, 豆類, 堅果"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_b2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milchprodukte, Eier, Mandeln, Leber"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dairy products, Eggs, Almonds, Liver"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lácteos, Huevos, Almendras, Hígado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produits laitiers, Œufs, Amandes, Foie"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेयरी उत्पाद, अंडे, बादाम, कलेजी (लिवर)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latticini, Uova, Mandorle, Fegato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳製品, 卵, アーモンド, レバー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "유제품, 달걀, 아몬드, 간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zuivelproducten, Eieren, Amandelen, Lever"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produkty mleczne, Jajka, Migdały, Wątróbka"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laticínios, Ovos, Amêndoas, Fígado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laticínios, Ovos, Amêndoas, Fígado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Молочные продукты, Яйца, Миндаль, Печень"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Süt ürünleri, Yumurta, Badem, Karaciğer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳制品, 鸡蛋, 杏仁, 肝脏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳製品, 雞蛋, 杏仁, 肝臟"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_b3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geflügel, Fisch, Erdnüsse, Vollkornprodukte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poultry, Fish, Peanuts, Whole grains"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aves de corral, Pescado, Cacahuetes, Cereales integrales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volaille, Poisson, Cacahuètes, Céréales complètes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पोल्ट्री (मुर्गा), मछली, मूंगफली, साबुत अनाज"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pollame, Pesce, Arachidi, Cereali integrali"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鶏肉などの家禽, 魚, ピーナッツ, 全粒穀物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가금류, 생선, 땅콩, 통곡물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gevogelte, Vis, Pinda's, Volkoren producten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drób, Ryby, Orzeszki ziemne, Produkty pełnoziarniste"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aves, Peixe, Amendoins, Cereais integrais"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aves, Peixe, Amendoim, Grãos integrais"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Птица, Рыба, Арахис, Цельнозерновые продукты"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kanatlı et, Balık, Yer fıstığı, Tam tahıllar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "禽肉, 鱼类, 花生, 全谷物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "禽肉, 魚類, 花生, 全穀類"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_b5": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eier, Avocado, Vollkornprodukte, Pilze"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eggs, Avocado, Whole grains, Mushrooms"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huevos, Aguacate, Cereales integrales, Setas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Œufs, Avocat, Céréales complètes, Champignons"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंडे, एवोकाडो, साबुत अनाज, मशरूम"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uova, Avocado, Cereali integrali, Funghi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "卵, アボカド, 全粒穀物, きのこ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "달걀, 아보카도, 통곡물, 버섯"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eieren, Avocado, Volkoren producten, Paddenstoelen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jajka, Awokado, Produkty pełnoziarniste, Grzyby"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovos, Abacate, Cereais integrais, Cogumelos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovos, Abacate, Grãos integrais, Cogumelos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Яйца, Авокадо, Цельнозерновые продукты, Грибы"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yumurta, Avokado, Tam tahıllar, Mantar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鸡蛋, 牛油果, 全谷物, 蘑菇"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "雞蛋, 酪梨, 全穀類, 蘑菇"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_b6": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geflügel, Kartoffeln, Bananen, Fisch"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poultry, Potatoes, Bananas, Fish"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aves de corral, Patatas, Plátanos, Pescado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volaille, Pommes de terre, Bananes, Poisson"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पोल्ट्री (मुर्गा), आलू, केला, मछली"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pollame, Patate, Banane, Pesce"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鶏肉などの家禽, じゃがいも, バナナ, 魚"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가금류, 감자, 바나나, 생선"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gevogelte, Aardappelen, Bananen, Vis"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drób, Ziemniaki, Banany, Ryby"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aves, Batatas, Bananas, Peixe"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aves, Batatas, Bananas, Peixe"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Птица, Картофель, Бананы, Рыба"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kanatlı et, Patates, Muz, Balık"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "禽肉, 土豆, 香蕉, 鱼类"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "禽肉, 馬鈴薯, 香蕉, 魚類"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_b7": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eier, Nüsse, Leber, Haferflocken"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eggs, Nuts, Liver, Oats"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huevos, Frutos secos, Hígado, Avena"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Œufs, Fruits à coque, Foie, Flocons d'avoine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंडे, मेवे (नट्स), कलेजी (लिवर), जई (ओट्स)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uova, Frutta secca, Fegato, Fiocchi d'avena"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "卵, ナッツ, レバー, オーツ麦"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "달걀, 견과류, 간, 귀리"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eieren, Noten, Lever, Havermout"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jajka, Orzechy, Wątróbka, Płatki owsiane"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovos, Frutos secos, Fígado, Aveia"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovos, Castanhas e nozes, Fígado, Aveia"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Яйца, Орехи, Печень, Овсянка"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yumurta, Kuruyemişler, Karaciğer, Yulaf"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鸡蛋, 坚果, 肝脏, 燕麦"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "雞蛋, 堅果, 肝臟, 燕麥"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_b12": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fleisch, Fisch, Milchprodukte, Eier"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meat, Fish, Dairy products, Eggs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne, Pescado, Lácteos, Huevos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viande, Poisson, Produits laitiers, Œufs"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मांस, मछली, डेयरी उत्पाद, अंडे"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne, Pesce, Latticini, Uova"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肉, 魚, 乳製品, 卵"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "육류, 생선, 유제품, 달걀"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vlees, Vis, Zuivelproducten, Eieren"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mięso, Ryby, Produkty mleczne, Jajka"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne, Peixe, Laticínios, Ovos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne, Peixe, Laticínios, Ovos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мясо, Рыба, Молочные продукты, Яйца"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Et, Balık, Süt ürünleri, Yumurta"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肉类, 鱼类, 乳制品, 鸡蛋"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肉類, 魚類, 乳製品, 雞蛋"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_d": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fetter Fisch, Eigelb, Pilze, Angereicherte Milch"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatty fish, Egg yolk, Mushrooms, Fortified milk"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pescado graso, Yema de huevo, Setas, Leche enriquecida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poissons gras, Jaune d'œuf, Champignons, Lait enrichi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वसायुक्त मछली, अंडे की जर्दी, मशरूम, फोर्टिफाइड दूध"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pesce grasso, Tuorlo d'uovo, Funghi, Latte fortificato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "脂の多い魚, 卵黄, きのこ, 強化牛乳"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기름진 생선, 달걀노른자, 버섯, 강화우유"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vette vis, Eidooier, Paddenstoelen, Verrijkte melk"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tłuste ryby, Żółtko jaja, Grzyby, Wzbogacone mleko"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peixes gordos, Gema de ovo, Cogumelos, Leite fortificado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peixes gordurosos, Gema de ovo, Cogumelos, Leite enriquecido"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жирная рыба, Яичный желток, Грибы, Обогащённое молоко"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yağlı balık, Yumurta sarısı, Mantar, Zenginleştirilmiş süt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "富含脂肪的鱼类, 蛋黄, 蘑菇, 强化牛奶"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "富含脂肪的魚類, 蛋黃, 蘑菇, 強化牛奶"
+          }
+        }
+      }
+    },
+    "nutrient.sources.vitamin_e": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pflanzenöle, Nüsse, Samen, Spinat"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetable oils, Nuts, Seeds, Spinach"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceites vegetales, Frutos secos, Semillas, Espinacas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huiles végétales, Fruits à coque, Graines, Épinards"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वनस्पति तेल, मेवे (नट्स), बीज, पालक"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oli vegetali, Frutta secca, Semi, Spinaci"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物油, ナッツ, 種子, ほうれん草"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식물성 기름, 견과류, 씨앗, 시금치"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plantaardige oliën, Noten, Zaden, Spinazie"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oleje roślinne, Orzechy, Nasiona, Szpinak"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Óleos vegetais, Frutos secos, Sementes, Espinafre"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Óleos vegetais, Castanhas e nozes, Sementes, Espinafre"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Растительные масла, Орехи, Семена, Шпинат"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitkisel yağlar, Kuruyemişler, Tohumlar, Ispanak"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物油, 坚果, 种子, 菠菜"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物油, 堅果, 種子, 菠菜"
+          }
+        }
+      }
+    },
+    "nutrient.sources.potassium": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bananen, Kartoffeln, Spinat, Hülsenfrüchte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bananas, Potatoes, Spinach, Legumes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plátanos, Patatas, Espinacas, Legumbres"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bananes, Pommes de terre, Épinards, Légumineuses"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "केला, आलू, पालक, दालें (फलियां)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banane, Patate, Spinaci, Legumi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バナナ, じゃがいも, ほうれん草, 豆類"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "바나나, 감자, 시금치, 콩류"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bananen, Aardappelen, Spinazie, Peulvruchten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banany, Ziemniaki, Szpinak, Rośliny strączkowe"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bananas, Batatas, Espinafre, Leguminosas"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bananas, Batatas, Espinafre, Leguminosas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бананы, Картофель, Шпинат, Бобовые"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muz, Patates, Ispanak, Baklagiller"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "香蕉, 土豆, 菠菜, 豆类"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "香蕉, 馬鈴薯, 菠菜, 豆類"
+          }
+        }
+      }
+    },
+    "nutrient.sources.magnesium": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nüsse, Vollkornprodukte, Dunkle Schokolade, Grünes Blattgemüse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuts, Whole grains, Dark chocolate, Leafy greens"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutos secos, Cereales integrales, Chocolate negro, Verduras de hoja verde"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruits à coque, Céréales complètes, Chocolat noir, Légumes à feuilles vertes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मेवे (नट्स), साबुत अनाज, डार्क चॉकलेट, हरी पत्तेदार सब्जियाँ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutta secca, Cereali integrali, Cioccolato fondente, Verdure a foglia verde"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ナッツ, 全粒穀物, ダークチョコレート, 葉物野菜"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "견과류, 통곡물, 다크초콜릿, 잎채소"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noten, Volkoren producten, Pure chocolade, Bladgroenten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orzechy, Produkty pełnoziarniste, Gorzka czekolada, Warzywa liściaste"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutos secos, Cereais integrais, Chocolate preto, Vegetais de folhas verdes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Castanhas e nozes, Grãos integrais, Chocolate amargo, Folhas verdes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Орехи, Цельнозерновые продукты, Тёмный шоколад, Листовая зелень"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuruyemişler, Tam tahıllar, Bitter çikolata, Yeşil yapraklı sebzeler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "坚果, 全谷物, 黑巧克力, 绿叶蔬菜"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "堅果, 全穀類, 黑巧克力, 綠葉蔬菜"
+          }
+        }
+      }
+    },
+    "nutrient.sources.calcium": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milchprodukte, Grünes Blattgemüse, Mandeln, Sesam"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dairy products, Leafy greens, Almonds, Sesame seeds"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lácteos, Verduras de hoja verde, Almendras, Semillas de sésamo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produits laitiers, Légumes à feuilles vertes, Amandes, Graines de sésame"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेयरी उत्पाद, हरी पत्तेदार सब्जियाँ, बादाम, तिल"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latticini, Verdure a foglia verde, Mandorle, Semi di sesamo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳製品, 葉物野菜, アーモンド, ごま"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "유제품, 잎채소, 아몬드, 참깨"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zuivelproducten, Bladgroenten, Amandelen, Sesamzaad"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produkty mleczne, Warzywa liściaste, Migdały, Nasiona sezamu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laticínios, Vegetais de folhas verdes, Amêndoas, Sementes de sésamo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laticínios, Folhas verdes, Amêndoas, Gergelim"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Молочные продукты, Листовая зелень, Миндаль, Кунжут"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Süt ürünleri, Yeşil yapraklı sebzeler, Badem, Susam"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳制品, 绿叶蔬菜, 杏仁, 芝麻"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳製品, 綠葉蔬菜, 杏仁, 芝麻"
+          }
+        }
+      }
+    },
+    "nutrient.sources.chloride": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speisesalz, Oliven, Tomaten, Sellerie"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Table salt, Olives, Tomatoes, Celery"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sal de mesa, Aceitunas, Tomates, Apio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sel de table, Olives, Tomates, Céleri"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमक, जैतून, टमाटर, अजवाइन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sale da cucina, Olive, Pomodori, Sedano"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食塩, オリーブ, トマト, セロリ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식탁용 소금, 올리브, 토마토, 셀러리"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tafelzout, Olijven, Tomaten, Selderij"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sól kuchenna, Oliwki, Pomidory, Seler"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sal de cozinha, Azeitonas, Tomates, Aipo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sal de cozinha, Azeitonas, Tomates, Aipo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поваренная соль, Оливки, Помидоры, Сельдерей"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sofra tuzu, Zeytin, Domates, Kereviz"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食盐, 橄榄, 西红柿, 芹菜"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食鹽, 橄欖, 番茄, 芹菜"
+          }
+        }
+      }
+    },
+    "nutrient.sources.copper": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nüsse, Meeresfrüchte, Vollkornprodukte, Kakao"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuts, Seafood, Whole grains, Cocoa"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutos secos, Mariscos, Cereales integrales, Cacao"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruits à coque, Fruits de mer, Céréales complètes, Cacao"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मेवे (नट्स), समुद्री भोजन, साबुत अनाज, कोको"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutta secca, Frutti di mare, Cereali integrali, Cacao"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ナッツ, シーフード, 全粒穀物, カカオ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "견과류, 해산물, 통곡물, 코코아"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noten, Zeevruchten, Volkoren producten, Cacao"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orzechy, Owoce morza, Produkty pełnoziarniste, Kakao"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutos secos, Marisco, Cereais integrais, Cacau"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Castanhas e nozes, Frutos do mar, Grãos integrais, Cacau"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Орехи, Морепродукты, Цельнозерновые продукты, Какао"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuruyemişler, Deniz ürünleri, Tam tahıllar, Kakao"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "坚果, 海鲜, 全谷物, 可可"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "堅果, 海鮮, 全穀類, 可可"
+          }
+        }
+      }
+    },
+    "nutrient.sources.iodine": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meeresalgen, Fisch, Jodsalz, Milchprodukte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seaweed, Fish, Iodized salt, Dairy products"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algas marinas, Pescado, Sal yodada, Lácteos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algues marines, Poisson, Sel iodé, Produits laitiers"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "समुद्री शैवाल, मछली, आयोडीन युक्त नमक, डेयरी उत्पाद"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alghe marine, Pesce, Sale iodato, Latticini"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "海藻, 魚, ヨウ素添加塩, 乳製品"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "해조류, 생선, 요오드화 소금, 유제품"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeewier, Vis, Gejodeerd zout, Zuivelproducten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wodorosty morskie, Ryby, Sól jodowana, Produkty mleczne"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algas marinhas, Peixe, Sal iodado, Laticínios"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algas marinhas, Peixe, Sal iodado, Laticínios"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Морские водоросли, Рыба, Йодированная соль, Молочные продукты"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deniz yosunu, Balık, İyotlu tuz, Süt ürünleri"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "海藻, 鱼类, 碘盐, 乳制品"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "海藻, 魚類, 碘鹽, 乳製品"
+          }
+        }
+      }
+    },
+    "nutrient.sources.iron": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotes Fleisch, Hülsenfrüchte, Spinat, Leber"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red meat, Legumes, Spinach, Liver"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne roja, Legumbres, Espinacas, Hígado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viande rouge, Légumineuses, Épinards, Foie"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लाल मांस, दालें (फलियां), पालक, कलेजी (लिवर)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne rossa, Legumi, Spinaci, Fegato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "赤身肉, 豆類, ほうれん草, レバー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "붉은 고기, 콩류, 시금치, 간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rood vlees, Peulvruchten, Spinazie, Lever"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czerwone mięso, Rośliny strączkowe, Szpinak, Wątróbka"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne vermelha, Leguminosas, Espinafre, Fígado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne vermelha, Leguminosas, Espinafre, Fígado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Красное мясо, Бобовые, Шпинат, Печень"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kırmızı et, Baklagiller, Ispanak, Karaciğer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "红肉, 豆类, 菠菜, 肝脏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "紅肉, 豆類, 菠菜, 肝臟"
+          }
+        }
+      }
+    },
+    "nutrient.sources.manganese": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vollkornprodukte, Nüsse, Hülsenfrüchte, Ananas"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole grains, Nuts, Legumes, Pineapple"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereales integrales, Frutos secos, Legumbres, Piña"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Céréales complètes, Fruits à coque, Légumineuses, Ananas"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साबुत अनाज, मेवे (नट्स), दालें (फलियां), अनानास"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereali integrali, Frutta secca, Legumi, Ananas"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全粒穀物, ナッツ, 豆類, パイナップル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "통곡물, 견과류, 콩류, 파인애플"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volkoren producten, Noten, Peulvruchten, Ananas"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produkty pełnoziarniste, Orzechy, Rośliny strączkowe, Ananas"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereais integrais, Frutos secos, Leguminosas, Ananás"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grãos integrais, Castanhas e nozes, Leguminosas, Abacaxi"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цельнозерновые продукты, Орехи, Бобовые, Ананас"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tam tahıllar, Kuruyemişler, Baklagiller, Ananas"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全谷物, 坚果, 豆类, 菠萝"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全穀類, 堅果, 豆類, 鳳梨"
+          }
+        }
+      }
+    },
+    "nutrient.sources.molybdenum": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hülsenfrüchte, Vollkornprodukte, Nüsse, Innereien"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legumes, Whole grains, Nuts, Organ meats"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legumbres, Cereales integrales, Frutos secos, Vísceras"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Légumineuses, Céréales complètes, Fruits à coque, Abats"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दालें (फलियां), साबुत अनाज, मेवे (नट्स), ऑर्गन मीट"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legumi, Cereali integrali, Frutta secca, Frattaglie"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "豆類, 全粒穀物, ナッツ, 内臓肉"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "콩류, 통곡물, 견과류, 내장육"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peulvruchten, Volkoren producten, Noten, Orgaanvlees"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rośliny strączkowe, Produkty pełnoziarniste, Orzechy, Podroby"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leguminosas, Cereais integrais, Frutos secos, Vísceras"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leguminosas, Grãos integrais, Castanhas e nozes, Miúdos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бобовые, Цельнозерновые продукты, Орехи, Субпродукты"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baklagiller, Tam tahıllar, Kuruyemişler, Sakatat"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "豆类, 全谷物, 坚果, 动物内脏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "豆類, 全穀類, 堅果, 動物內臟"
+          }
+        }
+      }
+    },
+    "nutrient.sources.phosphorus": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milchprodukte, Fleisch, Fisch, Nüsse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dairy products, Meat, Fish, Nuts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lácteos, Carne, Pescado, Frutos secos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produits laitiers, Viande, Poisson, Fruits à coque"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेयरी उत्पाद, मांस, मछली, मेवे (नट्स)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latticini, Carne, Pesce, Frutta secca"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳製品, 肉, 魚, ナッツ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "유제품, 육류, 생선, 견과류"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zuivelproducten, Vlees, Vis, Noten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produkty mleczne, Mięso, Ryby, Orzechy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laticínios, Carne, Peixe, Frutos secos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laticínios, Carne, Peixe, Castanhas e nozes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Молочные продукты, Мясо, Рыба, Орехи"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Süt ürünleri, Et, Balık, Kuruyemişler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳制品, 肉类, 鱼类, 坚果"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳製品, 肉類, 魚類, 堅果"
+          }
+        }
+      }
+    },
+    "nutrient.sources.selenium": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paranüsse, Fisch, Eier, Vollkornprodukte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brazil nuts, Fish, Eggs, Whole grains"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueces de Brasil, Pescado, Huevos, Cereales integrales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noix du Brésil, Poisson, Œufs, Céréales complètes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ब्राज़ील नट, मछली, अंडे, साबुत अनाज"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noci del Brasile, Pesce, Uova, Cereali integrali"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブラジルナッツ, 魚, 卵, 全粒穀物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브라질너트, 생선, 달걀, 통곡물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paranoten, Vis, Eieren, Volkoren producten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orzechy brazylijskie, Ryby, Jajka, Produkty pełnoziarniste"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Castanha-do-pará, Peixe, Ovos, Cereais integrais"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Castanha-do-pará, Peixe, Ovos, Grãos integrais"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бразильский орех, Рыба, Яйца, Цельнозерновые продукты"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brezilya cevizi, Balık, Yumurta, Tam tahıllar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "巴西坚果, 鱼类, 鸡蛋, 全谷物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "巴西堅果, 魚類, 雞蛋, 全穀類"
+          }
+        }
+      }
+    },
+    "nutrient.sources.sodium": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speisesalz, Verarbeitete Lebensmittel, Käse, Brot"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Table salt, Processed foods, Cheese, Bread"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sal de mesa, Alimentos procesados, Queso, Pan"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sel de table, Aliments transformés, Fromage, Pain"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नमक, प्रसंस्कृत खाद्य पदार्थ, पनीर, ब्रेड"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sale da cucina, Alimenti trasformati, Formaggio, Pane"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食塩, 加工食品, チーズ, パン"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식탁용 소금, 가공식품, 치즈, 빵"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tafelzout, Bewerkte voedingsmiddelen, Kaas, Brood"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sól kuchenna, Żywność przetworzona, Ser, Chleb"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sal de cozinha, Alimentos processados, Queijo, Pão"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sal de cozinha, Alimentos processados, Queijo, Pão"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поваренная соль, Обработанные продукты, Сыр, Хлеб"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sofra tuzu, İşlenmiş gıdalar, Peynir, Ekmek"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食盐, 加工食品, 奶酪, 面包"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食鹽, 加工食品, 起司, 麵包"
+          }
+        }
+      }
+    },
+    "nutrient.sources.zinc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotes Fleisch, Austern, Kürbiskerne, Hülsenfrüchte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red meat, Oysters, Pumpkin seeds, Legumes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne roja, Ostras, Semillas de calabaza, Legumbres"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viande rouge, Huîtres, Graines de courge, Légumineuses"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लाल मांस, सीप, कद्दू के बीज, दालें (फलियां)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne rossa, Ostriche, Semi di zucca, Legumi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "赤身肉, カキ, かぼちゃの種, 豆類"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "붉은 고기, 굴, 호박씨, 콩류"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rood vlees, Oesters, Pompoenpitten, Peulvruchten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czerwone mięso, Ostrygi, Pestki dyni, Rośliny strączkowe"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne vermelha, Ostras, Sementes de abóbora, Leguminosas"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne vermelha, Ostras, Sementes de abóbora, Leguminosas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Красное мясо, Устрицы, Тыквенные семечки, Бобовые"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kırmızı et, İstiridye, Kabak çekirdeği, Baklagiller"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "红肉, 牡蛎, 南瓜籽, 豆类"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "紅肉, 牡蠣, 南瓜籽, 豆類"
+          }
+        }
+      }
+    },
+    "nutrient.sources.chromium": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vollkornprodukte, Brokkoli, Trauben, Nüsse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole grains, Broccoli, Grapes, Nuts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereales integrales, Brócoli, Uvas, Frutos secos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Céréales complètes, Brocoli, Raisins, Fruits à coque"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साबुत अनाज, ब्रोकली, अंगूर, मेवे (नट्स)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereali integrali, Broccoli, Uva, Frutta secca"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全粒穀物, ブロッコリー, ぶどう, ナッツ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "통곡물, 브로콜리, 포도, 견과류"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volkoren producten, Broccoli, Druiven, Noten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produkty pełnoziarniste, Brokuły, Winogrona, Orzechy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereais integrais, Brócolos, Uvas, Frutos secos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grãos integrais, Brócolis, Uvas, Castanhas e nozes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цельнозерновые продукты, Брокколи, Виноград, Орехи"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tam tahıllar, Brokoli, Üzüm, Kuruyemişler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全谷物, 西兰花, 葡萄, 坚果"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全穀類, 綠花椰菜, 葡萄, 堅果"
+          }
+        }
+      }
+    },
+    "nutrient.sources.fiber": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vollkornprodukte, Hülsenfrüchte, Gemüse, Obst"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole grains, Legumes, Vegetables, Fruit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereales integrales, Legumbres, Verduras, Fruta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Céréales complètes, Légumineuses, Légumes, Fruits"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साबुत अनाज, दालें (फलियां), सब्जियाँ, फल"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereali integrali, Legumi, Verdure, Frutta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全粒穀物, 豆類, 野菜, 果物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "통곡물, 콩류, 채소, 과일"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volkoren producten, Peulvruchten, Groenten, Fruit"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produkty pełnoziarniste, Rośliny strączkowe, Warzywa, Owoce"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cereais integrais, Leguminosas, Vegetais, Fruta"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grãos integrais, Leguminosas, Vegetais, Frutas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цельнозерновые продукты, Бобовые, Овощи, Фрукты"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tam tahıllar, Baklagiller, Sebzeler, Meyve"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全谷物, 豆类, 蔬菜, 水果"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全穀類, 豆類, 蔬菜, 水果"
           }
         }
       }
