@@ -66,6 +66,24 @@ struct DeveloperView: View {
                             }
                         }
                     }
+                    
+                    // Section 2: Cheats
+                    settingsSection(title: String(localized: "developer.cheats.title", defaultValue: "Cheats")) {
+                        VStack(spacing: 0) {
+                            Button {
+                                gardenStore.coins += 100_000
+                                gardenStore.saveStats()
+                                FeedbackManager.shared.playSuccess()
+                                dismiss()
+                            } label: {
+                                settingRow(
+                                    title: String(localized: "developer.cheats.addCoins", defaultValue: "+ 100.000 Münzen"),
+                                    icon: "dollarsign.circle.fill",
+                                    color: .yellow
+                                )
+                            }
+                        }
+                    }
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 20)

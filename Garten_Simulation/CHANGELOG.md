@@ -1,0 +1,4 @@
+- Zielgewicht kann nun auch ohne die Pflanze 'Krafttraining' eingegeben werden.
+- Die eingegebenen Zieldaten werden automatisch mit der Pflanze verknüpft, sobald diese im Shop gekauft wird.
+- Der 'Ziel ändern' Button ist nicht mehr deaktiviert und der Text wurde korrekt in alle Sprachen übersetzt.
+- Englische Texte in den Kalorien- und Gewichtsziel-Einstellungen wurden nun erfolgreich in alle verfügbaren Sprachen übersetzt.
