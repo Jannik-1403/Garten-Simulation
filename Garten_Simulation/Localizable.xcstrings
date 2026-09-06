@@ -106137,7 +106137,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Change Goal"
+            "value": "Ziel ändern"
           }
         },
         "en": {
@@ -106155,7 +106155,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Changer l'objectif"
+            "value": "Modifier l'objectif"
           }
         },
         "hi": {
@@ -106167,7 +106167,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cambia obiettivo"
+            "value": "Modifica obiettivo"
           }
         },
         "ja": {
@@ -106203,7 +106203,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mudar objetivo"
+            "value": "Mudar meta"
           }
         },
         "ru": {
@@ -106221,7 +106221,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "更改目标"
+            "value": "修改目标"
           }
         },
         "zh-Hant": {

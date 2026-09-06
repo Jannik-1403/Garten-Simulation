@@ -4,7 +4,7 @@ struct WeightTargetEditView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var gardenStore: GardenStore
     
-    @ObservedObject var pflanze: HabitModel
+    var pflanze: HabitModel?
     
     @State private var targetInput: String = ""
     @State private var targetDateInput: Date = Date()
@@ -12,7 +12,7 @@ struct WeightTargetEditView: View {
     @State private var paceInput: String = "0.5"
     
     private var currentValue: Double? {
-        if !pflanze.manualWeightEntries.isEmpty {
+        if let pflanze = pflanze, !pflanze.manualWeightEntries.isEmpty {
             return pflanze.manualWeightEntries.max(by: { $0.timestamp < $1.timestamp })?.progress
         }
         return HealthManager.shared.activeWeight?.value
@@ -77,12 +77,17 @@ struct WeightTargetEditView: View {
                     }
                 }
                 
-                if pflanze.targetWeight != nil {
+                if pflanze?.targetWeight != nil || HealthManager.shared.weightGoalTargetKg > 0 {
                     Section {
                         Button(role: .destructive) {
-                            pflanze.targetWeight = nil
-                            pflanze.targetWeightDate = nil
-                            gardenStore.savePlants()
+                            if let pflanze = pflanze {
+                                pflanze.targetWeight = nil
+                                pflanze.targetWeightDate = nil
+                                gardenStore.savePlants()
+                            }
+                            HealthManager.shared.weightGoalTargetKg = 0
+                            HealthManager.shared.weightGoalDateInterval = 0
+                            HealthManager.shared.weightGoalType = 0
                             HealthManager.shared.recalculateGoals()
                             dismiss()
                         } label: {
@@ -114,9 +119,11 @@ struct WeightTargetEditView: View {
                                 }
                             }
                             
-                            pflanze.targetWeight = w
-                            pflanze.targetWeightDate = finalDate
-                            gardenStore.savePlants()
+                            if let pflanze = pflanze {
+                                pflanze.targetWeight = w
+                                pflanze.targetWeightDate = finalDate
+                                gardenStore.savePlants()
+                            }
                             
                             // Auto-Update calories globally if this is the target weight
                             HealthManager.shared.weightGoalTargetKg = w
@@ -131,11 +138,16 @@ struct WeightTargetEditView: View {
                 }
             }
             .onAppear {
-                if let t = pflanze.targetWeight {
+                if let pflanze = pflanze, let t = pflanze.targetWeight {
                     targetInput = String(format: "%.1f", t)
+                } else if HealthManager.shared.weightGoalTargetKg > 0 {
+                    targetInput = String(format: "%.1f", HealthManager.shared.weightGoalTargetKg)
                 }
-                if let d = pflanze.targetWeightDate {
+                
+                if let pflanze = pflanze, let d = pflanze.targetWeightDate {
                     targetDateInput = d
+                } else if HealthManager.shared.weightGoalDateInterval > 0 {
+                    targetDateInput = Date(timeIntervalSince1970: HealthManager.shared.weightGoalDateInterval)
                 }
             }
         }

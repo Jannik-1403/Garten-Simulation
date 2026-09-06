@@ -202,7 +202,6 @@ struct CalorieCalculationSheet: View {
                                     .padding()
                             }
                             .padding(.top, 8)
-                            .disabled(linkedHabit == nil)
                         }
                         .padding()
                         .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
@@ -210,9 +209,7 @@ struct CalorieCalculationSheet: View {
                             loadManualInputs()
                             hm.recalculateGoals()
                         }) {
-                            if let habit = linkedHabit {
-                                WeightTargetEditView(pflanze: habit)
-                            }
+                            WeightTargetEditView(pflanze: linkedHabit)
                         }
                     }
                 }

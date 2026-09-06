@@ -567,6 +567,16 @@ class GardenStore: ObservableObject {
             decayDays: dbPlant?.decayDays ?? 2,
             plantID: shopItem.id
         )
+        
+        if neue.effectiveHealthMetric == .strengthTraining {
+            let targetKg = HealthManager.shared.weightGoalTargetKg
+            let targetDate = HealthManager.shared.weightGoalDateInterval
+            if targetKg > 0 && targetDate > 0 {
+                neue.targetWeight = targetKg
+                neue.targetWeightDate = Date(timeIntervalSince1970: targetDate)
+            }
+        }
+        
         withAnimation(.spring(response: 0.4)) {
             pflanzen.append(neue)
             logPurchase(shopItem: shopItem, isFree: isFree)
