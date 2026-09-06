@@ -100482,7 +100482,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Date"
+            "value": "Datum"
           }
         },
         "en": {
@@ -100582,7 +100582,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pace (Weekly)"
+            "value": "Tempo (Woche)"
           }
         },
         "en": {
@@ -100600,7 +100600,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rythme (Semaine)"
+            "value": "Rythme (Hebdo)"
           }
         },
         "hi": {
@@ -100666,7 +100666,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "节奏 (每周)"
+            "value": "进度 (每周)"
           }
         },
         "zh-Hant": {
@@ -106037,7 +106037,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "This value is calculated based on your body data and goal."
+            "value": "Dieser Wert wird basierend auf deinen Körperdaten und deinem Ziel berechnet."
           }
         },
         "en": {
@@ -106049,7 +106049,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Este valor se calcula en función de tus datos corporales y tu objetivo."
+            "value": "Este valor se calcula en base a tus datos corporales y objetivo."
           }
         },
         "fr": {
@@ -106103,7 +106103,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Este valor é calculado com base nos seus dados corporais e objetivo."
+            "value": "Esse valor é calculado com base em seus dados corporais e sua meta."
           }
         },
         "ru": {
@@ -106121,7 +106121,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "该值根据您的身体数据和目标进行计算。"
+            "value": "该值是根据您的身体数据和目标计算得出的。"
           }
         },
         "zh-Hant": {
