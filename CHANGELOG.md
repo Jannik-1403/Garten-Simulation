@@ -967,3 +967,8 @@
 - **Habit Picker UI & Lokalisierung**: Die Auswahlliste zum Hinzufügen von To-Dos zu Routinen wurde auf ein schickes weißes 3D-Button-Design umgestellt. Die Pflanzen-Icons sitzen jetzt auf passend farbigen, abgerundeten Rechtecken. Außerdem wurde ein Leer-Zustand ("Keine Gewohnheiten zur Verfügung") eingefügt und automatisch für alle 16 unterstützten Sprachen zu 100% in die `Localizable.xcstrings` übersetzt.
 
 - **Routine-Kachel Bugfix**: Compiler-Fehler (Type-Checker Timeout) beim Hinzufügen von Gewohnheiten behoben, indem das komplexe UI in eine separate View (`AvailableHabitRow`) ausgelagert wurde.
+
+- **Eigenes To-Do Design**: Die Eingabefelder für Name und Beschreibung haben nun einen schicken, weißen 3D-Hintergrund erhalten. Das Pflanzen-Icon-Grid besteht jetzt ebenfalls komplett aus dicken 3D-Buttons, deren Farben sich dynamisch aus der Farbe der jeweiligen Pflanze zusammensetzen.
+- **Nährstoff-Quellen hinzugefügt**: Zu allen 28 Nährstoffen (Vitamine, Mineralstoffe, Ballaststoffe) wurden Nahrungsquellen in 16 Sprachen hinterlegt.
+- **UI-Update**: Die Nahrungsquellen werden nun direkt in der `NutrientCategoryDetailView` unter dem Fortschrittsbalken für jeden Nährstoff angezeigt.
+- **Bildschirmzeit-Übersetzung:** Der standardmäßige "Choose Activities"-Titel beim Screen Time Picker wurde durch eine lokalisierte Version ersetzt ("Apps auswählen" im Deutschen), sodass dieser jetzt ebenfalls in allen 16 unterstützten Sprachen korrekt übersetzt wird.
