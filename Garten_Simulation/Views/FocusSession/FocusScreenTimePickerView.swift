@@ -100,7 +100,7 @@ struct FocusScreenTimePickerView: View {
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.green.opacity(0.2), lineWidth: 1))
             }
             .buttonStyle(.plain)
-            .familyActivityPicker(isPresented: $isPickerPresented, selection: $manager.allowedSelection)
+            .familyActivityPicker(headerText: String(localized: "screenTime.picker.header", defaultValue: "Apps auswählen"), isPresented: $isPickerPresented, selection: $manager.allowedSelection)
             .onChange(of: isPickerPresented) { _, isOpen in
                 // When the picker closes, apply the selection and continue
                 if !isOpen && !pickerCompleted {

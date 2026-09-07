@@ -377,7 +377,7 @@ struct ScreenTimeSettingsView: View {
                         .foregroundStyle(.white)
                         .padding(.horizontal, 16)
                 }
-                .familyActivityPicker(isPresented: $isDailyLimitPickerPresented, selection: $dailyLimitSelection)
+                .familyActivityPicker(headerText: String(localized: "screenTime.picker.header", defaultValue: "Apps auswählen"), isPresented: $isDailyLimitPickerPresented, selection: $dailyLimitSelection)
                 
                 Spacer()
                 
@@ -506,7 +506,7 @@ struct ScreenTimeSettingsView: View {
                         .foregroundStyle(.white)
                         .padding(.horizontal, 16)
                 }
-                .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
+                .familyActivityPicker(headerText: String(localized: "screenTime.picker.header", defaultValue: "Apps auswählen"), isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
                 
                 Spacer()
                 
@@ -727,7 +727,7 @@ struct ScreenTimeSettingsView: View {
                                     .foregroundStyle(.white)
                                     .padding(.horizontal, 16)
                             }
-                            .familyActivityPicker(isPresented: $isPickerPresented, selection: $blockSelection)
+                            .familyActivityPicker(headerText: String(localized: "screenTime.picker.header", defaultValue: "Apps auswählen"), isPresented: $isPickerPresented, selection: $blockSelection)
                             Spacer()
                         }
                         .padding(.horizontal)

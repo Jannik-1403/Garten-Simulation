@@ -245,7 +245,7 @@ struct FocusSessionView: View {
                 // Do nothing, stay on step 1
             }
         }
-        .familyActivityPicker(isPresented: $showScreenTimePicker, selection: Binding(
+        .familyActivityPicker(headerText: String(localized: "screenTime.picker.header", defaultValue: "Apps auswählen"), isPresented: $showScreenTimePicker, selection: Binding(
             get: {
                 currentFocusMode == .full ? screenTimeManager.focusFullBlockSelection : screenTimeManager.focusPartialBlockSelection
             },

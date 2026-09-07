@@ -132,7 +132,7 @@ struct RoutineSessionView: View {
                 // Do nothing
             }
         }
-        .familyActivityPicker(isPresented: $showScreenTimePicker, selection: $screenTimeManager.allowedSelection)
+        .familyActivityPicker(headerText: String(localized: "screenTime.picker.header", defaultValue: "Apps auswählen"), isPresented: $showScreenTimePicker, selection: $screenTimeManager.allowedSelection)
         .onChange(of: showScreenTimePicker) { _, isOpen in
             if !isOpen {
                 screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
