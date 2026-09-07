@@ -124,7 +124,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                         title = "\(plantName)"
                         body = customMsg
                     } else {
-                        let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName)
+                        let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName, habitKey: rawName)
                         title = texts.title
                         body = texts.body
                     }
@@ -154,7 +154,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                     title = "\(plantName)"
                     body = customMsg
                 } else {
-                    let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName)
+                    let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName, habitKey: rawName)
                     title = texts.title
                     body = texts.body
                 }
