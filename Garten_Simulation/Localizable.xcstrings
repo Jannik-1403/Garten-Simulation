@@ -464946,97 +464946,97 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "素晴らしい、その調子です！あなたの睡眠ルーティンは最高です。"
+            "value": "素晴らしい、その調子です！あなたの睡眠ルーティンは最高です。平均して %@ に就寝しています。8時間の睡眠をとるには、%@ に起きる必要があります。"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ottimo lavoro, continua così! La tua routine di sonno è eccellente."
+            "value": "Ottimo lavoro, continua così! La tua routine di sonno è eccellente. In media, vai a letto alle %@. Per dormire 8 ore, dovresti svegliarti alle %@."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great job, keep it up! Your sleep routine is excellent."
+            "value": "Great job, keep it up! Your sleep routine is excellent. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great job, keep it up! Your sleep routine is excellent."
+            "value": "Great job, keep it up! Your sleep routine is excellent. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "잘하고 있어요, 계속 유지하세요! 당신의 수면 루틴은 훌륭합니다."
+            "value": "잘하고 있어요, 계속 유지하세요! 당신의 수면 루틴은 훌륭합니다. 평균적으로 %@ 에 잠자리에 듭니다. 8시간을 자려면 %@ 에 일어나야 합니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "干得好，继续保持！你的睡眠惯例非常棒。"
+            "value": "干得好，继续保持！你的睡眠惯例非常棒。平均而言，你在 %@ 睡觉。为了睡够8小时，你应该在 %@ 起床。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "幹得好，繼續保持！你的睡眠慣例非常棒。"
+            "value": "幹得好，繼續保持！你的睡眠慣例非常棒。平均而言，你在 %@ 睡覺。為了睡夠8小時，你應該在 %@ 起床。"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great job, keep it up! Your sleep routine is excellent."
+            "value": "Great job, keep it up! Your sleep routine is excellent. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¡Buen trabajo, sigue así! Tu rutina de sueño es excelente."
+            "value": "¡Buen trabajo, sigue así! Tu rutina de sueño es excelente. En promedio, te acuestas a las %@. Para dormir 8 horas, deberías despertarte a las %@."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Goed gedaan, ga zo door! Je slaaproutine is uitstekend."
+            "value": "Goed gedaan, ga zo door! Je slaaproutine is uitstekend. Gemiddeld ga je om %@ naar bed. Om 8 uur slaap te krijgen, moet je om %@ opstaan."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ótimo trabalho, continue assim! Sua rotina de sono é excelente."
+            "value": "Ótimo trabalho, continue assim! Sua rotina de sono é excelente. Em média, você vai para a cama às %@. Para ter 8 horas de sono, você deve acordar às %@."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ótimo trabalho, continue assim! Sua rotina de sono é excelente."
+            "value": "Ótimo trabalho, continue assim! Sua rotina de sono é excelente. Em média, você vai para a cama às %@. Para ter 8 horas de sono, você deve acordar às %@."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great job, keep it up! Your sleep routine is excellent."
+            "value": "Great job, keep it up! Your sleep routine is excellent. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отличная работа, продолжайте в том же духе! Ваш режим сна идеален."
+            "value": "Отличная работа, продолжайте в том же духе! Ваш режим сна идеален. В среднем вы ложитесь в %@. Чтобы спать 8 часов, вам следует просыпаться в %@."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Excellent, continuez ainsi ! Votre routine de sommeil est parfaite."
+            "value": "Excellent, continuez ainsi ! Votre routine de sommeil est parfaite. En moyenne, vous vous couchez à %@. Pour dormir 8 heures, vous devriez vous réveiller à %@."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet."
+            "value": "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         }
       }

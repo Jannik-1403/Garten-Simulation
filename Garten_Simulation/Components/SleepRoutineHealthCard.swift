@@ -47,16 +47,17 @@ struct SleepRoutineHealthCard: View {
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .multilineTextAlignment(.center)
                             
+                            let avg = healthManager.sleepAvgBedtimeString ?? "23:00"
+                            let wake = healthManager.sleepTargetWakeUpString ?? "07:00"
+                            
                             if regularity >= 1.0 {
-                                Text(String(localized: "sleep.routine.insight.excellent", defaultValue: "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet."))
+                                Text(String(format: String(localized: "sleep.routine.insight.excellent", defaultValue: "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."), avg, wake))
                                     .font(.system(size: 13, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)
                                     .multilineTextAlignment(.center)
-                                    .lineLimit(4)
+                                    .minimumScaleFactor(0.7)
+                                    .lineLimit(5)
                             } else {
-                                let avg = healthManager.sleepAvgBedtimeString ?? "23:00"
-                                let wake = healthManager.sleepTargetWakeUpString ?? "07:00"
-                                
                                 if healthManager.sleepIsWeekendWorst {
                                     Text(String(format: String(localized: "sleep.routine.insight.weekend", defaultValue: "Du musst daran arbeiten. Besonders am Wochenende gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."), avg, wake))
                                         .font(.system(size: 13, weight: .medium, design: .rounded))
