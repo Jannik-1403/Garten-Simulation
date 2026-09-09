@@ -506,8 +506,8 @@ class HealthManager: ObservableObject {
                 return
             }
             
-            // Berechne die Abweichung der Bettgeh-Zeiten in Minuten (relativ zu 12 Uhr mittags des Vortages, um Mitternachts-Sprünge zu vermeiden)
-            let bedtimesInMinutes: [Double] = bedtimes.map { time in
+            var filteredBedtimes = bedtimes
+            var filteredBedtimesInMinutes: [Double] = bedtimes.map { time in
                 let hour = calendar.component(.hour, from: time)
                 let minute = calendar.component(.minute, from: time)
                 // Wenn Zeit vor 12 Uhr mittags, rechne 24h dazu
@@ -515,9 +515,30 @@ class HealthManager: ObservableObject {
                 return Double(adjustedHour * 60 + minute)
             }
             
-            let mean = bedtimesInMinutes.reduce(0, +) / Double(bedtimesInMinutes.count)
+            // Filtere den größten Ausreißer (z.B. eine Party-Nacht) aus der Berechnung heraus,
+            // sofern genügend Daten (mindestens 4 Tage) vorhanden sind.
+            if filteredBedtimes.count > 3 {
+                let initialMean = filteredBedtimesInMinutes.reduce(0, +) / Double(filteredBedtimesInMinutes.count)
+                var maxDev: Double = -1
+                var outlierIndex = -1
+                
+                for i in 0..<filteredBedtimesInMinutes.count {
+                    let dev = abs(filteredBedtimesInMinutes[i] - initialMean)
+                    if dev > maxDev {
+                        maxDev = dev
+                        outlierIndex = i
+                    }
+                }
+                
+                if outlierIndex != -1 {
+                    filteredBedtimes.remove(at: outlierIndex)
+                    filteredBedtimesInMinutes.remove(at: outlierIndex)
+                }
+            }
+            
+            let mean = filteredBedtimesInMinutes.reduce(0, +) / Double(filteredBedtimesInMinutes.count)
             // Statt Standardabweichung (die Ausreißer überbewertet), nutzen wir die mittlere absolute Abweichung (MAD)
-            let mad = bedtimesInMinutes.reduce(0) { $0 + abs($1 - mean) } / Double(bedtimesInMinutes.count)
+            let mad = filteredBedtimesInMinutes.reduce(0) { $0 + abs($1 - mean) } / Double(filteredBedtimesInMinutes.count)
             
             var avgHour = Int(mean) / 60
             let avgMinute = Int(mean) % 60
@@ -530,7 +551,7 @@ class HealthManager: ObservableObject {
             
             var maxDev: Double = -1
             var worstDate: Date? = nil
-            for time in bedtimes {
+            for time in filteredBedtimes {
                 let hour = calendar.component(.hour, from: time)
                 let minute = calendar.component(.minute, from: time)
                 let adjustedHour = hour < 12 ? hour + 24 : hour
