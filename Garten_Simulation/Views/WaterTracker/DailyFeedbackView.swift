@@ -37,10 +37,8 @@ struct DailyHealthScoreCard: View {
             cornerRadius: 16,
             shadowDepth: 6
         ))
-        .sheet(isPresented: $showDetailSheet) {
+        .fullScreenCover(isPresented: $showDetailSheet) {
             DailyFeedbackDetailView(vm: vm)
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
         }
         .onAppear {
             vm.activeHabits = gardenStore.sichtbarePflanzen
@@ -75,8 +73,18 @@ struct DailyFeedbackDetailView: View {
                                 .lineSpacing(4)
                         }
                         .padding()
-                        .background(Color(.systemBackground))
-                        .cornerRadius(16)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                .fill(Color.white)
+                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                        )
+                        .background(
+                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                .fill(Color(white: 0.85))
+                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                                .offset(y: 6)
+                        )
+                        .padding(.bottom, 6)
                     } else {
                         // Begründungen für Warnungen/Kritische Punkte (jetzt alle)
                         VStack(spacing: 24) {
@@ -88,8 +96,18 @@ struct DailyFeedbackDetailView: View {
                             }
                         }
                         .padding()
-                        .background(Color(.systemBackground))
-                        .cornerRadius(16)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                .fill(Color.white)
+                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                        )
+                        .background(
+                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                .fill(Color(white: 0.85))
+                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                                .offset(y: 6)
+                        )
+                        .padding(.bottom, 6)
                     }
                 }
                 .padding()
@@ -102,9 +120,9 @@ struct DailyFeedbackDetailView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(Color(.tertiaryLabel))
-                            .font(.system(size: 24))
+                        Image(systemName: "xmark")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.primary)
                     }
                 }
             }
@@ -190,15 +208,18 @@ private struct CategoryIssueRow: View {
                         Text(String(localized: "fitness.goal.decrease", defaultValue: "Ziel senken"))
                             .font(.system(size: 13, weight: .semibold, design: .rounded))
                     }
-                    .foregroundColor(userFeedback == -1 ? Color(.systemOrange) : Color(UIColor.secondaryLabel))
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 10)
-                    .background(userFeedback == -1 ? Color(.systemOrange).opacity(0.15) : Color(UIColor.systemGray6))
-                    .cornerRadius(20)
-                    .scaleEffect(thumbDownScale)
+                    .foregroundColor(userFeedback == -1 ? .white : .primary)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 12)
                     .contentShape(Rectangle())
                 }
-                .buttonStyle(BorderlessButtonStyle())
+                .buttonStyle(PillButtonStyle(
+                    farbe: userFeedback == -1 ? Color(.systemOrange) : .white,
+                    sekundaerFarbe: userFeedback == -1 ? Color(.systemOrange).opacity(0.8) : Color(white: 0.85),
+                    cornerRadius: 16,
+                    shadowDepth: 4
+                ))
+                .scaleEffect(thumbDownScale)
                 
                 Button {
                     handleThumb(up: true)
@@ -209,15 +230,18 @@ private struct CategoryIssueRow: View {
                         Text(String(localized: "fitness.goal.increase", defaultValue: "Ziel erhöhen"))
                             .font(.system(size: 13, weight: .semibold, design: .rounded))
                     }
-                    .foregroundColor(userFeedback == 1 ? Color(.systemGreen) : Color(UIColor.secondaryLabel))
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 10)
-                    .background(userFeedback == 1 ? Color(.systemGreen).opacity(0.15) : Color(UIColor.systemGray6))
-                    .cornerRadius(20)
-                    .scaleEffect(thumbUpScale)
+                    .foregroundColor(userFeedback == 1 ? .white : .primary)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 12)
                     .contentShape(Rectangle())
                 }
-                .buttonStyle(BorderlessButtonStyle())
+                .buttonStyle(PillButtonStyle(
+                    farbe: userFeedback == 1 ? Color(.systemGreen) : .white,
+                    sekundaerFarbe: userFeedback == 1 ? Color(.systemGreen).opacity(0.8) : Color(white: 0.85),
+                    cornerRadius: 16,
+                    shadowDepth: 4
+                ))
+                .scaleEffect(thumbUpScale)
             }
             .padding(.top, 4)
         }

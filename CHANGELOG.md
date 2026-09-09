@@ -1046,3 +1046,5 @@
 - **Lauf-Feedback**: Engine bewertet bei 'Joggen' nun explizit das Schritte-Ziel, statt nach Trainingsminuten zu suchen.
 
 - **Eindeutiges UI-Feedback**: Die vagen Daumen-Buttons (👍/👎) in der täglichen Feedback-Auswertung wurden durch klare, beschriftete Pfeil-Buttons ersetzt ('Ziel senken' / 'Ziel erhöhen'). So ist für den Nutzer sofort verständlich, dass er damit die Toleranzgrenzen der App justieren kann.
+
+- **Tages-Analyse (Detail-Ansicht)**: Die kompakte Liste auf der Startseite wurde entfernt. Stattdessen öffnet sich beim Tippen auf den Tages-Score nun ein übersichtliches Vollbild-Fenster (Sheet). Die Auswertungstexte wurden komplett überarbeitet: Bei unzureichendem Schlaf wird eine konkrete Schlafenszeit vorgeschlagen, bei fehlenden Schritten exakt berechnet, ob noch 500 oder 2000 Schritte fehlen, und das Wasser-Ziel ist strikt synchronisiert.
