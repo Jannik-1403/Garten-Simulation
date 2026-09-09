@@ -1027,3 +1027,8 @@
 
 
 - DailyFeedbackView im Statistik-Dashboard unter 'Tag'-Tab ganz oben eingeblendet
+
+
+- FitnessOverviewCard (aufklappbare Multi-Kategorie-Ansicht für Wasser, Schlaf, Kraft, Laufen, Ernährung)
+- Zeitabhängige Ansprache beim Wassertracking gefixed
+- 33 neue xcstrings in alle 16 Sprachen übersetzt
