@@ -602,6 +602,10 @@ struct PflanzeDetailSheet: View {
                                                 VStack {
                                                     if metric == .fiber || metric == .calcium || metric == .energy {
                                                         // Custom cards handle these metrics instead of HealthChartView
+                                                    } else if metric == .sleep {
+                                                        SleepRoutineHealthCard(onUnlink: { zeigeAppleHealthEntkoppelnAlert = true })
+                                                            .padding(.horizontal, 16)
+                                                            .padding(.vertical, 4)
                                                     } else {
                                                         if !hourlyHealthData.isEmpty {
                                                             HealthChartView(

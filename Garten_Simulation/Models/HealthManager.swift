@@ -14,6 +14,9 @@ class HealthManager: ObservableObject {
     @Published var todaysSteps: Double = 0
     @Published var todaysWater: Double = 0
     @Published var todaysSleep: Double = 0
+    @Published var latestSleepStart: Date?
+    @Published var latestSleepEnd: Date?
+    @Published var sleepRegularityPercentage: Double?
     @Published var todaysMindfulness: Double = 0
     @Published var todaysRunning: Double = 0
     @Published var todaysStrengthTraining: Double = 0
@@ -400,6 +403,21 @@ class HealthManager: ObservableObject {
                                                  $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
                                                  $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
             
+            
+            // Ermittle Start- und Endzeit der neuesten Schlaf-Session (über alle zusammenhängenden Samples)
+            if let firstSample = asleepSamples.min(by: { $0.startDate < $1.startDate }),
+               let lastSample = asleepSamples.max(by: { $0.endDate < $1.endDate }) {
+                DispatchQueue.main.async {
+                    self.latestSleepStart = firstSample.startDate
+                    self.latestSleepEnd = lastSample.endDate
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.latestSleepStart = nil
+                    self.latestSleepEnd = nil
+                }
+            }
+            
             let totalSleepSeconds = asleepSamples.reduce(0.0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
             let totalSleepHours = totalSleepSeconds / 3600.0
             
@@ -408,6 +426,73 @@ class HealthManager: ObservableObject {
             }
         }
         
+        healthStore.execute(query)
+        fetchSleepRegularity()
+    }
+    
+    private func fetchSleepRegularity() {
+        guard let sleepType = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) else { return }
+        
+        let calendar = Calendar.current
+        let today = Date()
+        guard let start = calendar.date(byAdding: .day, value: -7, to: today) else { return }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: today, options: .strictStartDate)
+        let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, error in
+            guard let samples = samples as? [HKCategorySample] else { return }
+            
+            let asleepSamples = samples.filter { $0.value == HKCategoryValueSleepAnalysis.asleepCore.rawValue ||
+                                                 $0.value == HKCategoryValueSleepAnalysis.asleepDeep.rawValue ||
+                                                 $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
+                                                 $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
+            
+            // Gruppiere nach dem "Aufwach-Tag"
+            var dailyBedtimes: [Date: Date] = [:]
+            for sample in asleepSamples {
+                // Der Tag, an dem die Session endet (Aufwachen)
+                let wakeUpDay = calendar.startOfDay(for: sample.endDate)
+                if let existing = dailyBedtimes[wakeUpDay] {
+                    if sample.startDate < existing {
+                        dailyBedtimes[wakeUpDay] = sample.startDate
+                    }
+                } else {
+                    dailyBedtimes[wakeUpDay] = sample.startDate
+                }
+            }
+            
+            let bedtimes = Array(dailyBedtimes.values)
+            guard bedtimes.count >= 3 else {
+                DispatchQueue.main.async { self.sleepRegularityPercentage = nil }
+                return
+            }
+            
+            // Berechne die Abweichung der Bettgeh-Zeiten in Minuten (relativ zu 12 Uhr mittags des Vortages, um Mitternachts-Sprünge zu vermeiden)
+            let bedtimesInMinutes: [Double] = bedtimes.map { time in
+                let hour = calendar.component(.hour, from: time)
+                let minute = calendar.component(.minute, from: time)
+                // Wenn Zeit vor 12 Uhr mittags, rechne 24h dazu
+                let adjustedHour = hour < 12 ? hour + 24 : hour
+                return Double(adjustedHour * 60 + minute)
+            }
+            
+            let mean = bedtimesInMinutes.reduce(0, +) / Double(bedtimesInMinutes.count)
+            let variance = bedtimesInMinutes.reduce(0) { $0 + pow($1 - mean, 2) } / Double(bedtimesInMinutes.count)
+            let stdDev = sqrt(variance) // Standardabweichung in Minuten
+            
+            // 0 bis 30 Min Abweichung = 100%, 120 Min Abweichung = 0%
+            let maxDeviation = 120.0
+            let minDeviation = 30.0
+            
+            var regularity = 1.0
+            if stdDev > minDeviation {
+                regularity = 1.0 - ((stdDev - minDeviation) / (maxDeviation - minDeviation))
+            }
+            regularity = max(0.0, min(1.0, regularity))
+            
+            DispatchQueue.main.async {
+                self.sleepRegularityPercentage = regularity
+            }
+        }
         healthStore.execute(query)
     }
     
