@@ -311,7 +311,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             return .strengthTraining
         } else if nameLower.contains("trinken") || nameLower.contains("wasser") || nameLower.contains("water") {
             return .water
-        } else if nameLower.contains("schlafen") || nameLower.contains("sleep") || nameLower.contains("ruhe") {
+        } else if nameLower.contains("schlaf") || nameLower.contains("sleep") || nameLower.contains("ruhe") {
             return .sleep
         } else if nameLower.contains("meditieren") || nameLower.contains("mindfulness") || nameLower.contains("achtsamkeit") {
             return .mindfulness
