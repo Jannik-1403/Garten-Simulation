@@ -47,7 +47,7 @@ struct SleepRoutineHealthCard: View {
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .multilineTextAlignment(.center)
                             
-                            if regularity >= 0.8 {
+                            if regularity >= 0.95 {
                                 Text(String(localized: "sleep.routine.insight.excellent", defaultValue: "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet."))
                                     .font(.system(size: 13, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)
