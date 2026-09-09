@@ -1037,3 +1037,6 @@
 - **3D Score Card Redesign**: Die Score-Card nutzt nun das PillButtonStyle-Layout und expandiert physisch nach unten. Sie ist in der Breite an die Unkraut-Warnung angeglichen, und alle Eichenringe (Icons) in der Analyseansicht wurden für ein cleaneres Design entfernt.
 
 - **UI Bugfix**: Der 'Tages-Score'-Button hat im geschlossenen Zustand nun wieder die normale Höhe. Das Problem, dass sich der 3D-Pill-Button unendlich nach unten ausgedehnt hat, wurde behoben.
+
+- **UI Layout & Clipping**: Die Tages-Score Card schneidet beim Zuklappen nun überstehende Texte korrekt ab (`.clipped()`). Alle Feedback-Texte wurden präzise linksbündig ausgerichtet.
+- **Dynamisches Daumen-Feedback**: Nutzer können dem Tages-Feedback über 👍/👎-Buttons bewerten. Die Bewertungs-Logik skaliert nun automatisch die internen Grenzwerte pro Kategorie, um zukünftig strengeres oder toleranteres Feedback zu geben.

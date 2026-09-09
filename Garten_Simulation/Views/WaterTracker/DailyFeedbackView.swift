@@ -14,7 +14,11 @@ struct DailyHealthScoreCard: View {
             VStack(spacing: 0) {
                 // MARK: Kopfzeile (Score)
                 HStack(spacing: 16) {
-                    MiniChunkyProgressRing(progress: Double(vm.dailyScore), goal: 100)
+                    MiniChunkyProgressRing(
+                        progress: Double(vm.dailyScore),
+                        goal: 100,
+                        color: vm.dailyScore >= 80 ? Color(.systemGreen) : (vm.dailyScore >= 50 ? Color(.systemOrange) : Color(.systemRed))
+                    )
                         .frame(width: 56, height: 56)
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -23,7 +27,7 @@ struct DailyHealthScoreCard: View {
                             .foregroundColor(.primary)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-
+                    
                     Image(systemName: "chevron.down")
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(Color(.tertiaryLabel))
@@ -89,49 +93,44 @@ struct DailyHealthScoreCard: View {
 
 // MARK: - MiniChunkyProgressRing
 
-private struct MiniChunkyProgressRing: View {
+struct MiniChunkyProgressRing: View {
     var progress: Double
     var goal: Double
+    var color: Color = .orange
     
     var percent: Double {
         if goal <= 0 { return 0 }
         return min(1.0, progress / goal)
     }
     
-    var scoreColor: Color {
-        if progress >= 80 { return Color(.systemGreen) }
-        if progress >= 50 { return Color(.systemOrange) }
-        return Color(.systemRed)
-    }
-    
     var body: some View {
         ZStack {
             // Background Shadow
             Circle()
-                .stroke(scoreColor.opacity(0.15), lineWidth: 8)
+                .stroke(color.opacity(0.15), lineWidth: 8)
                 .offset(y: 2)
             
             // Background Track
             Circle()
-                .stroke(scoreColor.opacity(0.2), lineWidth: 8)
+                .stroke(color.opacity(0.2), lineWidth: 8)
             
             // Foreground Progress Shadow
             Circle()
                 .trim(from: 0.0, to: percent)
-                .stroke(scoreColor.opacity(0.5), style: StrokeStyle(lineWidth: 8, lineCap: .round))
+                .stroke(color.opacity(0.5), style: StrokeStyle(lineWidth: 8, lineCap: .round))
                 .rotationEffect(Angle(degrees: -90))
                 .offset(y: 2)
             
             // Foreground Progress
             Circle()
                 .trim(from: 0.0, to: percent)
-                .stroke(scoreColor, style: StrokeStyle(lineWidth: 8, lineCap: .round))
+                .stroke(color, style: StrokeStyle(lineWidth: 8, lineCap: .round))
                 .rotationEffect(Angle(degrees: -90))
                 
             VStack(spacing: 0) {
                 Text("\(Int(progress))")
                     .font(.system(size: 16, weight: .black, design: .rounded))
-                    .foregroundColor(scoreColor)
+                    .foregroundColor(color)
             }
         }
     }
@@ -158,7 +157,7 @@ private struct CategoryIssueRow: View {
                 .lineSpacing(4)
                 .fixedSize(horizontal: false, vertical: true)
                 
-            HStack(spacing: 24) {
+            HStack(spacing: 8) {
                 Button {
                     handleThumb(up: false)
                 } label: {
@@ -166,6 +165,8 @@ private struct CategoryIssueRow: View {
                         .font(.system(size: 16))
                         .foregroundColor(userFeedback == -1 ? Color(.systemOrange) : Color(.tertiaryLabel))
                         .scaleEffect(thumbDownScale)
+                        .frame(width: 44, height: 44)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 
@@ -176,10 +177,13 @@ private struct CategoryIssueRow: View {
                         .font(.system(size: 16))
                         .foregroundColor(userFeedback == 1 ? Color(.systemGreen) : Color(.tertiaryLabel))
                         .scaleEffect(thumbUpScale)
+                        .frame(width: 44, height: 44)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(BorderlessButtonStyle())
             }
-            .padding(.top, 4)
+            .padding(.top, -4)
+            .padding(.leading, -12) // Ausrichtung korrigieren wegen des 44x44 frames
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .onAppear {

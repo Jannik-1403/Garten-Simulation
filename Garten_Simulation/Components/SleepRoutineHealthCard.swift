@@ -26,21 +26,9 @@ struct SleepRoutineHealthCard: View {
                 if let regularity = healthManager.sleepRegularityPercentage {
                     // Regelmäßigkeit (Prozent)
                     VStack(alignment: .center, spacing: 12) {
-                        ZStack {
-                            Circle()
-                                .stroke(Color(UIColor.systemGray5), lineWidth: 8)
-                            
-                            Circle()
-                                .trim(from: 0, to: CGFloat(regularity))
-                                .stroke(Color.blauPrimary, style: StrokeStyle(lineWidth: 8, lineCap: .round))
-                                .rotationEffect(.degrees(-90))
-                                .animation(.spring(), value: regularity)
-                            
-                            Text("\(Int(regularity * 100))%")
-                                .font(.system(size: 26, weight: .black, design: .rounded))
-                                .foregroundStyle(Color.blauPrimary)
-                        }
-                        .frame(width: 90, height: 90)
+                        MiniChunkyProgressRing(progress: regularity * 100, goal: 100)
+                            .frame(width: 80, height: 80)
+                            .foregroundStyle(Color.blauPrimary)
                         
                         VStack(alignment: .center, spacing: 4) {
                             Text(String(localized: "sleep.routine.regularity.title", defaultValue: "Schlaf-Regelmäßigkeit"))

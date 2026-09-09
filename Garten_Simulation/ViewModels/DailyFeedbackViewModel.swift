@@ -90,7 +90,8 @@ class DailyFeedbackViewModel: ObservableObject {
             sleepRegularity: hm.sleepRegularityPercentage,
             strengthDaysAgo: strengthDaysAgo,
             hasStrengthHistory: hm.hasAnyWorkoutHistory,
-            runningMinutesToday: hm.todaysRunning,
+            stepsToday: hm.todaysSteps,
+            stepsGoal: 10000.0, // Standard Schritte-Ziel, ggf. aus Einstellungen holen
             energyToday: hm.todaysEnergy,
             proteinToday: hm.todaysProtein,
             proteinGoal: proteinGoal > 0 ? proteinGoal : 120.0,

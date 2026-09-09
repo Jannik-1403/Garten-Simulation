@@ -85,7 +85,8 @@ struct FeedbackScoringEngine {
         var sleepRegularity: Double?        // 0–1 aus HealthManager
         var strengthDaysAgo: Int?           // nil = keine Historie
         var hasStrengthHistory: Bool
-        var runningMinutesToday: Double
+        var stepsToday: Double
+        var stepsGoal: Double
         var energyToday: Double             // > 0 = Ernährung wird getrackt
         var proteinToday: Double
         var proteinGoal: Double
@@ -98,8 +99,8 @@ struct FeedbackScoringEngine {
 
     static func getModifier(for category: FitnessCategory) -> Double {
         let val = UserDefaults.standard.integer(forKey: "feedback_modifier_\(category.rawValue)")
-        if val < 0 { return -0.15 } // 👎 -> Toleranter (Grenzwert sinkt)
-        else if val > 0 { return 0.10 } // 👍 -> Strenger (Grenzwert steigt)
+        if val < 0 { return -0.05 } // 👎 -> Toleranter (Grenzwert sinkt leicht)
+        else if val > 0 { return 0.05 } // 👍 -> Strenger (Grenzwert steigt leicht)
         return 0.0
     }
 
@@ -226,24 +227,37 @@ struct FeedbackScoringEngine {
                                              summaryText: strengthSummary, detailText: strengthDetail))
         }
 
-        // MARK: Laufen (nur wenn Nutzer eine Lauf-Pflanze hat)
+        // MARK: Joggen/Laufen (basiert auf Schritten)
         if input.hasRunningPlant {
-            let runMins = Int(input.runningMinutesToday)
-            let runStatus: CategoryStatus = runMins > 0 ? .good : .warning
-
-            let runSummary: String
-            let runDetail: String
-            if runMins > 0 {
-                runSummary = String(format: String(localized: "fitness.running.summary.done",
-                                                    defaultValue: "%lld min ✓"), runMins)
-                runDetail = String(localized: "fitness.running.detail.done",
-                                   defaultValue: "Gute Ausdauereinheit heute.")
+            let mod = getModifier(for: .running)
+            let steps = Int(input.stepsToday)
+            let goal = Int(input.stepsGoal)
+            let stepsPct = input.stepsGoal > 0 ? input.stepsToday / input.stepsGoal : 0
+            
+            let runStatus: CategoryStatus
+            if stepsPct >= max(0.1, 1.0 + mod) {
+                runStatus = .good
+            } else if stepsPct >= max(0.1, 0.5 + mod) {
+                runStatus = .warning
             } else {
-                runSummary = String(localized: "fitness.running.summary.none",
-                                    defaultValue: "Heute noch nichts")
-                runDetail = String(localized: "fitness.running.detail.none",
-                                   defaultValue: "Heute noch keine Laufeinheit. Ein kurzer 20-Minuten-Lauf reicht für den Tag.")
+                runStatus = .critical
             }
+
+            let runSummary = "\(steps) / \(goal) " + String(localized: "fitness.running.steps.short", defaultValue: "Schritte")
+            let runDetail: String
+            
+            switch runStatus {
+            case .good:
+                runDetail = String(localized: "fitness.running.detail.good",
+                                   defaultValue: "Schritte-Ziel erreicht ✓ Klasse gemacht!")
+            case .warning:
+                runDetail = String(localized: "fitness.running.detail.warning",
+                                   defaultValue: "Du bist heute schon einige Schritte gegangen, aber das Ziel ist noch nicht erreicht.")
+            default:
+                runDetail = String(localized: "fitness.running.detail.critical",
+                                   defaultValue: "Dein Schritte-Ziel ist noch nicht erreicht. Versuche heute noch einen Spaziergang einzuplanen.")
+            }
+            
             results.append(CategoryFeedback(category: .running, status: runStatus,
                                              summaryText: runSummary, detailText: runDetail))
         }
