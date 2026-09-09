@@ -979,3 +979,5 @@
 
 - Lokalisierte und habit-spezifische Notification-Texte für Routinen und Pflanzen hinzugefügt.
 - Alte ungenutzte automatische Erinnerungstexte entfernt.
+
+- Unbenutzte `drynessSaturation`-Logik aus `HabitModel.swift` entfernt, um die optische Darstellung unangetastet zu lassen.
