@@ -1048,3 +1048,5 @@
 - **Eindeutiges UI-Feedback**: Die vagen Daumen-Buttons (👍/👎) in der täglichen Feedback-Auswertung wurden durch klare, beschriftete Pfeil-Buttons ersetzt ('Ziel senken' / 'Ziel erhöhen'). So ist für den Nutzer sofort verständlich, dass er damit die Toleranzgrenzen der App justieren kann.
 
 - **Tages-Analyse (Detail-Ansicht)**: Die kompakte Liste auf der Startseite wurde entfernt. Stattdessen öffnet sich beim Tippen auf den Tages-Score nun ein übersichtliches Vollbild-Fenster (Sheet). Die Auswertungstexte wurden komplett überarbeitet: Bei unzureichendem Schlaf wird eine konkrete Schlafenszeit vorgeschlagen, bei fehlenden Schritten exakt berechnet, ob noch 500 oder 2000 Schritte fehlen, und das Wasser-Ziel ist strikt synchronisiert.
+
+- **Tages-Analyse (Design-Update)**: Die Tages-Analyse öffnet sich nun als echtes Vollbild (Full-Screen) statt als halbes Sheet. Das X-Icon zum Schließen wurde bereinigt (schwarz, ohne grauen Hintergrund). Alle Container und die Buttons zum Anpassen der Ziele (Ziel senken / erhöhen) verwenden nun konsequent den weißen 3D-Look.

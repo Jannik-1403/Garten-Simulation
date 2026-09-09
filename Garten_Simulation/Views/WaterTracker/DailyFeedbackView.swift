@@ -190,6 +190,16 @@ private struct CategoryIssueRow: View {
                 Text(categoryName)
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(.primary)
+                
+                Spacer()
+                
+                Text(feedback.summaryText)
+                    .font(.system(size: 13, weight: .semibold, design: .rounded))
+                    .foregroundColor(Color(.secondaryLabel))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(8)
             }
             
             Text(feedback.detailText)
