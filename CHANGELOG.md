@@ -1,3 +1,8 @@
+## [2026-09-09] - Apple Health Sleep Routine
+- **Schlafroutine:** Apple Health Integration für die Gewohnheit 'Schlafroutine'.
+- **Regelmäßigkeit:** Neue `SleepRoutineHealthCard` berechnet und visualisiert die Schlaf-Regelmäßigkeit (Konsistenz der Bettgehzeiten der letzten 7 Tage) als Prozentwert.
+- **Lokalisierung:** Vollständige Unterstützung in allen 16 Projektsprachen per automatischem String-Katalog-Update.
+
 ## [2026-09-09] - Body Tracking Chart Aggregation
 - **Body Tracking:** Bei den Filtern '6 Monate' und 'Jahr' werden die Datenpunkte im Diagramm nun zu übersichtlichen Wochendurchschnitten zusammengefasst.
 - **Body Tracking:** Der Header über dem Diagramm zeigt nun für den ausgewählten Zeitraum immer den Durchschnittswert ('DURCHSCHNITT') statt des aktuellsten Gewichts, analog zu Apple Health.
