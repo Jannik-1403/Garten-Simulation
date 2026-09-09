@@ -173,33 +173,46 @@ private struct CategoryIssueRow: View {
                 .lineSpacing(4)
                 .fixedSize(horizontal: false, vertical: true)
                 
-            HStack(spacing: 8) {
+            HStack(spacing: 12) {
                 Button {
                     handleThumb(up: false)
                 } label: {
-                    Image(systemName: userFeedback == -1 ? "hand.thumbsdown.fill" : "hand.thumbsdown")
-                        .font(.system(size: 16))
-                        .foregroundColor(userFeedback == -1 ? Color(.systemOrange) : Color(.tertiaryLabel))
-                        .scaleEffect(thumbDownScale)
-                        .frame(width: 44, height: 44)
-                        .contentShape(Rectangle())
+                    HStack(spacing: 4) {
+                        Image(systemName: userFeedback == -1 ? "arrow.down.circle.fill" : "arrow.down.circle")
+                            .font(.system(size: 14))
+                        Text(String(localized: "fitness.goal.decrease", defaultValue: "Ziel senken"))
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                    }
+                    .foregroundColor(userFeedback == -1 ? Color(.systemOrange) : Color(UIColor.secondaryLabel))
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 10)
+                    .background(userFeedback == -1 ? Color(.systemOrange).opacity(0.15) : Color(UIColor.systemGray6))
+                    .cornerRadius(20)
+                    .scaleEffect(thumbDownScale)
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 
                 Button {
                     handleThumb(up: true)
                 } label: {
-                    Image(systemName: userFeedback == 1 ? "hand.thumbsup.fill" : "hand.thumbsup")
-                        .font(.system(size: 16))
-                        .foregroundColor(userFeedback == 1 ? Color(.systemGreen) : Color(.tertiaryLabel))
-                        .scaleEffect(thumbUpScale)
-                        .frame(width: 44, height: 44)
-                        .contentShape(Rectangle())
+                    HStack(spacing: 4) {
+                        Image(systemName: userFeedback == 1 ? "arrow.up.circle.fill" : "arrow.up.circle")
+                            .font(.system(size: 14))
+                        Text(String(localized: "fitness.goal.increase", defaultValue: "Ziel erhöhen"))
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                    }
+                    .foregroundColor(userFeedback == 1 ? Color(.systemGreen) : Color(UIColor.secondaryLabel))
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 10)
+                    .background(userFeedback == 1 ? Color(.systemGreen).opacity(0.15) : Color(UIColor.systemGray6))
+                    .cornerRadius(20)
+                    .scaleEffect(thumbUpScale)
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(BorderlessButtonStyle())
             }
-            .padding(.top, -4)
-            .padding(.leading, -12) // Ausrichtung korrigieren wegen des 44x44 frames
+            .padding(.top, 4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .onAppear {
