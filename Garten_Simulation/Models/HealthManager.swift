@@ -407,13 +407,29 @@ class HealthManager: ObservableObject {
                                                  $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
                                                  $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
             
+            // Bündele die Samples zu kontinuierlichen Sessions (Toleranz: 3 Stunden Lücke)
+            let sortedSamples = asleepSamples.sorted(by: { $0.startDate < $1.startDate })
+            var sessions: [(startDate: Date, endDate: Date)] = []
             
-            // Ermittle Start- und Endzeit der neuesten Schlaf-Session (über alle zusammenhängenden Samples)
-            if let firstSample = asleepSamples.min(by: { $0.startDate < $1.startDate }),
-               let lastSample = asleepSamples.max(by: { $0.endDate < $1.endDate }) {
+            for sample in sortedSamples {
+                if sessions.isEmpty {
+                    sessions.append((startDate: sample.startDate, endDate: sample.endDate))
+                    continue
+                }
+                let lastIndex = sessions.count - 1
+                let lastSession = sessions[lastIndex]
+                if sample.startDate.timeIntervalSince(lastSession.endDate) <= 3 * 3600 {
+                    sessions[lastIndex].endDate = max(lastSession.endDate, sample.endDate)
+                } else {
+                    sessions.append((startDate: sample.startDate, endDate: sample.endDate))
+                }
+            }
+            
+            // Finde die längste Session der letzten 24h
+            if let mainSession = sessions.max(by: { $0.endDate.timeIntervalSince($0.startDate) < $1.endDate.timeIntervalSince($1.startDate) }) {
                 DispatchQueue.main.async {
-                    self.latestSleepStart = firstSample.startDate
-                    self.latestSleepEnd = lastSample.endDate
+                    self.latestSleepStart = mainSession.startDate
+                    self.latestSleepEnd = mainSession.endDate
                 }
             } else {
                 DispatchQueue.main.async {
@@ -450,21 +466,41 @@ class HealthManager: ObservableObject {
                                                  $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
                                                  $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
             
-            // Gruppiere nach dem "Aufwach-Tag"
-            var dailyBedtimes: [Date: Date] = [:]
-            for sample in asleepSamples {
-                // Der Tag, an dem die Session endet (Aufwachen)
-                let wakeUpDay = calendar.startOfDay(for: sample.endDate)
-                if let existing = dailyBedtimes[wakeUpDay] {
-                    if sample.startDate < existing {
-                        dailyBedtimes[wakeUpDay] = sample.startDate
-                    }
+            // Bündele die Samples zu kontinuierlichen Sessions
+            let sortedSamples = asleepSamples.sorted(by: { $0.startDate < $1.startDate })
+            var sessions: [(startDate: Date, endDate: Date)] = []
+            
+            for sample in sortedSamples {
+                if sessions.isEmpty {
+                    sessions.append((startDate: sample.startDate, endDate: sample.endDate))
+                    continue
+                }
+                let lastIndex = sessions.count - 1
+                let lastSession = sessions[lastIndex]
+                if sample.startDate.timeIntervalSince(lastSession.endDate) <= 3 * 3600 {
+                    sessions[lastIndex].endDate = max(lastSession.endDate, sample.endDate)
                 } else {
-                    dailyBedtimes[wakeUpDay] = sample.startDate
+                    sessions.append((startDate: sample.startDate, endDate: sample.endDate))
                 }
             }
             
-            let bedtimes = Array(dailyBedtimes.values)
+            // Gruppiere nach dem "Aufwach-Tag" und wähle die Session mit der längsten Dauer
+            var dailyMainSession: [Date: (startDate: Date, endDate: Date)] = [:]
+            for session in sessions {
+                // Der Tag, an dem die Session endet (Aufwachen)
+                let wakeUpDay = calendar.startOfDay(for: session.endDate)
+                if let existing = dailyMainSession[wakeUpDay] {
+                    let existingDuration = existing.endDate.timeIntervalSince(existing.startDate)
+                    let newDuration = session.endDate.timeIntervalSince(session.startDate)
+                    if newDuration > existingDuration {
+                        dailyMainSession[wakeUpDay] = session
+                    }
+                } else {
+                    dailyMainSession[wakeUpDay] = session
+                }
+            }
+            
+            let bedtimes = Array(dailyMainSession.values).map { $0.startDate }
             guard bedtimes.count >= 3 else {
                 DispatchQueue.main.async { self.sleepRegularityPercentage = nil }
                 return
