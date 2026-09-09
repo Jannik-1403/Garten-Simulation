@@ -34,6 +34,16 @@ class HealthManager: ObservableObject {
     @Published var todaysFatSaturated: Double = 0
     @Published var todaysFatMonounsaturated: Double = 0
     @Published var todaysFatPolyunsaturated: Double = 0
+
+    // MARK: - Historische Daten für Feedback-Scoring (7 Tage)
+    /// ml Wasser pro Kalendertag (nur Tage mit Daten enthalten)
+    @Published var waterHistory7Days: [Date: Double] = [:]
+    /// Schritte pro Kalendertag (nur Tage mit Daten enthalten)
+    @Published var stepsHistory7Days: [Date: Double] = [:]
+    /// Datum des letzten Krafttrainings (nil = nie oder kein HealthKit-Zugriff)
+    @Published var lastStrengthWorkoutDate: Date? = nil
+    /// true wenn mind. ein Workout jemals im Store gefunden wurde
+    @Published var hasAnyWorkoutHistory: Bool = false
     
     // Body Data (HealthKit)
     @Published var latestBodyMass: Double?
@@ -246,6 +256,84 @@ class HealthManager: ObservableObject {
         fetchBodyMass()
         fetchHeight()
         NutrientIndexManager.shared.fetchAllNutrients()
+        // Historische Daten für Feedback-Engine
+        fetchWaterHistory7Days()
+        fetchStepsHistory7Days()
+        fetchLastStrengthWorkout()
+    }
+
+    // MARK: - Historische Fetch-Methoden (7 Tage)
+
+    func fetchWaterHistory7Days() {
+        guard let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else { return }
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        guard let startDate = calendar.date(byAdding: .day, value: -7, to: today) else { return }
+
+        let query = HKStatisticsCollectionQuery(
+            quantityType: waterType,
+            quantitySamplePredicate: HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictStartDate),
+            options: .cumulativeSum,
+            anchorDate: today,
+            intervalComponents: DateComponents(day: 1)
+        )
+        query.initialResultsHandler = { [weak self] _, results, _ in
+            guard let results = results else { return }
+            var history: [Date: Double] = [:]
+            results.enumerateStatistics(from: startDate, to: Date()) { statistics, _ in
+                if let sum = statistics.sumQuantity() {
+                    let ml = sum.doubleValue(for: HKUnit.literUnit(with: .milli))
+                    if ml > 0 {
+                        history[calendar.startOfDay(for: statistics.startDate)] = ml
+                    }
+                }
+            }
+            DispatchQueue.main.async { self?.waterHistory7Days = history }
+        }
+        healthStore.execute(query)
+    }
+
+    func fetchStepsHistory7Days() {
+        guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return }
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        guard let startDate = calendar.date(byAdding: .day, value: -7, to: today) else { return }
+
+        let query = HKStatisticsCollectionQuery(
+            quantityType: stepType,
+            quantitySamplePredicate: HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictStartDate),
+            options: .cumulativeSum,
+            anchorDate: today,
+            intervalComponents: DateComponents(day: 1)
+        )
+        query.initialResultsHandler = { [weak self] _, results, _ in
+            guard let results = results else { return }
+            var history: [Date: Double] = [:]
+            results.enumerateStatistics(from: startDate, to: Date()) { statistics, _ in
+                if let sum = statistics.sumQuantity() {
+                    let steps = sum.doubleValue(for: HKUnit.count())
+                    if steps > 0 {
+                        history[calendar.startOfDay(for: statistics.startDate)] = steps
+                    }
+                }
+            }
+            DispatchQueue.main.async { self?.stepsHistory7Days = history }
+        }
+        healthStore.execute(query)
+    }
+
+    func fetchLastStrengthWorkout() {
+        let workoutType = HKObjectType.workoutType()
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+        let predicate = HKQuery.predicateForWorkouts(with: .traditionalStrengthTraining)
+        let query = HKSampleQuery(sampleType: workoutType, predicate: predicate, limit: 1, sortDescriptors: [sortDescriptor]) { [weak self] _, samples, _ in
+            let date = (samples?.first as? HKWorkout)?.endDate
+            DispatchQueue.main.async {
+                self?.lastStrengthWorkoutDate = date
+                self?.hasAnyWorkoutHistory = date != nil
+            }
+        }
+        healthStore.execute(query)
     }
     
     func fetchSteps() {

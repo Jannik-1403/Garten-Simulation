@@ -1014,3 +1014,13 @@
 - Alte ungenutzte automatische Erinnerungstexte entfernt.
 
 - Unbenutzte `drynessSaturation`-Logik aus `HabitModel.swift` entfernt, um die optische Darstellung unangetastet zu lassen.
+
+## [feature/health-feedback-system]
+- `FeedbackScoringEngine.swift` (neu): Deterministische Scoring-Engine nach Prioritätsliste (Rang 1–6)
+- `FeedbackRating.swift` (neu): Codable-Datenmodell für Bewertungen (up/down/none) + contextValues
+- `FeedbackStore.swift` (neu): Persistenz der Bewertungen in UserDefaults, Faktor-Regler (0.8–1.3) pro Key
+- `DailyFeedbackViewModel.swift` (neu): Verbindungsschicht zwischen HealthManager, ScoringEngine und View
+- `DailyFeedbackView.swift` (neu): Feedback-Text + Daumen-Buttons (SwiftUI), kein Card-Wrapper
+- `HealthManager.swift`: `fetchWaterHistory7Days()`, `fetchStepsHistory7Days()`, `fetchLastStrengthWorkout()` ergänzt
+- `WaterTrackerView.swift`: `DailyFeedbackView` unter ChunkyProgressRing eingefügt
+- `Localizable.xcstrings`: 10 neue Keys (feedbackWasserKritisch, feedbackWasserLeicht, feedbackTrainingInaktiv, feedbackSchritteNiedrig, feedbackNaehrstoffDefizit, feedbackPositiv1–3, feedback.thumb.up/down) in allen 16 App-Sprachen auf 100% übersetzt

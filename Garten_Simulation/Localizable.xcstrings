@@ -465343,6 +465343,1016 @@
           }
         }
       }
+    },
+    "feedbackWasserKritisch": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasseraufnahme seit %lld Tagen unter 50%% des Ziels. Trink dein erstes Glas heute vor 10 Uhr."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water intake below 50%% of goal for %lld days. Drink your first glass before 10 am today."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apport en eau sous 50%% de l'objectif depuis %lld jours. Bois ton premier verre avant 10h aujourd'hui."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingesta de agua por debajo del 50%% del objetivo durante %lld días. Bebe tu primer vaso antes de las 10 de la mañana hoy."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assunzione di acqua sotto il 50%% dell'obiettivo da %lld giorni. Bevi il primo bicchiere entro le 10 oggi."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingestão de água abaixo de 50%% do objetivo há %lld dias. Bebe o teu primeiro copo antes das 10h hoje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingestão de água abaixo de 50%% da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterinname al %lld dagen onder 50%% van het doel. Drink je eerste glas vandaag voor 10 uur."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spożycie wody poniżej 50%% celu od %lld dni. Wypij dziś pierwszą szklankę przed 10:00."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Потребление воды ниже 50%% цели уже %lld дн. Выпей первый стакан сегодня до 10:00."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su tüketimi %lld gündür hedefin %%50'sinin altında. Bugün ilk bardağını saat 10'dan önce iç."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水分摂取量が%lld日間、目標の50%%を下回っています。今日は午前10時までに1杯飲みましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "물 섭취량이 %lld일째 목표의 50%% 미만입니다. 오늘 오전 10시 전에 첫 잔을 마시세요."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "饮水量已连续%lld天低于目标的50%%。今天上午10点前喝第一杯水。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飲水量已連續%lld天低於目標的50%%。今天上午10點前喝第一杯水。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पानी की मात्रा पिछले %lld दिनों से लक्ष्य के 50%% से कम है। आज सुबह 10 बजे से पहले पहला गिलास पिएं।"
+          }
+        }
+      }
+    },
+    "feedbackWasserLeicht": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasseraufnahme seit %lld Tagen unter dem Tagesziel. Trink heute ein Glas mehr als gestern."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water intake below daily goal for %lld days. Drink one more glass than yesterday."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apport en eau sous l'objectif quotidien depuis %lld jours. Bois un verre de plus qu'hier."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingesta de agua por debajo del objetivo diario durante %lld días. Bebe un vaso más que ayer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assunzione di acqua sotto l'obiettivo giornaliero da %lld giorni. Bevi un bicchiere in più rispetto a ieri."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingestão de água abaixo do objetivo diário há %lld dias. Bebe mais um copo do que ontem."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingestão de água abaixo da meta diária há %lld dias. Beba mais um copo do que ontem."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterinname al %lld dagen onder het dagdoel. Drink vandaag een glas meer dan gisteren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spożycie wody poniżej dziennego celu od %lld dni. Wypij dziś jedną szklankę więcej niż wczoraj."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Потребление воды ниже дневной цели уже %lld дн. Выпей сегодня на один стакан больше, чем вчера."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su tüketimi %lld gündür günlük hedefin altında. Bugün dünkünden bir bardak fazla iç."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水分摂取量が%lld日間、目標を下回っています。今日は昨日より1杯多く飲みましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "물 섭취량이 %lld일째 목표치 미만입니다. 오늘은 어제보다 한 잔 더 마시세요."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "饮水量已连续%lld天低于每日目标。今天比昨天多喝一杯水。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飲水量已連續%lld天低於每日目標。今天比昨天多喝一杯水。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पानी की मात्रा पिछले %lld दिनों से दैनिक लक्ष्य से कम है। आज कल से एक गिलास ज़्यादा पिएं।"
+          }
+        }
+      }
+    },
+    "feedbackTrainingInaktiv": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letztes Krafttraining vor %lld Tagen. Plane heute eine Einheit ein."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last strength workout %lld days ago. Schedule a session today."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernière séance de musculation il y a %lld jours. Prévois une séance aujourd'hui."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último entrenamiento de fuerza hace %lld días. Programa una sesión hoy."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultimo allenamento di forza %lld giorni fa. Pianifica una sessione oggi."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último treino de força há %lld dias. Marca um treino para hoje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último treino de força há %lld dias. Programe um treino para hoje."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laatste krachttraining %lld dagen geleden. Plan vandaag een training in."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ostatni trening siłowy %lld dni temu. Zaplanuj dziś trening."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Последняя силовая тренировка была %lld дн. назад. Запланируй тренировку на сегодня."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son kuvvet antrenmanı %lld gün önceydi. Bugün bir antrenman planla."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最後の筋力トレーニングから%lld日経過しています。今日トレーニングを予定しましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마지막 근력 운동이 %lld일 전이었습니다. 오늘 운동 일정을 잡으세요."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上次力量训练是在%lld天前。今天安排一次训练。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上次力量訓練是在%lld天前。今天安排一次訓練。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आखिरी स्ट्रेंथ वर्कआउट %lld दिन पहले हुआ था। आज एक वर्कआउट प्लान करें।"
+          }
+        }
+      }
+    },
+    "feedbackSchritteNiedrig": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schritte heute unter 50% des 7-Tage-Schnitts. Geh heute noch 20 Minuten spazieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steps today below 50% of 7-day average. Take a 20-minute walk this evening."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas aujourd'hui sous 50% de la moyenne sur 7 jours. Fais une marche de 20 minutes ce soir."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasos de hoy por debajo del 50% del promedio de 7 días. Da un paseo de 20 minutos esta noche."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passi di oggi sotto il 50% della media a 7 giorni. Fai una passeggiata di 20 minuti stasera."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passos de hoje abaixo de 50% da média de 7 dias. Faz uma caminhada de 20 minutos esta noite."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passos de hoje abaixo de 50% da média de 7 dias. Faça uma caminhada de 20 minutos hoje à noite."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stappen vandaag onder 50% van het 7-daags gemiddelde. Maak vanavond nog een wandeling van 20 minuten."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kroki dzisiaj poniżej 50% średniej z 7 dni. Zrób dziś wieczorem 20-minutowy spacer."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шаги сегодня ниже 50% среднего за 7 дней. Сделай сегодня вечером 20-минутную прогулку."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugünkü adım sayın 7 günlük ortalamanın %50'sinin altında. Bu akşam 20 dakika yürüyüş yap."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本日の歩数が7日間平均の50%を下回っています。今夜20分の散歩をしましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 걸음 수가 7일 평균의 50% 미만입니다. 오늘 저녁 20분 산책하세요."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天的步数低于7天平均值的50%。今晚散步20分钟。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天的步數低於7天平均值的50%。今晚散步20分鐘。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज के कदम 7-दिन के औसत के 50% से कम हैं। आज शाम 20 मिनट टहलें।"
+          }
+        }
+      }
+    },
+    "feedbackNaehrstoffDefizit": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ seit %2$lld Tagen unter dem empfohlenen Bedarf. Ergänze ihn bei der nächsten Mahlzeit."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ below recommended intake for %2$lld days. Add it to your next meal."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sous l'apport recommandé depuis %2$lld jours. Ajoute-en à ton prochain repas."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ por debajo de lo recomendado durante %2$lld días. Añádelo en tu próxima comida."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ sotto l'apporto raccomandato da %2$lld giorni. Aggiungilo al prossimo pasto."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ abaixo do valor recomendado há %2$lld dias. Inclui-o na próxima refeição."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ abaixo do valor recomendado há %2$lld dias. Inclua na próxima refeição."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ al %2$lld dagen onder de aanbevolen hoeveelheid. Vul dit aan bij de volgende maaltijd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ poniżej zalecanej wartości od %2$lld dni. Uzupełnij przy najbliższym posiłku."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ ниже рекомендуемой нормы уже %2$lld дн. Добавь его в следующий приём пищи."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ seviyen %2$lld gündür önerilen miktarın altında. Bir sonraki öğününe ekle."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@が%2$lld日間、推奨量を下回っています。次の食事で補いましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ 섭취량이 %2$lld일째 권장량 미만입니다. 다음 식사에 추가하세요."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@已连续%2$lld天低于建议摄入量。在下一餐中补充。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@已連續%2$lld天低於建議攝取量。在下一餐中補充。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ पिछले %2$lld दिनों से अनुशंसित मात्रा से कम है। अगले भोजन में इसे शामिल करें।"
+          }
+        }
+      }
+    },
+    "feedbackPositiv1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Werte heute im Zielbereich."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All values within target range today."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes les valeurs du jour dans l'objectif."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los valores de hoy dentro del objetivo."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutti i valori di oggi nell'obiettivo."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os valores de hoje dentro do objetivo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os valores de hoje dentro da meta."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle waarden vandaag binnen doel."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie dzisiejsze wartości w normie."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все показатели сегодня в норме."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün tüm değerler hedef aralığında."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本日の数値はすべて目標範囲内です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘의 모든 수치가 목표 범위 내에 있습니다。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天所有数值均在目标范围内。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天所有數值均在目標範圍內。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज सभी मान लक्ष्य सीमा में हैं।"
+          }
+        }
+      }
+    },
+    "feedbackPositiv2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasser, Bewegung und Training entsprechen dem Ziel."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water, activity, and training meet the goal."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eau, activité et entraînement conformes à l'objectif."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agua, actividad y entrenamiento cumplen el objetivo."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acqua, attività e allenamento in linea con l'obiettivo."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Água, atividade e treino cumprem o objetivo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Água, atividade e treino atendem à meta."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water, beweging en training voldoen aan het doel."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woda, aktywność i trening zgodne z celem."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вода, активность и тренировки соответствуют цели."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su, hareket ve antrenman hedefe uygun."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水分、活動量、トレーニングが目標を満たしています。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "수분, 활동량, 운동이 목표를 충족합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "饮水、活动量和训练均达到目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飲水、活動量和訓練均達到目標。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पानी, गतिविधि और वर्कआउट आज लक्ष्य के अनुरूप हैं।"
+          }
+        }
+      }
+    },
+    "feedbackPositiv3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Tagesziele erreicht."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All daily targets reached."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les objectifs du jour atteints."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los objetivos del día alcanzados."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutti gli obiettivi del giorno raggiunti."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os objetivos do dia atingidos."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas as metas do dia atingidas."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle dagdoelen behaald."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie dzisiejsze cele osiągnięte."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все дневные цели достигнуты."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugünkü tüm hedeflere ulaşıldı."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本日の目標をすべて達成しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘의 모든 목표를 달성했습니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天的所有目标均已达成。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天的所有目標均已達成。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज के सभी लक्ष्य पूरे हो गए।"
+          }
+        }
+      }
+    },
+    "feedback.thumb.up": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hilfreich"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Helpful"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utile"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Útil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utile"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Útil"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Útil"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuttig"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pomocne"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Полезно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faydalı"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "役に立つ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "도움됨"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有帮助"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有幫助"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मददगार"
+          }
+        }
+      }
+    },
+    "feedback.thumb.down": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht hilfreich"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not helpful"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas utile"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No útil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non utile"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não útil"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não útil"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet nuttig"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nieprzydatne"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бесполезно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faydasız"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "役に立たない"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "도움 안됨"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有帮助"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有幫助"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मददगार नहीं"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
