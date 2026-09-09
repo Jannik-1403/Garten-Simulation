@@ -1,3 +1,8 @@
+## [2026-09-09] - Fix: Tolerantere Schlaf-Regelmäßigkeit & UI Fix
+- **Mathematik-Update:** Die Schlaf-Regelmäßigkeit nutzt nun die durchschnittliche absolute Abweichung (MAD) anstelle der Standardabweichung (StdDev). Die Standardabweichung hat einzelne Ausreißer (z.B. eine späte Party am Wochenende) überproportional hart bestraft, was zu unfairen Bewertungen (wie 66%) geführt hat. Das neue System spiegelt das menschliche Empfinden viel fairer wider.
+- **Toleranz-Update:** Die Regelmäßigkeit ist nun 100%, solange man im Schnitt um maximal 45 Minuten abweicht (vorher 30 Minuten).
+- **UI-Fix:** Lange Insight-Texte werden nun nicht mehr mit "..." abgeschnitten, sondern der Text skaliert notfalls etwas kleiner (`.minimumScaleFactor`).
+
 ## [2026-09-09] - Fix: Intelligenter Sleep Session Algorithmus
 - **Bugfix (Durchschnitt verfälscht):** Ein Fehler wurde behoben, bei dem Mittagsschlaf (Naps) oder kurze Apple Watch Fehlmessungen tagsüber als früheste Bettgehzeit für diesen Tag gezählt wurden, was den Durchschnitt (z. B. "23:46 Uhr") massiv verfälscht hat.
 - **Lösung:** Apple Health Schlaf-Samples (Tiefschlaf, REM etc.) werden nun intelligent zu großen, zusammenhängenden "Sleep Sessions" gebündelt (mit bis zu 3 Stunden Lückentoleranz). Für die Statistik wird nun streng pro Tag nur noch die *längste* Schlaf-Session gewertet. Mittagsschlaf wird so zuverlässig ignoriert und der Durchschnitt stimmt wieder exakt.
