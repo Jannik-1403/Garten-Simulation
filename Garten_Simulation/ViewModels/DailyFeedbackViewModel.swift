@@ -104,7 +104,7 @@ class DailyFeedbackViewModel: ObservableObject {
 
         let feedbacks = FeedbackScoringEngine.evaluateAll(input: input)
         categoryFeedbacks = feedbacks
-        issueFeedbacks = feedbacks.filter { $0.status == CategoryStatus.warning || $0.status == CategoryStatus.critical }
+        issueFeedbacks = feedbacks.filter { $0.status != CategoryStatus.unavailable }
         headerText = FeedbackScoringEngine.headerText(from: feedbacks)
 
         // Tages-Score berechnen (Good = 100, Warning = 50, Critical = 0)

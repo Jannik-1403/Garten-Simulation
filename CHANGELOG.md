@@ -1040,3 +1040,7 @@
 
 - **UI Layout & Clipping**: Die Tages-Score Card schneidet beim Zuklappen nun überstehende Texte korrekt ab (`.clipped()`). Alle Feedback-Texte wurden präzise linksbündig ausgerichtet.
 - **Dynamisches Daumen-Feedback**: Nutzer können dem Tages-Feedback über 👍/👎-Buttons bewerten. Die Bewertungs-Logik skaliert nun automatisch die internen Grenzwerte pro Kategorie, um zukünftig strengeres oder toleranteres Feedback zu geben.
+
+- **Schlaf-UI**: Ring durch 3D-Item-Ring ohne Prozentzeichen ersetzt.
+- **Daumen-Feedback**: Hit-Target der Buttons massiv vergrößert, um versehentliches Schließen der Score-Card zu verhindern. Toleranz-Anpassung verringert.
+- **Lauf-Feedback**: Engine bewertet bei 'Joggen' nun explizit das Schritte-Ziel, statt nach Trainingsminuten zu suchen.

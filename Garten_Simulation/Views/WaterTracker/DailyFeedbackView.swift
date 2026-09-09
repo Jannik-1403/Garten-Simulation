@@ -147,9 +147,25 @@ private struct CategoryIssueRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(categoryName)
-                .font(.system(size: 15, weight: .bold))
-                .foregroundColor(.primary)
+            HStack(spacing: 6) {
+                Text(categoryName)
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(.primary)
+                
+                if feedback.status == .good {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(Color(.systemGreen))
+                        .font(.system(size: 14))
+                } else if feedback.status == .warning {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundColor(Color(.systemOrange))
+                        .font(.system(size: 14))
+                } else if feedback.status == .critical {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(Color(.systemRed))
+                        .font(.system(size: 14))
+                }
+            }
             
             Text(feedback.detailText)
                 .font(.system(size: 14))
