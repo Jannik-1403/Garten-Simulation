@@ -111,7 +111,7 @@ struct PflanzeDetailSheet: View {
                     }
                     
                     // Wasser trinken
-                    if pflanze.habitName == "habit.wasser_trinken" {
+                    if pflanze.habitName == "habit.wasser_trinken" && pflanze.showStats {
                         WasserTrinkenCard()
                             .padding(.horizontal, 24)
                             .padding(.bottom, 16)
