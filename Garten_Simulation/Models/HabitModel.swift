@@ -608,14 +608,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         return max(0, Int(ceil(diff)))
     }
 
-    var drynessSaturation: Double {
-        if isDead { return 0.0 }
-        // Optische Sättigung basiert weiterhin auf der Gesamtzeit seit dem Gießen
-        let reference = letzteBewaesserung ?? gekauftAm
-        let totalElapsed = Date().timeIntervalSince(reference) / 3600.0
-        let s = 1.0 - (totalElapsed / 72.0)
-        return max(0.0, min(1.0, s))
-    }
+
 
     // MARK: - Init
 
