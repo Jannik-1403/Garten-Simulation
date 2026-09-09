@@ -1,61 +1,34 @@
 import SwiftUI
 
-// MARK: - DailyHealthScoreCard
-// Ersetzt die alte FitnessOverviewCard.
-// Zeigt einen kumulierten Tages-Score. Beim Ausklappen werden nur noch
-// problematische Bereiche (Warnungen/Kritisch) als "Begründung" angezeigt.
-
 struct DailyHealthScoreCard: View {
     @StateObject private var vm = DailyFeedbackViewModel()
     @State private var isExpanded: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
-            // MARK: Kopfzeile (Score)
-            Button(action: {
-                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                    isExpanded.toggle()
-                }
-            }) {
-                HStack(spacing: 16) {
-                    // Score Ring (3D Style)
-                    ZStack {
-                        // Hintergrund-Ring mit leichtem Inner-Shadow-Effekt
-                        Circle()
-                            .stroke(Color(white: 0.92), lineWidth: 7)
-                            .shadow(color: .black.opacity(0.1), radius: 2, x: 1, y: 1)
-                        
-                        // Fortschritts-Ring (Gradient)
-                        Circle()
-                            .trim(from: 0, to: CGFloat(vm.dailyScore) / 100.0)
-                            .stroke(
-                                scoreColor.gradient,
-                                style: StrokeStyle(lineWidth: 7, lineCap: .round)
-                            )
-                            .rotationEffect(.degrees(-90))
-                            .animation(.easeOut(duration: 0.8), value: vm.dailyScore)
-                            .shadow(color: scoreColor.opacity(0.5), radius: 4, x: 0, y: 2)
-                        
-                        // Score Text (Glücksrad-Style: Sehr fett + Schatten)
-                        Text("\(vm.dailyScore)")
-                            .font(.system(size: 18, weight: .black, design: .rounded))
-                            .foregroundColor(.primary)
-                            .shadow(color: .black.opacity(0.15), radius: 1, x: 1, y: 2)
+            // MARK: Kopfzeile (Score) als Item3DButton
+            Item3DButton(
+                farbe: .white,
+                sekundaerFarbe: Color(white: 0.85),
+                groesse: 66,
+                iconSkalierung: 1.0,
+                isRectangular: true,
+                aktion: {
+                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                        isExpanded.toggle()
                     }
-                    .frame(width: 56, height: 56)
+                }
+            ) {
+                HStack(spacing: 16) {
+                    MiniChunkyProgressRing(progress: Double(vm.dailyScore), goal: 100)
+                        .frame(width: 44, height: 44)
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(String(localized: "fitness.score.title", defaultValue: "Tages-Score"))
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.primary)
-                        
-                        Text(vm.headerText)
-                            .font(.system(size: 13))
-                            .foregroundColor(.secondary)
-                            .lineLimit(1)
                     }
-
-                    Spacer()
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
                     Image(systemName: "chevron.down")
                         .font(.system(size: 14, weight: .semibold))
@@ -63,16 +36,10 @@ struct DailyHealthScoreCard: View {
                         .rotationEffect(.degrees(isExpanded ? 180 : 0))
                 }
                 .padding(.horizontal, 16)
-                .padding(.vertical, 16)
-                .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
 
             // MARK: Ausgeklappte Begründung (Nur Issues)
             if isExpanded {
-                Divider()
-                    .padding(.horizontal, 16)
-
                 VStack(alignment: .leading, spacing: 16) {
                     if vm.issueFeedbacks.isEmpty {
                         // Alles perfekt
@@ -95,22 +62,67 @@ struct DailyHealthScoreCard: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 16)
+                .background(
+                    RoundedRectangle(cornerRadius: 18, style: .continuous)
+                        .fill(Color(.systemBackground))
+                        .shadow(color: Color.black.opacity(0.06), radius: 2, x: 0, y: 1) // Leichter Border-Schatten
+                        .shadow(color: Color.black.opacity(0.12), radius: 16, x: 0, y: 8) // Tiefer 3D-Schatten
+                )
+                .padding(.top, -12) // Überlappung, damit es am Button "klebt"
+                .zIndex(-1)
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        // "iTunes 3-D weißer Hintergrund"
-        .background(
-            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.black.opacity(0.06), radius: 2, x: 0, y: 1) // Leichter Border-Schatten
-                .shadow(color: Color.black.opacity(0.12), radius: 16, x: 0, y: 8) // Tiefer 3D-Schatten
-        )
     }
+}
 
-    private var scoreColor: Color {
-        if vm.dailyScore >= 80 { return Color(.systemGreen) }
-        if vm.dailyScore >= 50 { return Color(.systemOrange) }
+// MARK: - MiniChunkyProgressRing
+
+private struct MiniChunkyProgressRing: View {
+    var progress: Double
+    var goal: Double
+    
+    var percent: Double {
+        if goal <= 0 { return 0 }
+        return min(1.0, progress / goal)
+    }
+    
+    var scoreColor: Color {
+        if progress >= 80 { return Color(.systemGreen) }
+        if progress >= 50 { return Color(.systemOrange) }
         return Color(.systemRed)
+    }
+    
+    var body: some View {
+        ZStack {
+            // Background Shadow
+            Circle()
+                .stroke(scoreColor.opacity(0.15), lineWidth: 8)
+                .offset(y: 2)
+            
+            // Background Track
+            Circle()
+                .stroke(scoreColor.opacity(0.2), lineWidth: 8)
+            
+            // Foreground Progress Shadow
+            Circle()
+                .trim(from: 0.0, to: percent)
+                .stroke(scoreColor.opacity(0.5), style: StrokeStyle(lineWidth: 8, lineCap: .round))
+                .rotationEffect(Angle(degrees: -90))
+                .offset(y: 2)
+            
+            // Foreground Progress
+            Circle()
+                .trim(from: 0.0, to: percent)
+                .stroke(scoreColor, style: StrokeStyle(lineWidth: 8, lineCap: .round))
+                .rotationEffect(Angle(degrees: -90))
+                
+            VStack(spacing: 0) {
+                Text("\(Int(progress))")
+                    .font(.system(size: 16, weight: .black, design: .rounded))
+                    .foregroundColor(scoreColor)
+            }
+        }
     }
 }
 
