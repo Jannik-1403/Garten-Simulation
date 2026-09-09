@@ -1,3 +1,6 @@
+## [2026-09-09] - Fix: Apple Health Schlafroutine Integration
+- **Bugfix:** Apple Health Ansicht für Schlafroutine wurde nicht angezeigt, weil das Keyword nicht korrekt erkannt wurde. Dies wurde nun behoben und die Apple Health Card erscheint nun anstelle der normalen Einzelstatistik.
+
 ## [2026-09-09] - Apple Health Sleep Routine
 - **Schlafroutine:** Apple Health Integration für die Gewohnheit 'Schlafroutine'.
 - **Regelmäßigkeit:** Neue `SleepRoutineHealthCard` berechnet und visualisiert die Schlaf-Regelmäßigkeit (Konsistenz der Bettgehzeiten der letzten 7 Tage) als Prozentwert.
