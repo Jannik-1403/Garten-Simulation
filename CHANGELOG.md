@@ -1,3 +1,8 @@
+## [2026-09-09] - Feature: Dynamische Sleep Insights
+- **Dynamisches Feedback:** Unter dem Prozent-Ring der Schlafroutine wird nun nicht mehr nur ein statischer Text angezeigt. Basierend auf der Schlaf-Regelmäßigkeit der letzten 7 Tage berechnet die App dynamisch, an welchem Wochentag (oder ob am Wochenende) die stärksten Abweichungen auftreten.
+- **Konkrete Tipps:** Die App errechnet die durchschnittliche Bettgehzeit und gibt konkrete Hinweise (z. B. "Im Schnitt gehst du um 23:45 Uhr ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um 07:45 Uhr aufstehen.").
+- **Lokalisierung:** Alle neuen dynamischen Texte sind direkt in alle 16 Projektsprachen übersetzt worden.
+
 ## [2026-09-09] - Style: Apple Health Schlafroutine UI
 - **UI & Layout:** Der Header der SleepRoutineHealthCard zeigt nun nur noch "Schlafroutine" (ohne Icon). Die Schlaf-Regelmäßigkeit ist nun zentriert und der Text befindet sich unterhalb des Prozent-Rings.
 - **Daten-Abfrage:** Ein Bug wurde behoben, durch den die Apple Health Schlaf-Daten beim ersten Öffnen nicht immer sofort geladen wurden.
