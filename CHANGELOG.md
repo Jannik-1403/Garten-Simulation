@@ -1,3 +1,6 @@
+## [2026-09-09] - Fix: Sleep Insights Threshold
+- **Feedback-Anpassung:** Der Text "Top, bitte weiter so!" erscheint nun erst ab einer Schlaf-Regelmäßigkeit von 95% (vorher 80%). Bei Werten darunter (z.B. 85%) erhält der Nutzer nun immer konkrete Tipps, was noch verbessert werden kann.
+
 ## [2026-09-09] - Feature: Dynamische Sleep Insights
 - **Dynamisches Feedback:** Unter dem Prozent-Ring der Schlafroutine wird nun nicht mehr nur ein statischer Text angezeigt. Basierend auf der Schlaf-Regelmäßigkeit der letzten 7 Tage berechnet die App dynamisch, an welchem Wochentag (oder ob am Wochenende) die stärksten Abweichungen auftreten.
 - **Konkrete Tipps:** Die App errechnet die durchschnittliche Bettgehzeit und gibt konkrete Hinweise (z. B. "Im Schnitt gehst du um 23:45 Uhr ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um 07:45 Uhr aufstehen.").
