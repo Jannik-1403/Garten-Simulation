@@ -494,7 +494,16 @@ struct StatisticsDashboard: View {
                     )
                     .padding(.top, 40)
                 } else {
-                    if selectedPeriod == .week {
+                    if selectedPeriod == .day {
+                        // Tägliches Health-Feedback – nur im "Tag"-Tab, ganz oben
+                        DailyFeedbackView()
+                            .padding(.top, 4)
+                        periodNavigationHeader
+                        lifeBalanceCard
+                        gardenScoreConsistencyCard
+                        focusScoreCard
+                        triggerStatisticsCard
+                    } else if selectedPeriod == .week {
                         WeeklyReportDashboardView()
                     } else {
                         periodNavigationHeader
@@ -504,6 +513,7 @@ struct StatisticsDashboard: View {
                         triggerStatisticsCard
                     }
                 }
+
 
             }
             .padding(.horizontal, 16)
