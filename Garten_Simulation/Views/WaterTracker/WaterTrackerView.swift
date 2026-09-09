@@ -150,7 +150,7 @@ struct WaterTrackerView: View {
                 .presentationDetents([.height(300)])
                 .presentationDragIndicator(.visible)
         }
-        .onChange(of: healthManager.todaysWater) { _, newValue in
+        .onChange(of: healthManager.todaysWater) { newValue in
             if newValue >= goalManager.currentGoal {
                 if let waterPlant = gardenStore.meinePflanzen.first(where: { $0.habitName == "habit.wasser_trinken" }) {
                     if !waterPlant.istBewässert {
