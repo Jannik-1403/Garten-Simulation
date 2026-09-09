@@ -893,11 +893,9 @@ extension HealthManager {
         
         healthStore.save(sample) { [weak self] success, error in
             if success {
-                // Update live data if date is today
+                // Fetch latest data to ensure true state is reflected
                 if Calendar.current.isDateInToday(date) {
-                    DispatchQueue.main.async {
-                        self?.todaysWater += ml
-                    }
+                    self?.fetchWater()
                 }
             }
             completion(success, error)

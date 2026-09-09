@@ -1,3 +1,7 @@
+## [2026-09-09] - Body Tracking Chart Aggregation
+- **Body Tracking:** Bei den Filtern '6 Monate' und 'Jahr' werden die Datenpunkte im Diagramm nun zu übersichtlichen Wochendurchschnitten zusammengefasst.
+- **Body Tracking:** Der Header über dem Diagramm zeigt nun für den ausgewählten Zeitraum immer den Durchschnittswert ('DURCHSCHNITT') statt des aktuellsten Gewichts, analog zu Apple Health.
+
 ## [2026-09-01] - Macro Recommendation Engine & HealthKit v4
 - **App Empfehlung:** Neuer `MacroCalculator` berechnet den TDEE und optimale Makro-Ziele (Kohlenhydrate, Protein, Fett) basierend auf der Mifflin-St. Jeor Formel unter Einbeziehung von Körpergröße, Gewicht, Alter und Geschlecht.
 - **Apple Health V4:** HealthKit Abfrage für detaillierte Körperdaten (Größe, Geburtsdatum, Geschlecht) und Fettsäuren erweitert.
