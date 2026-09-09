@@ -149837,12 +149837,17 @@
       }
     },
     "fitness.score.perfect": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Perfekt! Alle deine Werte liegen im optimalen Bereich. Weiter so!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfect! All your values are in the optimal range. Keep it up!"
           }
         },
         "es": {
@@ -149857,28 +149862,10 @@
             "value": "Parfait ! Toutes vos valeurs sont dans la plage optimale."
           }
         },
-        "ja": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "完璧です！すべての値が最適な範囲内にあります。その調子！"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Idealnie! Wszystkie Twoje wartości są w optymalnym zakresie. Tak trzymaj!"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "완벽합니다! 모든 수치가 최적의 범위에 있습니다. 계속 유지하세요!"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Идеально! Все ваши показатели в оптимальном диапазоне. Так держать!"
+            "value": "उत्तम! आपके सभी मूल्य इष्टतम सीमा में हैं। इसे बनाए रखें!"
           }
         },
         "it": {
@@ -149887,22 +149874,16 @@
             "value": "Perfetto! Tutti i tuoi valori sono nell'intervallo ottimale."
           }
         },
-        "tr": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mükemmel! Tüm değerleriniz en uygun aralıkta. Böyle devam et!"
+            "value": "完璧です！すべての値が最適な範囲内にあります。その調子！"
           }
         },
-        "pt": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Perfeito! Todos os seus valores estão na faixa ideal."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "उत्तम! आपके सभी मूल्य इष्टतम सीमा में हैं। इसे बनाए रखें!"
+            "value": "완벽합니다! 모든 수치가 최적의 범위에 있습니다. 계속 유지하세요!"
           }
         },
         "nl": {
@@ -149911,16 +149892,22 @@
             "value": "Perfect! Al je waarden liggen in het optimale bereik. Ga zo door!"
           }
         },
-        "zh-Hant": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "完美！您的所有數據都在最佳範圍內。繼續保持！"
+            "value": "Idealnie! Wszystkie Twoje wartości są w optymalnym zakresie. Tak trzymaj!"
           }
         },
-        "zh-Hans": {
+        "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "完美！您的所有数据都在最佳范围内。继续保持！"
+            "value": "Perfeito! Todos os seus valores estão na faixa ideal."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfeito! Todos os seus valores estão na faixa ideal."
           }
         },
         "pt-PT": {
@@ -149929,27 +149916,44 @@
             "value": "Perfeito! Todos os seus valores estão na faixa ideal."
           }
         },
-        "en": {
+        "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Perfect! All your values are in the optimal range. Keep it up!"
+            "value": "Идеально! Все ваши показатели в оптимальном диапазоне. Так держать!"
           }
         },
-        "pt-BR": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Perfeito! Todos os seus valores estão na faixa ideal."
+            "value": "Mükemmel! Tüm değerleriniz en uygun aralıkta. Böyle devam et!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完美！您的所有数据都在最佳范围内。继续保持！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完美！您的所有數據都在最佳範圍內。繼續保持！"
           }
         }
       }
     },
     "fitness.score.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Tages-Score"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily Score"
           }
         },
         "es": {
@@ -149964,28 +149968,10 @@
             "value": "Score Quotidien"
           }
         },
-        "ja": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "デイリースコア"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wynik Dzienny"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일일 점수"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Дневной счет"
+            "value": "दैनिक स्कोर"
           }
         },
         "it": {
@@ -149994,22 +149980,16 @@
             "value": "Punteggio Giornaliero"
           }
         },
-        "tr": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Günlük Skor"
+            "value": "デイリースコア"
           }
         },
-        "pt": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pontuação Diária"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दैनिक स्कोर"
+            "value": "일일 점수"
           }
         },
         "nl": {
@@ -150018,16 +149998,22 @@
             "value": "Dagelijkse Score"
           }
         },
-        "zh-Hant": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "每日得分"
+            "value": "Wynik Dzienny"
           }
         },
-        "zh-Hans": {
+        "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "每日得分"
+            "value": "Pontuação Diária"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pontuação Diária"
           }
         },
         "pt-PT": {
@@ -150036,16 +150022,28 @@
             "value": "Pontuação Diária"
           }
         },
-        "en": {
+        "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily Score"
+            "value": "Дневной счет"
           }
         },
-        "pt-BR": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pontuação Diária"
+            "value": "Günlük Skor"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每日得分"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每日得分"
           }
         }
       }
@@ -470150,6 +470148,220 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.mineral.generic": {
+      "extractionState": "manual",
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitaminen & Mineralen"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitaminas e Minerais"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamine e Minerali"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विटामिन और खनिज"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "비타민 및 미네랄"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitaminas y Minerales"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ビタミンとミネラル"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamins & Minerals"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitaminas e Minerais"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamine & Mineralien"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Witaminy i Minerały"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitaminler ve Mineraller"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitamines et Minéraux"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vitaminas e Minerais"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Витамины и минералы"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "維生素和礦物質"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "维生素和矿物质"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.mineral.detail.generic": {
+      "extractionState": "manual",
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je behoefte aan sommige vitaminen en mineralen is vandaag niet gedekt."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua necessidade de algumas vitaminas e minerais não foi atendida hoje."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo fabbisogno di alcune vitamine e minerali non è soddisfatto oggi."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुछ विटामिन और खनिजों की आपकी आवश्यकता आज पूरी नहीं हुई है।"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 일부 비타민과 미네랄 요구량이 충족되지 않았습니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu necesidad de algunas vitaminas y minerales no está cubierta hoy."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日のビタミンとミネラルの必要量が満たされていません。"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your need for some vitamins & minerals is not met today."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua necessidade de algumas vitaminas e minerais não foi atendida hoje."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Bedarf an einigen Vitaminen & Mineralien ist heute nicht gedeckt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twoje zapotrzebowanie na niektóre witaminy i minerały nie zostało dzisiaj zaspokojone."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün bazı vitamin ve mineral ihtiyaçlarınız karşılanmadı."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre besoin en certaines vitamines et minéraux n'est pas couvert aujourd'hui."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua necessidade de algumas vitaminas e minerais não foi atendida hoje."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваша потребность в некоторых витаминах и минералах сегодня не удовлетворена."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天您對某些維生素和礦物質的需求未得到滿足。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天您对某些维生素和矿物质的需求未得到满足。"
           }
         }
       }

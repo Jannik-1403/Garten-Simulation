@@ -13,6 +13,8 @@ class DailyFeedbackViewModel: ObservableObject {
     @Published var headerText: String = ""
     @Published var primaryKey: FeedbackKey = .feedbackPositiv1
 
+    @Published var activeHabits: [HabitModel] = []
+
     private var cancellables = Set<AnyCancellable>()
 
     init() {
@@ -59,18 +61,27 @@ class DailyFeedbackViewModel: ObservableObject {
             .filter { $0.isEnabled && $0.targetDGE > 0 }
             .min(by: { $0.score < $1.score })
 
-        // Prüfen ob Nutzer eine Lauf-Pflanze hat (aus GardenStore via UserDefaults nicht direkt erreichbar)
-        // Wir nutzen hasAnyWorkoutHistory als Proxy — Laufen-Routing erfolgt über hasRunningPlant
-        // Die GardenStore-Pflanzen sind hier nicht direkt zugänglich; wir lesen aus dem separaten
-        // UserDefaults-Key, den wir beim Auswertungsaufruf von außen übergeben könnten.
-        // Vereinfachung: Wenn todaysRunning > 0, immer anzeigen. Sonst nur wenn explizit gesetzt.
-        let hasRunningPlant = UserDefaults.standard.bool(forKey: "feedback_hasRunningPlant")
+        let hasWaterPlant = activeHabits.contains { $0.automaticHealthMetric == HealthMetricType.water }
+        let hasSleepPlant = activeHabits.contains { $0.automaticHealthMetric == HealthMetricType.sleep }
+        let hasStrengthPlant = activeHabits.contains { $0.automaticHealthMetric == HealthMetricType.strengthTraining }
+        let hasRunningPlant = activeHabits.contains { $0.automaticHealthMetric == HealthMetricType.steps } // In HabitModel ist Laufen als .steps gemappt
+        let hasNutritionPlant = activeHabits.contains {
+            $0.automaticHealthMetric == HealthMetricType.energy ||
+            $0.automaticHealthMetric == HealthMetricType.fiber ||
+            $0.habitName.lowercased().contains("gemüse") ||
+            $0.habitName.lowercased().contains("kochen")
+        }
 
         // Protein-Ziel aus UserDefaults (wird von MacroCalculator/HealthManager gesetzt)
         let proteinGoal = UserDefaults.standard.double(forKey: "goal_protein")
         let fiberGoal = 30.0 // DGE-Empfehlung, NutrientIndexManager default
 
         let input = FeedbackScoringEngine.EvaluationInput(
+            hasWaterPlant: hasWaterPlant,
+            hasSleepPlant: hasSleepPlant,
+            hasStrengthPlant: hasStrengthPlant,
+            hasRunningPlant: hasRunningPlant,
+            hasNutritionPlant: hasNutritionPlant,
             waterToday: hm.todaysWater,
             waterGoal: wgm.currentGoal,
             waterHistory7Days: hm.waterHistory7Days,
@@ -80,7 +91,6 @@ class DailyFeedbackViewModel: ObservableObject {
             strengthDaysAgo: strengthDaysAgo,
             hasStrengthHistory: hm.hasAnyWorkoutHistory,
             runningMinutesToday: hm.todaysRunning,
-            hasRunningPlant: hasRunningPlant || hm.todaysRunning > 0,
             energyToday: hm.todaysEnergy,
             proteinToday: hm.todaysProtein,
             proteinGoal: proteinGoal > 0 ? proteinGoal : 120.0,
@@ -93,11 +103,11 @@ class DailyFeedbackViewModel: ObservableObject {
 
         let feedbacks = FeedbackScoringEngine.evaluateAll(input: input)
         categoryFeedbacks = feedbacks
-        issueFeedbacks = feedbacks.filter { $0.status == .warning || $0.status == .critical }
+        issueFeedbacks = feedbacks.filter { $0.status == CategoryStatus.warning || $0.status == CategoryStatus.critical }
         headerText = FeedbackScoringEngine.headerText(from: feedbacks)
 
         // Tages-Score berechnen (Good = 100, Warning = 50, Critical = 0)
-        let availableFeedbacks = feedbacks.filter { $0.status != .unavailable }
+        let availableFeedbacks = feedbacks.filter { $0.status != CategoryStatus.unavailable }
         if availableFeedbacks.isEmpty {
             dailyScore = 0
         } else {
@@ -113,9 +123,9 @@ class DailyFeedbackViewModel: ObservableObject {
         }
 
         // Primären Key für FeedbackStore bestimmen (schlechteste Kategorie)
-        if feedbacks.contains(where: { $0.status == .critical }) {
+        if feedbacks.contains(where: { $0.status == CategoryStatus.critical }) {
             primaryKey = .feedbackWasserKritisch
-        } else if feedbacks.contains(where: { $0.status == .warning }) {
+        } else if feedbacks.contains(where: { $0.status == CategoryStatus.warning }) {
             primaryKey = .feedbackWasserLeicht
         } else {
             primaryKey = FeedbackKey.positiveKeys.randomElement() ?? .feedbackPositiv1

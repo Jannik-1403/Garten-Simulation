@@ -2,26 +2,20 @@ import SwiftUI
 
 struct DailyHealthScoreCard: View {
     @StateObject private var vm = DailyFeedbackViewModel()
+    @EnvironmentObject var gardenStore: GardenStore
     @State private var isExpanded: Bool = false
 
     var body: some View {
-        VStack(spacing: 0) {
-            // MARK: Kopfzeile (Score) als Item3DButton
-            Item3DButton(
-                farbe: .white,
-                sekundaerFarbe: Color(white: 0.85),
-                groesse: 66,
-                iconSkalierung: 1.0,
-                isRectangular: true,
-                aktion: {
-                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                        isExpanded.toggle()
-                    }
-                }
-            ) {
+        Button {
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                isExpanded.toggle()
+            }
+        } label: {
+            VStack(spacing: 0) {
+                // MARK: Kopfzeile (Score)
                 HStack(spacing: 16) {
                     MiniChunkyProgressRing(progress: Double(vm.dailyScore), goal: 100)
-                        .frame(width: 44, height: 44)
+                        .frame(width: 56, height: 56)
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(String(localized: "fitness.score.title", defaultValue: "Tages-Score"))
@@ -35,43 +29,59 @@ struct DailyHealthScoreCard: View {
                         .foregroundColor(Color(.tertiaryLabel))
                         .rotationEffect(.degrees(isExpanded ? 180 : 0))
                 }
+                .padding(.vertical, 12)
                 .padding(.horizontal, 16)
-            }
 
-            // MARK: Ausgeklappte Begründung (Nur Issues)
-            if isExpanded {
-                VStack(alignment: .leading, spacing: 16) {
-                    if vm.issueFeedbacks.isEmpty {
-                        // Alles perfekt
-                        HStack(spacing: 12) {
-                            Image(systemName: "checkmark.seal.fill")
-                                .font(.system(size: 24))
-                                .foregroundColor(Color(.systemGreen))
-                            Text(String(localized: "fitness.score.perfect", defaultValue: "Perfekt! Alle deine Werte liegen im optimalen Bereich. Weiter so!"))
-                                .font(.system(size: 15))
-                                .foregroundColor(.secondary)
-                                .lineSpacing(4)
-                        }
-                        .padding(.vertical, 12)
-                    } else {
-                        // Begründungen für Warnungen/Kritische Punkte
-                        ForEach(vm.issueFeedbacks) { feedback in
-                            CategoryIssueRow(feedback: feedback)
+                // MARK: Ausgeklappte Begründung (Nur Issues)
+                if isExpanded {
+                    VStack(alignment: .leading, spacing: 16) {
+                        // Divider
+                        Rectangle()
+                            .fill(Color(.tertiaryLabel).opacity(0.2))
+                            .frame(height: 1)
+                            .padding(.horizontal, 16)
+
+                        if vm.issueFeedbacks.isEmpty {
+                            // Alles perfekt
+                            HStack(spacing: 12) {
+                                Image(systemName: "checkmark.seal.fill")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(Color(.systemGreen))
+                                Text(String(localized: "fitness.score.perfect", defaultValue: "Perfekt! Alle deine Werte liegen im optimalen Bereich. Weiter so!"))
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.secondary)
+                                    .lineSpacing(4)
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 16)
+                        } else {
+                            // Begründungen für Warnungen/Kritische Punkte
+                            VStack(spacing: 16) {
+                                ForEach(vm.issueFeedbacks) { feedback in
+                                    CategoryIssueRow(feedback: feedback)
+                                }
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 16)
                         }
                     }
+                    .transition(.opacity.combined(with: .move(edge: .top)))
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 16)
-                .background(
-                    RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .fill(Color(.systemBackground))
-                        .shadow(color: Color.black.opacity(0.06), radius: 2, x: 0, y: 1) // Leichter Border-Schatten
-                        .shadow(color: Color.black.opacity(0.12), radius: 16, x: 0, y: 8) // Tiefer 3D-Schatten
-                )
-                .padding(.top, -12) // Überlappung, damit es am Button "klebt"
-                .zIndex(-1)
-                .transition(.opacity.combined(with: .move(edge: .top)))
             }
+        }
+        .buttonStyle(PillButtonStyle(
+            farbe: .white,
+            sekundaerFarbe: Color(white: 0.85),
+            cornerRadius: 16,
+            shadowDepth: 6
+        ))
+        .onAppear {
+            vm.activeHabits = gardenStore.sichtbarePflanzen
+            vm.reevaluate()
+        }
+        .onChange(of: gardenStore.sichtbarePflanzen) { newHabits in
+            vm.activeHabits = newHabits
+            vm.reevaluate()
         }
     }
 }
@@ -133,12 +143,6 @@ private struct CategoryIssueRow: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            Image(systemName: feedback.category.icon)
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(statusColor)
-                .frame(width: 24, height: 24)
-                .padding(.top, 2)
-
             VStack(alignment: .leading, spacing: 4) {
                 Text(categoryName)
                     .font(.system(size: 15, weight: .bold))
@@ -150,15 +154,6 @@ private struct CategoryIssueRow: View {
                     .lineSpacing(4)
                     .fixedSize(horizontal: false, vertical: true)
             }
-        }
-    }
-
-    private var statusColor: Color {
-        switch feedback.status {
-        case .good:        return Color(.systemGreen)
-        case .warning:     return Color(.systemOrange)
-        case .critical:    return Color(.systemRed)
-        case .unavailable: return Color(.tertiaryLabel)
         }
     }
 

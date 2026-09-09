@@ -337,7 +337,6 @@ struct GartenView: View {
                 if !gardenStore.sichtbarePflanzen.isEmpty {
                     DailyHealthScoreCard()
                         .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
                         .frame(maxWidth: 850)
                 }
 

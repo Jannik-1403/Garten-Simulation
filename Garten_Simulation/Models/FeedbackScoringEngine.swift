@@ -24,7 +24,7 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
 
 // MARK: - CategoryStatus
 
-enum CategoryStatus {
+enum CategoryStatus: Equatable {
     case good
     case warning
     case critical
@@ -71,6 +71,12 @@ struct FeedbackScoringEngine {
     // MARK: - Multi-Kategorie Auswertung (neue Hauptmethode)
 
     struct EvaluationInput {
+        var hasWaterPlant: Bool
+        var hasSleepPlant: Bool
+        var hasStrengthPlant: Bool
+        var hasRunningPlant: Bool
+        var hasNutritionPlant: Bool
+
         var waterToday: Double
         var waterGoal: Double
         var waterHistory7Days: [Date: Double]
@@ -80,7 +86,6 @@ struct FeedbackScoringEngine {
         var strengthDaysAgo: Int?           // nil = keine Historie
         var hasStrengthHistory: Bool
         var runningMinutesToday: Double
-        var hasRunningPlant: Bool           // Nutzer hat Lauf-Gewohnheit in App
         var energyToday: Double             // > 0 = Ernährung wird getrackt
         var proteinToday: Double
         var proteinGoal: Double
@@ -96,53 +101,55 @@ struct FeedbackScoringEngine {
         let hour = Calendar.current.component(.hour, from: Date())
 
         // MARK: Wasser
-        let waterPct = input.waterGoal > 0 ? input.waterToday / input.waterGoal : 0
-        let waterStatus: CategoryStatus
-        if waterPct >= 0.8 {
-            waterStatus = .good
-        } else if waterPct >= 0.5 {
-            waterStatus = .warning
-        } else {
-            waterStatus = .critical
-        }
-
-        let waterSummary: String
-        let waterDetail: String
-        let waterActual = Int(input.waterToday)
-        let waterTarget = Int(input.waterGoal)
-
-        if waterStatus == .good {
-            waterSummary = "\(waterActual) / \(waterTarget) ml ✓"
-            waterDetail = String(localized: "fitness.water.detail.good",
-                                  defaultValue: "Dein Wasserziel ist erreicht. Weiter so!")
-        } else {
-            waterSummary = "\(waterActual) / \(waterTarget) ml"
-            let remaining = waterTarget - waterActual
-            // Zeitabhängige Handlungsanweisung
-            let actionHint: String
-            switch hour {
-            case 0..<10:
-                actionHint = String(localized: "fitness.water.action.morning",
-                                    defaultValue: "Trink jetzt dein erstes Glas.")
-            case 10..<14:
-                actionHint = String(format: String(localized: "fitness.water.action.midday",
-                                                    defaultValue: "Noch %lld ml bis zum Mittag schaffen."),
-                                    remaining)
-            case 14..<19:
-                actionHint = String(localized: "fitness.water.action.afternoon",
-                                    defaultValue: "Trink in den nächsten 2 Stunden ein großes Glas.")
-            default:
-                actionHint = String(format: String(localized: "fitness.water.action.evening",
-                                                    defaultValue: "Du kannst noch %lld ml schaffen, wenn du jetzt anfängst."),
-                                    remaining)
+        if input.hasWaterPlant {
+            let waterPct = input.waterGoal > 0 ? input.waterToday / input.waterGoal : 0
+            let waterStatus: CategoryStatus
+            if waterPct >= 0.8 {
+                waterStatus = .good
+            } else if waterPct >= 0.5 {
+                waterStatus = .warning
+            } else {
+                waterStatus = .critical
             }
-            waterDetail = "\(waterActual) von \(waterTarget) ml getrunken. \(actionHint)"
-        }
-        results.append(CategoryFeedback(category: .water, status: waterStatus,
-                                         summaryText: waterSummary, detailText: waterDetail))
 
-        // MARK: Schlaf (nur wenn Daten vorhanden)
-        if input.sleepHoursToday > 0 {
+            let waterSummary: String
+            let waterDetail: String
+            let waterActual = Int(input.waterToday)
+            let waterTarget = Int(input.waterGoal)
+
+            if waterStatus == .good {
+                waterSummary = "\(waterActual) / \(waterTarget) ml ✓"
+                waterDetail = String(localized: "fitness.water.detail.good",
+                                      defaultValue: "Dein Wasserziel ist erreicht. Weiter so!")
+            } else {
+                waterSummary = "\(waterActual) / \(waterTarget) ml"
+                let remaining = waterTarget - waterActual
+                // Zeitabhängige Handlungsanweisung
+                let actionHint: String
+                switch hour {
+                case 0..<10:
+                    actionHint = String(localized: "fitness.water.action.morning",
+                                        defaultValue: "Trink jetzt dein erstes Glas.")
+                case 10..<14:
+                    actionHint = String(format: String(localized: "fitness.water.action.midday",
+                                                        defaultValue: "Noch %lld ml bis zum Mittag schaffen."),
+                                        remaining)
+                case 14..<19:
+                    actionHint = String(localized: "fitness.water.action.afternoon",
+                                        defaultValue: "Trink in den nächsten 2 Stunden ein großes Glas.")
+                default:
+                    actionHint = String(format: String(localized: "fitness.water.action.evening",
+                                                        defaultValue: "Du kannst noch %lld ml schaffen, wenn du jetzt anfängst."),
+                                        remaining)
+                }
+                waterDetail = "\(waterActual) von \(waterTarget) ml getrunken. \(actionHint)"
+            }
+            results.append(CategoryFeedback(category: .water, status: waterStatus,
+                                             summaryText: waterSummary, detailText: waterDetail))
+        }
+
+        // MARK: Schlaf (nur wenn Pflanze vorhanden)
+        if input.hasSleepPlant {
             let sleepStatus: CategoryStatus
             if input.sleepHoursToday >= 7 {
                 sleepStatus = .good
@@ -172,8 +179,8 @@ struct FeedbackScoringEngine {
                                              summaryText: sleepSummary, detailText: sleepDetail))
         }
 
-        // MARK: Krafttraining (nur wenn Workout-Historie vorhanden)
-        if input.hasStrengthHistory {
+        // MARK: Krafttraining (nur wenn Workout-Pflanze vorhanden)
+        if input.hasStrengthPlant {
             let days = input.strengthDaysAgo ?? 999
             let strengthStatus: CategoryStatus
             if days <= 2 {
@@ -231,8 +238,8 @@ struct FeedbackScoringEngine {
                                              summaryText: runSummary, detailText: runDetail))
         }
 
-        // MARK: Ernährung (nur wenn Energie heute getrackt)
-        if input.energyToday > 0 {
+        // MARK: Ernährung (nur wenn Ernährungs-Pflanze vorhanden)
+        if input.hasNutritionPlant {
             var nutritionProblems: [String] = []
             var nutritionDetails: [String] = []
 
@@ -260,12 +267,10 @@ struct FeedbackScoringEngine {
                 }
             }
 
-            // Mineralstoffe (schlechtester Wert)
-            if let mineral = input.worstMineralName, input.worstMineralScore < 70 {
-                nutritionProblems.append(mineral)
-                let detail = String(format: String(localized: "fitness.nutrition.mineral.detail",
-                                                    defaultValue: "%@: unter 70%% Bedarf"),
-                                    mineral)
+            // Mineralstoffe (generisch)
+            if input.worstMineralScore < 70 {
+                nutritionProblems.append(String(localized: "fitness.nutrition.mineral.generic", defaultValue: "Vitamine & Mineralien"))
+                let detail = String(localized: "fitness.nutrition.mineral.detail.generic", defaultValue: "Dein Bedarf an einigen Vitaminen & Mineralien ist heute nicht gedeckt.")
                 nutritionDetails.append(detail)
             }
 
