@@ -1,6 +1,6 @@
 ## [2026-09-09] - Fix: Tolerantere Schlaf-Regelmäßigkeit & UI Fix
 - **Mathematik-Update:** Die Schlaf-Regelmäßigkeit nutzt nun die durchschnittliche absolute Abweichung (MAD) anstelle der Standardabweichung (StdDev). Die Standardabweichung hat einzelne Ausreißer (z.B. eine späte Party am Wochenende) überproportional hart bestraft, was zu unfairen Bewertungen (wie 66%) geführt hat. Das neue System spiegelt das menschliche Empfinden viel fairer wider.
-- **Toleranz-Update:** Die Regelmäßigkeit ist nun 100%, solange man im Schnitt um maximal 45 Minuten abweicht (vorher 30 Minuten).
+- **Toleranz-Update:** Die Regelmäßigkeit ist nun 100%, solange man im Schnitt um maximal 37 Minuten abweicht (vorher 45 Minuten).
 - **UI-Fix:** Lange Insight-Texte werden nun nicht mehr mit "..." abgeschnitten, sondern der Text skaliert notfalls etwas kleiner (`.minimumScaleFactor`).
 
 ## [2026-09-09] - Fix: Intelligenter Sleep Session Algorithmus
