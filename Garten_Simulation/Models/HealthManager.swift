@@ -516,8 +516,8 @@ class HealthManager: ObservableObject {
             }
             
             let mean = bedtimesInMinutes.reduce(0, +) / Double(bedtimesInMinutes.count)
-            let variance = bedtimesInMinutes.reduce(0) { $0 + pow($1 - mean, 2) } / Double(bedtimesInMinutes.count)
-            let stdDev = sqrt(variance) // Standardabweichung in Minuten
+            // Statt Standardabweichung (die Ausreißer überbewertet), nutzen wir die mittlere absolute Abweichung (MAD)
+            let mad = bedtimesInMinutes.reduce(0) { $0 + abs($1 - mean) } / Double(bedtimesInMinutes.count)
             
             var avgHour = Int(mean) / 60
             let avgMinute = Int(mean) % 60
@@ -552,13 +552,13 @@ class HealthManager: ObservableObject {
                 worstDayName = formatter.string(from: worstDate)
             }
             
-            // 0 bis 30 Min Abweichung = 100%, 120 Min Abweichung = 0%
-            let maxDeviation = 120.0
-            let minDeviation = 30.0
+            // 0 bis 45 Min durchschnittliche Abweichung = 100%, 150 Min Abweichung = 0%
+            let maxDeviation = 150.0
+            let minDeviation = 45.0
             
             var regularity = 1.0
-            if stdDev > minDeviation {
-                regularity = 1.0 - ((stdDev - minDeviation) / (maxDeviation - minDeviation))
+            if mad > minDeviation {
+                regularity = 1.0 - ((mad - minDeviation) / (maxDeviation - minDeviation))
             }
             regularity = max(0.0, min(1.0, regularity))
             

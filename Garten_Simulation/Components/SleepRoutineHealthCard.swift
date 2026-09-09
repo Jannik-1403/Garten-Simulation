@@ -62,19 +62,22 @@ struct SleepRoutineHealthCard: View {
                                         .font(.system(size: 13, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .multilineTextAlignment(.center)
-                                        .lineLimit(4)
+                                        .minimumScaleFactor(0.7)
+                                        .lineLimit(5)
                                 } else if let day = healthManager.sleepWorstDayName {
                                     Text(String(format: String(localized: "sleep.routine.insight.specific_day", defaultValue: "Du musst daran arbeiten. Besonders am %@ gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."), day, avg, wake))
                                         .font(.system(size: 13, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .multilineTextAlignment(.center)
-                                        .lineLimit(4)
+                                        .minimumScaleFactor(0.7)
+                                        .lineLimit(5)
                                 } else {
                                     Text(String(format: String(localized: "sleep.routine.insight.needs_work", defaultValue: "Du musst daran arbeiten. Du brauchst eine Schlafroutine. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."), avg, wake))
                                         .font(.system(size: 13, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .multilineTextAlignment(.center)
-                                        .lineLimit(4)
+                                        .minimumScaleFactor(0.7)
+                                        .lineLimit(5)
                                 }
                             }
                         }
