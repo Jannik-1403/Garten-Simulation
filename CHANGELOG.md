@@ -1024,3 +1024,6 @@
 - `HealthManager.swift`: `fetchWaterHistory7Days()`, `fetchStepsHistory7Days()`, `fetchLastStrengthWorkout()` ergänzt
 - `WaterTrackerView.swift`: `DailyFeedbackView` unter ChunkyProgressRing eingefügt
 - `Localizable.xcstrings`: 10 neue Keys (feedbackWasserKritisch, feedbackWasserLeicht, feedbackTrainingInaktiv, feedbackSchritteNiedrig, feedbackNaehrstoffDefizit, feedbackPositiv1–3, feedback.thumb.up/down) in allen 16 App-Sprachen auf 100% übersetzt
+
+
+- DailyFeedbackView im Statistik-Dashboard unter 'Tag'-Tab ganz oben eingeblendet
