@@ -150,8 +150,13 @@ class HealthManager: ObservableObject {
         if hasRequested {
             isAuthorized = true
             
-            // Wenn der User schon V1/V2/V3 hat, aber die neuen Körperdaten/Fette (v4) noch nicht
-            if !hasRequestedV4 {
+            // Wenn der User schon V1/V2/V3/V4 hat, aber die neuen Schreibrechte für Wasser (v5) noch nicht
+            let hasRequestedV5 = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested_v5")
+            if !hasRequestedV5 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.requestAuthorization()
+                }
+            } else if !hasRequestedV4 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.requestAuthorization()
                 }
@@ -200,7 +205,9 @@ class HealthManager: ObservableObject {
             }
         }
         
-        healthStore.requestAuthorization(toShare: nil, read: typesToRead) { [weak self] success, error in
+        var typesToShare: Set<HKSampleType> = [water]
+        
+        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { [weak self] success, error in
             DispatchQueue.main.async {
                 if success {
                     self?.isAuthorized = true
@@ -208,6 +215,7 @@ class HealthManager: ObservableObject {
                     UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v2")
                     UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v3")
                     UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v4")
+                    UserDefaults.standard.set(true, forKey: "HealthKitAuthRequested_v5")
                     self?.fetchAllTodaysData()
                 } else {
                     print("HealthKit Auth Fehlgeschlagen: \(String(describing: error))")
