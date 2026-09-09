@@ -32,10 +32,11 @@ struct WasserTrinkenCard: View {
                         .foregroundColor(.blue)
                     
                     // Add Button
-                    Item3DPillButton(
+                    Item3DButton(
                         farbe: .cyan,
                         sekundaerFarbe: .cyan.opacity(0.8),
-                        groesse: 50,
+                        groesse: 56,
+                        isRectangular: true,
                         aktion: {
                             zeigeHinzufuegenSheet = true
                         }
@@ -47,6 +48,7 @@ struct WasserTrinkenCard: View {
                         .font(.headline)
                         .foregroundColor(.white)
                     }
+                    .frame(height: 56)
                 }
                 .padding(24)
                 
@@ -78,21 +80,30 @@ struct WasserTrinkenCard: View {
                         .font(.headline)
                         .padding(.top, 32)
                     
-                    TextField(String(localized: "water.add.placeholder", defaultValue: "z.B. 250"), text: $manuelleMenge)
-                        .keyboardType(.numberPad)
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .background(Color(UIColor.secondarySystemBackground))
-                        .cornerRadius(12)
-                        .padding(.horizontal, 40)
+                    HStack(spacing: 8) {
+                        TextField(String(localized: "water.add.placeholder", defaultValue: "z.B. 250"), text: $manuelleMenge)
+                            .keyboardType(.numberPad)
+                            .font(.system(size: 32, weight: .bold, design: .rounded))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .background(Color(UIColor.secondarySystemBackground))
+                            .cornerRadius(12)
+                        
+                        Text("ml")
+                            .font(.system(size: 32, weight: .bold, design: .rounded))
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.horizontal, 40)
                     
-                    Item3DPillButton(
+                    Item3DButton(
                         farbe: .cyan,
                         sekundaerFarbe: .cyan.opacity(0.8),
-                        groesse: 50,
+                        groesse: 56,
+                        isRectangular: true,
                         aktion: {
                             if let amount = Double(manuelleMenge), amount > 0 {
+                                // Optimistic UI update
+                                healthManager.todaysWater += amount
                                 viewModel.addWater(ml: amount)
                                 manuelleMenge = ""
                                 zeigeHinzufuegenSheet = false
@@ -102,8 +113,8 @@ struct WasserTrinkenCard: View {
                         Text(String(localized: "common.save", defaultValue: "Speichern"))
                             .font(.headline)
                             .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
                     }
+                    .frame(height: 56)
                     .padding(.horizontal, 40)
                     
                     Spacer()
@@ -112,9 +123,9 @@ struct WasserTrinkenCard: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: { zeigeHinzufuegenSheet = false }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.title3)
-                                .foregroundColor(.gray)
+                            Text(String(localized: "common.cancel", defaultValue: "Abbrechen"))
+                                .font(.headline)
+                                .foregroundColor(.red)
                         }
                     }
                 }

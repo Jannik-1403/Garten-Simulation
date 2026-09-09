@@ -106,7 +106,7 @@ struct PflanzeDetailSheet: View {
                     
                     
                     // Apple Health Integration (Pro Feature)
-                    if pflanze.showStats {
+                    if pflanze.showStats && pflanze.habitName != "habit.wasser_trinken" {
                         healthKitConfigSection
                     }
                     
