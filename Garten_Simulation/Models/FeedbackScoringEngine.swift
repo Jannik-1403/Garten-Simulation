@@ -87,9 +87,12 @@ struct FeedbackScoringEngine {
         var sleepTargetWakeUpString: String?
         var strengthDaysAgo: Int?           // nil = keine Historie
         var hasStrengthHistory: Bool
+        var strengthTodayMinutes: Double
+        var strengthGoalMinutes: Double
         var stepsToday: Double
         var stepsGoal: Double
         var energyToday: Double             // > 0 = Ernährung wird getrackt
+        var energyGoal: Double
         var proteinToday: Double
         var proteinGoal: Double
         var fiberToday: Double
@@ -215,22 +218,23 @@ struct FeedbackScoringEngine {
 
             let strengthSummary: String
             let strengthDetail: String
+            
+            // Format minutes e.g., 20 / 45 min
+            let minStr = "\(Int(input.strengthTodayMinutes)) / \(Int(input.strengthGoalMinutes)) min"
+            
             switch strengthStatus {
             case .good:
                 strengthSummary = days == 0
-                    ? String(localized: "fitness.strength.summary.today", defaultValue: "Heute ✓")
-                    : String(format: String(localized: "fitness.strength.summary.recent",
-                                            defaultValue: "Vor %lld Tag(en) ✓"), days)
+                    ? "\(minStr) ✓"
+                    : "\(minStr) (Vor \(days) Tag(en)) ✓"
                 strengthDetail = String(localized: "fitness.strength.detail.good",
                                         defaultValue: "Nettes Krafttraining, weiter so! Dein Training liegt voll im Zeitplan.")
             case .warning:
-                strengthSummary = String(format: String(localized: "fitness.strength.summary.warning",
-                                                         defaultValue: "Vor %lld Tagen"), days)
+                strengthSummary = days == 0 ? minStr : "\(minStr) (Vor \(days) Tagen)"
                 strengthDetail = String(localized: "fitness.strength.detail.warning",
                                         defaultValue: "Dein letztes Training ist schon etwas her. Plane diese Woche noch eine Krafteinheit ein, um dranzubleiben.")
             default:
-                strengthSummary = String(format: String(localized: "fitness.strength.summary.critical",
-                                                         defaultValue: "Vor %lld Tagen"), days)
+                strengthSummary = days == 0 ? minStr : "\(minStr) (Vor \(days) Tagen)"
                 strengthDetail = String(localized: "fitness.strength.detail.critical",
                                         defaultValue: "Letztes Krafttraining liegt zu lange zurück. Versuche heute eine kurze Einheit einzuplanen, um den Rhythmus nicht zu verlieren.")
             }
@@ -328,14 +332,12 @@ struct FeedbackScoringEngine {
             }
 
             let nutStatus: CategoryStatus = nutritionProblems.isEmpty ? .good : .warning
-            let nutSummary: String
+            let nutSummary = "\(Int(input.energyToday)) / \(Int(input.energyGoal)) kcal" + (nutritionProblems.isEmpty ? " ✓" : "")
             let nutDetail: String
 
             if nutritionProblems.isEmpty {
-                nutSummary = String(localized: "fitness.nutrition.summary.good", defaultValue: "Alle Werte erreicht ✓")
                 nutDetail = String(localized: "fitness.nutrition.detail.good", defaultValue: "Ernährung liegt heute im Zielbereich.")
             } else {
-                nutSummary = nutritionProblems.joined(separator: ", ")
                 nutDetail = nutritionDetails.joined(separator: "\n")
             }
             results.append(CategoryFeedback(category: .nutrition, status: nutStatus,

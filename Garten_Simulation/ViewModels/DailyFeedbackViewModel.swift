@@ -61,20 +61,35 @@ class DailyFeedbackViewModel: ObservableObject {
             .filter { $0.isEnabled && $0.targetDGE > 0 }
             .min(by: { $0.score < $1.score })
 
-        let hasWaterPlant = activeHabits.contains { $0.automaticHealthMetric == HealthMetricType.water }
-        let hasSleepPlant = activeHabits.contains { $0.automaticHealthMetric == HealthMetricType.sleep }
-        let hasStrengthPlant = activeHabits.contains { $0.automaticHealthMetric == HealthMetricType.strengthTraining }
-        let hasRunningPlant = activeHabits.contains { $0.automaticHealthMetric == HealthMetricType.steps } // In HabitModel ist Laufen als .steps gemappt
-        let hasNutritionPlant = activeHabits.contains {
-            $0.automaticHealthMetric == HealthMetricType.energy ||
-            $0.automaticHealthMetric == HealthMetricType.fiber ||
-            $0.habitName.lowercased().contains("gemüse") ||
-            $0.habitName.lowercased().contains("kochen")
-        }
+        let hasWaterPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.water })
+        let hasSleepPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.sleep })
+        let hasStrengthPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining })
+        let hasRunningPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.steps })
+        let hasNutritionPlant = activeHabits.contains(where: { plant in
+            if plant.linkedHealthMetric == .energy { return true }
+            if plant.linkedHealthMetric == .fiber { return true }
+            let lowerName = plant.name.lowercased()
+            if lowerName.contains("gemüse") { return true }
+            if lowerName.contains("kochen") { return true }
+            return false
+        })
 
         // Protein-Ziel aus UserDefaults (wird von MacroCalculator/HealthManager gesetzt)
         let proteinGoal = UserDefaults.standard.double(forKey: "goal_protein")
         let fiberGoal = 30.0 // DGE-Empfehlung, NutrientIndexManager default
+
+        let strengthPlant = activeHabits.first(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining || $0.name.lowercased().contains("kraft") })
+        let strengthGoalMinutes = strengthPlant?.healthTarget ?? 45.0
+        
+        let nutritionPlant = activeHabits.first(where: { plant in
+            if plant.linkedHealthMetric == HealthMetricType.energy { return true }
+            if plant.linkedHealthMetric == HealthMetricType.fiber { return true }
+            let lowerName = plant.name.lowercased()
+            if lowerName.contains("gemüse") { return true }
+            if lowerName.contains("kochen") { return true }
+            return false
+        })
+        let energyGoal = nutritionPlant?.healthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
 
         let input = FeedbackScoringEngine.EvaluationInput(
             hasWaterPlant: hasWaterPlant,
@@ -92,9 +107,12 @@ class DailyFeedbackViewModel: ObservableObject {
             sleepTargetWakeUpString: hm.sleepTargetWakeUpString,
             strengthDaysAgo: strengthDaysAgo,
             hasStrengthHistory: hm.hasAnyWorkoutHistory,
+            strengthTodayMinutes: hm.todaysStrengthTraining,
+            strengthGoalMinutes: strengthGoalMinutes,
             stepsToday: hm.todaysSteps,
             stepsGoal: 10000.0, // Standard Schritte-Ziel, ggf. aus Einstellungen holen
             energyToday: hm.todaysEnergy,
+            energyGoal: energyGoal > 0 ? energyGoal : 2000.0,
             proteinToday: hm.todaysProtein,
             proteinGoal: proteinGoal > 0 ? proteinGoal : 120.0,
             fiberToday: hm.todaysFiber,
