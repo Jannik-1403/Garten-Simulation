@@ -1,0 +1,12 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild build -project Garten_Simulation.xcodeproj -scheme Garten_Simulation -destination "platform=iOS Simulator,name=iPhone 15,OS=latest"
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  RiveRuntime: https://github.com/rive-app/rive-ios @ 6.20.5
+  DotLottie: https://github.com/LottieFiles/dotlottie-ios.git @ main (93565a8)
+
+2026-09-09 06:50:58.241 xcodebuild[2710:31580] Writing error result bundle to /var/folders/37/0ww3b7713871x_rly7sf27hr0000gn/T/ResultBundle_2026-09-09_06-50-0058.xcresult
+xcodebuild: error: The project named "Garten_Simulation" does not contain a scheme named "Garten_Simulation". The "-list" option can be used to find the names of the schemes in the project.

@@ -873,3 +873,26 @@ extension HealthManager {
         healthStore.execute(query)
     }
 }
+
+extension HealthManager {
+    func saveWater(ml: Double, date: Date = Date(), completion: @escaping (Bool, Error?) -> Void) {
+        guard let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
+            completion(false, nil)
+            return
+        }
+        let quantity = HKQuantity(unit: HKUnit.literUnit(with: .milli), doubleValue: ml)
+        let sample = HKQuantitySample(type: waterType, quantity: quantity, start: date, end: date)
+        
+        healthStore.save(sample) { [weak self] success, error in
+            if success {
+                // Update live data if date is today
+                if Calendar.current.isDateInToday(date) {
+                    DispatchQueue.main.async {
+                        self?.todaysWater += ml
+                    }
+                }
+            }
+            completion(success, error)
+        }
+    }
+}

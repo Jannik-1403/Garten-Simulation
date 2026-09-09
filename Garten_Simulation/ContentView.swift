@@ -315,6 +315,13 @@ struct MainAppTabView: View {
                 }
                 .accessibilityIdentifier("tab_shop")
 
+            WaterTrackerView()
+                .tag(6)
+                .tabItem {
+                    Label(String(localized: "water.title", defaultValue: "Wasser"), systemImage: "drop.fill")
+                }
+                .accessibilityIdentifier("tab_water")
+
             ProfilView()
                 .tag(3)
                 .tabItem {

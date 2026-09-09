@@ -972,3 +972,6 @@
 - **Nährstoff-Quellen hinzugefügt**: Zu allen 28 Nährstoffen (Vitamine, Mineralstoffe, Ballaststoffe) wurden Nahrungsquellen in 16 Sprachen hinterlegt.
 - **UI-Update**: Die Nahrungsquellen werden nun direkt in der `NutrientCategoryDetailView` unter dem Fortschrittsbalken für jeden Nährstoff angezeigt.
 - **Bildschirmzeit-Übersetzung:** Der standardmäßige "Choose Activities"-Titel beim Screen Time Picker wurde durch eine lokalisierte Version ersetzt ("Apps auswählen" im Deutschen), sodass dieser jetzt ebenfalls in allen 16 unterstützten Sprachen korrekt übersetzt wird.
+
+- Lokalisierte und habit-spezifische Notification-Texte für Routinen und Pflanzen hinzugefügt.
+- Alte ungenutzte automatische Erinnerungstexte entfernt.
