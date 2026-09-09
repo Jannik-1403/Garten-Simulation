@@ -1,3 +1,7 @@
+## [2026-09-09] - Style: Apple Health Schlafroutine UI
+- **UI & Layout:** Der Header der SleepRoutineHealthCard zeigt nun nur noch "Schlafroutine" (ohne Icon). Die Schlaf-Regelmäßigkeit ist nun zentriert und der Text befindet sich unterhalb des Prozent-Rings.
+- **Daten-Abfrage:** Ein Bug wurde behoben, durch den die Apple Health Schlaf-Daten beim ersten Öffnen nicht immer sofort geladen wurden.
+
 ## [2026-09-09] - Fix: Apple Health Schlafroutine Integration
 - **Bugfix:** Apple Health Ansicht für Schlafroutine wurde nicht angezeigt, weil das Keyword nicht korrekt erkannt wurde. Dies wurde nun behoben und die Apple Health Card erscheint nun anstelle der normalen Einzelstatistik.
 
