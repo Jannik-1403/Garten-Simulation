@@ -96,17 +96,25 @@ struct FeedbackScoringEngine {
         var userFactors: (_ key: String) -> Double
     }
 
+    static func getModifier(for category: FitnessCategory) -> Double {
+        let val = UserDefaults.standard.integer(forKey: "feedback_modifier_\(category.rawValue)")
+        if val < 0 { return -0.15 } // 👎 -> Toleranter (Grenzwert sinkt)
+        else if val > 0 { return 0.10 } // 👍 -> Strenger (Grenzwert steigt)
+        return 0.0
+    }
+
     static func evaluateAll(input: EvaluationInput) -> [CategoryFeedback] {
         var results: [CategoryFeedback] = []
         let hour = Calendar.current.component(.hour, from: Date())
 
         // MARK: Wasser
         if input.hasWaterPlant {
+            let mod = getModifier(for: .water)
             let waterPct = input.waterGoal > 0 ? input.waterToday / input.waterGoal : 0
             let waterStatus: CategoryStatus
-            if waterPct >= 0.8 {
+            if waterPct >= max(0.1, 0.8 + mod) {
                 waterStatus = .good
-            } else if waterPct >= 0.5 {
+            } else if waterPct >= max(0.1, 0.5 + mod) {
                 waterStatus = .warning
             } else {
                 waterStatus = .critical
@@ -150,10 +158,11 @@ struct FeedbackScoringEngine {
 
         // MARK: Schlaf (nur wenn Pflanze vorhanden)
         if input.hasSleepPlant {
+            let mod = getModifier(for: .sleep) * 10.0 // +/- 1.5h
             let sleepStatus: CategoryStatus
-            if input.sleepHoursToday >= 7 {
+            if input.sleepHoursToday >= max(1.0, 7.0 + mod) {
                 sleepStatus = .good
-            } else if input.sleepHoursToday >= 6 {
+            } else if input.sleepHoursToday >= max(1.0, 6.0 + mod) {
                 sleepStatus = .warning
             } else {
                 sleepStatus = .critical
@@ -181,11 +190,12 @@ struct FeedbackScoringEngine {
 
         // MARK: Krafttraining (nur wenn Workout-Pflanze vorhanden)
         if input.hasStrengthPlant {
+            let modDays = Int(getModifier(for: .strength) * -20.0) // 👎=-0.15 -> +3 days toleranter
             let days = input.strengthDaysAgo ?? 999
             let strengthStatus: CategoryStatus
-            if days <= 2 {
+            if days <= max(1, 2 + modDays) {
                 strengthStatus = .good
-            } else if days <= 5 {
+            } else if days <= max(1, 5 + modDays) {
                 strengthStatus = .warning
             } else {
                 strengthStatus = .critical
@@ -240,13 +250,14 @@ struct FeedbackScoringEngine {
 
         // MARK: Ernährung (nur wenn Ernährungs-Pflanze vorhanden)
         if input.hasNutritionPlant {
+            let mod = getModifier(for: .nutrition)
             var nutritionProblems: [String] = []
             var nutritionDetails: [String] = []
 
             // Protein
             if input.proteinGoal > 0 {
                 let proteinPct = input.proteinToday / input.proteinGoal
-                if proteinPct < 0.7 {
+                if proteinPct < max(0.1, 0.7 + mod) {
                     nutritionProblems.append(String(localized: "fitness.nutrition.protein", defaultValue: "Protein"))
                     let detail = String(format: String(localized: "fitness.nutrition.protein.detail",
                                                         defaultValue: "Protein: %lld / %lld g"),
@@ -258,7 +269,7 @@ struct FeedbackScoringEngine {
             // Ballaststoffe
             if input.fiberGoal > 0 {
                 let fiberPct = input.fiberToday / input.fiberGoal
-                if fiberPct < 0.7 {
+                if fiberPct < max(0.1, 0.7 + mod) {
                     nutritionProblems.append(String(localized: "fitness.nutrition.fiber", defaultValue: "Ballaststoffe"))
                     let detail = String(format: String(localized: "fitness.nutrition.fiber.detail",
                                                         defaultValue: "Ballaststoffe: %lld / %lld g"),
@@ -268,7 +279,7 @@ struct FeedbackScoringEngine {
             }
 
             // Mineralstoffe (generisch)
-            if input.worstMineralScore < 70 {
+            if input.worstMineralScore < max(10.0, 70.0 + (mod * 100.0)) {
                 nutritionProblems.append(String(localized: "fitness.nutrition.mineral.generic", defaultValue: "Vitamine & Mineralien"))
                 let detail = String(localized: "fitness.nutrition.mineral.detail.generic", defaultValue: "Dein Bedarf an einigen Vitaminen & Mineralien ist heute nicht gedeckt.")
                 nutritionDetails.append(detail)

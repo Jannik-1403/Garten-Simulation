@@ -1035,3 +1035,5 @@
 
 - **Personalisierter Tages-Score**: Der Tages-Score analysiert ab sofort nur noch die Gesundheitskategorien, für die der Nutzer eine aktive Pflanze/Gewohnheit besitzt. Die detaillierte Nährstoffanalyse ('Molybdän') wurde vereinfacht.
 - **3D Score Card Redesign**: Die Score-Card nutzt nun das PillButtonStyle-Layout und expandiert physisch nach unten. Sie ist in der Breite an die Unkraut-Warnung angeglichen, und alle Eichenringe (Icons) in der Analyseansicht wurden für ein cleaneres Design entfernt.
+
+- **UI Bugfix**: Der 'Tages-Score'-Button hat im geschlossenen Zustand nun wieder die normale Höhe. Das Problem, dass sich der 3D-Pill-Button unendlich nach unten ausgedehnt hat, wurde behoben.

@@ -68,6 +68,7 @@ struct DailyHealthScoreCard: View {
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }
             }
+            .clipped()
         }
         .buttonStyle(PillButtonStyle(
             farbe: .white,
@@ -140,21 +141,74 @@ private struct MiniChunkyProgressRing: View {
 
 private struct CategoryIssueRow: View {
     let feedback: CategoryFeedback
+    
+    @State private var thumbUpScale: CGFloat = 1.0
+    @State private var thumbDownScale: CGFloat = 1.0
+    @State private var userFeedback: Int = 0 // 1 = up, -1 = down
 
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(categoryName)
-                    .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(.primary)
+        VStack(alignment: .leading, spacing: 8) {
+            Text(categoryName)
+                .font(.system(size: 15, weight: .bold))
+                .foregroundColor(.primary)
+            
+            Text(feedback.detailText)
+                .font(.system(size: 14))
+                .foregroundColor(.secondary)
+                .lineSpacing(4)
+                .fixedSize(horizontal: false, vertical: true)
                 
-                Text(feedback.detailText)
-                    .font(.system(size: 14))
-                    .foregroundColor(.secondary)
-                    .lineSpacing(4)
-                    .fixedSize(horizontal: false, vertical: true)
+            HStack(spacing: 24) {
+                Button {
+                    handleThumb(up: false)
+                } label: {
+                    Image(systemName: userFeedback == -1 ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                        .font(.system(size: 16))
+                        .foregroundColor(userFeedback == -1 ? Color(.systemOrange) : Color(.tertiaryLabel))
+                        .scaleEffect(thumbDownScale)
+                }
+                .buttonStyle(BorderlessButtonStyle())
+                
+                Button {
+                    handleThumb(up: true)
+                } label: {
+                    Image(systemName: userFeedback == 1 ? "hand.thumbsup.fill" : "hand.thumbsup")
+                        .font(.system(size: 16))
+                        .foregroundColor(userFeedback == 1 ? Color(.systemGreen) : Color(.tertiaryLabel))
+                        .scaleEffect(thumbUpScale)
+                }
+                .buttonStyle(BorderlessButtonStyle())
             }
+            .padding(.top, 4)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .onAppear {
+            let val = UserDefaults.standard.integer(forKey: "feedback_modifier_\(feedback.category.rawValue)")
+            if val > 0 { userFeedback = 1 }
+            else if val < 0 { userFeedback = -1 }
+        }
+    }
+    
+    private func handleThumb(up: Bool) {
+        let impact = UIImpactFeedbackGenerator(style: .medium)
+        impact.impactOccurred()
+        
+        let key = "feedback_modifier_\(feedback.category.rawValue)"
+        if up {
+            withAnimation(.spring(response: 0.2, dampingFraction: 0.5)) { thumbUpScale = 1.3 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { withAnimation { thumbUpScale = 1.0 } }
+            
+            userFeedback = (userFeedback == 1) ? 0 : 1
+            UserDefaults.standard.set(userFeedback == 1 ? 1 : 0, forKey: key)
+        } else {
+            withAnimation(.spring(response: 0.2, dampingFraction: 0.5)) { thumbDownScale = 1.3 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { withAnimation { thumbDownScale = 1.0 } }
+            
+            userFeedback = (userFeedback == -1) ? 0 : -1
+            UserDefaults.standard.set(userFeedback == -1 ? -1 : 0, forKey: key)
+        }
+        
+        // Benachrichtige Observer, falls nötig, ansonsten beim nächsten Reevaluate
     }
 
     private var categoryName: String {
