@@ -17,6 +17,10 @@ class HealthManager: ObservableObject {
     @Published var latestSleepStart: Date?
     @Published var latestSleepEnd: Date?
     @Published var sleepRegularityPercentage: Double?
+    @Published var sleepAvgBedtimeString: String?
+    @Published var sleepTargetWakeUpString: String?
+    @Published var sleepWorstDayName: String?
+    @Published var sleepIsWeekendWorst: Bool = false
     @Published var todaysMindfulness: Double = 0
     @Published var todaysRunning: Double = 0
     @Published var todaysStrengthTraining: Double = 0
@@ -479,6 +483,39 @@ class HealthManager: ObservableObject {
             let variance = bedtimesInMinutes.reduce(0) { $0 + pow($1 - mean, 2) } / Double(bedtimesInMinutes.count)
             let stdDev = sqrt(variance) // Standardabweichung in Minuten
             
+            var avgHour = Int(mean) / 60
+            let avgMinute = Int(mean) % 60
+            if avgHour >= 24 { avgHour -= 24 }
+            let avgBedtimeStr = String(format: "%02d:%02d", avgHour, avgMinute)
+            
+            var targetHour = avgHour + 8
+            if targetHour >= 24 { targetHour -= 24 }
+            let targetWakeUpStr = String(format: "%02d:%02d", targetHour, avgMinute)
+            
+            var maxDev: Double = -1
+            var worstDate: Date? = nil
+            for time in bedtimes {
+                let hour = calendar.component(.hour, from: time)
+                let minute = calendar.component(.minute, from: time)
+                let adjustedHour = hour < 12 ? hour + 24 : hour
+                let timeInMin = Double(adjustedHour * 60 + minute)
+                let dev = abs(timeInMin - mean)
+                if dev > maxDev {
+                    maxDev = dev
+                    worstDate = time
+                }
+            }
+            
+            var isWeekend = false
+            var worstDayName: String? = nil
+            if let worstDate = worstDate {
+                let weekday = calendar.component(.weekday, from: worstDate)
+                isWeekend = (weekday == 1 || weekday == 7) // 1=Sun, 7=Sat
+                let formatter = DateFormatter()
+                formatter.dateFormat = "EEEE"
+                worstDayName = formatter.string(from: worstDate)
+            }
+            
             // 0 bis 30 Min Abweichung = 100%, 120 Min Abweichung = 0%
             let maxDeviation = 120.0
             let minDeviation = 30.0
@@ -491,6 +528,10 @@ class HealthManager: ObservableObject {
             
             DispatchQueue.main.async {
                 self.sleepRegularityPercentage = regularity
+                self.sleepAvgBedtimeString = avgBedtimeStr
+                self.sleepTargetWakeUpString = targetWakeUpStr
+                self.sleepWorstDayName = worstDayName
+                self.sleepIsWeekendWorst = isWeekend
             }
         }
         healthStore.execute(query)

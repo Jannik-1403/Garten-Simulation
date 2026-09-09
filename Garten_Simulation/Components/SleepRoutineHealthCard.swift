@@ -47,11 +47,36 @@ struct SleepRoutineHealthCard: View {
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .multilineTextAlignment(.center)
                             
-                            Text(String(localized: "sleep.routine.regularity.desc", defaultValue: "Gleichmäßige Bettgehzeiten verbessern deine Tiefschlafphasen enorm."))
-                                .font(.system(size: 13, weight: .medium, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(3)
+                            if regularity >= 0.8 {
+                                Text(String(localized: "sleep.routine.insight.excellent", defaultValue: "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet."))
+                                    .font(.system(size: 13, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(4)
+                            } else {
+                                let avg = healthManager.sleepAvgBedtimeString ?? "23:00"
+                                let wake = healthManager.sleepTargetWakeUpString ?? "07:00"
+                                
+                                if healthManager.sleepIsWeekendWorst {
+                                    Text(String(format: String(localized: "sleep.routine.insight.weekend", defaultValue: "Du musst daran arbeiten. Besonders am Wochenende gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."), avg, wake))
+                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .multilineTextAlignment(.center)
+                                        .lineLimit(4)
+                                } else if let day = healthManager.sleepWorstDayName {
+                                    Text(String(format: String(localized: "sleep.routine.insight.specific_day", defaultValue: "Du musst daran arbeiten. Besonders am %@ gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."), day, avg, wake))
+                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .multilineTextAlignment(.center)
+                                        .lineLimit(4)
+                                } else {
+                                    Text(String(format: String(localized: "sleep.routine.insight.needs_work", defaultValue: "Du musst daran arbeiten. Du brauchst eine Schlafroutine. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."), avg, wake))
+                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .multilineTextAlignment(.center)
+                                        .lineLimit(4)
+                                }
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity)

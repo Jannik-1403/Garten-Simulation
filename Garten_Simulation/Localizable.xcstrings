@@ -464939,6 +464939,410 @@
           }
         }
       }
+    },
+    "sleep.routine.insight.excellent": {
+      "extractionState": "manual",
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "素晴らしい、その調子です！あなたの睡眠ルーティンは最高です。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ottimo lavoro, continua così! La tua routine di sonno è eccellente."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Great job, keep it up! Your sleep routine is excellent."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Great job, keep it up! Your sleep routine is excellent."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잘하고 있어요, 계속 유지하세요! 당신의 수면 루틴은 훌륭합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "干得好，继续保持！你的睡眠惯例非常棒。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "幹得好，繼續保持！你的睡眠慣例非常棒。"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Great job, keep it up! Your sleep routine is excellent."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Buen trabajo, sigue así! Tu rutina de sueño es excelente."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goed gedaan, ga zo door! Je slaaproutine is uitstekend."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ótimo trabalho, continue assim! Sua rotina de sono é excelente."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ótimo trabalho, continue assim! Sua rotina de sono é excelente."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Great job, keep it up! Your sleep routine is excellent."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отличная работа, продолжайте в том же духе! Ваш режим сна идеален."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excellent, continuez ainsi ! Votre routine de sommeil est parfaite."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet."
+          }
+        }
+      }
+    },
+    "sleep.routine.insight.weekend": {
+      "extractionState": "manual",
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改善が必要です。特に週末は就寝時間が不規則です。平均して %@ に就寝しています。8時間の睡眠をとるには、%@ に起きる必要があります。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Devi lavorarci. Vai a letto in modo irregolare, soprattutto nei fine settimana. In media, vai a letto alle %@. Per dormire 8 ore, dovresti svegliarti alle %@."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You go to bed irregularly, especially on weekends. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You go to bed irregularly, especially on weekends. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "노력이 필요합니다. 특히 주말에 취침 시간이 불규칙합니다. 평균적으로 %@ 에 잠자리에 듭니다. 8시간을 자려면 %@ 에 일어나야 합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你需要注意了。你睡觉时间很不规律，尤其是周末。平均而言，你在 %@ 睡觉。为了睡够8小时，你应该在 %@ 起床。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你需要注意了。你睡覺時間很不規律，尤其是週末。平均而言，你在 %@ 睡覺。為了睡夠8小時，你應該在 %@ 起床。"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You go to bed irregularly, especially on weekends. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Debes mejorar esto. Te acuestas a horas irregulares, especialmente los fines de semana. En promedio, te acuestas a las %@. Para dormir 8 horas, deberías despertarte a las %@."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je moet hieraan werken. Je gaat vooral in het weekend onregelmatig naar bed. Gemiddeld ga je om %@ naar bed. Om 8 uur slaap te krijgen, moet je om %@ opstaan."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você precisa melhorar. Você vai para a cama de forma irregular, especialmente nos fins de semana. Em média, você vai para a cama às %@. Para ter 8 horas de sono, você deve acordar às %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você precisa melhorar. Você vai para a cama de forma irregular, especialmente nos fins de semana. Em média, você vai para a cama às %@. Para ter 8 horas de sono, você deve acordar às %@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You go to bed irregularly, especially on weekends. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вам нужно поработать над этим. Вы ложитесь спать нерегулярно, особенно по выходным. В среднем вы ложитесь в %@. Чтобы спать 8 часов, вам следует просыпаться в %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous devez y travailler. Vous vous couchez de façon irrégulière, surtout le week-end. En moyenne, vous vous couchez à %@. Pour dormir 8 heures, vous devriez vous réveiller à %@."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du musst daran arbeiten. Besonders am Wochenende gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
+          }
+        }
+      }
+    },
+    "sleep.routine.insight.specific_day": {
+      "extractionState": "manual",
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改善が必要です。特に %@ は就寝時間が不規則です。平均して %@ に就寝しています。8時間の睡眠をとるには、%@ に起きる必要があります。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Devi lavorarci. Vai a letto in modo irregolare, soprattutto il %@. In media, vai a letto alle %@. Per dormire 8 ore, dovresti svegliarti alle %@."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You go to bed irregularly, especially on %@. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You go to bed irregularly, especially on %@. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "노력이 필요합니다. 특히 %@ 에 취침 시간이 불규칙합니다. 평균적으로 %@ 에 잠자리에 듭니다. 8시간을 자려면 %@ 에 일어나야 합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你需要注意了。你睡觉时间很不规律，尤其是 %@。平均而言，你在 %@ 睡觉。为了睡够8小时，你应该在 %@ 起床。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你需要注意了。你睡覺時間很不規律，尤其是 %@。平均而言，你在 %@ 睡覺。為了睡夠8小時，你應該在 %@ 起床。"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You go to bed irregularly, especially on %@. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Debes mejorar esto. Te acuestas a horas irregulares, especialmente el %@. En promedio, te acuestas a las %@. Para dormir 8 horas, deberías despertarte a las %@."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je moet hieraan werken. Je gaat vooral op %@ onregelmatig naar bed. Gemiddeld ga je om %@ naar bed. Om 8 uur slaap te krijgen, moet je om %@ opstaan."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você precisa melhorar. Você vai para a cama de forma irregular, especialmente na %@. Em média, você vai para a cama às %@. Para ter 8 horas de sono, você deve acordar às %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você precisa melhorar. Você vai para a cama de forma irregular, especialmente na %@. Em média, você vai para a cama às %@. Para ter 8 horas de sono, você deve acordar às %@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You go to bed irregularly, especially on %@. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вам нужно поработать над этим. Вы ложитесь спать нерегулярно, особенно в %@. В среднем вы ложитесь в %@. Чтобы спать 8 часов, вам следует просыпаться в %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous devez y travailler. Vous vous couchez de façon irrégulière, surtout le %@. En moyenne, vous vous couchez à %@. Pour dormir 8 heures, vous devriez vous réveiller à %@."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du musst daran arbeiten. Besonders am %@ gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
+          }
+        }
+      }
+    },
+    "sleep.routine.insight.needs_work": {
+      "extractionState": "manual",
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改善が必要です。睡眠ルーティンが必要です。平均して %@ に就寝しています。8時間の睡眠をとるには、%@ に起きる必要があります。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Devi lavorarci. Hai bisogno di una routine di sonno. In media, vai a letto alle %@. Per dormire 8 ore, dovresti svegliarti alle %@."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You need a sleep routine. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You need a sleep routine. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "노력이 필요합니다. 수면 루틴이 필요합니다. 평균적으로 %@ 에 잠자리에 듭니다. 8시간을 자려면 %@ 에 일어나야 합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你需要注意了。你需要一个睡眠惯例。平均而言，你在 %@ 睡觉。为了睡够8小时，你应该在 %@ 起床。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你需要注意了。你需要一個睡眠慣例。平均而言，你在 %@ 睡覺。為了睡夠8小時，你應該在 %@ 起床。"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You need a sleep routine. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Debes mejorar esto. Necesitas una rutina de sueño. En promedio, te acuestas a las %@. Para dormir 8 horas, deberías despertarte a las %@."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je moet hieraan werken. Je hebt een slaaproutine nodig. Gemiddeld ga je om %@ naar bed. Om 8 uur slaap te krijgen, moet je om %@ opstaan."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você precisa melhorar. Você precisa de uma rotina de sono. Em média, você vai para a cama às %@. Para ter 8 horas de sono, você deve acordar às %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você precisa melhorar. Você precisa de uma rotina de sono. Em média, você vai para a cama às %@. Para ter 8 horas de sono, você deve acordar às %@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to work on this. You need a sleep routine. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вам нужно поработать над этим. Вам нужен режим сна. В среднем вы ложитесь в %@. Чтобы спать 8 часов, вам следует просыпаться в %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous devez y travailler. Vous avez besoin d'une routine de sommeil. En moyenne, vous vous couchez à %@. Pour dormir 8 heures, vous devriez vous réveiller à %@."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du musst daran arbeiten. Du brauchst eine Schlafroutine. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
+          }
+        }
+      }
     }
   },
   "version": "1.1"
