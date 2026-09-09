@@ -1,3 +1,6 @@
+## [2026-09-09] - Fix: Party-Nächte werden ignoriert
+- **Outlier-Filter:** Die App filtert nun automatisch den extremsten Ausreißer (z.B. eine sehr späte Party-Nacht) aus der Berechnung der Schlaf-Regelmäßigkeit und der Durchschnitts-Bettgehzeit heraus (sofern man mindestens 4 Tage gemessen hat). Eine einzelne Ausnahme zerstört so nicht mehr den Schnitt oder die konstruktive Auswertung.
+
 ## [2026-09-09] - Fix: Tolerantere Schlaf-Regelmäßigkeit & UI Fix
 - **Mathematik-Update:** Die Schlaf-Regelmäßigkeit nutzt nun die durchschnittliche absolute Abweichung (MAD) anstelle der Standardabweichung (StdDev). Die Standardabweichung hat einzelne Ausreißer (z.B. eine späte Party am Wochenende) überproportional hart bestraft, was zu unfairen Bewertungen (wie 66%) geführt hat. Das neue System spiegelt das menschliche Empfinden viel fairer wider.
 - **Toleranz-Update:** Die Regelmäßigkeit ist nun 100%, solange man im Schnitt um maximal 37 Minuten abweicht. 
