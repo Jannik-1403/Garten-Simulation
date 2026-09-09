@@ -30,9 +30,9 @@ class WaterGoalManager: ObservableObject {
             }
             .store(in: &cancellables)
             
-        Publishers.CombineLatest($customMinGoal, $customMaxGoal)
+        NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _, _ in
+            .sink { [weak self] _ in
                 let hm = HealthManager.shared
                 self?.recalculateGoal(bodyMass: hm.latestBodyMass, steps: hm.todaysSteps, enduranceMinutes: hm.todaysRunning, strengthMinutes: hm.todaysStrengthTraining)
             }
