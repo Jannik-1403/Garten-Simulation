@@ -83,6 +83,8 @@ struct FeedbackScoringEngine {
         var sleepHoursToday: Double         // 0 = keine Daten
         var sleepGoalHours: Double          // Default 8h
         var sleepRegularity: Double?        // 0–1 aus HealthManager
+        var sleepAvgBedtimeString: String?
+        var sleepTargetWakeUpString: String?
         var strengthDaysAgo: Int?           // nil = keine Historie
         var hasStrengthHistory: Bool
         var stepsToday: Double
@@ -113,7 +115,7 @@ struct FeedbackScoringEngine {
             let mod = getModifier(for: .water)
             let waterPct = input.waterGoal > 0 ? input.waterToday / input.waterGoal : 0
             let waterStatus: CategoryStatus
-            if waterPct >= max(0.1, 0.8 + mod) {
+            if waterPct >= max(0.1, 1.0 + mod) {
                 waterStatus = .good
             } else if waterPct >= max(0.1, 0.5 + mod) {
                 waterStatus = .warning
@@ -173,18 +175,27 @@ struct FeedbackScoringEngine {
             let goalStr = String(format: "%.0f", input.sleepGoalHours)
             let sleepSummary = "\(sleepHoursStr) / \(goalStr) h"
 
-            let sleepDetail: String
+            var sleepDetail: String
             switch sleepStatus {
             case .good:
                 sleepDetail = String(localized: "fitness.sleep.detail.good",
-                                     defaultValue: "Guter Schlaf. Dein Körper konnte sich erholen.")
+                                     defaultValue: "Guter Schlaf. Dein Körper hat sich gut erholt.")
             case .warning:
                 sleepDetail = String(localized: "fitness.sleep.detail.warning",
-                                     defaultValue: "Etwas weniger als empfohlen. Versuche heute früher schlafen zu gehen.")
+                                     defaultValue: "Etwas weniger Schlaf als empfohlen.")
             default:
                 sleepDetail = String(localized: "fitness.sleep.detail.critical",
-                                     defaultValue: "Weniger als 6 Stunden Schlaf beeinträchtigen Konzentration und Erholung. Heute früher ins Bett.")
+                                     defaultValue: "Weniger als 6 Stunden Schlaf beeinträchtigen Konzentration und Erholung.")
             }
+            
+            if let bed = input.sleepAvgBedtimeString, let wake = input.sleepTargetWakeUpString {
+                let timeHint = String(format: String(localized: "fitness.sleep.detail.timehint",
+                                                      defaultValue: "Morgen solltest du lieber um %@ Uhr ins Bett gehen und um %@ Uhr aufwachen."), bed, wake)
+                sleepDetail += " " + timeHint
+            } else if sleepStatus != .good {
+                sleepDetail += " " + String(localized: "fitness.sleep.detail.fallback", defaultValue: "Versuche heute früher schlafen zu gehen.")
+            }
+            
             results.append(CategoryFeedback(category: .sleep, status: sleepStatus,
                                              summaryText: sleepSummary, detailText: sleepDetail))
         }
@@ -211,17 +222,17 @@ struct FeedbackScoringEngine {
                     : String(format: String(localized: "fitness.strength.summary.recent",
                                             defaultValue: "Vor %lld Tag(en) ✓"), days)
                 strengthDetail = String(localized: "fitness.strength.detail.good",
-                                        defaultValue: "Krafttraining liegt im Zeitplan.")
+                                        defaultValue: "Nettes Krafttraining, weiter so! Dein Training liegt voll im Zeitplan.")
             case .warning:
                 strengthSummary = String(format: String(localized: "fitness.strength.summary.warning",
                                                          defaultValue: "Vor %lld Tagen"), days)
                 strengthDetail = String(localized: "fitness.strength.detail.warning",
-                                        defaultValue: "Plane diese Woche noch eine Krafteinheit ein.")
+                                        defaultValue: "Dein letztes Training ist schon etwas her. Plane diese Woche noch eine Krafteinheit ein, um dranzubleiben.")
             default:
                 strengthSummary = String(format: String(localized: "fitness.strength.summary.critical",
                                                          defaultValue: "Vor %lld Tagen"), days)
                 strengthDetail = String(localized: "fitness.strength.detail.critical",
-                                        defaultValue: "Letztes Krafttraining liegt zu lange zurück. Heute eine kurze Einheit einplanen.")
+                                        defaultValue: "Letztes Krafttraining liegt zu lange zurück. Versuche heute eine kurze Einheit einzuplanen, um den Rhythmus nicht zu verlieren.")
             }
             results.append(CategoryFeedback(category: .strength, status: strengthStatus,
                                              summaryText: strengthSummary, detailText: strengthDetail))
@@ -245,17 +256,34 @@ struct FeedbackScoringEngine {
 
             let runSummary = "\(steps) / \(goal) " + String(localized: "fitness.running.steps.short", defaultValue: "Schritte")
             let runDetail: String
+            let missing = max(0, goal - steps)
             
             switch runStatus {
             case .good:
                 runDetail = String(localized: "fitness.running.detail.good",
                                    defaultValue: "Schritte-Ziel erreicht ✓ Klasse gemacht!")
             case .warning:
-                runDetail = String(localized: "fitness.running.detail.warning",
-                                   defaultValue: "Du bist heute schon einige Schritte gegangen, aber das Ziel ist noch nicht erreicht.")
+                if missing < 500 {
+                    let text = String(format: String(localized: "fitness.running.detail.missing.small", defaultValue: "Dir fehlen nur noch %lld Schritte. Bewege dich nur noch ein bisschen!"), missing)
+                    runDetail = text
+                } else if missing < 2000 {
+                    let text = String(format: String(localized: "fitness.running.detail.missing.medium", defaultValue: "Dir fehlen noch %lld Schritte. Mach noch einen kurzen Spaziergang."), missing)
+                    runDetail = text
+                } else {
+                    let text = String(format: String(localized: "fitness.running.detail.missing.large", defaultValue: "Dir fehlen noch %lld Schritte. Du musst heute noch deutlich aktiver werden, plane einen längeren Spaziergang ein."), missing)
+                    runDetail = text
+                }
             default:
-                runDetail = String(localized: "fitness.running.detail.critical",
-                                   defaultValue: "Dein Schritte-Ziel ist noch nicht erreicht. Versuche heute noch einen Spaziergang einzuplanen.")
+                if missing < 500 {
+                    let text = String(format: String(localized: "fitness.running.detail.missing.small", defaultValue: "Dir fehlen nur noch %lld Schritte. Bewege dich nur noch ein bisschen!"), missing)
+                    runDetail = text
+                } else if missing < 2000 {
+                    let text = String(format: String(localized: "fitness.running.detail.missing.medium", defaultValue: "Dir fehlen noch %lld Schritte. Mach noch einen kurzen Spaziergang."), missing)
+                    runDetail = text
+                } else {
+                    let text = String(format: String(localized: "fitness.running.detail.missing.large", defaultValue: "Dir fehlen noch %lld Schritte. Du musst heute noch deutlich aktiver werden, plane einen längeren Spaziergang ein."), missing)
+                    runDetail = text
+                }
             }
             
             results.append(CategoryFeedback(category: .running, status: runStatus,

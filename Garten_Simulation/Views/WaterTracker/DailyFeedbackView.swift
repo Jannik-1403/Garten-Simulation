@@ -3,13 +3,11 @@ import SwiftUI
 struct DailyHealthScoreCard: View {
     @StateObject private var vm = DailyFeedbackViewModel()
     @EnvironmentObject var gardenStore: GardenStore
-    @State private var isExpanded: Bool = false
+    @State private var showDetailSheet: Bool = false
 
     var body: some View {
         Button {
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                isExpanded.toggle()
-            }
+            showDetailSheet = true
         } label: {
             VStack(spacing: 0) {
                 // MARK: Kopfzeile (Score)
@@ -27,50 +25,9 @@ struct DailyHealthScoreCard: View {
                             .foregroundColor(.primary)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Image(systemName: "chevron.down")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(Color(.tertiaryLabel))
-                        .rotationEffect(.degrees(isExpanded ? 180 : 0))
                 }
                 .padding(.vertical, 12)
                 .padding(.horizontal, 16)
-
-                // MARK: Ausgeklappte Begründung (Nur Issues)
-                if isExpanded {
-                    VStack(alignment: .leading, spacing: 16) {
-                        // Divider
-                        Rectangle()
-                            .fill(Color(.tertiaryLabel).opacity(0.2))
-                            .frame(height: 1)
-                            .padding(.horizontal, 16)
-
-                        if vm.issueFeedbacks.isEmpty {
-                            // Alles perfekt
-                            HStack(spacing: 12) {
-                                Image(systemName: "checkmark.seal.fill")
-                                    .font(.system(size: 24))
-                                    .foregroundColor(Color(.systemGreen))
-                                Text(String(localized: "fitness.score.perfect", defaultValue: "Perfekt! Alle deine Werte liegen im optimalen Bereich. Weiter so!"))
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.secondary)
-                                    .lineSpacing(4)
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 16)
-                        } else {
-                            // Begründungen für Warnungen/Kritische Punkte
-                            VStack(spacing: 16) {
-                                ForEach(vm.issueFeedbacks) { feedback in
-                                    CategoryIssueRow(feedback: feedback)
-                                }
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 16)
-                        }
-                    }
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-                }
             }
             .clipped()
         }
@@ -80,6 +37,11 @@ struct DailyHealthScoreCard: View {
             cornerRadius: 16,
             shadowDepth: 6
         ))
+        .sheet(isPresented: $showDetailSheet) {
+            DailyFeedbackDetailView(vm: vm)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+        }
         .onAppear {
             vm.activeHabits = gardenStore.sichtbarePflanzen
             vm.reevaluate()
@@ -87,6 +49,65 @@ struct DailyHealthScoreCard: View {
         .onChange(of: gardenStore.sichtbarePflanzen) { newHabits in
             vm.activeHabits = newHabits
             vm.reevaluate()
+        }
+    }
+}
+
+// MARK: - DailyFeedbackDetailView
+
+struct DailyFeedbackDetailView: View {
+    @ObservedObject var vm: DailyFeedbackViewModel
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 24) {
+                    if vm.issueFeedbacks.isEmpty {
+                        // Alles perfekt
+                        HStack(spacing: 12) {
+                            Image(systemName: "checkmark.seal.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color(.systemGreen))
+                            Text(String(localized: "fitness.score.perfect", defaultValue: "Perfekt! Alle deine Werte liegen im optimalen Bereich. Weiter so!"))
+                                .font(.system(size: 15))
+                                .foregroundColor(.secondary)
+                                .lineSpacing(4)
+                        }
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(16)
+                    } else {
+                        // Begründungen für Warnungen/Kritische Punkte (jetzt alle)
+                        VStack(spacing: 24) {
+                            ForEach(vm.issueFeedbacks) { feedback in
+                                CategoryIssueRow(feedback: feedback)
+                                if feedback.id != vm.issueFeedbacks.last?.id {
+                                    Divider()
+                                }
+                            }
+                        }
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(16)
+                    }
+                }
+                .padding()
+            }
+            .background(Color(.systemGroupedBackground))
+            .navigationTitle(String(localized: "fitness.score.detail.title", defaultValue: "Tages-Analyse"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(Color(.tertiaryLabel))
+                            .font(.system(size: 24))
+                    }
+                }
+            }
         }
     }
 }
@@ -151,20 +172,6 @@ private struct CategoryIssueRow: View {
                 Text(categoryName)
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(.primary)
-                
-                if feedback.status == .good {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(Color(.systemGreen))
-                        .font(.system(size: 14))
-                } else if feedback.status == .warning {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundColor(Color(.systemOrange))
-                        .font(.system(size: 14))
-                } else if feedback.status == .critical {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(Color(.systemRed))
-                        .font(.system(size: 14))
-                }
             }
             
             Text(feedback.detailText)

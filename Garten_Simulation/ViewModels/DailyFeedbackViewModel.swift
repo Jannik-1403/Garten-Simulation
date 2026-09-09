@@ -88,6 +88,8 @@ class DailyFeedbackViewModel: ObservableObject {
             sleepHoursToday: hm.todaysSleep,
             sleepGoalHours: 8.0,
             sleepRegularity: hm.sleepRegularityPercentage,
+            sleepAvgBedtimeString: hm.sleepAvgBedtimeString,
+            sleepTargetWakeUpString: hm.sleepTargetWakeUpString,
             strengthDaysAgo: strengthDaysAgo,
             hasStrengthHistory: hm.hasAnyWorkoutHistory,
             stepsToday: hm.todaysSteps,

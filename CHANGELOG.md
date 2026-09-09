@@ -1044,3 +1044,5 @@
 - **Schlaf-UI**: Ring durch 3D-Item-Ring ohne Prozentzeichen ersetzt.
 - **Daumen-Feedback**: Hit-Target der Buttons massiv vergrößert, um versehentliches Schließen der Score-Card zu verhindern. Toleranz-Anpassung verringert.
 - **Lauf-Feedback**: Engine bewertet bei 'Joggen' nun explizit das Schritte-Ziel, statt nach Trainingsminuten zu suchen.
+
+- **Eindeutiges UI-Feedback**: Die vagen Daumen-Buttons (👍/👎) in der täglichen Feedback-Auswertung wurden durch klare, beschriftete Pfeil-Buttons ersetzt ('Ziel senken' / 'Ziel erhöhen'). So ist für den Nutzer sofort verständlich, dass er damit die Toleranzgrenzen der App justieren kann.
