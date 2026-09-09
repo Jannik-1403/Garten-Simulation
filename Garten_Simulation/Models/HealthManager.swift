@@ -552,9 +552,9 @@ class HealthManager: ObservableObject {
                 worstDayName = formatter.string(from: worstDate)
             }
             
-            // 0 bis 45 Min durchschnittliche Abweichung = 100%, 150 Min Abweichung = 0%
+            // 0 bis 37 Min durchschnittliche Abweichung = 100%, 150 Min Abweichung = 0%
             let maxDeviation = 150.0
-            let minDeviation = 45.0
+            let minDeviation = 37.0
             
             var regularity = 1.0
             if mad > minDeviation {
