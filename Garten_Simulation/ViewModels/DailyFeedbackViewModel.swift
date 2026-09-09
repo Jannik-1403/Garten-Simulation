@@ -8,9 +8,9 @@ import SwiftUI
 class DailyFeedbackViewModel: ObservableObject {
 
     @Published var categoryFeedbacks: [CategoryFeedback] = []
+    @Published var issueFeedbacks: [CategoryFeedback] = []
+    @Published var dailyScore: Int = 100
     @Published var headerText: String = ""
-
-    /// Der wichtigste Key für FeedbackStore (schlechteste Kategorie)
     @Published var primaryKey: FeedbackKey = .feedbackPositiv1
 
     private var cancellables = Set<AnyCancellable>()
@@ -93,7 +93,24 @@ class DailyFeedbackViewModel: ObservableObject {
 
         let feedbacks = FeedbackScoringEngine.evaluateAll(input: input)
         categoryFeedbacks = feedbacks
+        issueFeedbacks = feedbacks.filter { $0.status == .warning || $0.status == .critical }
         headerText = FeedbackScoringEngine.headerText(from: feedbacks)
+
+        // Tages-Score berechnen (Good = 100, Warning = 50, Critical = 0)
+        let availableFeedbacks = feedbacks.filter { $0.status != .unavailable }
+        if availableFeedbacks.isEmpty {
+            dailyScore = 0
+        } else {
+            let total = availableFeedbacks.reduce(0) { sum, fb in
+                switch fb.status {
+                case .good: return sum + 100
+                case .warning: return sum + 50
+                case .critical: return sum + 0
+                case .unavailable: return sum
+                }
+            }
+            dailyScore = total / availableFeedbacks.count
+        }
 
         // Primären Key für FeedbackStore bestimmen (schlechteste Kategorie)
         if feedbacks.contains(where: { $0.status == .critical }) {

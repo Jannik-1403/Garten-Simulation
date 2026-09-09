@@ -496,7 +496,7 @@ struct StatisticsDashboard: View {
                 } else {
                     if selectedPeriod == .day {
                         // Aufklappbare Fitness-Übersicht – nur im "Tag"-Tab ganz oben
-                        FitnessOverviewCard()
+                        DailyHealthScoreCard()
                             .padding(.top, 4)
                         periodNavigationHeader
                         lifeBalanceCard
