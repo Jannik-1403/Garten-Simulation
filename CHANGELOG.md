@@ -1,3 +1,7 @@
+## [2026-09-09] - Fix: Intelligenter Sleep Session Algorithmus
+- **Bugfix (Durchschnitt verfälscht):** Ein Fehler wurde behoben, bei dem Mittagsschlaf (Naps) oder kurze Apple Watch Fehlmessungen tagsüber als früheste Bettgehzeit für diesen Tag gezählt wurden, was den Durchschnitt (z. B. "23:46 Uhr") massiv verfälscht hat.
+- **Lösung:** Apple Health Schlaf-Samples (Tiefschlaf, REM etc.) werden nun intelligent zu großen, zusammenhängenden "Sleep Sessions" gebündelt (mit bis zu 3 Stunden Lückentoleranz). Für die Statistik wird nun streng pro Tag nur noch die *längste* Schlaf-Session gewertet. Mittagsschlaf wird so zuverlässig ignoriert und der Durchschnitt stimmt wieder exakt.
+
 ## [2026-09-09] - Fix: Sleep Insights Threshold
 - **Feedback-Anpassung:** Der Text "Top, bitte weiter so!" erscheint nun erst ab einer Schlaf-Regelmäßigkeit von 95% (vorher 80%). Bei Werten darunter (z.B. 85%) erhält der Nutzer nun immer konkrete Tipps, was noch verbessert werden kann.
 
