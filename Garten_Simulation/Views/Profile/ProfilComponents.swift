@@ -495,9 +495,6 @@ struct StatisticsDashboard: View {
                     .padding(.top, 40)
                 } else {
                     if selectedPeriod == .day {
-                        // Aufklappbare Fitness-Übersicht – nur im "Tag"-Tab ganz oben
-                        DailyHealthScoreCard()
-                            .padding(.top, 4)
                         periodNavigationHeader
                         lifeBalanceCard
                         gardenScoreConsistencyCard

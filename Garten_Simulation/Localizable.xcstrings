@@ -149838,6 +149838,28 @@
         }
       }
     },
+    "fitness.score.perfect" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Perfekt! Alle deine Werte liegen im optimalen Bereich. Weiter so!"
+          }
+        }
+      }
+    },
+    "fitness.score.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Tages-Score"
+          }
+        }
+      }
+    },
     "fitness.sleep.detail.critical" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -18,22 +18,31 @@ struct DailyHealthScoreCard: View {
                 }
             }) {
                 HStack(spacing: 16) {
-                    // Score Ring
+                    // Score Ring (3D Style)
                     ZStack {
+                        // Hintergrund-Ring mit leichtem Inner-Shadow-Effekt
                         Circle()
-                            .stroke(Color(.tertiarySystemFill), lineWidth: 5)
+                            .stroke(Color(white: 0.92), lineWidth: 7)
+                            .shadow(color: .black.opacity(0.1), radius: 2, x: 1, y: 1)
                         
+                        // Fortschritts-Ring (Gradient)
                         Circle()
                             .trim(from: 0, to: CGFloat(vm.dailyScore) / 100.0)
-                            .stroke(scoreColor, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                            .stroke(
+                                scoreColor.gradient,
+                                style: StrokeStyle(lineWidth: 7, lineCap: .round)
+                            )
                             .rotationEffect(.degrees(-90))
                             .animation(.easeOut(duration: 0.8), value: vm.dailyScore)
+                            .shadow(color: scoreColor.opacity(0.5), radius: 4, x: 0, y: 2)
                         
+                        // Score Text (Glücksrad-Style: Sehr fett + Schatten)
                         Text("\(vm.dailyScore)")
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .font(.system(size: 18, weight: .black, design: .rounded))
                             .foregroundColor(.primary)
+                            .shadow(color: .black.opacity(0.15), radius: 1, x: 1, y: 2)
                     }
-                    .frame(width: 48, height: 48)
+                    .frame(width: 56, height: 56)
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(String(localized: "fitness.score.title", defaultValue: "Tages-Score"))
@@ -89,9 +98,13 @@ struct DailyHealthScoreCard: View {
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .shadow(color: Color.black.opacity(0.08), radius: 10, x: 0, y: 4)
+        // "iTunes 3-D weißer Hintergrund"
+        .background(
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(Color(.systemBackground))
+                .shadow(color: Color.black.opacity(0.06), radius: 2, x: 0, y: 1) // Leichter Border-Schatten
+                .shadow(color: Color.black.opacity(0.12), radius: 16, x: 0, y: 8) // Tiefer 3D-Schatten
+        )
     }
 
     private var scoreColor: Color {

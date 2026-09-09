@@ -335,17 +335,10 @@ struct GartenView: View {
                 .frame(maxWidth: 850)
 
                 if !gardenStore.sichtbarePflanzen.isEmpty {
-                    DailyWateringRingView(
-                        progress: wateringProgress,
-                        count: wateredCount,
-                        total: totalPlants,
-                        onTap: { zeigeStatistiken = true }
-                    )
-                    .tourAnchor(.dailyRingIntro)
-                    .id(TourStep.dailyRingIntro)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                    .frame(maxWidth: 850)
+                    DailyHealthScoreCard()
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 16)
+                        .frame(maxWidth: 850)
                 }
 
                 xpMultiplierSection
