@@ -2,6 +2,7 @@ import SwiftUI
 import HealthKit
 
 struct WaterTrackerView: View {
+    @EnvironmentObject var gardenStore: GardenStore
     @StateObject private var viewModel = WaterTrackerViewModel()
     @ObservedObject private var goalManager = WaterGoalManager.shared
     @ObservedObject private var healthManager = HealthManager.shared
@@ -140,12 +141,23 @@ struct WaterTrackerView: View {
                 
                 Spacer(minLength: 40)
             }
+            .padding(.bottom, 32)
         }
+        .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle(String(localized: "water.title", defaultValue: "Wasser"))
         .sheet(isPresented: $showCustomAmounts) {
             CustomAmountsSheet(viewModel: viewModel)
                 .presentationDetents([.height(300)])
                 .presentationDragIndicator(.visible)
+        }
+        .onChange(of: healthManager.todaysWater) { _, newValue in
+            if newValue >= goalManager.currentGoal {
+                if let waterPlant = gardenStore.meinePflanzen.first(where: { $0.habitName == "habit.wasser_trinken" }) {
+                    if !waterPlant.istBewässert {
+                        gardenStore.giessen(pflanze: waterPlant)
+                    }
+                }
+            }
         }
     }
 }

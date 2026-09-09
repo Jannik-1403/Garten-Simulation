@@ -202,14 +202,32 @@ struct GartenView: View {
     @ViewBuilder
     private func pflanzeDetailCover(for pflanze: HabitModel) -> some View {
         ZStack {
-            NavigationStack {
-                PflanzeDetailSheet(
-                    pflanze: pflanze,
-                    onLoeschen: {
-                        gardenStore.pflanzEntfernen(pflanze: pflanze)
-                        ausgewaehltePflanze = nil
-                    }
-                )
+            if pflanze.habitName == "habit.wasser_trinken" {
+                NavigationStack {
+                    WaterTrackerView()
+                        .environmentObject(gardenStore)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button(action: {
+                                    ausgewaehltePflanze = nil
+                                }) {
+                                    Image(systemName: "xmark")
+                                        .font(.system(size: 18, weight: .bold))
+                                        .foregroundColor(.primary)
+                                }
+                            }
+                        }
+                }
+            } else {
+                NavigationStack {
+                    PflanzeDetailSheet(
+                        pflanze: pflanze,
+                        onLoeschen: {
+                            gardenStore.pflanzEntfernen(pflanze: pflanze)
+                            ausgewaehltePflanze = nil
+                        }
+                    )
+                }
             }
             if interactiveTourManager.isActive {
                 InteractiveTourOverlay()
