@@ -110,6 +110,12 @@ struct PflanzeDetailSheet: View {
                         healthKitConfigSection
                     }
                     
+                    // Wasser trinken
+                    if pflanze.habitName == "habit.wasser_trinken" {
+                        WasserTrinkenCard()
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 16)
+                    }
 
                     // Obst & Gemüse / Nährstoffe
                     if (pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium) && pflanze.showStats {
