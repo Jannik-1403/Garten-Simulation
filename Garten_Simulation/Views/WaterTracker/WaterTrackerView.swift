@@ -18,9 +18,7 @@ struct WaterTrackerView: View {
                     ChunkyProgressRing(progress: healthManager.todaysWater, goal: goalManager.currentGoal)
                         .frame(width: 250, height: 250)
 
-                    // Tägliches Health-Feedback
-                    DailyFeedbackView()
-
+                    
                     // Goal Details Toggle
                     Button(action: {
 

@@ -1,6 +1,49 @@
 import Foundation
 
-// MARK: - FeedbackKey
+// MARK: - FitnessCategory
+
+enum FitnessCategory: String, CaseIterable, Identifiable {
+    case water
+    case sleep
+    case strength
+    case running
+    case nutrition
+
+    var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .water:     return "drop.fill"
+        case .sleep:     return "moon.fill"
+        case .strength:  return "dumbbell.fill"
+        case .running:   return "figure.run"
+        case .nutrition: return "fork.knife"
+        }
+    }
+}
+
+// MARK: - CategoryStatus
+
+enum CategoryStatus {
+    case good
+    case warning
+    case critical
+    case unavailable // keine Daten vorhanden, Kategorie wird ausgeblendet
+}
+
+// MARK: - CategoryFeedback
+
+struct CategoryFeedback: Identifiable {
+    var id: FitnessCategory { category }
+    let category: FitnessCategory
+    let status: CategoryStatus
+    /// Kurztext für die eingeklappte Zeile, z.B. "1.200 / 2.400 ml"
+    let summaryText: String
+    /// Aufgeklappter Detail-Text mit konkreter Handlungsanweisung
+    let detailText: String
+}
+
+// MARK: - FeedbackResult (Kompatibilität mit FeedbackStore bleibt erhalten)
 
 enum FeedbackKey: String, CaseIterable {
     case feedbackWasserKritisch
@@ -15,13 +58,9 @@ enum FeedbackKey: String, CaseIterable {
     static var positiveKeys: [FeedbackKey] { [.feedbackPositiv1, .feedbackPositiv2, .feedbackPositiv3] }
 }
 
-// MARK: - FeedbackResult
-
 struct FeedbackResult {
     let key: FeedbackKey
-    /// Ausgefüllter, lokalisierter Text (Platzhalter bereits ersetzt)
     let formattedText: String
-    /// Rohe Kontextwerte für FeedbackRating.contextValues
     let contextValues: [String: Int]
 }
 
@@ -29,140 +68,245 @@ struct FeedbackResult {
 
 struct FeedbackScoringEngine {
 
-    // MARK: - Hauptauswertung
-    /// Wertet alle Trigger der Prioritätsliste der Reihe nach aus.
-    /// Der erste zutreffende Eintrag gewinnt.
-    static func evaluate(
-        waterHistory: [Date: Double],      // ml pro Kalendertag (heute inkludiert)
-        waterGoal: Double,                 // aktuelles Tagesziel in ml
-        stepsHistory: [Date: Double],      // Schritte pro Kalendertag
-        lastStrengthDate: Date?,           // letztes Krafttraining
-        hasWorkoutHistory: Bool,           // true wenn mind. 1 Workout je gefunden
-        energyToday: Double,               // dietaryEnergyConsumed heute (kcal)
-        worstNutrient: (name: String, daysBelow: Int)?,  // schlechtester Nährstoff aus NutrientIndexManager
-        userFactors: (_ key: String) -> Double  // Closure: gibt den Faktor für einen Key zurück
+    // MARK: - Multi-Kategorie Auswertung (neue Hauptmethode)
 
-    ) -> FeedbackResult {
-
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-
-        // MARK: Rang 1 – Wasser kritisch (< 50% an 2+ aufeinanderfolgenden Tagen)
-        let criticalThreshold = 0.50
-        let criticalFactor = userFactors(FeedbackKey.feedbackWasserKritisch.rawValue)
-        let criticalConsecutive = countConsecutiveDaysBelowThreshold(
-            history: waterHistory,
-            goal: waterGoal * criticalFactor,
-            thresholdFraction: criticalThreshold,
-            endingOn: calendar.date(byAdding: .day, value: -1, to: today) ?? today,
-            calendar: calendar
-        )
-        if criticalConsecutive >= 2 {
-            let text = String(format: String(localized: "feedbackWasserKritisch",
-                                             defaultValue: "Wasseraufnahme seit %lld Tagen unter 50% des Ziels. Trink dein erstes Glas heute vor 10 Uhr."),
-                              criticalConsecutive)
-            return FeedbackResult(key: .feedbackWasserKritisch, formattedText: text, contextValues: ["tage": criticalConsecutive])
-        }
-
-        // MARK: Rang 2 – Wasser leicht (< 80% an 3+ aufeinanderfolgenden Tagen)
-        let lightThreshold = 0.80
-        let lightFactor = userFactors(FeedbackKey.feedbackWasserLeicht.rawValue)
-        let lightConsecutive = countConsecutiveDaysBelowThreshold(
-            history: waterHistory,
-            goal: waterGoal * lightFactor,
-            thresholdFraction: lightThreshold,
-            endingOn: calendar.date(byAdding: .day, value: -1, to: today) ?? today,
-            calendar: calendar
-        )
-        if lightConsecutive >= 3 {
-            let text = String(format: String(localized: "feedbackWasserLeicht",
-                                             defaultValue: "Wasseraufnahme seit %lld Tagen unter dem Tagesziel. Trink heute ein Glas mehr als gestern."),
-                              lightConsecutive)
-            return FeedbackResult(key: .feedbackWasserLeicht, formattedText: text, contextValues: ["tage": lightConsecutive])
-        }
-
-        // MARK: Rang 3 – Krafttraining inaktiv (> 5 Tage, nur wenn Workout-Historie vorhanden)
-        if hasWorkoutHistory, let lastStrength = lastStrengthDate {
-            let daysSince = calendar.dateComponents([.day], from: calendar.startOfDay(for: lastStrength), to: today).day ?? 0
-            let trainingFactor = userFactors(FeedbackKey.feedbackTrainingInaktiv.rawValue)
-            let effectiveThreshold = Int((5.0 * trainingFactor).rounded())
-            if daysSince > effectiveThreshold {
-                let text = String(format: String(localized: "feedbackTrainingInaktiv",
-                                                 defaultValue: "Letztes Krafttraining vor %lld Tagen. Plane heute eine Einheit ein."),
-                                  daysSince)
-                return FeedbackResult(key: .feedbackTrainingInaktiv, formattedText: text, contextValues: ["tage": daysSince])
-            }
-        }
-
-        // MARK: Rang 4 – Schritte niedrig (< 50% des 7-Tage-Schnitts, erst ab 17:00 Uhr)
-        let currentHour = calendar.component(.hour, from: Date())
-        if currentHour >= 17 {
-            // Nur Tage der letzten 7 Tage außer heute in die Schnittberechnung
-            let past7Days = (1...7).compactMap { calendar.date(byAdding: .day, value: -$0, to: today) }
-            let daysWithData = past7Days.compactMap { stepsHistory[$0] }
-
-            if daysWithData.count >= 4 {
-                let avg7 = daysWithData.reduce(0, +) / Double(daysWithData.count)
-                let todaySteps = stepsHistory[today] ?? 0
-                let stepsFactor = userFactors(FeedbackKey.feedbackSchritteNiedrig.rawValue)
-                if avg7 > 0 && todaySteps < avg7 * 0.50 * stepsFactor {
-                    let text = String(localized: "feedbackSchritteNiedrig",
-                                      defaultValue: "Schritte heute unter 50% des 7-Tage-Schnitts. Geh heute noch 20 Minuten spazieren.")
-                    return FeedbackResult(key: .feedbackSchritteNiedrig, formattedText: text, contextValues: [:])
-                }
-            }
-        }
-
-        // MARK: Rang 5 – Mikronährstoff-Defizit (nur wenn energyToday > 0)
-        if energyToday > 0, let nutrient = worstNutrient, nutrient.daysBelow >= 3 {
-            let text = String(format: String(localized: "feedbackNaehrstoffDefizit",
-                                             defaultValue: "%@ seit %lld Tagen unter dem empfohlenen Bedarf. Ergänze ihn bei der nächsten Mahlzeit."),
-                              nutrient.name, nutrient.daysBelow)
-            return FeedbackResult(key: .feedbackNaehrstoffDefizit, formattedText: text, contextValues: ["tage": nutrient.daysBelow])
-        }
-
-        // MARK: Rang 6 – Positiv (zufällig 1 von 3)
-        let positiveKey = FeedbackKey.positiveKeys.randomElement() ?? .feedbackPositiv1
-        let positiveText: String
-        switch positiveKey {
-        case .feedbackPositiv1:
-            positiveText = String(localized: "feedbackPositiv1", defaultValue: "Alle Werte heute im Zielbereich.")
-        case .feedbackPositiv2:
-            positiveText = String(localized: "feedbackPositiv2", defaultValue: "Wasser, Bewegung und Training entsprechen dem Ziel.")
-        default:
-            positiveText = String(localized: "feedbackPositiv3", defaultValue: "Alle Tagesziele erreicht.")
-        }
-        return FeedbackResult(key: positiveKey, formattedText: positiveText, contextValues: [:])
+    struct EvaluationInput {
+        var waterToday: Double
+        var waterGoal: Double
+        var waterHistory7Days: [Date: Double]
+        var sleepHoursToday: Double         // 0 = keine Daten
+        var sleepGoalHours: Double          // Default 8h
+        var sleepRegularity: Double?        // 0–1 aus HealthManager
+        var strengthDaysAgo: Int?           // nil = keine Historie
+        var hasStrengthHistory: Bool
+        var runningMinutesToday: Double
+        var hasRunningPlant: Bool           // Nutzer hat Lauf-Gewohnheit in App
+        var energyToday: Double             // > 0 = Ernährung wird getrackt
+        var proteinToday: Double
+        var proteinGoal: Double
+        var fiberToday: Double
+        var fiberGoal: Double
+        var worstMineralName: String?
+        var worstMineralScore: Double       // 0–100
+        var userFactors: (_ key: String) -> Double
     }
 
-    // MARK: - Hilfsmethode: Aufeinanderfolgende Tage unter Schwellenwert zählen
-    /// Zählt wie viele Tage in Folge (endend am Referenztag, rückwärts) die Aufnahme
-    /// unter `thresholdFraction * goal` lag. Tage ohne Datenpunkt werden nicht gezählt.
-    private static func countConsecutiveDaysBelowThreshold(
-        history: [Date: Double],
-        goal: Double,
-        thresholdFraction: Double,
-        endingOn referenceDay: Date,
-        calendar: Calendar
-    ) -> Int {
-        guard goal > 0 else { return 0 }
-        let target = goal * thresholdFraction
-        var count = 0
-        var checkDay = referenceDay
+    static func evaluateAll(input: EvaluationInput) -> [CategoryFeedback] {
+        var results: [CategoryFeedback] = []
+        let hour = Calendar.current.component(.hour, from: Date())
 
-        for _ in 0..<14 { // max 14 Tage zurückschauen
-            if let value = history[calendar.startOfDay(for: checkDay)] {
-                if value < target {
-                    count += 1
-                } else {
-                    break // Kette unterbrochen
-                }
-            } else {
-                break // Kein Datenpunkt = Kette unterbrochen
-            }
-            guard let prev = calendar.date(byAdding: .day, value: -1, to: checkDay) else { break }
-            checkDay = prev
+        // MARK: Wasser
+        let waterPct = input.waterGoal > 0 ? input.waterToday / input.waterGoal : 0
+        let waterStatus: CategoryStatus
+        if waterPct >= 0.8 {
+            waterStatus = .good
+        } else if waterPct >= 0.5 {
+            waterStatus = .warning
+        } else {
+            waterStatus = .critical
         }
-        return count
+
+        let waterSummary: String
+        let waterDetail: String
+        let waterActual = Int(input.waterToday)
+        let waterTarget = Int(input.waterGoal)
+
+        if waterStatus == .good {
+            waterSummary = "\(waterActual) / \(waterTarget) ml ✓"
+            waterDetail = String(localized: "fitness.water.detail.good",
+                                  defaultValue: "Dein Wasserziel ist erreicht. Weiter so!")
+        } else {
+            waterSummary = "\(waterActual) / \(waterTarget) ml"
+            let remaining = waterTarget - waterActual
+            // Zeitabhängige Handlungsanweisung
+            let actionHint: String
+            switch hour {
+            case 0..<10:
+                actionHint = String(localized: "fitness.water.action.morning",
+                                    defaultValue: "Trink jetzt dein erstes Glas.")
+            case 10..<14:
+                actionHint = String(format: String(localized: "fitness.water.action.midday",
+                                                    defaultValue: "Noch %lld ml bis zum Mittag schaffen."),
+                                    remaining)
+            case 14..<19:
+                actionHint = String(localized: "fitness.water.action.afternoon",
+                                    defaultValue: "Trink in den nächsten 2 Stunden ein großes Glas.")
+            default:
+                actionHint = String(format: String(localized: "fitness.water.action.evening",
+                                                    defaultValue: "Du kannst noch %lld ml schaffen, wenn du jetzt anfängst."),
+                                    remaining)
+            }
+            waterDetail = "\(waterActual) von \(waterTarget) ml getrunken. \(actionHint)"
+        }
+        results.append(CategoryFeedback(category: .water, status: waterStatus,
+                                         summaryText: waterSummary, detailText: waterDetail))
+
+        // MARK: Schlaf (nur wenn Daten vorhanden)
+        if input.sleepHoursToday > 0 {
+            let sleepStatus: CategoryStatus
+            if input.sleepHoursToday >= 7 {
+                sleepStatus = .good
+            } else if input.sleepHoursToday >= 6 {
+                sleepStatus = .warning
+            } else {
+                sleepStatus = .critical
+            }
+
+            let sleepHoursStr = String(format: "%.1f", input.sleepHoursToday)
+            let goalStr = String(format: "%.0f", input.sleepGoalHours)
+            let sleepSummary = "\(sleepHoursStr) / \(goalStr) h"
+
+            let sleepDetail: String
+            switch sleepStatus {
+            case .good:
+                sleepDetail = String(localized: "fitness.sleep.detail.good",
+                                     defaultValue: "Guter Schlaf. Dein Körper konnte sich erholen.")
+            case .warning:
+                sleepDetail = String(localized: "fitness.sleep.detail.warning",
+                                     defaultValue: "Etwas weniger als empfohlen. Versuche heute früher schlafen zu gehen.")
+            default:
+                sleepDetail = String(localized: "fitness.sleep.detail.critical",
+                                     defaultValue: "Weniger als 6 Stunden Schlaf beeinträchtigen Konzentration und Erholung. Heute früher ins Bett.")
+            }
+            results.append(CategoryFeedback(category: .sleep, status: sleepStatus,
+                                             summaryText: sleepSummary, detailText: sleepDetail))
+        }
+
+        // MARK: Krafttraining (nur wenn Workout-Historie vorhanden)
+        if input.hasStrengthHistory {
+            let days = input.strengthDaysAgo ?? 999
+            let strengthStatus: CategoryStatus
+            if days <= 2 {
+                strengthStatus = .good
+            } else if days <= 5 {
+                strengthStatus = .warning
+            } else {
+                strengthStatus = .critical
+            }
+
+            let strengthSummary: String
+            let strengthDetail: String
+            switch strengthStatus {
+            case .good:
+                strengthSummary = days == 0
+                    ? String(localized: "fitness.strength.summary.today", defaultValue: "Heute ✓")
+                    : String(format: String(localized: "fitness.strength.summary.recent",
+                                            defaultValue: "Vor %lld Tag(en) ✓"), days)
+                strengthDetail = String(localized: "fitness.strength.detail.good",
+                                        defaultValue: "Krafttraining liegt im Zeitplan.")
+            case .warning:
+                strengthSummary = String(format: String(localized: "fitness.strength.summary.warning",
+                                                         defaultValue: "Vor %lld Tagen"), days)
+                strengthDetail = String(localized: "fitness.strength.detail.warning",
+                                        defaultValue: "Plane diese Woche noch eine Krafteinheit ein.")
+            default:
+                strengthSummary = String(format: String(localized: "fitness.strength.summary.critical",
+                                                         defaultValue: "Vor %lld Tagen"), days)
+                strengthDetail = String(localized: "fitness.strength.detail.critical",
+                                        defaultValue: "Letztes Krafttraining liegt zu lange zurück. Heute eine kurze Einheit einplanen.")
+            }
+            results.append(CategoryFeedback(category: .strength, status: strengthStatus,
+                                             summaryText: strengthSummary, detailText: strengthDetail))
+        }
+
+        // MARK: Laufen (nur wenn Nutzer eine Lauf-Pflanze hat)
+        if input.hasRunningPlant {
+            let runMins = Int(input.runningMinutesToday)
+            let runStatus: CategoryStatus = runMins > 0 ? .good : .warning
+
+            let runSummary: String
+            let runDetail: String
+            if runMins > 0 {
+                runSummary = String(format: String(localized: "fitness.running.summary.done",
+                                                    defaultValue: "%lld min ✓"), runMins)
+                runDetail = String(localized: "fitness.running.detail.done",
+                                   defaultValue: "Gute Ausdauereinheit heute.")
+            } else {
+                runSummary = String(localized: "fitness.running.summary.none",
+                                    defaultValue: "Heute noch nichts")
+                runDetail = String(localized: "fitness.running.detail.none",
+                                   defaultValue: "Heute noch keine Laufeinheit. Ein kurzer 20-Minuten-Lauf reicht für den Tag.")
+            }
+            results.append(CategoryFeedback(category: .running, status: runStatus,
+                                             summaryText: runSummary, detailText: runDetail))
+        }
+
+        // MARK: Ernährung (nur wenn Energie heute getrackt)
+        if input.energyToday > 0 {
+            var nutritionProblems: [String] = []
+            var nutritionDetails: [String] = []
+
+            // Protein
+            if input.proteinGoal > 0 {
+                let proteinPct = input.proteinToday / input.proteinGoal
+                if proteinPct < 0.7 {
+                    nutritionProblems.append(String(localized: "fitness.nutrition.protein", defaultValue: "Protein"))
+                    let detail = String(format: String(localized: "fitness.nutrition.protein.detail",
+                                                        defaultValue: "Protein: %lld / %lld g"),
+                                        Int(input.proteinToday), Int(input.proteinGoal))
+                    nutritionDetails.append(detail)
+                }
+            }
+
+            // Ballaststoffe
+            if input.fiberGoal > 0 {
+                let fiberPct = input.fiberToday / input.fiberGoal
+                if fiberPct < 0.7 {
+                    nutritionProblems.append(String(localized: "fitness.nutrition.fiber", defaultValue: "Ballaststoffe"))
+                    let detail = String(format: String(localized: "fitness.nutrition.fiber.detail",
+                                                        defaultValue: "Ballaststoffe: %lld / %lld g"),
+                                        Int(input.fiberToday), Int(input.fiberGoal))
+                    nutritionDetails.append(detail)
+                }
+            }
+
+            // Mineralstoffe (schlechtester Wert)
+            if let mineral = input.worstMineralName, input.worstMineralScore < 70 {
+                nutritionProblems.append(mineral)
+                let detail = String(format: String(localized: "fitness.nutrition.mineral.detail",
+                                                    defaultValue: "%@: unter 70%% Bedarf"),
+                                    mineral)
+                nutritionDetails.append(detail)
+            }
+
+            let nutStatus: CategoryStatus = nutritionProblems.isEmpty ? .good : .warning
+            let nutSummary: String
+            let nutDetail: String
+
+            if nutritionProblems.isEmpty {
+                nutSummary = String(localized: "fitness.nutrition.summary.good", defaultValue: "Alle Werte erreicht ✓")
+                nutDetail = String(localized: "fitness.nutrition.detail.good", defaultValue: "Ernährung liegt heute im Zielbereich.")
+            } else {
+                nutSummary = nutritionProblems.joined(separator: ", ")
+                nutDetail = nutritionDetails.joined(separator: "\n")
+            }
+            results.append(CategoryFeedback(category: .nutrition, status: nutStatus,
+                                             summaryText: nutSummary, detailText: nutDetail))
+        }
+
+        return results
+    }
+
+    // MARK: - Kopfzeilen-Text
+
+    static func headerText(from feedbacks: [CategoryFeedback]) -> String {
+        let problems = feedbacks.filter { $0.status == .warning || $0.status == .critical }
+        if problems.isEmpty {
+            return String(localized: "fitness.header.allgood", defaultValue: "Alle Werte im Ziel")
+        }
+        let names = problems.map { localizedCategoryName($0.category) }
+        let joined = names.joined(separator: ", ")
+        return String(format: String(localized: "fitness.header.warning",
+                                     defaultValue: "Achtung bei: %@"), joined)
+    }
+
+    private static func localizedCategoryName(_ category: FitnessCategory) -> String {
+        switch category {
+        case .water:     return String(localized: "fitness.category.water",     defaultValue: "Wasser")
+        case .sleep:     return String(localized: "fitness.category.sleep",     defaultValue: "Schlaf")
+        case .strength:  return String(localized: "fitness.category.strength",  defaultValue: "Krafttraining")
+        case .running:   return String(localized: "fitness.category.running",   defaultValue: "Laufen")
+        case .nutrition: return String(localized: "fitness.category.nutrition", defaultValue: "Ernährung")
+        }
     }
 }

@@ -466353,6 +466353,3537 @@
           }
         }
       }
+    },
+    "fitness.water.detail.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Wasserziel ist erreicht. Weiter so!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your water goal has been reached. Keep it up!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se ha alcanzado su objetivo de agua. ¡Avanza!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre objectif en eau a été atteint. Continuez comme ça!"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका जल लक्ष्य पूरा हो गया है. इसे जारी रखो!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo obiettivo idrico è stato raggiunto. Continua così!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水分目標は達成されました。それを維持する！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "귀하의 물 목표가 달성되었습니다. 계속하세요!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je waterdoel is bereikt. Ga zo door!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój cel dotyczący wody został osiągnięty. Tak trzymaj!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua meta de água foi alcançada. Mantem!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua meta de água foi alcançada. Mantem!"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua meta de água foi alcançada. Mantem!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваша цель по воде достигнута. Так держать!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su hedefinize ulaşıldı. Aynen böyle devam!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您的用水目标已达到。继续努力吧！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您的用水目標已達成。繼續努力！"
+          }
+        }
+      }
+    },
+    "fitness.water.action.morning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trink jetzt dein erstes Glas."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink your first glass now."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bebe tu primer vaso ahora."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buvez votre premier verre maintenant."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अब अपना पहला गिलास पियें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bevi il tuo primo bicchiere adesso."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今すぐ最初の一杯を飲んでください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지금 첫 잔을 마셔보세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink nu je eerste glas."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wypij teraz swój pierwszy kieliszek."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beba seu primeiro copo agora."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beba seu primeiro copo agora."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beba seu primeiro copo agora."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выпейте свой первый стакан прямо сейчас."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şimdi ilk bardağını iç."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "现在就喝第一杯吧。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在就喝第一杯吧。"
+          }
+        }
+      }
+    },
+    "fitness.water.action.midday": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %lld ml bis zum Mittag schaffen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Still have %lld ml to go by lunchtime."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todavía me quedan %lld ml para la hora del almuerzo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il me reste encore %lld ml à emporter avant l'heure du déjeuner."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दोपहर के भोजन के समय तक अभी भी %lld ml बाकी है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mancano ancora %lld ml entro l'ora di pranzo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "昼休みまでにまだ %lld ml が残っています。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "점심시간까지 아직 %lldml 남았습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Er is nog %lld ml te gaan tegen lunchtijd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pozostało mi jeszcze %lld ml do pory lunchu."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda tenho %lld ml para gastar na hora do almoço."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda tenho %lld ml para gastar na hora do almoço."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda tenho %lld ml para gastar na hora do almoço."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "К обеду еще осталось %lld мл."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öğle yemeğine kadar hâlâ %ll ml'si var."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "午餐时间还有 %lld 毫升要喝。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "午餐時間還有 %lld 毫升要喝。"
+          }
+        }
+      }
+    },
+    "fitness.water.action.afternoon": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trink in den nächsten 2 Stunden ein großes Glas."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink a large glass in the next 2 hours."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beba un vaso grande en las próximas 2 horas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boire un grand verre dans les 2 heures suivantes."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगले 2 घंटे में एक बड़ा गिलास पियें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bevi un bicchiere grande nelle prossime 2 ore."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次の2時間以内に大きなグラスで飲みます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2시간 안에 큰 잔을 마십니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink de komende 2 uur een groot glas."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wypij dużą szklankę w ciągu najbliższych 2 godzin."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beba um copo grande nas próximas 2 horas."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beba um copo grande nas próximas 2 horas."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beba um copo grande nas próximas 2 horas."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выпейте большой стакан в течение следующих 2 часов."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önümüzdeki 2 saat içinde büyük bir bardak iç."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在接下来的 2 小时内喝一大杯。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在接下來的 2 小時內喝一大杯。"
+          }
+        }
+      }
+    },
+    "fitness.water.action.evening": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kannst noch %lld ml schaffen, wenn du jetzt anfängst."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can still do %lld ml if you start now."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún puedes hacer %lld ml si comienzas ahora."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous pouvez toujours faire %lld ml si vous commencez maintenant."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यदि आप अभी शुरू करते हैं तो आप अभी भी %lld ml कर सकते हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puoi ancora fare %lld ml se inizi adesso."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今始めても %lld ml を実行できます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지금 시작하면 여전히 %lld ml을(를) 수행할 수 있습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je kunt nog steeds %lld ml doen als je nu begint."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeśli zaczniesz teraz, nadal możesz wykonać %lld ml."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você ainda pode fazer %lld ml se começar agora."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você ainda pode fazer %lld ml se começar agora."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você ainda pode fazer %lld ml se começar agora."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы все еще можете выполнять %lld ml, если начнете сейчас."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şimdi başlarsanız hala %lld ml yapabilirsiniz."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果您现在开始，您仍然可以进行 %lld ml。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果您現在開始，您仍然可以進行 %lld ml。"
+          }
+        }
+      }
+    },
+    "fitness.sleep.detail.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guter Schlaf. Dein Körper konnte sich erholen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good sleep. Your body was able to recover."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buen sueño. Tu cuerpo pudo recuperarse."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bon sommeil. Votre corps a pu récupérer."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अच्छी नींद. आपका शरीर ठीक होने में सक्षम था।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buon sonno. Il tuo corpo è riuscito a riprendersi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "よく眠れます。あなたの体は回復することができました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잘 자요. 당신의 몸은 회복될 수 있었습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goede slaap. Je lichaam heeft zich kunnen herstellen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dobry sen. Twoje ciało było w stanie się zregenerować."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bom sono. Seu corpo foi capaz de se recuperar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bom sono. Seu corpo foi capaz de se recuperar."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bom sono. Seu corpo foi capaz de se recuperar."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Приятного сна. Ваше тело смогло восстановиться."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İyi uykular. Vücudunuz iyileşmeyi başardı."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡个好觉。你的身体已经恢复了。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡個好覺。你的身體已經恢復了。"
+          }
+        }
+      }
+    },
+    "fitness.sleep.detail.warning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etwas weniger als empfohlen. Versuche heute früher schlafen zu gehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A little less than recommended. Try to go to sleep earlier today."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un poco menos de lo recomendado. Intenta irte a dormir más temprano hoy."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un peu moins que recommandé. Essayez de vous coucher plus tôt dans la journée."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अनुशंसित से थोड़ा कम. आज जल्दी सोने का प्रयास करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un po' meno di quanto consigliato. Prova ad andare a dormire prima oggi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "推奨より少し少ないです。今日はもっと早く寝るようにしてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "권장량보다 조금 적습니다. 오늘은 일찍 자려고 노력하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iets minder dan aanbevolen. Probeer vandaag eerder te gaan slapen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trochę mniej niż zalecane. Spróbuj dzisiaj położyć się wcześniej spać."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um pouco menos do que o recomendado. Tente dormir mais cedo hoje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um pouco menos do que o recomendado. Tente dormir mais cedo hoje."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um pouco menos do que o recomendado. Tente dormir mais cedo hoje."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чуть меньше рекомендованного. Постарайтесь сегодня лечь спать пораньше."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tavsiye edilenden biraz daha az. Bugün daha erken uyumaya çalışın."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比推荐的少一点。今天试着早点睡觉。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比推薦的少一點。今天試著早點睡。"
+          }
+        }
+      }
+    },
+    "fitness.sleep.detail.critical": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weniger als 6 Stunden Schlaf beeinträchtigen Konzentration und Erholung. Heute früher ins Bett."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleeping less than 6 hours affects concentration and recovery. To bed earlier today."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormir menos de 6 horas afecta la concentración y la recuperación. A dormir más temprano hoy."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormir moins de 6 heures affecte la concentration et la récupération. Au lit plus tôt dans la journée."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 घंटे से कम सोने से एकाग्रता और रिकवरी पर असर पड़ता है। आज जल्दी सो जाना."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormire meno di 6 ore influisce sulla concentrazione e sul recupero. A letto presto oggi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠時間が6時間未満だと集中力や回復力に影響します。今日は早めに寝ましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleeping less than 6 hours affects concentration and recovery. 오늘은 일찍 자야지."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minder dan 6 uur slapen beïnvloedt de concentratie en het herstel. Vandaag eerder naar bed."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen krótszy niż 6 godzin wpływa na koncentrację i regenerację. Dzisiaj spać wcześniej."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormir menos de 6 horas afeta a concentração e a recuperação. Para dormir mais cedo hoje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormir menos de 6 horas afeta a concentração e a recuperação. Para dormir mais cedo hoje."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormir menos de 6 horas afeta a concentração e a recuperação. Para dormir mais cedo hoje."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сон менее 6 часов влияет на концентрацию и восстановление. Ложиться сегодня пораньше."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 saatten az uyumak konsantrasyonu ve toparlanmayı etkiler. Bugün erken yatmak."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠少于 6 小时会影响注意力和恢复。今天早点睡觉。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠少於 6 小時會影響注意力和恢復。今天早點睡。"
+          }
+        }
+      }
+    },
+    "fitness.strength.summary.today": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute ✓"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today ✓"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy ✓"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd'hui ✓"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज ✓"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi ✓"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日 ✓"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 ✓"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag ✓"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzisiaj ✓"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje ✓"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje ✓"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje ✓"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сегодня ✓"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün ✓"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天 ✓"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天 ✓"
+          }
+        }
+      }
+    },
+    "fitness.strength.summary.recent": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vor %lld Tag(en) ✓"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld day(s) ago ✓"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hace %ll día(s) ✓"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il y a %lld jour(s) ✓"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "% ll दिन पहले ✓"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld giorno/i fa ✓"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 日前 ✓"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld일 전 ✓"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dag(en) geleden ✓"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dni temu ✓"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dia(s) atrás ✓"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dia(s) atrás ✓"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dia(s) atrás ✓"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld дней назад ✓"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld gün önce ✓"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天前 ✓"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天前 ✓"
+          }
+        }
+      }
+    },
+    "fitness.strength.summary.warning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vor %lld Tagen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days ago"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hace %lld días"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "il y a %lld jours"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld दिन पहले"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld giorni fa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld日前"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld일 전"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dagen geleden"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dni temu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias atrás"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias atrás"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias atrás"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld дней назад"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%ll gün önce"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天前"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天前"
+          }
+        }
+      }
+    },
+    "fitness.strength.summary.critical": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vor %lld Tagen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days ago"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hace %lld días"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "il y a %lld jours"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld दिन पहले"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld giorni fa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld日前"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld일 전"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dagen geleden"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dni temu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias atrás"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias atrás"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias atrás"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld дней назад"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%ll gün önce"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天前"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 天前"
+          }
+        }
+      }
+    },
+    "fitness.strength.detail.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krafttraining liegt im Zeitplan."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strength training is on schedule."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El entrenamiento de fuerza está según lo previsto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La musculation est au programme."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शक्ति प्रशिक्षण निर्धारित समय पर है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'allenamento per la forza è in programma."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "筋力トレーニングは予定通りです。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "근력 훈련이 예정대로 진행됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krachttraining ligt op schema."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trening siłowy odbywa się zgodnie z planem."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O treinamento de força está dentro do cronograma."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O treinamento de força está dentro do cronograma."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O treinamento de força está dentro do cronograma."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Силовые тренировки идут по графику."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuvvet antrenmanı programa uygun."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "力量训练如期进行。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肌力訓練如期進行。"
+          }
+        }
+      }
+    },
+    "fitness.strength.detail.warning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plane diese Woche noch eine Krafteinheit ein."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan another strength session this week."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planifica otra sesión de fuerza esta semana."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planifiez une autre séance de musculation cette semaine."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस सप्ताह एक और शक्ति सत्र की योजना बनाएं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pianifica un'altra sessione di forza questa settimana."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週、別の筋力強化セッションを計画してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 주에 또 다른 근력 강화 세션을 계획하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan deze week weer een krachtsessie."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaplanuj w tym tygodniu kolejną sesję siłową."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planeje outra sessão de força esta semana."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planeje outra sessão de força esta semana."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planeje outra sessão de força esta semana."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Запланируйте еще одну силовую тренировку на этой неделе."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu hafta başka bir güç antrenmanı planlayın."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本周计划另一次力量训练。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本週計劃另一次肌力訓練。"
+          }
+        }
+      }
+    },
+    "fitness.strength.detail.critical": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letztes Krafttraining liegt zu lange zurück. Heute eine kurze Einheit einplanen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's been too long since your last strength training session. Plan a short session today."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ha pasado demasiado tiempo desde tu última sesión de entrenamiento de fuerza. Planifique una sesión corta hoy."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cela fait trop longtemps depuis votre dernière séance de musculation. Planifiez une courte séance aujourd’hui."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके अंतिम शक्ति प्रशिक्षण सत्र को बहुत लंबा समय हो गया है। आज एक छोटे सत्र की योजना बनाएं."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "È passato troppo tempo dalla tua ultima sessione di allenamento per la forza. Pianifica una breve sessione oggi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前回の筋力トレーニング セッションから時間が経ちすぎています。今日は短いセッションを計画してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마지막 근력 훈련 세션 이후 너무 오랜 시간이 지났습니다. 오늘 짧은 세션을 계획해 보세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het is te lang geleden sinds je laatste krachttraining. Plan vandaag nog een korte sessie."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minęło zbyt dużo czasu od Twojej ostatniej sesji treningu siłowego. Zaplanuj dzisiaj krótką sesję."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já faz muito tempo desde sua última sessão de treinamento de força. Planeje uma breve sessão hoje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já faz muito tempo desde sua última sessão de treinamento de força. Planeje uma breve sessão hoje."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já faz muito tempo desde sua última sessão de treinamento de força. Planeje uma breve sessão hoje."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прошло слишком много времени с момента вашей последней силовой тренировки. Запланируйте сегодня короткую сессию."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son kuvvet antrenmanından bu yana çok uzun zaman geçti. Bugün kısa bir oturum planlayın."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "距离你上次力量训练已经过去太久了。今天计划一个简短的会议。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "距離你上次力量訓練已經過了太久。今天計劃一個簡短的會議。"
+          }
+        }
+      }
+    },
+    "fitness.running.summary.done": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld मिनट ✓"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分 ✓"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld분 ✓"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min ✓"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld мин ✓"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dk ✓"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分钟 ✓"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分鐘 ✓"
+          }
+        }
+      }
+    },
+    "fitness.running.detail.done": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Ausdauereinheit heute."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good endurance session today."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buena sesión de resistencia hoy."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonne séance d'endurance aujourd'hui."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज अच्छा सहनशक्ति सत्र."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buona sessione di resistenza oggi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日は良い持久セッション。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 지구력 세션이 좋았습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goede duurtraining vandaag."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dobra sesja wytrzymałościowa dzisiaj."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boa sessão de resistência hoje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boa sessão de resistência hoje."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boa sessão de resistência hoje."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хорошая сегодня тренировка на выносливость."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün iyi bir dayanıklılık seansı."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天的耐力训练很好。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天的耐力訓練很好。"
+          }
+        }
+      }
+    },
+    "fitness.running.summary.none": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute noch nichts"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien aujourd'hui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज कुछ भी नहीं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niente oggi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日は何もない"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘은 아무것도 아니야"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niets vandaag"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nic dzisiaj"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada hoje"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada hoje"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada hoje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ничего сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün hiçbir şey yok"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天没什么事"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天沒什麼事"
+          }
+        }
+      }
+    },
+    "fitness.running.detail.none": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute noch keine Laufeinheit. Ein kurzer 20-Minuten-Lauf reicht für den Tag."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No running session today. A short 20-minute run is enough for the day."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay sesión de carrera hoy. Una carrera corta de 20 minutos es suficiente para todo el día."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de séance de running aujourd'hui. Une courte course de 20 minutes suffit pour la journée."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज कोई चालू सत्र नहीं. दिन के लिए 20 मिनट की छोटी दौड़ पर्याप्त है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna sessione di corsa oggi. Per la giornata è sufficiente una breve corsa di 20 minuti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日はランニングセッションはありません。 20 分間の短いランニングで 1 日は十分です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘은 실행 세션이 없습니다. 하루에 20분 정도의 짧은 달리기이면 충분합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag geen hardloopsessie. Een korte run van 20 minuten is voldoende voor de dag."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzisiaj nie ma sesji biegowej. Na dzień wystarczy krótki, 20-minutowy bieg."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma sessão de corrida hoje. Uma corrida curta de 20 minutos é suficiente para o dia."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma sessão de corrida hoje. Uma corrida curta de 20 minutos é suficiente para o dia."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma sessão de corrida hoje. Uma corrida curta de 20 minutos é suficiente para o dia."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Беговых тренировок сегодня не будет. Короткой 20-минутной пробежки вполне хватит на день."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün koşu seansı yok. Gün için 20 dakikalık kısa bir koşu yeterlidir."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天没有跑步。一天的短跑 20 分钟就足够了。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天沒有跑步。一天的短跑 20 分鐘就夠了。"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.protein": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteína"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protéine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रोटीन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タンパク質"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "단백질"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiwit"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Białko"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Белок"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "蛋白质"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "蛋白質"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.protein.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein: %lld / %lld g"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein: %lld / %lld g"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteína: %lld / %lld g"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protéine : %lld / %lld g"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रोटीन: %lld / %lld g"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteine: %lld / %lld g"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タンパク質: %lld / %lld g"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error %lld (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiwit: %lld / %lld g"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Białko: %lld / %lld g"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteína: %lld / %lld g"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteína: %lld / %lld g"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteína: %lld / %lld g"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Белок: %lld / %lld г"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein: %lld / %lld g"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "蛋白质：%lld / %lld g"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "蛋白質：%lld / %lld g"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.fiber": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballaststoffe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fiber"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fibra"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fibre"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फाइबर"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fibra"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ファイバ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "섬유"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vezel"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "błonnik"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fibra"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fibra"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fibra"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "волокно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "lif"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "纤维"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "纖維"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.fiber.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballaststoffe: %lld / %lld g"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballaststoffe: %lld / %lld g"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lastre: %lld / %lld g"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matériau de ballast : %lld / %lld g"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बैलास्टस्टोफ़: %lld / %lld g"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zavorra: %lld / %lld g"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バラストストフ: %lld / %lld g"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "안정기: %lld / %lldg"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballaststof: %lld / %lld g"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Balaststoffe: %lld / %lld g"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Balastro: %lld / %lld g"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Balastro: %lld / %lld g"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Balastro: %lld / %lld g"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Балласт: %lld / %lld г"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Balast yükü: %lld / %lld g"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "镇流器：%lld / %lld g"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鎮流器：%lld / %lld g"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.mineral.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: unter 70%% Bedarf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: below 70%% demand"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: por debajo del 70%% de la demanda"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ : en dessous de 70 %% de la demande"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: 70%% से कम मांग"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: domanda inferiore al 70%%."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: 70%% 需要未満"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: 수요 70%% 미만"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: minder dan 70%% vraag"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: poniżej 70%% zapotrzebowania"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: abaixo de 70%% da demanda"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: abaixo de 70%% da demanda"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: abaixo de 70%% da demanda"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: спрос ниже 70%%"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %70 talebin altında"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@：低于 70%% 需求"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@：低於 70%% 需求"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.summary.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Werte erreicht ✓"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All values ​​achieved ✓"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los valores alcanzados ✓"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes les valeurs atteintes ✓"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सभी मान प्राप्त ✓"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutti valori raggiunti ✓"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべての値が達成されました ✓"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 가치 달성 ✓"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle waarden behaald ✓"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie wartości osiągnięte ✓"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os valores alcançados ✓"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os valores alcançados ✓"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os valores alcançados ✓"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все значения достигнуты ✓"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tüm değerlere ulaşıldı ✓"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "实现所有值 ✓"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "實作所有值 ✓"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.detail.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung liegt heute im Zielbereich."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nutrition is within the target range today."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La nutrición se encuentra hoy dentro del rango objetivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La nutrition se situe aujourd’hui dans la fourchette cible."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पोषण आज लक्ष्य सीमा के भीतर है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi la nutrizione rientra nell'intervallo target."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日の栄養は目標範囲内です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "fitness.header.allgood": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Werte im Ziel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "fitness.header.warning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Achtung bei: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+          }
+        }
+      }
+    },
+    "fitness.category.water": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasser"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "fitness.category.sleep": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlaf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "fitness.category.strength": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krafttraining"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "fitness.category.running": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laufen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correr"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correre"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "走る"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loop"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correr"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correr"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correr"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бегать"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑步"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "fitness.category.nutrition": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nutrición"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "栄養"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voeding"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "营养"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "營養"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

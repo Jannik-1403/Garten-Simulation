@@ -495,8 +495,8 @@ struct StatisticsDashboard: View {
                     .padding(.top, 40)
                 } else {
                     if selectedPeriod == .day {
-                        // Tägliches Health-Feedback – nur im "Tag"-Tab, ganz oben
-                        DailyFeedbackView()
+                        // Aufklappbare Fitness-Übersicht – nur im "Tag"-Tab ganz oben
+                        FitnessOverviewCard()
                             .padding(.top, 4)
                         periodNavigationHeader
                         lifeBalanceCard
