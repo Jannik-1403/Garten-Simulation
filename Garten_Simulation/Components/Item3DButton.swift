@@ -202,24 +202,24 @@ struct PillButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         let isPressed = configuration.isPressed || isPermanentlyPressed
         
-        ZStack(alignment: .center) {
-            // Shadow layer
-            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .fill(sekundaerFarbe)
-                .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
-            
-            // Top layer
-            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .fill(farbe)
-                .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
-                .overlay { configuration.label }
-                .offset(y: isPressed ? 0 : -shadowDepth)
-        }
-        .padding(.bottom, isPressed ? 0 : shadowDepth)
-        .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
-        .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
-            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.8) : nil
-        }
+        configuration.label
+            .background(
+                RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                    .fill(farbe)
+                    .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+            )
+            .offset(y: isPressed ? shadowDepth : 0)
+            .background(
+                RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                    .fill(sekundaerFarbe)
+                    .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                    .offset(y: shadowDepth)
+            )
+            .padding(.bottom, shadowDepth)
+            .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
+            .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
+                (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.8) : nil
+            }
     }
 }
 

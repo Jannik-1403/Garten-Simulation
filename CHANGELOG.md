@@ -1032,3 +1032,6 @@
 - FitnessOverviewCard (aufklappbare Multi-Kategorie-Ansicht für Wasser, Schlaf, Kraft, Laufen, Ernährung)
 - Zeitabhängige Ansprache beim Wassertracking gefixed
 - 33 neue xcstrings in alle 16 Sprachen übersetzt
+
+- **Personalisierter Tages-Score**: Der Tages-Score analysiert ab sofort nur noch die Gesundheitskategorien, für die der Nutzer eine aktive Pflanze/Gewohnheit besitzt. Die detaillierte Nährstoffanalyse ('Molybdän') wurde vereinfacht.
+- **3D Score Card Redesign**: Die Score-Card nutzt nun das PillButtonStyle-Layout und expandiert physisch nach unten. Sie ist in der Breite an die Unkraut-Warnung angeglichen, und alle Eichenringe (Icons) in der Analyseansicht wurden für ein cleaneres Design entfernt.
