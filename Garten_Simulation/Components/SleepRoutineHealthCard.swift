@@ -16,11 +16,7 @@ struct SleepRoutineHealthCard: View {
             VStack(alignment: .leading, spacing: 20) {
                 // Header
                 HStack(spacing: 8) {
-                    Image(systemName: "moon.stars.fill")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(Color.blauPrimary)
-                    
-                    Text(String(localized: "sleep.routine.title", defaultValue: "Schlaf & Apple Health"))
+                    Text(String(localized: "sleep.routine.title", defaultValue: "Schlafroutine"))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.blauPrimary)
                     
@@ -29,7 +25,7 @@ struct SleepRoutineHealthCard: View {
                 
                 if let regularity = healthManager.sleepRegularityPercentage {
                     // Regelmäßigkeit (Prozent)
-                    HStack(alignment: .center, spacing: 16) {
+                    VStack(alignment: .center, spacing: 12) {
                         ZStack {
                             Circle()
                                 .stroke(Color(UIColor.systemGray5), lineWidth: 8)
@@ -41,21 +37,24 @@ struct SleepRoutineHealthCard: View {
                                 .animation(.spring(), value: regularity)
                             
                             Text("\(Int(regularity * 100))%")
-                                .font(.system(size: 22, weight: .black, design: .rounded))
+                                .font(.system(size: 26, weight: .black, design: .rounded))
                                 .foregroundStyle(Color.blauPrimary)
                         }
-                        .frame(width: 80, height: 80)
+                        .frame(width: 90, height: 90)
                         
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .center, spacing: 4) {
                             Text(String(localized: "sleep.routine.regularity.title", defaultValue: "Schlaf-Regelmäßigkeit"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .multilineTextAlignment(.center)
                             
                             Text(String(localized: "sleep.routine.regularity.desc", defaultValue: "Gleichmäßige Bettgehzeiten verbessern deine Tiefschlafphasen enorm."))
                                 .font(.system(size: 13, weight: .medium, design: .rounded))
                                 .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
                                 .lineLimit(3)
                         }
                     }
+                    .frame(maxWidth: .infinity)
                 }
                 
                 Divider()
@@ -148,5 +147,8 @@ struct SleepRoutineHealthCard: View {
             sekundaerFarbe: Color(UIColor.systemGray5),
             shadowDepth: 6
         ))
+        .onAppear {
+            healthManager.fetchSleep()
+        }
     }
 }
