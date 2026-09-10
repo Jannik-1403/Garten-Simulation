@@ -137,6 +137,7 @@ struct MiniChunkyProgressRing: View {
     var progress: Double
     var goal: Double
     var color: Color = .orange
+    var fontSize: CGFloat = 16
     
     var percent: Double {
         if goal <= 0 { return 0 }
@@ -169,7 +170,7 @@ struct MiniChunkyProgressRing: View {
                 
             VStack(spacing: 0) {
                 Text("\(Int(progress))")
-                    .font(.system(size: 16, weight: .black, design: .rounded))
+                    .font(.system(size: fontSize, weight: .black, design: .rounded))
                     .foregroundColor(color)
             }
         }

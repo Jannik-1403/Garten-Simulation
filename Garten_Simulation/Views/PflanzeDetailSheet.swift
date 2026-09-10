@@ -320,29 +320,26 @@ struct PflanzeDetailSheet: View {
                         // Focus Session Button
                         VStack(spacing: 8) {
                             Item3DButton(
-                                farbe: .blauPrimary,
-                                sekundaerFarbe: .blauPrimary.darker(),
-                                groesse: 110,
-                                isRectangular: true,
+                                farbe: .orangePrimary,
+                                sekundaerFarbe: .orangePrimary.darker(),
+                                groesse: 54,
+                                isRectangular: false,
                                 aktion: { zeigeFocusSession = true }
                             ) {
-                                VStack(spacing: 8) {
-                                    Image("Timer full")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 44, height: 44)
-                                    
-                                    Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten"))
-                                        .font(.system(size: 20, weight: .black, design: .rounded))
-                                        .foregroundStyle(.white)
-                                        .multilineTextAlignment(.center)
-                                        .minimumScaleFactor(0.5)
-                                }
-                                .padding(.horizontal, 16)
+                                Image("Timer full")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
                             }
                             .accessibilityIdentifier("FocusTimerButton")
                             .tourAnchor(.focusTimer)
                             .id(TourStep.focusTimer)
+                            
+                            Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten"))
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
                         }
                     }
                     .padding(.top, 16)

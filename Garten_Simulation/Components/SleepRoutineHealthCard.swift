@@ -17,7 +17,7 @@ struct SleepRoutineHealthCard: View {
                 if let regularity = healthManager.sleepRegularityPercentage {
                     // Regelmäßigkeit (Prozent)
                     VStack(alignment: .center, spacing: 12) {
-                        MiniChunkyProgressRing(progress: regularity * 100, goal: 100)
+                        MiniChunkyProgressRing(progress: regularity * 100, goal: 100, color: .blauPrimary, fontSize: 36)
                             .frame(width: 100, height: 100)
                             .foregroundStyle(Color.blauPrimary)
                         
