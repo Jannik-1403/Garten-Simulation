@@ -62,6 +62,12 @@ struct PflanzenCard: View {
             let goal = max(goalEnergy, 1.0)
             return min(1.0, max(0.0, healthManager.todaysEnergy / goal))
         }
+
+        if metric == .sleep {
+            if let regularity = healthManager.sleepRegularityPercentage {
+                return regularity >= 0.9 ? 1.0 : regularity
+            }
+        }
         
         guard let target = pflanze.healthTarget, target > 0 else {
             return nil
@@ -72,12 +78,12 @@ struct PflanzenCard: View {
     }
     
     private var baseProgress: Double {
-        if pflanze.istBewässert {
-            return 0.0
-        }
         let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDateInToday($0.timestamp) }
         if let hp = healthProgress, !hasManualOverride {
             return hp
+        }
+        if pflanze.istBewässert {
+            return 1.0
         }
         return pflanze.sliderProgress
     }
