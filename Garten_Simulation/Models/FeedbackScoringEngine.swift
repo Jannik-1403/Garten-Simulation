@@ -41,6 +41,10 @@ struct CategoryFeedback: Identifiable {
     let summaryText: String
     /// Aufgeklappter Detail-Text mit konkreter Handlungsanweisung
     let detailText: String
+    /// Aktueller Fortschritt (für Fortschrittsbalken)
+    let progress: Double?
+    /// Zielwert (für Fortschrittsbalken)
+    let goal: Double?
 }
 
 // MARK: - FeedbackResult (Kompatibilität mit FeedbackStore bleibt erhalten)
@@ -159,7 +163,8 @@ struct FeedbackScoringEngine {
                 waterDetail = "\(waterActual) von \(waterTarget) ml getrunken. \(actionHint)"
             }
             results.append(CategoryFeedback(category: .water, status: waterStatus,
-                                             summaryText: waterSummary, detailText: waterDetail))
+                                             summaryText: waterSummary, detailText: waterDetail,
+                                             progress: Double(waterActual), goal: Double(waterTarget)))
         }
 
         // MARK: Schlaf (nur wenn Pflanze vorhanden)
@@ -200,7 +205,8 @@ struct FeedbackScoringEngine {
             }
             
             results.append(CategoryFeedback(category: .sleep, status: sleepStatus,
-                                             summaryText: sleepSummary, detailText: sleepDetail))
+                                             summaryText: sleepSummary, detailText: sleepDetail,
+                                             progress: input.sleepHoursToday, goal: input.sleepGoalHours))
         }
 
         // MARK: Krafttraining (nur wenn Workout-Pflanze vorhanden)
@@ -239,7 +245,8 @@ struct FeedbackScoringEngine {
                                         defaultValue: "Letztes Krafttraining liegt zu lange zurück. Versuche heute eine kurze Einheit einzuplanen, um den Rhythmus nicht zu verlieren.")
             }
             results.append(CategoryFeedback(category: .strength, status: strengthStatus,
-                                             summaryText: strengthSummary, detailText: strengthDetail))
+                                             summaryText: strengthSummary, detailText: strengthDetail,
+                                             progress: input.strengthTodayMinutes, goal: input.strengthGoalMinutes))
         }
 
         // MARK: Joggen/Laufen (basiert auf Schritten)
@@ -291,7 +298,8 @@ struct FeedbackScoringEngine {
             }
             
             results.append(CategoryFeedback(category: .running, status: runStatus,
-                                             summaryText: runSummary, detailText: runDetail))
+                                             summaryText: runSummary, detailText: runDetail,
+                                             progress: input.stepsToday, goal: input.stepsGoal))
         }
 
         // MARK: Ernährung (nur wenn Ernährungs-Pflanze vorhanden)
@@ -341,7 +349,8 @@ struct FeedbackScoringEngine {
                 nutDetail = nutritionDetails.joined(separator: "\n")
             }
             results.append(CategoryFeedback(category: .nutrition, status: nutStatus,
-                                             summaryText: nutSummary, detailText: nutDetail))
+                                             summaryText: nutSummary, detailText: nutDetail,
+                                             progress: input.energyToday, goal: input.energyGoal))
         }
 
         return results

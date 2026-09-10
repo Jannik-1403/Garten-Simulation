@@ -1060,3 +1060,4 @@
 - Neue Funktion 'Alle wiederbeleben' hinzugefügt, um alle gestorbenen Pflanzen gleichzeitig für 800 Coins wiederzubeleben.
 - **Tages-Analyse (Ziel-Einstellung)**: Man kann die Ziele nun nur noch einmal pro Tag über die Pfeile anpassen. Der gedrückte Button leuchtet dann dauerhaft grün. Außerdem gibt es bei der Ernährungs-Analyse nun einen Button (Zahnrad), der dich direkt zur Kalorienberechnung führt, wo du auch dein Gewicht etc. anpassen kannst.
 - UI-Update PflanzeDetailSheet/SleepRoutineHealthCard: Der 'Fokus-Session starten' Button wurde von orange auf blau geändert und deutlich vergrößert. Der blaue Titeltext 'Schlafroutine' oben in der Schlaf-Gesundheitskarte wurde restlos entfernt und deren Ring vergrößert.
+- UI-Update PflanzeDetailSheet: Der Fokus-Session Button ist jetzt ein riesiges abgerundetes Rechteck. Der Text 'Fokus-Session starten' wurde IN den Button verschoben, stark vergrößert und wird nun in Weiß auf blauem Grund dargestellt.

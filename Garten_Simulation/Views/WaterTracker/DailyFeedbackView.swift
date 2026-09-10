@@ -90,9 +90,7 @@ struct DailyFeedbackDetailView: View {
                         // Begründungen für Warnungen/Kritische Punkte (jetzt alle)
                         VStack(spacing: 24) {
                             ForEach(vm.issueFeedbacks) { feedback in
-                                CategoryIssueRow(feedback: feedback) { increase in
-                                    vm.adjustGoal(for: feedback.category, increase: increase, in: gardenStore)
-                                }
+                                CategoryIssueRow(feedback: feedback)
                                 if feedback.id != vm.issueFeedbacks.last?.id {
                                     Divider()
                                 }
@@ -182,14 +180,6 @@ struct MiniChunkyProgressRing: View {
 
 private struct CategoryIssueRow: View {
     let feedback: CategoryFeedback
-    var onAdjustGoal: ((Bool) -> Void)?
-    
-    @State private var thumbUpScale: CGFloat = 1.0
-    @State private var thumbDownScale: CGFloat = 1.0
-
-    @State private var hasAdjustedToday: Bool = false
-    @State private var adjustedDirection: Int = 0 // 1 = up, -1 = down
-    @State private var showCalorieCalculator: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -215,108 +205,13 @@ private struct CategoryIssueRow: View {
                 .lineSpacing(4)
                 .fixedSize(horizontal: false, vertical: true)
                 
-            HStack(spacing: 12) {
-                Button {
-                    handleThumb(up: false)
-                } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: (hasAdjustedToday && adjustedDirection == -1) ? "arrow.down.circle.fill" : "arrow.down.circle")
-                            .font(.system(size: 14))
-                        Text(String(localized: "fitness.goal.decrease", defaultValue: "Ziel senken"))
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                    }
-                    .foregroundColor((hasAdjustedToday && adjustedDirection == -1) ? .white : .primary)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 12)
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(PillButtonStyle(
-                    farbe: (hasAdjustedToday && adjustedDirection == -1) ? Color(.systemGreen) : .white,
-                    sekundaerFarbe: (hasAdjustedToday && adjustedDirection == -1) ? Color(.systemGreen).opacity(0.8) : Color(white: 0.85),
-                    cornerRadius: 16,
-                    shadowDepth: 4
-                ))
-                .scaleEffect(thumbDownScale)
-                
-                Button {
-                    handleThumb(up: true)
-                } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: (hasAdjustedToday && adjustedDirection == 1) ? "arrow.up.circle.fill" : "arrow.up.circle")
-                            .font(.system(size: 14))
-                        Text(String(localized: "fitness.goal.increase", defaultValue: "Ziel erhöhen"))
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                    }
-                    .foregroundColor((hasAdjustedToday && adjustedDirection == 1) ? .white : .primary)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 12)
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(PillButtonStyle(
-                    farbe: (hasAdjustedToday && adjustedDirection == 1) ? Color(.systemGreen) : .white,
-                    sekundaerFarbe: (hasAdjustedToday && adjustedDirection == 1) ? Color(.systemGreen).opacity(0.8) : Color(white: 0.85),
-                    cornerRadius: 16,
-                    shadowDepth: 4
-                ))
-                .scaleEffect(thumbUpScale)
-                
-                if feedback.category == .nutrition {
-                    Spacer()
-                    Button {
-                        showCalorieCalculator = true
-                    } label: {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 16))
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(8)
-                    .background(Circle().fill(Color(white: 0.9)))
-                }
+            if let progress = feedback.progress, let goal = feedback.goal, goal > 0 {
+                ProgressView(value: min(progress, goal), total: goal)
+                    .progressViewStyle(LinearProgressViewStyle(tint: progress >= goal ? Color(.systemGreen) : Color.accentColor))
+                    .padding(.top, 4)
             }
-            .padding(.top, 4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .onAppear {
-            let today = Date().formatted(date: .numeric, time: .omitted)
-            let dateKey = "feedback_adj_date_\(feedback.category.rawValue)"
-            let dirKey = "feedback_adj_dir_\(feedback.category.rawValue)"
-            
-            if UserDefaults.standard.string(forKey: dateKey) == today {
-                hasAdjustedToday = true
-                adjustedDirection = UserDefaults.standard.integer(forKey: dirKey)
-            }
-        }
-        .sheet(isPresented: $showCalorieCalculator) {
-            CalorieCalculationSheet()
-        }
-    }
-    
-    private func handleThumb(up: Bool) {
-        if hasAdjustedToday { return }
-        
-        let impact = UIImpactFeedbackGenerator(style: .medium)
-        impact.impactOccurred()
-        
-        let today = Date().formatted(date: .numeric, time: .omitted)
-        let dateKey = "feedback_adj_date_\(feedback.category.rawValue)"
-        let dirKey = "feedback_adj_dir_\(feedback.category.rawValue)"
-        
-        UserDefaults.standard.set(today, forKey: dateKey)
-        UserDefaults.standard.set(up ? 1 : -1, forKey: dirKey)
-        
-        hasAdjustedToday = true
-        adjustedDirection = up ? 1 : -1
-        
-        if up {
-            withAnimation(.spring(response: 0.2, dampingFraction: 0.5)) { thumbUpScale = 1.3 }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { withAnimation { thumbUpScale = 1.0 } }
-        } else {
-            withAnimation(.spring(response: 0.2, dampingFraction: 0.5)) { thumbDownScale = 1.3 }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { withAnimation { thumbDownScale = 1.0 } }
-        }
-        
-        // Pass intent upwards
-        onAdjustGoal?(up)
     }
 
     private var categoryName: String {
