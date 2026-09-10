@@ -1052,3 +1052,5 @@
 - **Tages-Analyse (Design-Update)**: Die Tages-Analyse öffnet sich nun als echtes Vollbild (Full-Screen) statt als halbes Sheet. Das X-Icon zum Schließen wurde bereinigt (schwarz, ohne grauen Hintergrund). Alle Container und die Buttons zum Anpassen der Ziele (Ziel senken / erhöhen) verwenden nun konsequent den weißen 3D-Look.
 
 - **Tages-Analyse (Fortschrittsanzeige)**: In der Tages-Analyse wird nun neben jedem Titel (z. B. 'Tägliche Wasseranalyse') auf einen Blick das exakte Ziel und der aktuelle Stand angezeigt (z. B. '1500 / 2000 ml').
+
+- **Dynamische Ziele (Kraft & Ernährung)**: Die Tages-Analyse holt sich ab sofort automatisch die Zielwerte aus deinen eingerichteten Gewohnheiten (z. B. 'Krafttraining: 45 min' oder 'Ernährung: 2500 kcal'). Statt 'vor 14 Tagen' steht nun bei Krafttraining ganz präzise dein Minuten-Fortschritt (z. B. '30 / 45 min'). Bei der Ernährung stehen oben rechts direkt die aufgenommenen Kalorien im Vergleich zum Ziel.

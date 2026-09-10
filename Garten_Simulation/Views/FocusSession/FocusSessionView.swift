@@ -338,23 +338,19 @@ struct FocusSessionView: View {
                             
                             Circle()
                                 .stroke(Color.gray.opacity(0.15), lineWidth: 20)
-                                .frame(width: 280, height: 280)
+                                .frame(width: 320, height: 320)
                             
                             Circle()
                                 .trim(from: 0, to: CGFloat(progress))
-                                .stroke(Color.goldPrimary, style: StrokeStyle(lineWidth: 20, lineCap: .round))
-                                .frame(width: 280, height: 280)
+                                .stroke(Color.blauPrimary, style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                                .frame(width: 320, height: 320)
                                 .rotationEffect(.degrees(-90))
                                 .animation(.linear(duration: 1.0), value: progress)
                             
                             VStack(spacing: 8) {
                                 Text(timeString(from: remainingSeconds))
-                                    .font(.system(size: 64, weight: .black, design: .monospaced))
+                                    .font(.system(size: 84, weight: .black, design: .monospaced))
                                     .foregroundStyle(Color.primary)
-                                
-                                Text(settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName)
-                                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.secondary)
                             }
                         }
                         

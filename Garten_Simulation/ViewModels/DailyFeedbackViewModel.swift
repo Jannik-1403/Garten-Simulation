@@ -63,8 +63,8 @@ class DailyFeedbackViewModel: ObservableObject {
 
         let hasWaterPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.water })
         let hasSleepPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.sleep })
-        let hasStrengthPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining })
-        let hasRunningPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.steps })
+        let hasStrengthPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining || $0.name.lowercased().contains("kraft") })
+        let hasRunningPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.steps || $0.linkedHealthMetric == HealthMetricType.running || $0.name.lowercased().contains("laufen") || $0.name.lowercased().contains("joggen") || $0.name.lowercased().contains("schritt") })
         let hasNutritionPlant = activeHabits.contains(where: { plant in
             if plant.linkedHealthMetric == .energy { return true }
             if plant.linkedHealthMetric == .fiber { return true }
@@ -101,7 +101,7 @@ class DailyFeedbackViewModel: ObservableObject {
             waterGoal: wgm.currentGoal,
             waterHistory7Days: hm.waterHistory7Days,
             sleepHoursToday: hm.todaysSleep,
-            sleepGoalHours: 8.0,
+            sleepGoalHours: UserDefaults.standard.double(forKey: "goal_sleep") > 0 ? UserDefaults.standard.double(forKey: "goal_sleep") : 8.0,
             sleepRegularity: hm.sleepRegularityPercentage,
             sleepAvgBedtimeString: hm.sleepAvgBedtimeString,
             sleepTargetWakeUpString: hm.sleepTargetWakeUpString,
@@ -151,5 +151,52 @@ class DailyFeedbackViewModel: ObservableObject {
         } else {
             primaryKey = FeedbackKey.positiveKeys.randomElement() ?? .feedbackPositiv1
         }
+    }
+    
+    func adjustGoal(for category: FitnessCategory, increase: Bool, in store: GardenStore) {
+        switch category {
+        case .water:
+            let diff = increase ? 250.0 : -250.0
+            WaterGoalManager.shared.currentGoal = max(250.0, WaterGoalManager.shared.currentGoal + diff)
+            
+        case .sleep:
+            let diff = increase ? 0.5 : -0.5
+            let current = UserDefaults.standard.double(forKey: "goal_sleep")
+            let base = current > 0 ? current : 8.0
+            UserDefaults.standard.set(max(1.0, base + diff), forKey: "goal_sleep")
+            
+        case .strength:
+            let diff = increase ? 5.0 : -5.0
+            if let plant = store.sichtbarePflanzen.first(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining || $0.name.lowercased().contains("kraft") }) {
+                plant.healthTarget = max(5.0, (plant.healthTarget ?? 45.0) + diff)
+                store.savePlants()
+            }
+            
+        case .running:
+            let diff = increase ? 500.0 : -500.0
+            if let plant = store.sichtbarePflanzen.first(where: { $0.linkedHealthMetric == HealthMetricType.steps || $0.linkedHealthMetric == HealthMetricType.running || $0.name.lowercased().contains("laufen") || $0.name.lowercased().contains("joggen") || $0.name.lowercased().contains("schritt") }) {
+                plant.healthTarget = max(500.0, (plant.healthTarget ?? 10000.0) + diff)
+                store.savePlants()
+            }
+            
+        case .nutrition:
+            let diff = increase ? 100.0 : -100.0
+            if let plant = store.sichtbarePflanzen.first(where: { p in
+                p.linkedHealthMetric == HealthMetricType.energy ||
+                p.linkedHealthMetric == HealthMetricType.fiber ||
+                p.name.lowercased().contains("gemüse") ||
+                p.name.lowercased().contains("kochen")
+            }) {
+                let fallback = UserDefaults.standard.double(forKey: "goal_energy")
+                plant.healthTarget = max(500.0, (plant.healthTarget ?? (fallback > 0 ? fallback : 2000.0)) + diff)
+                store.savePlants()
+            } else {
+                let current = UserDefaults.standard.double(forKey: "goal_energy")
+                let base = current > 0 ? current : 2000.0
+                UserDefaults.standard.set(max(500.0, base + diff), forKey: "goal_energy")
+            }
+        }
+        
+        self.reevaluate()
     }
 }

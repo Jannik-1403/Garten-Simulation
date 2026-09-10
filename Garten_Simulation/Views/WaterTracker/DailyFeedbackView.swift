@@ -56,6 +56,7 @@ struct DailyHealthScoreCard: View {
 struct DailyFeedbackDetailView: View {
     @ObservedObject var vm: DailyFeedbackViewModel
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var gardenStore: GardenStore
     
     var body: some View {
         NavigationStack {
@@ -89,7 +90,9 @@ struct DailyFeedbackDetailView: View {
                         // Begründungen für Warnungen/Kritische Punkte (jetzt alle)
                         VStack(spacing: 24) {
                             ForEach(vm.issueFeedbacks) { feedback in
-                                CategoryIssueRow(feedback: feedback)
+                                CategoryIssueRow(feedback: feedback) { increase in
+                                    vm.adjustGoal(for: feedback.category, increase: increase, in: gardenStore)
+                                }
                                 if feedback.id != vm.issueFeedbacks.last?.id {
                                     Divider()
                                 }
@@ -179,10 +182,10 @@ struct MiniChunkyProgressRing: View {
 
 private struct CategoryIssueRow: View {
     let feedback: CategoryFeedback
+    var onAdjustGoal: ((Bool) -> Void)?
     
     @State private var thumbUpScale: CGFloat = 1.0
     @State private var thumbDownScale: CGFloat = 1.0
-    @State private var userFeedback: Int = 0 // 1 = up, -1 = down
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -213,19 +216,19 @@ private struct CategoryIssueRow: View {
                     handleThumb(up: false)
                 } label: {
                     HStack(spacing: 4) {
-                        Image(systemName: userFeedback == -1 ? "arrow.down.circle.fill" : "arrow.down.circle")
+                        Image(systemName: "arrow.down.circle")
                             .font(.system(size: 14))
                         Text(String(localized: "fitness.goal.decrease", defaultValue: "Ziel senken"))
                             .font(.system(size: 13, weight: .semibold, design: .rounded))
                     }
-                    .foregroundColor(userFeedback == -1 ? .white : .primary)
+                    .foregroundColor(.primary)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 12)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(PillButtonStyle(
-                    farbe: userFeedback == -1 ? Color(.systemOrange) : .white,
-                    sekundaerFarbe: userFeedback == -1 ? Color(.systemOrange).opacity(0.8) : Color(white: 0.85),
+                    farbe: .white,
+                    sekundaerFarbe: Color(white: 0.85),
                     cornerRadius: 16,
                     shadowDepth: 4
                 ))
@@ -235,19 +238,19 @@ private struct CategoryIssueRow: View {
                     handleThumb(up: true)
                 } label: {
                     HStack(spacing: 4) {
-                        Image(systemName: userFeedback == 1 ? "arrow.up.circle.fill" : "arrow.up.circle")
+                        Image(systemName: "arrow.up.circle")
                             .font(.system(size: 14))
                         Text(String(localized: "fitness.goal.increase", defaultValue: "Ziel erhöhen"))
                             .font(.system(size: 13, weight: .semibold, design: .rounded))
                     }
-                    .foregroundColor(userFeedback == 1 ? .white : .primary)
+                    .foregroundColor(.primary)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 12)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(PillButtonStyle(
-                    farbe: userFeedback == 1 ? Color(.systemGreen) : .white,
-                    sekundaerFarbe: userFeedback == 1 ? Color(.systemGreen).opacity(0.8) : Color(white: 0.85),
+                    farbe: .white,
+                    sekundaerFarbe: Color(white: 0.85),
                     cornerRadius: 16,
                     shadowDepth: 4
                 ))
@@ -256,33 +259,22 @@ private struct CategoryIssueRow: View {
             .padding(.top, 4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .onAppear {
-            let val = UserDefaults.standard.integer(forKey: "feedback_modifier_\(feedback.category.rawValue)")
-            if val > 0 { userFeedback = 1 }
-            else if val < 0 { userFeedback = -1 }
-        }
     }
     
     private func handleThumb(up: Bool) {
         let impact = UIImpactFeedbackGenerator(style: .medium)
         impact.impactOccurred()
         
-        let key = "feedback_modifier_\(feedback.category.rawValue)"
         if up {
             withAnimation(.spring(response: 0.2, dampingFraction: 0.5)) { thumbUpScale = 1.3 }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { withAnimation { thumbUpScale = 1.0 } }
-            
-            userFeedback = (userFeedback == 1) ? 0 : 1
-            UserDefaults.standard.set(userFeedback == 1 ? 1 : 0, forKey: key)
         } else {
             withAnimation(.spring(response: 0.2, dampingFraction: 0.5)) { thumbDownScale = 1.3 }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { withAnimation { thumbDownScale = 1.0 } }
-            
-            userFeedback = (userFeedback == -1) ? 0 : -1
-            UserDefaults.standard.set(userFeedback == -1 ? -1 : 0, forKey: key)
         }
         
-        // Benachrichtige Observer, falls nötig, ansonsten beim nächsten Reevaluate
+        // Pass intent upwards
+        onAdjustGoal?(up)
     }
 
     private var categoryName: String {
