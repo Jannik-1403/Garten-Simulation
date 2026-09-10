@@ -155,6 +155,7 @@ struct WaterSettingsSheet: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var manualGoalText: String = ""
+    @FocusState private var isInputActive: Bool
     
     var body: some View {
         NavigationStack {
@@ -189,6 +190,7 @@ struct WaterSettingsSheet: View {
                             HStack(spacing: 2) {
                                 TextField("", text: $manualGoalText)
                                     .keyboardType(.numberPad)
+                                    .focused($isInputActive)
                                     .multilineTextAlignment(.trailing)
                                     .font(.system(size: 18, weight: .black, design: .rounded))
                                     .foregroundColor(.blue)
@@ -241,10 +243,13 @@ struct WaterSettingsSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.primary)
-                            .font(.system(size: 16, weight: .bold))
+                    Button(action: {
+                        isInputActive = false
+                        dismiss()
+                    }) {
+                        Text(String(localized: "common.save", defaultValue: "Speichern"))
+                            .font(.headline)
+                            .foregroundColor(.cyan)
                     }
                 }
             }
