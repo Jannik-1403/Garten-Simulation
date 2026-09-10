@@ -584,6 +584,31 @@ struct RevivePlantSheet: View {
                         foregroundColor: .white
                     ))
                     .disabled(gardenStore.coins < GameConstants.wiederbelebungsKosten)
+                    
+                    let deadPlantsCount = gardenStore.pflanzen.filter { $0.isDead }.count
+                    if deadPlantsCount > 1 {
+                        Button {
+                            gardenStore.reviveAll()
+                            dismiss()
+                        } label: {
+                            HStack(spacing: 6) {
+                                Text(String(localized: "pflanze.wiederbeleben.alle.button", defaultValue: "Alle wiederbeleben"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                Image("Coin")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18)
+                                Text("\(GameConstants.wiederbelebungsKostenAlle)")
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                            }
+                        }
+                        .buttonStyle(DuolingoButtonStyle(
+                            backgroundColor: .orangePrimary,
+                            shadowColor: Color.orangePrimary.darker(),
+                            foregroundColor: .white
+                        ))
+                        .disabled(gardenStore.coins < GameConstants.wiederbelebungsKostenAlle)
+                    }
                 }
 
                 Button(role: .destructive) {

@@ -94,7 +94,10 @@ enum GameConstants {
     static let maxGluecksradDrehungen: Int = 10
     
     /// Kosten für die Wiederbelebung einer toten Pflanze
-    static let wiederbelebungsKosten: Int = 800
+    static let wiederbelebungsKosten: Int = 300
+    
+    /// Kosten für die Wiederbelebung aller toten Pflanzen
+    static let wiederbelebungsKostenAlle: Int = 800
 
     // MARK: - Unkraut
     /// Gewohnheiten (Gießvorgänge), um ein einzelnes Unkraut zu entfernen

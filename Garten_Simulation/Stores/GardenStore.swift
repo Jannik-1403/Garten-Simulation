@@ -506,6 +506,27 @@ class GardenStore: ObservableObject {
         }
     }
 
+    // MARK: Alle toten Pflanzen wiederbeleben
+    func reviveAll() {
+        let deadPlants = pflanzen.filter { $0.isDead }
+        guard !deadPlants.isEmpty else { return }
+        guard coins >= GameConstants.wiederbelebungsKostenAlle else { return }
+        
+        coinsAbziehen(amount: GameConstants.wiederbelebungsKostenAlle, beschreibung: String(localized: "transaction.revive.all", defaultValue: "Alle Pflanzen wiederbelebt"))
+        
+        objectWillChange.send()
+        withAnimation {
+            for pflanze in deadPlants {
+                pflanze.wiederbelebtAm = Date()
+                pflanze.letzteBewaesserung = Date() // Reset the watering timer
+                pflanze.missedCycles = 0
+                pflanze.lastNotifiedCycle = 0
+                pflanze.isDead = false
+            }
+            savePlants()
+        }
+    }
+
     // MARK: Pflanze mit Wunder-Wasser retten
     func reviveWithWonderWater(pflanze: HabitModel) {
         if let index = gekaufteItems.firstIndex(where: { $0.id == "powerup.wunder_wasser" }) {
