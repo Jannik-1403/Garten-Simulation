@@ -1055,3 +1055,4 @@
 
 - **Dynamische Ziele (Kraft & Ernährung)**: Die Tages-Analyse holt sich ab sofort automatisch die Zielwerte aus deinen eingerichteten Gewohnheiten (z. B. 'Krafttraining: 45 min' oder 'Ernährung: 2500 kcal'). Statt 'vor 14 Tagen' steht nun bei Krafttraining ganz präzise dein Minuten-Fortschritt (z. B. '30 / 45 min'). Bei der Ernährung stehen oben rechts direkt die aufgenommenen Kalorien im Vergleich zum Ziel.
 - UI-Update Focus-Session: Timer-Kreis ist jetzt blau, die Zahl größer und der Kreis insgesamt vergrößert. Der überflüssige Titel-Text im Kreis wurde entfernt.
+- **Tages-Analyse (Fixes)**: Krafttraining wird nun auch korrekt erkannt und angezeigt, wenn die Pflanze manuell erstellt wurde. Die Buttons 'Ziel erhöhen' und 'Ziel senken' aktualisieren nun sofort und endgültig deine eigentlichen Ziele für die jeweilige Gewohnheit, statt nur temporäre Parameter zu ändern. Wenn du das Schlaf-Ziel z. B. erhöhst, wird fortan dein generelles Schlaf-Ziel hochgesetzt.
