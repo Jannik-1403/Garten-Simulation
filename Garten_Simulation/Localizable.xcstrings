@@ -146804,6 +146804,12 @@
             "value": "Nieprzydatne"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não útil"
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -146838,12 +146844,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "沒有幫助"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Não útil"
           }
         }
       }
@@ -146911,6 +146911,12 @@
             "value": "Pomocne"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Útil"
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -146945,12 +146951,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "有幫助"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Útil"
           }
         }
       }
@@ -147018,6 +147018,12 @@
             "value": "%1$@ poniżej zalecanej wartości od %2$lld dni. Uzupełnij przy najbliższym posiłku."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ abaixo do valor recomendado há %2$lld dias. Inclua na próxima refeição."
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -147052,12 +147058,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@已連續%2$lld天低於建議攝取量。在下一餐中補充。"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ abaixo do valor recomendado há %2$lld dias. Inclua na próxima refeição."
           }
         }
       }
@@ -147220,6 +147220,12 @@
             "value": "Wszystkie dzisiejsze wartości w normie."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os valores de hoje dentro da meta."
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -147254,12 +147260,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "今天所有數值均在目標範圍內。"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todos os valores de hoje dentro da meta."
           }
         }
       }
@@ -147327,6 +147327,12 @@
             "value": "Woda, aktywność i trening zgodne z celem."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Água, atividade e treino atendem à meta."
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -147361,12 +147367,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "飲水、活動量和訓練均達到目標。"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Água, atividade e treino atendem à meta."
           }
         }
       }
@@ -147434,6 +147434,12 @@
             "value": "Wszystkie dzisiejsze cele osiągnięte."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas as metas do dia atingidas."
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -147468,12 +147474,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "今天的所有目標均已達成。"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todas as metas do dia atingidas."
           }
         }
       }
@@ -147636,6 +147636,12 @@
             "value": "Kroki dzisiaj poniżej 50% średniej z 7 dni. Zrób dziś wieczorem 20-minutowy spacer."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passos de hoje abaixo de 50% da média de 7 dias. Faça uma caminhada de 20 minutos hoje à noite."
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -147670,12 +147676,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "今天的步數低於7天平均值的50%。今晚散步20分鐘。"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Passos de hoje abaixo de 50% da média de 7 dias. Faça uma caminhada de 20 minutos hoje à noite."
           }
         }
       }
@@ -147743,6 +147743,12 @@
             "value": "Ostatni trening siłowy %lld dni temu. Zaplanuj dziś trening."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último treino de força há %lld dias. Programe um treino para hoje."
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -147777,12 +147783,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "上次力量訓練是在%lld天前。今天安排一次訓練。"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Último treino de força há %lld dias. Programe um treino para hoje."
           }
         }
       }
@@ -147850,6 +147850,12 @@
             "value": "Spożycie wody poniżej 50%% celu od %lld dni. Wypij dziś pierwszą szklankę przed 10:00."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingestão de água abaixo de 50%% da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -147884,12 +147890,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "飲水量已連續%lld天低於目標的50%%。今天上午10點前喝第一杯水。"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ingestão de água abaixo de 50%% da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
           }
         }
       }
@@ -147957,6 +147957,12 @@
             "value": "Spożycie wody poniżej dziennego celu od %lld dni. Wypij dziś jedną szklankę więcej niż wczoraj."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingestão de água abaixo da meta diária há %lld dias. Beba mais um copo do que ontem."
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -147991,12 +147997,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "飲水量已連續%lld天低於每日目標。今天比昨天多喝一杯水。"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ingestão de água abaixo da meta diária há %lld dias. Beba mais um copo do que ontem."
           }
         }
       }
@@ -150360,43 +150360,13 @@
             "value": "%lld / %lld kcal"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "%lld / %lld कैलोरी"
           }
         },
         "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld kcal"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld kcal"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld kcal"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld kcal"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ккал"
-          }
-        },
-        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld kcal"
@@ -150414,6 +150384,42 @@
             "value": "%lld / %lld kcal"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ккал"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -150424,12 +150430,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld 千卡"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld कैलोरी"
           }
         }
       }
@@ -150675,46 +150675,16 @@
             "value": "Objectif de pas atteint ✓ Bien joué !"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meta de passos alcançada ✓ Muito bem!"
+            "value": "कदम लक्ष्य पूरा हुआ ✓ बहुत बढ़िया!"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Obiettivo passi raggiunto ✓ Ben fatto!"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objetivo de passos atingido ✓ Muito bem!"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stappendoel bereikt ✓ Goed gedaan!"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cel kroków osiągnięty ✓ Dobra robota!"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Цель по шагам достигнута ✓ Отлично!"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adım hedefine ulaşıldı ✓ Tebrikler!"
           }
         },
         "ja": {
@@ -150729,6 +150699,42 @@
             "value": "걸음 수 목표 달성 ✓ 잘하셨습니다!"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stappendoel bereikt ✓ Goed gedaan!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cel kroków osiągnięty ✓ Dobra robota!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo de passos atingido ✓ Muito bem!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta de passos alcançada ✓ Muito bem!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель по шагам достигнута ✓ Отлично!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adım hedefine ulaşıldı ✓ Tebrikler!"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -150739,12 +150745,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "步數目標達成 ✓ 幹得好！"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कदम लक्ष्य पूरा हुआ ✓ बहुत बढ़िया!"
           }
         }
       }
@@ -150776,46 +150776,16 @@
             "value": "Il te manque %lld pas. Tu dois être beaucoup plus actif, prévois une plus longue marche."
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faltam %lld passos. Você precisa ser muito mais ativo, planeje uma caminhada longa."
+            "value": "आपको %lld कदम और चलने हैं। आपको अधिक सक्रिय होना चाहिए, लंबी सैर की योजना बनाएं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Ti mancano %lld passi. Devi essere molto più attivo, pianifica una passeggiata più lunga."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faltam %lld passos. Tens de ser muito mais ativo, planeia uma caminhada mais longa."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je mist nog %lld stappen. Je moet veel actiever zijn, plan een langere wandeling."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Brakuje Ci %lld kroków. Musisz być bardziej aktywny, zaplanuj dłuższy spacer."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вам не хватает %lld шагов. Нужно быть активнее, запланируйте долгую прогулку."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld adım eksik. Daha aktif olmalısın, daha uzun bir yürüyüş planla."
           }
         },
         "ja": {
@@ -150830,6 +150800,42 @@
             "value": "%lld걸음이 부족합니다. 더 활동적으로 움직이고 긴 산책을 계획하세요."
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je mist nog %lld stappen. Je moet veel actiever zijn, plan een langere wandeling."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brakuje Ci %lld kroków. Musisz być bardziej aktywny, zaplanuj dłuższy spacer."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam %lld passos. Tens de ser muito mais ativo, planeia uma caminhada mais longa."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam %lld passos. Você precisa ser muito mais ativo, planeje uma caminhada longa."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вам не хватает %lld шагов. Нужно быть активнее, запланируйте долгую прогулку."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld adım eksik. Daha aktif olmalısın, daha uzun bir yürüyüş planla."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -150840,12 +150846,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "還差%lld步。你需要更加活躍，計劃一次更長的散步。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपको %lld कदम और चलने हैं। आपको अधिक सक्रिय होना चाहिए, लंबी सैर की योजना बनाएं।"
           }
         }
       }
@@ -150877,46 +150877,16 @@
             "value": "Il te manque %lld pas. Fais une courte promenade."
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faltam %lld passos. Dê uma curta caminhada."
+            "value": "आपको %lld कदम और चलने हैं। थोड़ी सैर करें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Ti mancano %lld passi. Fai una breve passeggiata."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faltam %lld passos. Dá um curto passeio."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je mist %lld stappen. Maak een korte wandeling."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Brakuje Ci %lld kroków. Wybierz się na krótki spacer."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Не хватает %lld шагов. Совершите короткую прогулку."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld adım eksik. Kısa bir yürüyüşe çık."
           }
         },
         "ja": {
@@ -150931,6 +150901,42 @@
             "value": "%lld걸음이 부족합니다. 짧은 산책을 하세요."
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je mist %lld stappen. Maak een korte wandeling."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brakuje Ci %lld kroków. Wybierz się na krótki spacer."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam %lld passos. Dá um curto passeio."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam %lld passos. Dê uma curta caminhada."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не хватает %lld шагов. Совершите короткую прогулку."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld adım eksik. Kısa bir yürüyüşe çık."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -150941,12 +150947,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "還差%lld步。去散個步吧。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपको %lld कदम और चलने हैं। थोड़ी सैर करें।"
           }
         }
       }
@@ -150978,46 +150978,16 @@
             "value": "Plus que %lld pas. Bouge juste un peu plus !"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faltam apenas %lld passos. Mova-se só um pouquinho mais!"
+            "value": "केवल %lld कदम बचे हैं। बस थोड़ा और चलें!"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Solo %lld passi rimasti. Muoviti un po' di più!"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faltam apenas %lld passos. Move-te só um pouco mais!"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nog maar %lld stappen. Beweeg nog een klein beetje!"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zostało tylko %lld kroków. Ruszaj się jeszcze trochę!"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Осталось всего %lld шагов. Подвигайтесь еще немного!"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sadece %lld adım kaldı. Biraz daha hareket et!"
           }
         },
         "ja": {
@@ -151032,6 +151002,42 @@
             "value": "단 %lld걸음 남았습니다. 조금만 더 움직이세요!"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nog maar %lld stappen. Beweeg nog een klein beetje!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zostało tylko %lld kroków. Ruszaj się jeszcze trochę!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam apenas %lld passos. Move-te só um pouco mais!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam apenas %lld passos. Mova-se só um pouquinho mais!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Осталось всего %lld шагов. Подвигайтесь еще немного!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sadece %lld adım kaldı. Biraz daha hareket et!"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -151042,12 +151048,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "僅剩%lld步。再稍微活動一下！"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "केवल %lld कदम बचे हैं। बस थोड़ा और चलें!"
           }
         }
       }
@@ -151186,46 +151186,16 @@
             "value": "Pas"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passos"
+            "value": "कदम"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Passi"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Passos"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stappen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kroki"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Шаги"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adımlar"
           }
         },
         "ja": {
@@ -151240,6 +151210,42 @@
             "value": "걸음"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stappen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kroki"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шаги"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adımlar"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -151250,12 +151256,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "步"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कदम"
           }
         }
       }
@@ -151281,46 +151281,16 @@
             "value": "%lld / %lld pas"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld passos"
+            "value": "%lld / %lld कदम"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld passi"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld passos"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld stappen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld kroków"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld шагов"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld adım"
           }
         },
         "ja": {
@@ -151335,6 +151305,42 @@
             "value": "%lld / %lld 걸음"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld stappen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kroków"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld passos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld passos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld шагов"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld adım"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -151345,12 +151351,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld 步"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld कदम"
           }
         }
       }
@@ -151596,46 +151596,16 @@
             "value": "Analyse Quotidienne"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Análise Diária"
+            "value": "दैनिक विश्लेषण"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Analisi Quotidiana"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise Diária"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dagelijkse Analyse"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codzienna Analiza"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ежедневный Анализ"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlük Analiz"
           }
         },
         "ja": {
@@ -151650,6 +151620,42 @@
             "value": "일일 분석"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagelijkse Analyse"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codzienna Analiza"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Análise Diária"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Análise Diária"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежедневный Анализ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günlük Analiz"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -151660,12 +151666,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "每日分析"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दैनिक विश्लेषण"
           }
         }
       }
@@ -152016,46 +152016,16 @@
             "value": "Essaie de te coucher plus tôt aujourd'hui."
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tente dormir mais cedo hoje."
+            "value": "आज जल्दी सोने की कोशिश करें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Cerca di andare a letto prima oggi."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tenta deitar-te mais cedo hoje."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Probeer vandaag eerder naar bed te gaan."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spróbuj dzisiaj pójść wcześniej spać."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Постарайтесь лечь спать пораньше сегодня."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bugün daha erken yatmaya çalış."
           }
         },
         "ja": {
@@ -152070,6 +152040,42 @@
             "value": "오늘은 일찍 잠자리에 들도록 하세요."
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probeer vandaag eerder naar bed te gaan."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spróbuj dzisiaj pójść wcześniej spać."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tenta deitar-te mais cedo hoje."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tente dormir mais cedo hoje."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Постарайтесь лечь спать пораньше сегодня."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün daha erken yatmaya çalış."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -152080,12 +152086,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "今天試著早點睡覺。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आज जल्दी सोने की कोशिश करें।"
           }
         }
       }
@@ -152224,46 +152224,16 @@
             "value": "Demain, tu devrais te coucher vers %@ et te réveiller vers %@."
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Amanhã você deve ir para a cama por volta das %@ e acordar às %@."
+            "value": "कल आपको लगभग %@ बजे सोना चाहिए और %@ बजे उठना चाहिए।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Domani dovresti andare a letto verso le %@ e svegliarti verso le %@."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amanhã deves ir para a cama por volta das %@ e acordar às %@."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Morgen zou je rond %@ naar bed moeten gaan en rond %@ wakker moeten worden."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jutro powinieneś położyć się około %@ i obudzić się około %@."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Завтра вам следует лечь спать около %@ и проснуться около %@."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yarın %@ civarında yatmalı ve %@ civarında uyanmalısın."
           }
         },
         "ja": {
@@ -152278,6 +152248,42 @@
             "value": "내일은 %@경에 잠자리에 들고 %@경에 일어나야 합니다."
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgen zou je rond %@ naar bed moeten gaan en rond %@ wakker moeten worden."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jutro powinieneś położyć się około %@ i obudzić się około %@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amanhã deves ir para a cama por volta das %@ e acordar às %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amanhã você deve ir para a cama por volta das %@ e acordar às %@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завтра вам следует лечь спать около %@ и проснуться около %@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yarın %@ civarında yatmalı ve %@ civarında uyanmalısın."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -152288,12 +152294,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "明天你應該在%@左右睡覺，在%@左右起床。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कल आपको लगभग %@ बजे सोना चाहिए और %@ बजे उठना चाहिए।"
           }
         }
       }
@@ -152426,13 +152426,37 @@
             "value": "%@ / %@ h"
           }
         },
-        "pt-BR": {
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ घंटे"
+          }
+        },
+        "it": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ / %@ h"
           }
         },
-        "it": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ 時間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ 시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ h"
+          }
+        },
+        "pl": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ / %@ h"
@@ -152444,13 +152468,7 @@
             "value": "%@ / %@ h"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ / %@ h"
-          }
-        },
-        "pl": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ / %@ h"
@@ -152468,18 +152486,6 @@
             "value": "%@ / %@ s"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ / %@ 時間"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ / %@ 시간"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -152490,12 +152496,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ / %@ 小時"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ / %@ घंटे"
           }
         }
       }
@@ -152949,46 +152949,16 @@
             "value": "(Il y a %lld jours)"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "(Há %lld dias)"
+            "value": "(%lld दिन पहले)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "(%lld giorni fa)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Há %lld dias)"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(%lld dagen geleden)"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(%lld dni temu)"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(%lld дней назад)"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(%lld gün önce)"
           }
         },
         "ja": {
@@ -153003,6 +152973,42 @@
             "value": "(%lld일 전)"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(%lld dagen geleden)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(%lld dni temu)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Há %lld dias)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Há %lld dias)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(%lld дней назад)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(%lld gün önce)"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -153013,12 +153019,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "(%lld天前)"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(%lld दिन पहले)"
           }
         }
       }
@@ -153044,13 +153044,37 @@
             "value": "%lld / %lld min"
           }
         },
-        "pt-BR": {
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld मिनट"
+          }
+        },
+        "it": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld min"
           }
         },
-        "it": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld 分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld 분"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld min"
+          }
+        },
+        "pl": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld min"
@@ -153062,13 +153086,7 @@
             "value": "%lld / %lld min"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld min"
-          }
-        },
-        "pl": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld min"
@@ -153086,18 +153104,6 @@
             "value": "%lld / %lld dk"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld 分"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld 분"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -153108,12 +153114,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld 分鐘"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld मिनट"
           }
         }
       }
@@ -153995,46 +153995,16 @@
             "value": "Tu as bu %lld sur %lld ml."
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bebeu %lld de %lld ml."
+            "value": "%lld में से %lld मिली पिया।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Hai bevuto %lld di %lld ml."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bebeste %lld de %lld ml."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld van %lld ml gedronken."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wypito %lld z %lld ml."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выпито %lld из %lld мл."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml içildi."
           }
         },
         "ja": {
@@ -154049,6 +154019,42 @@
             "value": "%lld / %lld ml 마셨습니다."
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld van %lld ml gedronken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wypito %lld z %lld ml."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bebeste %lld de %lld ml."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bebeu %lld de %lld ml."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выпито %lld из %lld мл."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml içildi."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -154059,12 +154065,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "已喝 %lld / %lld 毫升。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld में से %lld मिली पिया।"
           }
         }
       }
@@ -154090,43 +154090,13 @@
             "value": "%lld / %lld ml"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "%lld / %lld मिली"
           }
         },
         "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld мл"
-          }
-        },
-        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld ml"
@@ -154144,6 +154114,42 @@
             "value": "%lld / %lld ml"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld мл"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -154154,12 +154160,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld 毫升"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld मिली"
           }
         }
       }
@@ -154185,43 +154185,13 @@
             "value": "%lld / %lld ml ✓"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "%lld / %lld मिली ✓"
           }
         },
         "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml ✓"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml ✓"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml ✓"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml ✓"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld мл ✓"
-          }
-        },
-        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld ml ✓"
@@ -154239,6 +154209,42 @@
             "value": "%lld / %lld ml ✓"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld мл ✓"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -154249,12 +154255,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld 毫升 ✓"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld मिली ✓"
           }
         }
       }
@@ -201707,13 +201707,13 @@
             "value": "ml"
           }
         },
-        "pt-BR": {
+        "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "ml"
           }
         },
-        "pt": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "ml"
@@ -248763,13 +248763,13 @@
             "value": "Tout ressusciter"
           }
         },
-        "pt-BR": {
+        "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "Reviver todas"
           }
         },
-        "pt": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Reviver todas"
@@ -426338,13 +426338,13 @@
             "value": "Toutes les plantes ressuscitées"
           }
         },
-        "pt-BR": {
+        "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "Todas as plantas revividas"
           }
         },
-        "pt": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Todas as plantas revividas"
@@ -451957,97 +451957,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "z.B. 250"
+            "value": "250"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "e.g. 250"
+            "value": "250"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "p.ej. 250"
+            "value": "250"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "par ex. 250"
+            "value": "250"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "जैसे 250"
+            "value": "250"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "per esempio. 250"
+            "value": "250"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "例えば250"
+            "value": "250"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "예를 들어 250"
+            "value": "250"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "bijv. 250"
+            "value": "250"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "np. 250"
+            "value": "250"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "por exemplo 250"
+            "value": "250"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "por exemplo 250"
+            "value": "250"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "например 250"
+            "value": "250"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "örneğin 250"
+            "value": "250"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "例如250"
+            "value": "250"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "例如250"
+            "value": "250"
           }
         }
       }
