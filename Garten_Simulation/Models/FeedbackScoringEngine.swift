@@ -149,8 +149,8 @@ struct FeedbackScoringEngine {
                     actionHint = String(localized: "fitness.water.action.morning",
                                         defaultValue: "Trink jetzt dein erstes Glas.")
                 case 10..<14:
-                    actionHint = String(format: String(localized: "fitness.water.action.midday",
-                                                        defaultValue: "Noch %lld ml bis zum Mittag schaffen."),
+                    actionHint = String(format: String(localized: "feedbackWasserRestMittag",
+                                                        defaultValue: "Noch %lld ml verbleiben bis zum Mittag."),
                                         remaining)
                 case 14..<19:
                     actionHint = String(localized: "fitness.water.action.afternoon",
@@ -187,8 +187,8 @@ struct FeedbackScoringEngine {
             var sleepDetail: String
             switch sleepStatus {
             case .good:
-                sleepDetail = String(localized: "fitness.sleep.detail.good",
-                                     defaultValue: "Guter Schlaf. Dein Körper hat sich gut erholt.")
+                sleepDetail = String(localized: "feedbackSchlafGut",
+                                     defaultValue: "Guter Schlaf. Dein Körper konnte sich erholen.")
             case .warning:
                 sleepDetail = String(localized: "fitness.sleep.detail.warning",
                                      defaultValue: "Etwas weniger Schlaf als empfohlen.")
@@ -244,7 +244,7 @@ struct FeedbackScoringEngine {
                                         defaultValue: "Dein letztes Training ist schon etwas her. Plane diese Woche noch eine Krafteinheit ein, um dranzubleiben.")
             default:
                 strengthSummary = days == 0 ? minStr : "\(minStr) \(daysAgoStr)"
-                strengthDetail = String(localized: "fitness.strength.detail.critical",
+                strengthDetail = String(localized: "feedbackTrainingInaktiv",
                                         defaultValue: "Letztes Krafttraining liegt zu lange zurück. Versuche heute eine kurze Einheit einzuplanen, um den Rhythmus nicht zu verlieren.")
             }
             results.append(CategoryFeedback(category: .strength, status: strengthStatus,
@@ -315,7 +315,7 @@ struct FeedbackScoringEngine {
             if input.proteinGoal > 0 {
                 let proteinPct = input.proteinToday / input.proteinGoal
                 if proteinPct < max(0.1, 0.7 + mod) {
-                    nutritionProblems.append(String(localized: "fitness.nutrition.protein", defaultValue: "Protein"))
+                    nutritionProblems.append(String(localized: "nutrientLabelProtein", defaultValue: "Protein"))
                     let detail = String(format: String(localized: "fitness.nutrition.protein.detail",
                                                         defaultValue: "Protein: %lld / %lld g"),
                                         Int(input.proteinToday), Int(input.proteinGoal))
@@ -327,7 +327,7 @@ struct FeedbackScoringEngine {
             if input.fiberGoal > 0 {
                 let fiberPct = input.fiberToday / input.fiberGoal
                 if fiberPct < max(0.1, 0.7 + mod) {
-                    nutritionProblems.append(String(localized: "fitness.nutrition.fiber", defaultValue: "Ballaststoffe"))
+                    nutritionProblems.append(String(localized: "nutrientLabelBallaststoffe", defaultValue: "Ballaststoffe"))
                     let detail = String(format: String(localized: "fitness.nutrition.fiber.detail",
                                                         defaultValue: "Ballaststoffe: %lld / %lld g"),
                                         Int(input.fiberToday), Int(input.fiberGoal))
@@ -338,7 +338,7 @@ struct FeedbackScoringEngine {
             // Mineralstoffe (generisch)
             if input.worstMineralScore < max(10.0, 70.0 + (mod * 100.0)) {
                 nutritionProblems.append(String(localized: "fitness.nutrition.mineral.generic", defaultValue: "Vitamine & Mineralien"))
-                let detail = String(localized: "fitness.nutrition.mineral.detail.generic", defaultValue: "Dein Bedarf an einigen Vitaminen & Mineralien ist heute nicht gedeckt.")
+                let detail = String(localized: "feedbackNaehrstoffVage", defaultValue: "Dein Bedarf an einigen Vitaminen und Mineralstoffen wurde heute nicht gedeckt.")
                 nutritionDetails.append(detail)
             }
 

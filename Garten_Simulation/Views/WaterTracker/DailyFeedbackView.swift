@@ -217,11 +217,11 @@ private struct CategoryIssueRow: View {
 
     private var categoryName: String {
         switch feedback.category {
-        case .water:     return String(localized: "fitness.category.water.analysis",     defaultValue: "Tägliche Wasseranalyse")
-        case .sleep:     return String(localized: "fitness.category.sleep.analysis",     defaultValue: "Tägliche Schlafanalyse")
-        case .strength:  return String(localized: "fitness.category.strength.analysis",  defaultValue: "Tägliche Kraftanalyse")
-        case .running:   return String(localized: "fitness.category.running.analysis",   defaultValue: "Tägliche Laufanalyse")
-        case .nutrition: return String(localized: "fitness.category.nutrition.analysis", defaultValue: "Tägliche Ernährungsanalyse")
+        case .water:     return String(localized: "tagesanalyseHeaderWasser",     defaultValue: "Wasseranalyse")
+        case .sleep:     return String(localized: "tagesanalyseHeaderSchlaf",     defaultValue: "Schlafanalyse")
+        case .strength:  return String(localized: "tagesanalyseHeaderKraft",  defaultValue: "Kraftanalyse")
+        case .running:   return String(localized: "tagesanalyseHeaderSchritte",   defaultValue: "Schrittanalyse")
+        case .nutrition: return String(localized: "tagesanalyseHeaderErnaehrung", defaultValue: "Ernährungsanalyse")
         }
     }
 }
