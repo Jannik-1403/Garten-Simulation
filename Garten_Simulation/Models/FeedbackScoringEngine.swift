@@ -244,8 +244,9 @@ struct FeedbackScoringEngine {
                                         defaultValue: "Dein letztes Training ist schon etwas her. Plane diese Woche noch eine Krafteinheit ein, um dranzubleiben.")
             default:
                 strengthSummary = days == 0 ? minStr : "\(minStr) \(daysAgoStr)"
-                strengthDetail = String(localized: "feedbackTrainingInaktiv",
-                                        defaultValue: "Letztes Krafttraining liegt zu lange zurück. Versuche heute eine kurze Einheit einzuplanen, um den Rhythmus nicht zu verlieren.")
+                strengthDetail = String(format: String(localized: "feedbackTrainingInaktiv",
+                                                       defaultValue: "Letztes Krafttraining vor %lld Tagen. Plane heute eine Einheit ein."),
+                                        days)
             }
             results.append(CategoryFeedback(category: .strength, status: strengthStatus,
                                              summaryText: strengthSummary, detailText: strengthDetail,

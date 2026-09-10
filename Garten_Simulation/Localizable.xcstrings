@@ -146839,6 +146839,12 @@
             "state": "translated",
             "value": "沒有幫助"
           }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não útil"
+          }
         }
       }
     },
@@ -146940,6 +146946,12 @@
             "state": "translated",
             "value": "有幫助"
           }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Útil"
+          }
         }
       }
     },
@@ -147040,6 +147052,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@已連續%2$lld天低於建議攝取量。在下一餐中補充。"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ abaixo do valor recomendado há %2$lld dias. Inclua na próxima refeição."
           }
         }
       }
@@ -147237,6 +147255,12 @@
             "state": "translated",
             "value": "今天所有數值均在目標範圍內。"
           }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os valores de hoje dentro da meta."
+          }
         }
       }
     },
@@ -147338,6 +147362,12 @@
             "state": "translated",
             "value": "飲水、活動量和訓練均達到目標。"
           }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Água, atividade e treino atendem à meta."
+          }
         }
       }
     },
@@ -147438,6 +147468,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "今天的所有目標均已達成。"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas as metas do dia atingidas."
           }
         }
       }
@@ -147635,6 +147671,12 @@
             "state": "translated",
             "value": "今天的步數低於7天平均值的50%。今晚散步20分鐘。"
           }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passos de hoje abaixo de 50% da média de 7 dias. Faça uma caminhada de 20 minutos hoje à noite."
+          }
         }
       }
     },
@@ -147735,6 +147777,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "上次力量訓練是在%lld天前。今天安排一次訓練。"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último treino de força há %lld dias. Programe um treino para hoje."
           }
         }
       }
@@ -147837,6 +147885,12 @@
             "state": "translated",
             "value": "飲水量已連續%lld天低於目標的50%%。今天上午10點前喝第一杯水。"
           }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingestão de água abaixo de 50%% da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
+          }
         }
       }
     },
@@ -147937,6 +147991,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "飲水量已連續%lld天低於每日目標。今天比昨天多喝一杯水。"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingestão de água abaixo da meta diária há %lld dias. Beba mais um copo do que ontem."
           }
         }
       }
@@ -201652,6 +201712,12 @@
             "state": "translated",
             "value": "ml"
           }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
         }
       }
     },
@@ -248698,6 +248764,12 @@
           }
         },
         "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reviver todas"
+          }
+        },
+        "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "Reviver todas"
@@ -426267,6 +426339,12 @@
           }
         },
         "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas as plantas revividas"
+          }
+        },
+        "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "Todas as plantas revividas"
