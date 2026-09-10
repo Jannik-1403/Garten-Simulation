@@ -149649,67 +149649,67 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststoffe: %lld / %lld g"
+            "value": "Fiber: %lld / %lld g"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lastre: %lld / %lld g"
+            "value": "Fibra: %lld / %lld g"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Matériau de ballast : %lld / %lld g"
+            "value": "Fibres: %lld / %lld g"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बैलास्टस्टोफ़: %lld / %lld g"
+            "value": "फाइबर: %lld / %lld ग्राम"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zavorra: %lld / %lld g"
+            "value": "Fibre: %lld / %lld g"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "バラストストフ: %lld / %lld g"
+            "value": "食物繊維: %lld / %lld g"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "안정기: %lld / %lldg"
+            "value": "식이섬유: %lld / %lld g"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ballaststof: %lld / %lld g"
+            "value": "Vezels: %lld / %lld g"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balaststoffe: %lld / %lld g"
+            "value": "Błonnik: %lld / %lld g"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balastro: %lld / %lld g"
+            "value": "Fibra: %lld / %lld g"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balastro: %lld / %lld g"
+            "value": "Fibra: %lld / %lld g"
           }
         },
         "pt-PT": {
@@ -149721,25 +149721,25 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Балласт: %lld / %lld г"
+            "value": "Клетчатка: %lld / %lld г"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balast yükü: %lld / %lld g"
+            "value": "Lif: %lld / %lld g"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "镇流器：%lld / %lld g"
+            "value": "膳食纤维: %lld / %lld 克"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鎮流器：%lld / %lld g"
+            "value": "膳食纖維: %lld / %lld 克"
           }
         }
       }
@@ -150196,13 +150196,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Protéine : %lld / %lld g"
+            "value": "Protéines: %lld / %lld g"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "प्रोटीन: %lld / %lld g"
+            "value": "प्रोटीन: %lld / %lld ग्राम"
           }
         },
         "it": {
@@ -150214,13 +150214,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "タンパク質: %lld / %lld g"
+            "value": "たんぱく質: %lld / %lld g"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error %lld (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "단백질: %lld / %lld g"
           }
         },
         "nl": {
@@ -150268,13 +150268,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "蛋白质：%lld / %lld g"
+            "value": "蛋白质: %lld / %lld 克"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "蛋白質：%lld / %lld g"
+            "value": "蛋白質: %lld / %lld 克"
           }
         }
       }
