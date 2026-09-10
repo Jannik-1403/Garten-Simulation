@@ -50,7 +50,7 @@ final class IAPStore: ObservableObject {
         #endif
         
         // Fix for widgets: Ensure legacy pro users have their status synced to the app group
-        UserDefaults(suiteName: "group.com.jannik.grovy")?.set(self.isProUser, forKey: "isProUser_active")
+        SharedUserDefaults.suite.set(self.isProUser, forKey: "isProUser_active")
         WidgetCenter.shared.reloadAllTimelines()
         
         transactionListener = listenForTransactions()
@@ -133,7 +133,7 @@ final class IAPStore: ObservableObject {
                     self.activeProSubscriptionID = product.id
                     UserDefaults.standard.set(true, forKey: "isProUser_active")
                     UserDefaults.standard.set(product.id, forKey: "activeProSubscriptionID")
-                    UserDefaults(suiteName: "group.com.jannik.grovy")?.set(true, forKey: "isProUser_active")
+                    SharedUserDefaults.suite.set(true, forKey: "isProUser_active")
                     WidgetCenter.shared.reloadAllTimelines()
                     UserDefaults.standard.synchronize()
                 }
@@ -218,7 +218,7 @@ final class IAPStore: ObservableObject {
             self.isProUser = hasPro
             #endif
             UserDefaults.standard.set(self.isProUser, forKey: "isProUser_active")
-            UserDefaults(suiteName: "group.com.jannik.grovy")?.set(self.isProUser, forKey: "isProUser_active")
+            SharedUserDefaults.suite.set(self.isProUser, forKey: "isProUser_active")
             WidgetCenter.shared.reloadAllTimelines()
             UserDefaults.standard.synchronize()
         }
@@ -243,10 +243,10 @@ final class IAPStore: ObservableObject {
         self.activeProSubscriptionID = nil
         UserDefaults.standard.set(false, forKey: "isProUser_active")
         UserDefaults.standard.removeObject(forKey: "activeProSubscriptionID")
-        UserDefaults(suiteName: "group.com.jannik.grovy")?.set(false, forKey: "isProUser_active")
+        SharedUserDefaults.suite.set(false, forKey: "isProUser_active")
         #if DEBUG
         UserDefaults.standard.set(false, forKey: "debug_isProUser")
-        UserDefaults(suiteName: "group.com.jannik.grovy")?.set(false, forKey: "debug_isProUser")
+        SharedUserDefaults.suite.set(false, forKey: "debug_isProUser")
         #endif
         WidgetCenter.shared.reloadAllTimelines()
         UserDefaults.standard.synchronize()

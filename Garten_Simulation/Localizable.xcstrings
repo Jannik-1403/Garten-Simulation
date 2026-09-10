@@ -148869,97 +148869,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ ккал / %@ ккал"
+            "value": "%lld ккал / %lld ккал"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ kcal / %@ kcal"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ 千卡 / %@ 千卡"
+            "value": "%lld 千卡 / %lld 千卡"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ 千卡 / %@ 千卡"
+            "value": "%lld 千卡 / %lld 千卡"
           }
         }
       }

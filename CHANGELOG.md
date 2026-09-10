@@ -1069,3 +1069,5 @@
 - Lokalisierung: Fehlerhafte englische Übersetzung ('Low') für 'Niedrig' in mehreren Sprachen behoben.
 - Lokalisierung: Umfassende Fehlerkorrektur durchgeführt. 'Error 500' Einträge, sowie als übersetzt markierte aber rein englische Texte in Russisch, Chinesisch, Japanisch etc. wurden nun korrekt in die jeweilige Zielsprache übersetzt.
 - Lokalisierung: KI-generierte (nicht per API übersetzte), handverlesene Übersetzungen für alle 81 betroffenen Strings eingefügt, um höchste Qualität zu sichern.
+- Format-Specifier '%2$d' und Tippfehler 'h' im Localizable.xcstrings (powerup.active.plant) auf Konsistenz geprüft. (Fix war bereits auf dem aktuellen Main-Branch vorhanden).
+- Clean Build erfolgreich durchgeführt, Issue Navigator sollte nun keine String-Katalog-Fehler mehr anzeigen.

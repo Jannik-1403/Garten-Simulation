@@ -2,9 +2,16 @@ import Foundation
 
 struct SharedUserDefaults {
     static let suiteName = "group.com.jannik.grovy"
+    static var isPreview: Bool {
+        ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    }
     
-    static let suite: UserDefaults = UserDefaults(suiteName: suiteName) ?? .standard
-    
+    static let suite: UserDefaults = {
+        if isPreview {
+            return .standard
+        }
+        return UserDefaults(suiteName: suiteName) ?? .standard
+    }()
     /// Migrates data from local SharedUserDefaults.suite to the shared App Group container.
     /// This ensures users don't lose their data when we switch to App Groups.
     static func migrateIfNeeded() {
