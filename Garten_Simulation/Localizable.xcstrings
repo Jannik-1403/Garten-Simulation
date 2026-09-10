@@ -400124,7 +400124,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d Days"
+            "value": "%d Giorni"
           }
         },
         "ja": {
@@ -410911,7 +410911,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "notulen"
+            "value": "Minuten"
           }
         },
         "pl": {
@@ -410929,7 +410929,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minuten"
+            "value": "Minutos"
           }
         },
         "ru": {
@@ -426257,7 +426257,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sale: %@"
+            "value": "Vendita: %@"
           }
         },
         "ja": {
@@ -428901,7 +428901,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Igelhaus"
+            "value": "Casetta per ricci"
           }
         },
         "ja": {
@@ -428943,7 +428943,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Игельхаус"
+            "value": "Домик для ежей"
           }
         },
         "tr": {
@@ -429917,7 +429917,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kiesweg"
+            "value": "Vialetto di ghiaia"
           }
         },
         "ja": {
@@ -429959,7 +429959,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Кисвег"
+            "value": "Гравийная дорожка"
           }
         },
         "tr": {
