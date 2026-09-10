@@ -1054,3 +1054,4 @@
 - **Tages-Analyse (Fortschrittsanzeige)**: In der Tages-Analyse wird nun neben jedem Titel (z. B. 'Tägliche Wasseranalyse') auf einen Blick das exakte Ziel und der aktuelle Stand angezeigt (z. B. '1500 / 2000 ml').
 
 - **Dynamische Ziele (Kraft & Ernährung)**: Die Tages-Analyse holt sich ab sofort automatisch die Zielwerte aus deinen eingerichteten Gewohnheiten (z. B. 'Krafttraining: 45 min' oder 'Ernährung: 2500 kcal'). Statt 'vor 14 Tagen' steht nun bei Krafttraining ganz präzise dein Minuten-Fortschritt (z. B. '30 / 45 min'). Bei der Ernährung stehen oben rechts direkt die aufgenommenen Kalorien im Vergleich zum Ziel.
+- UI-Update Focus-Session: Timer-Kreis ist jetzt blau, die Zahl größer und der Kreis insgesamt vergrößert. Der überflüssige Titel-Text im Kreis wurde entfernt.
