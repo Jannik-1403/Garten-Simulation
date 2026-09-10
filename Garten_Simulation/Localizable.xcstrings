@@ -1133,7 +1133,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "%lld / %lld एमएल"
           }
         },
         "it": {
@@ -1151,7 +1151,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lldml"
+            "value": "%lld / %lld ml"
           }
         },
         "nl": {
@@ -113051,7 +113051,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Congratulations! +%d Coins received."
+            "value": "Glückwunsch! +%d Münzen erhalten."
           }
         },
         "ja": {
@@ -113255,7 +113255,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skip in %d"
+            "value": "Salta tra %d"
           }
         },
         "ja": {
@@ -129819,7 +129819,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Only %@ coins and XP from watering today."
+            "value": "Heute gibt es nur %@ Coins und XP beim Gießen."
           }
         },
         "ja": {
@@ -130023,7 +130023,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plants grow faster — +%@ XP today."
+            "value": "Le piante crescono più velocemente: +%@ XP oggi."
           }
         },
         "ja": {
@@ -130227,7 +130227,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ coins and XP from watering today!"
+            "value": "Oggi ci sono %@ monete e XP per il casting!"
           }
         },
         "ja": {
@@ -131954,7 +131954,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "munzsammler"
+            "value": "सिक्का संग्राहक"
           }
         },
         "it": {
@@ -137366,7 +137366,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Streak-Meister"
+            "value": "Maestro della serie"
           }
         },
         "ja": {
@@ -138080,7 +138080,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Upgrade to %@"
+            "value": "Aggiorna a %@"
           }
         },
         "ja": {
@@ -139202,7 +139202,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Achieved on %@"
+            "value": "Raggiunto il %@"
           }
         },
         "ja": {
@@ -140534,7 +140534,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "  Triggers: %@"
+            "value": "  Auslöser: %@"
           }
         },
         "pl": {
@@ -148163,19 +148163,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Nutrition"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "पोषण"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Nutrizione"
           }
         },
         "ja": {
@@ -148187,7 +148187,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung"
           }
         },
         "nl": {
@@ -148199,31 +148199,31 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung"
           }
         },
         "zh-Hans": {
@@ -148365,13 +148365,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Courir"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "दौड़ना"
           }
         },
         "it": {
@@ -148389,7 +148389,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Laufen"
           }
         },
         "nl": {
@@ -148401,7 +148401,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Laufen"
           }
         },
         "pt": {
@@ -148425,7 +148425,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Laufen"
           }
         },
         "zh-Hans": {
@@ -148437,7 +148437,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Laufen"
           }
         }
       }
@@ -148561,85 +148561,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Dormir"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Dormir"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "नींद"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Sonno"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "寝る"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Schlaf"
           }
         }
       }
@@ -148763,85 +148763,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "entrenamiento de fuerza"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Entraînement en force"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Allenamento della forza"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Krafttraining"
           }
         }
       }
@@ -148965,85 +148965,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Agua"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Eau"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "पानी"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Acqua"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Wasser"
           }
         }
       }
@@ -149167,85 +149167,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Todos los valores en el objetivo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Toutes les valeurs sur la cible"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "लक्ष्य पर सभी मूल्य"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Tutti i valori in linea con l'obiettivo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Alle Werte im Ziel"
           }
         }
       }
@@ -149268,85 +149268,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Atención a: %@"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Attention à : %@"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Attenzione a: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
+            "value": "Achtung bei: %@"
           }
         }
       }
@@ -149399,55 +149399,55 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Ernährung liegt heute im Zielbereich."
           }
         }
       }
@@ -150023,13 +150023,13 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Protein"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "Protein"
           }
         },
         "ru": {
@@ -150171,13 +150171,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrición.resumen"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrition.résumé"
           }
         },
         "hi": {
@@ -150189,43 +150189,43 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "riepilogo.fitness.nutrizione"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrition.summary"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrition.summary"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrition.summary"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrition.summary"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrition.summary"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrition.summary"
           }
         },
         "ru": {
@@ -150237,7 +150237,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal"
+            "value": "fitness.nutrition.summary"
           }
         },
         "zh-Hans": {
@@ -150272,13 +150272,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Todos los valores alcanzados ✓"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Toutes les valeurs atteintes ✓"
           }
         },
         "hi": {
@@ -150290,43 +150290,43 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Alle Werte erreicht ✓"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Alle Werte erreicht ✓"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Alle Werte erreicht ✓"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Alle Werte erreicht ✓"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Alle Werte erreicht ✓"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Alle Werte erreicht ✓"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Alle Werte erreicht ✓"
           }
         },
         "ru": {
@@ -150338,7 +150338,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld kcal ✓"
+            "value": "Alle Werte erreicht ✓"
           }
         },
         "zh-Hans": {
@@ -152771,13 +152771,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld min"
+            "value": "fitness.fuerza.resumen.min"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld min"
+            "value": "fitness.strength.summary.min"
           }
         },
         "hi": {
@@ -152789,7 +152789,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld min"
+            "value": "riepilogo.forza.fitness.min"
           }
         },
         "ja": {
@@ -152807,25 +152807,25 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld min"
+            "value": "fitness.strength.summary.min"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld min"
+            "value": "fitness.strength.summary.min"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld min"
+            "value": "fitness.strength.summary.min"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld min"
+            "value": "fitness.strength.summary.min"
           }
         },
         "ru": {
@@ -153769,13 +153769,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.agua.resumen"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.eau.résumé"
           }
         },
         "hi": {
@@ -153787,43 +153787,43 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.acqua.riepilogo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.water.summary"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.water.summary"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.water.summary"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.water.summary"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.water.summary"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.water.summary"
           }
         },
         "ru": {
@@ -153835,7 +153835,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml"
+            "value": "fitness.water.summary"
           }
         },
         "zh-Hans": {
@@ -153864,13 +153864,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.agua.resumen.bueno"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.eau.résumé.bon"
           }
         },
         "hi": {
@@ -153882,43 +153882,43 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.water.summary.good"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.water.summary.good"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.water.summary.good"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.water.summary.good"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.water.summary.good"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.water.summary.good"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.water.summary.good"
           }
         },
         "ru": {
@@ -153930,7 +153930,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld ml ✓"
+            "value": "fitness.water.summary.good"
           }
         },
         "zh-Hans": {
@@ -175377,13 +175377,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "Ejecutado %d veces"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "Exécuté %d fois"
           }
         },
         "hi": {
@@ -175395,43 +175395,43 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "Eseguito %d volte"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "%d mal ausgeführt"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "%d mal ausgeführt"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "%d mal ausgeführt"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "%d mal ausgeführt"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "%d mal ausgeführt"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "%d mal ausgeführt"
           }
         },
         "ru": {
@@ -175443,7 +175443,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Executed %d times"
+            "value": "%d kez yürütüldü"
           }
         },
         "zh-Hans": {
@@ -177839,7 +177839,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "🧘 Mindfulness"
+            "value": "🧘 Achtsamkeit"
           }
         },
         "pl": {
@@ -177940,7 +177940,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mindfulness"
+            "value": "Achtsamkeit"
           }
         },
         "pl": {
@@ -179757,7 +179757,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mindfulness"
+            "value": "Achtsamkeit"
           }
         },
         "pl": {
@@ -185542,7 +185542,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "hedgehog_pose_lying"
+            "value": "igel_pose_liegen"
           }
         },
         "nl": {
@@ -185747,7 +185747,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "hedgehog_pose_race"
+            "value": "igel_pose_rennen"
           }
         },
         "nl": {
@@ -185952,7 +185952,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "hedgehog_pose_sleep"
+            "value": "igel_pose_schlafen"
           }
         },
         "nl": {
@@ -186361,7 +186361,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "hedgehog_pose_waving"
+            "value": "igel_pose_winken"
           }
         },
         "nl": {
@@ -186593,7 +186593,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intent_water_already_done"
+            "value": " "
           }
         },
         "tr": {
@@ -186794,7 +186794,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intent_water_fail"
+            "value": " "
           }
         },
         "tr": {
@@ -186895,7 +186895,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intent_water_success"
+            "value": " "
           }
         },
         "tr": {
@@ -188193,7 +188193,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permanent effect."
+            "value": "Dauerhafter Effekt."
           }
         },
         "pl": {
@@ -195309,7 +195309,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%@ coins when watering (permanent)"
+            "value": "+%@ Monete durante il versamento (permanente)"
           }
         },
         "ja": {
@@ -195411,7 +195411,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%@ coins when watering (permanent)"
+            "value": "+%@ Monete durante il versamento (permanente)"
           }
         },
         "ja": {
@@ -195513,7 +195513,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%@ coins when watering (permanent)"
+            "value": "+%@ Monete durante il versamento (permanente)"
           }
         },
         "ja": {
@@ -195615,7 +195615,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%@ coins when watering (permanent)"
+            "value": "+%@ Monete durante il versamento (permanente)"
           }
         },
         "ja": {
@@ -198573,7 +198573,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%d spin(s) earned!"
+            "value": "+%d giri della Ruota della fortuna guadagnati!"
           }
         },
         "ja": {
@@ -221889,7 +221889,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "When do you want to be reminded of %@?"
+            "value": "Quando vuoi che ti venga ricordato %@?"
           }
         },
         "ja": {
@@ -222297,7 +222297,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Step %d of %d"
+            "value": "Passaggio %d di %d"
           }
         },
         "ja": {
@@ -225849,7 +225849,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Next tier: %@"
+            "value": "Livello successivo: %@"
           }
         },
         "ja": {
@@ -226053,7 +226053,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Levels %@-%@"
+            "value": "Livello %@-%@"
           }
         },
         "ja": {
@@ -232628,13 +232628,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notes_GardenSimulation.pdf"
+            "value": "Notizen_GartenSimulation.pdf"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notes_GardenSimulation.pdf"
+            "value": "Notizen_GartenSimulation.pdf"
           }
         },
         "nl": {
@@ -241703,7 +241703,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_description_%@"
+            "value": "pfad_phase_beschreibung_%@"
           }
         },
         "ko": {
@@ -241739,7 +241739,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_description_%@"
+            "value": "pfad_phase_beschreibung_%@"
           }
         },
         "tr": {
@@ -241757,7 +241757,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_description_%@"
+            "value": "pfad_phase_beschreibung_%@"
           }
         }
       }
@@ -242412,13 +242412,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_tag_title_%@"
+            "value": "pfad_phase_tag_titel_%@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_tag_title_%@"
+            "value": "pfad_phase_tag_titel_%@"
           }
         },
         "nl": {
@@ -242448,7 +242448,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_tag_title_%@"
+            "value": "pfad_phase_tag_titel_%@"
           }
         },
         "tr": {
@@ -242460,13 +242460,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_tag_title_%@"
+            "value": "pfad_phase_tag_titel_%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_tag_title_%@"
+            "value": "pfad_phase_tag_titel_%@"
           }
         }
       }
@@ -244249,13 +244249,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_difficulty_%@"
+            "value": "pfad_schwierigkeit_%@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_difficulty_%@"
+            "value": "pfad_schwierigkeit_%@"
           }
         },
         "nl": {
@@ -244352,13 +244352,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_difficulty_%@_desc"
+            "value": "pfad_schwierigkeit_%@_desc"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_difficulty_%@_desc"
+            "value": "pfad_schwierigkeit_%@_desc"
           }
         },
         "nl": {
@@ -244400,7 +244400,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_difficulty_%@_desc"
+            "value": "pfad_schwierigkeit_%@_desc"
           }
         },
         "zh-Hant": {
@@ -246981,7 +246981,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Streak-Eis"
+            "value": "Glace en stries"
           }
         },
         "hi": {
@@ -246993,7 +246993,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Streak-Eis"
+            "value": "Gelato a strisce"
           }
         },
         "ja": {
@@ -248215,7 +248215,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Since %d day(s)"
+            "value": "Da %d giorno/i"
           }
         },
         "ja": {
@@ -248622,7 +248622,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "This plant hasn't been watered for %d days. After revival, you'll earn less XP and coins for 3 days."
+            "value": "Questa pianta non è stata annaffiata per %d giorni. Dopo la rianimazione, riceverai meno XP e monete dal lancio per 3 giorni."
           }
         },
         "ja": {
@@ -258977,7 +258977,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eucalyptus"
+            "value": "eucalyptus"
           }
         },
         "hi": {
@@ -259007,7 +259007,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eucalyptus"
+            "value": "Eukalyptus"
           }
         },
         "pl": {
@@ -262967,7 +262967,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Magnolienbaum"
+            "value": "Albero di magnolia"
           }
         },
         "ja": {
@@ -263579,7 +263579,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mandelbaum"
+            "value": "Mandorlo"
           }
         },
         "ja": {
@@ -264191,7 +264191,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minzpflanze"
+            "value": "Pianta di menta"
           }
         },
         "ja": {
@@ -265721,7 +265721,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passionsblume"
+            "value": "Passiflora"
           }
         },
         "ja": {
@@ -267964,7 +267964,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Teestrauch"
+            "value": "cespuglio di tè"
           }
         },
         "ja": {
@@ -268576,7 +268576,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Walnussbaum"
+            "value": "Albero di noce"
           }
         },
         "ja": {
@@ -269390,7 +269390,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weizenfeld"
+            "value": "Campo di grano"
           }
         },
         "ja": {
@@ -271531,7 +271531,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Power-Up active for %dh"
+            "value": "PowerUp attivo per %dh"
           }
         },
         "ja": {
@@ -271633,7 +271633,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Active on %1$@ for %2$dh"
+            "value": "Attivo su %1$@ per %2$ie"
           }
         },
         "ja": {
@@ -273664,7 +273664,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden Level %d"
+            "value": "Livello giardino %d"
           }
         },
         "ja": {
@@ -274684,7 +274684,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d Coins received!"
+            "value": "%d monete ricevute!"
           }
         },
         "ja": {
@@ -275602,7 +275602,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Duration: %d sec."
+            "value": "Durata: %d sec."
           }
         },
         "ja": {
@@ -275704,7 +275704,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Duration: %d min."
+            "value": "Durata: %d min."
           }
         },
         "ja": {
@@ -299056,7 +299056,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "VISUALIZATION"
+            "value": "Visualisierung"
           }
         },
         "it": {
@@ -305912,85 +305912,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "Corre %@ km fácilmente"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "Courez %@ km facilement"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "Corri %@ km facilmente"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km easy run"
+            "value": "%@ km locker laufen"
           }
         }
       }
@@ -307427,85 +307427,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km a paso rápido"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km à vive allure"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@किमी तेज गति से"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km a ritmo sostenuto"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km を速いペースで走る"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km at a brisk pace"
+            "value": "%@ km im zügigen Tempo"
           }
         }
       }
@@ -308235,85 +308235,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km completados"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km parcourus"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km completati"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ kilometre tamamlandı"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ km completed"
+            "value": "%@ km absolviert"
           }
         }
       }
@@ -321062,85 +321062,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Completa un EMOM (Cada minuto en cada minuto): %lld minutos.\nMinuto 1: Ejercicio 1\nMinuto 2: Ejercicio 2\nMinuto 3: Ejercicio 3\nMinuto 4: Descanso"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Complétez un EMOM (Chaque minute sur la minute) - %lld minutes.\nMinute 1 : Exercice 1\nMinute 2 : Exercice 2\nMinute 3 : Exercice 3\nMinute 4 : Pause"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "एक ईएमओएम पूरा करें (प्रत्येक मिनट पर मिनट) - %lld मिनट।\nमिनट 1: व्यायाम 1\nमिनट 2: व्यायाम 2\nमिनट 3: व्यायाम 3\nमिनट 4: ब्रेक"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Completa un EMOM (Every Minute on the Minute) - %lld minuti.\nMinuto 1: Esercizio 1\nMinuto 2: Esercizio 2\nMinuto 3: Esercizio 3\nMinuto 4: Pausa"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "EMOM (Every Minute on the Minute) を完了します - %lld 分。\n1 分目: 演習 1\n2分目: 演習2\n3 分: 演習 3\n4分目：休憩"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM (Every Minute on the Minute) - %lld minutes.\nMinute 1: Exercise 1\nMinute 2: Exercise 2\nMinute 3: Exercise 3\nMinute 4: Rest"
+            "value": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause"
           }
         }
       }
@@ -321472,7 +321472,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Push-Fokus"
+            "value": "Pousser la mise au point"
           }
         },
         "hi": {
@@ -321484,7 +321484,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Push-Fokus"
+            "value": "Spingi la messa a fuoco"
           }
         },
         "ja": {
@@ -321532,7 +321532,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Push-Fokus"
+            "value": "Odaklamayı itin"
           }
         },
         "zh-Hans": {
@@ -321567,85 +321567,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Completa un EMOM - %lld minutos.\nApunta a repeticiones limpias y sin impulso."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Terminez un EMOM - %lld minutes.\nVisez des répétitions propres et sans élan."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "एक ईएमओएम पूरा करें - %lld मिनट।\nगति के बिना स्वच्छ प्रतिनिधियों का लक्ष्य रखें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Completa un EMOM - %lld minuti.\nPunta a ripetizioni pulite senza slancio."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Bir EMOM - %lld dakika tamamlayın.\nİvme olmadan temiz tekrarları hedefleyin."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes.\nAim for clean reps without swinging."
+            "value": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung."
           }
         }
       }
@@ -322072,85 +322072,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Concéntrese en %@ esfuerzo por sprint. Lenta recuperación al caminar de regreso."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Concentrez-vous sur %@ Effort par Sprint. Récupération lente au retour."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Concentrati sull'impegno %@ per Sprint. Recupero lento quando si cammina indietro."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "スプリントあたりの %@ 作業量に注目します。歩いて戻るときの回復が遅い。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Skoncentruj się na %@ wysiłku na sprint. Powolna regeneracja podczas chodzenia."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Sprint başına %@ Çabaya odaklanın. Geri yürürken yavaş iyileşme."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         }
       }
@@ -322274,85 +322274,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (intensidad máxima)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (intensité maximale)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ स्प्रिंट (अधिकतम तीव्रता)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprint (intensità massima)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ スプリント (最大強度)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (Maximale Intensität)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (Maximale Intensität)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (Maximale Intensität)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (Maximale Intensität)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (Maximale Intensität)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (Maximale Intensität)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprintler (Maksimum Yoğunluk)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (Maximale Intensität)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld x %@ Sprints (Max Intensity)"
+            "value": "%lld x %@ Sprints (Maximale Intensität)"
           }
         }
       }
@@ -322381,7 +322381,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "3x 15 Jump Squats Finisher"
+            "value": "3x 15 jump squat finishers"
           }
         },
         "hi": {
@@ -322577,85 +322577,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Configure un temporizador para %lld minutos. Completa tantas vueltas limpias como puedas. ¡Cancelar si la técnica no está limpia!"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Réglez une minuterie sur %lld minutes. Effectuez autant de tours propres que possible. Annulez si la technique n'est pas propre !"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "%lld मिनट के लिए टाइमर सेट करें। यथासंभव अधिक से अधिक स्वच्छ लैप्स पूरे करें। अगर तकनीक साफ़ नहीं है तो रद्द करें!"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Imposta un timer per %lld minuti. Completa il maggior numero di giri puliti possibile. Annulla se la tecnica non è pulita!"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "%lld dakika boyunca bir zamanlayıcı ayarlayın. Mümkün olduğu kadar çok temiz tur tamamlayın. Teknik temiz değilse iptal edin!"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Set a timer for %lld minutes. Complete as many clean rounds as possible. Stop if form breaks down!"
+            "value": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!"
           }
         }
       }
@@ -322678,85 +322678,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "Temporizador de %lld minutos completado"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "Minuterie de %lld minutes terminée"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "Temporizzatore di %lld minuti completato"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld dakika zamanlayıcı tamamlandı"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld minute timer completed"
+            "value": "%lld Minuten Timer absolviert"
           }
         }
       }
@@ -322779,85 +322779,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Ronda: %lld dominadas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Tour : %lld tractions"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Giro: %lld trazioni"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Tur: %lld pull-up'lar"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Pull-ups"
+            "value": "Runde: %lld Pull-ups"
           }
         }
       }
@@ -322880,85 +322880,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Ronda: %lld flexiones"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Tour : %lld pompes"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "राउंड: %lld पुश-अप्स"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Giro: %lld flessioni"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Tur: %lld şınav"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Round: %lld Push-ups"
+            "value": "Runde: %lld Push-ups"
           }
         }
       }
@@ -323082,85 +323082,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Completa un EMOM - %lld minutos. Las sentadillas deben ser profundas (caderas por debajo de la altura de las rodillas)."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Terminez un EMOM - %lld minutes. Les squats doivent être profonds (hanches en dessous de la hauteur des genoux)."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Completa un EMOM - %lld minuti. Gli squat devono essere profondi (fianchi sotto l'altezza del ginocchio)."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete an EMOM - %lld minutes. Squats must be deep (hips below knees)."
+            "value": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe)."
           }
         }
       }
@@ -323587,85 +323587,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "¡A tiempo! Completa %lld rondas lo más rápido posible con una forma limpia. Objetivo: Mantener la técnica con pulso alto."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "À l'heure ! Terminez les tours %lld le plus rapidement possible avec un formulaire propre. Objectif : Maintenir la technique avec un pouls élevé."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "समय पर! यथाशीघ्र स्वच्छ फॉर्म के साथ %lld राउंड पूरे करें। लक्ष्य: उच्च पल्स के साथ तकनीक बनाए रखें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "In tempo! Completa %lld round il più velocemente possibile con una forma pulita. Obiettivo: mantenere la tecnica con un polso elevato."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Zamanında! Temiz formla %ll turları mümkün olduğunca çabuk tamamlayın. Hedef: Tekniği yüksek nabızla sürdürmek."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "For time! Complete %lld rounds as fast as possible with clean form. Goal: Maintain technique at high heart rate."
+            "value": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."
           }
         }
       }
@@ -323688,85 +323688,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Ejercicio: %lld burpees"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Exercice : %lld burpees"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "व्यायाम: %lld बर्पीज़"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Esercizio: %lld burpees"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %lld Burpees"
+            "value": "Übung: %lld Burpees"
           }
         }
       }
@@ -323789,85 +323789,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Ejercicio: %@ Ejecutar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Exercice : %@ Exécuter"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "व्यायाम: %@ दौड़ें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Esercizio: %@ Corri"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@ Run"
+            "value": "Übung: %@ Lauf"
           }
         }
       }
@@ -323890,85 +323890,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Ejercicio: %@"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Exercice: %@"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Esercizio: %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exercise: %@"
+            "value": "Übung: %@"
           }
         }
       }
@@ -325102,85 +325102,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Flexiones negativas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Pompes négatives"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld नकारात्मक पुश-अप्स"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Flessioni negative"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld ネガティブ腕立て伏せ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Negative Push-ups"
+            "value": "%lld Negative Liegestütze"
           }
         }
       }
@@ -326213,85 +326213,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld rondas completadas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld tours terminés"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld round completati"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld rounds completed"
+            "value": "%lld Runden absolviert"
           }
         }
       }
@@ -338143,7 +338143,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "VISUALIZATION"
+            "value": "Visualisierung"
           }
         },
         "it": {
@@ -349355,7 +349355,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d plants is enough for me"
+            "value": "Mi bastano %d piante"
           }
         },
         "ja": {
@@ -380404,7 +380404,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Really buy for %d coins?"
+            "value": "Compri davvero monete per %d?"
           }
         },
         "ja": {
@@ -380506,7 +380506,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need %d more coins"
+            "value": "Hai ancora bisogno di %d monete in più"
           }
         },
         "ja": {
@@ -381424,7 +381424,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cost: %d Seeds"
+            "value": "Costo: %d semi"
           }
         },
         "ja": {
@@ -383452,7 +383452,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need %d more coins."
+            "value": "Hai ancora bisogno di %d monete in più."
           }
         },
         "ja": {
@@ -386290,7 +386290,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great job, keep it up! Your sleep routine is excellent. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "it": {
@@ -386320,7 +386320,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great job, keep it up! Your sleep routine is excellent. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "pt": {
@@ -386344,7 +386344,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great job, keep it up! Your sleep routine is excellent. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "zh-Hans": {
@@ -386391,7 +386391,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You need a sleep routine. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Du musst daran arbeiten. Du brauchst eine Schlafroutine. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "it": {
@@ -386421,7 +386421,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You need a sleep routine. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Du musst daran arbeiten. Du brauchst eine Schlafroutine. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "pt": {
@@ -386445,7 +386445,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You need a sleep routine. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Du musst daran arbeiten. Du brauchst eine Schlafroutine. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "zh-Hans": {
@@ -386492,7 +386492,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You go to bed irregularly, especially on %@. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "आपको इस पर काम करना होगा. आप अनियमित रूप से बिस्तर पर जाते हैं, विशेषकर %@ पर। औसतन आप %@ पर बिस्तर पर जाते हैं। 8 घंटे की नींद लेने के लिए आपको %@ पर उठना चाहिए।"
           }
         },
         "it": {
@@ -386522,7 +386522,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You go to bed irregularly, especially on %@. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Du musst daran arbeiten. Besonders am %@ gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "pt": {
@@ -386546,7 +386546,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You go to bed irregularly, especially on %@. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Du musst daran arbeiten. Besonders am %@ gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "zh-Hans": {
@@ -386593,7 +386593,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You go to bed irregularly, especially on weekends. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Du musst daran arbeiten. Besonders am Wochenende gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "it": {
@@ -386623,7 +386623,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You go to bed irregularly, especially on weekends. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Du musst daran arbeiten. Besonders am Wochenende gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "pt": {
@@ -386647,7 +386647,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You need to work on this. You go to bed irregularly, especially on weekends. On average, you go to bed at %@. To get 8 hours of sleep, you should wake up at %@."
+            "value": "Du musst daran arbeiten. Besonders am Wochenende gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."
           }
         },
         "zh-Hans": {
@@ -389433,7 +389433,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d spin(s) available"
+            "value": "%d rotazioni disponibili"
           }
         },
         "ja": {
@@ -389637,7 +389637,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%d coins received."
+            "value": "+%d monete ricevute."
           }
         },
         "ja": {
@@ -397477,7 +397477,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus in %@"
+            "value": "Concentrati su %@"
           }
         },
         "ja": {
@@ -397495,7 +397495,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus in %@"
+            "value": "Fokus in %@"
           }
         },
         "pl": {
@@ -405323,7 +405323,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld XP left for %@"
+            "value": "Ancora %lld XP a %@"
           }
         },
         "ja": {
@@ -414954,7 +414954,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Double Diva"
+            "value": "Double diva"
           }
         },
         "hi": {
@@ -449105,7 +449105,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habit Analyse"
+            "value": "आदत विश्लेषण"
           }
         },
         "it": {
@@ -449117,13 +449117,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habit Analyse"
+            "value": "習慣分析"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habit Analyse"
+            "value": "Gewohnheit Analyse"
           }
         },
         "nl": {
@@ -449153,7 +449153,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habit Analyse"
+            "value": "Gewohnheit Analyse"
           }
         },
         "tr": {
@@ -449165,13 +449165,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habit Analyse"
+            "value": "Gewohnheit Analyse"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habit Analyse"
+            "value": "Gewohnheit Analyse"
           }
         }
       }
@@ -450737,7 +450737,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "That's %d watering cycles"
+            "value": "Ciò corrisponde a %d processi di fusione"
           }
         },
         "ja": {
@@ -451553,7 +451553,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d watering cycles"
+            "value": "%d operazioni di casting"
           }
         },
         "ja": {
@@ -456225,7 +456225,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Only %@ rewards today"
+            "value": "Solo %@ ricompensa oggi"
           }
         },
         "ja": {
@@ -460891,7 +460891,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Minutes"
+            "value": "%lld minutes"
           }
         },
         "hi": {
@@ -461295,7 +461295,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Minutes"
+            "value": "%lld minutes"
           }
         },
         "hi": {
@@ -472635,7 +472635,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%2$d XP until %1$@"
+            "value": "%2$d XP a %1$@"
           }
         },
         "ja": {
@@ -472647,7 +472647,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%2$d XP ~ %1$@"
+            "value": "%2$d XP bis %1$@"
           }
         },
         "nl": {
