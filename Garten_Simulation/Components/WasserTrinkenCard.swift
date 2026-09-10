@@ -9,7 +9,6 @@ struct WasserTrinkenCard: View {
     @State private var zeigeHinzufuegenSheet = false
     @State private var manuelleMenge: String = ""
     @State private var showGoalDetails = false
-    @State private var showEditGoalSheet = false
     
     var onUnlink: (() -> Void)? = nil
     
@@ -145,14 +144,8 @@ struct WasserTrinkenCard: View {
             }
             .presentationDetents([.height(350)])
         }
-        .sheet(isPresented: $showEditGoalSheet) {
-            EditWaterGoalSheet(goalManager: goalManager)
-                .presentationDragIndicator(.visible)
-        }
         .fullScreenCover(isPresented: $showGoalDetails) {
-            WaterSettingsSheet(goalManager: goalManager, onEditGoal: {
-                showEditGoalSheet = true
-            })
+            WaterSettingsSheet(goalManager: goalManager)
         }
     }
 }
@@ -160,7 +153,8 @@ struct WasserTrinkenCard: View {
 struct WaterSettingsSheet: View {
     @ObservedObject var goalManager: WaterGoalManager
     @Environment(\.dismiss) var dismiss
-    var onEditGoal: () -> Void
+    
+    @State private var manualGoalText: String = ""
     
     var body: some View {
         NavigationStack {
@@ -187,24 +181,32 @@ struct WaterSettingsSheet: View {
                         
                         Divider()
                         
-                        Button(action: {
-                            onEditGoal()
-                        }) {
-                            HStack {
-                                Text(String(localized: "water.goal.total", defaultValue: "Heutiges Ziel"))
-                                    .font(.system(size: 16, weight: .black, design: .rounded))
-                                    .foregroundColor(.primary)
-                                Spacer()
-                                HStack(spacing: 4) {
-                                    Text("\(Int(goalManager.currentGoal)) ml")
-                                        .font(.system(size: 16, weight: .black, design: .rounded))
-                                        .foregroundColor(.primary)
-                                    Image(systemName: "pencil")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundColor(.blue)
-                                }
+                        HStack {
+                            Text(String(localized: "water.goal.total", defaultValue: "Heutiges Ziel"))
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                                .foregroundColor(.primary)
+                            Spacer()
+                            HStack(spacing: 2) {
+                                TextField("", text: $manualGoalText)
+                                    .keyboardType(.numberPad)
+                                    .multilineTextAlignment(.trailing)
+                                    .font(.system(size: 18, weight: .black, design: .rounded))
+                                    .foregroundColor(.blue)
+                                    .onChange(of: manualGoalText) { _, newValue in
+                                        if let val = Double(newValue), val > 0 {
+                                            goalManager.customMinGoal = val
+                                            goalManager.customMaxGoal = val
+                                            goalManager.recalculateGoal(bodyMass: HealthManager.shared.latestBodyMass, steps: HealthManager.shared.todaysSteps, enduranceMinutes: HealthManager.shared.todaysRunning, strengthMinutes: HealthManager.shared.todaysStrengthTraining)
+                                        }
+                                    }
+                                Text("ml")
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundColor(.gray)
                             }
+                            .frame(width: 100)
                         }
+                        .padding()
+                        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                         
                         if goalManager.customMinGoal > 0 || goalManager.customMaxGoal > 0 {
                             Text(String(localized: "water.goal.manual_active", defaultValue: "Manuelles Ziel ist aktiv."))
@@ -222,6 +224,7 @@ struct WaterSettingsSheet: View {
                             goalManager.customMinGoal = 0
                             goalManager.customMaxGoal = 0
                             goalManager.recalculateGoal(bodyMass: HealthManager.shared.latestBodyMass, steps: HealthManager.shared.todaysSteps, enduranceMinutes: HealthManager.shared.todaysRunning, strengthMinutes: HealthManager.shared.todaysStrengthTraining)
+                            manualGoalText = String(Int(goalManager.currentGoal))
                         } label: {
                             Text(String(localized: "water.goal.edit_reset", defaultValue: "Auf automatisch zurücksetzen"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -244,6 +247,9 @@ struct WaterSettingsSheet: View {
                             .font(.system(size: 16, weight: .bold))
                     }
                 }
+            }
+            .onAppear {
+                manualGoalText = String(Int(goalManager.currentGoal))
             }
         }
     }
