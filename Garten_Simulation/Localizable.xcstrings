@@ -1636,13 +1636,13 @@
             "value": "%lld/100"
           }
         },
-        "it": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld/100"
           }
         },
-        "pt": {
+        "it": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld/100"
@@ -1660,19 +1660,25 @@
             "value": "%lld/100"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld/100"
           }
         },
-        "tr": {
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/100"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/100"
+          }
+        },
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld/100"
@@ -1684,7 +1690,7 @@
             "value": "%lld/100"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld/100"
@@ -1697,12 +1703,6 @@
           }
         },
         "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld/100"
@@ -2137,13 +2137,13 @@
             "value": "+%lld"
           }
         },
-        "it": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "+%lld"
           }
         },
-        "pt": {
+        "it": {
           "stringUnit": {
             "state": "translated",
             "value": "+%lld"
@@ -2161,19 +2161,25 @@
             "value": "+%lld"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "+%lld"
           }
         },
-        "tr": {
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+%lld"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+%lld"
+          }
+        },
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "+%lld"
@@ -2185,7 +2191,7 @@
             "value": "+%lld"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "+%lld"
@@ -2198,12 +2204,6 @@
           }
         },
         "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "+%lld"
@@ -146946,6 +146946,12 @@
     "feedbackNaehrstoffVage": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Ernährung ist heute unausgewogen."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -147035,18 +147041,18 @@
             "state": "translated",
             "value": "你今天的飲食不均衡。"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Deine Ernährung ist heute unausgewogen."
-          }
         }
       }
     },
     "feedbackSchlafGut": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guter Schlaf. Dein Körper konnte sich erholen."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -147136,17 +147142,10 @@
             "state": "translated",
             "value": "睡眠良好。你的身體得到了恢復。"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guter Schlaf. Dein Körper konnte sich erholen."
-          }
         }
       }
     },
     "feedbackTrainingInaktiv": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -147172,16 +147171,16 @@
             "value": "Tu n'as pas fait de sport depuis %lld jours."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने %lld दिनों से प्रशिक्षण नहीं लिया है।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Non ti alleni da %lld giorni."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você não treina há %lld dias."
           }
         },
         "ja": {
@@ -147196,22 +147195,28 @@
             "value": "%lld일 동안 운동하지 않았습니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nie trenowałeś od %lld dni."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Je hebt al %lld dagen niet getraind."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld gündür antrenman yapmadınız."
+            "value": "Nie trenowałeś od %lld dni."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você não treina há %lld dias."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você não treina há %lld dias."
           }
         },
         "ru": {
@@ -147220,10 +147225,10 @@
             "value": "Ты не тренировался %lld дней."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपने %lld दिनों से प्रशिक्षण नहीं लिया है।"
+            "value": "%lld gündür antrenman yapmadınız."
           }
         },
         "zh-Hans": {
@@ -147237,18 +147242,18 @@
             "state": "translated",
             "value": "你已經 %lld 天沒鍛煉了。"
           }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você não treina há %lld dias."
-          }
         }
       }
     },
     "feedbackWasserRestMittag": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %lld ml bis zum Mittag."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -147337,12 +147342,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "中午前還差 %lld 毫升。"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Noch %lld ml bis zum Mittag."
           }
         }
       }
@@ -147551,107 +147550,6 @@
         }
       }
     },
-    "fitness.category.nutrition.analysis": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tägliche Ernährungsanalyse"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daily nutritional analysis"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análisis nutricional diario"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analyse nutritionnelle quotidienne"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दैनिक पोषण विश्लेषण"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analisi nutrizionale quotidiana"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毎日の栄養分析"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일일 영양분석"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dagelijkse voedingsanalyse"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codzienna analiza wartości odżywczych"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise nutricional diária"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise nutricional diária"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ежедневный анализ питания"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlük beslenme analizi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日营养分析"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日營養分析"
-          }
-        }
-      }
-    },
     "fitness.category.running": {
       "extractionState": "manual",
       "localizations": {
@@ -147749,107 +147647,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Laufen"
-          }
-        }
-      }
-    },
-    "fitness.category.running.analysis": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tägliche Laufanalyse"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daily running analysis"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análisis diario de carrera"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analyse de course quotidienne"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दैनिक चल रहा विश्लेषण"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analisi della corsa quotidiana"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毎日のランニング分析"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일일 달리기 분석"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dagelijkse hardloopanalyse"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codzienna analiza biegu"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária de execução"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária de execução"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ежедневный анализ бега"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlük koşu analizi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "日常跑步分析"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "日常跑步分析"
           }
         }
       }
@@ -147955,107 +147752,6 @@
         }
       }
     },
-    "fitness.category.sleep.analysis": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tägliche Schlafanalyse"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daily sleep analysis"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análisis diario del sueño."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analyse quotidienne du sommeil"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दैनिक नींद विश्लेषण"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analisi del sonno quotidiano"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毎日の睡眠分析"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일일 수면 분석"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dagelijkse slaapanalyse"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codzienna analiza snu"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária do sono"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária do sono"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ежедневный анализ сна"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlük uyku analizi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日睡眠分析"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日睡眠分析"
-          }
-        }
-      }
-    },
     "fitness.category.strength": {
       "extractionState": "manual",
       "localizations": {
@@ -148157,107 +147853,6 @@
         }
       }
     },
-    "fitness.category.strength.analysis": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tägliche Kraftanalyse"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daily strength analysis"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análisis de fuerza diario."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analyse de force quotidienne"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दैनिक शक्ति विश्लेषण"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analisi quotidiana della forza"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "日々の強度分析"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일일 강도 분석"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dagelijkse sterkteanalyse"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codzienna analiza wytrzymałości"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária de força"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária de força"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ежедневный анализ силы"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlük güç analizi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日实力分析"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日實力分析"
-          }
-        }
-      }
-    },
     "fitness.category.water": {
       "extractionState": "manual",
       "localizations": {
@@ -148355,107 +147950,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Wasser"
-          }
-        }
-      }
-    },
-    "fitness.category.water.analysis": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tägliche Wasseranalyse"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daily water analysis"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análisis diario del agua."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analyse quotidienne de l'eau"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दैनिक जल विश्लेषण"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Analisi giornaliera dell'acqua"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毎日の水分析"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일일 물 분석"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dagelijkse wateranalyse"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codzienna analiza wody"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária da água"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária da água"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ежедневный анализ воды"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlük su analizi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日水质分析"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日水質分析"
           }
         }
       }
@@ -149372,6 +148866,12 @@
     "fitness.nutrition.summary": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kcal / %@ kcal"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -149460,12 +148960,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ 千卡 / %@ 千卡"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ kcal / %@ kcal"
           }
         }
       }
@@ -150281,6 +149775,12 @@
     "fitness.running.summary": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -150366,12 +149866,6 @@
           }
         },
         "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld"
-          }
-        },
-        "de": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld"
@@ -151390,6 +150884,12 @@
     "fitness.sleep.summary": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ h"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -151478,12 +150978,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ / %@ 小時"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ / %@ h"
           }
         }
       }
@@ -151895,6 +151389,12 @@
     "fitness.strength.summary.daysago": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vor %lld Tagen"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -151984,18 +151484,18 @@
             "state": "translated",
             "value": "%lld 天前"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vor %lld Tagen"
-          }
         }
       }
     },
     "fitness.strength.summary.min": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld min"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -152084,12 +151584,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld 分鐘"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld min"
           }
         }
       }
@@ -152905,6 +152399,12 @@
     "fitness.water.detail.progress": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld von %lld ml getrunken."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -152994,18 +152494,18 @@
             "state": "translated",
             "value": "已喝 %lld / %lld 毫升。"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld von %lld ml getrunken."
-          }
         }
       }
     },
     "fitness.water.summary": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -153095,18 +152595,18 @@
             "state": "translated",
             "value": "%lld / %lld 毫升"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml"
-          }
         }
       }
     },
     "fitness.water.summary.good": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -153195,12 +152695,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld / %lld 毫升 ✓"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld / %lld ml ✓"
           }
         }
       }
@@ -154722,7 +154216,6 @@
       }
     },
     "focus.giveup.walkofshame.sentence4": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -154748,16 +154241,16 @@
             "value": "Ton jardin est triste maintenant."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका बगीचा अब उदास है।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Il tuo giardino è triste ora."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O seu jardim está triste agora."
           }
         },
         "ja": {
@@ -154772,22 +154265,28 @@
             "value": "당신의 정원은 지금 슬픕니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twój ogród jest teraz smutny."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Je tuin is nu droevig."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bahçeniz şimdi üzgün."
+            "value": "Twój ogród jest teraz smutny."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O seu jardim está triste agora."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O seu jardim está triste agora."
           }
         },
         "ru": {
@@ -154796,10 +154295,10 @@
             "value": "Твой сад теперь грустит."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपका बगीचा अब उदास है।"
+            "value": "Bahçeniz şimdi üzgün."
           }
         },
         "zh-Hans": {
@@ -154813,17 +154312,10 @@
             "state": "translated",
             "value": "你的花園現在很傷心。"
           }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O seu jardim está triste agora."
-          }
         }
       }
     },
     "focus.giveup.walkofshame.sentence5": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -154849,16 +154341,16 @@
             "value": "Demain sera un jour meilleur."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कल का दिन बेहतर होगा।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Domani sarà un giorno migliore."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amanhã será um dia melhor."
           }
         },
         "ja": {
@@ -154873,22 +154365,28 @@
             "value": "내일은 더 좋은 하루가 될 것입니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jutro będzie lepszy dzień."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Morgen zal een betere dag zijn."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yarın daha iyi bir gün olacak."
+            "value": "Jutro będzie lepszy dzień."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amanhã será um dia melhor."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amanhã será um dia melhor."
           }
         },
         "ru": {
@@ -154897,10 +154395,10 @@
             "value": "Завтра будет лучший день."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "कल का दिन बेहतर होगा।"
+            "value": "Yarın daha iyi bir gün olacak."
           }
         },
         "zh-Hans": {
@@ -154913,12 +154411,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "明天會是更好的一天。"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amanhã será um dia melhor."
           }
         }
       }
@@ -200637,6 +200129,12 @@
     "ml": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -200725,12 +200223,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "毫升"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ml"
           }
         }
       }
@@ -212999,6 +212491,12 @@
     "nutrientLabelBallaststoffe": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ballaststoffe"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -213088,18 +212586,18 @@
             "state": "translated",
             "value": "膳食纖維"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ballaststoffe"
-          }
         }
       }
     },
     "nutrientLabelProtein": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -213188,12 +212686,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "蛋白質"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Protein"
           }
         }
       }
@@ -407522,6 +407014,12 @@
     "tagesanalyseHeaderErnaehrung": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -407611,18 +407109,18 @@
             "state": "translated",
             "value": "營養"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ernährung"
-          }
         }
       }
     },
     "tagesanalyseHeaderKraft": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kraft"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -407712,18 +407210,18 @@
             "state": "translated",
             "value": "力量"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kraft"
-          }
         }
       }
     },
     "tagesanalyseHeaderSchlaf": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlaf"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -407813,18 +407311,18 @@
             "state": "translated",
             "value": "睡眠"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlaf"
-          }
         }
       }
     },
     "tagesanalyseHeaderSchritte": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schritte"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -407914,18 +407412,18 @@
             "state": "translated",
             "value": "步數"
           }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schritte"
-          }
         }
       }
     },
     "tagesanalyseHeaderWasser": {
       "extractionState": "manual",
       "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasser"
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
@@ -408014,12 +407512,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "水"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wasser"
           }
         }
       }
