@@ -22,6 +22,17 @@ struct WasserTrinkenCard: View {
                         Text(String(localized: "water.title", defaultValue: "Wasser"))
                             .font(.system(size: 24, weight: .bold, design: .rounded))
                         Spacer()
+                        Item3DButton(
+                            farbe: .cyan,
+                            sekundaerFarbe: .cyan.opacity(0.8),
+                            groesse: 40,
+                            isRectangular: false,
+                            aktion: { showGoalDetails = true }
+                        ) {
+                            Image(systemName: "gearshape.fill")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.white)
+                        }
                     }
                     
                     // Progress Ring
@@ -51,32 +62,6 @@ struct WasserTrinkenCard: View {
                         .foregroundColor(.white)
                     }
                     .frame(height: 56)
-                    
-                    // Goal Details Toggle
-                    Button(action: {
-                        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-                            showGoalDetails.toggle()
-                        }
-                    }) {
-                        HStack {
-                            Text(String(localized: "water.goal.details", defaultValue: "Tagesziel-Berechnung"))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                            Image(systemName: showGoalDetails ? "chevron.up" : "chevron.down")
-                        }
-                        .foregroundColor(.gray)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        .background(Color.gray.opacity(0.1))
-                        .clipShape(Capsule())
-                    }
-                    .padding(.top, 16)
-                    
-                    if showGoalDetails {
-                        GoalDetailsView(goalManager: goalManager, onEditGoal: {
-                            showEditGoalSheet = true
-                        })
-                        .transition(.opacity.combined(with: .move(edge: .top)))
-                    }
                 }
                 .padding(24)
                 
@@ -163,6 +148,109 @@ struct WasserTrinkenCard: View {
         .sheet(isPresented: $showEditGoalSheet) {
             EditWaterGoalSheet(goalManager: goalManager)
                 .presentationDragIndicator(.visible)
+        }
+        .fullScreenCover(isPresented: $showGoalDetails) {
+            WaterSettingsSheet(goalManager: goalManager, onEditGoal: {
+                showEditGoalSheet = true
+            })
+        }
+    }
+}
+
+struct WaterSettingsSheet: View {
+    @ObservedObject var goalManager: WaterGoalManager
+    @Environment(\.dismiss) var dismiss
+    var onEditGoal: () -> Void
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 32) {
+                    
+                    // Erklär-Block auf weißem 3D Hintergrund
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text(String(localized: "water.goal.explanation", defaultValue: "Dein Tagesziel berechnet sich dynamisch anhand deines Körpergewichts und deiner Aktivität. Du kannst es aber auch manuell festlegen."))
+                            .font(.system(size: 14, weight: .regular, design: .rounded))
+                            .foregroundColor(.secondary)
+                            
+                        GoalDetailRow(title: String(localized: "water.goal.base", defaultValue: "Basisbedarf"), amount: goalManager.baseGoal)
+                        
+                        if goalManager.stepBonus > 0 {
+                            GoalDetailRow(title: String(localized: "water.goal.steps", defaultValue: "Schritte Bonus"), amount: goalManager.stepBonus, color: .orange)
+                        }
+                        if goalManager.strengthBonus > 0 {
+                            GoalDetailRow(title: String(localized: "water.goal.strength", defaultValue: "Krafttraining Bonus"), amount: goalManager.strengthBonus, color: .purple)
+                        }
+                        if goalManager.enduranceBonus > 0 {
+                            GoalDetailRow(title: String(localized: "water.goal.endurance", defaultValue: "Ausdauer Bonus"), amount: goalManager.enduranceBonus, color: .red)
+                        }
+                        
+                        Divider()
+                        
+                        HStack {
+                            Text(String(localized: "water.goal.total", defaultValue: "Heutiges Ziel"))
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                            Spacer()
+                            Text("\(Int(goalManager.currentGoal)) ml")
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                        }
+                        
+                        if goalManager.customMinGoal > 0 || goalManager.customMaxGoal > 0 {
+                            Text(String(localized: "water.goal.manual_active", defaultValue: "Manuelles Ziel ist aktiv."))
+                                .font(.system(size: 12, weight: .medium, design: .rounded))
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .padding(24)
+                    .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
+                    .padding(.horizontal, 24)
+                    
+                    VStack(spacing: 16) {
+                        // Manueller Button
+                        Item3DButton(
+                            farbe: .cyan,
+                            sekundaerFarbe: .cyan.opacity(0.8),
+                            groesse: 56,
+                            isRectangular: true,
+                            aktion: {
+                                onEditGoal()
+                            }
+                        ) {
+                            Text(String(localized: "water.goal.edit_button", defaultValue: "Ziel manuell bearbeiten"))
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        .frame(height: 56)
+                        .padding(.horizontal, 24)
+                        
+                        // Zurücksetzen Button
+                        Button {
+                            goalManager.customMinGoal = 0
+                            goalManager.customMaxGoal = 0
+                            goalManager.recalculateGoal(bodyMass: HealthManager.shared.latestBodyMass, steps: HealthManager.shared.todaysSteps, enduranceMinutes: HealthManager.shared.todaysRunning, strengthMinutes: HealthManager.shared.todaysStrengthTraining)
+                        } label: {
+                            Text(String(localized: "water.goal.edit_reset", defaultValue: "Auf automatisch zurücksetzen"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundColor(.red)
+                                .underline()
+                        }
+                        .padding(.top, 8)
+                    }
+                }
+                .padding(.vertical, 32)
+            }
+            .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
+            .navigationTitle(String(localized: "water.goal.details", defaultValue: "Tagesziel-Berechnung"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .font(.title3)
+                    }
+                }
+            }
         }
     }
 }
