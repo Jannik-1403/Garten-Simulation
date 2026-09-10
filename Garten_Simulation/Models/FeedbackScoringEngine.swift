@@ -136,11 +136,11 @@ struct FeedbackScoringEngine {
             let waterTarget = Int(input.waterGoal)
 
             if waterStatus == .good {
-                waterSummary = "\(waterActual) / \(waterTarget) ml ✓"
+                waterSummary = String(format: String(localized: "fitness.water.summary.good", defaultValue: "%lld / %lld ml ✓"), waterActual, waterTarget)
                 waterDetail = String(localized: "fitness.water.detail.good",
                                       defaultValue: "Dein Wasserziel ist erreicht. Weiter so!")
             } else {
-                waterSummary = "\(waterActual) / \(waterTarget) ml"
+                waterSummary = String(format: String(localized: "fitness.water.summary", defaultValue: "%lld / %lld ml"), waterActual, waterTarget)
                 let remaining = waterTarget - waterActual
                 // Zeitabhängige Handlungsanweisung
                 let actionHint: String
@@ -182,7 +182,7 @@ struct FeedbackScoringEngine {
 
             let sleepHoursStr = String(format: "%.1f", input.sleepHoursToday)
             let goalStr = String(format: "%.0f", input.sleepGoalHours)
-            let sleepSummary = "\(sleepHoursStr) / \(goalStr) h"
+            let sleepSummary = String(format: String(localized: "fitness.sleep.summary", defaultValue: "%@ / %@ h"), sleepHoursStr, goalStr)
 
             var sleepDetail: String
             switch sleepStatus {
@@ -227,7 +227,7 @@ struct FeedbackScoringEngine {
             let strengthDetail: String
             
             // Format minutes e.g., 20 / 45 min
-            let minStr = "\(Int(input.strengthTodayMinutes)) / \(Int(input.strengthGoalMinutes)) min"
+            let minStr = String(format: String(localized: "fitness.strength.summary.min", defaultValue: "%lld / %lld min"), Int(input.strengthTodayMinutes), Int(input.strengthGoalMinutes))
             
             let daysAgoStr = String(format: String(localized: "fitness.strength.summary.daysago", defaultValue: "(Vor %lld Tagen)"), days)
             
@@ -268,7 +268,7 @@ struct FeedbackScoringEngine {
                 runStatus = .critical
             }
 
-            let runSummary = "\(steps) / \(goal) " + String(localized: "fitness.running.steps.short", defaultValue: "Schritte")
+            let runSummary = String(format: String(localized: "fitness.running.summary", defaultValue: "%lld / %lld Schritte"), steps, goal)
             let runDetail: String
             let missing = max(0, goal - steps)
             
@@ -343,7 +343,9 @@ struct FeedbackScoringEngine {
             }
 
             let nutStatus: CategoryStatus = nutritionProblems.isEmpty ? .good : .warning
-            let nutSummary = "\(Int(input.energyToday)) / \(Int(input.energyGoal)) kcal" + (nutritionProblems.isEmpty ? " ✓" : "")
+            let nutSummary = nutritionProblems.isEmpty
+                ? String(format: String(localized: "fitness.nutrition.summary.good", defaultValue: "%lld / %lld kcal ✓"), Int(input.energyToday), Int(input.energyGoal))
+                : String(format: String(localized: "fitness.nutrition.summary", defaultValue: "%lld / %lld kcal"), Int(input.energyToday), Int(input.energyGoal))
             let nutDetail: String
 
             if nutritionProblems.isEmpty {

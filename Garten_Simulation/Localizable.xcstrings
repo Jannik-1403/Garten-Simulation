@@ -150001,19 +150001,19 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "All values ​​achieved ✓"
+            "value": "%lld / %lld kcal ✓"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todos los valores alcanzados ✓"
+            "value": "%lld / %lld kcal ✓"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toutes les valeurs atteintes ✓"
+            "value": "%lld / %lld kcal ✓"
           }
         },
         "hi": {
@@ -150061,7 +150061,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todos os valores alcançados ✓"
+            "value": "%lld / %lld kcal ✓"
           }
         },
         "pt-PT": {
@@ -471272,6 +471272,180 @@
           "stringUnit": {
             "state": "translated",
             "value": "(Há %lld dias)"
+          }
+        }
+      }
+    },
+    "fitness.water.summary.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml ✓"
+          }
+        }
+      }
+    },
+    "fitness.water.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld ml"
+          }
+        }
+      }
+    },
+    "fitness.sleep.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ h"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ h"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ h"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ / %@ h"
+          }
+        }
+      }
+    },
+    "fitness.strength.summary.min": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld min"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld min"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld min"
+          }
+        }
+      }
+    },
+    "fitness.running.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld steps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld pasos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld pas"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld passos"
+          }
+        }
+      }
+    },
+    "fitness.nutrition.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld kcal"
           }
         }
       }
