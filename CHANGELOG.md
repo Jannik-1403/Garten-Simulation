@@ -1068,3 +1068,4 @@
 - Lokalisierung: Fehlerhafte Sprache pt-PT gelöscht, Key '1' entfernt und verbleibende Lücken (1%) in anderen Sprachen geschlossen.
 - Lokalisierung: Fehlerhafte englische Übersetzung ('Low') für 'Niedrig' in mehreren Sprachen behoben.
 - Lokalisierung: Umfassende Fehlerkorrektur durchgeführt. 'Error 500' Einträge, sowie als übersetzt markierte aber rein englische Texte in Russisch, Chinesisch, Japanisch etc. wurden nun korrekt in die jeweilige Zielsprache übersetzt.
+- Lokalisierung: KI-generierte (nicht per API übersetzte), handverlesene Übersetzungen für alle 81 betroffenen Strings eingefügt, um höchste Qualität zu sichern.
