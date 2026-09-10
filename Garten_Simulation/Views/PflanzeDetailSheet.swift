@@ -320,24 +320,24 @@ struct PflanzeDetailSheet: View {
                         // Focus Session Button
                         VStack(spacing: 8) {
                             Item3DButton(
-                                farbe: .orangePrimary,
-                                sekundaerFarbe: .orangePrimary.darker(),
-                                groesse: 54,
+                                farbe: .blauPrimary,
+                                sekundaerFarbe: .blauPrimary.darker(),
+                                groesse: 74,
                                 isRectangular: false,
                                 aktion: { zeigeFocusSession = true }
                             ) {
                                 Image("Timer full")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 24, height: 24)
+                                    .frame(width: 36, height: 36)
                             }
                             .accessibilityIdentifier("FocusTimerButton")
                             .tourAnchor(.focusTimer)
                             .id(TourStep.focusTimer)
                             
                             Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten"))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(Color.blauPrimary)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.5)
                         }

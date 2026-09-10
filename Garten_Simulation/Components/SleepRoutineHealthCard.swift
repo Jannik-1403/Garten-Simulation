@@ -14,20 +14,11 @@ struct SleepRoutineHealthCard: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack(alignment: .leading, spacing: 20) {
-                // Header
-                HStack(spacing: 8) {
-                    Text(String(localized: "sleep.routine.title", defaultValue: "Schlafroutine"))
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.blauPrimary)
-                    
-                    Spacer()
-                }
-                
                 if let regularity = healthManager.sleepRegularityPercentage {
                     // Regelmäßigkeit (Prozent)
                     VStack(alignment: .center, spacing: 12) {
                         MiniChunkyProgressRing(progress: regularity * 100, goal: 100)
-                            .frame(width: 80, height: 80)
+                            .frame(width: 100, height: 100)
                             .foregroundStyle(Color.blauPrimary)
                         
                         VStack(alignment: .center, spacing: 4) {
