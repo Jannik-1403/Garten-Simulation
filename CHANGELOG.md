@@ -1064,3 +1064,5 @@
 - **Tages-Analyse (UI)**: Die Buttons zum Erhöhen/Senken der Ziele wurden komplett entfernt. Stattdessen wird nun unter jedem Feedback ein klarer Fortschrittsbalken angezeigt, der verdeutlicht, wie viel vom Ziel bereits erreicht wurde.
 - UI-Fix Schlafroutine: Der Fokus-Session Button im Detail-Sheet wurde in seinen ursprünglichen Zustand zurückversetzt. Dafür wurde die Zahl der Regelmäßigkeit im Fortschrittsbalken-Kreis der Schlaf-Routine deutlich vergrößert.
 - UI-Anpassungen WasserTrinkenCard: Statistik-Ring aus der Karte entfernt, Hinzufügen-Button in einen echten Duolingo-Action-Button umgewandelt und Default-Wert auf 250ml gesetzt
+- Placeholder beim Hinzufügen von Wasser in WasserTrinkenCard von 'z.B. 250' auf '250' geändert.
+- Lokalisierung: Fehlerhafte Sprache pt-PT gelöscht, Key '1' entfernt und verbleibende Lücken (1%) in anderen Sprachen geschlossen.
