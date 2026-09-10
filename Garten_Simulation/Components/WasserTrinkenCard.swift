@@ -169,7 +169,7 @@ struct WaterSettingsSheet: View {
                     
                     // Erklär-Block auf weißem 3D Hintergrund
                     VStack(alignment: .leading, spacing: 16) {
-                        Text(String(localized: "water.goal.explanation", defaultValue: "Dein Tagesziel berechnet sich dynamisch anhand deines Körpergewichts und deiner Aktivität. Du kannst es aber auch manuell festlegen."))
+                        Text(String(localized: "water.goal.explanation", defaultValue: "Dein Tagesziel berechnet sich dynamisch: Dein Körpergewicht × 33 ml als Basisbedarf. Pro 1.000 Schritte (ab 8.000) kommen 150 ml hinzu. Pro 15 Min. Ausdauer gibt es +400 ml und pro 15 Min. Krafttraining +200 ml. Du kannst es aber auch manuell überschreiben."))
                             .font(.system(size: 14, weight: .regular, design: .rounded))
                             .foregroundColor(.secondary)
                             
@@ -187,12 +187,23 @@ struct WaterSettingsSheet: View {
                         
                         Divider()
                         
-                        HStack {
-                            Text(String(localized: "water.goal.total", defaultValue: "Heutiges Ziel"))
-                                .font(.system(size: 16, weight: .black, design: .rounded))
-                            Spacer()
-                            Text("\(Int(goalManager.currentGoal)) ml")
-                                .font(.system(size: 16, weight: .black, design: .rounded))
+                        Button(action: {
+                            onEditGoal()
+                        }) {
+                            HStack {
+                                Text(String(localized: "water.goal.total", defaultValue: "Heutiges Ziel"))
+                                    .font(.system(size: 16, weight: .black, design: .rounded))
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                HStack(spacing: 4) {
+                                    Text("\(Int(goalManager.currentGoal)) ml")
+                                        .font(.system(size: 16, weight: .black, design: .rounded))
+                                        .foregroundColor(.primary)
+                                    Image(systemName: "pencil")
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundColor(.blue)
+                                }
+                            }
                         }
                         
                         if goalManager.customMinGoal > 0 || goalManager.customMaxGoal > 0 {
@@ -206,23 +217,6 @@ struct WaterSettingsSheet: View {
                     .padding(.horizontal, 24)
                     
                     VStack(spacing: 16) {
-                        // Manueller Button
-                        Item3DButton(
-                            farbe: .cyan,
-                            sekundaerFarbe: .cyan.opacity(0.8),
-                            groesse: 56,
-                            isRectangular: true,
-                            aktion: {
-                                onEditGoal()
-                            }
-                        ) {
-                            Text(String(localized: "water.goal.edit_button", defaultValue: "Ziel manuell bearbeiten"))
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        .frame(height: 56)
-                        .padding(.horizontal, 24)
-                        
                         // Zurücksetzen Button
                         Button {
                             goalManager.customMinGoal = 0
@@ -245,9 +239,9 @@ struct WaterSettingsSheet: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.gray)
-                            .font(.title3)
+                        Image(systemName: "xmark")
+                            .foregroundColor(.primary)
+                            .font(.system(size: 16, weight: .bold))
                     }
                 }
             }
