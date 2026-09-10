@@ -212031,37 +212031,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "Bajo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "Faible"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "कम"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "Basso"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "低い"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "낮은"
           }
         },
         "nl": {
@@ -212085,13 +212085,13 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "Baixo"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "Низкий"
           }
         },
         "tr": {
@@ -212103,7 +212103,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Low"
+            "value": "低的"
           }
         },
         "zh-Hant": {
