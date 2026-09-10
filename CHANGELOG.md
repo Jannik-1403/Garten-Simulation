@@ -1062,3 +1062,4 @@
 - UI-Update PflanzeDetailSheet/SleepRoutineHealthCard: Der 'Fokus-Session starten' Button wurde von orange auf blau geändert und deutlich vergrößert. Der blaue Titeltext 'Schlafroutine' oben in der Schlaf-Gesundheitskarte wurde restlos entfernt und deren Ring vergrößert.
 - UI-Update PflanzeDetailSheet: Der Fokus-Session Button ist jetzt ein riesiges abgerundetes Rechteck. Der Text 'Fokus-Session starten' wurde IN den Button verschoben, stark vergrößert und wird nun in Weiß auf blauem Grund dargestellt.
 - **Tages-Analyse (UI)**: Die Buttons zum Erhöhen/Senken der Ziele wurden komplett entfernt. Stattdessen wird nun unter jedem Feedback ein klarer Fortschrittsbalken angezeigt, der verdeutlicht, wie viel vom Ziel bereits erreicht wurde.
+- UI-Fix Schlafroutine: Der Fokus-Session Button im Detail-Sheet wurde in seinen ursprünglichen Zustand zurückversetzt. Dafür wurde die Zahl der Regelmäßigkeit im Fortschrittsbalken-Kreis der Schlaf-Routine deutlich vergrößert.

@@ -160,7 +160,8 @@ struct FeedbackScoringEngine {
                                                         defaultValue: "Du kannst noch %lld ml schaffen, wenn du jetzt anfängst."),
                                         remaining)
                 }
-                waterDetail = "\(waterActual) von \(waterTarget) ml getrunken. \(actionHint)"
+                let progressText = String(format: String(localized: "fitness.water.detail.progress", defaultValue: "%lld von %lld ml getrunken."), waterActual, waterTarget)
+                waterDetail = "\(progressText) \(actionHint)"
             }
             results.append(CategoryFeedback(category: .water, status: waterStatus,
                                              summaryText: waterSummary, detailText: waterDetail,
@@ -228,19 +229,21 @@ struct FeedbackScoringEngine {
             // Format minutes e.g., 20 / 45 min
             let minStr = "\(Int(input.strengthTodayMinutes)) / \(Int(input.strengthGoalMinutes)) min"
             
+            let daysAgoStr = String(format: String(localized: "fitness.strength.summary.daysago", defaultValue: "(Vor %lld Tagen)"), days)
+            
             switch strengthStatus {
             case .good:
                 strengthSummary = days == 0
                     ? "\(minStr) ✓"
-                    : "\(minStr) (Vor \(days) Tag(en)) ✓"
+                    : "\(minStr) \(daysAgoStr) ✓"
                 strengthDetail = String(localized: "fitness.strength.detail.good",
                                         defaultValue: "Nettes Krafttraining, weiter so! Dein Training liegt voll im Zeitplan.")
             case .warning:
-                strengthSummary = days == 0 ? minStr : "\(minStr) (Vor \(days) Tagen)"
+                strengthSummary = days == 0 ? minStr : "\(minStr) \(daysAgoStr)"
                 strengthDetail = String(localized: "fitness.strength.detail.warning",
                                         defaultValue: "Dein letztes Training ist schon etwas her. Plane diese Woche noch eine Krafteinheit ein, um dranzubleiben.")
             default:
-                strengthSummary = days == 0 ? minStr : "\(minStr) (Vor \(days) Tagen)"
+                strengthSummary = days == 0 ? minStr : "\(minStr) \(daysAgoStr)"
                 strengthDetail = String(localized: "fitness.strength.detail.critical",
                                         defaultValue: "Letztes Krafttraining liegt zu lange zurück. Versuche heute eine kurze Einheit einzuplanen, um den Rhythmus nicht zu verlieren.")
             }
