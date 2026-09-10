@@ -45,7 +45,7 @@ struct NutrientCategoryDetailView: View {
             }
         }
         .sheet(isPresented: $showSettings) {
-            NavigationView {
+            NavigationStack {
                 List {
                     Section {
                         if categoryName == "Vitamine" {

@@ -1,18 +1,24 @@
 import json
 
-path = "/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Localizable.xcstrings"
-with open(path, "r") as f:
+file_path = "Garten_Simulation/Localizable.xcstrings"
+
+with open(file_path, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-# Fix missing pt-BR value for key '-'
-if "-" in data.get("strings", {}):
-    if "pt-BR" in data["strings"]["-"].get("localizations", {}):
-        unit = data["strings"]["-"]["localizations"]["pt-BR"].get("stringUnit", {})
-        if "value" not in unit:
-            unit["value"] = "-"
-            data["strings"]["-"]["localizations"]["pt-BR"]["stringUnit"] = unit
+# 1. Delete key "1"
+if "strings" in data and "1" in data["strings"]:
+    del data["strings"]["1"]
+    print("Deleted key '1'")
 
-with open(path, "w") as f:
+# 2. Delete pt-PT (Portuguese Portugal) entirely
+if "strings" in data:
+    for key, value in data["strings"].items():
+        if "localizations" in value and "pt-PT" in value["localizations"]:
+            del value["localizations"]["pt-PT"]
+    print("Deleted 'pt-PT' from all strings")
+    
+# Remove pt-PT from metadata if it exists there (it shouldn't, but just in case)
+
+with open(file_path, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
-
-print("Fixed xcstrings file.")
+    f.write("\n")

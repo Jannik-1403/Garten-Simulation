@@ -39,7 +39,7 @@ struct TriggerSelectionSheet: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color(UIColor.secondarySystemBackground).ignoresSafeArea()
                 

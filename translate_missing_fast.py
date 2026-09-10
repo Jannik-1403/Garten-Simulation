@@ -1,6 +1,7 @@
 import json
 import time
 import os
+import concurrent.futures
 from deep_translator import GoogleTranslator
 
 file_path = "Garten_Simulation/Localizable.xcstrings"
@@ -8,7 +9,6 @@ file_path = "Garten_Simulation/Localizable.xcstrings"
 with open(file_path, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-# 1. Delete key "1"
 if "strings" in data and "1" in data["strings"]:
     del data["strings"]["1"]
     print("Deleted key '1'")
@@ -16,7 +16,6 @@ if "strings" in data and "1" in data["strings"]:
 source_language = data.get("sourceLanguage", "en")
 strings = data.get("strings", {})
 
-# Gather all languages
 languages_seen = set()
 for value in strings.values():
     if "localizations" in value:
@@ -30,13 +29,10 @@ def map_lang(lang_code):
     if 'es' in lc: return 'es'
     return lc.split('-')[0]
 
-# Organize by target language to translate in batches
 missing_by_lang = {}
 
 for key, value in strings.items():
     localizations = value.setdefault("localizations", {})
-    
-    # Try to find a good source text
     source_text = key
     if "de" in localizations and "stringUnit" in localizations["de"]:
         source_text = localizations["de"]["stringUnit"]["value"]
@@ -44,9 +40,7 @@ for key, value in strings.items():
         source_text = localizations["en"]["stringUnit"]["value"]
 
     for lang in languages_seen:
-        if lang == source_language:
-            continue
-        
+        if lang == source_language: continue
         needs_translation = False
         if lang not in localizations:
             needs_translation = True
@@ -56,57 +50,47 @@ for key, value in strings.items():
                 needs_translation = True
                 
         if needs_translation:
-            if lang not in missing_by_lang:
-                missing_by_lang[lang] = []
+            if lang not in missing_by_lang: missing_by_lang[lang] = []
             missing_by_lang[lang].append((key, source_text))
 
 total_missing = sum(len(items) for items in missing_by_lang.values())
 print(f"Total strings to translate: {total_missing}")
 
-# Translate and update
+def translate_batch(batch, target_lang):
+    try:
+        translator = GoogleTranslator(source='auto', target=target_lang)
+        keys = [item[0] for item in batch]
+        texts = [item[1] for item in batch]
+        translated = translator.translate_batch(texts)
+        return keys, translated
+    except Exception as e:
+        print(f"Batch failed: {e}")
+        return [], []
+
 for lang, items in missing_by_lang.items():
     print(f"Translating {len(items)} strings for {lang}...")
     target_lang = map_lang(lang)
     
-    try:
-        translator = GoogleTranslator(source='auto', target=target_lang)
-    except Exception as e:
-        print(f"Could not initialize translator for {lang}: {e}")
-        continue
-        
     batch_size = 50
-    for i in range(0, len(items), batch_size):
-        batch = items[i:i+batch_size]
-        keys = [item[0] for item in batch]
-        texts_to_translate = [item[1] for item in batch]
-        
-        try:
-            translated_texts = translator.translate_batch(texts_to_translate)
-        except Exception as e:
-            print(f"Batch translation failed for {lang} at index {i}, retrying individually... {e}")
-            translated_texts = []
-            for text in texts_to_translate:
-                try:
-                    translated_texts.append(translator.translate(text))
-                    time.sleep(0.1)
-                except:
-                    translated_texts.append(text) # fallback to original
-        
-        for key, translated_text in zip(keys, translated_texts):
-            if not translated_text:
-                translated_text = texts_to_translate[keys.index(key)] # fallback
-                
-            strings[key]["localizations"][lang] = {
-                "stringUnit": {
-                    "state": "translated",
-                    "value": translated_text
+    batches = [items[i:i+batch_size] for i in range(0, len(items), batch_size)]
+    
+    completed = 0
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(translate_batch, b, target_lang) for b in batches]
+        for future in concurrent.futures.as_completed(futures):
+            keys, translated = future.result()
+            if not keys: continue
+            for k, t in zip(keys, translated):
+                if not t: t = "fallback" # if translation failed completely
+                strings[k]["localizations"][lang] = {
+                    "stringUnit": {
+                        "state": "translated",
+                        "value": t
+                    }
                 }
-            }
-        
-        time.sleep(1) # delay between batches to avoid rate limit
-        print(f"  ... translated {i+len(batch)} / {len(items)} for {lang}")
+            completed += len(keys)
+            print(f"  ... translated {completed} / {len(items)} for {lang}")
 
-# Save the updated file
 with open(file_path, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
     f.write("\n")

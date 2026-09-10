@@ -104,7 +104,7 @@ struct GoalWeightEditSheet: View {
     @State private var selectedWeight: GoalWeight = .none
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Header
                 VStack(spacing: 6) {

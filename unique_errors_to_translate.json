@@ -1,0 +1,816 @@
+{
+  "%@ (+%lld %@)": {
+    "de": "%@ (+%lld %@)",
+    "langs": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "%@ (Gratis)": {
+    "de": "%@ (Gratis)",
+    "langs": [
+      "es"
+    ]
+  },
+  "%@ %lld %@": {
+    "de": "%1$@ %2$lld %3$@",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "%lld / %lld": {
+    "de": "%1$lld / %2$lld",
+    "langs": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "%lld / %lld %@": {
+    "de": "%lld / %lld %@",
+    "langs": [
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "%lld / %lld ml": {
+    "de": "%lld / %lld ml",
+    "langs": [
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "tr"
+    ]
+  },
+  "assessment.entry.cta": {
+    "de": "Quiz starten",
+    "langs": [
+      "nl"
+    ]
+  },
+  "coins.ad.simulation.reward_ready": {
+    "de": "Glückwunsch! +%d Münzen erhalten.",
+    "langs": [
+      "it"
+    ]
+  },
+  "deco.pagode.name": {
+    "de": "Heilige Pagode",
+    "langs": [
+      "nl"
+    ]
+  },
+  "effekt.frostwarnung.beschreibung": {
+    "de": "Heute gibt es nur %@ Coins und XP beim Gießen.",
+    "langs": [
+      "it"
+    ]
+  },
+  "export.bad_habits.triggers": {
+    "de": "  Auslöser: %@",
+    "langs": [
+      "nl"
+    ]
+  },
+  "export.pdf.focus.routine_format": {
+    "de": "Routine: %@",
+    "langs": [
+      "it"
+    ]
+  },
+  "export.pdf.report.daily_focus_item": {
+    "de": "%@: %lld Min",
+    "langs": [
+      "it",
+      "nl",
+      "pl"
+    ]
+  },
+  "fitness.category.strength": {
+    "de": "Krafttraining",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "fitness.header.allgood": {
+    "de": "Alle Werte im Ziel",
+    "langs": [
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "fitness.header.warning": {
+    "de": "Achtung bei: %@",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "fitness.nutrition.detail.good": {
+    "de": "Ernährung liegt heute im Zielbereich.",
+    "langs": [
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "fitness.nutrition.protein.detail": {
+    "de": "Protein: %lld / %lld g",
+    "langs": [
+      "tr"
+    ]
+  },
+  "fitness.nutrition.summary": {
+    "de": "fitness.nutrition.summary",
+    "langs": [
+      "ja",
+      "ko"
+    ]
+  },
+  "fitness.nutrition.summary.good": {
+    "de": "Alle Werte erreicht ✓",
+    "langs": [
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "tr"
+    ]
+  },
+  "fitness.running.summary.done": {
+    "de": "%lld min ✓",
+    "langs": [
+      "es",
+      "fr",
+      "it",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR"
+    ]
+  },
+  "fitness.water.summary": {
+    "de": "fitness.water.summary",
+    "langs": [
+      "ja",
+      "ko"
+    ]
+  },
+  "fitness.water.summary.good": {
+    "de": "fitness.water.summary.good",
+    "langs": [
+      "ja",
+      "ko"
+    ]
+  },
+  "focus.suggestion.mental.journaling": {
+    "de": "Journaling",
+    "langs": [
+      "hi"
+    ]
+  },
+  "habit.journaling": {
+    "de": "Journaling",
+    "langs": [
+      "hi"
+    ]
+  },
+  "habit.stats.count": {
+    "de": "%d mal ausgeführt",
+    "langs": [
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR"
+    ]
+  },
+  "health.chart.title.mindfulness": {
+    "de": "🧘 Achtsamkeit",
+    "langs": [
+      "nl"
+    ]
+  },
+  "health.chart.title.mindfulness.plain": {
+    "de": "Achtsamkeit",
+    "langs": [
+      "nl"
+    ]
+  },
+  "health.metric.mindfulness": {
+    "de": "Achtsamkeit",
+    "langs": [
+      "nl"
+    ]
+  },
+  "igel_accessoire_titel": {
+    "de": "Accessoire",
+    "langs": [
+      "fr",
+      "nl"
+    ]
+  },
+  "igel_pose_liegen": {
+    "de": "igel_pose_liegen",
+    "langs": [
+      "ko"
+    ]
+  },
+  "igel_pose_rennen": {
+    "de": "igel_pose_rennen",
+    "langs": [
+      "ko"
+    ]
+  },
+  "igel_pose_schlafen": {
+    "de": "igel_pose_schlafen",
+    "langs": [
+      "ko"
+    ]
+  },
+  "igel_pose_winken": {
+    "de": "igel_pose_winken",
+    "langs": [
+      "ko"
+    ]
+  },
+  "item.coin_magnet.usage": {
+    "de": "Dauerhafter Effekt.",
+    "langs": [
+      "nl"
+    ]
+  },
+  "nutrient.vitamin_b2": {
+    "de": "Riboflavin",
+    "langs": [
+      "tr"
+    ]
+  },
+  "nutrient.vitamin_b6": {
+    "de": "Vitamin B6",
+    "langs": [
+      "tr"
+    ]
+  },
+  "nutrient.vitamin_b12": {
+    "de": "Vitamin B12",
+    "langs": [
+      "tr"
+    ]
+  },
+  "pdf.notes.filename": {
+    "de": "Notizen_GartenSimulation.pdf",
+    "langs": [
+      "hi",
+      "ja",
+      "ko"
+    ]
+  },
+  "pfad_phase_beschreibung_%@": {
+    "de": "pfad_phase_beschreibung_%@",
+    "langs": [
+      "ja",
+      "ru",
+      "zh-Hant"
+    ]
+  },
+  "pfad_phase_tag_titel_%@": {
+    "de": "pfad_phase_tag_titel_%@",
+    "langs": [
+      "ja",
+      "ko",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "pfad_schwierigkeit_%@": {
+    "de": "pfad_schwierigkeit_%@",
+    "langs": [
+      "ja",
+      "ko"
+    ]
+  },
+  "pfad_schwierigkeit_%@_desc": {
+    "de": "pfad_schwierigkeit_%@_desc",
+    "langs": [
+      "ja",
+      "ko",
+      "zh-Hans"
+    ]
+  },
+  "pfad.ice.title": {
+    "de": "Streak-Eis",
+    "langs": [
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR"
+    ]
+  },
+  "plant.eukalyptus.name": {
+    "de": "Eukalyptus",
+    "langs": [
+      "nl"
+    ]
+  },
+  "profile.user.name": {
+    "de": "Jannik Schill",
+    "langs": [
+      "es",
+      "fr",
+      "it",
+      "pt",
+      "pt-BR",
+      "tr"
+    ]
+  },
+  "prog_meditation_d6_title": {
+    "de": "Visualisierung",
+    "langs": [
+      "hi"
+    ]
+  },
+  "prog_running_d1_t1": {
+    "de": "%@ km locker laufen",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_running_d4_t1": {
+    "de": "%@ km im zügigen Tempo",
+    "langs": [
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_running_d6_t1": {
+    "de": "%@ km absolviert",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d1_desc": {
+    "de": "Absolviere ein EMOM (Every Minute on the Minute) - %lld Minuten.\nMinute 1: Übung 1\nMinute 2: Übung 2\nMinute 3: Übung 3\nMinute 4: Pause",
+    "langs": [
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d1_title": {
+    "de": "Push-Fokus",
+    "langs": [
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR"
+    ]
+  },
+  "prog_strength_d2_desc": {
+    "de": "Absolviere ein EMOM - %lld Minuten.\nZiele auf saubere Wiederholungen ohne Schwung.",
+    "langs": [
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d3_desc": {
+    "de": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen.",
+    "langs": [
+      "hi",
+      "ko",
+      "nl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d3_t2": {
+    "de": "%lld x %@ Sprints (Maximale Intensität)",
+    "langs": [
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d4_desc": {
+    "de": "Stelle einen Timer auf %lld Minuten. Absolviere so viele saubere Runden wie möglich. Bei unsauberer Technik abbrechen!",
+    "langs": [
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d4_t1": {
+    "de": "%lld Minuten Timer absolviert",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d4_t2": {
+    "de": "Runde: %lld Pull-ups",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d4_t3": {
+    "de": "Runde: %lld Push-ups",
+    "langs": [
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d5_desc": {
+    "de": "Absolviere ein EMOM - %lld Minuten. Squats müssen tief sein (Hüfte unter Kniehöhe).",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d6_desc": {
+    "de": "Auf Zeit! Absolviere %lld Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten.",
+    "langs": [
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d6_t1": {
+    "de": "Übung: %lld Burpees",
+    "langs": [
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_d6_t2": {
+    "de": "Übung: %@ Lauf",
+    "langs": [
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_neg_liegestuetze": {
+    "de": "%lld Negative Liegestütze",
+    "langs": [
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_strength_phase1_desc": {
+    "de": "Fundament & Basisaufbau",
+    "langs": [
+      "nl"
+    ]
+  },
+  "prog_strength_pull_norm": {
+    "de": "%lld Pull-ups",
+    "langs": [
+      "nl"
+    ]
+  },
+  "prog_strength_rounds": {
+    "de": "%lld Runden absolviert",
+    "langs": [
+      "hi",
+      "ja",
+      "ko",
+      "nl",
+      "pl",
+      "pt",
+      "pt-BR",
+      "ru",
+      "tr",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "prog_water_d5_title": {
+    "de": "Visualisierung",
+    "langs": [
+      "hi"
+    ]
+  },
+  "Riboflavin": {
+    "de": "Riboflavin",
+    "langs": [
+      "tr"
+    ]
+  },
+  "screentime_suggestions_title": {
+    "de": "Vorschläge",
+    "langs": [
+      "fr"
+    ]
+  },
+  "settings.notifications": {
+    "de": "Benachrichtigungen",
+    "langs": [
+      "fr"
+    ]
+  },
+  "shop.item.description": {
+    "de": "Beschreibung",
+    "langs": [
+      "fr"
+    ]
+  },
+  "sleep.routine.insight.excellent": {
+    "de": "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen.",
+    "langs": [
+      "hi",
+      "pl",
+      "tr"
+    ]
+  },
+  "sleep.routine.insight.needs_work": {
+    "de": "Du musst daran arbeiten. Du brauchst eine Schlafroutine. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen.",
+    "langs": [
+      "hi",
+      "pl",
+      "tr"
+    ]
+  },
+  "sleep.routine.insight.specific_day": {
+    "de": "Du musst daran arbeiten. Besonders am %@ gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen.",
+    "langs": [
+      "pl",
+      "tr"
+    ]
+  },
+  "sleep.routine.insight.weekend": {
+    "de": "Du musst daran arbeiten. Besonders am Wochenende gehst du unregelmäßig ins Bett. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen.",
+    "langs": [
+      "hi",
+      "pl",
+      "tr"
+    ]
+  },
+  "stats.score.focus.period_format": {
+    "de": "Fokus in %@",
+    "langs": [
+      "nl"
+    ]
+  },
+  "streak.lost": {
+    "de": "Streak verloren",
+    "langs": [
+      "nl"
+    ]
+  },
+  "streak.motivation.%lld": {
+    "de": "streak.motivation.%lld",
+    "langs": [
+      "it"
+    ]
+  },
+  "support.description": {
+    "de": "Beschreibung",
+    "langs": [
+      "fr"
+    ]
+  },
+  "todos.tab.general": {
+    "de": "Allgemeine To-Dos",
+    "langs": [
+      "pt",
+      "pt-BR"
+    ]
+  },
+  "verlauf.analysis.subtitle": {
+    "de": "Gewohnheit Analyse",
+    "langs": [
+      "ko",
+      "ru",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "water.goal.base": {
+    "de": "Basisbedarf",
+    "langs": [
+      "nl"
+    ]
+  },
+  "weekly_report.card.focus_time.value": {
+    "de": "%lld Minuten",
+    "langs": [
+      "nl"
+    ]
+  },
+  "weekly_report.chart.focus_time.value": {
+    "de": "%lld Minuten",
+    "langs": [
+      "nl"
+    ]
+  },
+  "widget_interactive_routine_title": {
+    "de": "Routine (Pro)",
+    "langs": [
+      "fr",
+      "it"
+    ]
+  },
+  "xp_bis_naechste": {
+    "de": "%2$d XP bis %1$@",
+    "langs": [
+      "ko"
+    ]
+  }
+}
