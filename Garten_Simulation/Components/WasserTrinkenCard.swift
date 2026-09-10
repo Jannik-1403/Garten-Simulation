@@ -8,6 +8,8 @@ struct WasserTrinkenCard: View {
     
     @State private var zeigeHinzufuegenSheet = false
     @State private var manuelleMenge: String = ""
+    @State private var showGoalDetails = false
+    @State private var showEditGoalSheet = false
     
     var onUnlink: (() -> Void)? = nil
     
@@ -49,6 +51,32 @@ struct WasserTrinkenCard: View {
                         .foregroundColor(.white)
                     }
                     .frame(height: 56)
+                    
+                    // Goal Details Toggle
+                    Button(action: {
+                        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                            showGoalDetails.toggle()
+                        }
+                    }) {
+                        HStack {
+                            Text(String(localized: "water.goal.details", defaultValue: "Tagesziel-Berechnung"))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                            Image(systemName: showGoalDetails ? "chevron.up" : "chevron.down")
+                        }
+                        .foregroundColor(.gray)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 16)
+                        .background(Color.gray.opacity(0.1))
+                        .clipShape(Capsule())
+                    }
+                    .padding(.top, 16)
+                    
+                    if showGoalDetails {
+                        GoalDetailsView(goalManager: goalManager, onEditGoal: {
+                            showEditGoalSheet = true
+                        })
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
                 }
                 .padding(24)
                 
@@ -131,6 +159,10 @@ struct WasserTrinkenCard: View {
                 }
             }
             .presentationDetents([.height(350)])
+        }
+        .sheet(isPresented: $showEditGoalSheet) {
+            EditWaterGoalSheet(goalManager: goalManager)
+                .presentationDragIndicator(.visible)
         }
     }
 }

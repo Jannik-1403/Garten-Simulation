@@ -69,12 +69,16 @@ struct PflanzenCard: View {
             }
         }
         
-        guard let target = pflanze.healthTarget, target > 0 else {
+        var effectiveTarget = pflanze.healthTarget ?? 1.0
+        if metric == .water {
+            effectiveTarget = WaterGoalManager.shared.currentGoal
+        }
+        guard effectiveTarget > 0 else {
             return nil
         }
         let baseCurrent = getBaseHealthCurrent(for: metric)
         let current = baseCurrent
-        return min(1.0, max(0.0, current / target))
+        return min(1.0, max(0.0, current / effectiveTarget))
     }
     
     private var baseProgress: Double {
