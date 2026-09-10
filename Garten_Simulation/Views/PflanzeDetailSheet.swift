@@ -322,24 +322,27 @@ struct PflanzeDetailSheet: View {
                             Item3DButton(
                                 farbe: .blauPrimary,
                                 sekundaerFarbe: .blauPrimary.darker(),
-                                groesse: 74,
-                                isRectangular: false,
+                                groesse: 110,
+                                isRectangular: true,
                                 aktion: { zeigeFocusSession = true }
                             ) {
-                                Image("Timer full")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 36, height: 36)
+                                VStack(spacing: 8) {
+                                    Image("Timer full")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 44, height: 44)
+                                    
+                                    Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten"))
+                                        .font(.system(size: 20, weight: .black, design: .rounded))
+                                        .foregroundStyle(.white)
+                                        .multilineTextAlignment(.center)
+                                        .minimumScaleFactor(0.5)
+                                }
+                                .padding(.horizontal, 16)
                             }
                             .accessibilityIdentifier("FocusTimerButton")
                             .tourAnchor(.focusTimer)
                             .id(TourStep.focusTimer)
-                            
-                            Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten"))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(Color.blauPrimary)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
                         }
                     }
                     .padding(.top, 16)
