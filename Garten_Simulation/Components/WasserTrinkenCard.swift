@@ -7,7 +7,7 @@ struct WasserTrinkenCard: View {
     @StateObject private var viewModel = WaterTrackerViewModel()
     
     @State private var zeigeHinzufuegenSheet = false
-    @State private var manuelleMenge: String = ""
+    @State private var manuelleMenge: String = "250"
     
     var onUnlink: (() -> Void)? = nil
     
@@ -22,33 +22,19 @@ struct WasserTrinkenCard: View {
                         Spacer()
                     }
                     
-                    // Progress Ring
-                    ChunkyProgressRing(progress: healthManager.todaysWater, goal: goalManager.currentGoal)
-                        .frame(width: 200, height: 200)
-                    
-                    // Text
-                    Text("\(Int(healthManager.todaysWater)) / \(Int(goalManager.currentGoal)) ml")
-                        .font(.system(size: 24, weight: .black, design: .rounded))
-                        .foregroundColor(.blue)
-                    
                     // Add Button
-                    Item3DButton(
-                        farbe: .cyan,
-                        sekundaerFarbe: .cyan.opacity(0.8),
-                        groesse: 56,
-                        isRectangular: true,
-                        aktion: {
-                            zeigeHinzufuegenSheet = true
-                        }
-                    ) {
+                    Button(action: {
+                        zeigeHinzufuegenSheet = true
+                    }) {
                         HStack {
                             Image(systemName: "plus.circle.fill")
                             Text(String(localized: "water.add.button", defaultValue: "Wasser hinzufügen"))
                         }
-                        .font(.headline)
-                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 24)
                     }
-                    .frame(height: 56)
+                    .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .cyan, shadowColor: .cyan.opacity(0.8), foregroundColor: .white))
                 }
                 .padding(24)
                 
@@ -76,12 +62,8 @@ struct WasserTrinkenCard: View {
         .sheet(isPresented: $zeigeHinzufuegenSheet) {
             NavigationStack {
                 VStack(spacing: 24) {
-                    Text(String(localized: "water.add.title", defaultValue: "Wie viel ml hast du getrunken?"))
-                        .font(.headline)
-                        .padding(.top, 32)
-                    
                     HStack(spacing: 8) {
-                        TextField(String(localized: "water.add.placeholder", defaultValue: "z.B. 250"), text: $manuelleMenge)
+                        TextField("250", text: $manuelleMenge)
                             .keyboardType(.numberPad)
                             .font(.system(size: 32, weight: .bold, design: .rounded))
                             .multilineTextAlignment(.center)
@@ -94,27 +76,23 @@ struct WasserTrinkenCard: View {
                             .foregroundColor(.gray)
                     }
                     .padding(.horizontal, 40)
+                    .padding(.top, 40)
                     
-                    Item3DButton(
-                        farbe: .cyan,
-                        sekundaerFarbe: .cyan.opacity(0.8),
-                        groesse: 56,
-                        isRectangular: true,
-                        aktion: {
-                            if let amount = Double(manuelleMenge), amount > 0 {
-                                // Optimistic UI update
-                                healthManager.todaysWater += amount
-                                viewModel.addWater(ml: amount)
-                                manuelleMenge = ""
-                                zeigeHinzufuegenSheet = false
-                            }
+                    Button(action: {
+                        if let amount = Double(manuelleMenge), amount > 0 {
+                            // Optimistic UI update
+                            healthManager.todaysWater += amount
+                            viewModel.addWater(ml: amount)
+                            manuelleMenge = "250"
+                            zeigeHinzufuegenSheet = false
                         }
-                    ) {
+                    }) {
                         Text(String(localized: "common.save", defaultValue: "Speichern"))
-                            .font(.headline)
-                            .foregroundColor(.white)
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 24)
                     }
-                    .frame(height: 56)
+                    .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .cyan, shadowColor: .cyan.opacity(0.8), foregroundColor: .white))
                     .padding(.horizontal, 40)
                     
                     Spacer()
