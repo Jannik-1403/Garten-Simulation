@@ -222,7 +222,7 @@ class HealthManager: ObservableObject {
             }
         }
         
-        var typesToShare: Set<HKSampleType> = [water]
+        let typesToShare: Set<HKSampleType> = [water]
         
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { [weak self] success, error in
             DispatchQueue.main.async {

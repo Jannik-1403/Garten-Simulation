@@ -1610,106 +1610,6 @@
         }
       }
     },
-    "%lld/100": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%%лд/100"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld/100"
-          }
-        }
-      }
-    },
     "%lld%@": {
       "localizations": {
         "de": {
@@ -2107,106 +2007,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "• %@"
-          }
-        }
-      }
-    },
-    "+%lld": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lldएलडी"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%%ллд"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%ll"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld"
           }
         }
       }
@@ -147745,97 +147545,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wasseraufnahme seit %lld Tagen unter 50%% des Ziels. Trink dein erstes Glas heute vor 10 Uhr."
+            "value": "Wasseraufnahme seit %lld Tagen unter 50%@ des Ziels. Trink dein erstes Glas heute vor 10 Uhr."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Water intake below 50%% of goal for %lld days. Drink your first glass before 10 am today."
+            "value": "Water intake below 50%@ of goal for %lld days. Drink your first glass before 10 am today."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ingesta de agua por debajo del 50%% del objetivo durante %lld días. Bebe tu primer vaso antes de las 10 de la mañana hoy."
+            "value": "Ingesta de agua por debajo del 50%@ del objetivo durante %lld días. Bebe tu primer vaso antes de las 10 de la mañana hoy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apport en eau sous 50%% de l'objectif depuis %lld jours. Bois ton premier verre avant 10h aujourd'hui."
+            "value": "Apport en eau sous 50%@ de l'objectif depuis %lld jours. Bois ton premier verre avant 10h aujourd'hui."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पानी की मात्रा पिछले %lld दिनों से लक्ष्य के 50%% से कम है। आज सुबह 10 बजे से पहले पहला गिलास पिएं।"
+            "value": "पानी की मात्रा पिछले %lld दिनों से लक्ष्य के 50%@ से कम है। आज सुबह 10 बजे से पहले पहला गिलास पिएं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Assunzione di acqua sotto il 50%% dell'obiettivo da %lld giorni. Bevi il primo bicchiere entro le 10 oggi."
+            "value": "Assunzione di acqua sotto il 50%@ dell'obiettivo da %lld giorni. Bevi il primo bicchiere entro le 10 oggi."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "水分摂取量が%lld日間、目標の50%%を下回っています。今日は午前10時までに1杯飲みましょう。"
+            "value": "水分摂取量が%lld日間、目標の50%@を下回っています。今日は午前10時までに1杯飲みましょう。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "물 섭취량이 %lld일째 목표의 50%% 미만입니다. 오늘 오전 10시 전에 첫 잔을 마시세요."
+            "value": "물 섭취량이 %lld일째 목표의 50%@ 미만입니다. 오늘 오전 10시 전에 첫 잔을 마시세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterinname al %lld dagen onder 50%% van het doel. Drink je eerste glas vandaag voor 10 uur."
+            "value": "Waterinname al %lld dagen onder 50%@ van het doel. Drink je eerste glas vandaag voor 10 uur."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spożycie wody poniżej 50%% celu od %lld dni. Wypij dziś pierwszą szklankę przed 10:00."
+            "value": "Spożycie wody poniżej 50%@ celu od %lld dni. Wypij dziś pierwszą szklankę przed 10:00."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ingestão de água abaixo de 50%% da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
+            "value": "Ingestão de água abaixo de 50%@ da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ingestão de água abaixo de 50%% da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
+            "value": "Ingestão de água abaixo de 50%@ da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Потребление воды ниже 50%% цели уже %lld дн. Выпей первый стакан сегодня до 10:00."
+            "value": "Потребление воды ниже 50%@ цели уже %lld дн. Выпей первый стакан сегодня до 10:00."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Su tüketimi %lld gündür hedefin %%50'sinin altında. Bugün ilk bardağını saat 10'dan önce iç."
+            "value": "Su tüketimi %lld gündür hedefin %@50'sinin altında. Bugün ilk bardağını saat 10'dan önce iç."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "饮水量已连续%lld天低于目标的50%%。今天上午10点前喝第一杯水。"
+            "value": "饮水量已连续%lld天低于目标的50%@。今天上午10点前喝第一杯水。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "飲水量已連續%lld天低於目標的50%%。今天上午10點前喝第一杯水。"
+            "value": "飲水量已連續%lld天低於目標的50%@。今天上午10點前喝第一杯水。"
           }
         }
       }
@@ -149650,107 +149450,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "膳食纖維: %lld / %lld 克"
-          }
-        }
-      }
-    },
-    "fitness.nutrition.mineral.detail": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: unter 70%% Bedarf"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: below 70%% demand"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: por debajo del 70%% de la demanda"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ : en dessous de 70 %% de la demande"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: 70%% से कम मांग"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: domanda inferiore al 70%%."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: 70%% 需要未満"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: 수요 70%% 미만"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: minder dan 70%% vraag"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: poniżej 70%% zapotrzebowania"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: abaixo de 70%% da demanda"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: abaixo de 70%% da demanda"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: спрос ниже 70%%"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: %70 talebin altında"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@：低于 70%% 需求"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@：低於 70%% 需求"
           }
         }
       }
@@ -155459,206 +155158,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "錯誤代碼四百零四：未找到意志力！我把我的首要任務換成十分鐘毫無意義的滾動。這聰明嗎？不，我還是這麼做嗎？是的！ ！ （再見，寶貴的時間…）"
-          }
-        }
-      }
-    },
-    "focus.giveup.walkofshame.sentence4": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich bestätige hiermit den Abbruch (Status: einhundert Prozent undiszipliniert). Statt plus eins Schritt nach vorne, mache ich minus drei Schritte zurück. Meine #Ziele sind mir gerade egal; ich klicke auf [Entsperren] & vergeude eine halbe Stunde."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "I hereby confirm the cancellation (status: one hundred percent undisciplined). Instead of taking a plus one step forward, I take a minus three steps back. I don't care about my #goals right now; I click [Unlock] & waste half an hour."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Por la presente confirmo la cancelación (estado: cien por ciento indisciplinado). En lugar de dar un paso más hacia adelante, doy tres pasos menos hacia atrás. No me importan mis #metas en este momento; Hago clic en [Desbloquear] y pierdo media hora."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je confirme par la présente l'annulation (statut: cent pour cent indiscipliné). Au lieu de faire un pas en avant, je recule de trois pas. Je ne me soucie pas de mes #objectifs pour le moment ; Je clique sur [Déverrouiller] et je perds une demi-heure."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "मैं इसके द्वारा रद्दीकरण की पुष्टि करता हूं (स्थिति: एक सौ प्रतिशत अनुशासनहीन)। प्लस वन कदम आगे बढ़ने के बजाय, मैं माइनस तीन कदम पीछे जाता हूं। मुझे अभी अपने #लक्ष्यों की परवाह नहीं है; मैं [अनलॉक] पर क्लिक करता हूं और आधा घंटा बर्बाद करता हूं।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Con la presente confermo la cancellazione (status: indisciplinato al cento per cento). Invece di fare un passo avanti, faccio tre passi indietro. Non mi interessano i miei #obiettivi in ​​questo momento; Faccio clic su [Sblocca] e perdo mezz'ora."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "私はここにキャンセルを確認します (ステータス: 100%% 規律がありません)。プラス1歩進むのではなく、マイナス3歩下がる。私は今、自分の #goals については気にしていません。 [ロック解除] をクリックして 30 分を無駄にしました。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이에 따라 취소를 확인합니다(상태: 100%% 규율 미달). 나는 플러스 한 걸음 앞으로 나아가는 대신 마이너스 세 걸음 뒤로 물러납니다. 나는 지금 내 #목표에 관심이 없습니다. [잠금 해제]를 클릭하고 30분을 낭비했습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hierbij bevestig ik de annulering (status: honderd procent ongedisciplineerd). In plaats van een stap plus één vooruit te zetten, doe ik een stap min drie achteruit. Ik geef momenteel niets om mijn #doelen; Ik klik op [Ontgrendelen] en verspil een half uur."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niniejszym potwierdzam rezygnację (status: stuprocentowo niezdyscyplinowany). Zamiast zrobić plus jeden krok do przodu, robię minus trzy kroki w tył. Nie interesują mnie teraz moje #cele; Klikam [Odblokuj] i tracę pół godziny."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Venho por este meio confirmar o cancelamento (status: cem por cento indisciplinado). Em vez de dar mais um passo à frente, dou menos três passos para trás. Não me importo com meus #objetivos agora; Clico em [Desbloquear] e perco meia hora."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Venho por este meio confirmar o cancelamento (status: cem por cento indisciplinado). Em vez de dar mais um passo à frente, dou menos três passos para trás. Não me importo com meus #objetivos agora; Clico em [Desbloquear] e perco meia hora."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Настоящим подтверждаю отмену (статус: стопроцентно недисциплинирован). Вместо того, чтобы сделать плюс один шаг вперед, я делаю минус три шага назад. Меня сейчас не волнуют мои #цели; Я нажимаю [Разблокировать] и теряю полчаса."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İptali onaylıyorum (durum: yüzde yüz disiplinsiz). Artı bir adım ileri gitmek yerine, eksi üç adım geri atıyorum. Şu anda #hedeflerim umurumda değil; [Kilidi Aç]'a tıklıyorum ve yarım saatimi boşa harcıyorum."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "我特此确认取消（状态：百分百不遵守纪律）。我没有前进正一步，而是后退了负三步。我现在不关心我的#goals；我点击[解锁]，浪费了半个小时。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "我特此確認取消（狀態：百分百不遵守紀律）。我沒有前進正一步，而是後退了負三步。我現在不關心我的#goals；我點擊[解鎖]，浪費了半個小時。"
-          }
-        }
-      }
-    },
-    "focus.giveup.walkofshame.sentence5": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Warum aufgeben? Weil ich null Prozent Frustrationstoleranz habe. Ich wähle den Shortcut (Typ B) und ignoriere Regel Nummer eins: Bleib fokussiert! Meine HP sinken um minus fünfzehn Punkte; das ist der Preis für zwei Min. Schwäche."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Why give up? Because I have zero percent frustration tolerance. I choose the shortcut (Type B) and ignore rule number one: Stay focused! My HP drops by minus fifteen points; That's the price for two minutes of weakness."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Por qué rendirse? Porque tengo cero por ciento de tolerancia a la frustración. Elijo el atajo (Tipo B) e ignoro la regla número uno: ¡Mantente concentrado! Mi HP cae menos quince puntos; Ése es el precio por dos minutos de debilidad."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pourquoi abandonner ? Parce que j'ai une tolérance à la frustration de zéro pour cent. Je choisis le raccourci (Type B) et ignore la règle numéro un: Restez concentré ! Mes PV chutent de moins quinze points ; C'est le prix de deux minutes de faiblesse."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "हार क्यों मानें? क्योंकि मुझमें शून्य प्रतिशत निराशा सहनशीलता है। मैं शॉर्टकट (टाइप बी) चुनता हूं और नियम नंबर एक को नजरअंदाज करता हूं: केंद्रित रहें! मेरा एचपी शून्य से पंद्रह अंक नीचे चला गया; यह दो मिनट की कमजोरी की कीमत है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Perché arrendersi? Perché ho una tolleranza alla frustrazione pari allo zero per cento. Scelgo la scorciatoia (Tipo B) e ignoro la regola numero uno: resta concentrato! I miei HP scendono di meno quindici punti; Questo è il prezzo per due minuti di debolezza."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "なぜ諦めるのでしょうか？なぜなら、私にはフラストレーション耐性がゼロパーセントだからです。私はショートカット (タイプ B) を選択し、ルール 1 番目の「集中力を維持する!」を無視します。私のHPはマイナス15ポイント減少しました。それは2分間の弱さの代償だ。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "왜 포기합니까? 나는 좌절감이 0%%이기 때문입니다. 나는 지름길(유형 B)을 선택하고 첫 번째 규칙을 무시합니다. 집중하세요! 내 HP가 마이너스 15포인트 떨어졌습니다. 그것은 약 2분의 대가입니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Waarom opgeven? Omdat ik een frustratietolerantie van nul procent heb. Ik kies de snelkoppeling (Type B) en negeer regel nummer één: blijf gefocust! Mijn HP daalt met min vijftien punten; Dat is de prijs voor twee minuten zwakte."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dlaczego się poddawać? Ponieważ mam zerową tolerancję na frustrację. Wybieram skrót (typ B) i ignoruję zasadę numer jeden: Bądź skupiony! Moje HP spada o minus piętnaście punktów; Taka jest cena za dwie minuty słabości."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Por que desistir? Porque tenho zero por cento de tolerância à frustração. Escolho o atalho (Tipo B) e ignoro a regra número um: Mantenha o foco! Meu HP cai menos quinze pontos; Esse é o preço por dois minutos de fraqueza."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Por que desistir? Porque tenho zero por cento de tolerância à frustração. Escolho o atalho (Tipo B) e ignoro a regra número um: Mantenha o foco! Meu HP cai menos quinze pontos; Esse é o preço por dois minutos de fraqueza."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Зачем сдаваться? Потому что у меня нулевой процент терпимости к разочарованию. Я выбираю короткий путь (тип Б) и игнорирую правило номер один: оставаться сосредоточенным! Мои HP падают на минус пятнадцать пунктов; Это цена за две минуты слабости."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neden vazgeçiyorsun? Çünkü hayal kırıklığı toleransım yüzde sıfırdır. Kısayolu seçiyorum (B Tipi) ve bir numaralı kuralı görmezden geliyorum: Odaklanın! HP'm eksi on beş puan düşüyor; İki dakikalık zayıflığın bedeli bu."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "为什么要放弃？因为我对挫折的容忍度为零。我选择捷径（B 型）并忽略第一条规则：保持专注！我的生命值下降了负十五点；这就是两分钟疲软的代价。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "為什麼要放棄？因為我對挫折的容忍度是零。我選擇捷徑（B 型）並忽略第一條規則：保持專注！我的生命值下降了負十五點；這就是兩分鐘疲軟的代價。"
           }
         }
       }
