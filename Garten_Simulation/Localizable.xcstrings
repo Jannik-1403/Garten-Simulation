@@ -146816,12 +146816,6 @@
             "value": "Não útil"
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Não útil"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -146918,12 +146912,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Útil"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Útil"
@@ -147028,12 +147016,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@ abaixo do valor recomendado há %2$lld dias. Inclua na próxima refeição."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ abaixo do valor recomendado há %2$lld dias. Inclui-o na próxima refeição."
           }
         },
         "ru": {
@@ -147232,12 +147214,6 @@
             "value": "Todos os valores de hoje dentro da meta."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todos os valores de hoje dentro do objetivo."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -147339,12 +147315,6 @@
             "value": "Água, atividade e treino atendem à meta."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Água, atividade e treino cumprem o objetivo."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -147444,12 +147414,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Todas as metas do dia atingidas."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todos os objetivos do dia atingidos."
           }
         },
         "ru": {
@@ -147648,12 +147612,6 @@
             "value": "Passos de hoje abaixo de 50% da média de 7 dias. Faça uma caminhada de 20 minutos hoje à noite."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Passos de hoje abaixo de 50% da média de 7 dias. Faz uma caminhada de 20 minutos esta noite."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -147753,12 +147711,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Último treino de força há %lld dias. Programe um treino para hoje."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Último treino de força há %lld dias. Marca um treino para hoje."
           }
         },
         "ru": {
@@ -147862,12 +147814,6 @@
             "value": "Ingestão de água abaixo de 50%% da meta há %lld dias. Beba seu primeiro copo antes das 10h hoje."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ingestão de água abaixo de 50%% do objetivo há %lld dias. Bebe o teu primeiro copo antes das 10h hoje."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -147967,12 +147913,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ingestão de água abaixo da meta diária há %lld dias. Beba mais um copo do que ontem."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ingestão de água abaixo do objetivo diário há %lld dias. Bebe mais um copo do que ontem."
           }
         },
         "ru": {
@@ -148274,12 +148214,6 @@
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -148376,12 +148310,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise nutricional diária"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Análise nutricional diária"
@@ -148488,12 +148416,6 @@
             "value": "Correr"
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Correr"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -148590,12 +148512,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária de execução"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Análise diária de execução"
@@ -148702,12 +148618,6 @@
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -148804,12 +148714,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária do sono"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Análise diária do sono"
@@ -148916,12 +148820,6 @@
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -149018,12 +148916,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária de força"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Análise diária de força"
@@ -149130,12 +149022,6 @@
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -149232,12 +149118,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Análise diária da água"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Análise diária da água"
@@ -149344,12 +149224,6 @@
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -149446,12 +149320,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know. %@"
@@ -149558,12 +149426,6 @@
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -149660,12 +149522,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "fibra"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "fibra"
@@ -149772,12 +149628,6 @@
             "value": "Fibra: %lld / %lld g"
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Balastro: %lld / %lld g"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -149874,12 +149724,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@: abaixo de 70%% da demanda"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "%@: abaixo de 70%% da demanda"
@@ -149986,12 +149830,6 @@
             "value": "Sua necessidade de algumas vitaminas e minerais não foi atendida hoje."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua necessidade de algumas vitaminas e minerais não foi atendida hoje."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -150088,12 +149926,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vitaminas e Minerais"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Vitaminas e Minerais"
@@ -150200,12 +150032,6 @@
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -150302,12 +150128,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Proteína: %lld / %lld g"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Proteína: %lld / %lld g"
@@ -150509,12 +150329,6 @@
             "value": "%lld / %lld kcal ✓"
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todos os valores alcançados ✓"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -150611,12 +150425,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Boa sessão de resistência hoje."
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Boa sessão de resistência hoje."
@@ -151127,12 +150935,6 @@
             "value": "Nenhuma sessão de corrida hoje. Uma corrida curta de 20 minutos é suficiente para o dia."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nenhuma sessão de corrida hoje. Uma corrida curta de 20 minutos é suficiente para o dia."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -151430,12 +151232,6 @@
             "value": "%lld min ✓"
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld min ✓"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -151532,12 +151328,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nada hoje"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Nada hoje"
@@ -151744,12 +151534,6 @@
             "value": "Perfeito! Todos os seus valores estão na faixa ideal."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Perfeito! Todos os seus valores estão na faixa ideal."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -151845,12 +151629,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pontuação Diária"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Pontuação Diária"
@@ -151952,12 +151730,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dormir menos de 6 horas afeta a concentração e a recuperação. Para dormir mais cedo hoje."
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Dormir menos de 6 horas afeta a concentração e a recuperação. Para dormir mais cedo hoje."
@@ -152165,12 +151937,6 @@
             "value": "Bom sono. Seu corpo foi capaz de se recuperar."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bom sono. Seu corpo foi capaz de se recuperar."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -152373,12 +152139,6 @@
             "value": "Um pouco menos do que o recomendado. Tente dormir mais cedo hoje."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Um pouco menos do que o recomendado. Tente dormir mais cedo hoje."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -152575,12 +152335,6 @@
             "value": "Já faz muito tempo desde sua última sessão de treinamento de força. Planeje uma breve sessão hoje."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Já faz muito tempo desde sua última sessão de treinamento de força. Planeje uma breve sessão hoje."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -152677,12 +152431,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O treinamento de força está dentro do cronograma."
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "O treinamento de força está dentro do cronograma."
@@ -152789,12 +152537,6 @@
             "value": "Planeje outra sessão de força esta semana."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Planeje outra sessão de força esta semana."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -152891,12 +152633,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld dias atrás"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld dias atrás"
@@ -153193,12 +152929,6 @@
             "value": "%lld dia(s) atrás ✓"
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld dia(s) atrás ✓"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -153295,12 +153025,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoje ✓"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Hoje ✓"
@@ -153407,12 +153131,6 @@
             "value": "%lld dias atrás"
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld dias atrás"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -153509,12 +153227,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beba um copo grande nas próximas 2 horas."
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Beba um copo grande nas próximas 2 horas."
@@ -153621,12 +153333,6 @@
             "value": "Você ainda pode fazer %lld ml se começar agora."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você ainda pode fazer %lld ml se começar agora."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -153723,12 +153429,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ainda tenho %lld ml para gastar na hora do almoço."
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Ainda tenho %lld ml para gastar na hora do almoço."
@@ -153835,12 +153535,6 @@
             "value": "Beba seu primeiro copo agora."
           }
         },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beba seu primeiro copo agora."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -153937,12 +153631,6 @@
           }
         },
         "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua meta de água foi alcançada. Mantem!"
-          }
-        },
-        "pt-PT": {
           "stringUnit": {
             "state": "translated",
             "value": "Sua meta de água foi alcançada. Mantem!"
@@ -201718,6 +201406,66 @@
             "state": "translated",
             "value": "ml"
           }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "밀리리터"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ミリリットル"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毫升"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "мл"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एमएल"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毫升"
+          }
         }
       }
     },
@@ -248773,6 +248521,66 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reviver todas"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ravvivare tutti"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모두를 부활시키세요"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herkesi canlandır"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "みんな復活させて"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "復活大家"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оживи всех"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ożyw wszystkich"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबको पुनर्जीवित करो"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breng iedereen weer tot leven"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复活大家"
           }
         }
       }
@@ -426348,6 +426156,66 @@
           "stringUnit": {
             "state": "translated",
             "value": "Todas as plantas revividas"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutte le piante si sono riprese"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 식물이 살아났다"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bütün bitkiler canlandı"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべての植物が生き返りました"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有植物都復活了"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все растения ожили."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie rośliny odżyły"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सभी पौधे पुनर्जीवित हो गये"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle planten kwamen weer tot leven"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有植物都复活了"
           }
         }
       }
