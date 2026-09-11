@@ -198,8 +198,7 @@ struct GratitudeJournalView: View {
             thankfulFor: thankfulFor.trimmingCharacters(in: .whitespacesAndNewlines),
             wentWell: wentWell.trimmingCharacters(in: .whitespacesAndNewlines),
             doDifferently: doDifferently.trimmingCharacters(in: .whitespacesAndNewlines),
-            improveTomorrow: improveTomorrow.trimmingCharacters(in: .whitespacesAndNewlines),
-            habitId: habit.id
+            improveTomorrow: improveTomorrow.trimmingCharacters(in: .whitespacesAndNewlines)
         )
         
         habit.journalEntries.append(entry)
