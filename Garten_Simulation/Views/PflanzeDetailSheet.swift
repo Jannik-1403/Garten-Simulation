@@ -27,6 +27,7 @@ struct PflanzeDetailSheet: View {
     @State private var selectedTimerEntry: TimerEntry? = nil
     @State private var zeigeTimerSheet = false
     @State private var zeigeGratitudeJournal = false
+    @State private var selectedJournalEntry: GratitudeJournalEntry? = nil
     @State private var isGratitudeExpanded = true
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
@@ -133,29 +134,36 @@ struct PflanzeDetailSheet: View {
                                 } else {
                                     let sortedEntries = pflanze.journalEntries.sorted(by: { $0.date > $1.date })
                                     ForEach(sortedEntries) { entry in
-                                        HStack {
-                                            VStack(alignment: .leading, spacing: 4) {
-                                                Text(entry.date.formatted(date: .abbreviated, time: .shortened))
-                                                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                                                    .foregroundColor(.secondary)
-                                                Text(entry.thankfulFor)
-                                                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                                                    .foregroundColor(.primary)
-                                                    .lineLimit(2)
-                                            }
-                                            Spacer()
-                                            HStack(spacing: 2) {
-                                                ForEach(0..<entry.mood, id: \.self) { _ in
-                                                    Image("Powerup")
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .frame(width: 14, height: 14)
+                                        Button {
+                                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                            selectedJournalEntry = entry
+                                        } label: {
+                                            HStack {
+                                                VStack(alignment: .leading, spacing: 4) {
+                                                    Text(entry.date.formatted(date: .abbreviated, time: .shortened))
+                                                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                        .foregroundColor(.secondary)
+                                                    Text(entry.thankfulFor)
+                                                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                        .foregroundColor(.primary)
+                                                        .lineLimit(2)
+                                                        .multilineTextAlignment(.leading)
+                                                }
+                                                Spacer()
+                                                HStack(spacing: 2) {
+                                                    ForEach(0..<entry.mood, id: \.self) { _ in
+                                                        Image("Powerup")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 14, height: 14)
+                                                    }
                                                 }
                                             }
+                                            .padding()
+                                            .frame(maxWidth: .infinity)
+                                            .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                                         }
-                                        .padding()
-                                        .background(Color(UIColor.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))
-                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.primary.opacity(0.05), lineWidth: 1))
+                                        .buttonStyle(.plain)
                                     }
                                 }
                             }
@@ -191,6 +199,9 @@ struct PflanzeDetailSheet: View {
                             GratitudeJournalView(habit: pflanze)
                                 .environmentObject(settings)
                                 .environmentObject(gardenStore)
+                        }
+                        .fullScreenCover(item: $selectedJournalEntry) { entry in
+                            GratitudeJournalDetailView(entry: entry)
                         }
                     }
 

@@ -229,3 +229,114 @@ struct GratitudeJournalView: View {
         dismiss()
     }
 }
+
+struct GratitudeJournalDetailView: View {
+    let entry: GratitudeJournalEntry
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.appHintergrund.ignoresSafeArea()
+                
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 24) {
+                        
+                        // Mood Section
+                        VStack(spacing: 16) {
+                            Text(String(localized: "habit.gratitude.mood.title", defaultValue: "Wie hast du dich heute gefühlt?"))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundStyle(.primary)
+                                .multilineTextAlignment(.center)
+                            
+                            HStack(spacing: 12) {
+                                ForEach(1...5, id: \.self) { i in
+                                    Image("Powerup")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 44, height: 44)
+                                        .opacity(i <= entry.mood ? 1.0 : 0.3)
+                                        .scaleEffect(i <= entry.mood ? 1.1 : 1.0)
+                                }
+                            }
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+                        
+                        // Thankful For
+                        detailField(
+                            title: String(localized: "habit.gratitude.thankful.title", defaultValue: "Wofür warst du heute dankbar?"),
+                            text: entry.thankfulFor
+                        )
+                        
+                        // Went well
+                        if !entry.wentWell.isEmpty {
+                            detailField(
+                                title: String(localized: "habit.gratitude.well_done.title", defaultValue: "Was hast du heute gut gemacht?"),
+                                text: entry.wentWell
+                            )
+                        }
+                        
+                        // Do differently
+                        if !entry.doDifferently.isEmpty {
+                            detailField(
+                                title: String(localized: "habit.gratitude.differently.title", defaultValue: "Was würdest du rückblickend anders machen?"),
+                                text: entry.doDifferently
+                            )
+                        }
+                        
+                        // Improve tomorrow
+                        if !entry.improveTomorrow.isEmpty {
+                            detailField(
+                                title: String(localized: "habit.gratitude.tomorrow.title", defaultValue: "Was möchtest du morgen besser machen?"),
+                                text: entry.improveTomorrow
+                            )
+                        }
+                    }
+                    .padding(.top, 24)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 40)
+                    .frame(maxWidth: 700)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                }
+            }
+            .navigationTitle(entry.date.formatted(date: .long, time: .shortened))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.primary)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func detailField(title: String, text: String) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text(title)
+                .font(.system(size: 18, weight: .bold, design: .rounded))
+                .foregroundStyle(.primary)
+            
+            Text(text.isEmpty ? "-" : text)
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .foregroundStyle(.primary)
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .padding(12)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(UIColor.secondarySystemBackground))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.primary.opacity(0.05), lineWidth: 1)
+                )
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+    }
+}
