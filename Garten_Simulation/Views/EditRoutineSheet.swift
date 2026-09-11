@@ -246,7 +246,7 @@ struct EditRoutineSheet: View {
                     assignedHabits = gardenStore.pflanzen.filter { routine.contains(habit: $0) }
                 }
             }
-            .sheet(isPresented: $showTimerSheet) {
+            .fullScreenCover(isPresented: $showTimerSheet) {
                 RoutineTimerEditSheetView(
                     routineName: tempName.isEmpty ? String(localized: "routine.default_name", defaultValue: "Routine") : tempName,
                     schedule: $schedule,
@@ -256,7 +256,7 @@ struct EditRoutineSheet: View {
                 )
                 .environmentObject(settings)
             }
-            .sheet(isPresented: $showHabitPicker) {
+            .fullScreenCover(isPresented: $showHabitPicker) {
                 NavigationStack {
                     ZStack {
                         Color.appHintergrund.ignoresSafeArea()
@@ -297,7 +297,7 @@ struct EditRoutineSheet: View {
                     }
                 }
             }
-            .sheet(isPresented: $showCustomTodoSheet) {
+            .fullScreenCover(isPresented: $showCustomTodoSheet) {
                 CreateRoutineCustomToDoSheetWrapper(assignedHabits: $assignedHabits)
             }
             .alert(

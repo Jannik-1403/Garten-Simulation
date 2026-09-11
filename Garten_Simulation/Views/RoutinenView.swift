@@ -241,10 +241,10 @@ struct RoutinenView: View {
                 .environmentObject(settings)
                 .environmentObject(interactiveTourManager)
             }
-            .sheet(isPresented: $showCreateSheet) {
+            .fullScreenCover(isPresented: $showCreateSheet) {
                 CreateRoutineSheet(routines: $routines, availableHabits: otherPlants)
             }
-            .sheet(item: $routineToEdit) { item in
+            .fullScreenCover(item: $routineToEdit) { item in
                 if let idx = routines.firstIndex(where: { $0.id == item.id }) {
                     let availableForEdit = otherPlants + habits(for: item)
                     EditRoutineSheet(routine: $routines[idx], availableHabits: availableForEdit)
@@ -751,7 +751,7 @@ struct CreateRoutineSheet: View {
                     .disabled(routineName.isEmpty)
                 }
             }
-            .sheet(isPresented: $showTimerSheet) {
+            .fullScreenCover(isPresented: $showTimerSheet) {
                 RoutineTimerEditSheetView(
                     routineName: routineName.isEmpty ? String(localized: String.LocalizationValue("routine.create.title")) : routineName,
                     schedule: $schedule,
@@ -761,7 +761,7 @@ struct CreateRoutineSheet: View {
                 )
                 .environmentObject(settings)
             }
-            .sheet(isPresented: $showCustomTodoSheet) {
+            .fullScreenCover(isPresented: $showCustomTodoSheet) {
                 CreateRoutineCustomToDoSheet(selectedHabits: $selectedHabits)
             }
         }
