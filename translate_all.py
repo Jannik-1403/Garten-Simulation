@@ -26,7 +26,12 @@ new_keys = {
     "cleaning.weekday.thursday": "Donnerstag",
     "cleaning.weekday.friday": "Freitag",
     "cleaning.weekday.saturday": "Samstag",
-    "cleaning.add.weekday": "Fester Wochentag"
+    "cleaning.add.weekday": "Fester Wochentag",
+    "cleaning.add.title.short": "Neu",
+    "cleaning.status.overdue": "Heute zu tun",
+    "cleaning.status.urgent": "Termin verpasst!",
+    "cleaning.add.color": "Farbe",
+    "cleaning.add.day.singular": "Tag",
 }
 
 for k, v in new_keys.items():

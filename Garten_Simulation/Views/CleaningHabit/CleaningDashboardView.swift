@@ -61,61 +61,69 @@ struct CleaningDashboardView: View {
                     return Calendar.current.startOfDay(for: due) > today
                 }
                 
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(String(localized: "cleaning.dashboard.section.next", defaultValue: "Zunächst fällige Aufgaben"))
-                            .font(.title2)
-                            .bold()
-                            .foregroundColor(.primary)
-                        
-                        if dueTasks.count > 0 {
-                            Text(String(localized: "cleaning.dashboard.subtitle.overdue", defaultValue: "%@ Aufgaben sind fällig", table: nil).replacingOccurrences(of: "%@", with: "\(dueTasks.count)"))
-                                .font(.subheadline)
-                                .foregroundColor(.orange)
-                        } else {
-                            Text(String(localized: "cleaning.dashboard.subtitle.allDone", defaultValue: "Alles sauber für heute!"))
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    Spacer()
-                    
-                    Item3DButton(icon: "plus", farbe: .blue, sekundaerFarbe: Color(UIColor.systemBlue).opacity(0.5), groesse: 44) {
-                        showingAddSheet = true
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 16)
-                
-                LazyVStack(spacing: 16) {
-                    ForEach(dueTasks) { task in
-                        CleaningTaskRowView(manager: manager, task: task)
-                            .onTapGesture {
-                                selectedTask = task
+                VStack(spacing: 24) {
+                    // "Zunächst fällige" Section
+                    VStack(spacing: 16) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(String(localized: "cleaning.dashboard.section.next", defaultValue: "Zunächst fällige Aufgaben"))
+                                    .font(.title2)
+                                    .bold()
+                                    .foregroundColor(.primary)
+                                
+                                if dueTasks.count > 0 {
+                                    Text(String(localized: "cleaning.dashboard.subtitle.overdue", defaultValue: "%@ Aufgaben sind fällig", table: nil).replacingOccurrences(of: "%@", with: "\(dueTasks.count)"))
+                                        .font(.subheadline)
+                                        .foregroundColor(.orange)
+                                } else {
+                                    Text(String(localized: "cleaning.dashboard.subtitle.allDone", defaultValue: "Alles sauber für heute!"))
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
                             }
-                    }
-                }
-                .padding(.horizontal)
-                
-                if !futureTasks.isEmpty {
-                    DisclosureGroup {
+                            Spacer()
+                            
+                            Item3DButton(
+                                icon: "plus",
+                                farbe: .blauPrimary,
+                                sekundaerFarbe: .blauPrimary.darker(),
+                                groesse: 36,
+                                iconSkalierung: 0.4
+                            ) {
+                                showingAddSheet = true
+                            }
+                        }
+                        
                         LazyVStack(spacing: 16) {
-                            ForEach(futureTasks) { task in
-                                CleaningTaskRowView(manager: manager, task: task)
+                            ForEach(dueTasks) { task in
+                                CleaningTaskRowView(manager: manager, task: task, isFuture: false)
                                     .onTapGesture {
                                         selectedTask = task
                                     }
                             }
                         }
-                        .padding(.top, 16)
-                    } label: {
-                        Text(String(localized: "cleaning.dashboard.section.future", defaultValue: "Demnächst fällig"))
-                            .font(.headline)
-                            .foregroundColor(.primary)
                     }
-                    .padding(.horizontal)
-                    .tint(.blue)
+                    
+                    // "Demnächst fällig" Section
+                    if !futureTasks.isEmpty {
+                        DisclosureGroup {
+                            LazyVStack(spacing: 16) {
+                                ForEach(futureTasks) { task in
+                                    CleaningTaskRowView(manager: manager, task: task, isFuture: true)
+                                }
+                            }
+                            .padding(.top, 16)
+                        } label: {
+                            Text(String(localized: "cleaning.dashboard.section.future", defaultValue: "Demnächst fällig"))
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                        }
+                        .tint(.blauPrimary)
+                    }
                 }
+                .padding(16)
+                .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+                .padding(.horizontal)
             }
         }
         .sheet(isPresented: $showingAddSheet) {

@@ -478966,6 +478966,410 @@
           }
         }
       }
+    },
+    "cleaning.add.title.short": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neu"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neu"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "cleaning.status.urgent": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Termin verpasst!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Cita perdida!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rendez-vous manqué !"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपॉइंटमेंट छूट गया!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "약속을 놓쳤어요!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afspraak gemist!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przegapione spotkanie!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consulta perdida!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consulta perdida!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пропущенная встреча!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "cleaning.add.color": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farbe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "色"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kolor"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cor"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cor"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цвет"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "cleaning.add.day.singular": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tag"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etiqueta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etichetta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タグ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etykietka"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcação"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcação"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ярлык"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etiket"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标签"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "標籤"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

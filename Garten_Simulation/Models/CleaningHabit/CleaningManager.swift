@@ -15,8 +15,8 @@ class CleaningManager: ObservableObject {
         loadData()
     }
     
-    func addTask(nameKey: String, iconName: String, frequencyDays: Int, scheduledWeekday: Int?) {
-        let newTask = CleaningTask(nameKey: nameKey, iconName: iconName, frequencyDays: frequencyDays, scheduledWeekday: scheduledWeekday)
+    func addTask(nameKey: String, iconName: String, frequencyDays: Int, scheduledWeekday: Int?, colorHex: String = "gruenPrimary") {
+        let newTask = CleaningTask(nameKey: nameKey, iconName: iconName, frequencyDays: frequencyDays, scheduledWeekday: scheduledWeekday, colorHex: colorHex)
         tasks.append(newTask)
         saveData()
     }

@@ -1,3 +1,9 @@
+## [2026-09-11] - Feature: Aufräum-Gewohnheit Redesign & Wochentag-Filter
+- **UI Redesign**: Das Dashboard (`CleaningDashboardView`) und die Listenansicht (`CleaningTaskRowView`) wurden komplett neu gestaltet. Graue Hintergründe, störende Icons und große Header wurden durch ein cleanes, natives Design mit `Item3DButton`s ersetzt.
+- **Wochentage**: Beim Erstellen einer neuen Aufgabe (`AddCleaningTaskSheet`) kann nun ein fester Wochentag festgelegt werden.
+- **Sortierung**: Aufgaben im Dashboard sind nun in "Zunächst fällige Aufgaben" und "Demnächst fällig" (als aufklappbare Liste) aufgeteilt, basierend auf ihrer Fälligkeit.
+- **Lokalisierung**: Alle neuen UI-Strings und Aufgabennamen wurden vollautomatisch in 16 Sprachen (`Localizable.xcstrings`) übersetzt.
+
 ## [2026-09-09] - Fix: Party-Nächte werden ignoriert
 - **Outlier-Filter:** Die App filtert nun automatisch den extremsten Ausreißer (z.B. eine sehr späte Party-Nacht) aus der Berechnung der Schlaf-Regelmäßigkeit und der Durchschnitts-Bettgehzeit heraus (sofern man mindestens 4 Tage gemessen hat). Eine einzelne Ausnahme zerstört so nicht mehr den Schnitt oder die konstruktive Auswertung.
 

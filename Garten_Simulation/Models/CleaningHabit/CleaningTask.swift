@@ -6,8 +6,9 @@ struct CleaningTask: Identifiable, Codable, Hashable {
     var iconName: String
     var frequencyDays: Int
     var createdAt: Date = Date()
-    var isActive: Bool = true // Falls der Nutzer ihn löscht, setzen wir ihn auf inaktiv oder löschen ihn direkt
+    var isActive: Bool = true
     var scheduledWeekday: Int? = nil // 1 = Sunday, 2 = Monday, etc.
+    var colorHex: String = "gruenPrimary" // Named color key from AppColors
     
     // Berechnet die Fälligkeit in Kombination mit den Logs
     func dueDate(lastCompleted: Date?) -> Date {
