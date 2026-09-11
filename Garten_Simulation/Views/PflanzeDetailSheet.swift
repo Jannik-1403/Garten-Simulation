@@ -26,6 +26,7 @@ struct PflanzeDetailSheet: View {
     @State private var isRemindersExpanded = true
     @State private var selectedTimerEntry: TimerEntry? = nil
     @State private var zeigeTimerSheet = false
+    @State private var zeigeGratitudeJournal = false
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
     @State private var zeigeTimerAbbrechenDialog = false
@@ -117,6 +118,34 @@ struct PflanzeDetailSheet: View {
                         WasserTrinkenCard()
                             .padding(.horizontal, 24)
                             .padding(.bottom, 16)
+                    }
+                    
+                    // Dankbarkeitsjournal
+                    if pflanze.habitName == "habit.dankbarkeit" {
+                        Button {
+                            zeigeGratitudeJournal = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "book.fill")
+                                    .font(.system(size: 20))
+                                    .foregroundStyle(.purple)
+                                Text(String(localized: "habit.gratitude.open_journal", defaultValue: "Journal öffnen"))
+                                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 16)
+                        .buttonStyle(.plain)
+                        .sheet(isPresented: $zeigeGratitudeJournal) {
+                            GratitudeJournalView(habit: pflanze)
+                                .environmentObject(settings)
+                                .environmentObject(gardenStore)
+                        }
                     }
 
                     // Obst & Gemüse / Nährstoffe
