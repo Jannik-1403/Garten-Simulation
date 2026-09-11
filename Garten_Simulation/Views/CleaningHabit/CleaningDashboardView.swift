@@ -9,9 +9,8 @@ struct CleaningDashboardView: View {
         ZStack {
             // Background
             LinearGradient(gradient: Gradient(colors: [Color(hex: "0F2027"), Color(hex: "203A43"), Color(hex: "2C5364")]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
             
-            ScrollView {
+            VStack(spacing: 24) {
                 VStack(spacing: 24) {
                     // Header
                     HStack {
@@ -62,10 +61,11 @@ struct CleaningDashboardView: View {
                     }
                     .padding(.horizontal)
                 }
-                .padding(.bottom, 100)
+                .padding(.bottom, 24)
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+        .item3DContainer(farbe: Color.clear, sekundaerFarbe: Color.black.opacity(0.2)) // Optional 3D pop effect
         .sheet(isPresented: $showingAddSheet) {
             AddCleaningTaskSheet(manager: manager)
         }

@@ -111,13 +111,20 @@ struct PflanzeDetailSheet: View {
                     
                     
                     // Apple Health Integration (Pro Feature)
-                    if pflanze.showStats && pflanze.habitName != "habit.wasser_trinken" && pflanze.habitName != "habit.dankbarkeit" {
+                    if pflanze.showStats && pflanze.habitName != "habit.wasser_trinken" && pflanze.habitName != "habit.dankbarkeit" && pflanze.habitName != "habit.aufraeumen" {
                         healthKitConfigSection
                     }
                     
                     // Wasser trinken
                     if pflanze.habitName == "habit.wasser_trinken" && pflanze.showStats {
                         WasserTrinkenCard()
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 16)
+                    }
+                    
+                    // Aufräumen
+                    if pflanze.habitName == "habit.aufraeumen" && pflanze.showStats {
+                        CleaningDashboardView()
                             .padding(.horizontal, 24)
                             .padding(.bottom, 16)
                     }
