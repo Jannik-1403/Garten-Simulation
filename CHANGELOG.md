@@ -1092,3 +1092,4 @@
 - Refactored all onboarding views to use responsive size classes and constrained layout on iPad.
 - Expanded Onboarding views to 650pt width and resolved 99.9% translation bug.
 - Scaled up plant selection cards dynamically on iPad in OnboardingPflanzenView.
+- Scaled up font sizes dynamically on iPad in OnboardingLegalView.

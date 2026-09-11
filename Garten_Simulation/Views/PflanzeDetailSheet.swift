@@ -104,7 +104,6 @@ struct PflanzeDetailSheet: View {
                             if isIPad {
                                 plantHeroSection
                                     .frame(width: 300)
-                                    .padding(.top, 24)
                                     .padding(.leading, 16)
                             } else {
                                 plantHeroSection
@@ -710,14 +709,15 @@ struct PflanzeDetailSheet: View {
 
     @ViewBuilder
     private var plantHeroSection: some View {
-        VStack(spacing: 24) {
+        let isIPad = horizontalSizeClass == .regular
+        return VStack(spacing: isIPad ? 32 : 24) {
             if let plant = GameDatabase.shared.plant(for: pflanze.plantID) {
                 PflanzenButton(
                     plant: plant,
                     seltenheit: pflanze.seltenheit,
                     farbe: pflanze.color,
                     sekundaerFarbe: pflanze.color.darker(),
-                    groesse: 160,
+                    groesse: isIPad ? 240 : 160,
                     fallbackIcon: pflanze.symbolName,
                     externerPress: false,
                     aktion: {}
@@ -727,19 +727,19 @@ struct PflanzeDetailSheet: View {
                 Image(systemName: pflanze.symbolName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .frame(width: isIPad ? 160 : 100, height: isIPad ? 160 : 100)
                     .foregroundStyle(pflanze.color)
                     .padding()
             }
             
             VStack(spacing: 8) {
                 Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
-                    .font(.system(size: 28, weight: .black, design: .rounded))
+                    .font(.system(size: isIPad ? 36 : 28, weight: .black, design: .rounded))
                     .foregroundStyle(Color.primary)
                     .multilineTextAlignment(.center)
                     
                 Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(pflanze.streak)")
-                    .font(.headline)
+                    .font(.system(size: isIPad ? 22 : 17, weight: .semibold))
                     .foregroundStyle(.secondary)
             }
         }

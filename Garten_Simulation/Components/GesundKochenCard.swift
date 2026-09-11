@@ -189,10 +189,11 @@ struct GesundKochenCard: View {
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                     
-                    Item3DPillButton(
+                    Item3DButton(
                         farbe: .orange,
                         sekundaerFarbe: .orange.opacity(0.8),
                         groesse: 50,
+                        isRectangular: true,
                         aktion: {
                             healthManager.requestAuthorization()
                         }
@@ -203,6 +204,7 @@ struct GesundKochenCard: View {
                         }
                         .font(.headline)
                         .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
                     }
                     .padding(.top, 8)
                 }

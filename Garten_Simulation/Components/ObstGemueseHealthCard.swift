@@ -93,10 +93,11 @@ struct ObstGemueseHealthCard: View {
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                     
-                    Item3DPillButton(
+                    Item3DButton(
                         farbe: .green,
                         sekundaerFarbe: .green.opacity(0.8),
                         groesse: 50,
+                        isRectangular: true,
                         aktion: {
                             healthManager.requestAuthorization()
                         }
@@ -107,6 +108,7 @@ struct ObstGemueseHealthCard: View {
                         }
                         .font(.headline)
                         .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
                     }
                     .padding(.top, 8)
                 }
