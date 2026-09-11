@@ -96,20 +96,9 @@ struct PflanzeDetailSheet: View {
             ZStack(alignment: .topTrailing) {
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
-                        let isIPad = horizontalSizeClass == .regular
-                        
-                        let layout = isIPad ? AnyLayout(HStackLayout(alignment: .top, spacing: 32)) : AnyLayout(VStackLayout(spacing: 28))
-                        
-                        layout {
-                            if isIPad {
-                                plantHeroSection
-                                    .frame(width: 300)
-                                    .padding(.leading, 16)
-                            } else {
-                                plantHeroSection
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.top, 24)
-                            }
+                        VStack(spacing: 28) {
+                            plantHeroSection
+                                .padding(.top, 24)
                             
                             LazyVStack(spacing: 28) {
                 // MARK: - OVERVIEW CONTENT
@@ -689,10 +678,12 @@ struct PflanzeDetailSheet: View {
                                                 }
                                                 .padding(.vertical, 24)
                                             }
-                                        }
-                                    }
+                                                }
+                            }
                         }
-                        .padding(.bottom, 8)
+                        .frame(maxWidth: horizontalSizeClass == .regular ? 650 : .infinity)
+                        .padding(.horizontal, horizontalSizeClass == .regular ? 32 : 0)
+                        .padding(.bottom, 60)
                         .tourAnchor(.plantHealth)
                         .id(TourStep.plantHealth)
                     }
@@ -710,7 +701,7 @@ struct PflanzeDetailSheet: View {
     @ViewBuilder
     private var plantHeroSection: some View {
         let isIPad = horizontalSizeClass == .regular
-        return VStack(spacing: isIPad ? 32 : 24) {
+        VStack(spacing: isIPad ? 32 : 24) {
             if let plant = GameDatabase.shared.plant(for: pflanze.plantID) {
                 PflanzenButton(
                     plant: plant,

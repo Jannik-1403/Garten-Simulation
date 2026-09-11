@@ -1095,3 +1095,4 @@
 - Scaled up font sizes dynamically on iPad in OnboardingLegalView.
 - Fix: In PflanzeDetailSheet ist der Avatar auf dem iPad jetzt bündig mit der rechten Spalte und deutlich größer.
 - Fix: Die Apple-Health-Verbinden-Buttons in den Karten (GesundKochen, ObstGemuese) nutzen nun breite Rechteck-Buttons statt Pillen.
+- Fix: ShopView auf iPad nutzt jetzt 2 deutlich größere Spalten, analog zur Handy-Version, und die Glücksrad-Karte ist in der Breite auf max 400 begrenzt, um übermäßige Skalierung zu verhindern.
