@@ -36,7 +36,7 @@ struct OnboardingZielView: View {
                     )
                     .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
             }
-            .padding(.horizontal, 32)
+            
 
             Spacer()
 
@@ -59,7 +59,7 @@ struct OnboardingZielView: View {
             
             .padding(.bottom, 40)
         }
-        .frame(maxWidth: 500)
+        .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
         .onTapGesture {

@@ -139,7 +139,7 @@ struct OnboardingInteractiveTutorialView: View {
                 .transition(.opacity)
             }
         }
-        .frame(maxWidth: 500)
+        .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
         .animation(.spring(), value: gegossen)

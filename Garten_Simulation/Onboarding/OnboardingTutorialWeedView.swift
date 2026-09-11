@@ -161,7 +161,7 @@ struct OnboardingTutorialWeedView: View {
                 Spacer().frame(height: 100)
             }
         }
-        .frame(maxWidth: 500)
+        .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
         .onAppear {

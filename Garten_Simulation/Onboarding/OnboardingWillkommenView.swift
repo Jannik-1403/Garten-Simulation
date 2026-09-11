@@ -47,7 +47,7 @@ struct OnboardingWillkommenView: View {
                 .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .frame(maxWidth: 500)
+        .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
         .onAppear {

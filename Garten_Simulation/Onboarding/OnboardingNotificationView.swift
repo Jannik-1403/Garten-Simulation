@@ -114,7 +114,7 @@ struct OnboardingNotificationView: View {
             }
             .offset(y: 60) // Push the entire alert down slightly so it doesn't cover the avatar as much
         }
-        .frame(maxWidth: 500)
+        .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
     }

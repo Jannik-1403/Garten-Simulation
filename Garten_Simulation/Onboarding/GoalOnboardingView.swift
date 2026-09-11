@@ -32,7 +32,7 @@ struct GoalOnboardingView: View {
                 .contentShape(Rectangle())
                 .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
             }
-            .padding(.horizontal, 32)
+            
             .padding(.top, 24)
             .padding(.bottom, 24)
             
@@ -59,7 +59,7 @@ struct GoalOnboardingView: View {
             
             .padding(.bottom, 30)
         }
-        .frame(maxWidth: 500)
+        .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
         .onTapGesture {

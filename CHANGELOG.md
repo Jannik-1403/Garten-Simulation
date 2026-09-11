@@ -1089,3 +1089,4 @@
 - Das 'Heutiges Ziel' ist nun optisch als weißes Item-3D verpackt.
 - Das X oben rechts in den Wasser-Einstellungen wurde durch einen 'Speichern' Button ersetzt. Ein Klick darauf schließt sicher die Tastatur und speichert die Einstellungen.
 - Refactored PflanzeDetailSheet to use a two-column layout on iPad using size classes.
+- Refactored all onboarding views to use responsive size classes and constrained layout on iPad.

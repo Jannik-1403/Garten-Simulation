@@ -66,7 +66,7 @@ struct OnboardingCustomPlantView: View {
             
             .padding(.bottom, 40)
         }
-        .frame(maxWidth: 500)
+        .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
         .sheet(isPresented: $showingAddSheet) {
