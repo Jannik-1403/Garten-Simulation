@@ -1103,3 +1103,4 @@
 - Design: Der alte 3D-Button (Hero-Sektion) mit dem Gewohnheitsnamen und dem Streak oben im Gewohnheits-Detail-Fenster wurde komplett entfernt. Die Seite startet nun ohne Verschwendung von Platz direkt mit der Statistik.
 
 - Neues Feature: GratitudeJournalEntry Model und GratitudeJournalView im iTunes 3D-Look mit 100% Übersetzungsabdeckung in 16 Sprachen.
+- Hinzugefügt: Apple App Store Review Prompt bei Level-Up (alle 3 Level) und manueller Button in den Einstellungen.
