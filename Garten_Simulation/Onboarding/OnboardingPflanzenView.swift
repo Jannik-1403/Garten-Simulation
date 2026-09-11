@@ -116,15 +116,17 @@ struct PlantSelectionCard: View {
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
+        let isIPad = hSize == .regular
+        
         VStack(spacing: 12) {
             Item3DButton(
                 farbe: isSelected ? Color.gruenPrimary : Color(.systemGray6),
                 sekundaerFarbe: isSelected ? Color.gruenPrimary.darker() : Color(.systemGray4),
-                groesse: 100,
+                groesse: isIPad ? 160 : 100,
                 iconSkalierung: 1.5,
                 aktion: action
             ) {
-                PlantIconView(plant: plant, seltenheit: .bronze, size: 120, alwaysShowFullGrown: true)
+                PlantIconView(plant: plant, seltenheit: .bronze, size: isIPad ? 180 : 120, alwaysShowFullGrown: true)
             }
             .overlay(alignment: .topTrailing) {
                 if isSelected {
@@ -138,14 +140,14 @@ struct PlantSelectionCard: View {
             
             VStack(spacing: 2) {
                 Text(NSLocalizedString(plant.habitName, comment: ""))
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .font(.system(size: isIPad ? 22 : 15, weight: .bold, design: .rounded))
                     .foregroundStyle(isSelected ? .primary : .secondary)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 
                 Text(NSLocalizedString(plant.localizedName, comment: ""))
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .font(.system(size: isIPad ? 18 : 12, weight: .bold, design: .rounded))
                     .foregroundStyle(isSelected ? .secondary : Color(.systemGray3))
                     .multilineTextAlignment(.center)
             }
@@ -191,19 +193,21 @@ struct CategoryHeaderView: View {
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
+        let isIPad = hSize == .regular
+        
         HStack(spacing: 12) {
             ZStack {
                 Circle()
                     .fill(category.color.opacity(0.15))
-                    .frame(width: 36, height: 36)
+                    .frame(width: isIPad ? 48 : 36, height: isIPad ? 48 : 36)
                 
                 Image(systemName: category.iconName)
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: isIPad ? 22 : 16, weight: .bold))
                     .foregroundStyle(category.color)
             }
             
             Text(NSLocalizedString(category.labelKey, comment: ""))
-                .font(.system(size: 20, weight: .black, design: .rounded))
+                .font(.system(size: isIPad ? 28 : 20, weight: .black, design: .rounded))
                 .foregroundStyle(.primary)
             
             Spacer()
