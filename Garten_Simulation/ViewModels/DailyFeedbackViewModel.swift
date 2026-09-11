@@ -81,6 +81,11 @@ class DailyFeedbackViewModel: ObservableObject {
         let strengthPlant = activeHabits.first(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining || $0.name.lowercased().contains("kraft") })
         let strengthGoalMinutes = strengthPlant?.healthTarget ?? 45.0
         
+        let gratitudePlant = activeHabits.first(where: { $0.habitName == "habit.dankbarkeit" })
+        let hasGratitudePlant = gratitudePlant != nil
+        let gratitudeTodayDone = gratitudePlant?.journalEntries.contains(where: { Calendar.current.isDateInToday($0.date) }) ?? false
+        let gratitudeYesterdayEntry = gratitudePlant?.journalEntries.first(where: { Calendar.current.isDateInYesterday($0.date) })
+
         let nutritionPlant = activeHabits.first(where: { plant in
             if plant.linkedHealthMetric == HealthMetricType.energy { return true }
             if plant.linkedHealthMetric == HealthMetricType.fiber { return true }
@@ -97,6 +102,9 @@ class DailyFeedbackViewModel: ObservableObject {
             hasStrengthPlant: hasStrengthPlant,
             hasRunningPlant: hasRunningPlant,
             hasNutritionPlant: hasNutritionPlant,
+            hasGratitudePlant: hasGratitudePlant,
+            gratitudeTodayDone: gratitudeTodayDone,
+            gratitudeYesterdayEntry: gratitudeYesterdayEntry,
             waterToday: hm.todaysWater,
             waterGoal: wgm.currentGoal,
             waterHistory7Days: hm.waterHistory7Days,

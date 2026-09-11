@@ -8,6 +8,7 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
     case strength
     case running
     case nutrition
+    case gratitude
 
     var id: String { rawValue }
 
@@ -18,6 +19,7 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
         case .strength:  return "dumbbell.fill"
         case .running:   return "figure.run"
         case .nutrition: return "fork.knife"
+        case .gratitude: return "book.fill"
         }
     }
 }
@@ -80,6 +82,9 @@ struct FeedbackScoringEngine {
         var hasStrengthPlant: Bool
         var hasRunningPlant: Bool
         var hasNutritionPlant: Bool
+        var hasGratitudePlant: Bool
+        var gratitudeTodayDone: Bool
+        var gratitudeYesterdayEntry: GratitudeJournalEntry?
 
         var waterToday: Double
         var waterGoal: Double
@@ -359,6 +364,39 @@ struct FeedbackScoringEngine {
                                              progress: input.energyToday, goal: input.energyGoal))
         }
 
+        // MARK: Dankbarkeit (Journal)
+        if input.hasGratitudePlant {
+            let gratStatus: CategoryStatus = input.gratitudeTodayDone ? .good : .warning
+            
+            let gratSummary = input.gratitudeTodayDone
+                ? String(localized: "fitness.gratitude.summary.good", defaultValue: "Journal ✓")
+                : String(localized: "fitness.gratitude.summary.missing", defaultValue: "Journal fehlt")
+                
+            var gratDetail: String = ""
+            
+            if input.gratitudeTodayDone {
+                gratDetail = String(localized: "fitness.gratitude.detail.good", defaultValue: "Klasse, du hast dir heute schon Zeit für dein Journal genommen!")
+            } else {
+                if let yest = input.gratitudeYesterdayEntry {
+                    if !yest.improveTomorrow.isEmpty {
+                        gratDetail = String(format: String(localized: "fitness.gratitude.detail.yesterday.improve", defaultValue: "Heute wolltest du laut gestern das hier besser machen: %@"), yest.improveTomorrow)
+                    } else {
+                        if yest.mood <= 2 {
+                            gratDetail = String(localized: "fitness.gratitude.detail.yesterday.low", defaultValue: "Gestern hast du dich nicht so gut gefühlt. Probier heute dich besser zu fühlen oder gestalte deinen Tag so, dass du dich besser fühlst.")
+                        } else if yest.mood >= 4 {
+                            gratDetail = String(localized: "fitness.gratitude.detail.yesterday.high", defaultValue: "Gestern hast du dich exzellent gefühlt, mach heute weiter so!")
+                        } else {
+                            gratDetail = String(localized: "fitness.gratitude.detail.yesterday.medium", defaultValue: "Nutze dein Journal, um deinen Tag zu reflektieren.")
+                        }
+                    }
+                } else {
+                    gratDetail = String(localized: "fitness.gratitude.detail.not_done", defaultValue: "Du hast heute noch kein Journal geschrieben. Halte kurz inne und reflektiere deinen Tag.")
+                }
+            }
+            
+            results.append(CategoryFeedback(category: .gratitude, status: gratStatus, summaryText: gratSummary, detailText: gratDetail, progress: input.gratitudeTodayDone ? 1.0 : 0.0, goal: 1.0))
+        }
+
         return results
     }
 
@@ -382,6 +420,7 @@ struct FeedbackScoringEngine {
         case .strength:  return String(localized: "fitness.category.strength",  defaultValue: "Krafttraining")
         case .running:   return String(localized: "fitness.category.running",   defaultValue: "Laufen")
         case .nutrition: return String(localized: "fitness.category.nutrition", defaultValue: "Ernährung")
+        case .gratitude: return String(localized: "fitness.category.gratitude", defaultValue: "Dankbarkeits-Check")
         }
     }
 }

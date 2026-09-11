@@ -222,6 +222,7 @@ private struct CategoryIssueRow: View {
         case .strength:  return String(localized: "tagesanalyseHeaderKraft",  defaultValue: "Kraftanalyse")
         case .running:   return String(localized: "tagesanalyseHeaderSchritte",   defaultValue: "Schrittanalyse")
         case .nutrition: return String(localized: "tagesanalyseHeaderErnaehrung", defaultValue: "Ernährungsanalyse")
+        case .gratitude: return String(localized: "tagesanalyseHeaderDankbarkeit", defaultValue: "Dankbarkeits-Check")
         }
     }
 }
