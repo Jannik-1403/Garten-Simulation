@@ -402,6 +402,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     // 90-Tage Challenge Joker System
     @Published var challengeJokers: Int = 0
+    @Published var journalEntries: [GratitudeJournalEntry] = []
     let maxChallengeJokers: Int = 3
     
     /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
@@ -654,6 +655,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.isGenericFocus = isGenericFocus
         self.priority = priority
         self.challengeJokers = 0
+        self.journalEntries = []
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
@@ -712,6 +714,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case isRoutineOnly, customRoutineTaskName
         case isGenericFocus
         case challengeJokers
+        case journalEntries
         case todos
         case priority
         case sliderProgress, intradayProgressHistory
@@ -825,6 +828,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         isGenericFocus = try container.decodeIfPresent(Bool.self, forKey: .isGenericFocus) ?? false
         priority = try container.decodeIfPresent(GoalPriority.self, forKey: .priority) ?? .medium
         challengeJokers = try container.decodeIfPresent(Int.self, forKey: .challengeJokers) ?? 0
+        journalEntries = try container.decodeIfPresent([GratitudeJournalEntry].self, forKey: .journalEntries) ?? []
         sliderProgress = try container.decodeIfPresent(Double.self, forKey: .sliderProgress) ?? 0.0
         intradayProgressHistory = try container.decodeIfPresent([DailyProgressEntry].self, forKey: .intradayProgressHistory) ?? []
         showStats = try container.decodeIfPresent(Bool.self, forKey: .showStats) ?? true
@@ -898,6 +902,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(customRoutineTaskName, forKey: .customRoutineTaskName)
         try container.encode(isGenericFocus, forKey: .isGenericFocus)
         try container.encode(challengeJokers, forKey: .challengeJokers)
+        try container.encode(journalEntries, forKey: .journalEntries)
         try container.encode(priority, forKey: .priority)
         try container.encode(todos, forKey: .todos)
         try container.encode(sliderProgress, forKey: .sliderProgress)

@@ -1100,3 +1100,4 @@
 - Fix: Im Shop wurde das Raster-Layout (LazyVGrid) wieder entfernt. Es wird nun wieder streng ein Item pro Zeile untereinander angezeigt, auch auf dem iPad. Der defekte Kategorie-Switcher wurde durch eine zuverlässige Custom-Lösung ersetzt, und riesige Glücksrad-Icons auf dem iPad wurden durch feste Bildgrößen korrigiert.
 - Fix: Alle Sheets/Popups bei den Routinen (Erstellen, Bearbeiten, Timer, Todo) öffnen sich nun als .fullScreenCover im Vollbildmodus statt als halbes Sheet, um den Platz optimal zu nutzen.
 - Fix: Der Kategorien-Switcher im Shop wurde auf den nativen Apple-Picker zurückgeändert, da er durch die neue Platzierung nun auch verlässlich auf Touch-Eingaben reagiert.
+- Design: Der alte 3D-Button (Hero-Sektion) mit dem Gewohnheitsnamen und dem Streak oben im Gewohnheits-Detail-Fenster wurde komplett entfernt. Die Seite startet nun ohne Verschwendung von Platz direkt mit der Statistik.
