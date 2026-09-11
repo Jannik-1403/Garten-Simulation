@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OnboardingTutorialWeedView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -154,12 +155,15 @@ struct OnboardingTutorialWeedView: View {
                     shadowColor: Color.blauPrimary.darker(),
                     foregroundColor: .white
                 ))
-                .padding(.horizontal, 24)
+                
                 .padding(.bottom, 40)
             } else {
                 Spacer().frame(height: 100)
             }
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                 withAnimation { step = .buying }
@@ -214,6 +218,7 @@ enum OnboardingSegmentKind: Equatable {
 }
 
 struct OnboardingWheelSlices: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let layout: [OnboardingSegmentKind]
 
     var body: some View {
@@ -276,6 +281,7 @@ struct OnboardingWheelSlices: View {
 }
 
 struct OnboardingWheelSegmentIcon: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let kind: OnboardingSegmentKind
 
     var body: some View {
@@ -298,6 +304,7 @@ struct OnboardingWheelSegmentIcon: View {
 }
 
 struct OnboardingWheelRimDot: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let index: Int
     let totalDots: Int
     let rimRadius: CGFloat

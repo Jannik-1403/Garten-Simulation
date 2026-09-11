@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OnboardingLegalView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     
@@ -101,7 +102,7 @@ struct OnboardingLegalView: View {
                     .fill(Color(.systemBackground))
                     .shadow(color: Color.black.opacity(0.12), radius: 0, x: 0, y: 8)
             }
-            .padding(.horizontal, 24)
+            
             
             Spacer(minLength: 32)
             
@@ -117,9 +118,12 @@ struct OnboardingLegalView: View {
                 foregroundColor: .white
             ))
             .disabled(!hasAcceptedTerms)
-            .padding(.horizontal, 24)
+            
             .padding(.bottom, 40)
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
     }
     
     private func finish() {

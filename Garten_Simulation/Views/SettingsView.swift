@@ -485,6 +485,8 @@ struct SettingsView: View {
                         .padding(.horizontal, 16)
                         .padding(.bottom, 40)
                     }
+                    .frame(maxWidth: 700)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .alert(String(localized: "settings.reset.alert.title"), isPresented: $showResetAlert) {

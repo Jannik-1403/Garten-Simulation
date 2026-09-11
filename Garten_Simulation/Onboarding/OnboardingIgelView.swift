@@ -3,6 +3,7 @@ import SwiftUI
 struct OnboardingIgelView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var characterStore: CharacterStore
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     let pose: OnboardingIgelPose
     let sprechblasenText: String
 
@@ -28,15 +29,17 @@ struct OnboardingIgelView: View {
     var body: some View {
         VStack(spacing: 12) {
             // MARK: - Sprechblase
+            let isIPad = horizontalSizeClass == .regular
+            
             ZStack(alignment: .bottom) {
                 // Background bubble
                 Text(sprechblasenText)
-                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .font(.system(size: isIPad ? 22 : 15, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
-                    .frame(maxWidth: 260)
+                    .padding(.horizontal, isIPad ? 24 : 16)
+                    .padding(.vertical, isIPad ? 16 : 10)
+                    .frame(maxWidth: isIPad ? 400 : 260)
                     .background {
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
                             .fill(Color(UIColor.systemBackground))
@@ -58,15 +61,17 @@ struct OnboardingIgelView: View {
             .padding(.bottom, 6)
             
             // MARK: - Avatar
+            let avatarSize: CGFloat = isIPad ? 220 : 140
+            
             Item3DButton(
                 farbe: Color.characterBackground(for: characterStore.profile.backgroundIndex),
                 sekundaerFarbe: Color.secondaryCharacterBackground(for: characterStore.profile.backgroundIndex),
-                groesse: 140,
+                groesse: avatarSize,
                 shadowDepthFactor: 0.04,
                 aktion: {}
             ) {
                 AvatarView(profile: characterStore.profile)
-                    .frame(width: 140, height: 140, alignment: .top)
+                    .frame(width: avatarSize, height: avatarSize, alignment: .top)
                     .clipShape(Circle())
             }
             .offset(y: yOffset)

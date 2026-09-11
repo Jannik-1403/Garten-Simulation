@@ -2,16 +2,6 @@ import SwiftUI
 import Combine
 import LinkPresentation
 
-enum ScreenSize {
-    static var width: CGFloat {
-        (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width ?? 390
-    }
-    
-    static var height: CGFloat {
-        (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.height ?? 844
-    }
-}
-
 
 enum AutoBackupInterval: String, Codable, CaseIterable, Identifiable {
     case never = "nie"

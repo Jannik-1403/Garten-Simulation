@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OnboardingFertigView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
@@ -62,7 +63,7 @@ struct OnboardingFertigView: View {
                         .fill(Color.black.opacity(0.1))
                         .offset(y: 8)
                 )
-                .padding(.horizontal, 24)
+                
             }
             
             Spacer()
@@ -78,9 +79,12 @@ struct OnboardingFertigView: View {
                 shadowColor: Color.goldPrimary.darker(),
                 foregroundColor: .white
             ))
-            .padding(.horizontal, 24)
+            
             .padding(.bottom, 40)
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
     }
     
     private func finish() {

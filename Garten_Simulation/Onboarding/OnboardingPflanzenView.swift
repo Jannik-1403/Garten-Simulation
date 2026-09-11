@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OnboardingPflanzenView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     
@@ -59,7 +60,7 @@ struct OnboardingPflanzenView: View {
                                     }
                                 }
                             }
-                            .padding(.horizontal, 24)
+                            
                             .padding(.bottom, 16)
                         }
                     }
@@ -85,9 +86,12 @@ struct OnboardingPflanzenView: View {
                 foregroundColor: .white
             ))
             .disabled(data.gewaehltePflanzenIDs.count != 2)
-            .padding(.horizontal, 24)
+            
             .padding(.bottom, 40)
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
     }
 
     private func toggleSelection(_ id: String) {
@@ -105,6 +109,7 @@ struct OnboardingPflanzenView: View {
 }
 
 struct PlantSelectionCard: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let plant: Plant
     let isSelected: Bool
     let action: () -> Void
@@ -181,6 +186,7 @@ struct SelectionCardButtonStyle: ButtonStyle {
 }
 
 struct CategoryHeaderView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let category: OnboardingZiel
     @EnvironmentObject var settings: SettingsStore
     
@@ -202,7 +208,7 @@ struct CategoryHeaderView: View {
             
             Spacer()
         }
-        .padding(.horizontal, 24)
+        
         .padding(.top, 16)
         .padding(.bottom, 8)
     }

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OnboardingInteractiveTutorialView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     
@@ -112,7 +113,7 @@ struct OnboardingInteractiveTutorialView: View {
                         shadowColor: Color.blauPrimary.darker(),
                         foregroundColor: .white
                     ))
-                    .padding(.horizontal, 24)
+                    
                     .padding(.bottom, 40)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                 } else {
@@ -138,6 +139,9 @@ struct OnboardingInteractiveTutorialView: View {
                 .transition(.opacity)
             }
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
         .animation(.spring(), value: gegossen)
         .animation(.spring(), value: showNext)
         .onAppear {

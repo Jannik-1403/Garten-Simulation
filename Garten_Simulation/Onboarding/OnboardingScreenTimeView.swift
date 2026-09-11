@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OnboardingScreenTimeView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @Environment(\.colorScheme) var colorScheme
     
@@ -32,7 +33,7 @@ struct OnboardingScreenTimeView: View {
                         shadowColor: Color.blauPrimary.darker(),
                         foregroundColor: .white
                     ))
-                    .padding(.horizontal, 24)
+                    
                     .padding(.bottom, 40)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                 } else {
@@ -94,7 +95,7 @@ struct OnboardingScreenTimeView: View {
                     farbe: colorScheme == .dark ? Color(white: 0.15) : .white,
                     sekundaerFarbe: colorScheme == .dark ? Color(white: 0.1) : Color(UIColor.systemGray5)
                 )
-                .padding(.horizontal, 24) // Make it wider instead of fixed 270 width
+                 // Make it wider instead of fixed 270 width
                 
                 if !showContinueButton {
                     // Arrow pointing up to "Continue" (Right Button)
@@ -116,6 +117,9 @@ struct OnboardingScreenTimeView: View {
             }
             .offset(y: 60) // Push the entire alert down slightly so it doesn't cover the avatar as much
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
         .alert(String(localized: "onboarding.screentime.error.title", defaultValue: "Berechtigung fehlgeschlagen"), isPresented: $showErrorAlert) {
             Button(String(localized: "onboarding.screentime.settings", defaultValue: "Zu den Einstellungen")) {
                 if let url = URL(string: UIApplication.openSettingsURLString) {

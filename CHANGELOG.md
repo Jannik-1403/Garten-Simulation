@@ -1088,3 +1088,4 @@
 - Das Stift-Symbol wurde entfernt und stattdessen ist das Wasser-Ziel jetzt direkt als echtes Textfeld auf der Einstellungsseite integriert (Inline-Editing ohne neues Pop-Up).
 - Das 'Heutiges Ziel' ist nun optisch als weißes Item-3D verpackt.
 - Das X oben rechts in den Wasser-Einstellungen wurde durch einen 'Speichern' Button ersetzt. Ein Klick darauf schließt sicher die Tastatur und speichert die Einstellungen.
+- Refactored PflanzeDetailSheet to use a two-column layout on iPad using size classes.

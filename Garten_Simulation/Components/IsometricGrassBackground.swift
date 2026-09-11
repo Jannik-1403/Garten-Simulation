@@ -5,33 +5,37 @@ struct IsometricGrassBackground: View {
     let grassLeft  = Color(hex: "#4a8a3a").darker(by: 0.08)
     let grassRight = Color(hex: "#4a8a3a").darker(by: 0.15)
 
-    var contentHeight: CGFloat = UIScreen.main.bounds.height
+    var contentHeight: CGFloat? = nil
     var pathPositions: [CGPoint] = []
 
     var body: some View {
-        let screenW = UIScreen.main.bounds.width
-        let totalH  = max(contentHeight, UIScreen.main.bounds.height) + 400
-        // Render in 1500pt chunks to stay under GPU texture limit
-        let chunkH: CGFloat = 1500
-        let numChunks = max(1, Int(ceil(totalH / chunkH)))
+        GeometryReader { proxy in
+            let screenW = proxy.size.width
+            let screenH = proxy.size.height
+            let totalH  = max(contentHeight ?? screenH, screenH) + 400
+            // Render in 1500pt chunks to stay under GPU texture limit
+            let chunkH: CGFloat = 1500
+            let numChunks = max(1, Int(ceil(totalH / chunkH)))
 
-        VStack(spacing: 0) {
-            ForEach(0..<numChunks, id: \.self) { ci in
-                let offset = CGFloat(ci) * chunkH
-                let thisH  = min(chunkH, totalH - offset)
-                GrassTileChunk(
-                    chunkOffset: offset,
-                    chunkHeight: thisH,
-                    screenWidth: screenW,
-                    grassTop:   grassTop,
-                    grassLeft:  grassLeft,
-                    grassRight: grassRight
-                )
-                .frame(width: screenW, height: thisH)
-                .clipped()
+            VStack(spacing: 0) {
+                ForEach(0..<numChunks, id: \.self) { ci in
+                    let offset = CGFloat(ci) * chunkH
+                    let thisH  = min(chunkH, totalH - offset)
+                    GrassTileChunk(
+                        chunkOffset: offset,
+                        chunkHeight: thisH,
+                        screenWidth: screenW,
+                        grassTop:   grassTop,
+                        grassLeft:  grassLeft,
+                        grassRight: grassRight
+                    )
+                    .frame(width: screenW, height: thisH)
+                    .clipped()
+                }
             }
+            .frame(width: screenW, height: totalH, alignment: .top)
         }
-        .frame(width: screenW, height: totalH, alignment: .top)
+        .ignoresSafeArea()
     }
 }
 

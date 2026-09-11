@@ -1,10 +1,6 @@
 import SwiftUI
 import Combine
 
-enum ScreenSize {
-    static var width: CGFloat { 390 }
-    static var height: CGFloat { 844 }
-}
 
 class SettingsStore: ObservableObject {
     @AppStorage("isHapticEnabled")        var isHapticEnabled: Bool = true

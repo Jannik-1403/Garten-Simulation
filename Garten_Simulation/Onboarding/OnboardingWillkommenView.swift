@@ -3,6 +3,7 @@ import SwiftUI
 struct OnboardingWillkommenView: View {
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
+    @Environment(\.horizontalSizeClass) var hSize
     @State private var showContent = false
 
     var body: some View {
@@ -17,10 +18,9 @@ struct OnboardingWillkommenView: View {
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 
                     Text(String(localized: "onboarding_willkommen_untertitel"))
-                        .font(.system(size: 34, weight: .heavy, design: .rounded))
+                        .font(.system(size: hSize == .regular ? 44 : 34, weight: .heavy, design: .rounded))
                         .foregroundStyle(.black)
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, 24)
                 .padding(.top, 40)
                 .transition(.move(edge: .bottom).combined(with: .opacity))
             }
@@ -43,11 +43,13 @@ struct OnboardingWillkommenView: View {
                     shadowColor: Color.blauPrimary.darker(),
                     foregroundColor: .white
                 ))
-                .padding(.horizontal, 24)
                 .padding(.bottom, 40)
                 .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
         .onAppear {
             withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1)) {
                 showContent = true

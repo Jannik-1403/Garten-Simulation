@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OnboardingZielView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
 
@@ -26,7 +27,7 @@ struct OnboardingZielView: View {
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 20)
-                    .padding(.horizontal, 24)
+                    
                     .background(Color(.systemGray6))
                     .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                     .overlay(
@@ -55,9 +56,12 @@ struct OnboardingZielView: View {
                 foregroundColor: .white
             ))
             .disabled(data.customZiel.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-            .padding(.horizontal, 24)
+            
             .padding(.bottom, 40)
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
         .onTapGesture {
             hideKeyboard()
         }

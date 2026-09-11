@@ -2,6 +2,7 @@ import SwiftUI
 import UserNotifications
 
 struct OnboardingZeitView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     @State private var currentIndex = 0
@@ -75,7 +76,7 @@ struct OnboardingZeitView: View {
             }
             .background(Color(.systemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .padding(.horizontal, 24)
+            
             .shadow(color: .black.opacity(0.04), radius: 8, y: 4)
             
             Spacer()
@@ -108,9 +109,12 @@ struct OnboardingZeitView: View {
                         .padding(.vertical, 8)
                 }
             }
-            .padding(.horizontal, 24)
+            
             .padding(.bottom, 30)
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
     }
     
     private func saveAndNext() {

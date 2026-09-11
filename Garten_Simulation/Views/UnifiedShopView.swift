@@ -30,27 +30,28 @@ struct ShopItemCard: View {
                         if plant.id == "plant.seeds" {
                             Image("Samen")
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
+                                .aspectRatio(contentMode: .fit)
                         } else {
-                            PlantIconView(plant: plant, seltenheit: .bronze, size: 110, alwaysShowFullGrown: true)
+                            PlantIconView(plant: plant, seltenheit: .bronze, size: 80, alwaysShowFullGrown: true)
                                 .scaleEffect(1.5)
                         }
                     } else {
                         if UIImage(named: icon) != nil {
                             Image(icon)
                                 .resizable()
-                                .scaledToFit()
+                                .aspectRatio(contentMode: .fit)
                                 .scaleEffect(iconScale)
                         } else {
                             Image(systemName: icon)
-                                .font(.system(size: 80))
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
                                 .foregroundStyle(accentColor)
                                 .scaleEffect(iconScale)
                         }
                     }
                 }
-                .frame(width: 110, height: 110)
+                .aspectRatio(1, contentMode: .fit)
+                .clipped()
 
                 VStack(alignment: .center, spacing: 4) {
                     Text(NSLocalizedString(name, comment: ""))
@@ -239,7 +240,8 @@ struct UnifiedShopView: View {
                                     }
                                     .padding(.bottom, 16)
 
-                                    VStack(spacing: 12) {
+                                    let columns = [GridItem(.adaptive(minimum: 160, maximum: 220), spacing: 16)]
+                                    LazyVGrid(columns: columns, spacing: 16) {
                                         ForEach(gefilterteDekorationen) { item in
                                             let isOwned = gardenStore.placedDecorations.contains(where: { $0.id == item.id })
                                             ShopItemCard(
@@ -290,7 +292,8 @@ struct UnifiedShopView: View {
                                     }
                                     .padding(.bottom, 16)
 
-                                    VStack(spacing: 12) {
+                                    let columns = [GridItem(.adaptive(minimum: 160, maximum: 220), spacing: 16)]
+                                    LazyVGrid(columns: columns, spacing: 16) {
                                         ForEach(gefiltertePflanzen) { plant in
                                             let originalP = plant.basePrice
                                             let p = iapStore.isProUser ? Int(Double(originalP) * GameConstants.proUnlockDiscount) : originalP

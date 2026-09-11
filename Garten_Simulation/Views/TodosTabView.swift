@@ -97,8 +97,9 @@ struct TodosTabView: View {
                         .padding(.vertical, 24)
                     }
                 }
-                Spacer()
                 }
+                .frame(maxWidth: 700)
+                .frame(maxWidth: .infinity, alignment: .center)
             }
             // Title removed based on user request
             .toolbar {

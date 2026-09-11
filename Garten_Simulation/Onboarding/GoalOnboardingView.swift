@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct GoalOnboardingView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @State private var goalText = ""
     
@@ -55,9 +56,12 @@ struct GoalOnboardingView: View {
                 }
                 .disabled(goalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
-            .padding(.horizontal, 24)
+            
             .padding(.bottom, 30)
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
         .onTapGesture {
             hideKeyboard()
         }

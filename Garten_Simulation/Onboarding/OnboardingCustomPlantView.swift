@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OnboardingCustomPlantView: View {
+    @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     @State private var showingAddSheet = false
@@ -62,9 +63,12 @@ struct OnboardingCustomPlantView: View {
             ))
             .disabled(customPflanzen.isEmpty)
             .opacity(customPflanzen.isEmpty ? 0.6 : 1.0)
-            .padding(.horizontal, 24)
+            
             .padding(.bottom, 40)
         }
+        .frame(maxWidth: 500)
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
         .sheet(isPresented: $showingAddSheet) {
             AddCustomHabitSheet { newHabit in
                 customPflanzen.append(newHabit)
@@ -76,6 +80,7 @@ struct OnboardingCustomPlantView: View {
 }
 
 struct CustomHabitCard: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let habit: CustomOnboardingPflanze
     let onDelete: () -> Void
     @EnvironmentObject var settings: SettingsStore
@@ -124,6 +129,7 @@ struct CustomHabitCard: View {
 }
 
 struct AddCustomHabitSheet: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let onAdd: (CustomOnboardingPflanze) -> Void
     @EnvironmentObject var settings: SettingsStore
     
@@ -213,6 +219,7 @@ struct AddCustomHabitSheet: View {
 
 // MARK: - Subviews for Sheet
 struct SymbolCircle: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let symbol: String
     let isSelected: Bool
     let action: () -> Void
@@ -229,6 +236,7 @@ struct SymbolCircle: View {
 }
 
 struct ColorCircle: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let colorName: String
     let isSelected: Bool
     let action: () -> Void
@@ -243,6 +251,7 @@ struct ColorCircle: View {
 }
 
 struct CategoryCircle: View {
+    @Environment(\.horizontalSizeClass) var hSize
     let category: HabitCategory
     let isSelected: Bool
     let action: () -> Void

@@ -208,6 +208,8 @@ struct RoutinenView: View {
                         
                         Spacer(minLength: 80)
                     }
+                    .frame(maxWidth: 700)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .navigationTitle(String(localized: String.LocalizationValue("tab.routines")))
