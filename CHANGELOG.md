@@ -1105,3 +1105,4 @@
 - Neues Feature: GratitudeJournalEntry Model und GratitudeJournalView im iTunes 3D-Look mit 100% Übersetzungsabdeckung in 16 Sprachen.
 - Hinzugefügt: Apple App Store Review Prompt bei Level-Up (alle 3 Level) und manueller Button in den Einstellungen.
 - Fix: App Store Review Pop-up erscheint nun basierend auf dem Daily-Streak (ab Streak 2).
+- Fix: App Store Link korrigiert und Emoji entfernt.
