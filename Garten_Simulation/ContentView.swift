@@ -251,7 +251,7 @@ struct ContentView: View {
             case .screenTime:
                 showScreenTimeFromShortcut = true
             case .rateApp:
-                if let url = URL(string: "itms-apps://itunes.apple.com/app/id6470355483?action=write-review") {
+                if let url = URL(string: "itms-apps://itunes.apple.com/app/id6789945028?action=write-review") {
                     UIApplication.shared.open(url)
                 }
             case .deleteWarning:

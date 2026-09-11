@@ -375,11 +375,11 @@ struct SettingsView: View {
                                     Divider().padding(.leading, 56)
                                     
                                     Button {
-                                        if let url = URL(string: "itms-apps://itunes.apple.com/app/id6470355483?action=write-review") {
+                                        if let url = URL(string: "itms-apps://itunes.apple.com/app/id6789945028?action=write-review") {
                                             UIApplication.shared.open(url)
                                         }
                                     } label: {
-                                        settingRow(title: String(localized: "settings.rate_app", defaultValue: "App bewerten ⭐️"), icon: "star.fill", color: .yellow)
+                                        settingRow(title: String(localized: "settings.rate_app", defaultValue: "App bewerten"), icon: "star.fill", color: .yellow)
                                     }
                                 }
                             }
