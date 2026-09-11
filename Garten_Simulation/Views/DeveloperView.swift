@@ -3,6 +3,7 @@ import SwiftUI
 struct DeveloperView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var tourManager: InteractiveTourManager
     @Environment(\.dismiss) var dismiss
     
@@ -80,6 +81,20 @@ struct DeveloperView: View {
                                     title: String(localized: "developer.cheats.addCoins", defaultValue: "+ 100.000 Münzen"),
                                     icon: "dollarsign.circle.fill",
                                     color: .yellow
+                                )
+                            }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                streakStore.currentStreak = 1
+                                FeedbackManager.shared.playSuccess()
+                                dismiss()
+                            } label: {
+                                settingRow(
+                                    title: "Review-Popup Test (Setzt Streak auf 1)",
+                                    icon: "star.fill",
+                                    color: .orange
                                 )
                             }
                         }
