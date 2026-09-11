@@ -1098,3 +1098,4 @@
 - Fix: ShopView auf iPad nutzt jetzt 2 deutlich größere Spalten, analog zur Handy-Version, und die Glücksrad-Karte ist in der Breite auf max 400 begrenzt, um übermäßige Skalierung zu verhindern.
 - Fix: PflanzeDetailSheet-Layout auf dem iPad wieder in eine einzelne, zentrierte Spalte geändert und verbreitert.
 - Fix: Im Shop wurde das Raster-Layout (LazyVGrid) wieder entfernt. Es wird nun wieder streng ein Item pro Zeile untereinander angezeigt, auch auf dem iPad. Der defekte Kategorie-Switcher wurde durch eine zuverlässige Custom-Lösung ersetzt, und riesige Glücksrad-Icons auf dem iPad wurden durch feste Bildgrößen korrigiert.
+- Fix: Alle Sheets/Popups bei den Routinen (Erstellen, Bearbeiten, Timer, Todo) öffnen sich nun als .fullScreenCover im Vollbildmodus statt als halbes Sheet, um den Platz optimal zu nutzen.

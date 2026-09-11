@@ -401,35 +401,11 @@ struct UnifiedShopView: View {
                 .font(.caption)
                 .fontWeight(.medium)
                 .foregroundStyle(.secondary)
-            
-            HStack(spacing: 8) {
-                Button(action: { shopCategory = .gegenstande }) {
-                    Text(String(localized: "shop.tab.items.short", defaultValue: "Schlechte"))
-                        .font(.subheadline.weight(.semibold))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
-                        .background(shopCategory == .gegenstande ? Color(UIColor.systemBackground) : Color.clear)
-                        .cornerRadius(8)
-                        .shadow(color: shopCategory == .gegenstande ? Color.black.opacity(0.1) : Color.clear, radius: 2, x: 0, y: 1)
-                        .foregroundColor(shopCategory == .gegenstande ? .primary : .secondary)
-                }
-                .buttonStyle(.plain)
-
-                Button(action: { shopCategory = .pflanzen }) {
-                    Text(String(localized: "shop.tab.plants.short", defaultValue: "Gute"))
-                        .font(.subheadline.weight(.semibold))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
-                        .background(shopCategory == .pflanzen ? Color(UIColor.systemBackground) : Color.clear)
-                        .cornerRadius(8)
-                        .shadow(color: shopCategory == .pflanzen ? Color.black.opacity(0.1) : Color.clear, radius: 2, x: 0, y: 1)
-                        .foregroundColor(shopCategory == .pflanzen ? .primary : .secondary)
-                }
-                .buttonStyle(.plain)
+            Picker(String(localized: "shop.category.label", defaultValue: "Kategorie"), selection: $shopCategory) {
+                Text(String(localized: "shop.tab.items.short", defaultValue: "Schlechte")).tag(ShopCategory.gegenstande)
+                Text(String(localized: "shop.tab.plants.short", defaultValue: "Gute")).tag(ShopCategory.pflanzen)
             }
-            .padding(4)
-            .background(Color(UIColor.tertiarySystemFill))
-            .cornerRadius(10)
+            .pickerStyle(.segmented)
         }
         .padding(.horizontal, 16)
     }
