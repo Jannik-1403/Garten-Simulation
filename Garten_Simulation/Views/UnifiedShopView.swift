@@ -244,7 +244,6 @@ struct UnifiedShopView: View {
                                     }
                                     .padding(.bottom, 16)
 
-                                    let isIPad = horizontalSizeClass == .regular
                                     LazyVStack(spacing: 12) {
                                         ForEach(gefilterteDekorationen) { item in
                                             let isOwned = gardenStore.placedDecorations.contains(where: { $0.id == item.id })
@@ -296,7 +295,6 @@ struct UnifiedShopView: View {
                                     }
                                     .padding(.bottom, 16)
 
-                                    let isIPad = horizontalSizeClass == .regular
                                     LazyVStack(spacing: 12) {
                                         ForEach(gefiltertePflanzen) { plant in
                                             let originalP = plant.basePrice
