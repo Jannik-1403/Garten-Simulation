@@ -27,7 +27,7 @@ struct CleaningTaskRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(String(localized: String.LocalizationValue(task.nameKey)))
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 
                 if isOverdue {
                     Text(String(localized: "cleaning.status.overdue", defaultValue: "Überfällig!"))
@@ -42,7 +42,7 @@ struct CleaningTaskRowView: View {
                     } else {
                         Text(String(localized: "cleaning.status.dueIn", defaultValue: "Fällig in %@ Tagen", table: nil).replacingOccurrences(of: "%@", with: "\(daysUntilDue)"))
                             .font(.subheadline)
-                            .foregroundColor(.white.opacity(0.7))
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -69,14 +69,7 @@ struct CleaningTaskRowView: View {
             .buttonStyle(PlainButtonStyle())
         }
         .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color.black.opacity(0.3))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .stroke(Color.white.opacity(0.1), lineWidth: 1)
-                )
-        )
+        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
     }
 }
 

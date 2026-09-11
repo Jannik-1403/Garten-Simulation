@@ -11,7 +11,7 @@ struct CleaningAnalysisSheet: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.black.ignoresSafeArea()
+                Color(UIColor.secondarySystemBackground).ignoresSafeArea()
                 
                 ScrollView {
                     VStack(spacing: 24) {
@@ -31,7 +31,7 @@ struct CleaningAnalysisSheet: View {
                         Text(String(localized: String.LocalizationValue(task.nameKey)))
                             .font(.largeTitle)
                             .bold()
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                         
                         // Stats Grid
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
@@ -58,7 +58,7 @@ struct CleaningAnalysisSheet: View {
                                 Text(String(localized: "cleaning.chart.title", defaultValue: "Aktivität"))
                                     .font(.title3)
                                     .bold()
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                     .padding(.horizontal)
                                 
                                 Chart(recentLogs) { log in
@@ -72,7 +72,7 @@ struct CleaningAnalysisSheet: View {
                                 .chartYAxis(.hidden)
                                 .frame(height: 150)
                                 .padding()
-                                .background(Color.white.opacity(0.05))
+                                .background(Color(UIColor.systemBackground))
                                 .cornerRadius(16)
                                 .padding(.horizontal)
                             }
@@ -102,7 +102,7 @@ struct CleaningAnalysisSheet: View {
                     Button(String(localized: "common.close", defaultValue: "Schließen")) {
                         dismiss()
                     }
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 }
             }
             .alert(String(localized: "cleaning.delete.title", defaultValue: "Aufgabe löschen?"), isPresented: $showingDeleteAlert) {
@@ -115,7 +115,6 @@ struct CleaningAnalysisSheet: View {
                 Text(String(localized: "cleaning.delete.message", defaultValue: "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten."))
             }
         }
-        .preferredColorScheme(.dark)
     }
 }
 
@@ -132,18 +131,18 @@ struct StatCard: View {
                     .foregroundColor(color)
                 Text(title)
                     .font(.caption)
-                    .foregroundColor(.white.opacity(0.7))
+                    .foregroundColor(.secondary)
             }
             Text(value)
                 .font(.title3)
                 .bold()
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(Color.white.opacity(0.05))
+        .background(Color(UIColor.systemBackground))
         .cornerRadius(16)
     }
 }

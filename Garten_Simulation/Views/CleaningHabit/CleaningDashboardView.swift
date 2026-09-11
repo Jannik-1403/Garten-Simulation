@@ -8,7 +8,7 @@ struct CleaningDashboardView: View {
     var body: some View {
         ZStack {
             // Background
-            LinearGradient(gradient: Gradient(colors: [Color(hex: "0F2027"), Color(hex: "203A43"), Color(hex: "2C5364")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            Color(UIColor.systemBackground)
             
             VStack(spacing: 24) {
                 VStack(spacing: 24) {
@@ -17,7 +17,7 @@ struct CleaningDashboardView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(String(localized: "cleaning.dashboard.title", defaultValue: "Aufräumen"))
                                 .font(.system(size: 34, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
+                                .foregroundColor(.primary)
                             
                             let overdueCount = manager.tasks.filter { $0.isOverdue(lastCompleted: manager.lastCompletedDate(for: $0.id)) }.count
                             if overdueCount > 0 {
@@ -27,7 +27,7 @@ struct CleaningDashboardView: View {
                             } else {
                                 Text(String(localized: "cleaning.dashboard.subtitle.allDone", defaultValue: "Alles sauber!"))
                                     .font(.subheadline)
-                                    .foregroundColor(.white.opacity(0.7))
+                                    .foregroundColor(.secondary)
                             }
                         }
                         
@@ -43,7 +43,7 @@ struct CleaningDashboardView: View {
                                 
                                 Image(systemName: "plus")
                                     .font(.system(size: 20, weight: .bold))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                             }
                         }
                     }

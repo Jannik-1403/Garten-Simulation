@@ -15,6 +15,32 @@ struct AddCleaningTaskSheet: View {
             Form {
                 Section(header: Text(String(localized: "cleaning.add.name", defaultValue: "Aufgabe"))) {
                     TextField(String(localized: "cleaning.add.placeholder", defaultValue: "z.B. Küche putzen"), text: $taskName)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            let suggestions = [
+                                (nameKey: "cleaning.task.bed", icon: "bed.double.fill", days: 7),
+                                (nameKey: "cleaning.task.room", icon: "squareshape.split.2x2", days: 3),
+                                (nameKey: "cleaning.task.kitchen", icon: "fork.knife", days: 2)
+                            ]
+                            ForEach(suggestions, id: \.nameKey) { suggestion in
+                                Button(action: {
+                                    taskName = String(localized: String.LocalizationValue(suggestion.nameKey))
+                                    selectedIcon = suggestion.icon
+                                    frequencyDays = suggestion.days
+                                }) {
+                                    Text(String(localized: String.LocalizationValue(suggestion.nameKey)))
+                                        .font(.caption)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 6)
+                                        .background(Color.blue.opacity(0.1))
+                                        .foregroundColor(.blue)
+                                        .cornerRadius(12)
+                                }
+                            }
+                        }
+                    }
+                    .padding(.vertical, 4)
                 }
                 
                 Section(header: Text(String(localized: "cleaning.add.icon", defaultValue: "Icon"))) {
@@ -25,7 +51,7 @@ struct AddCleaningTaskSheet: View {
                                 .frame(width: 44, height: 44)
                                 .background(selectedIcon == icon ? Color.blue.opacity(0.3) : Color.clear)
                                 .cornerRadius(8)
-                                .foregroundColor(selectedIcon == icon ? .blue : .white)
+                                .foregroundColor(selectedIcon == icon ? .blue : .primary)
                                 .onTapGesture {
                                     selectedIcon = icon
                                 }
@@ -35,8 +61,11 @@ struct AddCleaningTaskSheet: View {
                 }
                 
                 Section(header: Text(String(localized: "cleaning.add.interval", defaultValue: "Intervall (Tage)"))) {
-                    Stepper(value: $frequencyDays, in: 1...365) {
-                        Text("\(frequencyDays) " + String(localized: "cleaning.add.days", defaultValue: "Tage"))
+                    HStack {
+                        TextField("7", value: $frequencyDays, format: .number)
+                            .keyboardType(.numberPad)
+                            .multilineTextAlignment(.trailing)
+                        Text(String(localized: "cleaning.add.days", defaultValue: "Tage"))
                     }
                 }
             }
@@ -58,7 +87,6 @@ struct AddCleaningTaskSheet: View {
                     .disabled(taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
             }
-            .preferredColorScheme(.dark)
         }
     }
 }
