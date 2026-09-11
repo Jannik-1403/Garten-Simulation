@@ -12,8 +12,6 @@ struct ContentView: View {
     @EnvironmentObject var assessmentStore: AssessmentStore
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var realShopStore: ShopStore
-    @Environment(\.requestReview) var requestReview
-    
     @StateObject private var screenTimeManager = ScreenTimeManager.shared
     
     @State private var showWeeklyReportPopup = false
@@ -121,7 +119,9 @@ struct ContentView: View {
         .onChange(of: gardenStore.triggerReview) { _, trigger in
             if trigger {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    requestReview()
+                    if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                        SKStoreReviewController.requestReview(in: scene)
+                    }
                     gardenStore.triggerReview = false
                 }
             }
