@@ -1,8 +1,12 @@
-import SwiftUI
+import os
+
+filepath = '/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GratitudeJournalView.swift'
+
+new_content = """import SwiftUI
 
 struct GratitudeJournalView: View {
     @ObservedObject var habit: HabitModel
-    @Environment(\.dismiss) var dismiss
+    @Environment(\\.dismiss) var dismiss
     
     @State private var mood: Int = 0 // 1-5
     @State private var thankfulFor: String = ""
@@ -37,7 +41,7 @@ struct GratitudeJournalView: View {
                                 .foregroundStyle(.primary)
                             
                             HStack(spacing: 12) {
-                                ForEach(1...5, id: \.self) { i in
+                                ForEach(1...5, id: \\.self) { i in
                                     Button(action: {
                                         withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                                             mood = i
@@ -82,7 +86,7 @@ struct GratitudeJournalView: View {
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 10) {
-                                    ForEach(chips, id: \.self) { chip in
+                                    ForEach(chips, id: \\.self) { chip in
                                         Button(action: {
                                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
                                             if !thankfulFor.isEmpty && !thankfulFor.hasSuffix(" ") {
@@ -229,3 +233,9 @@ struct GratitudeJournalView: View {
         dismiss()
     }
 }
+"""
+
+with open(filepath, 'w') as f:
+    f.write(new_content)
+
+print("GratitudeJournalView updated.")
