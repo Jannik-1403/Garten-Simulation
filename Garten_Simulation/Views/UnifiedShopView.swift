@@ -51,8 +51,7 @@ struct ShopItemCard: View {
                         }
                     }
                 }
-                .aspectRatio(1, contentMode: .fit)
-                .clipped()
+                .frame(width: horizontalSizeClass == .regular ? 160 : 110, height: horizontalSizeClass == .regular ? 160 : 110)
 
                 let isIPad = horizontalSizeClass == .regular
                 VStack(alignment: .center, spacing: isIPad ? 8 : 4) {
@@ -170,6 +169,7 @@ struct UnifiedShopView: View {
                 ScrollViewReader { proxy in
                     ZStack {
                         ScrollView(showsIndicators: false) {
+                            let isIPad = horizontalSizeClass == .regular
                             VStack(alignment: .leading, spacing: 0) {
                                 Spacer().frame(height: 16).id("top")
 
@@ -245,8 +245,7 @@ struct UnifiedShopView: View {
                                     .padding(.bottom, 16)
 
                                     let isIPad = horizontalSizeClass == .regular
-                                    let columns = [GridItem(.adaptive(minimum: isIPad ? 300 : 160, maximum: isIPad ? 400 : 220), spacing: 16)]
-                                    LazyVGrid(columns: columns, spacing: 16) {
+                                    LazyVStack(spacing: 12) {
                                         ForEach(gefilterteDekorationen) { item in
                                             let isOwned = gardenStore.placedDecorations.contains(where: { $0.id == item.id })
                                             ShopItemCard(
@@ -298,8 +297,7 @@ struct UnifiedShopView: View {
                                     .padding(.bottom, 16)
 
                                     let isIPad = horizontalSizeClass == .regular
-                                    let columns = [GridItem(.adaptive(minimum: isIPad ? 300 : 160, maximum: isIPad ? 400 : 220), spacing: 16)]
-                                    LazyVGrid(columns: columns, spacing: 16) {
+                                    LazyVStack(spacing: 12) {
                                         ForEach(gefiltertePflanzen) { plant in
                                             let originalP = plant.basePrice
                                             let p = iapStore.isProUser ? Int(Double(originalP) * GameConstants.proUnlockDiscount) : originalP
@@ -344,6 +342,8 @@ struct UnifiedShopView: View {
 
                                 Spacer(minLength: 100)
                             }
+                            .frame(maxWidth: isIPad ? 650 : .infinity)
+                            .frame(maxWidth: .infinity) // To center the 650 box
                         }
                         
                         // Scroll to Top
@@ -402,11 +402,34 @@ struct UnifiedShopView: View {
                 .fontWeight(.medium)
                 .foregroundStyle(.secondary)
             
-            Picker(String(localized: "shop.category.label", defaultValue: "Kategorie"), selection: $shopCategory) {
-                Text(String(localized: "shop.tab.items.short", defaultValue: "Schlechte")).tag(ShopCategory.gegenstande)
-                Text(String(localized: "shop.tab.plants.short", defaultValue: "Gute")).tag(ShopCategory.pflanzen)
+            HStack(spacing: 8) {
+                Button(action: { shopCategory = .gegenstande }) {
+                    Text(String(localized: "shop.tab.items.short", defaultValue: "Schlechte"))
+                        .font(.subheadline.weight(.semibold))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
+                        .background(shopCategory == .gegenstande ? Color(UIColor.systemBackground) : Color.clear)
+                        .cornerRadius(8)
+                        .shadow(color: shopCategory == .gegenstande ? Color.black.opacity(0.1) : Color.clear, radius: 2, x: 0, y: 1)
+                        .foregroundColor(shopCategory == .gegenstande ? .primary : .secondary)
+                }
+                .buttonStyle(.plain)
+
+                Button(action: { shopCategory = .pflanzen }) {
+                    Text(String(localized: "shop.tab.plants.short", defaultValue: "Gute"))
+                        .font(.subheadline.weight(.semibold))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
+                        .background(shopCategory == .pflanzen ? Color(UIColor.systemBackground) : Color.clear)
+                        .cornerRadius(8)
+                        .shadow(color: shopCategory == .pflanzen ? Color.black.opacity(0.1) : Color.clear, radius: 2, x: 0, y: 1)
+                        .foregroundColor(shopCategory == .pflanzen ? .primary : .secondary)
+                }
+                .buttonStyle(.plain)
             }
-            .pickerStyle(.segmented)
+            .padding(4)
+            .background(Color(UIColor.tertiarySystemFill))
+            .cornerRadius(10)
         }
         .padding(.horizontal, 16)
     }
