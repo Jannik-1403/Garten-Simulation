@@ -11,6 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var assessmentStore: AssessmentStore
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var realShopStore: ShopStore
+    @Environment(\.requestReview) var requestReview
     
     @StateObject private var screenTimeManager = ScreenTimeManager.shared
     
@@ -114,6 +115,15 @@ struct ContentView: View {
         .onChange(of: interactiveTourManager.isActive) { _, isActive in
             if isActive {
                 mockGardenStore.selectedTab = 0
+            }
+        }
+        .onChange(of: gardenStore.gartenStufe) { oldLevel, newLevel in
+            // Apple Review Prompt: Zeige Popup z.B. bei Level 3, 6, 9...
+            if newLevel > oldLevel && newLevel > 1 && newLevel % 3 == 0 {
+                // Verzögerung, damit Level-Up-Animationen nicht gestört werden
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    requestReview()
+                }
             }
         }
         .sheet(isPresented: $showWeeklyReportPopup) {

@@ -1,6 +1,306 @@
 {
   "sourceLanguage": "de",
   "strings": {
+    "0": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ноль"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        }
+      }
+    },
+    "100": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "сто"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        }
+      }
+    },
+    "500": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "500"
+          }
+        }
+      }
+    },
     "": {
       "localizations": {
         "de": {
@@ -2514,106 +2814,6 @@
         }
       }
     },
-    "0": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ноль"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        }
-      }
-    },
     "0 %@": {
       "localizations": {
         "de": {
@@ -2910,206 +3110,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "20%@"
-          }
-        }
-      }
-    },
-    "100": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "сто"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        }
-      }
-    },
-    "500": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "500"
           }
         }
       }
@@ -374161,97 +374161,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "App bewerten"
+            "value": "App bewerten ⭐️"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rate App"
+            "value": "Rate App ⭐️"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calificar App"
+            "value": "Valorar aplicación ⭐️"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Évaluer l'application"
+            "value": "Évaluer l'appli ⭐️"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ऐप की समीक्षा करें"
+            "value": "ऐप को रेट करें ⭐️"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Valuta l'app"
+            "value": "Valuta app ⭐️"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "アプリを評価"
+            "value": "アプリを評価 ⭐️"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "앱 평가하기"
+            "value": "앱 평가하기 ⭐️"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beoordeel app"
+            "value": "Beoordeel app ⭐️"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oceń aplikację"
+            "value": "Oceń aplikację ⭐️"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avaliar aplicação"
+            "value": "Avaliar App ⭐️"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avaliar aplicação"
+            "value": "Avaliar App ⭐️"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Оценить приложение"
+            "value": "Оценить приложение ⭐️"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uygulamayı Değerlendir"
+            "value": "Uygulamayı değerlendir ⭐️"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "评价应用程序"
+            "value": "评价应用 ⭐️"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "評價應用程式"
+            "value": "評價應用 ⭐️"
           }
         }
       }

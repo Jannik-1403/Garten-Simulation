@@ -372,6 +372,15 @@ struct SettingsView: View {
                                         settingRow(title: String(localized: "settings.contact"), icon: "message.fill", color: .blauPrimary)
                                     }
                                     
+                                    Divider().padding(.leading, 56)
+                                    
+                                    Button {
+                                        if let url = URL(string: "itms-apps://itunes.apple.com/app/id6470355483?action=write-review") {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        settingRow(title: String(localized: "settings.rate_app", defaultValue: "App bewerten ⭐️"), icon: "star.fill", color: .yellow)
+                                    }
                                 }
                             }
                             
