@@ -97,9 +97,6 @@ struct PflanzeDetailSheet: View {
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 28) {
-                            plantHeroSection
-                                .padding(.top, 24)
-                            
                             LazyVStack(spacing: 28) {
                 // MARK: - OVERVIEW CONTENT
                 Section {
@@ -698,44 +695,7 @@ struct PflanzeDetailSheet: View {
 
 
 
-    @ViewBuilder
-    private var plantHeroSection: some View {
-        let isIPad = horizontalSizeClass == .regular
-        VStack(spacing: isIPad ? 32 : 24) {
-            if let plant = GameDatabase.shared.plant(for: pflanze.plantID) {
-                PflanzenButton(
-                    plant: plant,
-                    seltenheit: pflanze.seltenheit,
-                    farbe: pflanze.color,
-                    sekundaerFarbe: pflanze.color.darker(),
-                    groesse: isIPad ? 240 : 160,
-                    fallbackIcon: pflanze.symbolName,
-                    externerPress: false,
-                    aktion: {}
-                )
-                .allowsHitTesting(false)
-            } else {
-                Image(systemName: pflanze.symbolName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: isIPad ? 160 : 100, height: isIPad ? 160 : 100)
-                    .foregroundStyle(pflanze.color)
-                    .padding()
-            }
-            
-            VStack(spacing: 8) {
-                Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
-                    .font(.system(size: isIPad ? 36 : 28, weight: .black, design: .rounded))
-                    .foregroundStyle(Color.primary)
-                    .multilineTextAlignment(.center)
-                    
-                Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(pflanze.streak)")
-                    .font(.system(size: isIPad ? 22 : 17, weight: .semibold))
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .padding(.vertical, 16)
-    }
+
 }
 
 // MARK: - Flame Streak Button
