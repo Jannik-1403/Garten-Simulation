@@ -1091,3 +1091,4 @@
 - Refactored PflanzeDetailSheet to use a two-column layout on iPad using size classes.
 - Refactored all onboarding views to use responsive size classes and constrained layout on iPad.
 - Expanded Onboarding views to 650pt width and resolved 99.9% translation bug.
+- Scaled up plant selection cards dynamically on iPad in OnboardingPflanzenView.

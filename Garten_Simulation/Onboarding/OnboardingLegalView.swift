@@ -10,6 +10,8 @@ struct OnboardingLegalView: View {
     @State private var showPrivacy = false
     
     var body: some View {
+        let isIPad = hSize == .regular
+        
         VStack(spacing: 0) {
             OnboardingIgelView(
                 pose: hasAcceptedTerms ? .daumenHoch : .erklaert,
@@ -20,25 +22,28 @@ struct OnboardingLegalView: View {
             Spacer()
             
             // Apple-like Card for Legal stuff
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: isIPad ? 32 : 20) {
                 Text(String(localized: "onboarding_legal_title")) // e.g. "Nutzungsbedingungen & Datenschutz"
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .font(.system(size: isIPad ? 32 : 22, weight: .bold, design: .rounded))
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom, 4)
                 
                 Text(String(localized: "onboarding_legal_desc")) // e.g. "Bevor du loslegst, bitten wir dich, unsere Bedingungen zu akzeptieren."
-                    .font(.system(size: 15, weight: .regular))
+                    .font(.system(size: isIPad ? 22 : 15, weight: .regular))
                     .foregroundStyle(.secondary)
                     .lineSpacing(4)
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
                 
                 // Benefits List
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: isIPad ? 20 : 12) {
                     benefitRow(icon: "person.crop.circle.badge.xmark", text: String(localized: "onboarding_legal_benefit_1"))
                     benefitRow(icon: "shield.lefthalf.filled", text: String(localized: "onboarding_legal_benefit_2"), color: .blauPrimary)
-                    benefitRow(icon: "lock.shield", text: String(localized: "onboarding_legal_benefit_3"), color: .green)
+                    
+                    let percentText = "100%"
+                    let benefit3 = String(format: String(localized: "onboarding_legal_benefit_3"), percentText)
+                    benefitRow(icon: "lock.shield", text: benefit3, color: .green)
                 }
                 .padding(.vertical, 8)
                 
@@ -49,17 +54,17 @@ struct OnboardingLegalView: View {
                         hasAcceptedTerms.toggle()
                     }
                 } label: {
-                    HStack(alignment: .top, spacing: 16) {
+                    HStack(alignment: .top, spacing: isIPad ? 24 : 16) {
                         // Checkbox
                         ZStack {
                             Circle()
                                 .strokeBorder(hasAcceptedTerms ? Color.blauPrimary : Color.gray.opacity(0.3), lineWidth: 2)
                                 .background(Circle().fill(hasAcceptedTerms ? Color.blauPrimary : Color.clear))
-                                .frame(width: 28, height: 28)
+                                .frame(width: isIPad ? 40 : 28, height: isIPad ? 40 : 28)
                             
                             if hasAcceptedTerms {
                                 Image(systemName: "checkmark")
-                                    .font(.system(size: 14, weight: .bold))
+                                    .font(.system(size: isIPad ? 20 : 14, weight: .bold))
                                     .foregroundStyle(.white)
                             }
                         }
@@ -68,7 +73,7 @@ struct OnboardingLegalView: View {
                         // Text with Links
                         VStack(alignment: .leading, spacing: 6) {
                             Text(String(localized: "onboarding_legal_checkbox_text")) // e.g. "Ich habe die Bedingungen gelesen und stimme zu."
-                                .font(.system(size: 15, weight: .medium))
+                                .font(.system(size: isIPad ? 22 : 15, weight: .medium))
                                 .foregroundStyle(.primary)
                                 .multilineTextAlignment(.leading)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -86,7 +91,7 @@ struct OnboardingLegalView: View {
                                         .foregroundStyle(Color.blauPrimary)
                                 }
                             }
-                            .font(.system(size: 13, weight: .medium))
+                            .font(.system(size: isIPad ? 18 : 13, weight: .medium))
                             .padding(.top, 2)
                         }
                     }
@@ -134,14 +139,15 @@ struct OnboardingLegalView: View {
     }
     
     private func benefitRow(icon: String, text: String, color: Color = .gray) -> some View {
-        HStack(spacing: 12) {
+        let isIPad = hSize == .regular
+        return HStack(spacing: 12) {
             Image(systemName: icon)
-                .font(.system(size: 18, weight: .semibold))
+                .font(.system(size: isIPad ? 26 : 18, weight: .semibold))
                 .foregroundStyle(color)
-                .frame(width: 24, alignment: .center)
+                .frame(width: isIPad ? 36 : 24, alignment: .center)
             
             Text(text)
-                .font(.system(size: 15, weight: .medium))
+                .font(.system(size: isIPad ? 22 : 15, weight: .medium))
                 .foregroundStyle(.primary)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
