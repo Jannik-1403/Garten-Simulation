@@ -223,12 +223,6 @@ struct PflanzeDetailSheet: View {
                         .padding(.horizontal, 24)
                         .padding(.bottom, 16)
                     }
-                    
-                    // Aufräum-Gewohnheit (Cleaning Habit)
-                    if pflanze.habitCategory == .cleaning {
-                        CleaningHabitView(habit: pflanze)
-                            .padding(.bottom, 16)
-                    }
 
                     // To-Dos Accordion
                     if pflanze.showTodos {
@@ -674,7 +668,6 @@ struct PflanzeDetailSheet: View {
                                 .environmentObject(iapStore)
                         }
                     }
-                    
                     @ViewBuilder
                     private var healthKitConfigSection: some View {
                         VStack(spacing: 12) {

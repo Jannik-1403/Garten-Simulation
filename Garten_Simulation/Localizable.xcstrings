@@ -114450,91 +114450,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cancel"
+            "value": "Abbrechen (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cancelar"
+            "value": "Abbrechen (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Annuler"
+            "value": "Abbrechen (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "रद्द करना"
+            "value": "Abbrechen (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Annulla"
+            "value": "Abbrechen (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "キャンセル"
+            "value": "Abbrechen (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "취소"
+            "value": "Abbrechen (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Annuleren"
+            "value": "Abbrechen (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anulować"
+            "value": "Abbrechen (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cancelar"
+            "value": "Abbrechen (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cancelar"
+            "value": "Abbrechen (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отмена"
+            "value": "Abbrechen (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İptal etmek"
+            "value": "Abbrechen (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "取消"
+            "value": "Abbrechen (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "取消"
+            "value": "Abbrechen (zh-Hant)"
           }
         }
       }
@@ -114552,91 +114552,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Close"
+            "value": "Schließen (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cerrar"
+            "value": "Schließen (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fermer"
+            "value": "Schließen (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बंद करना"
+            "value": "Schließen (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chiudi"
+            "value": "Schließen (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "閉じる"
+            "value": "Schließen (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "닫기"
+            "value": "Schließen (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sluiten"
+            "value": "Schließen (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zamknij"
+            "value": "Schließen (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fechar"
+            "value": "Schließen (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fechar"
+            "value": "Schließen (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Закрыть"
+            "value": "Schließen (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kapat"
+            "value": "Schließen (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "关闭"
+            "value": "Schließen (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "關閉"
+            "value": "Schließen (zh-Hant)"
           }
         }
       }
@@ -115969,91 +115969,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Delete"
+            "value": "Löschen (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eliminar"
+            "value": "Löschen (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Supprimer"
+            "value": "Löschen (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मिटाना"
+            "value": "Löschen (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elimina"
+            "value": "Löschen (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "削除"
+            "value": "Löschen (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "삭제"
+            "value": "Löschen (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verwijderen"
+            "value": "Löschen (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usuń"
+            "value": "Löschen (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Excluir"
+            "value": "Löschen (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Excluir"
+            "value": "Löschen (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Удалить"
+            "value": "Löschen (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sil"
+            "value": "Löschen (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "删除"
+            "value": "Löschen (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "刪除"
+            "value": "Löschen (zh-Hant)"
           }
         }
       }
@@ -119313,97 +119313,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "SPEICHERN"
+            "value": "Speichern"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "SAVE"
+            "value": "Speichern (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "GUARDAR"
+            "value": "Speichern (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "ENREGISTRER"
+            "value": "Speichern (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बचाना"
+            "value": "Speichern (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "SALVA"
+            "value": "Speichern (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "保存"
+            "value": "Speichern (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "구하다"
+            "value": "Speichern (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "REDDEN"
+            "value": "Speichern (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "RATOWAĆ"
+            "value": "Speichern (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "SALVAR"
+            "value": "Speichern (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "SALVAR"
+            "value": "Speichern (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "СОХРАНЯТЬ"
+            "value": "Speichern (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "KAYDETMEK"
+            "value": "Speichern (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "节省"
+            "value": "Speichern (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "節省"
+            "value": "Speichern (zh-Hant)"
           }
         }
       }
@@ -473116,97 +473116,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufräum-Aufgaben"
+            "value": "Aufräumen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cleaning Tasks"
+            "value": "Aufräumen (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tareas de limpieza"
+            "value": "Aufräumen (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tâches de nettoyage"
+            "value": "Aufräumen (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सफाई के काम"
+            "value": "Aufräumen (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Compiti di pulizia"
+            "value": "Aufräumen (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "掃除タスク"
+            "value": "Aufräumen (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "청소 작업"
+            "value": "Aufräumen (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schoonmaaktaken"
+            "value": "Aufräumen (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zadania sprzątania"
+            "value": "Aufräumen (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tarefas de Limpeza"
+            "value": "Aufräumen (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tarefas de Limpeza"
+            "value": "Aufräumen (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Задачи по уборке"
+            "value": "Aufräumen (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Temizlik Görevleri"
+            "value": "Aufräumen (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "打扫任务"
+            "value": "Aufräumen (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "打掃任務"
+            "value": "Aufräumen (zh-Hant)"
           }
         }
       }
@@ -473324,91 +473324,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Change bed sheets"
+            "value": "Bett abziehen (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cambiar sábanas"
+            "value": "Bett abziehen (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Changer les draps"
+            "value": "Bett abziehen (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बिस्तर बदलें"
+            "value": "Bett abziehen (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cambiare le lenzuola"
+            "value": "Bett abziehen (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "シーツを替える"
+            "value": "Bett abziehen (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "침대 시트 교체"
+            "value": "Bett abziehen (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beddengoed verschonen"
+            "value": "Bett abziehen (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zmienić pościel"
+            "value": "Bett abziehen (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trocar lençóis"
+            "value": "Bett abziehen (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trocar lençóis"
+            "value": "Bett abziehen (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Поменять постельное"
+            "value": "Bett abziehen (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Çarşafları değiştir"
+            "value": "Bett abziehen (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "换床单"
+            "value": "Bett abziehen (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "換床單"
+            "value": "Bett abziehen (zh-Hant)"
           }
         }
       }
@@ -473425,91 +473425,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vacuum"
+            "value": "Staubsaugen (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pasar la aspiradora"
+            "value": "Staubsaugen (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passer l'aspirateur"
+            "value": "Staubsaugen (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "वैक्यूम"
+            "value": "Staubsaugen (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passare l'aspirapolvere"
+            "value": "Staubsaugen (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "掃除機をかける"
+            "value": "Staubsaugen (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "진공 청소"
+            "value": "Staubsaugen (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stofzuigen"
+            "value": "Staubsaugen (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Odkurzać"
+            "value": "Staubsaugen (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aspirar"
+            "value": "Staubsaugen (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aspirar"
+            "value": "Staubsaugen (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Пропылесосить"
+            "value": "Staubsaugen (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elektrikli süpürge"
+            "value": "Staubsaugen (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "吸尘"
+            "value": "Staubsaugen (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "吸塵"
+            "value": "Staubsaugen (zh-Hant)"
           }
         }
       }
@@ -473627,91 +473627,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clean windows"
+            "value": "Fenster putzen (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Limpiar ventanas"
+            "value": "Fenster putzen (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nettoyer les fenêtres"
+            "value": "Fenster putzen (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "खिड़कियां साफ करें"
+            "value": "Fenster putzen (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pulire le finestre"
+            "value": "Fenster putzen (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "窓拭き"
+            "value": "Fenster putzen (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "창문 닦기"
+            "value": "Fenster putzen (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ramen lappen"
+            "value": "Fenster putzen (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Myć okna"
+            "value": "Fenster putzen (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Limpar janelas"
+            "value": "Fenster putzen (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Limpar janelas"
+            "value": "Fenster putzen (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Мыть окна"
+            "value": "Fenster putzen (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Camları sil"
+            "value": "Fenster putzen (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "擦窗户"
+            "value": "Fenster putzen (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "擦窗戶"
+            "value": "Fenster putzen (zh-Hant)"
           }
         }
       }
@@ -473728,91 +473728,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Take out trash"
+            "value": "Müll rausbringen (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sacar la basura"
+            "value": "Müll rausbringen (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sortir les poubelles"
+            "value": "Müll rausbringen (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कचरा बाहर निकालें"
+            "value": "Müll rausbringen (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buttare la spazzatura"
+            "value": "Müll rausbringen (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ゴミ出し"
+            "value": "Müll rausbringen (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "쓰레기 버리기"
+            "value": "Müll rausbringen (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vuilnis buiten zetten"
+            "value": "Müll rausbringen (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wynieść śmieci"
+            "value": "Müll rausbringen (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tirar o lixo"
+            "value": "Müll rausbringen (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tirar o lixo"
+            "value": "Müll rausbringen (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вынести мусор"
+            "value": "Müll rausbringen (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Çöpü çıkar"
+            "value": "Müll rausbringen (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "倒垃圾"
+            "value": "Müll rausbringen (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "倒垃圾"
+            "value": "Müll rausbringen (zh-Hant)"
           }
         }
       }
@@ -475136,97 +475136,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe hinzufügen"
+            "value": "Neue Aufgabe"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Add Task"
+            "value": "Neue Aufgabe (en)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Añadir tarea"
+            "value": "Neue Aufgabe (es)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ajouter"
+            "value": "Neue Aufgabe (fr)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "काम जोड़ें"
+            "value": "Neue Aufgabe (hi)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aggiungi"
+            "value": "Neue Aufgabe (it)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "タスクを追加"
+            "value": "Neue Aufgabe (ja)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "작업 추가"
+            "value": "Neue Aufgabe (ko)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taak toevoegen"
+            "value": "Neue Aufgabe (nl)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dodaj zadanie"
+            "value": "Neue Aufgabe (pl)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Adicionar"
+            "value": "Neue Aufgabe (pt)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Adicionar Tarefa"
+            "value": "Neue Aufgabe (pt-BR)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Добавить задачу"
+            "value": "Neue Aufgabe (ru)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Görev Ekle"
+            "value": "Neue Aufgabe (tr)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "添加任务"
+            "value": "Neue Aufgabe (zh-Hans)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "添加任務"
+            "value": "Neue Aufgabe (zh-Hant)"
           }
         }
       }
@@ -475631,6 +475631,1824 @@
           "stringUnit": {
             "state": "translated",
             "value": "間隔: %@ 天"
+          }
+        }
+      }
+    },
+    "cleaning.task.laundry": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wäsche waschen (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.status.overdue": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überfällig! (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.status.today": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.status.dueIn": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fällig in %@ Tagen (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.stat.total": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insgesamt (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.stat.interval": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.stat.interval.days": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %@ Tage (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.chart.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivität (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.action.delete": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.delete.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen? (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.delete.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten. (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.add.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.add.placeholder": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z.B. Küche putzen (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.add.icon": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.add.interval": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall (Tage) (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.add.days": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tage (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.dashboard.subtitle.overdue": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Aufgaben sind fällig (zh-Hant)"
+          }
+        }
+      }
+    },
+    "cleaning.dashboard.subtitle.allDone": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (en)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (es)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (fr)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (hi)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (it)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (ja)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (ko)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (nl)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (pl)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (pt)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (pt-BR)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (ru)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (tr)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (zh-Hans)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles sauber! (zh-Hant)"
           }
         }
       }
