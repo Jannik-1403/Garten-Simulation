@@ -27,6 +27,7 @@ struct PflanzeDetailSheet: View {
     @State private var selectedTimerEntry: TimerEntry? = nil
     @State private var zeigeTimerSheet = false
     @State private var zeigeGratitudeJournal = false
+    @State private var isGratitudeExpanded = true
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
     @State private var zeigeTimerAbbrechenDialog = false
@@ -109,7 +110,7 @@ struct PflanzeDetailSheet: View {
                     
                     
                     // Apple Health Integration (Pro Feature)
-                    if pflanze.showStats && pflanze.habitName != "habit.wasser_trinken" {
+                    if pflanze.showStats && pflanze.habitName != "habit.wasser_trinken" && pflanze.habitName != "habit.dankbarkeit" {
                         healthKitConfigSection
                     }
                     
@@ -121,8 +122,8 @@ struct PflanzeDetailSheet: View {
                     }
                     
                     // Dankbarkeitsjournal (Accordion wie Notizen)
-                    if pflanze.habitName == "habit.dankbarkeit" {
-                        DisclosureGroup(isExpanded: .constant(true)) {
+                    if pflanze.habitName == "habit.dankbarkeit" && pflanze.showStats {
+                        DisclosureGroup(isExpanded: $isGratitudeExpanded) {
                             VStack(spacing: 8) {
                                 if pflanze.journalEntries.isEmpty {
                                     Text(String(localized: "habit.gratitude.empty", defaultValue: "Noch keine Einträge"))
@@ -387,7 +388,7 @@ struct PflanzeDetailSheet: View {
                     }
 
                     // MARK: - Ziel-Punkte Banner
-                    if pflanze.showGoals {
+                    if pflanze.showGoals && pflanze.habitName != "habit.dankbarkeit" {
                         GoalPointsBannerView(pflanze: pflanze, goalStore: goalStore)
                             .padding(.top, 16)
                     }
