@@ -10,6 +10,7 @@ struct PflanzeDetailSheet: View {
     @EnvironmentObject var interactiveTourManager: InteractiveTourManager
     @EnvironmentObject var iapStore: IAPStore
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var onLoeschen: (() -> Void)? = nil
     var dismissEntireFlow: (() -> Void)? = nil
 
@@ -95,7 +96,23 @@ struct PflanzeDetailSheet: View {
             ZStack(alignment: .topTrailing) {
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
-                        LazyVStack(spacing: 28) {
+                        let isIPad = horizontalSizeClass == .regular
+                        
+                        let layout = isIPad ? AnyLayout(HStackLayout(alignment: .top, spacing: 32)) : AnyLayout(VStackLayout(spacing: 28))
+                        
+                        layout {
+                            if isIPad {
+                                plantHeroSection
+                                    .frame(width: 300)
+                                    .padding(.top, 24)
+                                    .padding(.leading, 16)
+                            } else {
+                                plantHeroSection
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.top, 24)
+                            }
+                            
+                            LazyVStack(spacing: 28) {
                 // MARK: - OVERVIEW CONTENT
                 Section {
 
@@ -359,6 +376,7 @@ struct PflanzeDetailSheet: View {
                 }
 
                 } // End of Section
+            }
             }
             } // End of ScrollView
             .onChange(of: interactiveTourManager.currentStep) { _, newStep in
@@ -690,6 +708,43 @@ struct PflanzeDetailSheet: View {
 
 
 
+    @ViewBuilder
+    private var plantHeroSection: some View {
+        VStack(spacing: 24) {
+            if let plant = GameDatabase.shared.plant(for: pflanze.plantID) {
+                PflanzenButton(
+                    plant: plant,
+                    seltenheit: pflanze.seltenheit,
+                    farbe: pflanze.color,
+                    sekundaerFarbe: pflanze.color.darker(),
+                    groesse: 160,
+                    fallbackIcon: pflanze.symbolName,
+                    externerPress: false,
+                    aktion: {}
+                )
+                .allowsHitTesting(false)
+            } else {
+                Image(systemName: pflanze.symbolName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+                    .foregroundStyle(pflanze.color)
+                    .padding()
+            }
+            
+            VStack(spacing: 8) {
+                Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
+                    .font(.system(size: 28, weight: .black, design: .rounded))
+                    .foregroundStyle(Color.primary)
+                    .multilineTextAlignment(.center)
+                    
+                Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(pflanze.streak)")
+                    .font(.headline)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(.vertical, 16)
+    }
 }
 
 // MARK: - Flame Streak Button
