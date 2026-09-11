@@ -1106,3 +1106,4 @@
 - Hinzugefügt: Apple App Store Review Prompt bei Level-Up (alle 3 Level) und manueller Button in den Einstellungen.
 - Fix: App Store Review Pop-up erscheint nun basierend auf dem Daily-Streak (ab Streak 2).
 - Fix: App Store Link korrigiert und Emoji entfernt.
+- Developer: Button zum Testen des Review Pop-ups hinzugefügt (setzt Streak temporär auf 1).
