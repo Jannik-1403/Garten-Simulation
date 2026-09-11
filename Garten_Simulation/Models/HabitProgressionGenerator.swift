@@ -15,7 +15,6 @@ class HabitProgressionGenerator {
         // Mental
         "plant.lotus": HabitProgression(plantID: "plant.lotus", strategy: MeditationProgressionStrategy()),
         "plant.klee": HabitProgression(plantID: "plant.klee", strategy: GratitudeProgressionStrategy()),
-        "plant.mystic_seed": HabitProgression(plantID: "plant.mystic_seed", strategy: BreathworkProgressionStrategy()),
         
         // Health
         "plant.zitronenbaum": HabitProgression(plantID: "plant.zitronenbaum", strategy: WaterProgressionStrategy()),

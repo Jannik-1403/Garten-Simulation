@@ -212,8 +212,7 @@ struct GameDatabase {
         Plant(id: "plant.chrysantheme",     name: "plant.chrysantheme.name",      symbolName: "house.fill",                    assetName: "Chrysantheme",           symbol: "", symbolColor: "yellow",  habitCategory: .lifestyle,      symbolism: "",     habitName: "habit.aufraeumen",            xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1, has90DayChallenge: false),
         Plant(id: "plant.klee",             name: "plant.klee.name",              symbolName: "star.fill",                     assetName: "Klee",                   symbol: "", symbolColor: "green",   habitCategory: .mental,  symbolism: "",             habitName: "habit.dankbarkeit",           xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1, igelAsset: "Igel-Musik"),
         
-        // MARK: Spezial-Pflanzen (Durch Samen freischaltbar)
-        Plant(id: "plant.mystic_seed",      name: "plant.mystic_seed.name",       symbolName: "leaf.arrow.triangle.circlepath", assetName: "plant_lotus", symbolColor: "indigo", habitCategory: .mental, symbolism: "",    habitName: "habit.atemarbeit",            xpPerCompletion: 250, decayDays: 5, minGartenLevel: 25),
+        
         
         // MARK: Shop Items
         Plant(id: "plant.seeds",            name: "shop.seeds.name",              symbolName: "",               assetName: "Samen",           symbol: "", symbolColor: "brown",    habitCategory: .seeds, symbolism: "shop.seeds.desc",           habitName: "shop.seeds.name",             xpPerCompletion: 0,   decayDays: 0, minGartenLevel: 1)

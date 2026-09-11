@@ -1071,3 +1071,20 @@
 - Lokalisierung: KI-generierte (nicht per API übersetzte), handverlesene Übersetzungen für alle 81 betroffenen Strings eingefügt, um höchste Qualität zu sichern.
 - Format-Specifier '%2$d' und Tippfehler 'h' im Localizable.xcstrings (powerup.active.plant) auf Konsistenz geprüft. (Fix war bereits auf dem aktuellen Main-Branch vorhanden).
 - Clean Build erfolgreich durchgeführt, Issue Navigator sollte nun keine String-Katalog-Fehler mehr anzeigen.
+- Fix: AppGroup CFPrefs Error in Previews durch XCODE_RUNNING_FOR_PREVIEWS Check in SharedUserDefaults behoben.
+- Fix: Fehlende Default Configuration in UIApplicationSceneManifest (Info.plist) hinzugefügt, um UIScene Warning zu entfernen.
+- Fix: Typenfehler in lokalisierter Kalorien-Anzeige (Russisch) behoben (%@ zu %lld geändert).
+- Fortschrittsbalken für Schlaf-Regelmäßigkeit in der PflanzenCard auf 100% gesetzt, wenn die Regelmäßigkeit über 90% liegt.
+- Fortschrittsbalken bleibt für Health-Metriken (z. B. Wasser trinken) erhalten und verschwindet nicht mehr, wenn das Ziel erreicht ist.
+- In der Wasser-Seite (WaterTrackerView) kann das Tagesziel jetzt manuell angepasst werden.
+- Es wird dort nun auch ein Erklärtext angezeigt, wie sich das Ziel berechnet.
+- Die Texte wurden in alle 16 Projektsprachen übersetzt.
+- Wasser-Ziel für den Fortschrittsbalken auf der Gewohnheiten-Seite korrigiert (nimmt jetzt dynamisch das Ziel von Apple Health/manuelle Eingabe).
+- Ziel bearbeiten-Button & Erklärung nun auch direkt auf der Pflanzen-Detail-Karte für Wasser eingebaut.
+- WasserTrinkenCard neu designed: Zahnrad-Button rechts oben für Einstellungen eingebaut.
+- Neues Full-Screen Einstellungen Panel für Wasser hinzugefügt (mit Erklärung auf weißem 3D-Item, 3D-Button für Bearbeiten und roter Zurücksetzen-Schaltfläche).
+- Einstellungen-Seite für Wasser überarbeitet: Extra-Button entfernt, 'Heutiges Ziel' ist nun direkt anklickbar, um den Wert zu bearbeiten.
+- Erklär-Text detaillierter gestaltet und Close-Button oben rechts schwarz (ohne Hintergrund) gemacht.
+- Das Stift-Symbol wurde entfernt und stattdessen ist das Wasser-Ziel jetzt direkt als echtes Textfeld auf der Einstellungsseite integriert (Inline-Editing ohne neues Pop-Up).
+- Das 'Heutiges Ziel' ist nun optisch als weißes Item-3D verpackt.
+- Das X oben rechts in den Wasser-Einstellungen wurde durch einen 'Speichern' Button ersetzt. Ein Klick darauf schließt sicher die Tastatur und speichert die Einstellungen.

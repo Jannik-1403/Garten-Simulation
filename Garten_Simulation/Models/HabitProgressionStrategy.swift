@@ -424,66 +424,6 @@ class GratitudeProgressionStrategy: HabitProgressionStrategy {
     }
 }
 
-// MARK: - Breathwork (Mystic Seed) Strategy
-class BreathworkProgressionStrategy: HabitProgressionStrategy {
-    func generateProgression(dayNum: Int, difficulty: String) -> ProgressionData {
-        let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
-        let cycleDay = ((dayNum - 1) % 7) + 1
-        
-        let isBeginner = difficulty.lowercased() == "anfaenger"
-        let isIntermediate = difficulty.lowercased() == "fortgeschritten"
-        
-        let baseMin = isBeginner ? 3 : (isIntermediate ? 6 : 10)
-        let currentMin = baseMin + (phaseNumber / 2)
-        
-        var title = ""
-        var desc = ""
-        var todos: [String] = []
-        
-        switch cycleDay {
-        case 1:
-            title = String(localized: "prog_breathwork_d1_title", defaultValue: "Box Breathing")
-            desc = String(localized: "prog_breathwork_d1_desc", defaultValue: "4 Sekunden ein, 4 Sekunden halten, 4 Sekunden aus, 4 Sekunden halten. Ideal für Fokus und Stressabbau.")
-            todos = [String(localized: "prog_breathwork_d1_t1", defaultValue: "\(currentMin) Min Box Breathing"), String(localized: "prog_breathwork_d1_t2", defaultValue: "Puls bewusst gesenkt")]
-        case 2:
-            title = String(localized: "prog_breathwork_d2_title", defaultValue: "4-7-8 Atmung")
-            desc = String(localized: "prog_breathwork_d2_desc", defaultValue: "4s ein, 7s halten, 8s ausatmen. Stark parasympathisch, ideal zum Herunterfahren.")
-            todos = [String(localized: "prog_breathwork_d2_t1", defaultValue: "\(currentMin) Min 4-7-8 Atmung"), String(localized: "prog_breathwork_d2_t2", defaultValue: "Volle Ausatmung erzwungen")]
-        case 3:
-            title = String(localized: "prog_breathwork_d3_title", defaultValue: "Physiological Sigh")
-            desc = String(localized: "prog_breathwork_d3_desc", defaultValue: "Zwei kurze Einatmungen durch die Nase, ein langer Seufzer durch den Mund. Der schnellste Weg, um Cortisol zu senken.")
-            todos = [String(localized: "prog_breathwork_d3_t1", defaultValue: "10x Physiological Sigh (Doppel-Einatmen)"), String(localized: "prog_breathwork_d3_t2", defaultValue: "Danach \(currentMin) Min ruhige Nasenatmung")]
-        case 4:
-            title = String(localized: "prog_breathwork_d4_title", defaultValue: "Wim Hof (Light)")
-            desc = String(localized: "prog_breathwork_d4_desc", defaultValue: "30 tiefe, schnelle Atemzüge, gefolgt von Luft anhalten. Danach tief einatmen und halten. (Sicher sitzen/liegen!)")
-            let rounds = isBeginner ? 2 : 3
-            todos = [String(localized: "prog_breathwork_d4_t1", defaultValue: "\(rounds) Runden Power-Breathing"), String(localized: "prog_breathwork_d4_t2", defaultValue: "Luft in der Leere gehalten"), String(localized: "prog_breathwork_d4_t3", defaultValue: "Energieschub gespürt")]
-        case 5:
-            title = String(localized: "prog_breathwork_d5_title", defaultValue: "Alternate Nostril Breathing")
-            desc = String(localized: "prog_breathwork_d5_desc", defaultValue: "Nadi Shodhana. Abwechselnd durch das linke und rechte Nasenloch atmen. Balanciert die Gehirnhälften.")
-            todos = [String(localized: "prog_breathwork_d5_t1", defaultValue: "\(currentMin) Min Wechselatmung"), String(localized: "prog_breathwork_d5_t2", defaultValue: "Auf absolute Stille beim Atmen geachtet")]
-        case 6:
-            title = String(localized: "prog_breathwork_d6_title", defaultValue: "Diaphragmatische Atmung")
-            desc = String(localized: "prog_breathwork_d6_desc", defaultValue: "Lege ein Buch auf den Bauch. Beim Einatmen muss es sich heben. Die Brust bewegt sich fast gar nicht.")
-            todos = [String(localized: "prog_breathwork_d6_t1", defaultValue: "\(currentMin) Min strikte Bauchatmung")]
-        case 7:
-            title = String(localized: "prog_breathwork_d7_title", defaultValue: "CO2-Toleranz")
-            desc = String(localized: "prog_breathwork_d7_desc", defaultValue: "Atme normal ein, und atme dann so langsam wie nur irgendwie möglich aus (Pursed Lips). Zögere den nächsten Atemzug hinaus.")
-            todos = [String(localized: "prog_breathwork_d7_t1", defaultValue: "\(currentMin) Min extrem verlängerte Ausatmung"), String(localized: "prog_breathwork_d7_t2", defaultValue: "Gegen den Lufthunger entspannt")]
-        default:
-            break
-        }
-        
-        return ProgressionData(
-            phaseNumber: phaseNumber,
-            phaseTitle: String(localized: "prog_breathwork_phase_title_woche___phasenumber_", defaultValue: "Woche \(phaseNumber)"),
-            phaseDescription: String(localized: "prog_breathwork_phase_desc_kontrolle_des_nerven", defaultValue: "Kontrolle des Nervensystems"),
-            dailyTitle: title,
-            dailyDescription: desc,
-            dailyTodos: todos
-        )
-    }
-}
 
 // MARK: - Water (Zitronenbaum) Strategy
 class WaterProgressionStrategy: HabitProgressionStrategy {
