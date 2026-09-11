@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import StoreKit
 
 struct ContentView: View {
     @EnvironmentObject var gardenStore: GardenStore
