@@ -1109,3 +1109,4 @@
 - Developer: Button zum Testen des Review Pop-ups hinzugefügt (setzt Streak temporär auf 1).
 - Fix: App Store Review Pop-up erscheint nun direkt nach dem Erstellen des allerersten eigenen To-Dos (Gewohnheit) und nicht mehr nach dem Streak.
 - Fix: Review Pop-up verwendet nun direkte StoreKit-Aufrufe anstatt SwiftUI Environment, um in allen Fällen (Simulator/Device) zuverlässiger zu erscheinen.
+- Fix: Entwickler Cheat-Button ruft das App Store Review Pop-up nun direkt und synchron auf.
