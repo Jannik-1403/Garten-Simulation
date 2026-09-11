@@ -87,12 +87,13 @@ struct DeveloperView: View {
                             Divider().padding(.leading, 44)
                             
                             Button {
-                                streakStore.currentStreak = 1
+                                UserDefaults.standard.removeObject(forKey: "hasCreatedFirstTodo")
+                                gardenStore.triggerReview = true
                                 FeedbackManager.shared.playSuccess()
                                 dismiss()
                             } label: {
                                 settingRow(
-                                    title: "Review-Popup Test (Setzt Streak auf 1)",
+                                    title: "Review-Popup Test (Triggert sofort)",
                                     icon: "star.fill",
                                     color: .orange
                                 )

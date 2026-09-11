@@ -118,12 +118,11 @@ struct ContentView: View {
                 mockGardenStore.selectedTab = 0
             }
         }
-        .onChange(of: streakStore.currentStreak) { oldStreak, newStreak in
-            // Apple Review Prompt: Zeige Popup z.B. bei Streak 2, 5, 8...
-            if newStreak > oldStreak && newStreak >= 2 && (newStreak - 2) % 3 == 0 {
-                // Verzögerung, damit etwaige Animationen nicht gestört werden
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        .onChange(of: gardenStore.triggerReview) { _, trigger in
+            if trigger {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     requestReview()
+                    gardenStore.triggerReview = false
                 }
             }
         }

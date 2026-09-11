@@ -408,6 +408,13 @@ struct GlobalTodoAddSheet: View {
                         // saveStandaloneTodos() is called via property observer
                     }
                     
+                    if editIndex == nil {
+                        if !UserDefaults.standard.bool(forKey: "hasCreatedFirstTodo") {
+                            UserDefaults.standard.set(true, forKey: "hasCreatedFirstTodo")
+                            gardenStore.triggerReview = true
+                        }
+                    }
+                    
                     gardenStore.objectWillChange.send()
                     dismiss()
                 } label: {

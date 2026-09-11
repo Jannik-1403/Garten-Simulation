@@ -44,6 +44,7 @@ class GardenStore: ObservableObject {
     @Published var triggerStreakDetail: Bool = false
     @Published var triggerWaterDetail: Bool = false
     @Published var triggerPaywall: Bool = false
+    @Published var triggerReview: Bool = false
     @Published var liveActivityDebugLog: String = ""
     @Published var gluecksradDrehungen: Int = 0 {
         didSet { saveStats() }
