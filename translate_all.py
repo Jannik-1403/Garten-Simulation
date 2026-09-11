@@ -7,13 +7,26 @@ with open("Garten_Simulation/Localizable.xcstrings", "r") as f:
 
 source_lang = data.get("sourceLanguage", "en")
 
-# Ensure the new manual keys exist
 new_keys = {
-    "body.timerange.t": "T",
-    "body.timerange.w": "W",
-    "body.timerange.m": "M",
-    "body.timerange.sixm": "6 M.",
-    "body.timerange.j": "J"
+    "cleaning.task.room": "Zimmer",
+    "cleaning.task.kitchen": "Küche",
+    "cleaning.task.bed": "Bett abziehen",
+    "cleaning.task.vacuum": "Staubsaugen",
+    "cleaning.task.trash": "Müll rausbringen",
+    "cleaning.task.laundry": "Wäsche waschen",
+    "cleaning.task.windows": "Fenster putzen",
+    "cleaning.dashboard.section.next": "Zunächst fällige Aufgaben",
+    "cleaning.dashboard.section.future": "Demnächst fällig",
+    "cleaning.empty.suggestions": "Vorschläge:",
+    "cleaning.weekday.none": "Egal",
+    "cleaning.weekday.sunday": "Sonntag",
+    "cleaning.weekday.monday": "Montag",
+    "cleaning.weekday.tuesday": "Dienstag",
+    "cleaning.weekday.wednesday": "Mittwoch",
+    "cleaning.weekday.thursday": "Donnerstag",
+    "cleaning.weekday.friday": "Freitag",
+    "cleaning.weekday.saturday": "Samstag",
+    "cleaning.add.weekday": "Fester Wochentag"
 }
 
 for k, v in new_keys.items():

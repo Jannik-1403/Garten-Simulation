@@ -7,6 +7,7 @@ struct AddCleaningTaskSheet: View {
     @State private var taskName = ""
     @State private var frequencyDays = 7
     @State private var selectedIcon = "bed.double.fill"
+    @State private var selectedWeekday: Int = 0 // 0 = None, 1 = Sunday, 2 = Monday, etc.
     
     let icons = ["bed.double.fill", "wind", "trash.fill", "tshirt.fill", "squareshape.split.2x2", "shower.fill", "toilet.fill", "sink.fill", "fork.knife", "sparkles"]
     
@@ -46,15 +47,14 @@ struct AddCleaningTaskSheet: View {
                 Section(header: Text(String(localized: "cleaning.add.icon", defaultValue: "Icon"))) {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 44))], spacing: 16) {
                         ForEach(icons, id: \.self) { icon in
-                            Image(systemName: icon)
-                                .font(.system(size: 24))
-                                .frame(width: 44, height: 44)
-                                .background(selectedIcon == icon ? Color.blue.opacity(0.3) : Color.clear)
-                                .cornerRadius(8)
-                                .foregroundColor(selectedIcon == icon ? .blue : .primary)
-                                .onTapGesture {
-                                    selectedIcon = icon
-                                }
+                            Item3DPillButton(
+                                icon: icon,
+                                farbe: selectedIcon == icon ? .blue : Color(UIColor.systemBackground),
+                                sekundaerFarbe: selectedIcon == icon ? Color(UIColor.systemBlue).opacity(0.5) : Color(UIColor.systemGray5),
+                                groesse: 44
+                            ) {
+                                selectedIcon = icon
+                            }
                         }
                     }
                     .padding(.vertical, 8)
@@ -66,6 +66,17 @@ struct AddCleaningTaskSheet: View {
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                         Text(String(localized: "cleaning.add.days", defaultValue: "Tage"))
+                    }
+                    
+                    Picker(String(localized: "cleaning.add.weekday", defaultValue: "Fester Wochentag"), selection: $selectedWeekday) {
+                        Text(String(localized: "cleaning.weekday.none", defaultValue: "Egal")).tag(0)
+                        Text(String(localized: "cleaning.weekday.sunday", defaultValue: "Sonntag")).tag(1)
+                        Text(String(localized: "cleaning.weekday.monday", defaultValue: "Montag")).tag(2)
+                        Text(String(localized: "cleaning.weekday.tuesday", defaultValue: "Dienstag")).tag(3)
+                        Text(String(localized: "cleaning.weekday.wednesday", defaultValue: "Mittwoch")).tag(4)
+                        Text(String(localized: "cleaning.weekday.thursday", defaultValue: "Donnerstag")).tag(5)
+                        Text(String(localized: "cleaning.weekday.friday", defaultValue: "Freitag")).tag(6)
+                        Text(String(localized: "cleaning.weekday.saturday", defaultValue: "Samstag")).tag(7)
                     }
                 }
             }
@@ -79,9 +90,8 @@ struct AddCleaningTaskSheet: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(String(localized: "common.save", defaultValue: "Speichern")) {
-                        // For custom tasks, we use the literal name as the key and let SwiftUI render it (or handle it in a way that just displays the text if no localizable key is found)
-                        // Ideally we would add a flag to CleaningTask like `isCustom: Bool` to not translate it, but we can pass the exact string as key. If missing in xcstrings, SwiftUI displays the key itself.
-                        manager.addTask(nameKey: taskName, iconName: selectedIcon, frequencyDays: frequencyDays)
+                        let weekdayToSave = selectedWeekday == 0 ? nil : selectedWeekday
+                        manager.addTask(nameKey: taskName, iconName: selectedIcon, frequencyDays: frequencyDays, scheduledWeekday: weekdayToSave)
                         dismiss()
                     }
                     .disabled(taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)

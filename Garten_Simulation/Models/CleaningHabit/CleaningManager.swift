@@ -13,27 +13,10 @@ class CleaningManager: ObservableObject {
     
     init() {
         loadData()
-        
-        // Populate with default tasks if empty
-        if tasks.isEmpty {
-            createDefaultTasks()
-        }
     }
     
-    private func createDefaultTasks() {
-        let defaultTasks = [
-            CleaningTask(nameKey: "cleaning.task.bed", iconName: "bed.double.fill", frequencyDays: 7),
-            CleaningTask(nameKey: "cleaning.task.vacuum", iconName: "wind", frequencyDays: 3),
-            CleaningTask(nameKey: "cleaning.task.trash", iconName: "trash.fill", frequencyDays: 2),
-            CleaningTask(nameKey: "cleaning.task.laundry", iconName: "tshirt.fill", frequencyDays: 5),
-            CleaningTask(nameKey: "cleaning.task.windows", iconName: "squareshape.split.2x2", frequencyDays: 30)
-        ]
-        tasks = defaultTasks
-        saveData()
-    }
-    
-    func addTask(nameKey: String, iconName: String, frequencyDays: Int) {
-        let newTask = CleaningTask(nameKey: nameKey, iconName: iconName, frequencyDays: frequencyDays)
+    func addTask(nameKey: String, iconName: String, frequencyDays: Int, scheduledWeekday: Int?) {
+        let newTask = CleaningTask(nameKey: nameKey, iconName: iconName, frequencyDays: frequencyDays, scheduledWeekday: scheduledWeekday)
         tasks.append(newTask)
         saveData()
     }

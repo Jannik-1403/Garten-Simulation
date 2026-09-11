@@ -8,67 +8,50 @@ struct CleaningTaskRowView: View {
         let lastCompleted = manager.lastCompletedDate(for: task.id)
         let isOverdue = task.isOverdue(lastCompleted: lastCompleted)
         let due = task.dueDate(lastCompleted: lastCompleted)
-        let daysUntilDue = Calendar.current.dateComponents([.day], from: Date(), to: due).day ?? 0
+        let daysUntilDue = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: due)).day ?? 0
         
-        HStack(spacing: 16) {
-            // Icon
-            ZStack {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(isOverdue ? Color.red.opacity(0.2) : Color.green.opacity(0.2))
-                    .frame(width: 56, height: 56)
-                
-                Image(systemName: task.iconName)
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(isOverdue ? .red : .green)
-                    .shadow(color: isOverdue ? .red.opacity(0.5) : .green.opacity(0.5), radius: 5, x: 0, y: 3)
-            }
+        VStack(alignment: .leading, spacing: 12) {
+            // Task Name
+            Text(String(localized: String.LocalizationValue(task.nameKey)))
+                .font(.headline)
+                .foregroundColor(.primary)
             
-            // Text Info
-            VStack(alignment: .leading, spacing: 4) {
-                Text(String(localized: String.LocalizationValue(task.nameKey)))
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                if isOverdue {
-                    Text(String(localized: "cleaning.status.overdue", defaultValue: "Überfällig!"))
-                        .font(.subheadline)
-                        .foregroundColor(.red)
-                        .bold()
-                } else {
-                    if daysUntilDue == 0 {
-                        Text(String(localized: "cleaning.status.today", defaultValue: "Heute fällig"))
-                            .font(.subheadline)
-                            .foregroundColor(.orange)
-                    } else {
-                        Text(String(localized: "cleaning.status.dueIn", defaultValue: "Fällig in %@ Tagen", table: nil).replacingOccurrences(of: "%@", with: "\(daysUntilDue)"))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+            HStack {
+                // Done / Reset Button
+                Item3DButton(icon: "checkmark", farbe: Color.green, sekundaerFarbe: Color(UIColor.systemGreen).opacity(0.5), groesse: 36) {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                        manager.completeTask(task)
                     }
                 }
-            }
-            
-            Spacer()
-            
-            // Checkmark / Complete Button
-            Button(action: {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                    manager.completeTask(task)
-                }
-            }) {
-                ZStack {
-                    Circle()
-                        .fill(isOverdue ? Color.red : Color.green)
-                        .frame(width: 44, height: 44)
-                        .shadow(color: (isOverdue ? Color.red : Color.green).opacity(0.4), radius: 5, x: 0, y: 3)
+                
+                Spacer()
+                
+                // Status / Due Date
+                VStack(alignment: .trailing, spacing: 2) {
+                    if isOverdue {
+                        Text(String(localized: "cleaning.status.overdue", defaultValue: "Überfällig!"))
+                            .font(.caption)
+                            .foregroundColor(.red)
+                            .bold()
+                    } else if daysUntilDue == 0 {
+                        Text(String(localized: "cleaning.status.today", defaultValue: "Heute fällig"))
+                            .font(.caption)
+                            .foregroundColor(.orange)
+                            .bold()
+                    } else {
+                        Text(String(localized: "cleaning.status.dueIn", defaultValue: "Fällig in %@ Tagen", table: nil).replacingOccurrences(of: "%@", with: "\(daysUntilDue)"))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
                     
-                    Image(systemName: "checkmark")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
+                    Text(due, format: .dateTime.day().month().year())
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
                 }
             }
-            .buttonStyle(PlainButtonStyle())
         }
-        .padding()
+        .padding(.vertical, 8)
+        .padding(.horizontal, 4)
         .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
     }
 }
