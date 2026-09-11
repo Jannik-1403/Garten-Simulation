@@ -1093,3 +1093,5 @@
 - Expanded Onboarding views to 650pt width and resolved 99.9% translation bug.
 - Scaled up plant selection cards dynamically on iPad in OnboardingPflanzenView.
 - Scaled up font sizes dynamically on iPad in OnboardingLegalView.
+- Fix: In PflanzeDetailSheet ist der Avatar auf dem iPad jetzt bündig mit der rechten Spalte und deutlich größer.
+- Fix: Die Apple-Health-Verbinden-Buttons in den Karten (GesundKochen, ObstGemuese) nutzen nun breite Rechteck-Buttons statt Pillen.

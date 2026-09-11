@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShopItemCard: View {
     @EnvironmentObject var settings: SettingsStore
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     let icon: String
     let accentColor: Color
     let shadowColor: Color
@@ -53,16 +54,17 @@ struct ShopItemCard: View {
                 .aspectRatio(1, contentMode: .fit)
                 .clipped()
 
-                VStack(alignment: .center, spacing: 4) {
+                let isIPad = horizontalSizeClass == .regular
+                VStack(alignment: .center, spacing: isIPad ? 8 : 4) {
                     Text(NSLocalizedString(name, comment: ""))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .font(.system(size: isIPad ? 24 : 18, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.primary)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.45)
                     if !subtitle.isEmpty {
                         Text(NSLocalizedString(subtitle, comment: ""))
-                            .font(.system(size: 14))
+                            .font(.system(size: isIPad ? 18 : 14))
                             .foregroundStyle(Color.secondary)
                             .multilineTextAlignment(.center)
                             .lineLimit(4)
@@ -70,7 +72,7 @@ struct ShopItemCard: View {
                 }
 
                 if price == 0 {
-                    Stat3DTitleView(title: String(localized: "shop.free"), color: .gruenPrimary, size: 16)
+                    Stat3DTitleView(title: String(localized: "shop.free"), color: .gruenPrimary, size: isIPad ? 20 : 16)
                         .padding(.top, 4)
                 } else {
                     HStack(alignment: .center, spacing: 6) {
@@ -82,12 +84,12 @@ struct ShopItemCard: View {
                                     .frame(width: 20, height: 20)
                                 Text(verbatim: "\(original)")
                                     .strikethrough()
-                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .font(.system(size: isIPad ? 18 : 14, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                             }
                             .padding(.trailing, 4)
                             
-                            Stat3DTitleView(title: "↓", color: .orange, size: 20)
+                            Stat3DTitleView(title: "↓", color: .orange, size: isIPad ? 26 : 20)
                                 .padding(.trailing, 4)
                         }
                         GemsIcon(wert: price)
@@ -110,6 +112,7 @@ struct UnifiedShopView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var iapStore: IAPStore
     @EnvironmentObject var characterStore: CharacterStore
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @State private var searchText = ""
     @State private var detailPayload: ShopDetailPayload? = nil
     @State private var shopCategory: ShopCategory = .gegenstande
@@ -214,6 +217,7 @@ struct UnifiedShopView: View {
                                                     gardenStore.checkDailySpin()
                                                 }
                                             )
+                                            .frame(maxWidth: horizontalSizeClass == .regular ? 400 : .infinity)
                                         }
                                         .padding(.horizontal, 16)
                                         .padding(.bottom, 16)
@@ -240,7 +244,8 @@ struct UnifiedShopView: View {
                                     }
                                     .padding(.bottom, 16)
 
-                                    let columns = [GridItem(.adaptive(minimum: 160, maximum: 220), spacing: 16)]
+                                    let isIPad = horizontalSizeClass == .regular
+                                    let columns = [GridItem(.adaptive(minimum: isIPad ? 300 : 160, maximum: isIPad ? 400 : 220), spacing: 16)]
                                     LazyVGrid(columns: columns, spacing: 16) {
                                         ForEach(gefilterteDekorationen) { item in
                                             let isOwned = gardenStore.placedDecorations.contains(where: { $0.id == item.id })
@@ -292,7 +297,8 @@ struct UnifiedShopView: View {
                                     }
                                     .padding(.bottom, 16)
 
-                                    let columns = [GridItem(.adaptive(minimum: 160, maximum: 220), spacing: 16)]
+                                    let isIPad = horizontalSizeClass == .regular
+                                    let columns = [GridItem(.adaptive(minimum: isIPad ? 300 : 160, maximum: isIPad ? 400 : 220), spacing: 16)]
                                     LazyVGrid(columns: columns, spacing: 16) {
                                         ForEach(gefiltertePflanzen) { plant in
                                             let originalP = plant.basePrice
