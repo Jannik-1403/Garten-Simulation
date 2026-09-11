@@ -21,14 +21,14 @@ struct PflanzeDetailSheet: View {
     @State private var todoToEditIndex: Int? = nil
     @State private var todoToDeleteIndex: Int? = nil
     @State private var isNotesExpanded = false
-    @State private var isTodosExpanded = true
+    @State private var isTodosExpanded = false
     @State private var isEffectsExpanded = true
     @State private var isRemindersExpanded = true
     @State private var selectedTimerEntry: TimerEntry? = nil
     @State private var zeigeTimerSheet = false
     @State private var zeigeGratitudeJournal = false
     @State private var selectedJournalEntry: GratitudeJournalEntry? = nil
-    @State private var isGratitudeExpanded = true
+    @State private var isGratitudeExpanded = false
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
     @State private var zeigeTimerAbbrechenDialog = false

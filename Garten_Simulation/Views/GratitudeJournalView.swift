@@ -3,6 +3,7 @@ import SwiftUI
 struct GratitudeJournalView: View {
     @ObservedObject var habit: HabitModel
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var gardenStore: GardenStore
     
     @State private var mood: Int = 0 // 1-5
     @State private var thankfulFor: String = ""
@@ -225,6 +226,7 @@ struct GratitudeJournalView: View {
         )
         
         habit.journalEntries.append(entry)
+        gardenStore.savePlants()
         
         dismiss()
     }
