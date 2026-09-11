@@ -405,6 +405,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var journalEntries: [GratitudeJournalEntry] = []
     let maxChallengeJokers: Int = 3
     
+    // Aufräum-Gewohnheit (Cleaning Habit)
+    @Published var cleaningTasks: [CleaningTask] = []
+    @Published var cleaningLogs: [CleaningLog] = []
+    
     /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
     var hasActiveReminder: Bool {
         guard let schedule = reminderSchedule else {
@@ -656,6 +660,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.priority = priority
         self.challengeJokers = 0
         self.journalEntries = []
+        self.cleaningTasks = []
+        self.cleaningLogs = []
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
@@ -720,6 +726,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case sliderProgress, intradayProgressHistory
         case showStats, showTodos, showNotes, showTimer, showGoals, showWeight, showMeasurements
         case manualWeightEntries, bodyMeasurements
+        case cleaningTasks, cleaningLogs
         case targetWeight, targetWeightDate
         case targetMeasurements, targetMeasurementsDates
     }
@@ -798,6 +805,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         lebenBereitsAbgezogen = try container.decodeIfPresent(Bool.self, forKey: .lebenBereitsAbgezogen) ?? false
         isDead = try container.decodeIfPresent(Bool.self, forKey: .isDead) ?? false
         isNegative = try container.decodeIfPresent(Bool.self, forKey: .isNegative) ?? false
+        cleaningTasks = try container.decodeIfPresent([CleaningTask].self, forKey: .cleaningTasks) ?? []
+        cleaningLogs = try container.decodeIfPresent([CleaningLog].self, forKey: .cleaningLogs) ?? []
         pfadAktiviertAm = try container.decodeIfPresent(Date.self, forKey: .pfadAktiviertAm)
         pfadCheckedDates = try container.decodeIfPresent([Date].self, forKey: .pfadCheckedDates) ?? []
         
@@ -884,6 +893,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(lebenBereitsAbgezogen, forKey: .lebenBereitsAbgezogen)
         try container.encode(isDead, forKey: .isDead)
         try container.encode(isNegative, forKey: .isNegative)
+        try container.encode(cleaningTasks, forKey: .cleaningTasks)
+        try container.encode(cleaningLogs, forKey: .cleaningLogs)
         try container.encodeIfPresent(reminderSchedule, forKey: .reminderSchedule)
         try container.encodeIfPresent(pfadAktiviertAm, forKey: .pfadAktiviertAm)
         try container.encode(pfadCheckedDates, forKey: .pfadCheckedDates)

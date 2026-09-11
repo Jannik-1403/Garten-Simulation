@@ -9,6 +9,7 @@ enum HabitCategory: String, CaseIterable, Codable {
     case growth
     case lifestyle
     case finance
+    case cleaning
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -27,6 +28,8 @@ enum HabitCategory: String, CaseIterable, Codable {
             self = .lifestyle
         case "finance":
             self = .finance
+        case "cleaning", "tidying", "aufraeumen":
+            self = .cleaning
         case "seeds":
             self = .seeds
         default:
@@ -44,6 +47,7 @@ enum HabitCategory: String, CaseIterable, Codable {
         case .growth: return String(localized: "category.growth", defaultValue: "Wachstum")
         case .lifestyle: return String(localized: "category.lifestyle", defaultValue: "Lifestyle")
         case .finance: return String(localized: "category.finance", defaultValue: "Finanzen")
+        case .cleaning: return String(localized: "category.cleaning", defaultValue: "Aufräumen")
         case .seeds: return String(localized: "category.seeds", defaultValue: "Samen")
         }
     }
@@ -56,6 +60,7 @@ enum HabitCategory: String, CaseIterable, Codable {
         case .growth:    return .gruenPrimary
         case .lifestyle: return .blauPrimary
         case .finance:   return .coinBlue
+        case .cleaning:  return .teal
         case .seeds:     return .brown
         }
     }
@@ -68,6 +73,7 @@ enum HabitCategory: String, CaseIterable, Codable {
         case .growth:    return "leaf.fill"
         case .lifestyle: return "star.fill"
         case .finance:   return "banknote.fill"
+        case .cleaning:  return "sparkles"
         case .seeds:     return "leaf.circle.fill"
         }
     }
@@ -80,6 +86,7 @@ enum HabitCategory: String, CaseIterable, Codable {
         case .growth:    return "Wachstum"
         case .lifestyle: return "Lifestyle"
         case .finance:   return "Finanzen"
+        case .cleaning:  return "Aufraeumen"
         case .seeds:     return ""
         }
     }

@@ -1110,3 +1110,4 @@
 - Fix: App Store Review Pop-up erscheint nun direkt nach dem Erstellen des allerersten eigenen To-Dos (Gewohnheit) und nicht mehr nach dem Streak.
 - Fix: Review Pop-up verwendet nun direkte StoreKit-Aufrufe anstatt SwiftUI Environment, um in allen Fällen (Simulator/Device) zuverlässiger zu erscheinen.
 - Fix: Entwickler Cheat-Button ruft das App Store Review Pop-up nun direkt und synchron auf.
+- Aufräum-Gewohnheit (Cleaning Habit) mit intelligenten Sortierungen und Statistiken hinzugefügt
