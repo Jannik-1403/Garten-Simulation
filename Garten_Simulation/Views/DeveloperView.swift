@@ -6,6 +6,7 @@ struct DeveloperView: View {
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var tourManager: InteractiveTourManager
     @Environment(\.dismiss) var dismiss
+    @Environment(\.requestReview) var requestReview
     
     var body: some View {
         ZStack {
@@ -87,13 +88,10 @@ struct DeveloperView: View {
                             Divider().padding(.leading, 44)
                             
                             Button {
-                                UserDefaults.standard.removeObject(forKey: "hasCreatedFirstTodo")
-                                gardenStore.triggerReview = true
-                                FeedbackManager.shared.playSuccess()
-                                dismiss()
+                                requestReview()
                             } label: {
                                 settingRow(
-                                    title: "Review-Popup Test (Triggert sofort)",
+                                    title: "Review-Popup Test (Direkter Aufruf)",
                                     icon: "star.fill",
                                     color: .orange
                                 )
