@@ -1,7 +1,9 @@
 import SwiftUI
 import SwiftData
 import Combine
+import Foundation
 import ActivityKit
+import TelemetryDeck
 
 struct GiessBonus: Equatable {
     let xp: Int
@@ -321,6 +323,7 @@ class GardenStore: ObservableObject {
             savePlants()
             
             checkGlobalStreak()
+            logHabitCompleted(pflanze: pflanze)
             return
         }
 
@@ -395,6 +398,19 @@ class GardenStore: ObservableObject {
             pflanze.challengeJokers += 1
         }
         
+        let milestones = [5, 10, 30, 50, 100]
+        if milestones.contains(pflanze.streak) {
+            let streakDays = String(pflanze.streak)
+            let habitTitle = pflanze.title
+            Task {
+                let params: [String: String] = [
+                    "streak_days": streakDays,
+                    "habit_name": habitTitle
+                ]
+                TelemetryDeck.signal("streak_milestone_reached", parameters: params)
+            }
+        }
+        
         verteileChallengeBelohnung(fuer: pflanze)
         
         pflanze.missedCycles = 0 // Reset Gesundheit
@@ -443,6 +459,7 @@ class GardenStore: ObservableObject {
 
         // Notify StreakStore only if ALL active plants are watered today
         checkGlobalStreak()
+        logHabitCompleted(pflanze: pflanze)
         
         if isWeedActive {
             advanceWeedRemovalProgress()
@@ -457,6 +474,21 @@ class GardenStore: ObservableObject {
 
         // Neue Benachrichtigungs-Logik
         NotificationManager.shared.rescheduleAfterWatering(habit: pflanze, allHabits: pflanzen)
+    }
+    
+    private func logHabitCompleted(pflanze: HabitModel) {
+        let habitTitle = pflanze.title
+        let isGood = pflanze.isGood ? "good" : "bad"
+        let isCustomStr = String(pflanze.isCustom)
+        
+        Task {
+            let parameters: [String: String] = [
+                "habit_name": habitTitle,
+                "category": isGood,
+                "is_custom": isCustomStr
+            ]
+            TelemetryDeck.signal("habit_completed", parameters: parameters)
+        }
     }
     
     private func checkGlobalStreak() {

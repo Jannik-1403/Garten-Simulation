@@ -218,6 +218,26 @@ struct DeveloperView: View {
             print("[Test-Telemetry] Sende quiz_answered...")
             TelemetryDeck.signal("quiz_answered")
             
+            // NEUE SIGNALE HINZUGEFÜGT:
+            print("[Test-Telemetry] Sende habit_completed (Krafttraining)...")
+            let paramsHabit1: [String: String] = ["habit_name": "Krafttraining", "category": "good", "is_custom": "false"]
+            TelemetryDeck.signal("habit_completed", parameters: paramsHabit1)
+            
+            print("[Test-Telemetry] Sende habit_completed (Fastfood)...")
+            let paramsHabit2: [String: String] = ["habit_name": "Fastfood", "category": "bad", "is_custom": "false"]
+            TelemetryDeck.signal("habit_completed", parameters: paramsHabit2)
+            
+            print("[Test-Telemetry] Sende custom_habit_created (Meine eigene Gewohnheit)...")
+            let paramsCustomHabit: [String: String] = ["habit_name": "Meine eigene Gewohnheit"]
+            TelemetryDeck.signal("custom_habit_created", parameters: paramsCustomHabit)
+            
+            print("[Test-Telemetry] Sende streak_milestone_reached (10 Tage)...")
+            let paramsStreak: [String: String] = ["streak_days": "10", "habit_name": "Krafttraining"]
+            TelemetryDeck.signal("streak_milestone_reached", parameters: paramsStreak)
+            
+            print("[Test-Telemetry] Sende daily_spin_completed...")
+            TelemetryDeck.signal("daily_spin_completed")
+            
             print("[Test-Telemetry] Alle Signale erfolgreich gesendet!")
         }
     }

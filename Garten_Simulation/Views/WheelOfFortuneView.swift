@@ -1,4 +1,6 @@
 import SwiftUI
+import StoreKit
+import TelemetryDeck
 
 // SegmentKind now resides in DailyWheelComponents.swift
 
@@ -287,6 +289,10 @@ struct WheelOfFortuneView: View {
         gardenStore.saveStats()
         gardenStore.lastSpinTimestamp = Date()
         gardenStore.showDailySpinOverlay = false
+        
+        Task {
+            TelemetryDeck.signal("daily_spin_completed")
+        }
         
         // Regenerate layout for next time
         segmentLayout = generateLayout()

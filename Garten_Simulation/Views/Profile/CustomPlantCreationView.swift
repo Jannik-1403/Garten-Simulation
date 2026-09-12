@@ -1,4 +1,6 @@
 import SwiftUI
+import StoreKit
+import TelemetryDeck
 
 struct CustomPlantCreationView: View {
     @EnvironmentObject var gardenStore: GardenStore
@@ -496,6 +498,12 @@ struct CustomPlantCreationView: View {
         
         if let newPlant = newPlant, !isNegative, let weight = selectedGoalWeight, let goal = GoalStore.shared.activeGoals.first(where: { $0.type == .year }) {
             GoalStore.shared.linkHabitToGoal(habitId: newPlant.id, goalId: goal.id, weight: weight)
+        }
+        
+        let customHabitTitle = habitName
+        Task {
+            let parameters: [String: String] = ["habit_name": customHabitTitle]
+            TelemetryDeck.signal("custom_habit_created", parameters: parameters)
         }
         
         dismiss()
