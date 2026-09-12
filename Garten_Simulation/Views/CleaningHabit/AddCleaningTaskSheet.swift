@@ -35,21 +35,10 @@ struct AddCleaningTaskSheet: View {
     
     var selectedColor: Color { AppColors.color(for: selectedColorKey) }
     
-    // Live-Berechnung: wann wäre diese Aufgabe das erste Mal fällig?
+    // Live-Berechnung: erste Fälligkeit = heute + frequencyDays
     var previewDueDate: Date {
-        let cal = Calendar.current
-        let today = cal.startOfDay(for: Date())
-        if selectedWeekday == 0 {
-            // Kein fester Wochentag → ab heute + frequencyDays
-            return cal.date(byAdding: .day, value: frequencyDays, to: today) ?? today
-        } else {
-            // Fester Wochentag → nächsten Wochentag finden, dann + frequencyDays
-            let currentWeekday = cal.component(.weekday, from: today)
-            var daysToAdd = selectedWeekday - currentWeekday
-            if daysToAdd <= 0 { daysToAdd += 7 }
-            let nextWeekday = cal.date(byAdding: .day, value: daysToAdd, to: today) ?? today
-            return cal.date(byAdding: .day, value: frequencyDays, to: nextWeekday) ?? nextWeekday
-        }
+        let today = Calendar.current.startOfDay(for: Date())
+        return Calendar.current.date(byAdding: .day, value: frequencyDays, to: today) ?? today
     }
     
     var body: some View {
@@ -141,21 +130,8 @@ struct AddCleaningTaskSheet: View {
                     .pickerStyle(.wheel)
                     .frame(height: 130)
                     
-                    Picker(String(localized: "cleaning.add.weekday", defaultValue: "Fester Wochentag"), selection: $selectedWeekday) {
-                        Text(String(localized: "cleaning.weekday.none", defaultValue: "Egal")).tag(0)
-                        Text(String(localized: "cleaning.weekday.monday", defaultValue: "Montag")).tag(2)
-                        Text(String(localized: "cleaning.weekday.tuesday", defaultValue: "Dienstag")).tag(3)
-                        Text(String(localized: "cleaning.weekday.wednesday", defaultValue: "Mittwoch")).tag(4)
-                        Text(String(localized: "cleaning.weekday.thursday", defaultValue: "Donnerstag")).tag(5)
-                        Text(String(localized: "cleaning.weekday.friday", defaultValue: "Freitag")).tag(6)
-                        Text(String(localized: "cleaning.weekday.saturday", defaultValue: "Samstag")).tag(7)
-                        Text(String(localized: "cleaning.weekday.sunday", defaultValue: "Sonntag")).tag(1)
-                    }
-                    
-                    // Live-Datum Preview
+                    // Live-Datum Preview (ohne Icon)
                     HStack {
-                        Image(systemName: "calendar")
-                            .foregroundColor(.blauPrimary)
                         Text(String(localized: "cleaning.add.firstDue", defaultValue: "Erste Fälligkeit:"))
                             .font(.subheadline)
                             .foregroundColor(.secondary)

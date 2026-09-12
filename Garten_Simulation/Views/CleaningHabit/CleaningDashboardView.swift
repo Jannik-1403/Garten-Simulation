@@ -25,21 +25,17 @@ struct CleaningDashboardView: View {
     private var emptyState: some View {
         VStack(spacing: 24) {
             Spacer()
-            
             Item3DButton(icon: "plus", farbe: .blauPrimary, sekundaerFarbe: .blauPrimary.darker(), groesse: 80) {
                 showingAddSheet = true
             }
-            
             Text(String(localized: "cleaning.empty.suggestions", defaultValue: "Vorschläge:"))
                 .font(.headline)
                 .foregroundColor(.secondary)
-            
             let suggestions = [
                 (nameKey: "cleaning.task.bed", icon: "bed.double.fill", days: 7),
                 (nameKey: "cleaning.task.room", icon: "squareshape.split.2x2", days: 3),
                 (nameKey: "cleaning.task.kitchen", icon: "fork.knife", days: 2)
             ]
-            
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 140))], spacing: 16) {
                 ForEach(suggestions, id: \.nameKey) { suggestion in
                     Item3DPillButton(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5), groesse: 50) {
@@ -48,14 +44,12 @@ struct CleaningDashboardView: View {
                         HStack {
                             Image(systemName: suggestion.icon)
                             Text(String(localized: String.LocalizationValue(suggestion.nameKey)))
-                                .font(.subheadline)
-                                .lineLimit(1)
+                                .font(.subheadline).lineLimit(1)
                         }
                         .foregroundColor(.primary)
                     }
                 }
             }
-            
             Spacer()
         }
     }
@@ -67,45 +61,35 @@ struct CleaningDashboardView: View {
         }
         let today = Calendar.current.startOfDay(for: Date())
         let dueTasks = sortedTasks.filter { task in
-            let due = task.dueDate(lastCompleted: manager.lastCompletedDate(for: task.id))
-            return Calendar.current.startOfDay(for: due) <= today
+            Calendar.current.startOfDay(for: task.dueDate(lastCompleted: manager.lastCompletedDate(for: task.id))) <= today
         }
         let futureTasks = sortedTasks.filter { task in
-            let due = task.dueDate(lastCompleted: manager.lastCompletedDate(for: task.id))
-            return Calendar.current.startOfDay(for: due) > today
+            Calendar.current.startOfDay(for: task.dueDate(lastCompleted: manager.lastCompletedDate(for: task.id))) > today
         }
         
-        return VStack(spacing: 0) {
-            // Header row with title + Plus button
+        return VStack(spacing: 16) {
+            // ── Header ──
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(String(localized: "cleaning.dashboard.section.next", defaultValue: "Zunächst fällige Aufgaben"))
                         .font(.system(size: 20, weight: .black, design: .rounded))
-                        .foregroundColor(.primary)
-                    
                     if dueTasks.count > 0 {
                         Text(String(localized: "cleaning.dashboard.subtitle.overdue", defaultValue: "%@ Aufgaben sind fällig", table: nil).replacingOccurrences(of: "%@", with: "\(dueTasks.count)"))
-                            .font(.caption)
-                            .foregroundColor(.orange)
+                            .font(.caption).foregroundColor(.orange)
                     } else {
                         Text(String(localized: "cleaning.dashboard.subtitle.allDone", defaultValue: "Alles sauber für heute!"))
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                            .font(.caption).foregroundColor(.secondary)
                     }
                 }
                 Spacer()
-                // Plus – same style as Todos toolbar button, but as Item3D
-                Button {
-                    showingAddSheet = true
-                } label: {
+                Button { showingAddSheet = true } label: {
                     Image(systemName: "plus")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(.primary)
                 }
             }
-            .padding(.bottom, 16)
             
-            // Due tasks
+            // ── Due Tasks ──
             VStack(spacing: 12) {
                 ForEach(dueTasks) { task in
                     CleaningTaskRowView(manager: manager, task: task, isFuture: false)
@@ -113,7 +97,7 @@ struct CleaningDashboardView: View {
                 }
             }
             
-            // Future tasks – collapsible
+            // ── Future Tasks (collapsible) ──
             if !futureTasks.isEmpty {
                 DisclosureGroup {
                     VStack(spacing: 12) {
@@ -124,13 +108,13 @@ struct CleaningDashboardView: View {
                     .padding(.top, 12)
                 } label: {
                     Text(String(localized: "cleaning.dashboard.section.future", defaultValue: "Demnächst fällig"))
-                        .font(.headline)
-                        .foregroundColor(.primary)
+                        .font(.headline).foregroundColor(.primary)
                 }
                 .tint(.blauPrimary)
-                .padding(.top, 20)
             }
         }
+        .padding(16)
+        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
     }
 }
 
