@@ -9,6 +9,7 @@ struct CleaningTask: Identifiable, Codable, Hashable {
     var isActive: Bool = true
     var scheduledWeekday: Int? = nil // 1 = Sunday, 2 = Monday, etc.
     var colorHex: String = "gruenPrimary" // Named color key from AppColors
+    var progress: Double? = 0.0
     
     // Berechnet die Fälligkeit in Kombination mit den Logs
     func dueDate(lastCompleted: Date?) -> Date {

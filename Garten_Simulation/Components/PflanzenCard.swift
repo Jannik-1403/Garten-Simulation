@@ -313,8 +313,11 @@ struct PflanzenCard: View {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                         triggerWatering()
                         pflanze.sliderProgress = 0.0
+                        gardenStore.savePlants()
                     } else {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        // Save partial progress so it persists across app restarts
+                        gardenStore.savePlants()
                     }
                 }
         )

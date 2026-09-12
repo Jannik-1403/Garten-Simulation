@@ -15,8 +15,12 @@ struct CleaningTaskRowView: View {
     
     private var maxDragWidth: CGFloat { max(50, cardWidth - 80) }
     
+    private var baseProgress: CGFloat {
+        CGFloat(task.progress ?? 0.0)
+    }
+    
     private var dragProgress: CGFloat {
-        isDragging ? min(1.0, max(0.0, dragWidth / maxDragWidth)) : 0.0
+        isDragging ? min(1.0, max(0.0, dragWidth / maxDragWidth)) : baseProgress
     }
     
     var body: some View {
@@ -87,24 +91,28 @@ struct CleaningTaskRowView: View {
             .highPriorityGesture(
                 DragGesture(minimumDistance: 20)
                     .onChanged { value in
-                        guard value.translation.width > 0 else { return }
                         if !isDragging { isDragging = true }
-                        dragWidth = value.translation.width
+                        let startX = baseProgress * maxDragWidth
+                        dragWidth = startX + value.translation.width
                     }
                     .onEnded { _ in
                         isDragging = false
                         let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
+                        
+                        var updatedTask = task
+                        updatedTask.progress = Double(finalProgress)
+                        manager.updateTask(updatedTask)
+                        
                         if finalProgress >= 1.0 {
                             UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                            withAnimation(.easeOut(duration: 0.2)) { dragWidth = 0 }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                                 manager.completeTask(task)
+                                var resetTask = updatedTask
+                                resetTask.progress = 0.0
+                                manager.updateTask(resetTask)
                             }
                         } else {
                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                                dragWidth = 0
-                            }
                         }
                     }
             )
