@@ -32,6 +32,8 @@ new_keys = {
     "cleaning.status.urgent": "Termin verpasst!",
     "cleaning.add.color": "Farbe",
     "cleaning.add.day.singular": "Tag",
+    "cleaning.add.firstDue": "Erste Fälligkeit:",
+    "cleaning.status.urgent.short": "Fällig!",
 }
 
 for k, v in new_keys.items():

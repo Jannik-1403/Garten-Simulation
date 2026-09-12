@@ -47,76 +47,58 @@ struct CleaningTaskRowView: View {
             to: Calendar.current.startOfDay(for: due)
         ).day ?? 0
         
-        return HStack(spacing: 14) {
-            // Left: colored 3D icon button (non-interactive)
-            Item3DButton(
-                farbe: taskColor,
-                sekundaerFarbe: taskColorDark,
-                groesse: 52,
-                aktion: nil
-            ) {
-                Image(systemName: task.iconName)
-                    .font(.system(size: 22))
-                    .foregroundColor(.white)
-            }
-            .allowsHitTesting(false)
-            
-            // Middle: Task Name
-            VStack(alignment: .leading, spacing: 2) {
-                Text(task.nameKey)
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                    .lineLimit(2)
-            }
-            
-            Spacer()
-            
-            // Right: Status
-            VStack(alignment: .trailing, spacing: 3) {
-                if isFuture {
-                    Text(String(localized: "cleaning.status.dueIn", defaultValue: "Fällig in %@ Tagen", table: nil)
-                        .replacingOccurrences(of: "%@", with: "\(daysUntilDue)"))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                } else if isOverdue {
-                    Text(String(localized: "cleaning.status.urgent", defaultValue: "Termin verpasst!"))
-                        .font(.caption)
-                        .bold()
-                        .foregroundColor(.red)
-                } else {
-                    Text(String(localized: "cleaning.status.today", defaultValue: "Heute fällig"))
-                        .font(.caption)
-                        .bold()
-                        .foregroundColor(.orange)
+        return Item3DButton(
+            farbe: taskColor,
+            sekundaerFarbe: taskColorDark,
+            groesse: 64,
+            isRectangular: true,
+            aktion: nil
+        ) {
+            HStack(spacing: 12) {
+                // Left: Icon column (fixed width)
+                VStack(spacing: 4) {
+                    Image(systemName: task.iconName)
+                        .font(.system(size: 22))
+                        .foregroundColor(.white)
+                    
+                    // Status UNDER the icon
+                    if isFuture {
+                        Text("in \(daysUntilDue)d")
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundColor(.white.opacity(0.8))
+                    } else if isOverdue {
+                        Text(String(localized: "cleaning.status.urgent.short", defaultValue: "Fällig!"))
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(.white)
+                    } else {
+                        Text(due, format: .dateTime.day().month())
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundColor(.white.opacity(0.8))
+                    }
                 }
-                Text(due, format: .dateTime.day().month())
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
+                .frame(width: 48)
+                
+                // Right: Task name – gets all remaining space
+                Text(task.nameKey)
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .foregroundColor(.white)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer(minLength: 0)
             }
+            .padding(.horizontal, 8)
         }
-        .padding(.vertical, 10)
-        .padding(.horizontal, 14)
-        .background(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(Color(UIColor.systemBackground))
-                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(Color.black.opacity(0.12), lineWidth: 1))
-        )
-        .background(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(Color(UIColor.systemGray5))
-                .offset(y: 4)
-        )
-        .padding(.bottom, 4)
+        .allowsHitTesting(isFuture ? false : true)
     }
     
     // MARK: - Body
     var body: some View {
         if isFuture {
-            // Future tasks: no swipe, no green reveal
             rowContent
+                .opacity(0.6)
         } else {
-            // Due tasks: swipe-to-complete
             ZStack {
                 // Green background revealed on swipe
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
@@ -142,17 +124,17 @@ struct CleaningTaskRowView: View {
 #Preview {
     ZStack {
         Color.appHintergrund.ignoresSafeArea()
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             CleaningTaskRowView(
                 manager: CleaningManager.shared,
-                task: CleaningTask(nameKey: "Bett abziehen", iconName: "bed.double.fill", frequencyDays: 7, colorHex: "blauPrimary")
+                task: CleaningTask(nameKey: "Bett abziehen und Kissen frisch beziehen", iconName: "bed.double.fill", frequencyDays: 7, colorHex: "blauPrimary")
             )
             CleaningTaskRowView(
                 manager: CleaningManager.shared,
-                task: CleaningTask(nameKey: "Zimmer", iconName: "squareshape.split.2x2", frequencyDays: 3, colorHex: "gruenPrimary"),
+                task: CleaningTask(nameKey: "Zimmer aufräumen", iconName: "squareshape.split.2x2", frequencyDays: 3, colorHex: "gruenPrimary"),
                 isFuture: true
             )
         }
-        .padding()
+        .padding(.horizontal, 24)
     }
 }

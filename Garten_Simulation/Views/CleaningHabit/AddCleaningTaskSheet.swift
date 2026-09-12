@@ -35,6 +35,23 @@ struct AddCleaningTaskSheet: View {
     
     var selectedColor: Color { AppColors.color(for: selectedColorKey) }
     
+    // Live-Berechnung: wann wäre diese Aufgabe das erste Mal fällig?
+    var previewDueDate: Date {
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
+        if selectedWeekday == 0 {
+            // Kein fester Wochentag → ab heute + frequencyDays
+            return cal.date(byAdding: .day, value: frequencyDays, to: today) ?? today
+        } else {
+            // Fester Wochentag → nächsten Wochentag finden, dann + frequencyDays
+            let currentWeekday = cal.component(.weekday, from: today)
+            var daysToAdd = selectedWeekday - currentWeekday
+            if daysToAdd <= 0 { daysToAdd += 7 }
+            let nextWeekday = cal.date(byAdding: .day, value: daysToAdd, to: today) ?? today
+            return cal.date(byAdding: .day, value: frequencyDays, to: nextWeekday) ?? nextWeekday
+        }
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -133,6 +150,20 @@ struct AddCleaningTaskSheet: View {
                         Text(String(localized: "cleaning.weekday.friday", defaultValue: "Freitag")).tag(6)
                         Text(String(localized: "cleaning.weekday.saturday", defaultValue: "Samstag")).tag(7)
                         Text(String(localized: "cleaning.weekday.sunday", defaultValue: "Sonntag")).tag(1)
+                    }
+                    
+                    // Live-Datum Preview
+                    HStack {
+                        Image(systemName: "calendar")
+                            .foregroundColor(.blauPrimary)
+                        Text(String(localized: "cleaning.add.firstDue", defaultValue: "Erste Fälligkeit:"))
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text(previewDueDate, format: .dateTime.weekday(.wide).day().month())
+                            .font(.subheadline)
+                            .bold()
+                            .foregroundColor(.primary)
                     }
                 }
             }
