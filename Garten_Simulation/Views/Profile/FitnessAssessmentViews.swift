@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 // MARK: - Fitness Quiz Screen
 
@@ -197,6 +198,7 @@ struct FitnessAssessmentQuizView: View {
 
     private func advance() {
         guard selectedAnswerID != nil else { return }
+        TelemetryDeck.signal("quiz_answered")
 
         if isLastQuestion {
             assessmentStore.submitFitnessQuiz(answers: selectedAnswers)

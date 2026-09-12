@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 // MARK: - Growth Quiz Screen
 
@@ -182,6 +183,7 @@ struct GrowthAssessmentQuizView: View {
 
     private func advance() {
         guard selectedAnswerID != nil else { return }
+        TelemetryDeck.signal("quiz_answered")
         if isLastQuestion {
             assessmentStore.submitGrowthQuiz(answers: selectedAnswers)
             withAnimation { showResult = true }

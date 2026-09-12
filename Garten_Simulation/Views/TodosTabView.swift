@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 import Combine
 
 struct TodosTabView: View {
@@ -151,6 +152,7 @@ struct TodoRowView: View {
                 aktion: {
                     withAnimation {
                         pflanze.todos[index].isCompleted.toggle()
+                        TelemetryDeck.signal("todo_used")
                         GoalStore.shared.logTodoCompletion(habitId: pflanze.id, priority: pflanze.todos[index].priority, isCompleted: pflanze.todos[index].isCompleted)
                         gardenStore.savePlants()
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -242,6 +244,7 @@ struct StandaloneTodoRowView: View {
                 aktion: {
                     withAnimation {
                         gardenStore.standaloneTodos[index].isCompleted.toggle()
+                        TelemetryDeck.signal("todo_used")
                         GoalStore.shared.logTodoCompletion(habitId: "standalone", priority: gardenStore.standaloneTodos[index].priority, isCompleted: gardenStore.standaloneTodos[index].isCompleted)
                         gardenStore.saveStandaloneTodos()
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -396,6 +399,7 @@ struct GlobalTodoAddSheet: View {
                         } else {
                             let newTodo = FocusGoal(text: trimmed)
                             selected.todos.append(newTodo)
+                            TelemetryDeck.signal("todo_used")
                         }
                         gardenStore.savePlants()
                     } else {
@@ -404,6 +408,7 @@ struct GlobalTodoAddSheet: View {
                         } else {
                             let newTodo = FocusGoal(text: trimmed)
                             gardenStore.standaloneTodos.append(newTodo)
+                            TelemetryDeck.signal("todo_used")
                         }
                         // saveStandaloneTodos() is called via property observer
                     }

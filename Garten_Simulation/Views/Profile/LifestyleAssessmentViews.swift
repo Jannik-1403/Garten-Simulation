@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 // MARK: - Lifestyle Quiz Screen
 
@@ -182,6 +183,7 @@ struct LifestyleAssessmentQuizView: View {
 
     private func advance() {
         guard selectedAnswerID != nil else { return }
+        TelemetryDeck.signal("quiz_answered")
         if isLastQuestion {
             assessmentStore.submitLifestyleQuiz(answers: selectedAnswers)
             withAnimation { showResult = true }

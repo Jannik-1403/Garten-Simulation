@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 struct ShopItemDetailView: View {
     let payload: ShopDetailPayload
@@ -342,6 +343,7 @@ struct ShopItemDetailView: View {
     }
     
     private func executePurchase() {
+        TelemetryDeck.signal("shop_item_purchased", parameters: ["item_name": payload.id])
         if payload.id == "plant.seeds" {
             FeedbackManager.shared.playSuccess()
             shopStore.buy(id: payload.id, price: payload.price)

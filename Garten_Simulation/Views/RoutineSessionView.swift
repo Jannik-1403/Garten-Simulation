@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 import FamilyControls
 import ActivityKit
+import TelemetryDeck
 
 enum RoutineSessionState {
     case intro
@@ -444,6 +445,7 @@ struct RoutineSessionView: View {
         )
         gardenStore.focusSessions.append(log)
         
+        TelemetryDeck.signal("routine_used")
         onComplete?()
         
         state = .success

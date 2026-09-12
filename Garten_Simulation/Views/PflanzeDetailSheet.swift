@@ -1,5 +1,8 @@
 import SwiftUI
 import Combine
+import FamilyControls
+import ManagedSettings
+import TelemetryDeck
 
 struct PflanzeDetailSheet: View {
     @ObservedObject var pflanze: HabitModel
@@ -616,6 +619,7 @@ struct PflanzeDetailSheet: View {
             titleVisibility: .visible
         ) {
             Button(String(localized: "apple.health.unlink", defaultValue: "Von Apple Health entkoppeln"), role: .destructive) {
+                TelemetryDeck.signal("health_integration_toggled", parameters: ["enabled": "false"])
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 pflanze.isAppleHealthUnlinked = true
                 gardenStore.savePlants()
@@ -743,6 +747,7 @@ struct PflanzeDetailSheet: View {
                                                         .multilineTextAlignment(.center)
                                                     
                                                     Button {
+                                                        TelemetryDeck.signal("health_integration_toggled", parameters: ["enabled": "true"])
                                                         pflanze.isAppleHealthUnlinked = false
                                                         if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
                                                             pflanze.linkedHealthMetric = .steps
@@ -847,6 +852,7 @@ struct TodoSheetView: View {
                 } else {
                     let newTodo = FocusGoal(text: trimmed)
                     pflanze.todos.append(newTodo)
+                    TelemetryDeck.signal("todo_used")
                 }
                 gardenStore.savePlants()
                 gardenStore.objectWillChange.send()

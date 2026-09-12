@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 // MARK: - Health Quiz Screen
 
@@ -186,6 +187,7 @@ struct HealthAssessmentQuizView: View {
 
     private func advance() {
         guard selectedAnswerID != nil else { return }
+        TelemetryDeck.signal("quiz_answered")
         if isLastQuestion {
             assessmentStore.submitHealthQuiz(answers: selectedAnswers)
             withAnimation { showResult = true }

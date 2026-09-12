@@ -1,7 +1,8 @@
 import SwiftUI
 import Combine
-import ActivityKit
 import FamilyControls
+import ActivityKit
+import TelemetryDeck
 import UniformTypeIdentifiers
 
 enum FocusSessionState: Int, Codable {
@@ -110,6 +111,7 @@ struct FocusSessionView: View {
                             
                             state = .timer
                             isTimerRunning = true
+                            TelemetryDeck.signal("focus_timer_started")
                             // Blocking already applied in step 1 via FocusScreenTimePickerView
                             startLiveActivity()
                         }

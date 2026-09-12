@@ -13,6 +13,8 @@
 		14595B622F9E6A9E00C69460 /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14595B612F9E6A9E00C69460 /* ActivityKit.framework */; };
 		14660BEC2FFF7780007F2E2E /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14660BEB2FFF7780007F2E2E /* DeviceActivity.framework */; };
 		14660BF42FFF7780007F2E2E /* ScreenTimeMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 14660BEA2FFF7780007F2E2E /* ScreenTimeMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		146D40923055715F0081C5FC /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 146D40913055715F0081C5FC /* TelemetryClient */; };
+		146D40943055715F0081C5FC /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 146D40933055715F0081C5FC /* TelemetryDeck */; };
 		146DE9A03001867100FEDA83 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 146DE99F3001867100FEDA83 /* Products.storekit */; };
 		1470B3D42F77100D00FBAB1D /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1470B3D32F77100D00FBAB1D /* DotLottie */; };
 		1473815F2F73A8470070F455 /* SeltenheitProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */; };
@@ -190,7 +192,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14741A642FFEA96100CA0071 /* StoreKit.framework in Frameworks */,
+				146D40923055715F0081C5FC /* TelemetryClient in Frameworks */,
 				147B21B22F6F269C00741BF8 /* RiveRuntime in Frameworks */,
+				146D40943055715F0081C5FC /* TelemetryDeck in Frameworks */,
 				1470B3D42F77100D00FBAB1D /* DotLottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +314,8 @@
 			packageProductDependencies = (
 				147B21B12F6F269C00741BF8 /* RiveRuntime */,
 				1470B3D32F77100D00FBAB1D /* DotLottie */,
+				146D40913055715F0081C5FC /* TelemetryClient */,
+				146D40933055715F0081C5FC /* TelemetryDeck */,
 			);
 			productName = Garten_Simulation;
 			productReference = 1424D41C2F6EA14200908588 /* Grovy.app */;
@@ -480,6 +486,7 @@
 			packageReferences = (
 				147B218A2F6EEB9A00741BF8 /* XCRemoteSwiftPackageReference "rive-ios" */,
 				1470B3D22F77100D00FBAB1D /* XCRemoteSwiftPackageReference "dotlottie-ios" */,
+				146D40903055715F0081C5FC /* XCRemoteSwiftPackageReference "SwiftSDK" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1424D41D2F6EA14200908588 /* Products */;
@@ -1205,6 +1212,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		146D40903055715F0081C5FC /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.14.2;
+			};
+		};
 		1470B3D22F77100D00FBAB1D /* XCRemoteSwiftPackageReference "dotlottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LottieFiles/dotlottie-ios.git";
@@ -1224,6 +1239,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		146D40913055715F0081C5FC /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 146D40903055715F0081C5FC /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryClient;
+		};
+		146D40933055715F0081C5FC /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 146D40903055715F0081C5FC /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
+		};
 		1470B3D32F77100D00FBAB1D /* DotLottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1470B3D22F77100D00FBAB1D /* XCRemoteSwiftPackageReference "dotlottie-ios" */;

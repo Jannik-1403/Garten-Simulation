@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 // MARK: - Mental Quiz Screen
 
@@ -182,6 +183,7 @@ struct MentalAssessmentQuizView: View {
 
     private func advance() {
         guard selectedAnswerID != nil else { return }
+        TelemetryDeck.signal("quiz_answered")
         if isLastQuestion {
             assessmentStore.submitMentalQuiz(answers: selectedAnswers)
             withAnimation { showResult = true }
