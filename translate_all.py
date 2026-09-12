@@ -34,6 +34,9 @@ new_keys = {
     "cleaning.add.day.singular": "Tag",
     "cleaning.add.firstDue": "Erste Fälligkeit:",
     "cleaning.status.urgent.short": "Fällig!",
+    "cleaning.stat.completions": "Mal erledigt",
+    "cleaning.chart.empty": "Noch keine Daten vorhanden",
+    "cleaning.edit.interval": "Intervall ändern",
 }
 
 for k, v in new_keys.items():

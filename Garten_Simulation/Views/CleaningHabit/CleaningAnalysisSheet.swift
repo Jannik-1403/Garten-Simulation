@@ -7,93 +7,156 @@ struct CleaningAnalysisSheet: View {
     var task: CleaningTask
     
     @State private var showingDeleteAlert = false
+    @State private var frequencyDays: Int
+    
+    init(manager: CleaningManager, task: CleaningTask) {
+        self.manager = manager
+        self.task = task
+        _frequencyDays = State(initialValue: task.frequencyDays)
+    }
+    
+    var taskColor: Color { AppColors.color(for: task.colorHex) }
+    
+    private var chartTitle: String {
+        String(localized: String.LocalizationValue(task.nameKey))
+    }
+    
+    private var totalCompletions: Int {
+        manager.totalCompletions(for: task.id)
+    }
+    
+    // Group logs by month for the chart
+    private var chartData: [(Date, Int)] {
+        let logs = manager.logs.filter { $0.taskId == task.id }
+        var grouped: [Date: Int] = [:]
+        let cal = Calendar.current
+        for log in logs {
+            let comps = cal.dateComponents([.year, .month], from: log.timestamp)
+            if let date = cal.date(from: comps) {
+                grouped[date, default: 0] += 1
+            }
+        }
+        return grouped.map { ($0.key, $0.value) }.sorted { $0.0 < $1.0 }
+    }
     
     var body: some View {
         NavigationView {
             ZStack {
-                Color(UIColor.secondarySystemBackground).ignoresSafeArea()
+                Color.appHintergrund.ignoresSafeArea()
                 
                 ScrollView {
-                    VStack(spacing: 24) {
-                        // Header Icon
-                        ZStack {
-                            Circle()
-                                .fill(Color.blue.opacity(0.2))
-                                .frame(width: 100, height: 100)
+                    VStack(alignment: .leading, spacing: 32) {
+                        
+                        // Header & Stats
+                        VStack(alignment: .leading, spacing: 0) {
+                            // Title
+                            HStack(spacing: 6) {
+                                Circle()
+                                    .fill(taskColor)
+                                    .frame(width: 10, height: 10)
+                                Text(chartTitle)
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                                    .foregroundStyle(taskColor)
+                            }
+                            .padding(.bottom, 14)
                             
-                            Image(systemName: task.iconName)
-                                .font(.system(size: 48, weight: .bold))
-                                .foregroundColor(.blue)
-                                .shadow(color: .blue.opacity(0.5), radius: 10, x: 0, y: 5)
-                        }
-                        .padding(.top, 20)
-                        
-                        Text(String(localized: String.LocalizationValue(task.nameKey)))
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.primary)
-                        
-                        // Stats Grid
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                            StatCard(
-                                title: String(localized: "cleaning.stat.total", defaultValue: "Insgesamt"),
-                                value: "\(manager.totalCompletions(for: task.id))",
-                                icon: "checkmark.circle.fill",
-                                color: .green
-                            )
-                            
-                            StatCard(
-                                title: String(localized: "cleaning.stat.interval", defaultValue: "Intervall"),
-                                value: String(localized: "cleaning.stat.interval.days", defaultValue: "Alle %@ Tage", table: nil).replacingOccurrences(of: "%@", with: "\(task.frequencyDays)"),
-                                icon: "clock.fill",
-                                color: .orange
-                            )
-                        }
-                        .padding(.horizontal)
-                        
-                        // Chart Section
-                        let recentLogs = manager.logs.filter { $0.taskId == task.id }
-                        if !recentLogs.isEmpty {
-                            VStack(alignment: .leading) {
-                                Text(String(localized: "cleaning.chart.title", defaultValue: "Aktivität"))
-                                    .font(.title3)
-                                    .bold()
-                                    .foregroundColor(.primary)
-                                    .padding(.horizontal)
-                                
-                                Chart(recentLogs) { log in
-                                    PointMark(
-                                        x: .value("Datum", log.timestamp),
-                                        y: .value("Erledigt", 1)
-                                    )
-                                    .symbol(.circle)
-                                    .foregroundStyle(Color.blue)
+                            // Stats Row
+                            HStack(alignment: .top, spacing: 0) {
+                                VStack(alignment: .leading, spacing: 1) {
+                                    statLabel(dotColor: taskColor, text: String(localized: "cleaning.stat.total", defaultValue: "Insgesamt"))
+                                    Text("\(totalCompletions)")
+                                        .font(.system(size: 42, weight: .black, design: .rounded))
+                                        .foregroundStyle(taskColor)
+                                    Text(String(localized: "cleaning.stat.completions", defaultValue: "Mal erledigt"))
+                                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                                        .foregroundStyle(taskColor.opacity(0.7))
                                 }
-                                .chartYAxis(.hidden)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .padding(.bottom, 14)
+                            
+                            // Chart
+                            if chartData.isEmpty {
+                                VStack(spacing: 12) {
+                                    Image(systemName: "chart.bar.xaxis")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.secondary.opacity(0.5))
+                                    Text(String(localized: "cleaning.chart.empty", defaultValue: "Noch keine Daten vorhanden"))
+                                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                                        .foregroundColor(.secondary)
+                                }
+                                .frame(maxWidth: .infinity)
                                 .frame(height: 150)
+                                .background(Color(UIColor.systemBackground))
+                                .cornerRadius(16)
+                            } else {
+                                Chart {
+                                    ForEach(chartData, id: \.0) { item in
+                                        BarMark(
+                                            x: .value("Monat", item.0, unit: .month),
+                                            y: .value("Anzahl", item.1)
+                                        )
+                                        .foregroundStyle(taskColor)
+                                        .cornerRadius(4)
+                                    }
+                                }
+                                .chartXAxis {
+                                    AxisMarks(values: .stride(by: .month)) { _ in
+                                        AxisValueLabel(format: .dateTime.month(.abbreviated), centered: true)
+                                    }
+                                }
+                                .frame(height: 200)
                                 .padding()
                                 .background(Color(UIColor.systemBackground))
                                 .cornerRadius(16)
-                                .padding(.horizontal)
                             }
                         }
                         
-                        Spacer(minLength: 40)
-                        
-                        // Delete Button
-                        Button(role: .destructive) {
-                            showingDeleteAlert = true
-                        } label: {
-                            Text(String(localized: "cleaning.action.delete", defaultValue: "Aufgabe löschen"))
-                                .font(.headline)
-                                .foregroundColor(.red)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.red.opacity(0.1))
-                                .cornerRadius(16)
-                                .padding(.horizontal)
+                        // Edit Interval
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text(String(localized: "cleaning.edit.interval", defaultValue: "Intervall ändern"))
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                            
+                            HStack {
+                                Stepper(value: $frequencyDays, in: 1...90) {
+                                    Text("\(frequencyDays) \(frequencyDays == 1 ? String(localized: "cleaning.add.day.singular", defaultValue: "Tag") : String(localized: "cleaning.add.days", defaultValue: "Tage"))")
+                                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                }
+                                .onChange(of: frequencyDays) { _, newValue in
+                                    var updated = task
+                                    updated.frequencyDays = newValue
+                                    manager.updateTask(updated)
+                                }
+                            }
+                            .padding()
+                            .background(Color(UIColor.systemBackground))
+                            .cornerRadius(16)
                         }
+                        
+                        // Delete Button (item3D-Style)
+                        Item3DButton(
+                            farbe: .red,
+                            sekundaerFarbe: Color(red: 0.7, green: 0, blue: 0),
+                            groesse: 56,
+                            isRectangular: true,
+                            aktion: {
+                                showingDeleteAlert = true
+                            }
+                        ) {
+                            HStack {
+                                Image(systemName: "trash")
+                                    .font(.system(size: 20, weight: .bold))
+                                Text(String(localized: "common.delete", defaultValue: "Löschen"))
+                                    .font(.system(size: 18, weight: .black, design: .rounded))
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                        }
+                        .padding(.top, 24)
+                        
                     }
+                    .padding(24)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -102,6 +165,7 @@ struct CleaningAnalysisSheet: View {
                     Button(String(localized: "common.close", defaultValue: "Schließen")) {
                         dismiss()
                     }
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(.primary)
                 }
             }
@@ -111,38 +175,25 @@ struct CleaningAnalysisSheet: View {
                     manager.deleteTask(task)
                     dismiss()
                 }
-            } message: {
-                Text(String(localized: "cleaning.delete.message", defaultValue: "Möchtest du diese Aufgabe wirklich löschen? Die bisherigen Daten bleiben anonymisiert erhalten."))
             }
         }
+    }
+    
+    private func statLabel(dotColor: Color, text: String) -> some View {
+        HStack(spacing: 4) {
+            Circle()
+                .fill(dotColor)
+                .frame(width: 6, height: 6)
+            Text(text)
+                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .foregroundStyle(Color.secondary)
+        }
+        .padding(.bottom, 2)
     }
 }
 
-struct StatCard: View {
-    var title: String
-    var value: String
-    var icon: String
-    var color: Color
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image(systemName: icon)
-                    .foregroundColor(color)
-                Text(title)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            Text(value)
-                .font(.title3)
-                .bold()
-                .foregroundColor(.primary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(Color(UIColor.systemBackground))
-        .cornerRadius(16)
-    }
+#Preview {
+    let manager = CleaningManager.shared
+    manager.tasks = [CleaningTask(nameKey: "Bett abziehen", iconName: "bed.double.fill", frequencyDays: 7, colorHex: "blauPrimary")]
+    return CleaningAnalysisSheet(manager: manager, task: manager.tasks[0])
 }
