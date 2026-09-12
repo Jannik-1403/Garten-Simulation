@@ -104,6 +104,7 @@ struct DeveloperView: View {
                             
                             Button {
                                 triggerAllTelemetryTestSignals()
+                                simulateVariedHabitCompletions()
                                 FeedbackManager.shared.playSuccess()
                             } label: {
                                 settingRow(
@@ -239,6 +240,31 @@ struct DeveloperView: View {
             TelemetryDeck.signal("daily_spin_completed")
             
             print("[Test-Telemetry] Alle Signale erfolgreich gesendet!")
+        }
+    }
+    
+    private func simulateVariedHabitCompletions() {
+        Task {
+            let habitCounts = [
+                ("Wasser trinken", 5, "good"),
+                ("Spanisch lernen", 4, "good"),
+                ("Krafttraining", 3, "good"),
+                ("Lesen", 2, "good"),
+                ("Fastfood vermeiden", 2, "good"),
+                ("Meditation", 1, "good")
+            ]
+            
+            for (habitName, count, category) in habitCounts {
+                for _ in 0..<count {
+                    print("[Telemetry Test] Gewohnheit gesendet: \(habitName)")
+                    let params: [String: String] = [
+                        "habit_name": habitName,
+                        "category": category,
+                        "is_custom": "false"
+                    ]
+                    TelemetryDeck.signal("habit_completed", parameters: params)
+                }
+            }
         }
     }
 #endif
