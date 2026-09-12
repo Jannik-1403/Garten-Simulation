@@ -9,7 +9,6 @@ struct CleaningTaskRowView: View {
     @State private var dragWidth: CGFloat = 0.0
     @State private var isDragging: Bool = false
     @State private var cardWidth: CGFloat = 300
-    @State private var isVisualPressed = false
     
     var taskColor: Color { AppColors.color(for: task.colorHex) }
     var taskColorDark: Color { taskColor.darker(by: 0.15) }
@@ -22,17 +21,17 @@ struct CleaningTaskRowView: View {
     
     var body: some View {
         let lastCompleted = manager.lastCompletedDate(for: task.id)
-        let isOverdue = task.isOverdue(lastCompleted: lastCompleted)
+        let isOverdue = task.isOverdue(lastCompleted: lastCompleted)  // strictly > today
         let due = task.dueDate(lastCompleted: lastCompleted)
+        let today = Calendar.current.startOfDay(for: Date())
         let daysUntilDue = Calendar.current.dateComponents(
             [.day],
-            from: Calendar.current.startOfDay(for: Date()),
+            from: today,
             to: Calendar.current.startOfDay(for: due)
         ).day ?? 0
         
-        // Card content
         let cardContent = HStack(spacing: 16) {
-            // Left: colored 3D icon button (non-interactive)
+            // Left: colored 3D icon button
             Item3DButton(
                 farbe: taskColor,
                 sekundaerFarbe: taskColorDark,
@@ -53,20 +52,22 @@ struct CleaningTaskRowView: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                 
-                if isFuture {
-                    Text(String(localized: "cleaning.status.dueIn", defaultValue: "Fällig in %@ Tagen", table: nil)
-                        .replacingOccurrences(of: "%@", with: "\(daysUntilDue)"))
-                        .font(.system(size: 12, weight: .semibold, design: .rounded))
-                        .foregroundColor(.secondary)
-                } else if isOverdue {
-                    Text(String(localized: "cleaning.status.urgent", defaultValue: "Termin verpasst!"))
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundColor(.red)
-                } else {
-                    Text(due, format: .dateTime.weekday(.short).day().month())
-                        .font(.system(size: 12, weight: .semibold, design: .rounded))
-                        .foregroundColor(.orange)
+                Group {
+                    if isOverdue {
+                        // Strictly past (yesterday or earlier)
+                        Text(String(localized: "cleaning.status.urgent", defaultValue: "Termin verpasst!"))
+                            .foregroundColor(.red)
+                    } else if daysUntilDue == 0 {
+                        // Today
+                        Text(String(localized: "cleaning.status.today", defaultValue: "Heute fällig"))
+                            .foregroundColor(.orange)
+                    } else {
+                        // Future
+                        Text(due, format: .dateTime.weekday(.short).day().month())
+                            .foregroundColor(.secondary)
+                    }
                 }
+                .font(.system(size: 12, weight: .bold, design: .rounded))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -80,64 +81,53 @@ struct CleaningTaskRowView: View {
             }
         )
         
-        // Apply the same button style as PflanzenCard
-        Group {
-            if isFuture {
-                cardContent
-                    .buttonStyle(CleaningCardButtonStyle(progress: 0, isVisualPressed: false))
-                    .opacity(0.55)
-            } else {
-                Button { } label: { cardContent }
-                    .buttonStyle(CleaningCardButtonStyle(progress: dragProgress, isVisualPressed: isVisualPressed))
-                    .highPriorityGesture(
-                        DragGesture(minimumDistance: 20)
-                            .onChanged { value in
-                                guard value.translation.width > 0 else { return }
-                                if !isDragging { isDragging = true }
-                                dragWidth = value.translation.width
+        // All tasks (due & future) use the same style and can be completed
+        Button { } label: { cardContent }
+            .buttonStyle(CleaningCardButtonStyle(progress: dragProgress))
+            .highPriorityGesture(
+                DragGesture(minimumDistance: 20)
+                    .onChanged { value in
+                        guard value.translation.width > 0 else { return }
+                        if !isDragging { isDragging = true }
+                        dragWidth = value.translation.width
+                    }
+                    .onEnded { _ in
+                        isDragging = false
+                        let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
+                        if finalProgress >= 1.0 {
+                            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                            withAnimation(.easeOut(duration: 0.2)) { dragWidth = 0 }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                manager.completeTask(task)
                             }
-                            .onEnded { _ in
-                                isDragging = false
-                                let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
-                                if finalProgress >= 1.0 {
-                                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                                    withAnimation(.easeOut(duration: 0.2)) { dragWidth = 0 }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                                        manager.completeTask(task)
-                                    }
-                                } else {
-                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                    withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                                        dragWidth = 0
-                                    }
-                                }
+                        } else {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                                dragWidth = 0
                             }
-                    )
-            }
-        }
+                        }
+                    }
+            )
     }
 }
 
-// MARK: - Button Style (same look as PflanzenCardHorizontalButtonStyle)
+// MARK: - Button Style (same as PflanzenCardHorizontalButtonStyle)
 struct CleaningCardButtonStyle: ButtonStyle {
     var progress: CGFloat = 0
-    var isVisualPressed: Bool = false
     
     private let depth: CGFloat = 5
     private let cornerRadius: CGFloat = 20
     
     func makeBody(configuration: Configuration) -> some View {
-        let isPressed = configuration.isPressed || isVisualPressed
+        let isPressed = configuration.isPressed
         
         ZStack(alignment: .bottom) {
-            // Shadow base
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .fill(Color(white: 0.7))
                 .padding(.horizontal, 1)
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 80)
             
-            // Front face with progress fill
             configuration.label
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 80)
@@ -170,7 +160,7 @@ struct CleaningCardButtonStyle: ButtonStyle {
         VStack(spacing: 12) {
             CleaningTaskRowView(
                 manager: CleaningManager.shared,
-                task: CleaningTask(nameKey: "Bett abziehen und Kissen frisch beziehen", iconName: "bed.double.fill", frequencyDays: 7, colorHex: "blauPrimary")
+                task: CleaningTask(nameKey: "Bett abziehen", iconName: "bed.double.fill", frequencyDays: 7, colorHex: "blauPrimary")
             )
             CleaningTaskRowView(
                 manager: CleaningManager.shared,

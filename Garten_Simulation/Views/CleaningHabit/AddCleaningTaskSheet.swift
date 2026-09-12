@@ -35,10 +35,9 @@ struct AddCleaningTaskSheet: View {
     
     var selectedColor: Color { AppColors.color(for: selectedColorKey) }
     
-    // Live-Berechnung: erste Fälligkeit = heute + frequencyDays
+    // Neue Aufgaben sind sofort fällig (kein lastCompleted → dueDate = heute)
     var previewDueDate: Date {
-        let today = Calendar.current.startOfDay(for: Date())
-        return Calendar.current.date(byAdding: .day, value: frequencyDays, to: today) ?? today
+        return Calendar.current.startOfDay(for: Date())
     }
     
     var body: some View {
@@ -136,10 +135,11 @@ struct AddCleaningTaskSheet: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                         Spacer()
-                        Text(previewDueDate, format: .dateTime.weekday(.wide).day().month())
+                        // Neue Aufgaben sind sofort fällig → "Heute"
+                        Text(String(localized: "cleaning.status.today", defaultValue: "Heute fällig"))
                             .font(.subheadline)
                             .bold()
-                            .foregroundColor(.primary)
+                            .foregroundColor(.orange)
                     }
                 }
             }

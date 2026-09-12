@@ -46,6 +46,6 @@ struct CleaningTask: Identifiable, Codable, Hashable {
     
     func isOverdue(lastCompleted: Date?) -> Bool {
         let due = dueDate(lastCompleted: lastCompleted)
-        return Calendar.current.startOfDay(for: Date()) >= due
+        return Calendar.current.startOfDay(for: Date()) > due
     }
 }

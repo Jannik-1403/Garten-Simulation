@@ -82,10 +82,15 @@ struct CleaningDashboardView: View {
                     }
                 }
                 Spacer()
-                Button { showingAddSheet = true } label: {
-                    Image(systemName: "plus")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.primary)
+                // Blue item3D Plus Button (same as Todos-Header)
+                Item3DButton(
+                    icon: "plus",
+                    farbe: .blauPrimary,
+                    sekundaerFarbe: .blauPrimary.darker(),
+                    groesse: 36,
+                    iconSkalierung: 0.45
+                ) {
+                    showingAddSheet = true
                 }
             }
             
