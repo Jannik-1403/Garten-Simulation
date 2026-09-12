@@ -1,5 +1,6 @@
 import SwiftUI
 import StoreKit
+import TelemetryDeck
 
 struct DeveloperView: View {
     @EnvironmentObject var settings: SettingsStore
@@ -97,6 +98,21 @@ struct DeveloperView: View {
                                     color: .orange
                                 )
                             }
+                            
+#if DEBUG
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                triggerAllTelemetryTestSignals()
+                                FeedbackManager.shared.playSuccess()
+                            } label: {
+                                settingRow(
+                                    title: "🧪 TelemetryDeck Test-Daten senden",
+                                    icon: "antenna.radiowaves.left.and.right",
+                                    color: .purple
+                                )
+                            }
+#endif
                         }
                     }
                 }
@@ -163,4 +179,47 @@ struct DeveloperView: View {
         .padding(.vertical, 12)
         .contentShape(Rectangle())
     }
+    
+#if DEBUG
+    private func triggerAllTelemetryTestSignals() {
+        Task {
+            print("[Test-Telemetry] Sende app_opened...")
+            TelemetryDeck.signal("app_opened")
+            
+            print("[Test-Telemetry] Sende shop_item_purchased (Test_Pflanze_Kaktus)...")
+            let paramsKaktus: [String: String] = ["item_name": "Test_Pflanze_Kaktus"]
+            TelemetryDeck.signal("shop_item_purchased", parameters: paramsKaktus)
+            
+            print("[Test-Telemetry] Sende shop_item_purchased (Test_Pflanze_Monstera)...")
+            let paramsMonstera: [String: String] = ["item_name": "Test_Pflanze_Monstera"]
+            TelemetryDeck.signal("shop_item_purchased", parameters: paramsMonstera)
+            
+            print("[Test-Telemetry] Sende shop_item_purchased (Test_Gewohnheit_Sport)...")
+            let paramsSport: [String: String] = ["item_name": "Test_Gewohnheit_Sport"]
+            TelemetryDeck.signal("shop_item_purchased", parameters: paramsSport)
+            
+            print("[Test-Telemetry] Sende health_integration_toggled (true)...")
+            let paramsHealthTrue: [String: String] = ["enabled": "true"]
+            TelemetryDeck.signal("health_integration_toggled", parameters: paramsHealthTrue)
+            
+            print("[Test-Telemetry] Sende health_integration_toggled (false)...")
+            let paramsHealthFalse: [String: String] = ["enabled": "false"]
+            TelemetryDeck.signal("health_integration_toggled", parameters: paramsHealthFalse)
+            
+            print("[Test-Telemetry] Sende routine_used...")
+            TelemetryDeck.signal("routine_used")
+            
+            print("[Test-Telemetry] Sende todo_used...")
+            TelemetryDeck.signal("todo_used")
+            
+            print("[Test-Telemetry] Sende focus_timer_started...")
+            TelemetryDeck.signal("focus_timer_started")
+            
+            print("[Test-Telemetry] Sende quiz_answered...")
+            TelemetryDeck.signal("quiz_answered")
+            
+            print("[Test-Telemetry] Alle Signale erfolgreich gesendet!")
+        }
+    }
+#endif
 }
