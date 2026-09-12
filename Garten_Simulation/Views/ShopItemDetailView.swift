@@ -343,7 +343,7 @@ struct ShopItemDetailView: View {
     }
     
     private func executePurchase() {
-        TelemetryDeck.signal("shop_item_purchased", parameters: ["item_name": payload.id])
+        let safeItemId: String = payload.id
         if payload.id == "plant.seeds" {
             FeedbackManager.shared.playSuccess()
             shopStore.buy(id: payload.id, price: payload.price)
@@ -372,6 +372,12 @@ struct ShopItemDetailView: View {
             withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
                 showSuccess = true
             }
+        }
+        
+        // Tracking sicher am Ende ausführen
+        Task {
+            let parameters: [String: String] = ["item_name": safeItemId]
+            TelemetryDeck.signal("shop_item_purchased", parameters: parameters)
         }
     }
     

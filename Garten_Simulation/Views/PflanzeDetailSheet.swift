@@ -619,10 +619,14 @@ struct PflanzeDetailSheet: View {
             titleVisibility: .visible
         ) {
             Button(String(localized: "apple.health.unlink", defaultValue: "Von Apple Health entkoppeln"), role: .destructive) {
-                TelemetryDeck.signal("health_integration_toggled", parameters: ["enabled": "false"])
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 pflanze.isAppleHealthUnlinked = true
                 gardenStore.savePlants()
+                
+                Task {
+                    let safeParams: [String: String] = ["enabled": "false"]
+                    TelemetryDeck.signal("health_integration_toggled", parameters: safeParams)
+                }
             }
             Button(String(localized: "button.cancel"), role: .cancel) { }
         } message: {
@@ -747,7 +751,6 @@ struct PflanzeDetailSheet: View {
                                                         .multilineTextAlignment(.center)
                                                     
                                                     Button {
-                                                        TelemetryDeck.signal("health_integration_toggled", parameters: ["enabled": "true"])
                                                         pflanze.isAppleHealthUnlinked = false
                                                         if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
                                                             pflanze.linkedHealthMetric = .steps
@@ -763,6 +766,11 @@ struct PflanzeDetailSheet: View {
                                                             healthManager.fetchHourlyData(for: m) { data in self.hourlyHealthData = data }
                                                             healthManager.fetchWeeklyAverage(for: m) { avg in self.weeklyHealthAverage = avg }
                                                             healthManager.fetchHourlyWeeklyAverage(for: m) { avg in self.hourlyAvgData = avg }
+                                                        }
+                                                        
+                                                        Task {
+                                                            let safeParams: [String: String] = ["enabled": "true"]
+                                                            TelemetryDeck.signal("health_integration_toggled", parameters: safeParams)
                                                         }
                                                     } label: {
                                                         Text(String(localized: "apple.health.link", defaultValue: "Mit Apple Health verbinden"))

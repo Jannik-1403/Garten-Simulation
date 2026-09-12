@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import Combine
 import ActivityKit
+import TelemetryDeck
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -150,6 +151,7 @@ struct AppRootView: View {
                 .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
                 .preferredColorScheme(.light)
                 .onAppear {
+                    TelemetryDeck.signal("app_opened")
                     QuickActionManager.setupDynamicShortcuts()
                     
                     // Link ShopStore coin closures to GardenStore (single source of truth)
