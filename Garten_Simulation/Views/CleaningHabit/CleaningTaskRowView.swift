@@ -4,6 +4,7 @@ struct CleaningTaskRowView: View {
     @ObservedObject var manager: CleaningManager
     var task: CleaningTask
     var isFuture: Bool = false
+    var action: () -> Void = {}
     
     // Slider-to-Complete (identisch zu PflanzenCard)
     @State private var dragWidth: CGFloat = 0.0
@@ -86,7 +87,7 @@ struct CleaningTaskRowView: View {
         )
         
         // All tasks (due & future) use the same style and can be completed
-        Button { } label: { cardContent }
+        Button(action: action) { cardContent }
             .buttonStyle(CleaningCardButtonStyle(progress: dragProgress))
             .highPriorityGesture(
                 DragGesture(minimumDistance: 20)

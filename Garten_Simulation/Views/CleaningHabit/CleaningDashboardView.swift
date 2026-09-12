@@ -97,8 +97,9 @@ struct CleaningDashboardView: View {
             // ── Due Tasks ──
             VStack(spacing: 12) {
                 ForEach(dueTasks) { task in
-                    CleaningTaskRowView(manager: manager, task: task, isFuture: false)
-                        .onTapGesture { selectedTask = task }
+                    CleaningTaskRowView(manager: manager, task: task, isFuture: false) {
+                        selectedTask = task
+                    }
                 }
             }
             
@@ -107,7 +108,9 @@ struct CleaningDashboardView: View {
                 DisclosureGroup {
                     VStack(spacing: 12) {
                         ForEach(futureTasks) { task in
-                            CleaningTaskRowView(manager: manager, task: task, isFuture: true)
+                            CleaningTaskRowView(manager: manager, task: task, isFuture: true) {
+                                selectedTask = task
+                            }
                         }
                     }
                     .padding(.top, 12)
