@@ -512,7 +512,7 @@ struct SettingsView: View {
                 Text(String(localized: "settings.health.description", defaultValue: "Verbinde Apple Health, um deine Schritte und deinen Schlaf zu synchronisieren und so den Fortschritt in deinem Garten voranzutreiben. Zusätzlich werden Körper- und Ernährungsdaten (z. B. Gewicht, Größe, Alter, Geschlecht) verknüpft, um deine Ziele optimal zu berechnen."))
             }
 
-            .alert("Wiederherstellung erfolgreich", isPresented: $showRecoveryAlert) {
+            .alert(String(localized: "settings.alert.recovery_success", defaultValue: "Wiederherstellung erfolgreich"), isPresented: $showRecoveryAlert) {
                 Button(String(localized: "button.ok", defaultValue: "OK"), role: .cancel) {
                     // Quit app or tell user to restart
                     exit(0)

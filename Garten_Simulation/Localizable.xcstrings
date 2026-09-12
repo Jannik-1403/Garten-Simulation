@@ -115635,6 +115635,17 @@
         }
       }
     },
+    "cleaning.empty.subtitle": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Füge deine erste Aufräum-Aufgabe hinzu"
+          }
+        }
+      }
+    },
     "cleaning.empty.suggestions": {
       "extractionState": "manual",
       "localizations": {
@@ -115732,6 +115743,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        }
+      }
+    },
+    "cleaning.empty.title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Keine Aufgaben"
           }
         }
       }
