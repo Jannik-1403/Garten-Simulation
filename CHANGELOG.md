@@ -14,6 +14,10 @@
 - **Body Tracking:** Bei den Filtern '6 Monate' und 'Jahr' werden die Datenpunkte im Diagramm nun zu übersichtlichen Wochendurchschnitten zusammengefasst.
 - **Body Tracking:** Der Header über dem Diagramm zeigt nun für den ausgewählten Zeitraum immer den Durchschnittswert ('DURCHSCHNITT') statt des aktuellsten Gewichts, analog zu Apple Health.
 
+## [2026-09-12] - Body Tracking Chart Aggregation
+- **Body Tracking:** Bei den Filtern '6 Monate' und 'Jahr' werden die Datenpunkte im Diagramm nun zu übersichtlichen Wochendurchschnitten zusammengefasst.
+- **Body Tracking:** Der Header über dem Diagramm zeigt nun für den ausgewählten Zeitraum immer den Durchschnittswert ('DURCHSCHNITT') statt des aktuellsten Gewichts, analog zu Apple Health.
+
 ## [2026-09-11] - Feature: Aufräum-Gewohnheit Redesign & Wochentag-Filter
 - **UI Redesign**: Das Dashboard (`CleaningDashboardView`) und die Listenansicht (`CleaningTaskRowView`) wurden komplett neu gestaltet. Graue Hintergründe, störende Icons und große Header wurden durch ein cleanes, natives Design mit `Item3DButton`s ersetzt.
 - **Wochentage**: Beim Erstellen einer neuen Aufgabe (`AddCleaningTaskSheet`) kann nun ein fester Wochentag festgelegt werden.
