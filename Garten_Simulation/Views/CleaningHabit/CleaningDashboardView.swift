@@ -28,28 +28,12 @@ struct CleaningDashboardView: View {
             Item3DButton(icon: "plus", farbe: .blauPrimary, sekundaerFarbe: .blauPrimary.darker(), groesse: 80) {
                 showingAddSheet = true
             }
-            Text(String(localized: "cleaning.empty.suggestions", defaultValue: "Vorschläge:"))
+            Text(String(localized: "cleaning.empty.title", defaultValue: "Keine Aufgaben"))
                 .font(.headline)
                 .foregroundColor(.secondary)
-            let suggestions = [
-                (nameKey: "cleaning.task.bed", icon: "bed.double.fill", days: 7),
-                (nameKey: "cleaning.task.room", icon: "squareshape.split.2x2", days: 3),
-                (nameKey: "cleaning.task.kitchen", icon: "fork.knife", days: 2)
-            ]
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 140))], spacing: 16) {
-                ForEach(suggestions, id: \.nameKey) { suggestion in
-                    Item3DPillButton(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5), groesse: 50) {
-                        manager.addTask(nameKey: String(localized: String.LocalizationValue(suggestion.nameKey)), iconName: suggestion.icon, frequencyDays: suggestion.days, scheduledWeekday: nil)
-                    } label: {
-                        HStack {
-                            Image(systemName: suggestion.icon)
-                            Text(String(localized: String.LocalizationValue(suggestion.nameKey)))
-                                .font(.subheadline).lineLimit(1)
-                        }
-                        .foregroundColor(.primary)
-                    }
-                }
-            }
+            Text(String(localized: "cleaning.empty.subtitle", defaultValue: "Füge deine erste Aufräum-Aufgabe hinzu"))
+                .font(.subheadline)
+                .foregroundColor(.tertiary)
             Spacer()
         }
     }

@@ -82,6 +82,7 @@ struct PflanzenSaveData: Codable {
     let wiederbelebtAm: Date?
     let strafTage: Int?
     let notizen: [String]?
+    let journalEntries: [GratitudeJournalEntry]?
     let timerDatum: Date?
     let reminderTime: Date?
     let customReminderMessage: String?
@@ -198,6 +199,7 @@ final class DataExportImportManager: ObservableObject {
                     wiederbelebtAm: habit.wiederbelebtAm,
                     strafTage: habit.strafTage,
                     notizen: habit.notizen,
+                    journalEntries: habit.journalEntries,
                     timerDatum: habit.timerDatum,
                     reminderTime: habit.reminderTime,
                     customReminderMessage: habit.customReminderMessage,
@@ -439,6 +441,7 @@ final class DataExportImportManager: ObservableObject {
             if let wiederbelebtAm = data.wiederbelebtAm { habit.wiederbelebtAm = wiederbelebtAm }
             if let strafTage = data.strafTage { habit.strafTage = strafTage }
             if let notizen = data.notizen { habit.notizen = notizen }
+            if let journalEntries = data.journalEntries { habit.journalEntries = journalEntries }
             if let timerDatum = data.timerDatum { habit.timerDatum = timerDatum }
             if let reminderTime = data.reminderTime { habit.reminderTime = reminderTime }
             if let customReminderMessage = data.customReminderMessage { habit.customReminderMessage = customReminderMessage }
