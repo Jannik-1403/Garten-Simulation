@@ -77,8 +77,9 @@ struct Garten_SimulationApp: App {
     
     init() {
         // TelemetryDeck Initialisierung
-        let configuration = TelemetryManagerConfiguration(appID: "0DD3FAC2-DC8D-4687-9D13-5E6230EF9D1E")
-        TelemetryManager.initialize(with: configuration)
+        let config = TelemetryManagerConfiguration(appID: "0DD3FAC2-DC8D-4687-9D13-5E6230EF9D1E")
+        config.showDebugLogs = true
+        TelemetryManager.initialize(with: config)
 
         // Ensure standard iOS navigation elements (back chevrons, texts) are black
         UINavigationBar.appearance().tintColor = UIColor.label
