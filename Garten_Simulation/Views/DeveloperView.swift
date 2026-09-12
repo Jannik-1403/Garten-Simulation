@@ -246,12 +246,46 @@ struct DeveloperView: View {
     private func simulateVariedHabitCompletions() {
         Task {
             let habitCounts = [
+                // GUTE GEWOHNHEITEN
+                ("Krafttraining", 5, "good"),
+                ("Gesund kochen", 4, "good"),
+                ("Joggen", 3, "good"),
+                ("Meditieren", 2, "good"),
+                ("Früh aufstehen", 2, "good"),
+                ("Kalt duschen", 1, "good"),
+                ("Kein Alkohol", 1, "good"),
+                ("Selfcare", 1, "good"),
+                ("Zähneputzen", 5, "good"),
+                ("Geld sparen", 3, "good"),
+                ("Schlafroutine", 4, "good"),
+                ("Stretching", 2, "good"),
+                ("Bildschirmzeit begrenzen", 3, "good"),
+                ("Obst & Gemüse essen", 4, "good"),
                 ("Wasser trinken", 5, "good"),
-                ("Spanisch lernen", 4, "good"),
-                ("Krafttraining", 3, "good"),
-                ("Lesen", 2, "good"),
-                ("Fastfood vermeiden", 2, "good"),
-                ("Meditation", 1, "good")
+                ("Deep Work", 2, "good"),
+                ("Aufräumen", 3, "good"),
+                ("Dankbarkeit", 2, "good"),
+                
+                // SCHLECHTE GEWOHNHEITEN
+                ("Fast Food", 3, "bad"),
+                ("Zu viel ferngesehen", 2, "bad"),
+                ("Unnötig Geld ausgegeben", 1, "bad"),
+                ("Die Nacht durchgemacht", 1, "bad"),
+                ("Energydrink getrunken", 2, "bad"),
+                ("Zigarette geraucht", 1, "bad"),
+                ("Unnötig online geshoppt", 2, "bad"),
+                ("Zu viel Bildschirmzeit", 4, "bad"),
+                ("Nachts gesnackt", 3, "bad"),
+                ("Alkohol getrunken", 1, "bad"),
+                ("Sinnlos gescrollt", 5, "bad"),
+                ("Serien Marathon geschaut", 2, "bad"),
+                ("Essen bestellt", 2, "bad"),
+                ("In-App Käufe getätigt", 1, "bad"),
+                ("Teuren Luxus gekauft", 1, "bad"),
+                ("Zu faul gewesen", 2, "bad"),
+                ("Döner gegessen", 1, "bad"),
+                ("Negative Nachrichten gelesen", 2, "bad"),
+                ("Zu viel Koffein konsumiert", 2, "bad")
             ]
             
             for (habitName, count, category) in habitCounts {
