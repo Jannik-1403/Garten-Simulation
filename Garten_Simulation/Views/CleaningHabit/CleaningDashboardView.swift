@@ -33,7 +33,7 @@ struct CleaningDashboardView: View {
                 .foregroundColor(.secondary)
             Text(String(localized: "cleaning.empty.subtitle", defaultValue: "Füge deine erste Aufräum-Aufgabe hinzu"))
                 .font(.subheadline)
-                .foregroundColor(.tertiary)
+                .foregroundColor(.gray)
             Spacer()
         }
     }
