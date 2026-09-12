@@ -87,8 +87,6 @@ struct CleaningAnalysisSheet: View {
                                 }
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 150)
-                                .background(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
                             } else {
                                 Chart {
                                     ForEach(chartData, id: \.0) { item in
@@ -106,11 +104,10 @@ struct CleaningAnalysisSheet: View {
                                     }
                                 }
                                 .frame(height: 200)
-                                .padding()
-                                .background(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
                             }
                         }
+                        .padding(20)
+                        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                         
                         // Edit Interval
                         VStack(alignment: .leading, spacing: 16) {
@@ -118,21 +115,18 @@ struct CleaningAnalysisSheet: View {
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             
-                            HStack {
-                                Stepper(value: $frequencyDays, in: 1...90) {
-                                    Text("\(frequencyDays) \(frequencyDays == 1 ? String(localized: "cleaning.add.day.singular", defaultValue: "Tag") : String(localized: "cleaning.add.days", defaultValue: "Tage"))")
-                                        .font(.system(size: 16, weight: .semibold, design: .rounded))
-                                }
-                                .onChange(of: frequencyDays) { _, newValue in
-                                    var updated = task
-                                    updated.frequencyDays = newValue
-                                    manager.updateTask(updated)
-                                }
+                            Stepper(value: $frequencyDays, in: 1...90) {
+                                Text("\(frequencyDays) \(frequencyDays == 1 ? String(localized: "cleaning.add.day.singular", defaultValue: "Tag") : String(localized: "cleaning.add.days", defaultValue: "Tage"))")
+                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
                             }
-                            .padding()
-                            .background(Color(UIColor.systemBackground))
-                            .cornerRadius(16)
+                            .onChange(of: frequencyDays) { _, newValue in
+                                var updated = task
+                                updated.frequencyDays = newValue
+                                manager.updateTask(updated)
+                            }
                         }
+                        .padding(20)
+                        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                         
                         // Delete Button (item3D-Style)
                         Item3DButton(
