@@ -401,7 +401,7 @@ class GardenStore: ObservableObject {
         let milestones = [5, 10, 30, 50, 100]
         if milestones.contains(pflanze.streak) {
             let streakDays = String(pflanze.streak)
-            let habitTitle = pflanze.title
+            let habitTitle = pflanze.habitName
             Task {
                 let params: [String: String] = [
                     "streak_days": streakDays,
@@ -477,9 +477,9 @@ class GardenStore: ObservableObject {
     }
     
     private func logHabitCompleted(pflanze: HabitModel) {
-        let habitTitle = pflanze.title
-        let isGood = pflanze.isGood ? "good" : "bad"
-        let isCustomStr = String(pflanze.isCustom)
+        let habitTitle = pflanze.habitName
+        let isGood = !pflanze.isNegative ? "good" : "bad"
+        let isCustomStr = String(pflanze.id.hasPrefix("custom_"))
         
         Task {
             let parameters: [String: String] = [
