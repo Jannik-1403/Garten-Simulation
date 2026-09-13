@@ -464,45 +464,54 @@ struct AvailableHabitRow: View {
     let onAdd: () -> Void
     
     var body: some View {
-        Item3DButton(
-            farbe: Color.white,
-            sekundaerFarbe: Color(white: 0.9),
-            groesse: 76,
-            isRectangular: true,
-            aktion: onAdd
-        ) {
-            HStack(spacing: 16) {
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .fill(plant.color.opacity(0.15))
-                    .frame(width: 56, height: 56)
-                    .overlay {
-                        Image(plant.plantImageName)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(10)
-                    }
-                
-                if settings.showHabitInsteadOfName {
-                    Text(String(localized: String.LocalizationValue(plant.displayedHabitName)))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.primary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.45)
-                } else {
-                    Text(String(localized: String.LocalizationValue(plant.name)))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.primary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.45)
-                }
-                
-                Spacer()
-                
-                Image(systemName: "plus.circle.fill")
-                    .font(.title2)
-                    .foregroundStyle(plant.color)
+        HStack(spacing: 16) {
+            Item3DButton(
+                farbe: Color.white,
+                sekundaerFarbe: Color(UIColor.systemGray5),
+                groesse: 56,
+                isRectangular: true,
+                aktion: onAdd
+            ) {
+                Image(plant.plantImageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 36, height: 36)
             }
-            .padding(.horizontal, 16)
+            
+            if settings.showHabitInsteadOfName {
+                Text(String(localized: String.LocalizationValue(plant.displayedHabitName)))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.primary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.45)
+            } else {
+                Text(String(localized: String.LocalizationValue(plant.name)))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.primary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.45)
+            }
+            
+            Spacer()
+            
+            Item3DButton(
+                farbe: Color.gruenPrimary,
+                sekundaerFarbe: Color.gruenPrimary.darker(),
+                groesse: 44,
+                isRectangular: false,
+                aktion: onAdd
+            ) {
+                Image(systemName: "plus")
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color.white)
+        .cornerRadius(20)
+        .onTapGesture {
+            onAdd()
         }
     }
 }

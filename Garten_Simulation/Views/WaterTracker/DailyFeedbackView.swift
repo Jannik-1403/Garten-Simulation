@@ -216,7 +216,7 @@ private struct CategoryIssueRow: View {
     }
 
     private var categoryName: String {
-        switch feedback.category {
+         switch feedback.category {
         case .water:     return String(localized: "tagesanalyseHeaderWasser",     defaultValue: "Wasseranalyse")
         case .sleep:     return String(localized: "tagesanalyseHeaderSchlaf",     defaultValue: "Schlafanalyse")
         case .strength:  return String(localized: "tagesanalyseHeaderKraft",  defaultValue: "Kraftanalyse")
