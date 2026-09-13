@@ -185,7 +185,7 @@ struct DeveloperView: View {
     private func triggerAllTelemetryTestSignals() {
         Task {
             print("[Test-Telemetry] Sende app_opened...")
-            TelemetryDeck.signal("app_opened")
+            TelemetryDeck.signal("app_opened", parameters: ["source": "widget"])
             
             print("[Test-Telemetry] Sende shop_item_purchased (Test_Pflanze_Kaktus)...")
             let paramsKaktus: [String: String] = ["item_name": "Test_Pflanze_Kaktus"]
@@ -238,6 +238,18 @@ struct DeveloperView: View {
             
             print("[Test-Telemetry] Sende daily_spin_completed...")
             TelemetryDeck.signal("daily_spin_completed")
+            
+            print("[Test-Telemetry] Sende onboarding_started & completed...")
+            TelemetryDeck.signal("onboarding_started")
+            TelemetryDeck.signal("onboarding_completed")
+            
+            print("[Test-Telemetry] Sende permission_screentime & permission_notifications...")
+            TelemetryDeck.signal("permission_screentime", parameters: ["granted": "true"])
+            TelemetryDeck.signal("permission_notifications", parameters: ["granted": "false"])
+            
+            print("[Test-Telemetry] Sende rating_prompt_shown & answered...")
+            TelemetryDeck.signal("rating_prompt_shown")
+            TelemetryDeck.signal("rating_prompt_answered", parameters: ["response": "yes"])
             
             print("[Test-Telemetry] Alle Signale erfolgreich gesendet!")
         }

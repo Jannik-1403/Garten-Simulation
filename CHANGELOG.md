@@ -1155,3 +1155,5 @@
 - 'Pseudo-Lokalisierungen' (wie z.B. 'Abbrechen (en)' oder 'Küche (es)') durch korrekte manuelle Übersetzungen in allen betroffenen 15 Sprachen ersetzt.
 
 - TelemetryDeck Signale hinzugefügt: Berechtigungen, App-Bewertung und dynamische App-Start Herkunft (Widget, Push, Icon) erfasst.
+
+- Bugfix: Fehlender TelemetryDeck Import in ContentView.swift behoben.
