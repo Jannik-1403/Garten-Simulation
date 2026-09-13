@@ -9,6 +9,7 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
     case running
     case nutrition
     case gratitude
+    case cleaning
 
     var id: String { rawValue }
 
@@ -20,6 +21,7 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
         case .running:   return "figure.run"
         case .nutrition: return "fork.knife"
         case .gratitude: return "book.fill"
+        case .cleaning:  return "sparkles"
         }
     }
 }
@@ -85,6 +87,9 @@ struct FeedbackScoringEngine {
         var hasGratitudePlant: Bool
         var gratitudeTodayDone: Bool
         var gratitudeYesterdayEntry: GratitudeJournalEntry?
+        
+        var hasCleaningTaskToday: Bool
+        var isCleaningTaskDone: Bool
 
         var waterToday: Double
         var waterGoal: Double
@@ -395,6 +400,20 @@ struct FeedbackScoringEngine {
             }
             
             results.append(CategoryFeedback(category: .gratitude, status: gratStatus, summaryText: gratSummary, detailText: gratDetail, progress: input.gratitudeTodayDone ? 1.0 : 0.0, goal: 1.0))
+        }
+
+        // MARK: Aufräumen
+        if input.hasCleaningTaskToday {
+            let cleaningStatus: CategoryStatus = input.isCleaningTaskDone ? .good : .critical
+            let cleaningSummary = input.isCleaningTaskDone
+                ? String(localized: "fitness.cleaning.summary.good", defaultValue: "Sauber ✓")
+                : String(localized: "fitness.cleaning.summary.critical", defaultValue: "Aufräumen!")
+                
+            let cleaningDetail = input.isCleaningTaskDone
+                ? String(localized: "fitness.cleaning.detail.good", defaultValue: "Toll, du hast heute schon alle fälligen Aufgaben erledigt!")
+                : String(localized: "fitness.cleaning.detail.critical", defaultValue: "Um immer sauber zu sein und dich frisch zu fühlen, musst du heute unbedingt aufräumen.")
+
+            results.append(CategoryFeedback(category: .cleaning, status: cleaningStatus, summaryText: cleaningSummary, detailText: cleaningDetail, progress: input.isCleaningTaskDone ? 1.0 : 0.0, goal: 1.0))
         }
 
         return results

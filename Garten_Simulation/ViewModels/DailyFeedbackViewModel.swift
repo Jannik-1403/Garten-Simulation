@@ -20,6 +20,7 @@ class DailyFeedbackViewModel: ObservableObject {
     init() {
         let hm = HealthManager.shared
         let wgm = WaterGoalManager.shared
+        let cm = CleaningManager.shared
 
         Publishers.MergeMany(
             hm.$todaysWater.map { _ in () }.eraseToAnyPublisher(),
@@ -30,7 +31,9 @@ class DailyFeedbackViewModel: ObservableObject {
             hm.$todaysEnergy.map { _ in () }.eraseToAnyPublisher(),
             hm.$todaysProtein.map { _ in () }.eraseToAnyPublisher(),
             hm.$todaysFiber.map { _ in () }.eraseToAnyPublisher(),
-            wgm.$currentGoal.map { _ in () }.eraseToAnyPublisher()
+            wgm.$currentGoal.map { _ in () }.eraseToAnyPublisher(),
+            cm.$logs.map { _ in () }.eraseToAnyPublisher(),
+            cm.$tasks.map { _ in () }.eraseToAnyPublisher()
         )
         .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
         .sink { [weak self] in self?.reevaluate() }
@@ -96,6 +99,28 @@ class DailyFeedbackViewModel: ObservableObject {
         })
         let energyGoal = nutritionPlant?.healthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
 
+        let cm = CleaningManager.shared
+        var hasCleaningTaskToday = false
+        var isCleaningTaskDone = true
+        let activeCleaningTasks = cm.tasks.filter { $0.isActive }
+        let todayStart = Calendar.current.startOfDay(for: Date())
+        
+        for task in activeCleaningTasks {
+            let lastCompleted = cm.lastCompletedDate(for: task.id)
+            let due = task.dueDate(lastCompleted: lastCompleted)
+            if due <= todayStart {
+                hasCleaningTaskToday = true
+                if let last = lastCompleted, Calendar.current.isDateInToday(last) {
+                    // Done today
+                } else {
+                    isCleaningTaskDone = false
+                }
+            }
+        }
+        if !hasCleaningTaskToday {
+            isCleaningTaskDone = false
+        }
+
         let input = FeedbackScoringEngine.EvaluationInput(
             hasWaterPlant: hasWaterPlant,
             hasSleepPlant: hasSleepPlant,
@@ -105,6 +130,8 @@ class DailyFeedbackViewModel: ObservableObject {
             hasGratitudePlant: hasGratitudePlant,
             gratitudeTodayDone: gratitudeTodayDone,
             gratitudeYesterdayEntry: gratitudeYesterdayEntry,
+            hasCleaningTaskToday: hasCleaningTaskToday,
+            isCleaningTaskDone: isCleaningTaskDone,
             waterToday: hm.todaysWater,
             waterGoal: wgm.currentGoal,
             waterHistory7Days: hm.waterHistory7Days,
