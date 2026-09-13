@@ -137,8 +137,8 @@ struct CreateRoutineCustomToDoSheet: View {
                 selectedPlantID = availablePlants.first?.id
             }
         }
+        }
     }
-
     private func saveToDo() {
         guard let plantID = selectedPlantID, let plant = GameDatabase.shared.plant(for: plantID) else { return }
         
