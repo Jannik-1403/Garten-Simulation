@@ -72,7 +72,7 @@ struct WeeklyGoalOnboardingView: View {
             title: title,
             type: .week
         )
-        GoalStore.shared.addGoal(newGoal)
+        GoalStore.shared.setOnboardingGoal(newGoal)
     }
     
     private func advanceStep() {

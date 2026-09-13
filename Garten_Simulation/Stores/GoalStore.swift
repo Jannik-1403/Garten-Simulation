@@ -22,6 +22,12 @@ class GoalStore: ObservableObject {
         saveData()
     }
     
+    func setOnboardingGoal(_ goal: GoalModel) {
+        activeGoals.removeAll { $0.type == goal.type }
+        activeGoals.append(goal)
+        saveData()
+    }
+    
     func updateGoal(_ goal: GoalModel) {
         if let idx = activeGoals.firstIndex(where: { $0.id == goal.id }) {
             activeGoals[idx] = goal

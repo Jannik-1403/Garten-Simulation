@@ -105,14 +105,21 @@ class DailyFeedbackViewModel: ObservableObject {
         let activeCleaningTasks = cm.tasks.filter { $0.isActive }
         let todayStart = Calendar.current.startOfDay(for: Date())
         
+        var nextCleaningDate: Date? = nil
+        
         for task in activeCleaningTasks {
             let lastCompleted = cm.lastCompletedDate(for: task.id)
             let due = task.dueDate(lastCompleted: lastCompleted)
-            if due <= todayStart {
+            
+            if nextCleaningDate == nil || due < nextCleaningDate! {
+                nextCleaningDate = due
+            }
+
+            let isDoneToday = lastCompleted != nil && Calendar.current.isDateInToday(lastCompleted!)
+            
+            if due <= todayStart || isDoneToday {
                 hasCleaningTaskToday = true
-                if let last = lastCompleted, Calendar.current.isDateInToday(last) {
-                    // Done today
-                } else {
+                if !isDoneToday {
                     isCleaningTaskDone = false
                 }
             }
@@ -132,6 +139,7 @@ class DailyFeedbackViewModel: ObservableObject {
             gratitudeYesterdayEntry: gratitudeYesterdayEntry,
             hasCleaningTaskToday: hasCleaningTaskToday,
             isCleaningTaskDone: isCleaningTaskDone,
+            nextCleaningDate: nextCleaningDate,
             waterToday: hm.todaysWater,
             waterGoal: wgm.currentGoal,
             waterHistory7Days: hm.waterHistory7Days,

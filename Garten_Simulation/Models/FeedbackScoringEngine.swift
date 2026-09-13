@@ -90,6 +90,7 @@ struct FeedbackScoringEngine {
         
         var hasCleaningTaskToday: Bool
         var isCleaningTaskDone: Bool
+        var nextCleaningDate: Date?
 
         var waterToday: Double
         var waterGoal: Double
@@ -409,9 +410,20 @@ struct FeedbackScoringEngine {
                 ? String(localized: "fitness.cleaning.summary.good", defaultValue: "Sauber ✓")
                 : String(localized: "fitness.cleaning.summary.critical", defaultValue: "Aufräumen!")
                 
-            let cleaningDetail = input.isCleaningTaskDone
+            var cleaningDetail = input.isCleaningTaskDone
                 ? String(localized: "fitness.cleaning.detail.good", defaultValue: "Toll, du hast heute schon alle fälligen Aufgaben erledigt!")
                 : String(localized: "fitness.cleaning.detail.critical", defaultValue: "Um immer sauber zu sein und dich frisch zu fühlen, musst du heute unbedingt aufräumen.")
+
+            if input.isCleaningTaskDone, let nextDate = input.nextCleaningDate {
+                if Calendar.current.isDateInTomorrow(nextDate) {
+                    cleaningDetail += " " + String(localized: "fitness.cleaning.next.tomorrow", defaultValue: "Morgen musst du wieder aufräumen.")
+                } else {
+                    let formatter = DateFormatter()
+                    formatter.dateStyle = .long
+                    let dateString = formatter.string(from: nextDate)
+                    cleaningDetail += " " + String(format: String(localized: "fitness.cleaning.next.date", defaultValue: "Das nächste Mal aufräumen musst du am %@."), dateString)
+                }
+            }
 
             results.append(CategoryFeedback(category: .cleaning, status: cleaningStatus, summaryText: cleaningSummary, detailText: cleaningDetail, progress: input.isCleaningTaskDone ? 1.0 : 0.0, goal: 1.0))
         }

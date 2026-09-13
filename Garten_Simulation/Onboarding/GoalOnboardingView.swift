@@ -73,7 +73,7 @@ struct GoalOnboardingView: View {
             title: title,
             type: .year
         )
-        GoalStore.shared.addGoal(newGoal)
+        GoalStore.shared.setOnboardingGoal(newGoal)
     }
     
     private func advanceStep() {
