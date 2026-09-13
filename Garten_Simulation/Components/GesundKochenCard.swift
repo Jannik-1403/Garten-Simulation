@@ -24,6 +24,9 @@ struct GesundKochenCard: View {
     var fatScore: Double { healthManager.todaysFat / max(goalFat, 1) }
     
     var totalScore: Int {
+        if healthManager.todaysEnergy <= 0 && healthManager.todaysProtein <= 0 && healthManager.todaysCarbohydrates <= 0 && healthManager.todaysFat <= 0 {
+            return 0
+        }
         let e = min(energyScore, 1.0)
         let p = min(proteinScore, 1.0)
         let c = min(carbsScore, 1.0)

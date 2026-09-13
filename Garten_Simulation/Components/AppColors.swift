@@ -100,11 +100,11 @@ extension Color {
 struct AppColors {
     static func color(for name: String) -> Color {
         switch name.lowercased() {
-        case "green", "gruen":   return .gruenPrimary
-        case "blue", "blau":     return .blauPrimary
-        case "orange":           return .orangePrimary
-        case "red", "rot":       return .rotPrimary
-        case "purple", "lila":   return .lilaPrimary
+        case "green", "gruen", "gruenprimary":   return .gruenPrimary
+        case "blue", "blau", "blauprimary":     return .blauPrimary
+        case "orange", "orangeprimary":         return .orangePrimary
+        case "red", "rot", "rotprimary":       return .rotPrimary
+        case "purple", "lila", "lilaprimary":   return .lilaPrimary
         case "yellow", "gelb":   return .yellow
         case "mint":             return .mint
         case "teal":             return .teal

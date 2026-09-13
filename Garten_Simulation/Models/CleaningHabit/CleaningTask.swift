@@ -15,11 +15,11 @@ struct CleaningTask: Identifiable, Codable, Hashable {
     func dueDate(lastCompleted: Date?) -> Date {
         let calendar = Calendar.current
         guard let last = lastCompleted else {
-            let start = calendar.startOfDay(for: Date())
+            let start = calendar.startOfDay(for: createdAt)
             if let weekday = scheduledWeekday {
                 return Self.next(weekday: weekday, after: start, includeToday: true)
             }
-            return start // Sofort fällig
+            return start // An createdAt fällig
         }
         
         let baseDate = calendar.startOfDay(for: calendar.date(byAdding: .day, value: frequencyDays, to: last) ?? Date())

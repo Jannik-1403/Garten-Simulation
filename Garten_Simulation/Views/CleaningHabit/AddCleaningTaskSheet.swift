@@ -9,6 +9,7 @@ struct AddCleaningTaskSheet: View {
     @State private var selectedIcon = "bed.double.fill"
     @State private var selectedWeekday: Int = 0
     @State private var selectedColorKey = "gruenPrimary"
+    @State private var startDate: Date = Date()
     
     let icons = [
         "bed.double.fill", "wind", "trash.fill", "tshirt.fill",
@@ -129,18 +130,7 @@ struct AddCleaningTaskSheet: View {
                     .pickerStyle(.wheel)
                     .frame(height: 130)
                     
-                    // Live-Datum Preview (ohne Icon)
-                    HStack {
-                        Text(String(localized: "cleaning.add.firstDue", defaultValue: "Erste Fälligkeit:"))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        Spacer()
-                        // Neue Aufgaben sind sofort fällig → "Heute"
-                        Text(String(localized: "cleaning.status.today", defaultValue: "Heute fällig"))
-                            .font(.subheadline)
-                            .bold()
-                            .foregroundColor(.orange)
-                    }
+                    DatePicker(String(localized: "cleaning.add.firstDue", defaultValue: "Erste Fälligkeit"), selection: $startDate, displayedComponents: .date)
                 }
             }
             .navigationTitle(String(localized: "cleaning.add.title.short", defaultValue: "Neu"))
@@ -159,7 +149,8 @@ struct AddCleaningTaskSheet: View {
                             iconName: selectedIcon,
                             frequencyDays: frequencyDays,
                             scheduledWeekday: weekdayToSave,
-                            colorHex: selectedColorKey
+                            colorHex: selectedColorKey,
+                            startDate: startDate
                         )
                         dismiss()
                     }

@@ -69,7 +69,7 @@ struct PflanzenCard: View {
             }
         }
         
-        var effectiveTarget = pflanze.healthTarget ?? 1.0
+        var effectiveTarget = pflanze.healthTarget ?? pflanze.defaultHealthTarget
         if metric == .water {
             effectiveTarget = WaterGoalManager.shared.currentGoal
         }

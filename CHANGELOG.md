@@ -1157,3 +1157,15 @@
 - TelemetryDeck Signale hinzugefügt: Berechtigungen, App-Bewertung und dynamische App-Start Herkunft (Widget, Push, Icon) erfasst.
 
 - Bugfix: Fehlender TelemetryDeck Import in ContentView.swift behoben.
+
+- Test-Button in DeveloperView um neue TelemetryDeck-Signale erweitert (Permissions, Rating, App Source).
+- Vier fehlende rating.prompt Schlüssel in alle Sprachen übersetzt, um echte 100% Übersetzungsabdeckung in Xcode herzustellen.
+- Fix Kochen-Score: Score wird nun strikt auf 0 gesetzt, wenn keine Kalorien-/Makro-Daten vorliegen.
+- Fix Farben (Aufgaben): Fehlende Farb-Keys (z.B. blauprimary) in AppColors nachgetragen.
+- Feature (Aufgaben): DatePicker für erste Fälligkeit in AddCleaningTaskSheet hinzugefügt.
+- Fix Profil/Ziele: Division-by-Zero in YearGoalBannerView abgefangen, um 'NaN' zu verhindern.
+- Fix HealthKit: Fallback auf 'inBed' Daten in HealthManager, falls keine 'asleep'-Daten für die letzte Nacht verfügbar sind (unterstützt iPhone-only Nutzer).
+- Fixed false 'completed' state for HealthKit sync on newly added goals
+- Hidden sleep routine insight message when there is no data for last night
+- Removed automatic 8:00 AM timer setting for Onboarding selected habits
+- Synced Onboarding plants selection with ShopStore to mark them as 'purchased'

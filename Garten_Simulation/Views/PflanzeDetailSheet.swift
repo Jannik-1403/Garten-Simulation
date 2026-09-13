@@ -654,7 +654,7 @@ struct PflanzeDetailSheet: View {
         .sheet(isPresented: $showTargetEdit) {
             HealthTargetEditSheet(
                 target: Binding(
-                    get: { pflanze.healthTarget },
+                    get: { pflanze.healthTarget ?? pflanze.defaultHealthTarget },
                     set: { newVal in
                         pflanze.healthTarget = newVal
                         gardenStore.savePlants()
@@ -691,7 +691,7 @@ struct PflanzeDetailSheet: View {
                                     if pflanze.automaticHealthMetric == nil && pflanze.linkedHealthMetric == nil {
                                         IntradayProgressChartView(
                                             history: pflanze.intradayProgressHistory,
-                                            target: pflanze.healthTarget,
+                                            target: pflanze.healthTarget ?? pflanze.defaultHealthTarget,
                                             onEditTarget: { showTargetEdit = true }
                                         )
                                         .padding(.horizontal, 16)
@@ -715,7 +715,7 @@ struct PflanzeDetailSheet: View {
                                                             HealthChartView(
                                                                 data: hourlyHealthData,
                                                                 metric: metric,
-                                                                target: pflanze.healthTarget,
+                                                                target: pflanze.healthTarget ?? pflanze.defaultHealthTarget,
                                                                 hourlyAverageData: hourlyAvgData,
                                                                 onEditTarget: { showTargetEdit = true },
                                                                 onUnlink: { zeigeAppleHealthEntkoppelnAlert = true }

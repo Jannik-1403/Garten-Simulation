@@ -101,17 +101,24 @@ struct OnboardingView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             let ziel = data.gewaehltesZiele.first ?? .gesund
         
-        let defaultTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date()) ?? Date()
+        // Keine automatische Zeit mehr setzen (Wunsch des Nutzers)
+        let defaultTime: Date? = nil
+        
+        var purchased = SharedUserDefaults.suite.stringArray(forKey: "shop_purchased_ids") ?? []
         
         if data.gewaehltePflanzenIDs.isEmpty {
             if let defaultPlant = ziel.pflanzenIDs.first {
                 garden.pflanzeHinzufuegenAusOnboarding(plantID: defaultPlant, reminderTime: defaultTime)
+                if !purchased.contains(defaultPlant) { purchased.append(defaultPlant) }
             }
         } else {
             for plantID in data.gewaehltePflanzenIDs {
                 garden.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: defaultTime)
+                if !purchased.contains(plantID) { purchased.append(plantID) }
             }
         }
+        
+        SharedUserDefaults.suite.set(purchased, forKey: "shop_purchased_ids")
         
         garden.onboardingSetup()
         

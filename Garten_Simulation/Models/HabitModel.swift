@@ -363,6 +363,19 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         return linkedHealthMetric ?? automaticHealthMetric
     }
     
+    var defaultHealthTarget: Double {
+        guard let metric = effectiveHealthMetric else { return 1.0 }
+        switch metric {
+        case .steps: return 10000.0
+        case .water: return 2.0
+        case .running, .strengthTraining, .mindfulness: return 30.0
+        case .sleep: return 8.0
+        case .energy: return 2000.0
+        case .fiber, .calcium: return 100.0
+        }
+    }
+
+    
     // Eigener Tracker (Manuell)
     @Published var customTrackerName: String? = nil
     @Published var customTrackerTarget: Double? = nil
@@ -663,7 +676,21 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.pfadAktiviertAm = nil
         self.pfadCheckedDates = []
         self.linkedHealthMetric = nil
-        self.healthTarget = nil        
+        
+        // Initiales Ziel setzen, falls wir eine automatische Metrik haben
+        if let metric = automaticHealthMetric {
+            switch metric {
+            case .steps: self.healthTarget = 10000.0
+            case .water: self.healthTarget = 2.0
+            case .running, .strengthTraining, .mindfulness: self.healthTarget = 30.0
+            case .sleep: self.healthTarget = 8.0
+            case .energy: self.healthTarget = 2000.0
+            case .fiber, .calcium: self.healthTarget = 100.0
+            }
+        } else {
+            self.healthTarget = nil
+        }
+        
         // Wenn reminderTime gesetzt → automatisch Schedule erstellen
         if let rt = reminderTime {
             self.reminderSchedule = ReminderSchedule.defaultSchedule(time: rt, customMessage: customReminderMessage)

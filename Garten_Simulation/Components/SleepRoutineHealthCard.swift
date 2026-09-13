@@ -29,7 +29,14 @@ struct SleepRoutineHealthCard: View {
                             let avg = healthManager.sleepAvgBedtimeString ?? "23:00"
                             let wake = healthManager.sleepTargetWakeUpString ?? "07:00"
                             
-                            if regularity >= 1.0 {
+                            if healthManager.latestSleepStart == nil {
+                                Text(String(localized: "sleep.routine.insight.missing_last_night", defaultValue: "Dein Langzeitschnitt ist berechnet, aber für die letzte Nacht fehlen noch Daten."))
+                                    .font(.system(size: 13, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                    .multilineTextAlignment(.center)
+                                    .minimumScaleFactor(0.7)
+                                    .lineLimit(5)
+                            } else if regularity >= 1.0 {
                                 Text(String(format: String(localized: "sleep.routine.insight.excellent", defaultValue: "Top, bitte weiter so! Deine Schlafroutine ist ausgezeichnet. Im Schnitt gehst du um %@ ins Bett. Um 8 Stunden Schlaf zu bekommen, solltest du um %@ aufstehen."), avg, wake))
                                     .font(.system(size: 13, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)

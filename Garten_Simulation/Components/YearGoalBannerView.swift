@@ -18,7 +18,7 @@ struct YearGoalBannerView: View {
     private var progressInCurrentLevel: Double {
         if currentLevel == 60 && pointsInCurrentLevel == 0 && pointsInfo.earned > 0 { return 1.0 }
         let ppl = pointsPerLevel
-        if ppl == 0 { return 0 }
+        if ppl <= 0 { return 0 }
         return min(Double(pointsInCurrentLevel) / Double(ppl), 1.0)
     }
     
@@ -54,7 +54,7 @@ struct YearGoalBannerView: View {
     private var pointsPerLevel: Int {
         let (_, target) = pointsInfo
         guard target > 0 else { return 1 }
-        return target / 60
+        return max(1, target / 60)
     }
     
     var body: some View {

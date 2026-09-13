@@ -1925,9 +1925,9 @@ extension GardenStore {
     func checkHealthTargets(healthManager: HealthManager) {
         let calendar = Calendar.current
         for pflanze in pflanzen {
-            // Nur Pflanzen checken, die ein Health-Metric und Target haben
-            guard let metric = pflanze.linkedHealthMetric,
-                  let target = pflanze.healthTarget else { continue }
+            // Nur Pflanzen checken, die ein Health-Metric haben
+            guard let metric = pflanze.linkedHealthMetric else { continue }
+            let target = pflanze.healthTarget ?? pflanze.defaultHealthTarget
             
             // Wenn heute schon gegossen, überspringen
             if let letzteBewaesserung = pflanze.letzteBewaesserung, calendar.isDateInToday(letzteBewaesserung) {
