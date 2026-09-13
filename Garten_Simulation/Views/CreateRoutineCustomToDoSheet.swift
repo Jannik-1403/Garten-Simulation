@@ -35,13 +35,18 @@ struct CreateRoutineCustomToDoSheet: View {
                                 .background(
                                     ZStack(alignment: .top) {
                                         RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                            .fill(Color(white: 0.85))
+                                            .fill(Color(UIColor.systemGray5))
                                             .offset(y: 6)
                                         RoundedRectangle(cornerRadius: 16, style: .continuous)
                                             .fill(Color.white)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                                    .stroke(Color.black.opacity(0.08), lineWidth: 1.5)
+                                            )
                                     }
                                     .padding(.bottom, 6)
                                 )
+                        }
                         .padding(.horizontal, 24)
                         .padding(.top, 24)
                         
@@ -57,13 +62,18 @@ struct CreateRoutineCustomToDoSheet: View {
                                 .background(
                                     ZStack(alignment: .top) {
                                         RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                            .fill(Color(white: 0.85))
+                                            .fill(Color(UIColor.systemGray5))
                                             .offset(y: 6)
                                         RoundedRectangle(cornerRadius: 16, style: .continuous)
                                             .fill(Color.white)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                                    .stroke(Color.black.opacity(0.08), lineWidth: 1.5)
+                                            )
                                     }
                                     .padding(.bottom, 6)
                                 )
+                        }
                         .padding(.horizontal, 24)
                         .padding(.top, 8)
                         

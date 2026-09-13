@@ -132,7 +132,6 @@ struct EditRoutineSheet: View {
                     // Habit Reordering Header
                     Section {
                         VStack(spacing: 16) {
-                            HStack(spacing: 16) {
                                 Item3DButton(
                                     farbe: Color(hex: "#34C759"),
                                     sekundaerFarbe: Color(hex: "#34C759").darker(),
@@ -142,33 +141,13 @@ struct EditRoutineSheet: View {
                                 ) {
                                     HStack {
                                         Image(systemName: "plus.circle.fill")
-                                        Text(String(localized: "routine.todo.add.short", defaultValue: "To-do"))
+                                        Text(String(localized: "routine.todo.add.short", defaultValue: "To-do hinzufügen"))
                                             .lineLimit(1)
                                     }
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                     .foregroundStyle(.white)
                                     .frame(maxWidth: .infinity)
                                 }
-                                
-                                if !availableHabits.isEmpty {
-                                    Item3DButton(
-                                        farbe: Color.white,
-                                        sekundaerFarbe: Color(white: 0.90),
-                                        groesse: 44,
-                                        isRectangular: true,
-                                        aktion: { showHabitPicker = true }
-                                    ) {
-                                        HStack {
-                                            Image(systemName: "plus")
-                                            Text(String(localized: "routine.habit.add.short", defaultValue: "Gewohnheit"))
-                                                .lineLimit(1)
-                                        }
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        .foregroundStyle(Color.primary)
-                                        .frame(maxWidth: .infinity)
-                                    }
-                                }
-                            }
                         }
                         .padding(.horizontal, 24)
                         .padding(.bottom, 12)
@@ -256,47 +235,7 @@ struct EditRoutineSheet: View {
                 )
                 .environmentObject(settings)
             }
-            .fullScreenCover(isPresented: $showHabitPicker) {
-                NavigationStack {
-                    ZStack {
-                        Color.appHintergrund.ignoresSafeArea()
-                        ScrollView {
-                            if availableHabits.filter({ !isHabitAssigned($0) }).isEmpty {
-                                VStack(spacing: 20) {
-                                    Image(systemName: "leaf.circle")
-                                        .font(.system(size: 64))
-                                        .foregroundStyle(Color.secondary.opacity(0.5))
-                                    Text(String(localized: "routine.edit.habits.empty_available", defaultValue: "Keine Gewohnheiten zur Verfügung"))
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .foregroundStyle(Color.secondary)
-                                        .multilineTextAlignment(.center)
-                                }
-                                .padding(40)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            } else {
-                                VStack(spacing: 12) {
-                                    ForEach(availableHabits.filter({ !isHabitAssigned($0) })) { plant in
-                                        AvailableHabitRow(plant: plant) {
-                                            assignedHabits.append(plant)
-                                            showHabitPicker = false
-                                        }
-                                    }
-                                }
-                                .padding(24)
-                            }
-                        }
-                    }
-                    .navigationTitle(String(localized: "routine.edit.habit.add_single"))
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button(String(localized: "common.close")) {
-                                showHabitPicker = false
-                            }
-                        }
-                    }
-                }
-            }
+
             .fullScreenCover(isPresented: $showCustomTodoSheet) {
                 CreateRoutineCustomToDoSheetWrapper(assignedHabits: $assignedHabits)
             }
