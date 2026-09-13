@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 struct OnboardingFertigView: View {
     @Environment(\.horizontalSizeClass) var hSize
@@ -89,6 +90,10 @@ struct OnboardingFertigView: View {
     
     private func finish() {
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        
+        Task {
+            TelemetryDeck.signal("onboarding_completed")
+        }
         
         onboardingAbschliessen()
         

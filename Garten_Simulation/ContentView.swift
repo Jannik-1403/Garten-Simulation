@@ -16,6 +16,7 @@ struct ContentView: View {
     
     @State private var showWeeklyReportPopup = false
     @State private var showWeeklyReviewTeaser = false
+    @State private var showCustomReviewPrompt = false
     @State private var showRecoveredTimer = false
     @State private var recoveredPlantId: String? = nil
     @State private var recoveredGenericHabit: HabitModel? = nil
@@ -119,12 +120,33 @@ struct ContentView: View {
         .onChange(of: gardenStore.triggerReview) { _, trigger in
             if trigger {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    showCustomReviewPrompt = true
+                    gardenStore.triggerReview = false
+                    
+                    Task {
+                        TelemetryDeck.signal("rating_prompt_shown")
+                    }
+                }
+            }
+        }
+        .alert(String(localized: "rating.prompt.title", defaultValue: "Gefällt dir Grovy?"), isPresented: $showCustomReviewPrompt) {
+            Button(String(localized: "rating.prompt.yes", defaultValue: "Ja!")) {
+                Task {
+                    TelemetryDeck.signal("rating_prompt_answered", parameters: ["response": "yes"])
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
                         SKStoreReviewController.requestReview(in: scene)
                     }
-                    gardenStore.triggerReview = false
                 }
             }
+            Button(String(localized: "rating.prompt.no", defaultValue: "Nicht wirklich"), role: .cancel) {
+                Task {
+                    TelemetryDeck.signal("rating_prompt_answered", parameters: ["response": "no"])
+                }
+            }
+        } message: {
+            Text(String(localized: "rating.prompt.message", defaultValue: "Würdest du uns eine kurze Bewertung hinterlassen? Das hilft uns enorm!"))
         }
         .sheet(isPresented: $showWeeklyReportPopup) {
             NavigationStack {

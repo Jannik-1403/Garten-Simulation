@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 struct OnboardingWillkommenView: View {
     @EnvironmentObject var data: OnboardingData
@@ -51,6 +52,9 @@ struct OnboardingWillkommenView: View {
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
         .onAppear {
+            Task {
+                TelemetryDeck.signal("onboarding_started")
+            }
             withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1)) {
                 showContent = true
             }

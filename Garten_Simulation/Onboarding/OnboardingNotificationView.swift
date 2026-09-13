@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 struct OnboardingNotificationView: View {
     @Environment(\.horizontalSizeClass) var hSize
@@ -121,6 +122,11 @@ struct OnboardingNotificationView: View {
     
     private func handleDeny() {
         FeedbackManager.shared.playTap()
+        
+        Task {
+            TelemetryDeck.signal("permission_notifications", parameters: ["granted": "false"])
+        }
+        
         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
             showContinueButton = true
         }
@@ -131,7 +137,9 @@ struct OnboardingNotificationView: View {
         
         Task {
             // Request native permission
-            _ = await NotificationManager.shared.requestPermission()
+            let granted = await NotificationManager.shared.requestPermission()
+            
+            TelemetryDeck.signal("permission_notifications", parameters: ["granted": granted ? "true" : "false"])
             
             await MainActor.run {
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {

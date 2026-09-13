@@ -139,6 +139,9 @@ struct AppRootView: View {
     @ObservedObject var container: AppDependencyContainer
     @Binding var showSplash: Bool
     
+    @State private var appLaunchSource = "icon"
+    @State private var hasTrackedLaunchThisSession = false
+    
     var body: some View {
         ZStack {
             ContentView()
@@ -156,7 +159,12 @@ struct AppRootView: View {
                 .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
                 .preferredColorScheme(.light)
                 .onAppear {
-                    TelemetryDeck.signal("app_opened")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        if !hasTrackedLaunchThisSession {
+                            TelemetryDeck.signal("app_opened", parameters: ["source": appLaunchSource])
+                            hasTrackedLaunchThisSession = true
+                        }
+                    }
                     QuickActionManager.setupDynamicShortcuts()
                     
                     // Link ShopStore coin closures to GardenStore (single source of truth)
@@ -200,6 +208,9 @@ struct AppRootView: View {
                 .task {
                     NotificationManager.shared.scheduleAll(for: container.gardenStore.pflanzen)
                 }
+                .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("AppOpenedViaNotification"))) { _ in
+                    appLaunchSource = "notification"
+                }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification)) { _ in
                     let semaphore = DispatchSemaphore(value: 0)
                     let activities = Activity<FocusTimerActivityAttributes>.activities
@@ -220,6 +231,8 @@ struct AppRootView: View {
                 }
                 .onOpenURL { url in
                     if url.scheme == "grovy" {
+                        appLaunchSource = "widget"
+                        
                         // Handle internal deep links from Widgets
                         switch url.host {
                         case "garden", "plant":

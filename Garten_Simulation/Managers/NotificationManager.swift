@@ -16,6 +16,11 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         completionHandler([.banner, .sound, .badge])
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        NotificationCenter.default.post(name: NSNotification.Name("AppOpenedViaNotification"), object: nil)
+        completionHandler()
+    }
+    
     // MARK: - Permission
 
     @MainActor

@@ -1150,3 +1150,8 @@
 - Fix: Entwickler Cheat-Button ruft das App Store Review Pop-up nun direkt und synchron auf.
 - Aufräum-Gewohnheit (Cleaning Habit) mit intelligenten Sortierungen und Statistiken hinzugefügt
 - Neue Aufräum-Gewohnheit (Cleaning Habit) hinzugefügt, inklusive Tracking, Statistiken und Lokalisierung in alle 16 Sprachen.
+- Fehlerhafte 'Error 500'-Texte in Localizable.xcstrings entfernt und manuelle Übersetzungen in allen 16 Sprachen für fehlende Einträge hinzugefügt (100% Abdeckung erreicht).
+- Tiefgehende Überprüfung und Korrektur von leeren Werten und fälschlicherweise identischen Übersetzungen (z. B. deutsche Texte in englischer Sprache) durchgeführt.
+- 'Pseudo-Lokalisierungen' (wie z.B. 'Abbrechen (en)' oder 'Küche (es)') durch korrekte manuelle Übersetzungen in allen betroffenen 15 Sprachen ersetzt.
+
+- TelemetryDeck Signale hinzugefügt: Berechtigungen, App-Bewertung und dynamische App-Start Herkunft (Widget, Push, Icon) erfasst.

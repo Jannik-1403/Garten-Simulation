@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryDeck
 
 struct OnboardingScreenTimeView: View {
     @Environment(\.horizontalSizeClass) var hSize
@@ -134,6 +135,11 @@ struct OnboardingScreenTimeView: View {
     
     private func handleDeny() {
         FeedbackManager.shared.playTap()
+        
+        Task {
+            TelemetryDeck.signal("permission_screentime", parameters: ["granted": "false"])
+        }
+        
         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
             showContinueButton = true
         }
@@ -147,6 +153,8 @@ struct OnboardingScreenTimeView: View {
                 // Request native screen time permission
                 try await ScreenTimeManager.shared.requestAuthorization()
                 
+                TelemetryDeck.signal("permission_screentime", parameters: ["granted": "true"])
+                
                 // If it succeeded without throwing, we show the continue button
                 await MainActor.run {
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
@@ -154,6 +162,8 @@ struct OnboardingScreenTimeView: View {
                     }
                 }
             } catch {
+                TelemetryDeck.signal("permission_screentime", parameters: ["granted": "false"])
+                
                 // If it failed, show the exact error message
                 await MainActor.run {
                     self.errorMessage = String(localized: "error.screentime.setup_failed", defaultValue: "Fehler bei der Einrichtung. Möglicherweise ist aktuell bereits ein Zeitplan aktiv.")
