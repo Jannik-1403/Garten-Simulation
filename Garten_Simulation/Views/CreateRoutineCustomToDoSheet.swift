@@ -89,18 +89,11 @@ struct CreateRoutineCustomToDoSheet: View {
                                             }
                                         }
                                     ) {
-                                        ZStack {
-                                            if isSelected {
-                                                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                    .strokeBorder(Color.white.opacity(0.3), lineWidth: 3)
-                                            }
-                                            
-                                            Image(plant.assetName ?? plant.symbolName)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 40, height: 40)
-                                                .scaleEffect(plant.id == "plant.seeds" ? 0.6 : 1.0)
-                                        }
+                                        Image(plant.assetName ?? plant.symbolName)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 40, height: 40)
+                                            .scaleEffect(plant.id == "plant.seeds" ? 0.6 : 1.0)
                                     }
                                 }
                             }
