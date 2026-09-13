@@ -77,11 +77,10 @@ struct CreateRoutineCustomToDoSheet: View {
                             LazyVGrid(columns: [GridItem(.adaptive(minimum: 60))], spacing: 16) {
                                 ForEach(availablePlants, id: \.id) { plant in
                                     let isSelected = selectedPlantID == plant.id
-                                    let baseColor = Color(hex: plant.symbolColor)
                                     
                                     Item3DButton(
-                                        farbe: isSelected ? baseColor.opacity(0.8) : baseColor.opacity(0.15),
-                                        sekundaerFarbe: isSelected ? baseColor.darker() : baseColor.opacity(0.15).darker(),
+                                        farbe: isSelected ? Color.gruenPrimary : Color.white,
+                                        sekundaerFarbe: isSelected ? Color.gruenPrimary.darker() : Color(UIColor.systemGray5),
                                         groesse: 60,
                                         isRectangular: true,
                                         aktion: {
@@ -93,7 +92,7 @@ struct CreateRoutineCustomToDoSheet: View {
                                         ZStack {
                                             if isSelected {
                                                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                    .strokeBorder(Color.primary.opacity(0.5), lineWidth: 3)
+                                                    .strokeBorder(Color.white.opacity(0.3), lineWidth: 3)
                                             }
                                             
                                             Image(plant.assetName ?? plant.symbolName)
