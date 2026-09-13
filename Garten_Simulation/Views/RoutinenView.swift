@@ -562,13 +562,11 @@ struct CreateRoutineSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
     
     @Binding var routines: [RoutineUIData]
-    let availableHabits: [HabitModel]
     
     @State private var routineName: String = ""
-    @State private var selectedHabits: Set<String> = []
     @State private var selectedColor: String = "#AF52DE"
-    @State private var selectedIcon: String = "star.fill"
     
+    @State private var assignedHabits: [HabitModel] = []
     @State private var hasReminder: Bool = false
     @State private var schedule: ReminderSchedule = ReminderSchedule.defaultSchedule(time: Date())
     @State private var overrideIndividualReminders: Bool = true
@@ -576,199 +574,294 @@ struct CreateRoutineSheet: View {
     @State private var showTimerSheet = false
     @State private var showCustomTodoSheet = false
     
-    let colors: [String] = ["#AF52DE", "#007AFF", "#32ADE6", "#00C7BE", "#34C759", "#FFCC00", "#FF9500", "#FF2D55", "#FF3B30", "#5856D6"]
+    @State private var habitToEdit: HabitModel?
+    @State private var isListEditing = false
     
-    var displayedHabits: [HabitModel] {
-        let newlyCreated = gardenStore.pflanzen.filter { $0.isRoutineOnly && selectedHabits.contains($0.id) }
-        let all = availableHabits + newlyCreated
-        var seen = Set<String>()
-        return all.filter { if seen.contains($0.id) { return false } else { seen.insert($0.id); return true } }
-    }
+    let colors: [String] = ["#AF52DE", "#007AFF", "#32ADE6", "#00C7BE", "#34C759", "#FFCC00", "#FF9500", "#FF2D55", "#FF3B30", "#5856D6"]
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.appHintergrund.ignoresSafeArea()
                 
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 32) {
-                        
-                        // Name Input
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text(String(localized: String.LocalizationValue("routine.pending")))
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
+                List {
+                    // Header Section
+                    Section {
+                        VStack(alignment: .leading, spacing: 32) {
+                            // Name Input
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(String(localized: "routine.edit.name"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                
+                                TextField(String(localized: "routine.edit.name.placeholder"), text: $routineName)
+                                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                    .padding(16)
+                                    .background(Color(white: 0.95))
+                                    .cornerRadius(16)
+                            }
                             
-                            TextField(String(localized: String.LocalizationValue("routine.edit.name.placeholder")), text: $routineName)
-                                .font(.system(size: 18, weight: .semibold, design: .rounded))
-                                .padding(16)
-                                .background(Color(white: 0.95))
-                                .cornerRadius(16)
-                        }
-                        .padding(.horizontal, 24)
-                        
-                        // Color Picker
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text(String(localized: String.LocalizationValue("routine.edit.color")))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
-                                .padding(.horizontal, 24)
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 16) {
-                                    ForEach(colors, id: \.self) { colorHex in
-                                        let isSelected = selectedColor == colorHex
-                                        let color = Color(hex: colorHex)
-                                        Item3DButton(
-                                            farbe: color,
-                                            sekundaerFarbe: color.darker(),
-                                            groesse: 56,
-                                            isRectangular: false,
-                                            aktion: {
-                                                withAnimation { selectedColor = colorHex }
-                                            }
-                                        ) {
-                                            if isSelected {
-                                                Image(systemName: "checkmark")
-                                                    .font(.system(size: 20, weight: .bold))
-                                                    .foregroundStyle(.white)
+                            // Color Picker
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(String(localized: "routine.edit.color"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(spacing: 16) {
+                                        ForEach(colors, id: \.self) { colorHex in
+                                            let isSelected = selectedColor == colorHex
+                                            let color = Color(hex: colorHex)
+                                            Item3DButton(
+                                                farbe: color,
+                                                sekundaerFarbe: color.darker(),
+                                                groesse: 56,
+                                                isRectangular: false,
+                                                aktion: {
+                                                    withAnimation { selectedColor = colorHex }
+                                                }
+                                            ) {
+                                                if isSelected {
+                                                    Image(systemName: "checkmark")
+                                                        .font(.system(size: 20, weight: .bold))
+                                                        .foregroundStyle(.white)
+                                                }
                                             }
                                         }
                                     }
+                                    .padding(.bottom, 8)
+                                    .padding(.top, 4)
                                 }
-                                .padding(.horizontal, 24)
-                                .padding(.bottom, 8)
-                                .padding(.top, 4)
                             }
-                        }
-                        
-                        // Reminder Timer Edit Button
-                        VStack(alignment: .leading) {
-                            Text(String(localized: String.LocalizationValue("routine.edit.reminder")))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
                             
-                            Button {
-                                showTimerSheet = true
-                            } label: {
-                                HStack {
-                                    Text(String(localized: String.LocalizationValue(hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add")))
-                                        .font(.system(size: 16, weight: .semibold, design: .rounded))
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundStyle(.secondary)
-                                }
-                                .padding()
-                                .background(Color(white: 0.95))
-                                .cornerRadius(16)
-                            }
-                            .buttonStyle(.plain)
-                        }
-                        .padding(.horizontal, 24)
-                        
-                        // Habit Selection
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack {
-                                Text(String(localized: String.LocalizationValue("routine.edit.habits.add")))
+                            // Reminder Timer Edit Button
+                            VStack(alignment: .leading) {
+                                Text(String(localized: "routine.edit.reminder"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
-                                Spacer()
+                                
+                                Button {
+                                    showTimerSheet = true
+                                } label: {
+                                    HStack {
+                                        Text(String(localized: String.LocalizationValue(hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add")))
+                                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    .padding()
+                                    .background(Color(white: 0.95))
+                                    .cornerRadius(16)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .padding(.vertical, 24)
+                        .padding(.horizontal, 24)
+                    }
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    
+                    // Habit Reordering Header
+                    Section {
+                        VStack(spacing: 16) {
+                            HStack(spacing: 16) {
                                 Item3DButton(
                                     farbe: Color(hex: "#34C759"),
                                     sekundaerFarbe: Color(hex: "#34C759").darker(),
-                                    groesse: 36,
+                                    groesse: 44,
                                     isRectangular: true,
                                     aktion: { showCustomTodoSheet = true }
                                 ) {
                                     HStack {
                                         Image(systemName: "plus.circle.fill")
-                                        Text(String(localized: "routine.todo.add", defaultValue: "Eigenes To-Do"))
+                                        Text(String(localized: "routine.todo.add.short", defaultValue: "To-do hinzufügen"))
+                                            .lineLimit(1)
                                     }
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                     .foregroundStyle(.white)
+                                    .frame(maxWidth: .infinity)
                                 }
-                            }
-                            .padding(.horizontal, 24)
-                            
-                            if displayedHabits.isEmpty {
-                                Text(String(localized: String.LocalizationValue("routine.edit.habits.empty")))
-                                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                                    .padding(.horizontal, 24)
-                            } else {
-                                VStack(spacing: 12) {
-                                    ForEach(displayedHabits) { plant in
-                                        SelectableHabitCard(
-                                            pflanze: plant,
-                                            isSelected: selectedHabits.contains(plant.id)
-                                        ) {
-                                            if selectedHabits.contains(plant.id) {
-                                                selectedHabits.remove(plant.id)
-                                            } else {
-                                                selectedHabits.insert(plant.id)
-                                            }
-                                        }
-                                    }
-                                }
-                                .padding(.horizontal, 24)
                             }
                         }
-                        
-                        Spacer(minLength: 40)
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 12)
                     }
-                    .padding(.top, 24)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    
+                    // Habits List
+                    Section {
+                        if assignedHabits.isEmpty {
+                            Text(String(localized: "routine.edit.habits.none"))
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .padding(.horizontal, 24)
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                        } else {
+                            ForEach(assignedHabits) { habit in
+                                habitRow(for: habit)
+                            }
+                            .onMove(perform: moveAction)
+                            .onDelete(perform: deleteAction)
+                        }
+                    }
                 }
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
+                .environment(\.editMode, .constant(isListEditing ? .active : .inactive))
             }
-            .navigationTitle(String(localized: String.LocalizationValue("routine.create.title")))
+            .navigationTitle(String(localized: "routine.create.title", defaultValue: "Neue Routine"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(String(localized: String.LocalizationValue("common.cancel"))) {
+                    Button(String(localized: "common.cancel")) {
                         dismiss()
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(String(localized: String.LocalizationValue("common.save"))) {
+                    Button(String(localized: "common.save")) {
                         var newRoutine = RoutineUIData(
                             titleKey: routineName.isEmpty ? "routine.custom.default_name" : routineName,
-                            icon: selectedIcon,
+                            icon: "star.fill",
                             colorHex: selectedColor,
                             filterType: .custom,
-                            assignedHabitIDs: Array(selectedHabits)
+                            assignedHabitIDs: assignedHabits.map { $0.id }
                         )
                         newRoutine.reminderSchedule = hasReminder ? schedule : nil
                         newRoutine.overrideIndividualReminders = overrideIndividualReminders
                         
-                        withAnimation {
-                            routines.append(newRoutine)
-                        }
+                        routines.append(newRoutine)
                         dismiss()
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(routineName.isEmpty ? .secondary : .primary)
-                    .disabled(routineName.isEmpty)
                 }
             }
             .fullScreenCover(isPresented: $showTimerSheet) {
                 RoutineTimerEditSheetView(
-                    routineName: routineName.isEmpty ? String(localized: String.LocalizationValue("routine.create.title")) : routineName,
+                    routineName: routineName.isEmpty ? String(localized: "routine.default_name", defaultValue: "Routine") : routineName,
                     schedule: $schedule,
                     overrideIndividualReminders: $overrideIndividualReminders,
                     hasReminder: $hasReminder,
-                    assignedHabits: availableHabits.filter { selectedHabits.contains($0.id) }
+                    assignedHabits: assignedHabits
                 )
                 .environmentObject(settings)
             }
             .fullScreenCover(isPresented: $showCustomTodoSheet) {
-                CreateRoutineCustomToDoSheet(selectedHabits: $selectedHabits)
+                CreateRoutineCustomToDoSheetWrapper(assignedHabits: $assignedHabits)
+            }
+            .alert(
+                String(localized: "routine.edit.task.title", defaultValue: "Aufgabe bearbeiten"),
+                isPresented: Binding(
+                    get: { habitToEdit != nil && habitToEdit?.isRoutineOnly == true },
+                    set: { if !$0 { habitToEdit = nil } }
+                )
+            ) {
+                TextField(String(localized: "routine.edit.task.placeholder", defaultValue: "Aufgabe"), text: Binding(
+                    get: { habitToEdit?.customRoutineTaskName ?? "" },
+                    set: { newValue in
+                        if let h = habitToEdit {
+                            h.customRoutineTaskName = newValue
+                            h.habitName = newValue
+                        }
+                    }
+                ))
+                
+                TextField(String(localized: "routine.todo.description.placeholder", defaultValue: "Beschreibung (Optional)"), text: Binding(
+                    get: { habitToEdit?.symbolism ?? "" },
+                    set: { newValue in
+                        if let h = habitToEdit {
+                            h.symbolism = newValue
+                        }
+                    }
+                ))
+                
+                Button(String(localized: "common.save", defaultValue: "Speichern")) {
+                    gardenStore.savePlants()
+                    habitToEdit = nil
+                }
+                Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
+                    habitToEdit = nil
+                }
+            } message: {
+                Text(String(localized: "routine.edit.task.message", defaultValue: "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."))
             }
         }
     }
+    
+    @ViewBuilder
+    private func habitRow(for habit: HabitModel) -> some View {
+        HStack(spacing: 16) {
+            Image(habit.plantImageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 32, height: 32)
+            Text(verbatim: getDisplayName(for: habit))
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                
+            Spacer()
+        }
+        .padding(.vertical, 4)
+        .contentShape(Rectangle())
+        .listRowBackground(Color(white: 0.98))
+        .onTapGesture {
+            if !isListEditing {
+                habitToEdit = habit
+            }
+        }
+        .onLongPressGesture(minimumDuration: 0.5) {
+            withAnimation { isListEditing = true }
+        }
+    }
+    
+    private var moveAction: ((IndexSet, Int) -> Void)? {
+        if isListEditing {
+            return moveHabits
+        } else {
+            return nil
+        }
+    }
+    
+    private var deleteAction: ((IndexSet) -> Void)? {
+        if isListEditing {
+            return deleteHabits
+        } else {
+            return nil
+        }
+    }
+    
+    private func getDisplayName(for habit: HabitModel) -> String {
+        if habit.isRoutineOnly {
+            return String(localized: String.LocalizationValue(habit.displayedHabitName))
+        } else if settings.showHabitInsteadOfName {
+            return String(localized: String.LocalizationValue(habit.displayedHabitName))
+        } else {
+            return String(localized: String.LocalizationValue(habit.name))
+        }
+    }
+    
+    private func moveHabits(from source: IndexSet, to destination: Int) {
+        assignedHabits.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    private func deleteHabits(at offsets: IndexSet) {
+        for index in offsets {
+            let removedHabit = assignedHabits[index]
+            if let storeIndex = gardenStore.pflanzen.firstIndex(where: { $0.id == removedHabit.id }) {
+                gardenStore.pflanzen.remove(at: storeIndex)
+            }
+        }
+        assignedHabits.remove(atOffsets: offsets)
+        gardenStore.savePlants()
+    }
 }
 
-// MARK: - Routine Timer Edit Sheet
 struct RoutineTimerEditSheetView: View {
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) private var dismiss
