@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import StoreKit
+import TelemetryDeck
 
 struct ContentView: View {
     @EnvironmentObject var gardenStore: GardenStore
