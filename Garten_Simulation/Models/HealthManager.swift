@@ -489,14 +489,19 @@ class HealthManager: ObservableObject {
         let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: 100, sortDescriptors: [sortDescriptor]) { _, samples, error in
             guard let samples = samples as? [HKCategorySample] else { return }
             
-            // Nur 'asleep' samples (asleepCore, asleepDeep, asleepREM etc.)
-            let asleepSamples = samples.filter { $0.value == HKCategoryValueSleepAnalysis.asleepCore.rawValue ||
-                                                 $0.value == HKCategoryValueSleepAnalysis.asleepDeep.rawValue ||
-                                                 $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
-                                                 $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
+            // Nur 'asleep' samples oder als Fallback 'inBed'
+            var filteredSamples = samples.filter { $0.value == HKCategoryValueSleepAnalysis.asleepCore.rawValue ||
+                                                   $0.value == HKCategoryValueSleepAnalysis.asleepDeep.rawValue ||
+                                                   $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
+                                                   $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
+            
+            // Fallback für Nutzer ohne Apple Watch (nur iPhone erfasst oft nur 'inBed')
+            if filteredSamples.isEmpty {
+                filteredSamples = samples.filter { $0.value == HKCategoryValueSleepAnalysis.inBed.rawValue }
+            }
             
             // Bündele die Samples zu kontinuierlichen Sessions (Toleranz: 3 Stunden Lücke)
-            let sortedSamples = asleepSamples.sorted(by: { $0.startDate < $1.startDate })
+            let sortedSamples = filteredSamples.sorted(by: { $0.startDate < $1.startDate })
             var sessions: [(startDate: Date, endDate: Date)] = []
             
             for sample in sortedSamples {
@@ -526,7 +531,7 @@ class HealthManager: ObservableObject {
                 }
             }
             
-            let totalSleepSeconds = asleepSamples.reduce(0.0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
+            let totalSleepSeconds = filteredSamples.reduce(0.0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
             let totalSleepHours = totalSleepSeconds / 3600.0
             
             DispatchQueue.main.async {
@@ -549,13 +554,17 @@ class HealthManager: ObservableObject {
         let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, error in
             guard let samples = samples as? [HKCategorySample] else { return }
             
-            let asleepSamples = samples.filter { $0.value == HKCategoryValueSleepAnalysis.asleepCore.rawValue ||
-                                                 $0.value == HKCategoryValueSleepAnalysis.asleepDeep.rawValue ||
-                                                 $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
-                                                 $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
+            var filteredSamples = samples.filter { $0.value == HKCategoryValueSleepAnalysis.asleepCore.rawValue ||
+                                                   $0.value == HKCategoryValueSleepAnalysis.asleepDeep.rawValue ||
+                                                   $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
+                                                   $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
+            
+            if filteredSamples.isEmpty {
+                filteredSamples = samples.filter { $0.value == HKCategoryValueSleepAnalysis.inBed.rawValue }
+            }
             
             // Bündele die Samples zu kontinuierlichen Sessions
-            let sortedSamples = asleepSamples.sorted(by: { $0.startDate < $1.startDate })
+            let sortedSamples = filteredSamples.sorted(by: { $0.startDate < $1.startDate })
             var sessions: [(startDate: Date, endDate: Date)] = []
             
             for sample in sortedSamples {
