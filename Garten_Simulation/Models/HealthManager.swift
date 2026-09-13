@@ -480,8 +480,8 @@ class HealthManager: ObservableObject {
         
         let calendar = Calendar.current
         let today = Date()
-        // Wir suchen nach Schlaf von gestern Abend bis heute
-        guard let start = calendar.date(byAdding: .hour, value: -24, to: today) else { return }
+        // Wir suchen nach dem letzten echten Schlaf der letzten 7 Tage
+        guard let start = calendar.date(byAdding: .day, value: -7, to: today) else { return }
         
         let predicate = HKQuery.predicateForSamples(withStart: start, end: today, options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
@@ -518,24 +518,22 @@ class HealthManager: ObservableObject {
                 }
             }
             
-            // Finde die längste Session der letzten 24h
-            if let mainSession = sessions.max(by: { $0.endDate.timeIntervalSince($0.startDate) < $1.endDate.timeIntervalSince($1.startDate) }) {
+            // Nur Sessions behalten, die mindestens 2 Stunden dauern (um Nickerchen zu ignorieren)
+            let validSessions = sessions.filter { $0.endDate.timeIntervalSince($0.startDate) >= 2 * 3600 }
+            
+            // Nimm die JÜNGSTE echte Schlaf-Session
+            if let mainSession = validSessions.sorted(by: { $0.endDate > $1.endDate }).first {
                 DispatchQueue.main.async {
                     self.latestSleepStart = mainSession.startDate
                     self.latestSleepEnd = mainSession.endDate
+                    self.todaysSleep = mainSession.endDate.timeIntervalSince(mainSession.startDate) / 3600.0
                 }
             } else {
                 DispatchQueue.main.async {
                     self.latestSleepStart = nil
                     self.latestSleepEnd = nil
+                    self.todaysSleep = 0
                 }
-            }
-            
-            let totalSleepSeconds = filteredSamples.reduce(0.0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
-            let totalSleepHours = totalSleepSeconds / 3600.0
-            
-            DispatchQueue.main.async {
-                self.todaysSleep = totalSleepHours
             }
         }
         

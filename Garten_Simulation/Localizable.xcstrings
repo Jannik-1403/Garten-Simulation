@@ -392894,6 +392894,17 @@
         }
       }
     },
+    "sleep.routine.insight.missing_last_night" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dein Langzeitschnitt ist berechnet, aber für die letzte Nacht fehlen noch Daten."
+          }
+        }
+      }
+    },
     "sleep.routine.insight.needs_work" : {
       "extractionState" : "manual",
       "localizations" : {
