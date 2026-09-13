@@ -242,7 +242,7 @@ struct RoutinenView: View {
                 .environmentObject(interactiveTourManager)
             }
             .fullScreenCover(isPresented: $showCreateSheet) {
-                CreateRoutineSheet(routines: $routines, availableHabits: otherPlants)
+                CreateRoutineSheet(routines: $routines)
             }
             .fullScreenCover(item: $routineToEdit) { item in
                 if let idx = routines.firstIndex(where: { $0.id == item.id }) {
