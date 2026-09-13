@@ -676,20 +676,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.pfadAktiviertAm = nil
         self.pfadCheckedDates = []
         self.linkedHealthMetric = nil
-        
-        // Initiales Ziel setzen, falls wir eine automatische Metrik haben
-        if let metric = automaticHealthMetric {
-            switch metric {
-            case .steps: self.healthTarget = 10000.0
-            case .water: self.healthTarget = 2.0
-            case .running, .strengthTraining, .mindfulness: self.healthTarget = 30.0
-            case .sleep: self.healthTarget = 8.0
-            case .energy: self.healthTarget = 2000.0
-            case .fiber, .calcium: self.healthTarget = 100.0
-            }
-        } else {
-            self.healthTarget = nil
-        }
+        self.healthTarget = nil
         
         // Wenn reminderTime gesetzt → automatisch Schedule erstellen
         if let rt = reminderTime {
@@ -722,6 +709,18 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.showMeasurements = true
         self.manualWeightEntries = []
         self.bodyMeasurements = [:]
+        
+        // Initiales Ziel setzen, falls wir eine automatische Metrik haben
+        if let metric = automaticHealthMetric {
+            switch metric {
+            case .steps: self.healthTarget = 10000.0
+            case .water: self.healthTarget = 2.0
+            case .running, .strengthTraining, .mindfulness: self.healthTarget = 30.0
+            case .sleep: self.healthTarget = 8.0
+            case .energy: self.healthTarget = 2000.0
+            case .fiber, .calcium: self.healthTarget = 100.0
+            }
+        }
     }
 
     // MARK: - Codable
