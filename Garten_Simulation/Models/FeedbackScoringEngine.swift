@@ -440,6 +440,7 @@ struct FeedbackScoringEngine {
         case .running:   return String(localized: "fitness.category.running",   defaultValue: "Laufen")
         case .nutrition: return String(localized: "fitness.category.nutrition", defaultValue: "Ernährung")
         case .gratitude: return String(localized: "fitness.category.gratitude", defaultValue: "Dankbarkeits-Check")
+        case .cleaning:  return String(localized: "fitness.category.cleaning",  defaultValue: "Aufräumen")
         }
     }
 }
