@@ -45,6 +45,8 @@ struct ScreenTimeSettingsView: View {
     @State private var infoAlertTitle = ""
     @State private var infoAlertMessage = ""
     
+    @State private var isLoaded = false
+    
     // Weekday data: (weekdayInt, shortName, fullName)
     let allWeekdays: [(Int, String, String)] = [
         (2, "Mo", String(localized: "weekday.monday", defaultValue: "Montag")),
@@ -102,8 +104,13 @@ struct ScreenTimeSettingsView: View {
             
             isAdultFilterEnabled = manager.isAdultFilterEnabled
             daySchedules = manager.daySchedules
+            
+            DispatchQueue.main.async {
+                isLoaded = true
+            }
         }
         .onChange(of: dailyLimitSelection) { _, newValue in
+            guard isLoaded else { return }
             var enforcedSelection = newValue
             
             // Verhindern, dass etwas abgewählt wird (Wegklicken)
@@ -126,11 +133,14 @@ struct ScreenTimeSettingsView: View {
             }
             oldDailyLimitSelection = enforcedSelection
             
+            manager.saveDailyLimitSelectionPublic(enforcedSelection)
+            
             // Sync limitSelections AFTER the picker changes so new tokens
             // get properly initialized. Uses same token instances → no mismatch.
             manager.syncLimitsAfterPickerChange()
         }
         .onChange(of: blockSelection) { _, newValue in
+            guard isLoaded else { return }
             var filteredValue = newValue
             
             // Apps that are in layer 1 (permanentBlockSelection) or layer 0 (dailyLimitSelection)
@@ -153,6 +163,7 @@ struct ScreenTimeSettingsView: View {
             }
         }
         .onChange(of: permanentBlockSelection) { _, newValue in
+            guard isLoaded else { return }
             var enforcedSelection = newValue
             
             // Verhindern, dass etwas abgewählt wird (Wegklicken)
