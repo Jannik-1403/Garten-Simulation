@@ -465,122 +465,94 @@ struct LockScreenStreakWidgetView: View {
     }
 }
 
-// MARK: - INTERACTIVE ROUTINE WIDGET (Pro)
+// MARK: - INTERACTIVE TO-DO WIDGET (Pro)
 struct InteractiveHabitsWidgetView: View {
     let entry: GroovyRoutineEntry
+    @Environment(\.widgetFamily) var family
     
     var isPro: Bool {
         SharedUserDefaults.suite.bool(forKey: "isProUser_active") || SharedUserDefaults.suite.bool(forKey: "debug_isProUser")
     }
     
-    var routinePlants: [WidgetPlantData] {
-        guard let appData = entry.appData, let routine = entry.routine else { return [] }
-        guard let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData"),
-              let routines = try? JSONDecoder().decode([WidgetRoutineUIData].self, from: data),
-              let fullRoutine = routines.first(where: { $0.id.uuidString == routine.id }) else {
-            return []
-        }
-        
-        let allPlants = appData.plants
-        let assigned = fullRoutine.assignedHabitIDs ?? []
-        let matched = allPlants.filter { assigned.contains($0.id) }
-        
-        return matched.sorted { p1, p2 in
-            let idx1 = assigned.firstIndex(of: p1.id) ?? Int.max
-            let idx2 = assigned.firstIndex(of: p2.id) ?? Int.max
-            return idx1 < idx2
-        }
+    var widgetTodos: [WidgetTodoData] {
+        guard let appData = entry.appData else { return [] }
+        return appData.todos
+    }
+    
+    var maxTodos: Int {
+        family == .systemSmall ? 2 : 4
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if isPro {
-                if let routineEntity = entry.routine {
-                    HStack(spacing: 6) {
-                        Text(LocalizedStringKey(routineEntity.titleKey))
-                            .font(.system(size: 14, weight: .black, design: .rounded))
-                    }
-                    .foregroundStyle(DuoStyle.contentColor(for: entry.style))
-                    .padding(.bottom, 2)
-                    
-                    let plants = routinePlants
-                    if plants.isEmpty {
-                        VStack {
-                            Spacer()
-                            Text(String(localized: "widget_routine_empty", defaultValue: "Keine Aufgaben.", locale: widgetLocale))
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
-                                .frame(maxWidth: .infinity, alignment: .center)
-                            Spacer()
-                        }
-                    } else {
-                        // Taskito-Style Timeline
-                        VStack(alignment: .leading, spacing: 0) {
-                            ForEach(Array(plants.prefix(4).enumerated()), id: \.element.id) { index, plant in
-                                let isLast = index == min(plants.count - 1, 3)
-                                HStack(alignment: .top, spacing: 10) {
-                                    // Timeline Line and Dot
-                                    VStack(spacing: 0) {
-                                        ZStack {
-                                            Circle()
-                                                .strokeBorder(DuoStyle.contentColor(for: entry.style).opacity(plant.isWateredToday ? 0.3 : 1.0), lineWidth: 2)
-                                                .frame(width: 14, height: 14)
-                                                .background(Circle().fill(plant.isWateredToday ? DuoStyle.contentColor(for: entry.style).opacity(0.3) : Color.clear))
-                                            
-                                            if plant.isWateredToday {
-                                                Image(systemName: "checkmark")
-                                                    .font(.system(size: 8, weight: .black))
-                                                    .foregroundStyle(DuoStyle.contentColor(for: entry.style))
-                                            }
-                                        }
-                                        
-                                        if !isLast {
-                                            Rectangle()
-                                                .fill(DuoStyle.contentColor(for: entry.style).opacity(0.2))
-                                                .frame(width: 2)
-                                                .frame(maxHeight: .infinity)
-                                        }
-                                    }
-                                    .frame(width: 14)
-                                    
-                                    // Content
-                                    HStack {
-                                        Text(plant.name)
-                                            .font(.system(size: 13, weight: .bold))
-                                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(plant.isWateredToday ? 0.5 : 1.0))
-                                            .strikethrough(plant.isWateredToday)
-                                            .lineLimit(1)
-                                        
-                                        Spacer()
-                                        
-                                        if !plant.isWateredToday {
-                                            Button(intent: WaterPlantIntent(plant: PlantEntity(id: plant.id, name: plant.name, symbolName: plant.imageName))) {
-                                                Image(systemName: "circle")
-                                                    .font(.system(size: 14, weight: .bold))
-                                                    .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.3))
-                                            }
-                                            .buttonStyle(.plain)
-                                        }
-                                    }
-                                    .padding(.bottom, isLast ? 0 : 10)
-                                }
-                                .padding(.top, index == 0 ? 2 : 0)
-                            }
-                        }
+                HStack(spacing: 6) {
+                    Text(String(localized: "widget_todos_title", defaultValue: "To-Dos", locale: widgetLocale))
+                        .font(.system(size: 14, weight: .black, design: .rounded))
+                }
+                .foregroundStyle(DuoStyle.contentColor(for: entry.style))
+                .padding(.bottom, 2)
+                
+                let todos = widgetTodos
+                if todos.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text(String(localized: "widget_todos_empty", defaultValue: "Keine Aufgaben.", locale: widgetLocale))
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Spacer()
                     }
                 } else {
-                    VStack(spacing: 8) {
-                        Spacer()
-                        Image(systemName: "list.bullet.circle.fill")
-                            .font(.system(size: 24))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
-                        Text(String(localized: "widget_routine_not_selected", defaultValue: "Routine auswählen (Widget bearbeiten)", locale: widgetLocale))
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
-                            .multilineTextAlignment(.center)
-                        Spacer()
+                    VStack(alignment: .leading, spacing: 0) {
+                        ForEach(Array(todos.prefix(maxTodos).enumerated()), id: \.element.id) { index, todo in
+                            let isLast = index == min(todos.count - 1, maxTodos - 1)
+                            HStack(alignment: .top, spacing: 10) {
+                                // Timeline Line and Dot
+                                VStack(spacing: 0) {
+                                    ZStack {
+                                        Circle()
+                                            .strokeBorder(DuoStyle.contentColor(for: entry.style).opacity(todo.isCompleted ? 0.3 : 1.0), lineWidth: 2)
+                                            .frame(width: 14, height: 14)
+                                            .background(Circle().fill(todo.isCompleted ? DuoStyle.contentColor(for: entry.style).opacity(0.3) : Color.clear))
+                                        
+                                        if todo.isCompleted {
+                                            Image(systemName: "checkmark")
+                                                .font(.system(size: 8, weight: .black))
+                                                .foregroundStyle(DuoStyle.contentColor(for: entry.style))
+                                        }
+                                    }
+                                    
+                                    if !isLast {
+                                        Rectangle()
+                                            .fill(DuoStyle.contentColor(for: entry.style).opacity(0.2))
+                                            .frame(width: 2)
+                                            .frame(maxHeight: .infinity)
+                                    }
+                                }
+                                .frame(width: 14)
+                                
+                                // Content
+                                HStack {
+                                    Text(todo.text)
+                                        .font(.system(size: 13, weight: .bold))
+                                        .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(todo.isCompleted ? 0.5 : 1.0))
+                                        .strikethrough(todo.isCompleted)
+                                        .lineLimit(family == .systemSmall ? 2 : 1)
+                                    
+                                    Spacer()
+                                    
+                                    if !todo.isCompleted {
+                                        Image(systemName: "circle")
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.3))
+                                    }
+                                }
+                                .padding(.bottom, isLast ? 0 : (family == .systemSmall ? 6 : 10))
+                            }
+                            .padding(.top, index == 0 ? 2 : 0)
+                        }
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             } else {
                 VStack(spacing: 8) {
@@ -600,6 +572,6 @@ struct InteractiveHabitsWidgetView: View {
             }
         }
         .padding(14)
-        .widgetURL(URL(string: isPro ? "grovy://routines" : "grovy://pro"))
+        .widgetURL(URL(string: isPro ? "grovy://todos" : "grovy://pro"))
     }
 }

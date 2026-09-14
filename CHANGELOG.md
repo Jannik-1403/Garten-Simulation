@@ -1169,3 +1169,5 @@
 - Hidden sleep routine insight message when there is no data for last night
 - Removed automatic 8:00 AM timer setting for Onboarding selected habits
 - Synced Onboarding plants selection with ShopStore to mark them as 'purchased'
+- Fixed a bug where Screen Time limits for individual apps were wiped out upon app launch due to state synchronization on appear.
+- Fully fixed the token identity issue that caused daily limits to reset when re-saving settings.

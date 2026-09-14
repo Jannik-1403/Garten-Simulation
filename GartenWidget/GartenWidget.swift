@@ -100,7 +100,7 @@ struct GroovyLockScreenStreakWidget: Widget {
     }
 }
 
-// MARK: - INTERACTIVE ROUTINE WIDGET (Pro)
+// MARK: - INTERACTIVE TO-DO WIDGET (Pro)
 struct GroovyInteractiveHabitsWidget: Widget {
     let kind = "GroovyInteractiveHabitsWidgetV3"
     var body: some WidgetConfiguration {
@@ -111,8 +111,8 @@ struct GroovyInteractiveHabitsWidget: Widget {
                     DuoStyle.backgroundView(for: entry.style, defaultGradient: DuoStyle.blueGradient)
                 }
         }
-        .configurationDisplayName(String(localized: "widget_interactive_routine_title", defaultValue: "Routine (Pro)", locale: widgetLocale))
-        .description(String(localized: "widget_interactive_routine_desc", defaultValue: "Erledige deine Routinen direkt vom Homescreen.", locale: widgetLocale))
-        .supportedFamilies([.systemMedium, .systemLarge])
+        .configurationDisplayName(String(localized: "widget_interactive_todos_title", defaultValue: "To-Dos (Pro)", locale: widgetLocale))
+        .description(String(localized: "widget_interactive_todos_desc", defaultValue: "Erledige deine To-Dos direkt vom Homescreen.", locale: widgetLocale))
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

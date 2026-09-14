@@ -1,6 +1,13 @@
 import Foundation
 import WidgetKit
 
+struct WidgetTodoData: Codable, Sendable, Identifiable {
+    let id: String
+    let text: String
+    let isCompleted: Bool
+    let prioritySortValue: Int
+}
+
 struct WidgetPlantData: Codable, Sendable {
     let id: String
     let name: String
@@ -35,8 +42,9 @@ struct WidgetAppData: Codable, Sendable {
     let wateringCountThisWeek: Int       // Diese Woche (Mo–So)
     let wateringCountThisMonth: Int      // Dieser Monat
     let completedStreakDates: [Date]      // Aus StreakStore.completedDates
+    let todos: [WidgetTodoData]
 
-    init(plants: [WidgetPlantData], totalStreak: Int, gems: Int, lastUpdated: Date, totalWateringCount: Int, wateringCountToday: Int, wateringCountThisWeek: Int, wateringCountThisMonth: Int, completedStreakDates: [Date]) {
+    init(plants: [WidgetPlantData], totalStreak: Int, gems: Int, lastUpdated: Date, totalWateringCount: Int, wateringCountToday: Int, wateringCountThisWeek: Int, wateringCountThisMonth: Int, completedStreakDates: [Date], todos: [WidgetTodoData] = []) {
         self.plants = plants
         self.totalStreak = totalStreak
         self.gems = gems
@@ -46,6 +54,7 @@ struct WidgetAppData: Codable, Sendable {
         self.wateringCountThisWeek = wateringCountThisWeek
         self.wateringCountThisMonth = wateringCountThisMonth
         self.completedStreakDates = completedStreakDates
+        self.todos = todos
     }
 }
 
@@ -57,7 +66,8 @@ struct GroovyWidgetDataProvider {
         habits: [HabitModel],
         totalStreak: Int,
         gems: Int,
-        streakCompletedDates: Set<Date>
+        streakCompletedDates: Set<Date>,
+        todos: [WidgetTodoData] = []
     ) {
         let cal = Calendar.current
         let now = Date()
@@ -107,7 +117,8 @@ struct GroovyWidgetDataProvider {
             wateringCountToday: todayCount,
             wateringCountThisWeek: weekCount,
             wateringCountThisMonth: monthCount,
-            completedStreakDates: Array(streakCompletedDates)
+            completedStreakDates: Array(streakCompletedDates),
+            todos: todos
         )
 
         guard let defaults = UserDefaults(suiteName: appGroupID) else { return }

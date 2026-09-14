@@ -154718,6 +154718,107 @@
         }
       }
     },
+    "fitness.category.cleaning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufräumen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleaning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpieza"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ménage"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सफाई"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulizie"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "掃除"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "청소"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schoonmaken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprzątanie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpeza"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpeza"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уборка"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temizlik"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打扫"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打掃"
+          }
+        }
+      }
+    },
     "fitness.category.gratitude": {
       "extractionState": "manual",
       "localizations": {
@@ -155320,6 +155421,612 @@
           "stringUnit": {
             "state": "translated",
             "value": "水"
+          }
+        }
+      }
+    },
+    "fitness.cleaning.detail.critical": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um immer sauber zu sein und dich frisch zu fühlen, musst du heute unbedingt aufräumen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To always be clean and feel fresh, you absolutely must clean up today."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para estar siempre limpio y sentirte fresco, hoy tienes que limpiar sin falta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour être toujours propre et te sentir frais, tu dois absolument ranger aujourd'hui."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हमेशा साफ रहने और तरोताजा महसूस करने के लिए, आपको आज जरूर सफाई करनी चाहिए।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per essere sempre pulito e sentirti fresco, oggi devi assolutamente riordinare."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "常に清潔で新鮮な気分でいるために、今日は絶対に片付ける必要があります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "항상 깨끗하고 상쾌한 기분을 느끼려면, 오늘은 꼭 정리해야 합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om altijd schoon te zijn en je fris te voelen, moet je vandaag echt opruimen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aby zawsze być czystym i czuć się świeżo, musisz dzisiaj koniecznie posprzątać."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para estar sempre limpo e sentir-te fresco, hoje tens mesmo de arrumar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para estar sempre limpo e se sentir fresco, você precisa muito arrumar hoje."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чтобы всегда быть в чистоте и чувствовать себя свежо, сегодня обязательно нужно убраться."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her zaman temiz olmak ve taze hissetmek için bugün mutlaka ortalığı toplamalısın."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "为了始终保持干净清爽，你今天必须打扫卫生。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "為了始終保持乾淨清爽，你今天必須打掃衛生。"
+          }
+        }
+      }
+    },
+    "fitness.cleaning.detail.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toll, du hast heute schon alle fälligen Aufgaben erledigt!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Great, you've already completed all due tasks today!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Genial, ya has completado todas las tareas de hoy!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Super, tu as déjà terminé toutes les tâches du jour !"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बहुत बढ़िया, आपने आज के सभी काम पूरे कर लिए हैं!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ottimo, hai già completato tutti i compiti di oggi!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "素晴らしい！今日のタスクをすべて完了しました！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잘했어요! 오늘의 과제를 모두 완료했습니다!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geweldig, je hebt alle taken van vandaag al voltooid!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Świetnie, wykonałeś już wszystkie dzisiejsze zadania!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ótimo, já completaste todas as tarefas de hoje!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ótimo, você já concluiu todas as tarefas de hoje!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отлично, вы уже выполнили все задачи на сегодня!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harika, bugünkü tüm görevleri zaten tamamladın!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太棒了，你今天已经完成了所有任务！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太棒了，你今天已經完成了所有任務！"
+          }
+        }
+      }
+    },
+    "fitness.cleaning.next.date": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das nächste Mal aufräumen musst du am %@."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The next time you need to clean up is on %@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La próxima vez que tengas que limpiar será el %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La prochaine fois que tu devras ranger, ce sera le %@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगली बार आपको %@ को सफाई करनी होगी।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La prossima volta che dovrai riordinare sarà il %@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次に掃除をする必要があるのは%@です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다음 정리 날짜는 %@입니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De volgende keer dat je moet opruimen is op %@."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Następnym razem musisz posprzątać w dniu %@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A próxima vez que terás de arrumar será a %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A próxima vez que você terá que arrumar será em %@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В следующий раз вам придется убраться %@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir sonraki temizlik günün: %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下次你需要打扫的时间是%@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下次你需要打掃的時間是%@。"
+          }
+        }
+      }
+    },
+    "fitness.cleaning.next.tomorrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgen musst du wieder aufräumen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need to clean up again tomorrow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mañana tendrás que volver a limpiar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu devras ranger à nouveau demain."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कल आपको फिर से सफाई करनी होगी।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domani dovrai riordinare di nuovo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "明日はまた掃除をする必要があります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "내일 다시 정리해야 합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgen moet je weer opruimen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jutro musisz ponownie posprzątać."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amanhã terás de arrumar novamente."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amanhã você terá que arrumar novamente."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завтра вам снова придется убраться."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yarın tekrar ortalığı toparlaman gerekecek."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "明天你需要再次打扫。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "明天你需要再次打掃。"
+          }
+        }
+      }
+    },
+    "fitness.cleaning.summary.critical": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufräumen!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clean up!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡A limpiar!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ranger !"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सफाई करें!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riordina!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "片付けよう！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "정리하세요!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opruimen!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posprzątaj!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrumar!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrumar!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убраться!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Topla!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打扫！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打掃！"
+          }
+        }
+      }
+    },
+    "fitness.cleaning.summary.good": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauber ✓"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clean ✓"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpio ✓"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Propre ✓"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साफ ✓"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulito ✓"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清潔 ✓"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "청결 ✓"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schoon ✓"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czysto ✓"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpo ✓"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpo ✓"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чисто ✓"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temiz ✓"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "干净 ✓"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乾淨 ✓"
           }
         }
       }
@@ -367450,6 +368157,7 @@
       }
     },
     "routine.todo.add": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -414781,6 +415489,107 @@
           "stringUnit": {
             "state": "translated",
             "value": "天"
+          }
+        }
+      }
+    },
+    "tagesanalyseHeaderCleaning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufräumen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleaning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpieza"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ménage"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सफाई"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulizie"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "掃除"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "청소"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schoonmaken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprzątanie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpeza"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpeza"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уборка"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temizlik"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打扫"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打掃"
           }
         }
       }
@@ -480790,810 +481599,406 @@
         }
       }
     },
-    "fitness.cleaning.summary.good": {
+    "widget_interactive_todos_title": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sauber ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clean ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Limpio ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Propre ✓"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "साफ ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pulito ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "清潔 ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "청결 ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schoon ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Czysto ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Limpo ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Limpo ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Чисто ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Temiz ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "干净 ✓"
+            "value": "To-Dos (Pro)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "乾淨 ✓"
+            "value": "To-Dos (Pro)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos (Pro)"
           }
         }
       }
     },
-    "fitness.cleaning.summary.critical": {
+    "widget_interactive_todos_desc": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufräumen!"
+            "value": "Erledige deine To-Dos direkt vom Homescreen."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clean up!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¡A limpiar!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ranger !"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सफाई करें!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Riordina!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "片付けよう！"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "정리하세요!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Opruimen!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Posprzątaj!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrumar!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrumar!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Убраться!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Topla!"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "打扫！"
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "打掃！"
+            "value": "Complete your To-Dos straight from your homescreen."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complete your To-Dos straight from your homescreen."
           }
         }
       }
     },
-    "fitness.cleaning.detail.good": {
+    "widget_todos_title": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toll, du hast heute schon alle fälligen Aufgaben erledigt!"
+            "value": "To-Dos"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great, you've already completed all due tasks today!"
+            "value": "To-Dos"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¡Genial, ya has completado todas las tareas de hoy!"
+            "value": "To-Dos"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Super, tu as déjà terminé toutes les tâches du jour !"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "बहुत बढ़िया, आपने आज के सभी काम पूरे कर लिए हैं!"
+            "value": "To-Dos"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ottimo, hai già completato tutti i compiti di oggi!"
+            "value": "To-Dos"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "素晴らしい！今日のタスクをすべて完了しました！"
+            "value": "To-Dos"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "잘했어요! 오늘의 과제를 모두 완료했습니다!"
+            "value": "To-Dos"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geweldig, je hebt alle taken van vandaag al voltooid!"
+            "value": "To-Dos"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Świetnie, wykonałeś już wszystkie dzisiejsze zadania!"
+            "value": "To-Dos"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ótimo, já completaste todas as tarefas de hoje!"
+            "value": "To-Dos"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ótimo, você já concluiu todas as tarefas de hoje!"
+            "value": "To-Dos"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отлично, вы уже выполнили все задачи на сегодня!"
+            "value": "To-Dos"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Harika, bugünkü tüm görevleri zaten tamamladın!"
+            "value": "To-Dos"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "太棒了，你今天已经完成了所有任务！"
+            "value": "To-Dos"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "太棒了，你今天已經完成了所有任務！"
+            "value": "To-Dos"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos"
           }
         }
       }
     },
-    "fitness.cleaning.detail.critical": {
+    "widget_todos_empty": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Um immer sauber zu sein und dich frisch zu fühlen, musst du heute unbedingt aufräumen."
+            "value": "Keine Aufgaben."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "To always be clean and feel fresh, you absolutely must clean up today."
+            "value": "No tasks."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Para estar siempre limpio y sentirte fresco, hoy tienes que limpiar sin falta."
+            "value": "No tasks."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pour être toujours propre et te sentir frais, tu dois absolument ranger aujourd'hui."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "हमेशा साफ रहने और तरोताजा महसूस करने के लिए, आपको आज जरूर सफाई करनी चाहिए।"
+            "value": "No tasks."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per essere sempre pulito e sentirti fresco, oggi devi assolutamente riordinare."
+            "value": "No tasks."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "常に清潔で新鮮な気分でいるために、今日は絶対に片付ける必要があります。"
+            "value": "No tasks."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "항상 깨끗하고 상쾌한 기분을 느끼려면, 오늘은 꼭 정리해야 합니다."
+            "value": "No tasks."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Om altijd schoon te zijn en je fris te voelen, moet je vandaag echt opruimen."
+            "value": "No tasks."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aby zawsze być czystym i czuć się świeżo, musisz dzisiaj koniecznie posprzątać."
+            "value": "No tasks."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Para estar sempre limpo e sentir-te fresco, hoje tens mesmo de arrumar."
+            "value": "No tasks."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Para estar sempre limpo e se sentir fresco, você precisa muito arrumar hoje."
+            "value": "No tasks."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Чтобы всегда быть в чистоте и чувствовать себя свежо, сегодня обязательно нужно убраться."
+            "value": "No tasks."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Her zaman temiz olmak ve taze hissetmek için bugün mutlaka ortalığı toplamalısın."
+            "value": "No tasks."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "为了始终保持干净清爽，你今天必须打扫卫生。"
+            "value": "No tasks."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "為了始終保持乾淨清爽，你今天必須打掃衛生。"
-          }
-        }
-      }
-    },
-    "fitness.category.cleaning": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aufräumen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cleaning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpieza"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ménage"
+            "value": "No tasks."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सफाई"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pulizie"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "掃除"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "청소"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schoonmaken"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sprzątanie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpeza"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpeza"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Уборка"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Temizlik"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "打扫"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "打掃"
-          }
-        }
-      }
-    },
-    "tagesanalyseHeaderCleaning": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aufräumen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cleaning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpieza"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ménage"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सफाई"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pulizie"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "掃除"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "청소"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schoonmaken"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sprzątanie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpeza"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpeza"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Уборка"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Temizlik"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "打扫"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "打掃"
-          }
-        }
-      }
-    },
-    "fitness.cleaning.next.tomorrow": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Morgen musst du wieder aufräumen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You need to clean up again tomorrow."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mañana tendrás que volver a limpiar."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu devras ranger à nouveau demain."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कल आपको फिर से सफाई करनी होगी।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Domani dovrai riordinare di nuovo."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "明日はまた掃除をする必要があります。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "내일 다시 정리해야 합니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Morgen moet je weer opruimen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jutro musisz ponownie posprzątać."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amanhã terás de arrumar novamente."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amanhã você terá que arrumar novamente."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Завтра вам снова придется убраться."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yarın tekrar ortalığı toparlaman gerekecek."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "明天你需要再次打扫。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "明天你需要再次打掃。"
-          }
-        }
-      }
-    },
-    "fitness.cleaning.next.date": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Das nächste Mal aufräumen musst du am %@."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The next time you need to clean up is on %@."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La próxima vez que tengas que limpiar será el %@."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La prochaine fois que tu devras ranger, ce sera le %@."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अगली बार आपको %@ को सफाई करनी होगी।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La prossima volta che dovrai riordinare sarà il %@."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "次に掃除をする必要があるのは%@です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "다음 정리 날짜는 %@입니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De volgende keer dat je moet opruimen is op %@."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Następnym razem musisz posprzątać w dniu %@."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A próxima vez que terás de arrumar será a %@."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A próxima vez que você terá que arrumar será em %@."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "В следующий раз вам придется убраться %@."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bir sonraki temizlik günün: %@."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "下次你需要打扫的时间是%@。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "下次你需要打掃的時間是%@。"
+            "value": "No tasks."
           }
         }
       }

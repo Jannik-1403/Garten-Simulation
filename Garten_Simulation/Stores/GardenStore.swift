@@ -1442,11 +1442,20 @@ class GardenStore: ObservableObject {
         let timestamps = SharedUserDefaults.suite.array(forKey: "streak_completed_dates") as? [TimeInterval] ?? []
         let dates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
         
+        let widgetTodos: [WidgetTodoData] = (pflanzen.flatMap { $0.todos } + standaloneTodos)
+            .sorted { 
+                if $0.isCompleted != $1.isCompleted { return !$0.isCompleted }
+                return $0.priority.sortValue < $1.priority.sortValue 
+            }
+            .prefix(6)
+            .map { WidgetTodoData(id: $0.id.uuidString, text: $0.text, isCompleted: $0.isCompleted, prioritySortValue: $0.priority.sortValue) }
+        
         GroovyWidgetDataProvider.write(
             habits: pflanzen,
             totalStreak: totalStreak,
             gems: coins,
-            streakCompletedDates: dates
+            streakCompletedDates: dates,
+            todos: widgetTodos
         )
     }
 
