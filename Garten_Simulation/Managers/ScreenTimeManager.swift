@@ -191,11 +191,7 @@ class ScreenTimeManager: ObservableObject {
             self.focusPartialBlockSelection = selection
         }
         
-        if let data = UserDefaults.standard.data(forKey: "screenTimeDailyLimitSelection"),
-           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.dailyLimitSelection = selection
-        }
-        
+        // dailyLimitSelection is rebuilt from limitSelections below to preserve token identity
         if let data = UserDefaults.standard.data(forKey: "st_limitSelectionsArray"),
            let entries = try? JSONDecoder().decode([LimitEntry].self, from: data) {
             var loadedDict = [Int: FamilyActivitySelection]()
@@ -208,12 +204,15 @@ class ScreenTimeManager: ObservableObject {
             self.limitSelections = dict
         }
         
-        // NOTE: syncIndividualLimits() is intentionally NOT called here.
-        // Calling it during init causes token identity mismatches because
-        // FamilyActivitySelection.applicationTokens from two separate
-        // JSONDecoder calls are NOT Set-equal, which causes formIntersection
-        // to wipe all saved limits on every app launch.
+        var rebuiltDaily = FamilyActivitySelection()
+        for selection in self.limitSelections.values {
+            rebuiltDaily.applicationTokens.formUnion(selection.applicationTokens)
+            rebuiltDaily.categoryTokens.formUnion(selection.categoryTokens)
+            rebuiltDaily.webDomainTokens.formUnion(selection.webDomainTokens)
+        }
+        self.dailyLimitSelection = rebuiltDaily
         
+        // NOTE: syncIndividualLimits() is intentionally NOT called here.
         checkAuthorizationStatus()
         
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { _ in
