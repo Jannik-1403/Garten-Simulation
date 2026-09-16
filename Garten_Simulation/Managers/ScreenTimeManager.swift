@@ -259,7 +259,6 @@ class ScreenTimeManager: ObservableObject {
         } else {
             scheduledStore.clearAllSettings()
             permanentStore.clearAllSettings()
-            dailyLimitStore.clearAllSettings()
         }
     }
     

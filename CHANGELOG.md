@@ -1224,3 +1224,5 @@
 - Fix: Abgehakte To-Dos verschwinden nun sofort, wenn man den Tab wechselt oder die App schließt/minimiert
 
 - Fix: Syntaxfehler in WasserTrinkenCard.swift (fehlende schließende Klammer) behoben
+- **Bildschirmzeit (Block Zeiten):** Failsafe hinzugefügt, sodass geplante Blockierungen ab sofort **ohne Verzögerung sofort in Kraft treten**, sobald man sie in den Einstellungen speichert oder die App öffnet. Dies umgeht Apples manchmal träges Hintergrund-System.
+- **Bildschirmzeit (Tägliches Limit):** Einen Fehler behoben, bei dem die Überschreitung des Limits von der App zwar erkannt, aber intern unter einem falschen Key ("screenTimeLimitExceededToday" statt "didExceedScreenTime") gespeichert wurde, sodass die zugehörige "Schlechte Gewohnheit"-Pflanze im Garten nicht mehr gewachsen ist.
