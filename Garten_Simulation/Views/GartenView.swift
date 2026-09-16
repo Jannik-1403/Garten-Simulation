@@ -510,7 +510,6 @@ struct GartenView: View {
         let isFirst = pflanze.id == gardenStore.sichtbarePflanzen.first?.id
         PflanzenCard(
             pflanze: pflanze,
-            onGiessen: { gardenStore.giessen(pflanze: pflanze) },
             onTap: { ausgewaehltePflanze = pflanze }
         )
         .accessibilityIdentifier("habit_\(pflanze.name)")

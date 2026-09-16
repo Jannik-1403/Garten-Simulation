@@ -568,9 +568,6 @@ struct FocusSessionView: View {
         if !pflanze.isGenericFocus {
             let xpGained = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
             
-            // Triggert den Habit-Abschluss
-            gardenStore.giessen(pflanze: pflanze)
-            
             // XP von der spezifischen Pflanze abziehen und auf alle aufteilen
             if !gardenStore.activeHabits.isEmpty {
                 pflanze.currentXP -= xpGained

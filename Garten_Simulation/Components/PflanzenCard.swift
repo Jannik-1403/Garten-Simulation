@@ -3,7 +3,6 @@ import SwiftUI
 struct PflanzenCard: View {
     @ObservedObject var pflanze: HabitModel
 
-    let onGiessen: () -> Void
     let onTap: () -> Void
 
     @EnvironmentObject var settings: SettingsStore
@@ -287,40 +286,6 @@ struct PflanzenCard: View {
             progressColor: Color.gruenPrimary.opacity(0.3),
             onIsPressedChange: nil
         ))
-        .highPriorityGesture(
-            DragGesture(minimumDistance: 25)
-                .onChanged { value in
-                    guard !pflanze.istBewässert && !pflanze.isDead else { return }
-                    if pflanze.effectiveHealthMetric != nil && !pflanze.allowManualTrackingForHealth { return }
-                    
-                    if !isDragging { isDragging = true }
-                    
-                    let startX = baseProgress * maxDragWidth
-                    dragWidth = startX + value.translation.width
-                }
-                .onEnded { value in
-                    guard isDragging else { return }
-                    if pflanze.effectiveHealthMetric != nil && !pflanze.allowManualTrackingForHealth { return }
-                    
-                    isDragging = false
-                    let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
-                    
-                    pflanze.sliderProgress = finalProgress
-                    pflanze.intradayProgressHistory.removeAll { !Calendar.current.isDateInToday($0.timestamp) }
-                    pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
-                    
-                    if finalProgress >= 1.0 {
-                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                        triggerWatering()
-                        pflanze.sliderProgress = 0.0
-                        gardenStore.savePlants()
-                    } else {
-                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                        // Save partial progress so it persists across app restarts
-                        gardenStore.savePlants()
-                    }
-                }
-        )
         .allowsHitTesting(true)
         .onChange(of: healthProgress) { _, newProgress in
             if let p = newProgress, p >= 1.0, !pflanze.istBewässert, !pflanze.isDead {
@@ -387,7 +352,7 @@ struct PflanzenCard: View {
         }
         gardenStore.letzteGiessPflanzeID = pflanze.id
         gardenStore.giessTriggerID = UUID()
-        gardenStore.giessen(pflanze: pflanze)
+        // Manuelle Gieß-Logik entfernt – nur noch Apple Health & Tracker lösen giessen() aus
         
         // Triggers the water splash effect
         showWaterSplash = true
@@ -412,8 +377,6 @@ struct PflanzenCard: View {
             bonusText = String(localized: "bonus_text", defaultValue: "Bonus!")
             zeigeBonusText = true
         }
-        
-        onGiessen()
     }
 
     private func updatePflanzenPosition(from geo: GeometryProxy) {
@@ -647,8 +610,6 @@ struct RevivePlantSheet: View {
     VStack(spacing: 16) {
         PflanzenCard(
             pflanze: HabitModel(id: "1", name: "Gym", symbolName: "figure.run", symbolColor: "orange", habitCategory: .fitness),
-
-            onGiessen: {},
             onTap: {}
         )
         PflanzenCard(
@@ -659,7 +620,6 @@ struct RevivePlantSheet: View {
                 return p
             }(),
 
-            onGiessen: {},
             onTap: {}
         )
     }

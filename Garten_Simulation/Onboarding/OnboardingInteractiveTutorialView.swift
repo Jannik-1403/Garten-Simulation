@@ -9,7 +9,6 @@ struct OnboardingInteractiveTutorialView: View {
     @State private var gegossen = false
     @State private var ringProgress: CGFloat = 0.0
     @State private var showNext = false
-    @State private var plantPosition: CGPoint = .zero
     @State private var showWaterDrop = false
     
     var tutorialPlant: Plant? {
@@ -76,14 +75,7 @@ struct OnboardingInteractiveTutorialView: View {
                                 }
                             }
                         }
-                        .background(GeometryReader { geo in
-                            Color.clear.onAppear {
-                                plantPosition = geo.frame(in: .global).center
-                            }
-                            .onChange(of: geo.frame(in: .global)) { _, newValue in
-                                plantPosition = newValue.center
-                            }
-                        })
+                        }
                         
                         VStack(spacing: 4) {
                             Text(NSLocalizedString(plant.localizedName, comment: ""))
@@ -122,19 +114,29 @@ struct OnboardingInteractiveTutorialView: View {
                 }
             }
             
-            // Interaction Layer
-            if !gegossen && showWaterDrop && plantPosition != .zero {
+            // Interaction Layer – tap the plant to simulate watering
+            if !gegossen && showWaterDrop {
                 VStack {
                     Spacer()
-                    DragToWater(
-                        onGiessen: {
-                            handleWateringSuccess()
-                        },
-                        pflanzenPosition: plantPosition,
-                        istErledigt: gegossen
-                    )
-                    .frame(height: 100)
-                    .padding(.bottom, 60) // Moved significantly lower
+                    Button {
+                        handleWateringSuccess()
+                    } label: {
+                        HStack(spacing: 8) {
+                            Image(systemName: "drop.fill")
+                                .font(.system(size: 18, weight: .bold))
+                            Text(String(localized: "onboarding_tutorial_giessen_blase"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                        }
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 14)
+                        .background(
+                            Capsule()
+                                .fill(Color.blauPrimary)
+                                .shadow(color: Color.blauPrimary.opacity(0.4), radius: 8, y: 4)
+                        )
+                    }
+                    .padding(.bottom, 70)
                 }
                 .transition(.opacity)
             }

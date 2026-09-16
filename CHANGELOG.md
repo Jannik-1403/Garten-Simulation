@@ -1,3 +1,7 @@
+## [2026-09-16] - Bugfix Wasser-Ziel & Bildschirmzeit-Limits
+- **Water Tracker:** Das automatische Abschließen der Pflanze funktioniert nun korrekt in Millilitern (2000 ml statt 2 ml).
+- **Screen Time:** Tägliche Limits blockieren nun nur noch die individuell hinterlegten Apps pro Limit-Timer und nicht mehr alle konfigurierten Apps gleichzeitig.
+
 ## [2026-09-16] - Bugfix Wasser-Ziel Stacking
 - **Water Tracker:** Das manuelle Speichern-Fenster für das Tagesziel addiert den Basiswert und die Boni nicht mehr endlos auf, wenn man auf Speichern drückt, ohne eine Änderung vorzunehmen.
 

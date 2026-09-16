@@ -23,8 +23,8 @@ struct RoutineSessionView: View {
     
     @State private var state: RoutineSessionState = .intro
     @State private var currentHabitIndex: Int = 0
-    @State private var totalCoins: Int = 0
-    @State private var totalXP: Int = 0
+
+
     
     @State private var routineActivity: Activity<FocusTimerActivityAttributes>? = nil
     @State private var routineStartTime: Date? = nil
@@ -333,44 +333,8 @@ struct RoutineSessionView: View {
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 32)
                 
-                // Belohnung anzeigen
-                HStack(spacing: 60) {
-                    // Coins (Left)
-                    VStack(spacing: 4) {
-                        Image("coin")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40)
-                        
-                        Text(verbatim: "\(totalCoins)")
-                            .font(.system(size: 24, weight: .black, design: .rounded))
-                        
-                        Text(String(localized: "common.coins", defaultValue: "Münzen"))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                        
-                        if gardenStore.isProUser {
-                            Stat3DTitleView(title: "pro Bonus", color: .goldPrimary, size: 12)
-                                .padding(.top, 2)
-                        }
-                    }
-                    
-                    // XP (Right)
-                    VStack(spacing: 4) {
-                        Image("XP")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40)
-                        
-                        Text(verbatim: "\(totalXP)")
-                            .font(.system(size: 24, weight: .black, design: .rounded))
-                        
-                        Text(String(localized: "common.xp"))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .padding(.top, 24)
+
+
             }
             
             Spacer()
@@ -392,18 +356,6 @@ struct RoutineSessionView: View {
     // MARK: - Logic
     private func completeCurrentHabit() {
         if currentHabitIndex < habits.count {
-            let habit = habits[currentHabitIndex]
-            
-            let wasWatered = habit.istBewässert
-            
-            // Actually water the plant (this adds coins and XP to the gardenStore globally)
-            gardenStore.giessen(pflanze: habit, fromRoutine: true)
-            
-            if !wasWatered {
-                totalCoins += gardenStore.letzteGiessCoins
-                totalXP += gardenStore.letzteGiessXP
-            }
-            
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             
