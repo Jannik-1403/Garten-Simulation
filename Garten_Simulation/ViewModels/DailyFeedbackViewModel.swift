@@ -79,10 +79,17 @@ class DailyFeedbackViewModel: ObservableObject {
 
         // Protein-Ziel aus UserDefaults (wird von MacroCalculator/HealthManager gesetzt)
         let proteinGoal = UserDefaults.standard.double(forKey: "goal_protein")
-        let fiberGoal = 30.0 // DGE-Empfehlung, NutrientIndexManager default
+
+
 
         let strengthPlant = activeHabits.first(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining || $0.name.lowercased().contains("kraft") })
-        let strengthGoalMinutes = strengthPlant?.healthTarget ?? 45.0
+        let strengthGoalMinutes = strengthPlant?.healthTarget ?? 30.0
+        
+        let runningPlant = activeHabits.first(where: { $0.linkedHealthMetric == HealthMetricType.steps || $0.linkedHealthMetric == HealthMetricType.running })
+        let stepsGoal = runningPlant?.healthTarget ?? 10000.0
+
+        let fiberPlant = activeHabits.first(where: { $0.linkedHealthMetric == HealthMetricType.fiber })
+        let fiberGoal = fiberPlant?.healthTarget ?? 30.0 // DGE-Empfehlung
         
         let gratitudePlant = activeHabits.first(where: { $0.habitName == "habit.dankbarkeit" })
         let hasGratitudePlant = gratitudePlant != nil
@@ -153,7 +160,7 @@ class DailyFeedbackViewModel: ObservableObject {
             strengthTodayMinutes: hm.todaysStrengthTraining,
             strengthGoalMinutes: strengthGoalMinutes,
             stepsToday: hm.todaysSteps,
-            stepsGoal: 10000.0, // Standard Schritte-Ziel, ggf. aus Einstellungen holen
+            stepsGoal: stepsGoal,
             energyToday: hm.todaysEnergy,
             energyGoal: energyGoal > 0 ? energyGoal : 2000.0,
             proteinToday: hm.todaysProtein,

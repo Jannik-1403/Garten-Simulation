@@ -311,8 +311,6 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             return .strengthTraining
         } else if nameLower.contains("trinken") || nameLower.contains("wasser") || nameLower.contains("water") {
             return .water
-        } else if nameLower.contains("schlaf") || nameLower.contains("sleep") || nameLower.contains("ruhe") {
-            return .sleep
         } else if nameLower.contains("meditieren") || nameLower.contains("mindfulness") || nameLower.contains("achtsamkeit") {
             return .mindfulness
         } else if nameLower.contains("schritte") || nameLower.contains("spazieren") || nameLower.contains("steps") {
@@ -371,7 +369,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case .running, .strengthTraining, .mindfulness: return 30.0
         case .sleep: return 8.0
         case .energy: return 2000.0
-        case .fiber, .calcium: return 100.0
+        case .fiber: return 30.0
+        case .calcium: return 1000.0
         }
     }
 
@@ -714,11 +713,12 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         if let metric = automaticHealthMetric {
             switch metric {
             case .steps: self.healthTarget = 10000.0
-            case .water: self.healthTarget = 2.0
+            case .water: self.healthTarget = 2000.0
             case .running, .strengthTraining, .mindfulness: self.healthTarget = 30.0
             case .sleep: self.healthTarget = 8.0
             case .energy: self.healthTarget = 2000.0
-            case .fiber, .calcium: self.healthTarget = 100.0
+            case .fiber: self.healthTarget = 30.0
+            case .calcium: self.healthTarget = 1000.0
             }
         }
     }

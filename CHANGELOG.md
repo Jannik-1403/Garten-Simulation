@@ -1,3 +1,11 @@
+## [2026-09-16] - Manuelles Gießen komplett entfernt
+- **DragToWater & GlobalDragToWater:** Dateien gelöscht.
+- **PflanzenCard:** Slider-Wischen kann Gewohnheit nicht mehr manuell abhaken.
+- **FokusSession:** Abschluss eines Fokus-Timers gießt keine Pflanze mehr.
+- **Routine-Session:** Gewohnheiten werden beim Durchklicken in der Routine nicht mehr automatisch abgehakt.
+- **Onboarding:** Tutorial-DragToWater durch einfachen Button ersetzt.
+- Einzig gültige Trigger: Apple Health Automatik & Wasser-Tracker Ziel.
+
 ## [2026-09-16] - Bugfix Wasser-Ziel & Bildschirmzeit-Limits
 - **Water Tracker:** Das automatische Abschließen der Pflanze funktioniert nun korrekt in Millilitern (2000 ml statt 2 ml).
 - **Screen Time:** Tägliche Limits blockieren nun nur noch die individuell hinterlegten Apps pro Limit-Timer und nicht mehr alle konfigurierten Apps gleichzeitig.

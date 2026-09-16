@@ -661,10 +661,15 @@ struct PflanzeDetailSheet: View {
                     }
                 ),
                 unitString: {
-                    switch pflanze.linkedHealthMetric {
+                    switch pflanze.effectiveHealthMetric {
                     case .steps: return String(localized: "health.unit.steps", defaultValue: "Schritte")
                     case .water: return String(localized: "health.unit.water", defaultValue: "ml")
-                    default:     return pflanze.customTargetUnit ?? String(localized: "health.unit.hours", defaultValue: "Std")
+                    case .strengthTraining, .running, .mindfulness: return String(localized: "health.unit.minutes", defaultValue: "Minuten")
+                    case .sleep: return String(localized: "health.unit.hours", defaultValue: "Std")
+                    case .fiber: return String(localized: "health.unit.fiber", defaultValue: "g")
+                    case .calcium: return String(localized: "health.unit.calcium", defaultValue: "mg")
+                    case .energy: return String(localized: "health.unit.energy", defaultValue: "kcal")
+                    case .none: return pflanze.customTargetUnit ?? String(localized: "health.unit.minutes", defaultValue: "Minuten")
                     }
                 }(),
                 isCustomMetric: pflanze.linkedHealthMetric == nil,

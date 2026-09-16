@@ -58,7 +58,7 @@ struct PflanzenCard: View {
         
         // Kalorien/Gesund Kochen
         if metric == .energy {
-            let goal = max(goalEnergy, 1.0)
+            let goal = pflanze.healthTarget ?? (goalEnergy > 0 ? goalEnergy : 2000.0)
             return min(1.0, max(0.0, healthManager.todaysEnergy / goal))
         }
 
