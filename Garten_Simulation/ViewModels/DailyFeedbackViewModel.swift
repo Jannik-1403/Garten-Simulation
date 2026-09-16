@@ -64,13 +64,13 @@ class DailyFeedbackViewModel: ObservableObject {
             .filter { $0.isEnabled && $0.targetDGE > 0 }
             .min(by: { $0.score < $1.score })
 
-        let hasWaterPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.water })
-        let hasSleepPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.sleep })
-        let hasStrengthPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining || $0.name.lowercased().contains("kraft") })
-        let hasRunningPlant = activeHabits.contains(where: { $0.linkedHealthMetric == HealthMetricType.steps || $0.linkedHealthMetric == HealthMetricType.running || $0.name.lowercased().contains("laufen") || $0.name.lowercased().contains("joggen") || $0.name.lowercased().contains("schritt") })
+        let hasWaterPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .water })
+        let hasSleepPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .sleep })
+        let hasStrengthPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .strengthTraining || $0.name.lowercased().contains("kraft") })
+        let hasRunningPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .steps || $0.effectiveHealthMetric == .running || $0.name.lowercased().contains("laufen") || $0.name.lowercased().contains("joggen") || $0.name.lowercased().contains("schritt") })
         let hasNutritionPlant = activeHabits.contains(where: { plant in
-            if plant.linkedHealthMetric == .energy { return true }
-            if plant.linkedHealthMetric == .fiber { return true }
+            if plant.effectiveHealthMetric == .energy { return true }
+            if plant.effectiveHealthMetric == .fiber { return true }
             let lowerName = plant.name.lowercased()
             if lowerName.contains("gemüse") { return true }
             if lowerName.contains("kochen") { return true }
@@ -82,13 +82,13 @@ class DailyFeedbackViewModel: ObservableObject {
 
 
 
-        let strengthPlant = activeHabits.first(where: { $0.linkedHealthMetric == HealthMetricType.strengthTraining || $0.name.lowercased().contains("kraft") })
+        let strengthPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .strengthTraining || $0.name.lowercased().contains("kraft") })
         let strengthGoalMinutes = strengthPlant?.healthTarget ?? 30.0
         
-        let runningPlant = activeHabits.first(where: { $0.linkedHealthMetric == HealthMetricType.steps || $0.linkedHealthMetric == HealthMetricType.running })
+        let runningPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .steps || $0.effectiveHealthMetric == .running })
         let stepsGoal = runningPlant?.healthTarget ?? 10000.0
 
-        let fiberPlant = activeHabits.first(where: { $0.linkedHealthMetric == HealthMetricType.fiber })
+        let fiberPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .fiber })
         let fiberGoal = fiberPlant?.healthTarget ?? 30.0 // DGE-Empfehlung
         
         let gratitudePlant = activeHabits.first(where: { $0.habitName == "habit.dankbarkeit" })
@@ -96,15 +96,13 @@ class DailyFeedbackViewModel: ObservableObject {
         let gratitudeTodayDone = gratitudePlant?.journalEntries.contains(where: { Calendar.current.isDateInToday($0.date) }) ?? false
         let gratitudeYesterdayEntry = gratitudePlant?.journalEntries.first(where: { Calendar.current.isDateInYesterday($0.date) })
 
-        let nutritionPlant = activeHabits.first(where: { plant in
-            if plant.linkedHealthMetric == HealthMetricType.energy { return true }
-            if plant.linkedHealthMetric == HealthMetricType.fiber { return true }
+        let energyPlant = activeHabits.first(where: { plant in
+            if plant.effectiveHealthMetric == .energy { return true }
             let lowerName = plant.name.lowercased()
-            if lowerName.contains("gemüse") { return true }
             if lowerName.contains("kochen") { return true }
             return false
         })
-        let energyGoal = nutritionPlant?.healthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
+        let energyGoal = energyPlant?.healthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
 
         let cm = CleaningManager.shared
         var hasCleaningTaskToday = false
