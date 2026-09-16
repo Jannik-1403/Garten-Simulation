@@ -312,7 +312,6 @@ class GardenStore: ObservableObject {
             self.letzteBonusPflanzeID = nil
             self.letzteGiessPflanzeID = pflanze.id
             
-            pflanze.istBewässert = true
             pflanze.letzteBewaesserung = Date()
             
             let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
@@ -391,7 +390,6 @@ class GardenStore: ObservableObject {
         
         self.giessTriggerID = UUID()
         
-        pflanze.istBewässert = true
         pflanze.letzteBewaesserung = Date()
         pflanze.wateringDates.append(Date()) // Log für Verlauf-Tab
         pflanze.streak += 1
@@ -876,14 +874,6 @@ class GardenStore: ObservableObject {
                 } else {
                     pflanze.streak = 0
                 }
-            }
-        }
-        // Mitternacht: istBewässert zurücksetzen
-        let heute = Calendar.current.startOfDay(for: Date())
-        for pflanze in pflanzen {
-            if let letzte = pflanze.letzteBewaesserung,
-               Calendar.current.startOfDay(for: letzte) < heute {
-                pflanze.istBewässert = false
             }
         }
         
@@ -1510,7 +1500,7 @@ class GardenStore: ObservableObject {
             if !UserDefaults.standard.bool(forKey: "screenTimeStreakResetBugfix") {
                 if let tracker = pflanzen.first(where: { $0.habitName == "habit.bildschirmzeit" }) {
                     tracker.streak = 0
-                    tracker.istBewässert = false
+                    tracker.letzteBewaesserung = nil
                     tracker.wateringDates.removeAll()
                     UserDefaults.standard.set(true, forKey: "screenTimeStreakResetBugfix")
                     savePlants()

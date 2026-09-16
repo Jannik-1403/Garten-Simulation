@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct DailyHealthScoreCard: View {
     @StateObject private var vm = DailyFeedbackViewModel()

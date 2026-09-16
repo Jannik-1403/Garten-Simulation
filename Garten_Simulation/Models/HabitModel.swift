@@ -304,21 +304,33 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
     
     var automaticHealthMetric: HealthMetricType? {
-        let idLower = plantID.lowercased()
+        let mapping: [String: HealthMetricType] = [
+            "plant.bambus": .strengthTraining,
+            "plant.wildgras": .steps,
+            "plant.lotus": .mindfulness,
+            "plant.lavendel": .sleep,
+            "plant.erdbeerpflanze": .fiber,
+            "plant.zitronenbaum": .water
+        ]
+        
+        if let metric = mapping[plantID.lowercased()] {
+            return metric
+        }
+        
+        // Fallback for custom plants or legacy habits that might not have a proper plantID
         let nameLower = habitName.lowercased()
         
-        // Safest approach: match plantID or habitName (which are internal keys, not localized strings)
-        if idLower.contains("joggen") || idLower.contains("laufen") || nameLower.contains("laufen") || nameLower.contains("joggen") {
+        if nameLower.contains("joggen") || nameLower.contains("laufen") {
             return .steps
-        } else if idLower.contains("kraft") || idLower.contains("gym") || nameLower.contains("kraft") {
+        } else if nameLower.contains("kraft") || nameLower.contains("gym") {
             return .strengthTraining
-        } else if idLower.contains("wasser") || nameLower.contains("wasser") {
+        } else if nameLower.contains("wasser") {
             return .water
-        } else if idLower.contains("meditier") || idLower.contains("achtsam") || nameLower.contains("achtsam") {
+        } else if nameLower.contains("meditier") || nameLower.contains("achtsam") {
             return .mindfulness
-        } else if idLower.contains("schritt") || nameLower.contains("schritt") || idLower.contains("spazieren") {
+        } else if nameLower.contains("schritt") || nameLower.contains("spazieren") {
             return .steps
-        } else if idLower.contains("obst") || idLower.contains("gemuese") || nameLower.contains("obst") || idLower.contains("ballaststoff") {
+        } else if nameLower.contains("obst") || nameLower.contains("gemuese") || nameLower.contains("ballaststoff") {
             return .fiber
         }
         return nil
@@ -699,7 +711,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.streak = 0
         self.letzteBewaesserung = nil
         self.gekauftAm = Date()
-        self.istBewässert = false
+
         self.isDead = false
         self.lebenBereitsAbgezogen = false
         self.sliderProgress = 0.0

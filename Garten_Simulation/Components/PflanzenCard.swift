@@ -616,7 +616,7 @@ struct RevivePlantSheet: View {
             pflanze: {
                 let p = HabitModel(id: "2", name: "Lesen", symbolName: "book.fill", symbolColor: "blue", habitCategory: .growth)
                 p.currentXP = 200
-                p.istBewässert = true
+                p.letzteBewaesserung = Date()
                 return p
             }(),
 

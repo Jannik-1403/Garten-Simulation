@@ -431,7 +431,7 @@ final class DataExportImportManager: ObservableObject {
             habit.letzteBewaesserung = data.letzteBewaesserung
             
             if let gekauftAm = data.gekauftAm { habit.gekauftAm = gekauftAm }
-            if let istBewässert = data.istBewässert { habit.istBewässert = istBewässert }
+
             if let missedCycles = data.missedCycles { habit.missedCycles = missedCycles }
             if let lastNotifiedCycle = data.lastNotifiedCycle { habit.lastNotifiedCycle = lastNotifiedCycle }
             if let totalMlGegossen = data.totalMlGegossen { habit.totalMlGegossen = totalMlGegossen }
