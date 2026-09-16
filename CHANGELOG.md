@@ -1,3 +1,12 @@
+## [2026-09-16] - Health Tracking Bugfixes
+- **Wasser Init-Ziel:** Beim Kauf wird jetzt korrekt 2000 ml statt 2 Liter gesetzt.
+- **Kalorien-Ziel:** Berechnung nutzt jetzt das Pflanzenziel (oder 2000 kcal Fallback), nicht mehr max(AppStorage, 1.0) – verhindert sofortiges Abschließen.
+- **Einheiten:** Krafttraining, Joggen und Achtsamkeit zeigen jetzt 'Minuten' statt 'Stunden'.
+- **Score Schritte-Ziel:** Liest jetzt das individuelle Pflanzenziel statt hardcoded 10000.
+- **Score Ballaststoffe-Ziel:** Liest Pflanzenziel, Fallback 30g (DGE).
+- **Ballaststoffe Default:** 30g (DGE), Kalzium 1000mg.
+- **Schlafroutine:** Wird nicht mehr automatisch mit Apple Health verknüpft beim Kauf.
+
 ## [2026-09-16] - Manuelles Gießen komplett entfernt
 - **DragToWater & GlobalDragToWater:** Dateien gelöscht.
 - **PflanzenCard:** Slider-Wischen kann Gewohnheit nicht mehr manuell abhaken.

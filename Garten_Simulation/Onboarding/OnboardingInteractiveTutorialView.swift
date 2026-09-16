@@ -75,7 +75,6 @@ struct OnboardingInteractiveTutorialView: View {
                                 }
                             }
                         }
-                        }
                         
                         VStack(spacing: 4) {
                             Text(NSLocalizedString(plant.localizedName, comment: ""))
