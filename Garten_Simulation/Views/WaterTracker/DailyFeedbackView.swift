@@ -44,9 +44,11 @@ struct DailyHealthScoreCard: View {
             vm.activeHabits = gardenStore.sichtbarePflanzen
             vm.reevaluate()
         }
-        .onChange(of: gardenStore.sichtbarePflanzen) { _, newHabits in
-            vm.activeHabits = newHabits
-            vm.reevaluate()
+        .onReceive(gardenStore.objectWillChange) { _ in
+            DispatchQueue.main.async {
+                vm.activeHabits = gardenStore.sichtbarePflanzen
+                vm.reevaluate()
+            }
         }
     }
 }

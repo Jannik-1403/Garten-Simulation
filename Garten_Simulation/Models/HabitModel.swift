@@ -317,8 +317,6 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             return .steps
         } else if nameLower.contains("obst") || nameLower.contains("gemüse") || nameLower.contains("fruit") || nameLower.contains("veg") || nameLower.contains("ballaststoff") {
             return .fiber
-        } else if nameLower.contains("kochen") || nameLower.contains("cook") || nameLower.contains("ernährung") || nameLower.contains("mahlzeit") {
-            return .energy
         }
         return nil
     }
