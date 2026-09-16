@@ -194,13 +194,6 @@ struct WaterSettingsSheet: View {
                                     .multilineTextAlignment(.trailing)
                                     .font(.system(size: 18, weight: .black, design: .rounded))
                                     .foregroundColor(.blue)
-                                    .onChange(of: manualGoalText) { _, newValue in
-                                        if let val = Double(newValue), val > 0 {
-                                            goalManager.customMinGoal = val
-                                            goalManager.customMaxGoal = val
-                                            goalManager.recalculateGoal(bodyMass: HealthManager.shared.latestBodyMass, steps: HealthManager.shared.todaysSteps, enduranceMinutes: HealthManager.shared.todaysRunning, strengthMinutes: HealthManager.shared.todaysStrengthTraining)
-                                        }
-                                    }
                                 Text("ml")
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundColor(.gray)
@@ -245,6 +238,11 @@ struct WaterSettingsSheet: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         isInputActive = false
+                        if let val = Double(manualGoalText), val > 0, manualGoalText != String(Int(goalManager.currentGoal)) {
+                            goalManager.customMinGoal = val
+                            goalManager.customMaxGoal = val
+                            goalManager.recalculateGoal(bodyMass: HealthManager.shared.latestBodyMass, steps: HealthManager.shared.todaysSteps, enduranceMinutes: HealthManager.shared.todaysRunning, strengthMinutes: HealthManager.shared.todaysStrengthTraining)
+                        }
                         dismiss()
                     }) {
                         Text(String(localized: "common.save", defaultValue: "Speichern"))

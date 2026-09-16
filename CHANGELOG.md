@@ -1,3 +1,8 @@
+## [2026-09-16] - Bugfixes Krafttraining, Water Tracker, ScreenTime
+- **HealthChart:** Einheit für Krafttraining von Stunden auf Minuten korrigiert.
+- **Water Tracker:** Das Hinzufügen-Sheet ist nun ein fixes Vollbild, sodass der Speichern-Button immer sichtbar ist.
+- **Screen Time:** Event-Name für das Tageslimit korrigiert, sodass Apps nach Ablauf der Zeit korrekt blockiert werden.
+
 ## [2026-09-12] - Body Tracking Chart Aggregation
 - **Body Tracking:** Bei den Filtern '6 Monate' und 'Jahr' werden die Datenpunkte im Diagramm nun zu übersichtlichen Wochendurchschnitten zusammengefasst.
 - **Body Tracking:** Der Header über dem Diagramm zeigt nun für den ausgewählten Zeitraum immer den Durchschnittswert ('DURCHSCHNITT') statt des aktuellsten Gewichts, analog zu Apple Health.
