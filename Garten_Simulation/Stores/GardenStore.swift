@@ -295,6 +295,7 @@ class GardenStore: ObservableObject {
     
     // MARK: Pflanze gießen
     func giessen(pflanze: HabitModel, fromRoutine: Bool = false) {
+        // Synchronous idempotency check to prevent race conditions
         guard !pflanze.istBewässert else { return }
 
         // Tagesziel automatisch erfüllen (Andersrum-Sync)
@@ -1931,23 +1932,26 @@ class GardenStore: ObservableObject {
     }
 }
 extension GardenStore {
-    func checkHealthTargets(healthManager: HealthManager) {
+    func evaluateAllHabits(healthManager: HealthManager) {
         let calendar = Calendar.current
         for pflanze in pflanzen {
-            // Nur Pflanzen checken, die ein Health-Metric haben
-            guard let metric = pflanze.linkedHealthMetric else { continue }
-            let target = pflanze.healthTarget ?? pflanze.defaultHealthTarget
+            // Check based on effective metric (both manual and automatic)
+            guard let metric = pflanze.effectiveHealthMetric else { continue }
             
-            // Wenn heute schon gegossen, überspringen
+            var target = pflanze.healthTarget ?? pflanze.defaultHealthTarget
+            if metric == .water {
+                target = WaterGoalManager.shared.currentGoal
+            }
+            
+            // Skip if already watered today
             if let letzteBewaesserung = pflanze.letzteBewaesserung, calendar.isDateInToday(letzteBewaesserung) {
                 continue
             }
             
-            // Wert für heute holen
             healthManager.fetchValue(for: metric) { [weak self] currentValue in
                 DispatchQueue.main.async {
                     if currentValue > 0 && currentValue >= target {
-                        // Pflanze gießen
+                        // giessen() will do the final idempotency check
                         self?.giessen(pflanze: pflanze)
                     }
                 }

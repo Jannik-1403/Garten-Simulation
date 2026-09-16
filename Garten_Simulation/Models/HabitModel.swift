@@ -304,18 +304,21 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
     
     var automaticHealthMetric: HealthMetricType? {
+        let idLower = plantID.lowercased()
         let nameLower = habitName.lowercased()
-        if nameLower.contains("joggen") || nameLower.contains("laufen") || nameLower.contains("running") || nameLower.contains("schritt") || nameLower.contains("spazieren") || nameLower.contains("walk") {
+        
+        // Safest approach: match plantID or habitName (which are internal keys, not localized strings)
+        if idLower.contains("joggen") || idLower.contains("laufen") || nameLower.contains("laufen") || nameLower.contains("joggen") {
             return .steps
-        } else if nameLower.contains("krafttraining") || nameLower.contains("fitness") || nameLower.contains("gym") || nameLower.contains("workout") {
+        } else if idLower.contains("kraft") || idLower.contains("gym") || nameLower.contains("kraft") {
             return .strengthTraining
-        } else if nameLower.contains("trinken") || nameLower.contains("wasser") || nameLower.contains("water") {
+        } else if idLower.contains("wasser") || nameLower.contains("wasser") {
             return .water
-        } else if nameLower.contains("meditieren") || nameLower.contains("mindfulness") || nameLower.contains("achtsamkeit") {
+        } else if idLower.contains("meditier") || idLower.contains("achtsam") || nameLower.contains("achtsam") {
             return .mindfulness
-        } else if nameLower.contains("schritte") || nameLower.contains("spazieren") || nameLower.contains("steps") {
+        } else if idLower.contains("schritt") || nameLower.contains("schritt") || idLower.contains("spazieren") {
             return .steps
-        } else if nameLower.contains("obst") || nameLower.contains("gemüse") || nameLower.contains("fruit") || nameLower.contains("veg") || nameLower.contains("ballaststoff") {
+        } else if idLower.contains("obst") || idLower.contains("gemuese") || nameLower.contains("obst") || idLower.contains("ballaststoff") {
             return .fiber
         }
         return nil
@@ -323,9 +326,13 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     @Published var currentXP: Int
     @Published var streak: Int
-    var letzteBewaesserung: Date?
+    @Published var letzteBewaesserung: Date?
     var gekauftAm: Date
-    @Published var istBewässert: Bool  // heute schon gegossen?
+    
+    var istBewässert: Bool {
+        guard let d = letzteBewaesserung else { return false }
+        return Calendar.current.isDateInToday(d)
+    }
     @Published var missedCycles: Int   // Wie viele 24h-Fenster verpasst?
     @Published var lastNotifiedCycle: Int // Welcher Zyklus wurde bereits "bestraft" (Herz-Abzug)?
     @Published var totalMlGegossen: Double = 0
@@ -725,7 +732,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, name, symbolName, symbolColor, habitCategory, habitCategories, symbolism, habitName
-        case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
+        case currentXP, streak, letzteBewaesserung, gekauftAm
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
         case wiederbelebtAm, strafTage, reminderTime, customReminderMessage, wateringDates
@@ -792,7 +799,6 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         streak = try container.decode(Int.self, forKey: .streak)
         letzteBewaesserung = try container.decodeIfPresent(Date.self, forKey: .letzteBewaesserung)
         gekauftAm = try container.decode(Date.self, forKey: .gekauftAm)
-        istBewässert = try container.decode(Bool.self, forKey: .istBewässert)
         
         maxLevel = try container.decode(Int.self, forKey: .maxLevel)
         xpPerCompletion = try container.decode(Int.self, forKey: .xpPerCompletion)
@@ -885,7 +891,6 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(streak, forKey: .streak)
         try container.encode(letzteBewaesserung, forKey: .letzteBewaesserung)
         try container.encode(gekauftAm, forKey: .gekauftAm)
-        try container.encode(istBewässert, forKey: .istBewässert)
         
         try container.encode(maxLevel, forKey: .maxLevel)
         try container.encode(xpPerCompletion, forKey: .xpPerCompletion)

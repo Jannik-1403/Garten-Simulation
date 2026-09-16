@@ -546,7 +546,7 @@ struct PflanzeDetailSheet: View {
             }
             
             // Auto-Watering check
-            gardenStore.checkHealthTargets(healthManager: healthManager)
+            gardenStore.evaluateAllHabits(healthManager: healthManager)
             
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 pulsieren = true
