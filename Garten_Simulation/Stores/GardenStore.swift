@@ -1954,4 +1954,25 @@ extension GardenStore {
             }
         }
     }
+    
+    // MARK: - Todo Cleanup
+    func cleanupCompletedTodos() {
+        var changed = false
+        
+        for pflanze in pflanzen {
+            let oldCount = pflanze.todos.count
+            pflanze.todos.removeAll(where: { $0.isCompleted })
+            if pflanze.todos.count != oldCount { changed = true }
+        }
+        
+        let oldStandalone = standaloneTodos.count
+        standaloneTodos.removeAll(where: { $0.isCompleted })
+        if standaloneTodos.count != oldStandalone { changed = true }
+        
+        if changed {
+            savePlants()
+            saveStandaloneTodos()
+            objectWillChange.send()
+        }
+    }
 }

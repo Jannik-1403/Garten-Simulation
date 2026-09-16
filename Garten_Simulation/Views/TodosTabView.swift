@@ -128,6 +128,9 @@ struct TodosTabView: View {
                 }
                 .id(todoToEditIndex == nil ? "add" : "edit-\(todoToEditIndex!)")
             }
+            .onDisappear {
+                gardenStore.cleanupCompletedTodos()
+            }
         }
     }
     

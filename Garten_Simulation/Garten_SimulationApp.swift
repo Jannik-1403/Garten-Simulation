@@ -111,6 +111,7 @@ struct Garten_SimulationApp: App {
                     container.streakStore.checkForMissedDays()
                     container.gardenStore.checkScreenTimeExceeded()
                     HealthManager.shared.fetchAllTodaysData()
+                    container.gardenStore.cleanupCompletedTodos()
                 } else if scenePhase == .background {
                     AutoBackupManager.shared.checkAndPerformBackup(
                         interval: container.settingsStore.autoBackupInterval,

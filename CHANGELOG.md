@@ -1177,3 +1177,5 @@
 - Fix: Wasser-Wert resettet sich nun am neuen Tag korrekt (Fetch on active scene phase)
 - Fix: Bonus-Wasser für Kraftsport/Ausdauer wird nun auch bei manuellem Ziel addiert
 - Fix: UI-Buttons für das Wasser-Hinzufügen und Ziel-Speichern als 3D-Buttons angepasst und Sheet-Layout optimiert
+
+- Fix: Apple Health Gewohnheiten (z.B. Gesund kochen) werden am neuen Tag nicht mehr fälschlicherweise automatisch abgehakt, wenn noch kein Health-Eintrag (Wert = 0) vorhanden ist
