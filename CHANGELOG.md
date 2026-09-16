@@ -1179,3 +1179,5 @@
 - Fix: UI-Buttons für das Wasser-Hinzufügen und Ziel-Speichern als 3D-Buttons angepasst und Sheet-Layout optimiert
 
 - Fix: Apple Health Gewohnheiten (z.B. Gesund kochen) werden am neuen Tag nicht mehr fälschlicherweise automatisch abgehakt, wenn noch kein Health-Eintrag (Wert = 0) vorhanden ist
+
+- Fix: Abgehakte To-Dos verschwinden nun sofort, wenn man den Tab wechselt oder die App schließt/minimiert

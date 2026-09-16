@@ -140,6 +140,7 @@ struct WasserTrinkenCard: View {
                                 .foregroundColor(.red)
                         }
                     }
+                }
             }
             .presentationDetents([.medium, .large])
         }
