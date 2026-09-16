@@ -20,13 +20,14 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
         
-        if activity.rawValue == "com.jannik.grovy.screentime.block.dailyLimit" {
+        if activity.rawValue.hasPrefix("com.jannik.grovy.screentime.block.limit.") {
             // New day started for daily limit tracker, clear the shield
             dailyLimitStore.shield.applications = nil
             dailyLimitStore.shield.applicationCategories = nil
             dailyLimitStore.shield.webDomains = nil
             dailyLimitStore.shield.webDomainCategories = nil
             sharedDefaults?.set(false, forKey: "screenTimeLimitExceededToday")
+            sharedDefaults?.removeObject(forKey: "screenTimeDailyBlockedTokensData_appGroup")
             sharedDefaults?.synchronize()
             return
         }
@@ -82,17 +83,38 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
         
-        if event.rawValue == "dailyLimitEvent" {
-            // Threshold reached! Block the apps
-            if let data = sharedDefaults?.data(forKey: "screenTimeDailyLimitSelectionData_appGroup"),
-               let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-                dailyLimitStore.shield.applications = selection.applicationTokens
-                dailyLimitStore.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
-                dailyLimitStore.shield.webDomains = selection.webDomainTokens
-                dailyLimitStore.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
-                
-                sharedDefaults?.set(true, forKey: "screenTimeLimitExceededToday")
-                sharedDefaults?.synchronize()
+        if event.rawValue.hasPrefix("dailyLimitEvent.") {
+            let components = event.rawValue.components(separatedBy: ".")
+            if components.count == 2, let index = Int(components[1]) {
+                if let data = sharedDefaults?.data(forKey: "screenTimeLimitsArray_appGroup"),
+                   let selections = try? JSONDecoder().decode([FamilyActivitySelection].self, from: data),
+                   index < selections.count {
+                    
+                    let newlyBlockedSelection = selections[index]
+                    
+                    // Merge with currently blocked selection
+                    var currentBlockedSelection = FamilyActivitySelection()
+                    if let blockedData = sharedDefaults?.data(forKey: "screenTimeDailyBlockedTokensData_appGroup"),
+                       let loadedBlocked = try? JSONDecoder().decode(FamilyActivitySelection.self, from: blockedData) {
+                        currentBlockedSelection = loadedBlocked
+                    }
+                    
+                    currentBlockedSelection.applicationTokens.formUnion(newlyBlockedSelection.applicationTokens)
+                    currentBlockedSelection.categoryTokens.formUnion(newlyBlockedSelection.categoryTokens)
+                    currentBlockedSelection.webDomainTokens.formUnion(newlyBlockedSelection.webDomainTokens)
+                    
+                    if let newBlockedData = try? JSONEncoder().encode(currentBlockedSelection) {
+                        sharedDefaults?.set(newBlockedData, forKey: "screenTimeDailyBlockedTokensData_appGroup")
+                    }
+                    
+                    dailyLimitStore.shield.applications = currentBlockedSelection.applicationTokens
+                    dailyLimitStore.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(currentBlockedSelection.categoryTokens)
+                    dailyLimitStore.shield.webDomains = currentBlockedSelection.webDomainTokens
+                    dailyLimitStore.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(currentBlockedSelection.categoryTokens)
+                    
+                    sharedDefaults?.set(true, forKey: "screenTimeLimitExceededToday")
+                    sharedDefaults?.synchronize()
+                }
             }
         }
     }

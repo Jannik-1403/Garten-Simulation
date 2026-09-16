@@ -367,7 +367,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         guard let metric = effectiveHealthMetric else { return 1.0 }
         switch metric {
         case .steps: return 10000.0
-        case .water: return 2.0
+        case .water: return 2000.0
         case .running, .strengthTraining, .mindfulness: return 30.0
         case .sleep: return 8.0
         case .energy: return 2000.0

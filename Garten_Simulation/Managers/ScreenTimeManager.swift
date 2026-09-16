@@ -305,14 +305,21 @@ class ScreenTimeManager: ObservableObject {
         )
         
         var index = 0
+        var activeLimitSelections: [FamilyActivitySelection] = []
         for (minutes, selection) in limitSelections {
             if minutes > 0 {
                 let event = DeviceActivityEvent(applications: selection.applicationTokens, categories: selection.categoryTokens, webDomains: selection.webDomainTokens, threshold: DateComponents(minute: minutes))
                 do {
-                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).limit.\(index)"), during: dailySchedule, events: [.init("dailyLimitEvent"): event])
+                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).limit.\(index)"), during: dailySchedule, events: [.init("dailyLimitEvent.\(index)"): event])
+                    activeLimitSelections.append(selection)
                     index += 1
                 } catch { print("Failed to schedule limit: \(error)") }
             }
+        }
+        
+        if let limitsData = try? JSONEncoder().encode(activeLimitSelections) {
+            defaults?.set(limitsData, forKey: "screenTimeLimitsArray_appGroup")
+            defaults?.synchronize()
         }
         
         guard isScheduleActive else { return }

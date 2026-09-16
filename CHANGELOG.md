@@ -1,3 +1,6 @@
+## [2026-09-16] - Bugfix Wasser-Ziel Stacking
+- **Water Tracker:** Das manuelle Speichern-Fenster für das Tagesziel addiert den Basiswert und die Boni nicht mehr endlos auf, wenn man auf Speichern drückt, ohne eine Änderung vorzunehmen.
+
 ## [2026-09-16] - Bugfixes Krafttraining, Water Tracker, ScreenTime
 - **HealthChart:** Einheit für Krafttraining von Stunden auf Minuten korrigiert.
 - **Water Tracker:** Das Hinzufügen-Sheet ist nun ein fixes Vollbild, sodass der Speichern-Button immer sichtbar ist.
