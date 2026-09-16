@@ -309,7 +309,7 @@ class ScreenTimeManager: ObservableObject {
             if minutes > 0 {
                 let event = DeviceActivityEvent(applications: selection.applicationTokens, categories: selection.categoryTokens, webDomains: selection.webDomainTokens, threshold: DateComponents(minute: minutes))
                 do {
-                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).limit.\(index)"), during: dailySchedule, events: [.init("limitEvent"): event])
+                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).limit.\(index)"), during: dailySchedule, events: [.init("dailyLimitEvent"): event])
                     index += 1
                 } catch { print("Failed to schedule limit: \(error)") }
             }

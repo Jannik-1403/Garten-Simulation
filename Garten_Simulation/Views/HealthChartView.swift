@@ -36,6 +36,7 @@ struct HealthChartView: View {
         case .fiber: return String(localized: "health.unit.fiber",  defaultValue: "g")
         case .calcium: return String(localized: "health.unit.calcium", defaultValue: "mg")
         case .energy: return String(localized: "health.unit.energy", defaultValue: "kcal")
+        case .strengthTraining: return String(localized: "health.unit.minutes", defaultValue: "Minuten")
         default:     return String(localized: "health.unit.hours",  defaultValue: "Std")
         }
     }

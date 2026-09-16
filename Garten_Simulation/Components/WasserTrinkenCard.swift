@@ -142,7 +142,7 @@ struct WasserTrinkenCard: View {
                     }
                 }
             }
-            .presentationDetents([.medium, .large])
+            .presentationDetents([.large])
         }
         .fullScreenCover(isPresented: $showGoalDetails) {
             WaterSettingsSheet(goalManager: goalManager)
