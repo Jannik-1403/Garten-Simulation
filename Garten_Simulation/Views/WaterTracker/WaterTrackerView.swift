@@ -341,23 +341,26 @@ struct EditWaterGoalSheet: View {
                 }
                 .padding(.horizontal, 40)
                 
-                Button {
-                    if let val = Double(customGoalText), val > 0 {
-                        goalManager.customMinGoal = val
-                        goalManager.customMaxGoal = val
-                        goalManager.recalculateGoal(bodyMass: HealthManager.shared.latestBodyMass, steps: HealthManager.shared.todaysSteps, enduranceMinutes: HealthManager.shared.todaysRunning, strengthMinutes: HealthManager.shared.todaysStrengthTraining)
-                        dismiss()
+                Item3DButton(
+                    farbe: customGoalText.isEmpty ? .gray : .blue,
+                    sekundaerFarbe: customGoalText.isEmpty ? .gray.opacity(0.8) : .blue.opacity(0.8),
+                    groesse: 56,
+                    isRectangular: true,
+                    aktion: {
+                        if let val = Double(customGoalText), val > 0 {
+                            goalManager.customMinGoal = val
+                            goalManager.customMaxGoal = val
+                            goalManager.recalculateGoal(bodyMass: HealthManager.shared.latestBodyMass, steps: HealthManager.shared.todaysSteps, enduranceMinutes: HealthManager.shared.todaysRunning, strengthMinutes: HealthManager.shared.todaysStrengthTraining)
+                            dismiss()
+                        }
                     }
-                } label: {
+                ) {
                     Text(String(localized: "common.save", defaultValue: "Speichern"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(customGoalText.isEmpty ? Color.gray : Color.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 }
                 .disabled(customGoalText.isEmpty)
+                .frame(height: 56)
                 .padding(.horizontal, 40)
                 
                 Button {

@@ -41,8 +41,12 @@ class WaterGoalManager: ObservableObject {
     
     func recalculateGoal(bodyMass: Double?, steps: Double, enduranceMinutes: Double, strengthMinutes: Double) {
         // 1. Base Goal
-        let weight = bodyMass ?? 70.0 // Default 70kg if unknown
-        baseGoal = weight * 33.0 // 33 ml per kg
+        if customMaxGoal > 0 {
+            baseGoal = customMaxGoal
+        } else {
+            let weight = bodyMass ?? 70.0 // Default 70kg if unknown
+            baseGoal = weight * 33.0 // 33 ml per kg
+        }
         
         // 2. Step Bonus
         // e.g. + 150ml per 1000 steps above 8000
@@ -73,16 +77,12 @@ class WaterGoalManager: ObservableObject {
             effectiveMax = min(6000.0, 4000.0 + ((enduranceMinutes - 45.0) / 15.0) * 400.0)
         }
         
-        // Apply logic clamps
-        rawGoal = max(1500.0, rawGoal)
-        rawGoal = min(effectiveMax, rawGoal)
-        
-        // Apply user custom limits if set (overrides logic)
-        if customMinGoal > 0 {
-            rawGoal = max(customMinGoal, rawGoal)
-        }
-        if customMaxGoal > 0 {
-            rawGoal = min(customMaxGoal, rawGoal)
+        // If user set a custom goal, we do not restrict to effectiveMax or 1500 bounds.
+        // We let them have their custom base + whatever they actually burned.
+        if customMaxGoal == 0 {
+            // Apply logic clamps only if using automatic base
+            rawGoal = max(1500.0, rawGoal)
+            rawGoal = min(effectiveMax, rawGoal)
         }
         
         currentGoal = rawGoal

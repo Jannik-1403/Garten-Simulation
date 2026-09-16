@@ -140,9 +140,8 @@ struct WasserTrinkenCard: View {
                                 .foregroundColor(.red)
                         }
                     }
-                }
             }
-            .presentationDetents([.height(350)])
+            .presentationDetents([.medium, .large])
         }
         .fullScreenCover(isPresented: $showGoalDetails) {
             WaterSettingsSheet(goalManager: goalManager)
