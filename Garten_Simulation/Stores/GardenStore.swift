@@ -1861,10 +1861,10 @@ class GardenStore: ObservableObject {
     // MARK: - Screen Time Integration
     func checkScreenTimeExceeded() {
         let sharedDefaults = UserDefaults(suiteName: "group.com.jannik.grovy")
-        guard sharedDefaults?.bool(forKey: "didExceedScreenTime") == true else { return }
+        guard sharedDefaults?.bool(forKey: "screenTimeLimitExceededToday") == true else { return }
         
         // Clear the flag immediately so we don't trigger twice
-        sharedDefaults?.set(false, forKey: "didExceedScreenTime")
+        sharedDefaults?.set(false, forKey: "screenTimeLimitExceededToday")
         sharedDefaults?.synchronize()
         
         let reason = sharedDefaults?.string(forKey: "screenTimeExceededReason") ?? "Bildschirmzeit-Limit überschritten"

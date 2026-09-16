@@ -1,3 +1,15 @@
+## [2026-09-16] - Bugfix: Tages-Score Ernährung Ziel-Synchronisierung
+- **Tages-Score:** Ein schwerer Fehler wurde behoben, bei dem der Tages-Score für die Ernährung (Kalorien) fälschlicherweise das Ziel der Ballaststoffe-Pflanze (30g) als sein eigenes Kalorienziel verwendet hat. Das führte dazu, dass der Tages-Score bei 30 Kalorien bereits als "erledigt" angezeigt wurde. Jetzt greift der Score korrekt auf das Ziel der Gesund-Kochen-Pflanze (z.B. 2000 kcal) zu und synchronisiert sich nahtlos, falls du das Ziel nachträglich in der Pflanze erhöhst.
+- Alle Score-Abfragen greifen nun auf das verlässliche `effectiveHealthMetric` System zu.
+
+## [2026-09-16] - Bugfix: Kalorienstatistik Sichtbarkeit
+- **Gesund Kochen:** Die Kalorienstatistik für die Gewohnheit "Gesund Kochen" (Apfelbaum) wurde wiederhergestellt. Sie war durch das Refactoring der Apple Health Auto-Links versehentlich unsichtbar geworden, da die Zuordnung zu `.energy` fehlte. Dies ist nun behoben. Das automatische Abschließen der Gewohnheit funktioniert nun auch korrekt erst *nach* Erreichen des Tagesziels (und nicht mehr sofort bei 1 kcal).
+
+## [2026-09-16] - Architektur Refactoring & Bugfixes
+- **Compile-Fehler behoben:** `istBewässert` ist nun vollständig eine berechnete (computed) Eigenschaft; alle obsoleten Zuweisungen wurden sicher entfernt.
+- **Auto-Linking Migration:** Das automatische Verknüpfen von Pflanzen mit Apple Health Metriken nutzt nun eine feste Zuordnungstabelle basierend auf `plantID` (anstatt fehleranfälligem String-Matching auf Namen).
+- **Combine Bugfix:** Fehlender `import Combine` in `DailyFeedbackView` ergänzt, sodass Score-Updates wieder korrekt funktionieren.
+
 ## [2026-09-16] - Health Tracking Bugfixes
 - **Wasser Init-Ziel:** Beim Kauf wird jetzt korrekt 2000 ml statt 2 Liter gesetzt.
 - **Kalorien-Ziel:** Berechnung nutzt jetzt das Pflanzenziel (oder 2000 kcal Fallback), nicht mehr max(AppStorage, 1.0) – verhindert sofortiges Abschließen.

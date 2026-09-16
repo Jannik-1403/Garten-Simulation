@@ -251,8 +251,15 @@ class ScreenTimeManager: ObservableObject {
         let status = AuthorizationCenter.shared.authorizationStatus
         self.isAuthorized = status == .approved
         self.isDenied = status == .denied
+        
         if self.isAuthorized {
+            // Wir wenden die Sperren bei jedem App-Start / Status-Check neu an
             applyPermanentBlocks()
+            evaluateSchedulesAndApplyFailsafe()
+        } else {
+            scheduledStore.clearAllSettings()
+            permanentStore.clearAllSettings()
+            dailyLimitStore.clearAllSettings()
         }
     }
     
@@ -353,6 +360,63 @@ class ScreenTimeManager: ObservableObject {
             } catch {
                 print("Failed to schedule activity for weekday \(weekday): \(error)")
             }
+        }
+        
+        evaluateSchedulesAndApplyFailsafe()
+    }
+    
+    /// Failsafe: Manually checks if a block schedule is CURRENTLY active, and applies the shield immediately.
+    /// This bypasses Apple's lazy DeviceActivityMonitorExtension triggers when setting limits retroactively.
+    private func evaluateSchedulesAndApplyFailsafe() {
+        guard isScheduleActive else {
+            scheduledStore.shield.applications = nil
+            scheduledStore.shield.applicationCategories = nil
+            scheduledStore.shield.webDomains = nil
+            scheduledStore.shield.webDomainCategories = nil
+            let defaults = UserDefaults(suiteName: SharedUserDefaults.suiteName)
+            defaults?.set(false, forKey: "screenTimeBlockCurrentlyActive")
+            return
+        }
+        
+        let calendar = Calendar.current
+        let now = Date()
+        let weekday = calendar.component(.weekday, from: now)
+        let hour = calendar.component(.hour, from: now)
+        let minute = calendar.component(.minute, from: now)
+        let currentMinutes = hour * 60 + minute
+        
+        var isCurrentlyBlocked = false
+        
+        if let schedule = daySchedules[weekday], schedule.isActive {
+            let startMins = schedule.startHour * 60 + schedule.startMinute
+            let endMins = schedule.endHour * 60 + schedule.endMinute
+            
+            if startMins <= endMins {
+                if currentMinutes >= startMins && currentMinutes < endMins {
+                    isCurrentlyBlocked = true
+                }
+            } else {
+                // Over midnight schedule (e.g. 22:00 to 06:00)
+                if currentMinutes >= startMins || currentMinutes < endMins {
+                    isCurrentlyBlocked = true
+                }
+            }
+        }
+        
+        if isCurrentlyBlocked {
+            scheduledStore.shield.applications = blockSelection.applicationTokens
+            scheduledStore.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(blockSelection.categoryTokens)
+            scheduledStore.shield.webDomains = blockSelection.webDomainTokens
+            scheduledStore.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(blockSelection.categoryTokens)
+            let defaults = UserDefaults(suiteName: SharedUserDefaults.suiteName)
+            defaults?.set(true, forKey: "screenTimeBlockCurrentlyActive")
+        } else {
+            scheduledStore.shield.applications = nil
+            scheduledStore.shield.applicationCategories = nil
+            scheduledStore.shield.webDomains = nil
+            scheduledStore.shield.webDomainCategories = nil
+            let defaults = UserDefaults(suiteName: SharedUserDefaults.suiteName)
+            defaults?.set(false, forKey: "screenTimeBlockCurrentlyActive")
         }
     }
     
