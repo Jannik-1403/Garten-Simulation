@@ -1173,3 +1173,7 @@
 - Fully fixed the token identity issue that caused daily limits to reset when re-saving settings.
 
 - Pro-Widget umgebaut: Zeigt nun die wichtigsten To-Dos anstelle von Routinen an (inkl. Unterstützung für das kleine Widget).
+
+- Fix: Wasser-Wert resettet sich nun am neuen Tag korrekt (Fetch on active scene phase)
+- Fix: Bonus-Wasser für Kraftsport/Ausdauer wird nun auch bei manuellem Ziel addiert
+- Fix: UI-Buttons für das Wasser-Hinzufügen und Ziel-Speichern als 3D-Buttons angepasst und Sheet-Layout optimiert

@@ -1946,7 +1946,7 @@ extension GardenStore {
             // Wert für heute holen
             healthManager.fetchValue(for: metric) { [weak self] currentValue in
                 DispatchQueue.main.async {
-                    if currentValue >= target {
+                    if currentValue > 0 && currentValue >= target {
                         // Pflanze gießen
                         self?.giessen(pflanze: pflanze)
                     }
