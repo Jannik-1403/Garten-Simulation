@@ -310,7 +310,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             "plant.lotus": .mindfulness,
             "plant.lavendel": .sleep,
             "plant.erdbeerpflanze": .fiber,
-            "plant.zitronenbaum": .water
+            "plant.zitronenbaum": .water,
+            "plant.apfelbaum": .energy
         ]
         
         if let metric = mapping[plantID.lowercased()] {
