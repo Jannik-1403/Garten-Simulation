@@ -196,7 +196,9 @@ class DailyFeedbackViewModel: ObservableObject {
                     scoreForCategory = fb.status == .good ? 100 : 0
                 } else {
                     // Kontinuierliche Aufgaben: Nutze exakten prozentualen Fortschritt (max 100%)
-                    let pct = fb.goal > 0 ? (fb.progress / fb.goal) : 0
+                    let progress = fb.progress ?? 0
+                    let goal = fb.goal ?? 0
+                    let pct = goal > 0 ? (progress / goal) : 0
                     scoreForCategory = min(100.0, pct * 100.0)
                 }
                 
