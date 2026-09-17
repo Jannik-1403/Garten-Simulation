@@ -50,6 +50,7 @@ struct LebenDetailView: View {
                                 withAnimation {
                                     gardenStore.leben += 1
                                 }
+                                gardenStore.saveStats()
                             }
                         }) {
                             HStack {
