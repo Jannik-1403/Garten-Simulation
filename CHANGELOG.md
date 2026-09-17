@@ -1240,3 +1240,7 @@
 - **Bugfixes:** Die Kochen-Gewohnheit wird nun nicht mehr verfrüht durch Standard-Kalorienziele abgehakt, solange das persönliche Kalorienziel noch nicht gesetzt wurde.
 
 - **Bugfixes:** Die Tageszusammenfassung (Daily Feedback) bewertet Gesundheitsziele für Ernährung erst als erledigt, wenn man im Setup sein Ziel festgelegt hat.
+
+- **UI/UX:** Im Shop werden schlechte Gewohnheiten nicht mehr fälschlicherweise als 'Deko' oder 'Brunnen' getarnt, sondern zeigen direkt ihren echten Namen an (z. B. 'Fastfood gegessen').
+
+- **Bugfixes:** Man kann das Kalorien-Setup ('Daten & Kalorien') nun erst dann mit 'Fertig' abschließen, wenn man wirklich alle nötigen Daten eingegeben hat.

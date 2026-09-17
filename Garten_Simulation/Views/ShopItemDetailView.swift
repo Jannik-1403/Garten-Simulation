@@ -74,7 +74,7 @@ struct ShopItemDetailView: View {
                                 .font(.system(size: 26, weight: .bold, design: .rounded))
                             
                             let currentSubtitleKey = (settings.showHabitInsteadOfName && payload.habitTitleKey != nil) ? payload.titleKey : payload.subtitle
-                            if !currentSubtitleKey.isEmpty {
+                            if !currentSubtitleKey.isEmpty && currentSubtitleKey != currentTitleKey {
                                 Text(NSLocalizedString(currentSubtitleKey, comment: ""))
                                     .font(.system(size: 15))
                                     .foregroundStyle(.secondary)
