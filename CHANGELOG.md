@@ -1230,3 +1230,5 @@
 - **Bildschirmzeit-Bug (Gute Gewohnheit):** Einen kritischen Fehler behoben, bei dem die Überschreitung des Bildschirmzeit-Limits fälschlicherweise auch eine **gute Gewohnheit** im Hintergrund hinzugefügt hat. Dieser alte Code wurde restlos entfernt und eventuell fälschlich erstellte Pflanzen werden beim nächsten App-Start automatisch aufgeräumt.
 - **Leben-System Bugfix:** Behoben, dass beim Nachkaufen von Leben für 500 Coins der neue Lebensstand beim Schließen der App nicht in der Datenbank gespeichert wurde.
 - **Tages-Score Anzeige (Krafttraining):** Das 'Vor X Tagen'-Label wird nun ausgeblendet, wenn man gestern Sport gemacht hat. Es erscheint erst wieder ab 2 Tagen Inaktivität.
+
+- **HealthKit Onboarding:** HealthKit wird nun erst abgefragt, wenn der Nutzer zum ersten Mal auf eine Gewohnheit klickt, anstatt direkt beim Starten der App.

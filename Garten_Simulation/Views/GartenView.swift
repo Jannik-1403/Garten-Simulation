@@ -338,6 +338,7 @@ struct GartenView: View {
                     DailyHealthScoreCard()
                         .padding(.vertical, 8)
                         .frame(maxWidth: 850)
+                        .tourAnchor(.dailyRingIntro)
                 }
 
                 xpMultiplierSection

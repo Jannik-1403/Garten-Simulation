@@ -147,6 +147,7 @@ struct AppRootView: View {
     var body: some View {
         ZStack {
             ContentView()
+                .opacity(!settingsStore.onboardingAbgeschlossen ? 0 : 1)
                 .environmentObject(container.gardenStore)
                 .environmentObject(container.shopStore)
                 .environmentObject(container.settingsStore)

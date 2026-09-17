@@ -464,6 +464,14 @@ struct PflanzeDetailSheet: View {
                 withAnimation(.spring()) {
                     if newStep == .focusTimer {
                         proxy.scrollTo(TourStep.focusTimer, anchor: .bottom)
+                    } else if newStep == .plantHealth {
+                        proxy.scrollTo(TourStep.plantHealth, anchor: .bottom)
+                    } else if newStep == .plantNotes {
+                        proxy.scrollTo(TourStep.plantNotes, anchor: .center)
+                    } else if newStep == .plantTodos {
+                        proxy.scrollTo(TourStep.plantTodos, anchor: .center)
+                    } else if newStep == .plantTimer {
+                        proxy.scrollTo(TourStep.plantTimer, anchor: .center)
                     }
                 }
             }
