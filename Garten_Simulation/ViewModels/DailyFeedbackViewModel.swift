@@ -1,4 +1,4 @@
-import Foundation
+ import Foundation
 import Combine
 import SwiftUI
 
@@ -134,6 +134,8 @@ class DailyFeedbackViewModel: ObservableObject {
         }
 
         let hasSetGoals = UserDefaults.standard.bool(forKey: "has_set_nutrition_goals")
+        let isGoalValid = hm.weightGoalType != 0 && hm.weightGoalTargetKg > 0 && hm.weightGoalDateInterval > 0
+        let showNutrition = hasSetGoals && isGoalValid
         
         let input = FeedbackScoringEngine.EvaluationInput(
             hasWaterPlant: hasWaterPlant,
@@ -161,9 +163,9 @@ class DailyFeedbackViewModel: ObservableObject {
             strengthGoalMinutes: strengthGoalMinutes,
             stepsToday: hm.todaysSteps,
             stepsGoal: stepsGoal,
-            energyToday: hasSetGoals ? hm.todaysEnergy : 0.0,
+            energyToday: showNutrition ? hm.todaysEnergy : 0.0,
             energyGoal: energyGoal > 0 ? energyGoal : 2000.0,
-            proteinToday: hasSetGoals ? hm.todaysProtein : 0.0,
+            proteinToday: showNutrition ? hm.todaysProtein : 0.0,
             proteinGoal: proteinGoal > 0 ? proteinGoal : 120.0,
             fiberToday: hm.todaysFiber,
             fiberGoal: fiberGoal,

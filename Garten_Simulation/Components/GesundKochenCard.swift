@@ -37,10 +37,14 @@ struct GesundKochenCard: View {
         return Int((e + p + c + f) / 4.0 * 100)
     }
     
+    private var isGoalValid: Bool {
+        return healthManager.weightGoalType != 0 && healthManager.weightGoalTargetKg > 0 && healthManager.weightGoalDateInterval > 0
+    }
+    
     var body: some View {
         VStack(spacing: 16) {
             if healthManager.isAuthorized {
-                if !hasSetGoals {
+                if !hasSetGoals || !isGoalValid {
                     VStack(spacing: 12) {
                         Text(String(localized: "habit.cook.setup_title", defaultValue: "Ernährungsziel festlegen"))
                             .font(.headline)

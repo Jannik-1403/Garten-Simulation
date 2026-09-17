@@ -58,8 +58,10 @@ struct PflanzenCard: View {
         
         // Kalorien/Gesund Kochen
         if metric == .energy {
+            let hm = HealthManager.shared
+            let isGoalValid = hm.weightGoalType != 0 && hm.weightGoalTargetKg > 0 && hm.weightGoalDateInterval > 0
             let hasSetGoals = UserDefaults.standard.bool(forKey: "has_set_nutrition_goals")
-            guard hasSetGoals else { return 0.0 }
+            guard hasSetGoals && isGoalValid else { return 0.0 }
             
             let goal = pflanze.healthTarget ?? (goalEnergy > 0 ? goalEnergy : 2000.0)
             return min(1.0, max(0.0, healthManager.todaysEnergy / goal))

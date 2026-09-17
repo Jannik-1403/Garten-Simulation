@@ -220,13 +220,14 @@ struct CalorieCalculationSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    let isGoalValid = hm.weightGoalType != 0 && hm.weightGoalTargetKg > 0 && hm.weightGoalDateInterval > 0
                     Button(String(localized: "common.done", defaultValue: "Fertig")) {
                         saveManualInputs()
                         UserDefaults.standard.set(true, forKey: "has_set_nutrition_goals")
                         dismiss()
                     }
                     .fontWeight(.bold)
-                    .disabled(recommendedEnergy == nil)
+                    .disabled(recommendedEnergy == nil || !isGoalValid)
                 }
             }
             .onAppear {
