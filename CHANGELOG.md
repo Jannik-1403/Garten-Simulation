@@ -1234,3 +1234,5 @@
 - **HealthKit Onboarding:** HealthKit wird nun erst abgefragt, wenn der Nutzer zum ersten Mal auf eine Gewohnheit klickt, anstatt direkt beim Starten der App.
 
 - **Bugfixes:** Das UI flackert nicht mehr beim App-Start vor dem Onboarding auf. Die interaktive App-Tour scrollt nun in den Detailansichten (z.B. HealthKit) korrekt nach unten und findet den Tagesfortschritt-Score.
+
+- **Features:** In der GesundKochenCard muss man nun zuerst sein Kalorien-/Ernährungsziel festlegen, bevor die Statistik angezeigt wird.
