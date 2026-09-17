@@ -133,6 +133,8 @@ class DailyFeedbackViewModel: ObservableObject {
             isCleaningTaskDone = false
         }
 
+        let hasSetGoals = UserDefaults.standard.bool(forKey: "has_set_nutrition_goals")
+        
         let input = FeedbackScoringEngine.EvaluationInput(
             hasWaterPlant: hasWaterPlant,
             hasSleepPlant: hasSleepPlant,
@@ -159,9 +161,9 @@ class DailyFeedbackViewModel: ObservableObject {
             strengthGoalMinutes: strengthGoalMinutes,
             stepsToday: hm.todaysSteps,
             stepsGoal: stepsGoal,
-            energyToday: hm.todaysEnergy,
+            energyToday: hasSetGoals ? hm.todaysEnergy : 0.0,
             energyGoal: energyGoal > 0 ? energyGoal : 2000.0,
-            proteinToday: hm.todaysProtein,
+            proteinToday: hasSetGoals ? hm.todaysProtein : 0.0,
             proteinGoal: proteinGoal > 0 ? proteinGoal : 120.0,
             fiberToday: hm.todaysFiber,
             fiberGoal: fiberGoal,
