@@ -295,6 +295,8 @@ class GardenStore: ObservableObject {
     
     // MARK: Pflanze gießen
     func giessen(pflanze: HabitModel, fromRoutine: Bool = false) {
+        HealthManager.shared.requestAuthorizationIfNeeded()
+        
         // Synchronous idempotency check to prevent race conditions
         guard !pflanze.istBewässert else { return }
 

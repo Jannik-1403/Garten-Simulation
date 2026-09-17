@@ -186,6 +186,13 @@ class HealthManager: ObservableObject {
         UserDefaults.standard.set(false, forKey: "HealthKitAuthRequested")
     }
     
+    func requestAuthorizationIfNeeded() {
+        let hasRequested = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested")
+        if !hasRequested {
+            requestAuthorization()
+        }
+    }
+    
     func requestAuthorization() {
         guard HKHealthStore.isHealthDataAvailable() else {
             print("HealthKit ist auf diesem Gerät nicht verfügbar.")

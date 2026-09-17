@@ -510,7 +510,10 @@ struct GartenView: View {
         let isFirst = pflanze.id == gardenStore.sichtbarePflanzen.first?.id
         PflanzenCard(
             pflanze: pflanze,
-            onTap: { ausgewaehltePflanze = pflanze }
+            onTap: {
+                HealthManager.shared.requestAuthorizationIfNeeded()
+                ausgewaehltePflanze = pflanze
+            }
         )
         .accessibilityIdentifier("habit_\(pflanze.name)")
         .tourAnchor(.intro, condition: isFirst)

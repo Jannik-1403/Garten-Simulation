@@ -175,6 +175,8 @@ class NutrientIndexManager: ObservableObject {
     // Daten abfragen
     func fetchAllNutrients() {
         guard HKHealthStore.isHealthDataAvailable() else { return }
+        let hasRequested = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested")
+        guard hasRequested else { return }
         
         var typesToRead: Set<HKObjectType> = []
         for v in vitamins { if let t = HKObjectType.quantityType(forIdentifier: v.hkType) { typesToRead.insert(t) } }
