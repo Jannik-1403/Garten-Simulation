@@ -244,17 +244,17 @@ struct FeedbackScoringEngine {
             
             switch strengthStatus {
             case .good:
-                strengthSummary = days == 0
+                strengthSummary = days <= 1
                     ? "\(minStr) ✓"
                     : "\(minStr) \(daysAgoStr) ✓"
                 strengthDetail = String(localized: "fitness.strength.detail.good",
                                         defaultValue: "Nettes Krafttraining, weiter so! Dein Training liegt voll im Zeitplan.")
             case .warning:
-                strengthSummary = days == 0 ? minStr : "\(minStr) \(daysAgoStr)"
+                strengthSummary = days <= 1 ? minStr : "\(minStr) \(daysAgoStr)"
                 strengthDetail = String(localized: "fitness.strength.detail.warning",
                                         defaultValue: "Dein letztes Training ist schon etwas her. Plane diese Woche noch eine Krafteinheit ein, um dranzubleiben.")
             default:
-                strengthSummary = days == 0 ? minStr : "\(minStr) \(daysAgoStr)"
+                strengthSummary = days <= 1 ? minStr : "\(minStr) \(daysAgoStr)"
                 strengthDetail = String(format: String(localized: "feedbackTrainingInaktiv",
                                                        defaultValue: "Letztes Krafttraining vor %lld Tagen. Plane heute eine Einheit ein."),
                                         days)
