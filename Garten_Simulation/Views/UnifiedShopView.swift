@@ -251,7 +251,7 @@ struct UnifiedShopView: View {
                                                 icon: item.sfSymbol,
                                                 accentColor: .orange,
                                                 shadowColor: .orange.darker(),
-                                                name: settings.showHabitInsteadOfName ? item.habitNameKey : item.objectNameKey,
+                                                name: item.habitNameKey,
                                                 subtitle: item.habitDescriptionKey,
                                                 price: item.price,
                                                 badgeText: isOwned ? String(localized: "shop.owned") : nil,
@@ -259,15 +259,15 @@ struct UnifiedShopView: View {
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: item.id,
-                                                        titleKey: item.objectNameKey,
-                                                        subtitle: item.habitNameKey,
+                                                        titleKey: item.habitNameKey,
+                                                        subtitle: "",
                                                         descriptionKey: item.habitDescriptionKey,
                                                         price: item.price,
                                                         icon: item.sfSymbol,
                                                         colorHex: "#FF991A", // orangePrimary
                                                         symbolColor: "orange",
                                                         shadowColorHex: "#D9660D", // orangeSecondary
-                                                        tag: "DEKO",
+                                                        tag: nil,
                                                         itemType: .decoration,
                                                         habitTitleKey: item.habitNameKey,
                                                         habitDescriptionKey: item.habitDescriptionKey

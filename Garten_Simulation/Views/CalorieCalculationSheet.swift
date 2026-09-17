@@ -226,6 +226,7 @@ struct CalorieCalculationSheet: View {
                         dismiss()
                     }
                     .fontWeight(.bold)
+                    .disabled(recommendedEnergy == nil)
                 }
             }
             .onAppear {

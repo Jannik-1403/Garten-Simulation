@@ -1238,3 +1238,5 @@
 - **Features:** In der GesundKochenCard muss man nun zuerst sein Kalorien-/Ernährungsziel festlegen, bevor die Statistik angezeigt wird.
 
 - **Bugfixes:** Die Kochen-Gewohnheit wird nun nicht mehr verfrüht durch Standard-Kalorienziele abgehakt, solange das persönliche Kalorienziel noch nicht gesetzt wurde.
+
+- **Bugfixes:** Die Tageszusammenfassung (Daily Feedback) bewertet Gesundheitsziele für Ernährung erst als erledigt, wenn man im Setup sein Ziel festgelegt hat.

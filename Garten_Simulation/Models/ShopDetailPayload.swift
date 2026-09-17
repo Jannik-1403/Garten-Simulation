@@ -96,14 +96,15 @@ extension ShopDetailPayload {
     static func from(decoration: DecorationItem) -> ShopDetailPayload {
         ShopDetailPayload(
             id: decoration.id,
-            titleKey: decoration.objectNameKey,
-            subtitle: String(localized: "decoration.info.title", defaultValue: "Schlechte Gewohnheiten"),
+            titleKey: decoration.habitNameKey,
+            subtitle: "",
             descriptionKey: decoration.habitDescriptionKey,
             price: decoration.price,
             icon: decoration.sfSymbol,
             colorHex: "#9B59B6", // Default purple
             symbolColor: "purple",
             shadowColorHex: "#8E44AD",
+            tag: nil,
             minGartenLevel: decoration.minGartenLevel,
             itemType: .decoration,
             habitTitleKey: decoration.habitNameKey,
