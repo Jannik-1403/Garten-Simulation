@@ -1232,3 +1232,5 @@
 - **Tages-Score Anzeige (Krafttraining):** Das 'Vor X Tagen'-Label wird nun ausgeblendet, wenn man gestern Sport gemacht hat. Es erscheint erst wieder ab 2 Tagen Inaktivität.
 
 - **HealthKit Onboarding:** HealthKit wird nun erst abgefragt, wenn der Nutzer zum ersten Mal auf eine Gewohnheit klickt, anstatt direkt beim Starten der App.
+
+- **Bugfixes:** Das UI flackert nicht mehr beim App-Start vor dem Onboarding auf. Die interaktive App-Tour scrollt nun in den Detailansichten (z.B. HealthKit) korrekt nach unten und findet den Tagesfortschritt-Score.

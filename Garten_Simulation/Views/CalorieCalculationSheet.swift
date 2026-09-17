@@ -222,6 +222,7 @@ struct CalorieCalculationSheet: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(String(localized: "common.done", defaultValue: "Fertig")) {
                         saveManualInputs()
+                        UserDefaults.standard.set(true, forKey: "has_set_nutrition_goals")
                         dismiss()
                     }
                     .fontWeight(.bold)
