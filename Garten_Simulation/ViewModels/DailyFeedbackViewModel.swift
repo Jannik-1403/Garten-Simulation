@@ -175,20 +175,34 @@ class DailyFeedbackViewModel: ObservableObject {
         issueFeedbacks = feedbacks.filter { $0.status != CategoryStatus.unavailable }
         headerText = FeedbackScoringEngine.headerText(from: feedbacks)
 
-        // Tages-Score berechnen (Good = 100, Warning = 50, Critical = 0)
+        // Tages-Score berechnen (Präzise Berechnung auf Basis des tatsächlichen Fortschritts)
         let availableFeedbacks = feedbacks.filter { $0.status != CategoryStatus.unavailable }
         if availableFeedbacks.isEmpty {
             dailyScore = 0
         } else {
-            let total = availableFeedbacks.reduce(0) { sum, fb in
-                switch fb.status {
-                case .good: return sum + 100
-                case .warning: return sum + 50
-                case .critical: return sum + 0
-                case .unavailable: return sum
+            let total = availableFeedbacks.reduce(0.0) { sum, fb in
+                var scoreForCategory: Double = 0
+                
+                if fb.category == .strength {
+                    // Krafttraining basiert auf Tagen (Status) um Ruhetage nicht abzustrafen
+                    switch fb.status {
+                    case .good: scoreForCategory = 100
+                    case .warning: scoreForCategory = 50
+                    case .critical: scoreForCategory = 0
+                    case .unavailable: scoreForCategory = 0
+                    }
+                } else if fb.category == .cleaning || fb.category == .gratitude {
+                    // Binäre Aufgaben: 100% wenn gut (erledigt), sonst 0%
+                    scoreForCategory = fb.status == .good ? 100 : 0
+                } else {
+                    // Kontinuierliche Aufgaben: Nutze exakten prozentualen Fortschritt (max 100%)
+                    let pct = fb.goal > 0 ? (fb.progress / fb.goal) : 0
+                    scoreForCategory = min(100.0, pct * 100.0)
                 }
+                
+                return sum + scoreForCategory
             }
-            dailyScore = total / availableFeedbacks.count
+            dailyScore = Int(total / Double(availableFeedbacks.count))
         }
 
         // Primären Key für FeedbackStore bestimmen (schlechteste Kategorie)

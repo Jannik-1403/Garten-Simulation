@@ -811,36 +811,6 @@ class GardenStore: ObservableObject {
         
         if heuteStart > letztesProcessedTag {
             UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "screenTimeLastProcessedDate")
-            
-            let screenTimeLimitExceeded = SharedUserDefaults.suite.bool(forKey: "screenTimeLimitExceededToday")
-            if screenTimeLimitExceeded {
-                // Bad habit log
-                if let badHabit = pflanzen.first(where: { $0.id == "bad_habit_screen_time" || $0.plantID == "trash.junk_mail_abo" }) {
-                    let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
-                    badHabitExecutions[badHabit.id, default: []].append(execution)
-                } else {
-                    let bad = HabitModel(
-                        id: "bad_habit_screen_time",
-                        name: String(localized: "trash.junk_mail_abo.name", defaultValue: "Zuviel Bildschirmzeit"),
-                        symbolName: "hourglass.bottomhalf.filled",
-                        symbolColor: "red",
-                        habitCategory: .health,
-                        symbolism: String(localized: "bad_habit.screen_time.desc", defaultValue: "Rückfall"),
-                        habitName: String(localized: "trash.junk_mail_abo.name", defaultValue: "Zuviel Bildschirmzeit"),
-                        maxLevel: 10,
-                        xpPerCompletion: 0,
-                        waterNeedPerDay: 0,
-                        decayDays: 0,
-                        plantID: "trash.junk_mail_abo",
-                        isNegative: true
-                    )
-                    pflanzen.append(bad)
-                    let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
-                    badHabitExecutions[bad.id, default: []].append(execution)
-                }
-            }
-            // Reset the limit for the new day
-            SharedUserDefaults.suite.set(false, forKey: "screenTimeLimitExceededToday")
         }
         
         // --- Tracker Auto-Reset ---
@@ -1487,8 +1457,10 @@ class GardenStore: ObservableObject {
                     pflanze.xpPerCompletion = 100
                 }
             }
+            // Reparatur: Entferne veraltete "Zu viel Bildschirmzeit"-Pflanzen (die versehentlich als gute Gewohnheiten angelegt wurden)
+            let cleanedPflanzen = decoded.filter { $0.id != "bad_habit_screen_time" && $0.plantID != "trash.junk_mail_abo" }
             
-            pflanzen = decoded
+            pflanzen = cleanedPflanzen
             
             // Delete legacy custom screen time tracker if it exists
             if pflanzen.contains(where: { $0.id == "screen_time_tracker" }) {
