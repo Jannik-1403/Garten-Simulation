@@ -137,6 +137,36 @@ class DailyFeedbackViewModel: ObservableObject {
         let isGoalValid = hm.weightGoalType != 0 && hm.weightGoalTargetKg > 0 && hm.weightGoalDateInterval > 0
         let showNutrition = hasSetGoals && isGoalValid
         
+        func getManualOrHealth(plant: HabitModel?, healthValue: Double, goal: Double) -> Double {
+            if let p = plant, p.effectiveHealthMetric == nil {
+                let todaysManualProgress = p.intradayProgressHistory
+                    .filter { Calendar.current.isDateInToday($0.timestamp) }
+                    .last?.progress ?? 0.0
+                if todaysManualProgress > 0 {
+                    return todaysManualProgress * goal
+                }
+            }
+            return healthValue
+        }
+        
+        let proteinPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .protein })
+        
+        let effectiveStrength = getManualOrHealth(plant: strengthPlant, healthValue: hm.todaysStrengthTraining, goal: strengthGoalMinutes)
+        let effectiveSteps = getManualOrHealth(plant: runningPlant, healthValue: hm.todaysSteps, goal: stepsGoal)
+        let effectiveEnergy = getManualOrHealth(plant: energyPlant, healthValue: hm.todaysEnergy, goal: energyGoal > 0 ? energyGoal : 2000.0)
+        let effectiveProtein = getManualOrHealth(plant: proteinPlant, healthValue: hm.todaysProtein, goal: proteinGoal > 0 ? proteinGoal : 120.0)
+        let effectiveFiber = getManualOrHealth(plant: fiberPlant, healthValue: hm.todaysFiber, goal: fiberGoal)
+        
+        var effectiveStrengthDaysAgo = strengthDaysAgo
+        if let p = strengthPlant, p.effectiveHealthMetric == nil {
+            let todaysManualProgress = p.intradayProgressHistory
+                .filter { Calendar.current.isDateInToday($0.timestamp) }
+                .last?.progress ?? 0.0
+            if todaysManualProgress > 0 {
+                effectiveStrengthDaysAgo = 0
+            }
+        }
+        
         let input = FeedbackScoringEngine.EvaluationInput(
             hasWaterPlant: hasWaterPlant,
             hasSleepPlant: hasSleepPlant,
@@ -157,17 +187,17 @@ class DailyFeedbackViewModel: ObservableObject {
             sleepRegularity: hm.sleepRegularityPercentage,
             sleepAvgBedtimeString: hm.sleepAvgBedtimeString,
             sleepTargetWakeUpString: hm.sleepTargetWakeUpString,
-            strengthDaysAgo: strengthDaysAgo,
+            strengthDaysAgo: effectiveStrengthDaysAgo,
             hasStrengthHistory: hm.hasAnyWorkoutHistory,
-            strengthTodayMinutes: hm.todaysStrengthTraining,
+            strengthTodayMinutes: effectiveStrength,
             strengthGoalMinutes: strengthGoalMinutes,
-            stepsToday: hm.todaysSteps,
+            stepsToday: effectiveSteps,
             stepsGoal: stepsGoal,
-            energyToday: showNutrition ? hm.todaysEnergy : 0.0,
+            energyToday: showNutrition ? effectiveEnergy : 0.0,
             energyGoal: energyGoal > 0 ? energyGoal : 2000.0,
-            proteinToday: showNutrition ? hm.todaysProtein : 0.0,
+            proteinToday: showNutrition ? effectiveProtein : 0.0,
             proteinGoal: proteinGoal > 0 ? proteinGoal : 120.0,
-            fiberToday: hm.todaysFiber,
+            fiberToday: effectiveFiber,
             fiberGoal: fiberGoal,
             worstMineralName: worstMineral?.name,
             worstMineralScore: worstMineral?.score ?? 100,

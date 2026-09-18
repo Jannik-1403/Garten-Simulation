@@ -753,46 +753,43 @@ struct PflanzeDetailSheet: View {
                                                 }
                                                 
                                             } else {
-                                                // Unlinked State
-                                                VStack(spacing: 8) {
-                                                    Image(systemName: "heart.slash")
-                                                        .font(.system(size: 32))
-                                                        .foregroundStyle(.secondary)
-                                                    Text(String(localized: "apple.health.unlinked_message", defaultValue: "Apple Health Synchronisation ist deaktiviert."))
-                                                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                                                        .foregroundStyle(.secondary)
-                                                        .multilineTextAlignment(.center)
-                                                    
-                                                    Button {
-                                                        pflanze.isAppleHealthUnlinked = false
-                                                        if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
-                                                            pflanze.linkedHealthMetric = .steps
+                                                // Unlinked State (3D Button)
+                                                HStack {
+                                                    Spacer()
+                                                    Item3DButton(
+                                                        farbe: .red,
+                                                        sekundaerFarbe: Color.red.opacity(0.8),
+                                                        groesse: 64,
+                                                        isRectangular: false,
+                                                        aktion: {
+                                                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                                            pflanze.isAppleHealthUnlinked = false
+                                                            if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
+                                                                pflanze.linkedHealthMetric = .steps
+                                                            }
+                                                            
+                                                            pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+                                                            gardenStore.savePlants()
+                                                            
+                                                            if let m = pflanze.effectiveHealthMetric {
+                                                                healthManager.fetchHourlyData(for: m) { data in self.hourlyHealthData = data }
+                                                                healthManager.fetchWeeklyAverage(for: m) { avg in self.weeklyHealthAverage = avg }
+                                                                healthManager.fetchHourlyWeeklyAverage(for: m) { avg in self.hourlyAvgData = avg }
+                                                            }
+                                                            
+                                                            Task {
+                                                                let safeParams: [String: String] = ["enabled": "true"]
+                                                                TelemetryDeck.signal("health_integration_toggled", parameters: safeParams)
+                                                            }
                                                         }
-                                                        
-                                                        // Entferne manuelle Überschreibungen von heute, damit sofort wieder HealthKit genutzt wird
-                                                        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
-                                                        
-                                                        gardenStore.savePlants()
-                                                        
-                                                        // Refresh data
-                                                        if let m = pflanze.effectiveHealthMetric {
-                                                            healthManager.fetchHourlyData(for: m) { data in self.hourlyHealthData = data }
-                                                            healthManager.fetchWeeklyAverage(for: m) { avg in self.weeklyHealthAverage = avg }
-                                                            healthManager.fetchHourlyWeeklyAverage(for: m) { avg in self.hourlyAvgData = avg }
-                                                        }
-                                                        
-                                                        Task {
-                                                            let safeParams: [String: String] = ["enabled": "true"]
-                                                            TelemetryDeck.signal("health_integration_toggled", parameters: safeParams)
-                                                        }
-                                                    } label: {
-                                                        Text(String(localized: "apple.health.link", defaultValue: "Mit Apple Health verbinden"))
-                                                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                                                            .foregroundStyle(Color.blauPrimary)
+                                                    ) {
+                                                        Image(systemName: "heart.fill")
+                                                            .font(.system(size: 24, weight: .bold))
+                                                            .foregroundStyle(.white)
                                                     }
-                                                    .padding(.top, 4)
+                                                    Spacer()
                                                 }
-                                                .padding(.vertical, 24)
+                                                .padding(.vertical, 16)
                                             }
                                                 }
                             }
