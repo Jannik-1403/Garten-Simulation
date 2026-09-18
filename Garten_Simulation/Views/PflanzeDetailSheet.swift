@@ -753,14 +753,21 @@ struct PflanzeDetailSheet: View {
                                                 }
                                                 
                                             } else {
-                                                // Unlinked State (3D Button)
-                                                HStack {
+                                                // Unlinked State Card
+                                                HStack(spacing: 16) {
+                                                    VStack(alignment: .leading, spacing: 4) {
+                                                        Text(String(localized: "apple.health.link", defaultValue: "Mit Apple Health verbinden"))
+                                                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                        Text(String(localized: "apple.health.unlinked_message", defaultValue: "Apple Health Synchronisation ist deaktiviert."))
+                                                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                                                            .foregroundStyle(.secondary)
+                                                    }
                                                     Spacer()
                                                     Item3DButton(
                                                         farbe: .red,
                                                         sekundaerFarbe: Color.red.opacity(0.8),
-                                                        groesse: 64,
-                                                        isRectangular: false,
+                                                        groesse: 48,
+                                                        isRectangular: true,
                                                         aktion: {
                                                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                                                             pflanze.isAppleHealthUnlinked = false
@@ -783,13 +790,16 @@ struct PflanzeDetailSheet: View {
                                                             }
                                                         }
                                                     ) {
-                                                        Image(systemName: "heart.fill")
-                                                            .font(.system(size: 24, weight: .bold))
+                                                        Image(systemName: "heart.text.square.fill")
+                                                            .font(.system(size: 24, weight: .medium))
                                                             .foregroundStyle(.white)
                                                     }
-                                                    Spacer()
                                                 }
-                                                .padding(.vertical, 16)
+                                                .padding(16)
+                                                .background(Color.white)
+                                                .cornerRadius(16)
+                                                .padding(.horizontal, 16)
+                                                .padding(.vertical, 8)
                                             }
                                                 }
                             }

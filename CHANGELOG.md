@@ -1244,3 +1244,10 @@
 - **UI/UX:** Im Shop werden schlechte Gewohnheiten nicht mehr fälschlicherweise als 'Deko' oder 'Brunnen' getarnt, sondern zeigen direkt ihren echten Namen an (z. B. 'Fastfood gegessen').
 
 - **Bugfixes:** Man kann das Kalorien-Setup ('Daten & Kalorien') nun erst dann mit 'Fertig' abschließen, wenn man wirklich alle nötigen Daten eingegeben hat.
+
+- **UX:** Das Ernährungsziel verlangt ab sofort *zwingend* ein Zielgewicht und ein Zieldatum, bevor die Statistik freigeschaltet wird.
+- Added DragGesture in PflanzenCard to allow manual slider movement for Apple Health habits that have been unlinked/disabled.
+- Fixed manual slider for unlinked habits: dragging to 100% now checks off the habit, and intermediate values are saved and displayed correctly in the habit detail sheet.
+- Improved unlinked Apple Health habit UI in detail sheet (replaced text with 3D button)
+- Manual slider progress for habits like nutrition, strength, etc. is now accurately reflected in the Daily Score when Apple Health is unlinked
+- Unlinked-Ansicht bei Gewohnheiten auf eine weiße Karte mit dem korrekten Apple-Health-Icon aktualisiert.
