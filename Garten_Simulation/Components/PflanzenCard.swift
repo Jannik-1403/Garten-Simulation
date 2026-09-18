@@ -291,6 +291,28 @@ struct PflanzenCard: View {
             progressColor: Color.gruenPrimary.opacity(0.3),
             onIsPressedChange: nil
         ))
+        .highPriorityGesture(
+            DragGesture(minimumDistance: 25)
+                .onChanged { value in
+                    guard healthProgress == nil, !pflanze.istBewässert, !pflanze.isDead else { return }
+                    if !isDragging { isDragging = true }
+                    let startX = pflanze.sliderProgress * maxDragWidth
+                    dragWidth = startX + value.translation.width
+                }
+                .onEnded { value in
+                    guard isDragging else { return }
+                    isDragging = false
+                    let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
+                    if finalProgress >= 1.0 {
+                        triggerWatering()
+                    } else {
+                        pflanze.sliderProgress = finalProgress
+                        if isHapticEnabled {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        }
+                    }
+                }
+        )
         .allowsHitTesting(true)
         .onChange(of: healthProgress) { _, newProgress in
             if let p = newProgress, p >= 1.0, !pflanze.istBewässert, !pflanze.isDead {
