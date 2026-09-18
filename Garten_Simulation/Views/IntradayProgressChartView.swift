@@ -5,6 +5,7 @@ struct IntradayProgressChartView: View {
     let history: [DailyProgressEntry]
     var target: Double? = nil
     var onEditTarget: (() -> Void)? = nil
+    var onLink: (() -> Void)? = nil
     
     // MARK: Computed
     
@@ -44,7 +45,8 @@ struct IntradayProgressChartView: View {
     // MARK: Body
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        ZStack(alignment: .topTrailing) {
+            VStack(alignment: .leading, spacing: 0) {
             
             // Title
             HStack(spacing: 6) {
@@ -167,6 +169,26 @@ struct IntradayProgressChartView: View {
             .buttonStyle(.plain)
         }
         .padding(20)
+        
+        if let onLink = onLink {
+            Item3DButton(
+                farbe: Color(UIColor.systemBlue),
+                sekundaerFarbe: Color(UIColor.systemBlue).opacity(0.7),
+                groesse: 36,
+                isRectangular: false,
+                aktion: {
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    onLink()
+                }
+            ) {
+                Image(systemName: "heart.text.square.fill")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.white)
+            }
+            .padding(.top, 10)
+            .padding(.trailing, 10)
+        }
+        }
         .modifier(Item3DContainerModifier(
             farbe: Color(UIColor.systemBackground),
             sekundaerFarbe: Color(UIColor.systemGray5),

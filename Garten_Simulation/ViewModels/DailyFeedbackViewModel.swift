@@ -73,7 +73,7 @@ class DailyFeedbackViewModel: ObservableObject {
             if plant.effectiveHealthMetric == .fiber { return true }
             let lowerName = plant.name.lowercased()
             if lowerName.contains("gemüse") { return true }
-            if lowerName.contains("kochen") { return true }
+            let key = plant.habitName.lowercased(); if lowerName.contains("kochen") || key.contains("koch") || lowerName.contains("ernährung") || key.contains("ernaehrung") || key.contains("nutrition") { return true }
             return false
         })
 
@@ -99,7 +99,7 @@ class DailyFeedbackViewModel: ObservableObject {
         let energyPlant = activeHabits.first(where: { plant in
             if plant.effectiveHealthMetric == .energy { return true }
             let lowerName = plant.name.lowercased()
-            if lowerName.contains("kochen") { return true }
+            let key = plant.habitName.lowercased(); if lowerName.contains("kochen") || key.contains("koch") || lowerName.contains("ernährung") || key.contains("ernaehrung") || key.contains("nutrition") { return true }
             return false
         })
         let energyGoal = energyPlant?.healthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
@@ -149,7 +149,7 @@ class DailyFeedbackViewModel: ObservableObject {
             return healthValue
         }
         
-        let proteinPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .protein })
+        let proteinPlant = activeHabits.first(where: { $0.name.lowercased().contains("protein") })
         
         let effectiveStrength = getManualOrHealth(plant: strengthPlant, healthValue: hm.todaysStrengthTraining, goal: strengthGoalMinutes)
         let effectiveSteps = getManualOrHealth(plant: runningPlant, healthValue: hm.todaysSteps, goal: stepsGoal)

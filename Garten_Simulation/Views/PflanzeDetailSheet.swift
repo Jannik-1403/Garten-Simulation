@@ -705,7 +705,28 @@ struct PflanzeDetailSheet: View {
                                         IntradayProgressChartView(
                                             history: pflanze.intradayProgressHistory,
                                             target: pflanze.healthTarget ?? pflanze.defaultHealthTarget,
-                                            onEditTarget: { showTargetEdit = true }
+                                            onEditTarget: { showTargetEdit = true },
+                                            onLink: (pflanze.automaticHealthMetric != nil || pflanze.linkedHealthMetric != nil) ? {
+                                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                                pflanze.isAppleHealthUnlinked = false
+                                                if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
+                                                    pflanze.linkedHealthMetric = .steps
+                                                }
+                                                
+                                                pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+                                                gardenStore.savePlants()
+                                                
+                                                if let m = pflanze.effectiveHealthMetric {
+                                                    healthManager.fetchHourlyData(for: m) { data in self.hourlyHealthData = data }
+                                                    healthManager.fetchWeeklyAverage(for: m) { avg in self.weeklyHealthAverage = avg }
+                                                    healthManager.fetchHourlyWeeklyAverage(for: m) { avg in self.hourlyAvgData = avg }
+                                                }
+                                                
+                                                Task {
+                                                    let safeParams: [String: String] = ["enabled": "true"]
+                                                    TelemetryDeck.signal("health_integration_toggled", parameters: safeParams)
+                                                }
+                                            } : nil
                                         )
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 4)
@@ -752,56 +773,9 @@ struct PflanzeDetailSheet: View {
                                                     }
                                                 }
                                                 
-                                            } else {
-                                                // Unlinked State Card
-                                                HStack(spacing: 16) {
-                                                    VStack(alignment: .leading, spacing: 4) {
-                                                        Text(String(localized: "apple.health.link", defaultValue: "Mit Apple Health verbinden"))
-                                                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                        Text(String(localized: "apple.health.unlinked_message", defaultValue: "Apple Health Synchronisation ist deaktiviert."))
-                                                            .font(.system(size: 12, weight: .medium, design: .rounded))
-                                                            .foregroundStyle(.secondary)
-                                                    }
-                                                    Spacer()
-                                                    Item3DButton(
-                                                        farbe: .red,
-                                                        sekundaerFarbe: Color.red.opacity(0.8),
-                                                        groesse: 48,
-                                                        isRectangular: true,
-                                                        aktion: {
-                                                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                                            pflanze.isAppleHealthUnlinked = false
-                                                            if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
-                                                                pflanze.linkedHealthMetric = .steps
-                                                            }
-                                                            
-                                                            pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
-                                                            gardenStore.savePlants()
-                                                            
-                                                            if let m = pflanze.effectiveHealthMetric {
-                                                                healthManager.fetchHourlyData(for: m) { data in self.hourlyHealthData = data }
-                                                                healthManager.fetchWeeklyAverage(for: m) { avg in self.weeklyHealthAverage = avg }
-                                                                healthManager.fetchHourlyWeeklyAverage(for: m) { avg in self.hourlyAvgData = avg }
-                                                            }
-                                                            
-                                                            Task {
-                                                                let safeParams: [String: String] = ["enabled": "true"]
-                                                                TelemetryDeck.signal("health_integration_toggled", parameters: safeParams)
-                                                            }
-                                                        }
-                                                    ) {
-                                                        Image(systemName: "heart.text.square.fill")
-                                                            .font(.system(size: 24, weight: .medium))
-                                                            .foregroundStyle(.white)
-                                                    }
-                                                }
-                                                .padding(16)
-                                                .background(Color.white)
-                                                .cornerRadius(16)
-                                                .padding(.horizontal, 16)
-                                                .padding(.vertical, 8)
                                             }
-                                                }
+                                        }
+                                    }
                             }
                         }
                         .frame(maxWidth: horizontalSizeClass == .regular ? 650 : .infinity)
@@ -810,7 +784,6 @@ struct PflanzeDetailSheet: View {
                         .tourAnchor(.plantHealth)
                         .id(TourStep.plantHealth)
                     }
-                }
 
     private func sicherstellenDassPfadExistiert() {
         pfadBereit = true
