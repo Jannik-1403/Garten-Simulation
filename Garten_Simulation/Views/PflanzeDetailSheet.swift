@@ -701,7 +701,7 @@ struct PflanzeDetailSheet: View {
                         VStack(spacing: 12) {
                             Group {
                                     // --- STATISTIKEN (Pro Feature) ---
-                                    if pflanze.automaticHealthMetric == nil && pflanze.linkedHealthMetric == nil {
+                                    if pflanze.effectiveHealthMetric == nil {
                                         IntradayProgressChartView(
                                             history: pflanze.intradayProgressHistory,
                                             target: pflanze.healthTarget ?? pflanze.defaultHealthTarget,

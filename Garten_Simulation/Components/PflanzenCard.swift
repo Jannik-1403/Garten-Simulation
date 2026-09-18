@@ -304,9 +304,15 @@ struct PflanzenCard: View {
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
                     if finalProgress >= 1.0 {
+                        gardenStore.giessen(pflanze: pflanze)
                         triggerWatering()
                     } else {
                         pflanze.sliderProgress = finalProgress
+                        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+                        if finalProgress > 0 {
+                            pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
+                        }
+                        gardenStore.savePlants()
                         if isHapticEnabled {
                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         }
