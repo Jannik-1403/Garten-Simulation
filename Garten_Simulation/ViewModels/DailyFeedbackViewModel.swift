@@ -1,4 +1,4 @@
- import Foundation
+  import Foundation
 import Combine
 import SwiftUI
 
@@ -198,9 +198,9 @@ class DailyFeedbackViewModel: ObservableObject {
             strengthGoalMinutes: strengthGoalMinutes,
             stepsToday: effectiveSteps,
             stepsGoal: stepsGoal,
-            energyToday: showNutrition ? effectiveEnergy : 0.0,
+            energyToday: (showNutrition || energyPlant?.effectiveHealthMetric == nil) ? effectiveEnergy : 0.0,
             energyGoal: energyGoal > 0 ? energyGoal : 2000.0,
-            proteinToday: showNutrition ? effectiveProtein : 0.0,
+            proteinToday: (showNutrition || proteinPlant?.effectiveHealthMetric == nil) ? effectiveProtein : 0.0,
             proteinGoal: proteinGoal > 0 ? proteinGoal : 120.0,
             fiberToday: effectiveFiber,
             fiberGoal: fiberGoal,
