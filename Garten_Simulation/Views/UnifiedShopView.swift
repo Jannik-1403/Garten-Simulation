@@ -141,7 +141,13 @@ struct UnifiedShopView: View {
             base = base.filter { $0.habitCategory == kat }
         }
         if !searchText.isEmpty {
-            base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            let search = searchText.lowercased()
+            base = base.filter { 
+                let nameMatches = NSLocalizedString($0.name, comment: "").localizedCaseInsensitiveContains(search)
+                let habitMatches = NSLocalizedString($0.habitName, comment: "").localizedCaseInsensitiveContains(search)
+                let catMatches = $0.habitCategory.localizedName.localizedCaseInsensitiveContains(search)
+                return nameMatches || habitMatches || catMatches
+            }
         }
         return base
     }
@@ -152,8 +158,13 @@ struct UnifiedShopView: View {
             base = base.filter { $0.category == kat }
         }
         if !searchText.isEmpty {
-
-            base = base.filter { NSLocalizedString(settings.showHabitInsteadOfName ? $0.habitNameKey : $0.objectNameKey, comment: "").localizedCaseInsensitiveContains(searchText) }
+            let search = searchText.lowercased()
+            base = base.filter { 
+                let objMatches = NSLocalizedString($0.objectNameKey, comment: "").localizedCaseInsensitiveContains(search)
+                let habitMatches = NSLocalizedString($0.habitNameKey, comment: "").localizedCaseInsensitiveContains(search)
+                let catMatches = $0.category.localizedName.localizedCaseInsensitiveContains(search)
+                return objMatches || habitMatches || catMatches
+            }
         }
         return base
     }

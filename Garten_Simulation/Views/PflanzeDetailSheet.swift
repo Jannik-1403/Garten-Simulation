@@ -578,7 +578,7 @@ struct PflanzeDetailSheet: View {
                 let sellTitle = settings.showHabitInsteadOfName 
                     ? NSLocalizedString(pflanze.habitName, comment: "")
                     : NSLocalizedString(pflanze.name, comment: "")
-                shopStore.sell(id: pflanze.id, price: actualPrice, title: sellTitle)
+                shopStore.sell(id: pflanze.plantID, price: actualPrice, title: sellTitle)
                 onLoeschen?()
             }
             Button(String(localized: "button.cancel"), role: .cancel) { }
