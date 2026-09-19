@@ -4,6 +4,7 @@ import Charts
 struct IntradayProgressChartView: View {
     let history: [DailyProgressEntry]
     var target: Double? = nil
+    var customUnit: String? = nil
     var onEditTarget: (() -> Void)? = nil
     var onLink: (() -> Void)? = nil
     
@@ -13,8 +14,20 @@ struct IntradayProgressChartView: View {
         return String(localized: "chart.title.progress", defaultValue: "Fortschritt")
     }
     
+    private var isPercentage: Bool {
+        return customUnit == nil || customUnit == "%"
+    }
+    
+    private var effectiveTarget: Double {
+        if isPercentage {
+            return 100.0
+        } else {
+            return target ?? 1.0
+        }
+    }
+    
     private var unitString: String {
-        return "%"
+        return customUnit ?? "%"
     }
     
     private var todaysHistory: [DailyProgressEntry] {
@@ -22,7 +35,7 @@ struct IntradayProgressChartView: View {
     }
     
     private var todayTotal: Double {
-        return (todaysHistory.last?.progress ?? 0.0) * 100.0
+        return (todaysHistory.last?.progress ?? 0.0) * effectiveTarget
     }
     
     private var dayStart: Date {
@@ -37,7 +50,7 @@ struct IntradayProgressChartView: View {
         var result: [(Date, Double)] = []
         result.append((dayStart, 0.0))
         for entry in todaysHistory {
-            result.append((entry.timestamp, entry.progress * 100.0))
+            result.append((entry.timestamp, entry.progress * effectiveTarget))
         }
         return result
     }
@@ -88,7 +101,7 @@ struct IntradayProgressChartView: View {
             
             // Chart
             Chart {
-                RuleMark(y: .value("Ziel", target ?? 100.0))
+                RuleMark(y: .value("Ziel", effectiveTarget))
                     .foregroundStyle(Color.gruenPrimary.opacity(0.6))
                     .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [6, 4]))
                 
@@ -122,7 +135,7 @@ struct IntradayProgressChartView: View {
                 }
             }
             .chartXScale(domain: dayStart...max(dayStart.addingTimeInterval(3600), lastDataDate))
-            .chartYScale(domain: 0...max(120.0, (target ?? 100.0) * 1.2))
+            .chartYScale(domain: 0...(effectiveTarget * 1.2))
             .chartXAxis {
                 AxisMarks(values: [dayStart, lastDataDate]) { value in
                     if let date = value.as(Date.self) {
@@ -152,8 +165,8 @@ struct IntradayProgressChartView: View {
                         .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundStyle(.primary)
                     Spacer()
-                    if let t = target {
-                        Text(formatNumber(t) + " " + unitString)
+                    if !isPercentage || target != nil {
+                        Text(formatNumber(effectiveTarget) + " " + unitString)
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                     } else {

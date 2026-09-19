@@ -680,7 +680,7 @@ struct PflanzeDetailSheet: View {
                     case .none: return pflanze.customTargetUnit ?? String(localized: "health.unit.minutes", defaultValue: "Minuten")
                     }
                 }(),
-                isCustomMetric: pflanze.linkedHealthMetric == nil,
+                isCustomMetric: pflanze.effectiveHealthMetric == nil,
                 customUnitBinding: Binding(
                     get: { pflanze.customTargetUnit ?? "" },
                     set: { newVal in
@@ -705,6 +705,7 @@ struct PflanzeDetailSheet: View {
                                         IntradayProgressChartView(
                                             history: pflanze.intradayProgressHistory,
                                             target: pflanze.healthTarget ?? pflanze.defaultHealthTarget,
+                                            customUnit: pflanze.customTargetUnit,
                                             onEditTarget: { showTargetEdit = true },
                                             onLink: (pflanze.automaticHealthMetric != nil || pflanze.linkedHealthMetric != nil) ? {
                                                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
