@@ -509,31 +509,70 @@ class HealthManager: ObservableObject {
             
             // Bündele die Samples zu kontinuierlichen Sessions (Toleranz: 3 Stunden Lücke)
             let sortedSamples = filteredSamples.sorted(by: { $0.startDate < $1.startDate })
-            var sessions: [(startDate: Date, endDate: Date)] = []
+            
+            var sessionGroups: [[HKCategorySample]] = []
+            var currentGroup: [HKCategorySample] = []
+            var currentGroupEnd: Date = Date.distantPast
             
             for sample in sortedSamples {
-                if sessions.isEmpty {
-                    sessions.append((startDate: sample.startDate, endDate: sample.endDate))
-                    continue
-                }
-                let lastIndex = sessions.count - 1
-                let lastSession = sessions[lastIndex]
-                if sample.startDate.timeIntervalSince(lastSession.endDate) <= 3 * 3600 {
-                    sessions[lastIndex].endDate = max(lastSession.endDate, sample.endDate)
+                if currentGroup.isEmpty {
+                    currentGroup.append(sample)
+                    currentGroupEnd = sample.endDate
                 } else {
-                    sessions.append((startDate: sample.startDate, endDate: sample.endDate))
+                    if sample.startDate.timeIntervalSince(currentGroupEnd) <= 3 * 3600 {
+                        currentGroup.append(sample)
+                        currentGroupEnd = max(currentGroupEnd, sample.endDate)
+                    } else {
+                        sessionGroups.append(currentGroup)
+                        currentGroup = [sample]
+                        currentGroupEnd = sample.endDate
+                    }
                 }
             }
+            if !currentGroup.isEmpty {
+                sessionGroups.append(currentGroup)
+            }
             
-            // Nur Sessions behalten, die mindestens 2 Stunden dauern (um Nickerchen zu ignorieren)
-            let validSessions = sessions.filter { $0.endDate.timeIntervalSince($0.startDate) >= 2 * 3600 }
+            struct SleepSession {
+                let startDate: Date
+                let endDate: Date
+                let totalDuration: TimeInterval
+            }
+            
+            var processedSessions: [SleepSession] = []
+            for group in sessionGroups {
+                let start = group.map { $0.startDate }.min() ?? Date()
+                let end = group.map { $0.endDate }.max() ?? Date()
+                
+                // Intervalle zusammenführen, um Doppelzählungen zu vermeiden
+                var mergedIntervals: [(start: Date, end: Date)] = []
+                for sample in group.sorted(by: { $0.startDate < $1.startDate }) {
+                    if mergedIntervals.isEmpty {
+                        mergedIntervals.append((start: sample.startDate, end: sample.endDate))
+                    } else {
+                        let lastIndex = mergedIntervals.count - 1
+                        let last = mergedIntervals[lastIndex]
+                        if sample.startDate <= last.end {
+                            mergedIntervals[lastIndex].end = max(last.end, sample.endDate)
+                        } else {
+                            mergedIntervals.append((start: sample.startDate, end: sample.endDate))
+                        }
+                    }
+                }
+                
+                let duration = mergedIntervals.reduce(0) { $0 + $1.end.timeIntervalSince($1.start) }
+                processedSessions.append(SleepSession(startDate: start, endDate: end, totalDuration: duration))
+            }
+            
+            // Nur Sessions behalten, die insgesamt von Start bis Ende mindestens 2 Stunden dauern (Nickerchen ignorieren)
+            let validSessions = processedSessions.filter { $0.endDate.timeIntervalSince($0.startDate) >= 2 * 3600 }
             
             // Nimm die JÜNGSTE echte Schlaf-Session
             if let mainSession = validSessions.sorted(by: { $0.endDate > $1.endDate }).first {
                 DispatchQueue.main.async {
                     self.latestSleepStart = mainSession.startDate
                     self.latestSleepEnd = mainSession.endDate
-                    self.todaysSleep = mainSession.endDate.timeIntervalSince(mainSession.startDate) / 3600.0
+                    self.todaysSleep = mainSession.totalDuration / 3600.0
                 }
             } else {
                 DispatchQueue.main.async {
