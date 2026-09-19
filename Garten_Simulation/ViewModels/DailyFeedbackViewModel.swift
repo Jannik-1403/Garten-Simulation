@@ -64,13 +64,13 @@ class DailyFeedbackViewModel: ObservableObject {
             .filter { $0.isEnabled && $0.targetDGE > 0 }
             .min(by: { $0.score < $1.score })
 
-        let hasWaterPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .water })
-        let hasSleepPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .sleep })
-        let hasStrengthPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .strengthTraining || $0.name.lowercased().contains("kraft") })
-        let hasRunningPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .steps || $0.effectiveHealthMetric == .running || $0.name.lowercased().contains("laufen") || $0.name.lowercased().contains("joggen") || $0.name.lowercased().contains("schritt") })
+        let hasWaterPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .water || $0.linkedHealthMetric == .water || $0.automaticHealthMetric == .water })
+        let hasSleepPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .sleep || $0.linkedHealthMetric == .sleep || $0.automaticHealthMetric == .sleep })
+        let hasStrengthPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .strengthTraining || $0.linkedHealthMetric == .strengthTraining || $0.automaticHealthMetric == .strengthTraining || $0.name.lowercased().contains("kraft") })
+        let hasRunningPlant = activeHabits.contains(where: { $0.effectiveHealthMetric == .steps || $0.effectiveHealthMetric == .running || $0.linkedHealthMetric == .steps || $0.linkedHealthMetric == .running || $0.automaticHealthMetric == .steps || $0.automaticHealthMetric == .running || $0.name.lowercased().contains("laufen") || $0.name.lowercased().contains("joggen") || $0.name.lowercased().contains("schritt") })
         let hasNutritionPlant = activeHabits.contains(where: { plant in
-            if plant.effectiveHealthMetric == .energy { return true }
-            if plant.effectiveHealthMetric == .fiber { return true }
+            if plant.effectiveHealthMetric == .energy || plant.linkedHealthMetric == .energy || plant.automaticHealthMetric == .energy { return true }
+            if plant.effectiveHealthMetric == .fiber || plant.linkedHealthMetric == .fiber || plant.automaticHealthMetric == .fiber { return true }
             let lowerName = plant.name.lowercased()
             if lowerName.contains("gemüse") { return true }
             let key = plant.habitName.lowercased(); if lowerName.contains("kochen") || key.contains("koch") || lowerName.contains("ernährung") || key.contains("ernaehrung") || key.contains("nutrition") { return true }
@@ -82,13 +82,16 @@ class DailyFeedbackViewModel: ObservableObject {
 
 
 
-        let strengthPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .strengthTraining || $0.name.lowercased().contains("kraft") })
+        let waterPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .water || $0.linkedHealthMetric == .water || $0.automaticHealthMetric == .water })
+        let sleepPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .sleep || $0.linkedHealthMetric == .sleep || $0.automaticHealthMetric == .sleep })
+        
+        let strengthPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .strengthTraining || $0.linkedHealthMetric == .strengthTraining || $0.automaticHealthMetric == .strengthTraining || $0.name.lowercased().contains("kraft") })
         let strengthGoalMinutes = strengthPlant?.healthTarget ?? 30.0
         
-        let runningPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .steps || $0.effectiveHealthMetric == .running })
+        let runningPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .steps || $0.effectiveHealthMetric == .running || $0.linkedHealthMetric == .steps || $0.linkedHealthMetric == .running || $0.automaticHealthMetric == .steps || $0.automaticHealthMetric == .running })
         let stepsGoal = runningPlant?.healthTarget ?? 10000.0
 
-        let fiberPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .fiber })
+        let fiberPlant = activeHabits.first(where: { $0.effectiveHealthMetric == .fiber || $0.linkedHealthMetric == .fiber || $0.automaticHealthMetric == .fiber })
         let fiberGoal = fiberPlant?.healthTarget ?? 30.0 // DGE-Empfehlung
         
         let gratitudePlant = activeHabits.first(where: { $0.habitName == "habit.dankbarkeit" })
@@ -97,7 +100,7 @@ class DailyFeedbackViewModel: ObservableObject {
         let gratitudeYesterdayEntry = gratitudePlant?.journalEntries.first(where: { Calendar.current.isDateInYesterday($0.date) })
 
         let energyPlant = activeHabits.first(where: { plant in
-            if plant.effectiveHealthMetric == .energy { return true }
+            if plant.effectiveHealthMetric == .energy || plant.linkedHealthMetric == .energy || plant.automaticHealthMetric == .energy { return true }
             let lowerName = plant.name.lowercased()
             let key = plant.habitName.lowercased(); if lowerName.contains("kochen") || key.contains("koch") || lowerName.contains("ernährung") || key.contains("ernaehrung") || key.contains("nutrition") { return true }
             return false
@@ -138,19 +141,21 @@ class DailyFeedbackViewModel: ObservableObject {
         let showNutrition = hasSetGoals && isGoalValid
         
         func getManualOrHealth(plant: HabitModel?, healthValue: Double, goal: Double) -> Double {
-            if let p = plant, p.effectiveHealthMetric == nil {
+            guard let p = plant else { return healthValue }
+            if p.effectiveHealthMetric == nil {
                 let todaysManualProgress = p.intradayProgressHistory
                     .filter { Calendar.current.isDateInToday($0.timestamp) }
                     .last?.progress ?? 0.0
-                if todaysManualProgress > 0 {
-                    return todaysManualProgress * goal
-                }
+                return todaysManualProgress * goal
             }
             return healthValue
         }
         
         let proteinPlant = activeHabits.first(where: { $0.name.lowercased().contains("protein") })
         
+        let effectiveWater = getManualOrHealth(plant: waterPlant, healthValue: hm.todaysWater, goal: wgm.currentGoal)
+        let sleepGoal = UserDefaults.standard.double(forKey: "goal_sleep") > 0 ? UserDefaults.standard.double(forKey: "goal_sleep") : 8.0
+        let effectiveSleep = getManualOrHealth(plant: sleepPlant, healthValue: hm.todaysSleep, goal: sleepGoal)
         let effectiveStrength = getManualOrHealth(plant: strengthPlant, healthValue: hm.todaysStrengthTraining, goal: strengthGoalMinutes)
         let effectiveSteps = getManualOrHealth(plant: runningPlant, healthValue: hm.todaysSteps, goal: stepsGoal)
         let effectiveEnergy = getManualOrHealth(plant: energyPlant, healthValue: hm.todaysEnergy, goal: energyGoal > 0 ? energyGoal : 2000.0)
@@ -179,11 +184,11 @@ class DailyFeedbackViewModel: ObservableObject {
             hasCleaningTaskToday: hasCleaningTaskToday,
             isCleaningTaskDone: isCleaningTaskDone,
             nextCleaningDate: nextCleaningDate,
-            waterToday: hm.todaysWater,
+            waterToday: effectiveWater,
             waterGoal: wgm.currentGoal,
             waterHistory7Days: hm.waterHistory7Days,
-            sleepHoursToday: hm.todaysSleep,
-            sleepGoalHours: UserDefaults.standard.double(forKey: "goal_sleep") > 0 ? UserDefaults.standard.double(forKey: "goal_sleep") : 8.0,
+            sleepHoursToday: effectiveSleep,
+            sleepGoalHours: sleepGoal,
             sleepRegularity: hm.sleepRegularityPercentage,
             sleepAvgBedtimeString: hm.sleepAvgBedtimeString,
             sleepTargetWakeUpString: hm.sleepTargetWakeUpString,
@@ -217,15 +222,7 @@ class DailyFeedbackViewModel: ObservableObject {
             let total = availableFeedbacks.reduce(0.0) { sum, fb in
                 var scoreForCategory: Double = 0
                 
-                if fb.category == .strength {
-                    // Krafttraining basiert auf Tagen (Status) um Ruhetage nicht abzustrafen
-                    switch fb.status {
-                    case .good: scoreForCategory = 100
-                    case .warning: scoreForCategory = 50
-                    case .critical: scoreForCategory = 0
-                    case .unavailable: scoreForCategory = 0
-                    }
-                } else if fb.category == .cleaning || fb.category == .gratitude {
+                if fb.category == .cleaning || fb.category == .gratitude {
                     // Binäre Aufgaben: 100% wenn gut (erledigt), sonst 0%
                     scoreForCategory = fb.status == .good ? 100 : 0
                 } else {
