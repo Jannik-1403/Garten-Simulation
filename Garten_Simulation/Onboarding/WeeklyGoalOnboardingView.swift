@@ -4,15 +4,20 @@ struct WeeklyGoalOnboardingView: View {
     @Environment(\.horizontalSizeClass) var hSize
     @EnvironmentObject var data: OnboardingData
     @State private var goalText = ""
-    
+    @FocusState private var isTextFieldFocused: Bool
+
     var body: some View {
         VStack(spacing: 0) {
-            OnboardingIgelView(
-                pose: goalText.isEmpty ? .fragt : .daumenHoch,
-                sprechblasenText: String(localized: "onboarding.goal.week.title", defaultValue: "Was ist ein Ziel für diese Woche?")
-            )
-            .padding(.top, 20)
-            
+            // Igel nur anzeigen wenn Tastatur zu
+            if !isTextFieldFocused {
+                OnboardingIgelView(
+                    pose: goalText.isEmpty ? .fragt : .daumenHoch,
+                    sprechblasenText: String(localized: "onboarding.goal.week.title", defaultValue: "Was ist ein Ziel für diese Woche?")
+                )
+                .padding(.top, 20)
+                .transition(.move(edge: .top).combined(with: .opacity))
+            }
+
             VStack(spacing: 24) {
                 ZStack(alignment: .top) {
                     if goalText.isEmpty {
@@ -22,20 +27,20 @@ struct WeeklyGoalOnboardingView: View {
                             .multilineTextAlignment(.center)
                             .allowsHitTesting(false)
                     }
-                    
+
                     TextField("", text: $goalText, axis: .vertical)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .multilineTextAlignment(.center)
                         .tint(.blauPrimary)
+                        .focused($isTextFieldFocused)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .contentShape(Rectangle())
                 .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
             }
-            
-            .padding(.top, 24)
+            .padding(.top, isTextFieldFocused ? 40 : 24)
             .padding(.bottom, 24)
-            
+
             VStack {
                 Item3DButton(
                     farbe: goalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color(UIColor.systemGray4) : .blauPrimary,
@@ -56,17 +61,17 @@ struct WeeklyGoalOnboardingView: View {
                 }
                 .disabled(goalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
-            
             .padding(.bottom, 30)
         }
         .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
+        .animation(.spring(response: 0.35, dampingFraction: 0.75), value: isTextFieldFocused)
         .onTapGesture {
             hideKeyboard()
         }
     }
-    
+
     private func saveGoal(title: String) {
         let newGoal = GoalModel(
             title: title,
@@ -74,7 +79,7 @@ struct WeeklyGoalOnboardingView: View {
         )
         GoalStore.shared.setOnboardingGoal(newGoal)
     }
-    
+
     private func advanceStep() {
         FeedbackManager.shared.playSuccess()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {

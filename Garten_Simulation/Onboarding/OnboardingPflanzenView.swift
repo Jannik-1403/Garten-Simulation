@@ -12,9 +12,9 @@ struct OnboardingPflanzenView: View {
 
     // All plants sorted alphabetically by localized habit name
     private var allPlants: [Plant] {
-        GameDatabase.allPlants.sorted {
-            NSLocalizedString($0.habitName, comment: "") < NSLocalizedString($1.habitName, comment: "")
-        }
+        GameDatabase.allPlants
+            .filter { $0.habitCategory != .seeds }
+            .sorted { NSLocalizedString($0.habitName, comment: "") < NSLocalizedString($1.habitName, comment: "") }
     }
 
     private var filteredPlants: [Plant] {
@@ -289,30 +289,20 @@ struct CreateCustomHabitRow: View {
 struct PlantRowButtonStyle: ButtonStyle {
     let isSelected: Bool
     var accentColor: Color = Color(UIColor.systemBackground)
-    private let depth: CGFloat = 5
     private let cornerRadius: CGFloat = 20
 
     func makeBody(configuration: Configuration) -> some View {
-        let pressed = configuration.isPressed
-
-        ZStack(alignment: .top) {
-            // Shadow layer
-            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .fill(isSelected ? Color.gruenPrimary.opacity(0.35) : Color.black.opacity(0.07))
-                .offset(y: depth)
-
-            // Top card
-            configuration.label
-                .background(isSelected ? Color.gruenPrimary.opacity(0.08) : accentColor)
-                .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .stroke(isSelected ? Color.gruenPrimary.opacity(0.4) : Color.black.opacity(0.07), lineWidth: 1.5)
-                )
-                .offset(y: pressed ? depth : 0)
-        }
-        .animation(.spring(response: 0.2, dampingFraction: 0.7), value: pressed)
-        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isSelected)
+        // No press-offset: only the checkmark circle animates on selection
+        configuration.label
+            .background(isSelected ? Color.gruenPrimary.opacity(0.08) : accentColor)
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                    .stroke(isSelected ? Color.gruenPrimary.opacity(0.4) : Color.black.opacity(0.07), lineWidth: 1.5)
+            )
+            .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
+            .animation(.spring(response: 0.2, dampingFraction: 0.7), value: configuration.isPressed)
+            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isSelected)
     }
 }
 

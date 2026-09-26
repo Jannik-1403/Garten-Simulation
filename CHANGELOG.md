@@ -1268,3 +1268,18 @@
 - Bildschirmzeit: Ausstellen von aktiven Timern ('0 Min') deaktiviert
 - Bildschirmzeit: Text für 'Walk of Shame' aktualisiert und auf einen strengeren Standard-Satz vereinheitlicht
 - Bildschirmzeit: 100% Übersetzungsabdeckung für den neuen Walk of Shame Text
+
+## [2026-09-26] Onboarding Habit Selection – Search & List UI
+
+### Geänderte Dateien
+- `Onboarding/OnboardingPflanzenView.swift` — Komplett neu: Grid durch Suchleiste + scrollbare Liste ersetzt
+- `Onboarding/OnboardingData.swift` — Neues `customHabitNames`-Dictionary für eigene Gewohnheiten
+- `Onboarding/OnboardingView.swift` — `finishOnboarding()` unterscheidet `plant.*`- und `custom.*`-IDs
+- `Stores/GardenStore.swift` — Neue Methode `pflanzeHinzufuegenAusOnboarding(customName:)`
+- `Localizable.xcstrings` — 3 neue Keys in 16 Sprachen: `onboarding.habit.counter.suffix`, `onboarding.habit.search.placeholder`, `onboarding.habit.create.subtitle`
+
+### Was ist neu
+- Suchleiste mit Echtzeit-Filter (nach Gewohnheitsname + Pflanzenname)
+- 3D Liquid-Listenzeilen statt Grid-Cards
+- "Eigene Gewohnheit erstellen"-Zeile erscheint automatisch wenn keine Suchtreffer vorhanden
+- Eigener Gewohnheitsname wird direkt übernommen (kein zusätzliches Sheet)
