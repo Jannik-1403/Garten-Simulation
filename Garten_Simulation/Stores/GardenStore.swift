@@ -663,10 +663,10 @@ class GardenStore: ObservableObject {
     }
 
     func gartenGameOver() {
-        // Nur Pflanzen löschen (Coins/Items bleiben erhalten)
+        // Nur Münzen auf 0 setzen, Pflanzen/Gewohnheiten bleiben erhalten
         withAnimation(.easeInOut(duration: 1.0)) {
-            pflanzen.removeAll()
-            savePlants()
+            coins = 0
+            saveStats()
             
             // Leben zurücksetzen
             leben = 5

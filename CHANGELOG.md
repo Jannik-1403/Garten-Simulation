@@ -1,3 +1,10 @@
+- Lokalisierung: 100% Übersetzungsabdeckung in Xcode wiederhergestellt (5 komplett fehlende Strings übersetzt) und versteckte deutsche Gewohnheitsnamen in den übersetzten Tipps für alle 15 Fremdsprachen korrigiert (z.B. '(Fast Food)' in Spanisch zu '(Comida rápida)').
+- Fix Gewohnheits-Einheiten: Eigene Einheiten werden nun korrekt in der Statistik-Tabelle angezeigt (statt immer 1%), und bei entkoppelten Apple Health-Gewohnheiten lässt sich nun ebenfalls eine eigene Einheit eintragen.
+- Fix Apple Health Schlaf-Tracking: Überlappende Schlafphasen und Wachzeiten in der Nacht werden nun korrekt berechnet, sodass die Dauer in der App exakt mit Apple Health übereinstimmt.
+- Fix Shop: Suchleiste funktioniert jetzt für Pflanzenarten, Gewohnheiten und Kategorien.
+- Fix Shop: Beim Verkaufen auf der Pflanzendetailseite wird nun die korrekte Shop-ID verwendet, sodass die Pflanze wieder im Shop kaufbar wird und der Exploit des doppelten Verkaufens behoben ist.
+- Fix Habit-Slider: Speichert nun korrekt 100% in der Historie und Datenbank, wenn die Gewohnheit manuell per Slider abgeschlossen wird.
+- Fix Tagesscore: Kontinuierliche Berechnung des prozentualen Fortschritts für Krafttraining und Apple Health Entkoppelung (Kraft, Schlaf, Wasser, Ernährung)
 ## [2026-09-16] - Bugfix: Tages-Score Ernährung Ziel-Synchronisierung
 - **Tages-Score:** Ein schwerer Fehler wurde behoben, bei dem der Tages-Score für die Ernährung (Kalorien) fälschlicherweise das Ziel der Ballaststoffe-Pflanze (30g) als sein eigenes Kalorienziel verwendet hat. Das führte dazu, dass der Tages-Score bei 30 Kalorien bereits als "erledigt" angezeigt wurde. Jetzt greift der Score korrekt auf das Ziel der Gesund-Kochen-Pflanze (z.B. 2000 kcal) zu und synchronisiert sich nahtlos, falls du das Ziel nachträglich in der Pflanze erhöhst.
 - Alle Score-Abfragen greifen nun auf das verlässliche `effectiveHealthMetric` System zu.
@@ -1251,3 +1258,8 @@
 - Improved unlinked Apple Health habit UI in detail sheet (replaced text with 3D button)
 - Manual slider progress for habits like nutrition, strength, etc. is now accurately reflected in the Daily Score when Apple Health is unlinked
 - Unlinked-Ansicht bei Gewohnheiten auf eine weiße Karte mit dem korrekten Apple-Health-Icon aktualisiert.
+- Behoben: Gewohnheiten wie 'Gesund kochen' werden nun auch nach dem Trennen von Apple Health weiterhin korrekt im Daily Score verrechnet.
+- UI-Anpassung: Der Button zum erneuten Verbinden mit Apple Health ist nun ein runder 3D-Button direkt in der Fortschrittsansicht (IntradayProgressChartView).
+- Bugfix: Der Tagesscore für Ernährung (z.B. Gesund kochen) wird nun auch dann korrekt aktualisiert, wenn die Gewohnheit von Apple Health entkoppelt und der Fortschrittsbalken manuell verschoben wird.
+- Cleanup: Veraltete (stale) Übersetzungsschlüssel aus Localizable.xcstrings entfernt, um Xcode-Warnungen zu beheben.
+- Release: App-Version auf 1.8 (Build 1) für den App Store Release erhöht.

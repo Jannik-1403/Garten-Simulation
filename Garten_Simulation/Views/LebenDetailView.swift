@@ -45,7 +45,7 @@ struct LebenDetailView: View {
                     
                     if gardenStore.leben < 5 {
                         Button(action: {
-                            if gardenStore.coins >= 500 {
+                            if gardenStore.coins >= 500 && gardenStore.leben < 5 {
                                 gardenStore.coinsAbziehen(amount: 500, beschreibung: String(localized: "buy.heart.desc", defaultValue: "Herz gekauft"))
                                 withAnimation {
                                     gardenStore.leben += 1

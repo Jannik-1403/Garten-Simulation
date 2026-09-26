@@ -16,13 +16,7 @@ struct WalkOfShameView: View {
     
     @FocusState private var isFocused: Bool
     
-    let sentencePool = [
-        String(localized: "focus.giveup.walkofshame.sentence1", defaultValue: "Ich kapituliere zu einhundert Prozent! Statt an meinen Zielen zu arbeiten, wähle ich den null-acht-fünfzehn Weg. Ich opfere meine #Disziplin für fünf Min. billiges Dopamin. Das ist armselig; aber ich tue es trotzdem (und akzeptiere den HP-Verlust)."),
-        String(localized: "focus.giveup.walkofshame.sentence2", defaultValue: "[Achtung] Ich bin zu schwach für neunundneunzig Prozent meiner Aufgaben. Ich breche ab: X-Y-Z statt A-B-C. Mein Fokus sinkt auf null Punkt null; ich wähle #Versagen über #Wachstum. Warum? Weil mein Dopamin-Spiegel < zehn Prozent ist."),
-        String(localized: "focus.giveup.walkofshame.sentence3", defaultValue: "Fehler-Code vierhundertvier: Willenskraft nicht gefunden! Ich tausche meine erste Priorität gegen zehn Min. sinnlosen Feed-Scroll. Ist das schlau? Nein. Mache ich es trotzdem? Ja!! (Tschüss, wertvolle Zeit...)"),
-        String(localized: "focus.giveup.walkofshame.sentence4", defaultValue: "Ich bestätige hiermit den Abbruch (Status: einhundert Prozent undiszipliniert). Statt plus eins Schritt nach vorne, mache ich minus drei Schritte zurück. Meine #Ziele sind mir gerade egal; ich klicke auf [Entsperren] & vergeude eine halbe Stunde."),
-        String(localized: "focus.giveup.walkofshame.sentence5", defaultValue: "Warum aufgeben? Weil ich null Prozent Frustrationstoleranz habe. Ich wähle den Shortcut (Typ B) und ignoriere Regel Nummer eins: Bleib fokussiert! Meine HP sinken um minus fünfzehn Punkte; das ist der Preis für zwei Min. Schwäche.")
-    ]
+    let sentence = String(localized: "focus.giveup.walkofshame.sentence", defaultValue: "Du hast dir diese App heruntergeladen, um besser zu werden, für dich selbst. Wenn du jetzt diesen Text eingibst, heißt es, dass du keine Willenskraft hast, nicht stark genug bist, und deine Ziele wahrscheinlich nicht erreichen wirst.")
     
     var body: some View {
         NavigationStack {
@@ -118,16 +112,7 @@ struct WalkOfShameView: View {
                 }
             }
             .onAppear {
-                let sentenceCount = max(1, min(level - 1, 3)) // Level 2: 1 sentence, Level 3: 2 sentences, Level 4: 3 sentences
-                var selectedSentences = [String]()
-                var available = sentencePool
-                for _ in 0..<sentenceCount {
-                    if let random = available.randomElement() {
-                        selectedSentences.append(random)
-                        available.removeAll { $0 == random }
-                    }
-                }
-                requiredText = randomizeCase(of: selectedSentences.joined(separator: " "))
+                requiredText = sentence
             }
             } // Close ZStack
         } // Close NavigationStack
@@ -155,25 +140,5 @@ struct WalkOfShameView: View {
         }
     }
     
-    // Zerstört das Tipp-Gedächtnis komplett, indem wahllos Zeichen groß und klein gemacht werden
-    private func randomizeCase(of text: String) -> String {
-        var result = ""
-        for char in text {
-            if char.isLetter {
-                // 40% Chance die Groß-/Kleinschreibung zu invertieren
-                if Bool.random() && Bool.random() {
-                    if char.isUppercase {
-                        result.append(char.lowercased())
-                    } else {
-                        result.append(char.uppercased())
-                    }
-                } else {
-                    result.append(char)
-                }
-            } else {
-                result.append(char)
-            }
-        }
-        return result
-    }
+
 }

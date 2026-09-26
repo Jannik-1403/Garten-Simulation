@@ -291,35 +291,66 @@ class ScreenTimeManager: ObservableObject {
     /// The MonitorExtension picks these up and activates/deactivates the shield automatically.
     func scheduleBlockActivities(daySchedules: [Int: DaySchedule], blockSelectionData: Data?) {
         let center = DeviceActivityCenter()
-        
-        // Cancel all existing schedules first
-        center.stopMonitoring()
-        
-        // Save blockSelection data to App Group so the extension can read it
         let defaults = UserDefaults(suiteName: SharedUserDefaults.suiteName)
-        defaults?.set(blockSelectionData, forKey: "screenTimeBlockSelectionData_appGroup")
         
+        // Clean up legacy index-based limits
+        if !UserDefaults.standard.bool(forKey: "st_legacyLimitsCleaned") {
+            var legacyNames = [DeviceActivityName]()
+            for i in 0..<20 {
+                legacyNames.append(DeviceActivityName("\(Self.activityNamePrefix).limit.\(i)"))
+            }
+            center.stopMonitoring(legacyNames)
+            UserDefaults.standard.set(true, forKey: "st_legacyLimitsCleaned")
+        }
+        
+        defaults?.set(blockSelectionData, forKey: "screenTimeBlockSelectionData_appGroup")
         let dailyData = try? JSONEncoder().encode(dailyLimitSelection)
         defaults?.set(dailyData, forKey: "screenTimeDailyLimitSelectionData_appGroup")
         defaults?.synchronize()
         
-        // Start individual monitoring for daily limits if active
+        // --- 1. DAILY LIMITS ---
         let dailySchedule = DeviceActivitySchedule(
             intervalStart: DateComponents(hour: 0, minute: 0),
             intervalEnd: DateComponents(hour: 23, minute: 59),
             repeats: true
         )
         
-        var index = 0
+        var prevScheduledLimits: [Int: FamilyActivitySelection] = [:]
+        if let data = UserDefaults.standard.data(forKey: "st_scheduledLimitsDict"),
+           let dict = try? JSONDecoder().decode([Int: FamilyActivitySelection].self, from: data) {
+            prevScheduledLimits = dict
+        }
+        
         var activeLimitSelections: [FamilyActivitySelection] = []
+        var newScheduledLimits: [Int: FamilyActivitySelection] = [:]
+        
         for (minutes, selection) in limitSelections {
             if minutes > 0 {
-                let event = DeviceActivityEvent(applications: selection.applicationTokens, categories: selection.categoryTokens, webDomains: selection.webDomainTokens, threshold: DateComponents(minute: minutes))
-                do {
-                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).limit.\(index)"), during: dailySchedule, events: [.init("dailyLimitEvent.\(index)"): event])
-                    activeLimitSelections.append(selection)
-                    index += 1
-                } catch { print("Failed to schedule limit: \(error)") }
+                let activityName = DeviceActivityName("\(Self.activityNamePrefix).limit.\(minutes)")
+                let isSelectionEmpty = selection.applicationTokens.isEmpty && selection.categoryTokens.isEmpty && selection.webDomainTokens.isEmpty
+                
+                if isSelectionEmpty {
+                    center.stopMonitoring([activityName])
+                    continue
+                }
+                
+                newScheduledLimits[minutes] = selection
+                activeLimitSelections.append(selection)
+                
+                // Only start monitoring if the selection actually changed
+                if prevScheduledLimits[minutes] != selection {
+                    let event = DeviceActivityEvent(applications: selection.applicationTokens, categories: selection.categoryTokens, webDomains: selection.webDomainTokens, threshold: DateComponents(minute: minutes))
+                    do {
+                        try center.startMonitoring(activityName, during: dailySchedule, events: [.init("dailyLimitEvent.\(minutes)"): event])
+                    } catch { print("Failed to schedule limit: \(error)") }
+                }
+            }
+        }
+        
+        // Stop limits that were removed
+        for minutes in prevScheduledLimits.keys {
+            if newScheduledLimits[minutes] == nil {
+                center.stopMonitoring([DeviceActivityName("\(Self.activityNamePrefix).limit.\(minutes)")])
             }
         }
         
@@ -327,38 +358,57 @@ class ScreenTimeManager: ObservableObject {
             defaults?.set(limitsData, forKey: "screenTimeLimitsArray_appGroup")
             defaults?.synchronize()
         }
+        if let newDictData = try? JSONEncoder().encode(newScheduledLimits) {
+            UserDefaults.standard.set(newDictData, forKey: "st_scheduledLimitsDict")
+        }
         
-        guard isScheduleActive else { return }
+        // --- 2. WEEKDAY SCHEDULES (Ebene 2) ---
+        var prevDaySchedules: [Int: DaySchedule] = [:]
+        if let data = UserDefaults.standard.data(forKey: "st_scheduledDaySchedulesDict"),
+           let dict = try? JSONDecoder().decode([Int: DaySchedule].self, from: data) {
+            prevDaySchedules = dict
+        }
         
-        for (weekday, schedule) in daySchedules {
-            guard schedule.isActive else { continue }
-            
+        var newScheduledDaySchedules: [Int: DaySchedule] = [:]
+        
+        for weekday in 1...7 {
             let activityName = DeviceActivityName("\(Self.activityNamePrefix).\(weekday)")
             
-            var startComponents = DateComponents()
-            startComponents.weekday = weekday
-            startComponents.hour = schedule.startHour
-            startComponents.minute = schedule.startMinute
-            
-            var endComponents = DateComponents()
-            // If end is on the next day (over-midnight), we keep the same weekday for end
-            // DeviceActivity handles same-day intervals. For over-midnight, we use next weekday.
-            let isOverMidnight = (schedule.startHour * 60 + schedule.startMinute) > (schedule.endHour * 60 + schedule.endMinute)
-            endComponents.weekday = isOverMidnight ? (weekday % 7) + 1 : weekday
-            endComponents.hour = schedule.endHour
-            endComponents.minute = schedule.endMinute
-            
-            let activitySchedule = DeviceActivitySchedule(
-                intervalStart: startComponents,
-                intervalEnd: endComponents,
-                repeats: true
-            )
-            
-            do {
-                try center.startMonitoring(activityName, during: activitySchedule)
-            } catch {
-                print("Failed to schedule activity for weekday \(weekday): \(error)")
+            if !isScheduleActive {
+                center.stopMonitoring([activityName])
+                continue
             }
+            
+            if let schedule = daySchedules[weekday], schedule.isActive {
+                newScheduledDaySchedules[weekday] = schedule
+                
+                if prevDaySchedules[weekday] != schedule {
+                    var startComponents = DateComponents()
+                    startComponents.weekday = weekday
+                    startComponents.hour = schedule.startHour
+                    startComponents.minute = schedule.startMinute
+                    
+                    var endComponents = DateComponents()
+                    let isOverMidnight = (schedule.startHour * 60 + schedule.startMinute) > (schedule.endHour * 60 + schedule.endMinute)
+                    endComponents.weekday = isOverMidnight ? (weekday % 7) + 1 : weekday
+                    endComponents.hour = schedule.endHour
+                    endComponents.minute = schedule.endMinute
+                    
+                    let activitySchedule = DeviceActivitySchedule(intervalStart: startComponents, intervalEnd: endComponents, repeats: true)
+                    
+                    do {
+                        try center.startMonitoring(activityName, during: activitySchedule)
+                    } catch {
+                        print("Failed to schedule activity for weekday \(weekday): \(error)")
+                    }
+                }
+            } else {
+                center.stopMonitoring([activityName])
+            }
+        }
+        
+        if let newDayDictData = try? JSONEncoder().encode(newScheduledDaySchedules) {
+            UserDefaults.standard.set(newDayDictData, forKey: "st_scheduledDaySchedulesDict")
         }
         
         evaluateSchedulesAndApplyFailsafe()

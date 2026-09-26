@@ -477,7 +477,7 @@ struct ScreenTimeSettingsView: View {
                 }) {
                     Text(min == 0 ? String(localized: "common.off", defaultValue: "Aus") : "\(min) \(String(localized: "common.minutes.short", defaultValue: "Min"))")
                 }
-                .disabled(minutesBinding.wrappedValue != 0 && min > minutesBinding.wrappedValue)
+                .disabled(minutesBinding.wrappedValue != 0 && (min > minutesBinding.wrappedValue || min == 0))
             }
         } label: {
             HStack {

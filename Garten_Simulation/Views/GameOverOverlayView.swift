@@ -3,7 +3,6 @@ import SwiftUI
 struct GameOverOverlayView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
-    @State private var zeigeUmfrage = false
 
     var body: some View {
         GeometryReader { geo in
@@ -27,11 +26,11 @@ struct GameOverOverlayView: View {
                     }
 
                     VStack(spacing: 12) {
-                        Text(String(localized: "gameover.titel"))
+                        Text(String(localized: "gameover.coinslost.titel", defaultValue: "Bankrott!"))
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(.primary)
                         
-                        Text(String(localized: "gameover.beschreibung"))
+                        Text(String(localized: "gameover.coinslost.beschreibung", defaultValue: "Du hast alle deine Leben verloren. Zur Strafe wurden all deine Münzen entfernt. Deine Pflanzen bleiben dir aber erhalten!"))
                             .font(.system(size: 17, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -42,22 +41,13 @@ struct GameOverOverlayView: View {
                         Button {
                             // Delay for 3D feeling
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                zeigeUmfrage = true
+                                gardenStore.zeigeGameOverOverlay = false
                             }
                         } label: {
-                            Text(String(localized: "gameover.button"))
+                            Text(String(localized: "gameover.coinslost.button", defaultValue: "Verstanden"))
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                         }
                         .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .gruenPrimary))
-                        
-                        Button {
-                            gardenStore.zeigeGameOverOverlay = false
-                        } label: {
-                            Text(String(localized: "button.back_to_garden"))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                        }
-                        .padding(.top, 4)
                     }
                 }
                 .padding(32)
@@ -72,8 +62,5 @@ struct GameOverOverlayView: View {
             }
         }
         .transition(.opacity.combined(with: .scale(scale: 0.9)))
-        .sheet(isPresented: $zeigeUmfrage) {
-            RetentionSurveyView()
-        }
     }
 }
