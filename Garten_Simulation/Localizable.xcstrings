@@ -162398,7 +162398,109 @@
         }
       }
     },
+    "focus.giveup.walkofshame.sentence": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DU HAST DIR DIESE APP HERUNTERGELADEN, UM BESSER ZU WERDEN, FÜR DICH SELBST. WENN DU JETZT DIESEN TEXT EINGIBST, HEISST ES, DASS DU KEINE WILLENSKRAFT HAST, NICHT STARK GENUG BIST, UND DEINE ZIELE WAHRSCHEINLICH NICHT ERREICHEN WIRST."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HAI SCARICATO QUEST'APP PER MIGLIORARE, PER TE STESSO. SE SCRIVI QUESTO TESTO ORA, SIGNIFICA CHE NON HAI FORZA DI VOLONTÀ, NON SEI ABBASTANZA FORTE E PROBABILMENTE NON RAGGIUNGERAI I TUOI OBIETTIVI."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたはこのアプリを、自分自身を良くするためにダウンロードしました。もし今このテキストを入力するなら、それはあなたに意志力がなく、十分に強くなく、おそらく目標を達成できないことを意味します。"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "POBRAŁEŚ TĘ APLIKACJĘ, ABY STAĆ SIĘ LEPSZYM, DLA SIEBIE. JEŚLI WPISZESZ TERAZ TEN TEKST, OZNACZA TO, ŻE NIE MASZ SIŁY WOLI, NIE JESTEŚ WYSTARCZAJĄCO SILNY I PRAWDOPODOBNIE NIE OSIĄGNIESZ SWOICH CELÓW."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你下載這個應用程式是為了讓自己變得更好。如果你現在輸入這段文字，就意味著你沒有意志力，不夠堅強，很可能無法實現你的目標。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TU AS TÉLÉCHARGÉ CETTE APPLICATION POUR T'AMÉLIORER, POUR TOI-MÊME. SI TU TAPES CE TEXTE MAINTENANT, CELA SIGNIFIE QUE TU N'AS AUCUNE VOLONTÉ, QUE TU N'ES PAS ASSEZ FORT ET QUE TU N'ATTEINDRAS PROBABLEMENT PAS TES OBJECTIFS."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "JE HEBT DEZE APP GEDOWNLOAD OM BETER TE WORDEN, VOOR JEZELF. ALS JE DEZE TEKST NU TYPT, BETEKENT DIT DAT JE GEEN WILSKRACHT HEBT, NIET STERK GENOEG BENT EN JE DOELEN WAARSCHIJNLIJK NIET ZULT BEREIKEN."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने खुद को बेहतर बनाने के लिए यह ऐप डाउनलोड किया है। यदि आप अभी यह टेक्स्ट टाइप करते हैं, तो इसका मतलब है कि आपके पास इच्छाशक्ति नहीं है, आप पर्याप्त मजबूत नहीं हैं, और शायद अपने लक्ष्यों को प्राप्त नहीं कर पाएंगे।"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你下载这个应用程序是为了让自己变得更好。如果你现在输入这段文字，就意味着你没有意志力，不够坚强，很可能无法实现你的目标。"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "YOU DOWNLOADED THIS APP TO BECOME BETTER, FOR YOURSELF. IF YOU TYPE THIS TEXT NOW, IT MEANS THAT YOU HAVE NO WILLPOWER, ARE NOT STRONG ENOUGH, AND WILL PROBABLY NOT ACHIEVE YOUR GOALS."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "당신은 자신을 위해 더 나아지려고 이 앱을 다운로드했습니다. 지금 이 텍스트를 입력한다면, 그것은 당신이 의지력이 없고, 충분히 강하지 않으며, 아마도 목표를 달성하지 못할 것임을 의미합니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VOCÊ BAIXOU ESTE APLICATIVO PARA MELHORAR, POR SI MESMO. SE VOCÊ DIGITAR ESTE TEXTO AGORA, SIGNIFICA QUE VOCÊ NÃO TEM FORÇA DE VONTADE, NÃO É FORTE O SUFICIENTE E PROVAVELMENTE NÃO ALCANÇARÁ SEUS OBJETIVOS."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VOCÊ BAIXOU ESTE APLICATIVO PARA MELHORAR, POR SI MESMO. SE VOCÊ DIGITAR ESTE TEXTO AGORA, SIGNIFICA QUE VOCÊ NÃO TEM FORÇA DE VONTADE, NÃO É FORTE O SUFICIENTE E PROVAVELMENTE NÃO ALCANÇARÁ SEUS OBJETIVOS."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DESCARGASTE ESTA APLICACIÓN PARA MEJORAR, POR TI MISMO. SI ESCRIBES ESTE TEXTO AHORA, SIGNIFICA QUE NO TIENES FUERZA DE VOLUNTAD, NO ERES LO SUFICIENTEMENTE FUERTE Y PROBABLEMENTE NO ALCANZARÁS TUS OBJETIVOS."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BU UYGULAMAYI KENDIN IÇIN, DAHA IYI OLMAK IÇIN INDIRDIN. EĞER ŞIMDI BU METNI YAZARSAN, BU SENIN IRADENIN OLMADIĞINI, YETERINCE GÜÇLÜ OLMADIĞINI VE MUHTEMELEN HEDEFLERINE ULAŞAMAYACAĞINI GÖSTERIR."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ТЫ СКАЧАЛ ЭТО ПРИЛОЖЕНИЕ, ЧТОБЫ СТАТЬ ЛУЧШЕ, ДЛЯ СЕБЯ. ЕСЛИ ТЫ СЕЙЧАС ВВЕДЕШЬ ЭТОТ ТЕКСТ, ЭТО ЗНАЧИТ, ЧТО У ТЕБЯ НЕТ СИЛЫ ВОЛИ, ТЫ НЕДОСТАТОЧНО СИЛЕН И, ВЕРОЯТНО, НЕ ДОСТИГНЕШЬ СВОИХ ЦЕЛЕЙ."
+          }
+        }
+      }
+    },
     "focus.giveup.walkofshame.sentence1": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -162499,6 +162601,7 @@
       }
     },
     "focus.giveup.walkofshame.sentence2": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -162599,6 +162702,7 @@
       }
     },
     "focus.giveup.walkofshame.sentence3": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -162699,6 +162803,7 @@
       }
     },
     "focus.giveup.walkofshame.sentence4": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -162799,6 +162904,7 @@
       }
     },
     "focus.giveup.walkofshame.sentence5": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -171243,6 +171349,39 @@
         }
       }
     },
+    "gameover.coinslost.beschreibung": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Du hast alle deine Leben verloren. Zur Strafe wurden all deine Münzen entfernt. Deine Pflanzen bleiben dir aber erhalten!"
+          }
+        }
+      }
+    },
+    "gameover.coinslost.button": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Verstanden"
+          }
+        }
+      }
+    },
+    "gameover.coinslost.titel": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Bankrott!"
+          }
+        }
+      }
+    },
     "gameover.titel": {
       "comment": "",
       "extractionState": "manual",
@@ -179669,16 +179808,40 @@
             "value": "Entrer l'objectif"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य दर्ज करें"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Inserisci obiettivo"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標を入力"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표 입력"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Doel invoeren"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wprowadź cel"
           }
         },
         "pt": {
@@ -179699,22 +179862,10 @@
             "value": "Ввести цель"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wprowadź cel"
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Hedefi girin"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目標を入力"
           }
         },
         "zh-Hans": {
@@ -179727,18 +179878,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "輸入目標"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "목표 입력"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "लक्ष्य दर्ज करें"
           }
         }
       }
@@ -179770,16 +179909,40 @@
             "value": "Entrez votre objectif de calories avant que les statistiques ne soient calculées et affichées."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आँकड़ों की गणना और प्रदर्शित होने से पहले अपना कैलोरी लक्ष्य दर्ज करें।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Inserisci il tuo obiettivo calorico prima che le statistiche vengano calcolate e visualizzate."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "統計が計算されて表示される前に、カロリー目標を入力してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "통계가 계산되고 표시되기 전에 칼로리 목표를 입력하세요."
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Voer uw caloriedoel in voordat de statistieken worden berekend en weergegeven."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wprowadź swój cel kaloryczny, zanim statystyki zostaną obliczone i wyświetlone."
           }
         },
         "pt": {
@@ -179800,22 +179963,10 @@
             "value": "Введите вашу цель по калориям перед тем, как статистика будет рассчитана и отображена."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wprowadź swój cel kaloryczny, zanim statystyki zostaną obliczone i wyświetlone."
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "İstatistikler hesaplanıp görüntülenmeden önce kalori hedefinizi girin."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "統計が計算されて表示される前に、カロリー目標を入力してください。"
           }
         },
         "zh-Hans": {
@@ -179828,18 +179979,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "在計算和顯示統計數據之前，請輸入您的卡路里目標。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "통계가 계산되고 표시되기 전에 칼로리 목표를 입력하세요."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आँकड़ों की गणना और प्रदर्शित होने से पहले अपना कैलोरी लक्ष्य दर्ज करें।"
           }
         }
       }
@@ -179871,16 +180010,40 @@
             "value": "Définir l'objectif nutritionnel"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पोषण लक्ष्य निर्धारित करें"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Imposta obiettivo nutrizionale"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "栄養目標を設定する"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영양 목표 설정"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Voedingsdoel instellen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ustal cel żywieniowy"
           }
         },
         "pt": {
@@ -179901,22 +180064,10 @@
             "value": "Установить цель по питанию"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ustal cel żywieniowy"
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Beslenme hedefini belirle"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "栄養目標を設定する"
           }
         },
         "zh-Hans": {
@@ -179929,18 +180080,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "設定營養目標"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "영양 목표 설정"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पोषण लक्ष्य निर्धारित करें"
           }
         }
       }
@@ -190895,16 +191034,40 @@
             "value": "Minutes"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मिनट"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Minuti"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "분"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Minuten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuty"
           }
         },
         "pt": {
@@ -190925,22 +191088,10 @@
             "value": "Минуты"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Minuty"
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Dakika"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "分"
           }
         },
         "zh-Hans": {
@@ -190953,18 +191104,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "分鐘"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "분"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "मिनट"
           }
         }
       }
@@ -393328,16 +393467,40 @@
             "value": "Votre moyenne à long terme est calculée, mais les données de la nuit dernière manquent encore."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका दीर्घकालिक औसत गिने जा चुका है, लेकिन पिछली रात का डेटा अभी भी अनुपलब्ध है।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "La tua media a lungo termine è calcolata, ma mancano ancora i dati della scorsa notte."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "長期の平均は計算されましたが、昨夜のデータがまだ不足しています。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "장기 평균이 계산되었지만 어젯밤 데이터가 아직 누락되었습니다."
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Je langetermijngemiddelde is berekend, maar de gegevens van afgelopen nacht ontbreken nog."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twoja średnia długoterminowa jest obliczona, ale brakuje jeszcze danych z zeszłej nocy."
           }
         },
         "pt": {
@@ -393358,22 +393521,10 @@
             "value": "Ваше долгосрочное среднее рассчитано, но данные за прошлую ночь еще отсутствуют."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twoja średnia długoterminowa jest obliczona, ale brakuje jeszcze danych z zeszłej nocy."
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Uzun vadeli ortalamanız hesaplandı, ancak dün geceye ait veriler hala eksik."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "長期の平均は計算されましたが、昨夜のデータがまだ不足しています。"
           }
         },
         "zh-Hans": {
@@ -393386,18 +393537,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "您的長期平均值已計算，但昨晚的數據仍然缺失。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "장기 평균이 계산되었지만 어젯밤 데이터가 아직 누락되었습니다."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपका दीर्घकालिक औसत गिने जा चुका है, लेकिन पिछली रात का डेटा अभी भी अनुपलब्ध है।"
           }
         }
       }

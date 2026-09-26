@@ -16,7 +16,7 @@ struct WalkOfShameView: View {
     
     @FocusState private var isFocused: Bool
     
-    let sentence = String(localized: "focus.giveup.walkofshame.sentence", defaultValue: "Du hast dir diese App heruntergeladen, um besser zu werden, für dich selbst. Wenn du jetzt diesen Text eingibst, heißt es, dass du keine Willenskraft hast, nicht stark genug bist, und deine Ziele wahrscheinlich nicht erreichen wirst.")
+    let sentence = String(localized: "focus.giveup.walkofshame.sentence", defaultValue: "DU HAST DIR DIESE APP HERUNTERGELADEN, UM BESSER ZU WERDEN, FÜR DICH SELBST. WENN DU JETZT DIESEN TEXT EINGIBST, HEISST ES, DASS DU KEINE WILLENSKRAFT HAST, NICHT STARK GENUG BIST, UND DEINE ZIELE WAHRSCHEINLICH NICHT ERREICHEN WIRST.")
     
     var body: some View {
         NavigationStack {
