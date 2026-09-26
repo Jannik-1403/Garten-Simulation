@@ -107,7 +107,7 @@ struct OnboardingPflanzenView: View {
 
             // List
             ScrollView(showsIndicators: false) {
-                LazyVStack(spacing: 10) {
+                LazyVStack(spacing: 12) {
 
                     // Selected custom habits (user-created) — always at top
                     ForEach(selectedCustomHabits, id: \.id) { habit in
@@ -140,10 +140,11 @@ struct OnboardingPflanzenView: View {
                         .transition(.opacity.combined(with: .move(edge: .top)))
                     }
                 }
+                .padding(.horizontal, 4)
+                .padding(.vertical, 16)
                 .animation(.spring(response: 0.35, dampingFraction: 0.75), value: sortedPlants.map(\.id))
                 .animation(.spring(response: 0.35, dampingFraction: 0.75), value: showCreateRow)
                 .animation(.spring(response: 0.35, dampingFraction: 0.75), value: selectedCustomHabits.map(\.id))
-                .padding(.vertical, 4)
             }
 
             Spacer(minLength: 0)
@@ -348,7 +349,7 @@ struct CreateCustomHabitRow: View {
     var body: some View {
         Item3DButton(
             farbe: .white,
-            sekundaerFarbe: Color.blauPrimary.opacity(0.3),
+            sekundaerFarbe: Color(UIColor.systemGray5),
             groesse: 72,
             shadowDepthFactor: 0.07,
             isRectangular: true,
@@ -358,7 +359,7 @@ struct CreateCustomHabitRow: View {
             HStack(spacing: 16) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .fill(Color.blauPrimary.opacity(0.12))
+                        .fill(Color(UIColor.systemGray6))
                         .frame(width: 52, height: 52)
                     Image(systemName: "plus")
                         .font(.system(size: 22, weight: .bold))
@@ -380,7 +381,7 @@ struct CreateCustomHabitRow: View {
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 13, weight: .bold))
-                    .foregroundStyle(Color.blauPrimary)
+                    .foregroundStyle(.secondary)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
