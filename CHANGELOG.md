@@ -1264,3 +1264,7 @@
 - Bugfix: Der Tagesscore für Ernährung (z.B. Gesund kochen) wird nun auch dann korrekt aktualisiert, wenn die Gewohnheit von Apple Health entkoppelt und der Fortschrittsbalken manuell verschoben wird.
 - Cleanup: Veraltete (stale) Übersetzungsschlüssel aus Localizable.xcstrings entfernt, um Xcode-Warnungen zu beheben.
 - Release: App-Version auf 1.8 (Build 1) für den App Store Release erhöht.
+- Bildschirmzeit: Timer-Reset beim Schließen des Pickers behoben (Limits werden jetzt intelligent aktualisiert)
+- Bildschirmzeit: Ausstellen von aktiven Timern ('0 Min') deaktiviert
+- Bildschirmzeit: Text für 'Walk of Shame' aktualisiert und auf einen strengeren Standard-Satz vereinheitlicht
+- Bildschirmzeit: 100% Übersetzungsabdeckung für den neuen Walk of Shame Text
