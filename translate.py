@@ -1,4 +1,5 @@
 import json
+import os
 
 path = "Garten_Simulation/Localizable.xcstrings"
 with open(path, "r") as f:
@@ -26,17 +27,11 @@ translations = {
     "pl": "Pobrałeś tę aplikację, aby stać się lepszym, dla siebie. Jeśli wpiszesz teraz ten tekst, oznacza to, że nie masz siły woli, nie jesteś wystarczająco silny i prawdopodobnie nie osiągniesz swoich celów."
 }
 
-# Convert all to uppercase
-translations = {k: v.upper() for k, v in translations.items()}
-
 if key not in data["strings"]:
     data["strings"][key] = {
         "extractionState": "manual",
         "localizations": {}
     }
-
-if "localizations" not in data["strings"][key]:
-    data["strings"][key]["localizations"] = {}
 
 project_langs = set()
 for k, v in data["strings"].items():
@@ -58,7 +53,13 @@ for lang in project_langs:
         }
     }
 
-data["strings"][key]["extractionState"] = "manual"
+# Ensure German is set (source language may not be in localizations)
+data["strings"][key]["localizations"]["de"] = {
+    "stringUnit": {
+        "state": "translated",
+        "value": translations["de"]
+    }
+}
 
 with open(path, "w") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)

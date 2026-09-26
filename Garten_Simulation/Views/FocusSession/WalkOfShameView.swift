@@ -16,8 +16,6 @@ struct WalkOfShameView: View {
     
     @FocusState private var isFocused: Bool
     
-    let sentence = String(localized: "focus.giveup.walkofshame.sentence", defaultValue: "DU HAST DIR DIESE APP HERUNTERGELADEN, UM BESSER ZU WERDEN, FÜR DICH SELBST. WENN DU JETZT DIESEN TEXT EINGIBST, HEISST ES, DASS DU KEINE WILLENSKRAFT HAST, NICHT STARK GENUG BIST, UND DEINE ZIELE WAHRSCHEINLICH NICHT ERREICHEN WIRST.")
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -112,7 +110,10 @@ struct WalkOfShameView: View {
                 }
             }
             .onAppear {
-                requiredText = sentence
+                // Resolve at runtime so the device's current locale is used (not the compile-time default)
+                let resolved = String(localized: "focus.giveup.walkofshame.sentence",
+                                     defaultValue: "DU HAST DIR DIESE APP HERUNTERGELADEN, UM BESSER ZU WERDEN, FÜR DICH SELBST. WENN DU JETZT DIESEN TEXT EINGIBST, HEISST ES, DASS DU KEINE WILLENSKRAFT HAST, NICHT STARK GENUG BIST, UND DEINE ZIELE WAHRSCHEINLICH NICHT ERREICHEN WIRST.")
+                requiredText = resolved.uppercased()
             }
             } // Close ZStack
         } // Close NavigationStack
