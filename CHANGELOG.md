@@ -1,3 +1,4 @@
+- Fix: Leben kann nicht mehr über 5 gesteigert werden. Bei 0 Leben sterben die Pflanzen nicht mehr, sondern alle Münzen werden entfernt.
 - Lokalisierung: 100% Übersetzungsabdeckung in Xcode wiederhergestellt (5 komplett fehlende Strings übersetzt) und versteckte deutsche Gewohnheitsnamen in den übersetzten Tipps für alle 15 Fremdsprachen korrigiert (z.B. '(Fast Food)' in Spanisch zu '(Comida rápida)').
 - Fix Gewohnheits-Einheiten: Eigene Einheiten werden nun korrekt in der Statistik-Tabelle angezeigt (statt immer 1%), und bei entkoppelten Apple Health-Gewohnheiten lässt sich nun ebenfalls eine eigene Einheit eintragen.
 - Fix Apple Health Schlaf-Tracking: Überlappende Schlafphasen und Wachzeiten in der Nacht werden nun korrekt berechnet, sodass die Dauer in der App exakt mit Apple Health übereinstimmt.
