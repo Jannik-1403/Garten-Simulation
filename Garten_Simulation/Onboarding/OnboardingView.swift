@@ -116,7 +116,13 @@ struct OnboardingView: View {
                 if plantID.hasPrefix("custom."),
                    let customName = data.customHabitNames[plantID] {
                     // User-created custom habit — no plant template to purchase
-                    garden.pflanzeHinzufuegenAusOnboarding(customName: customName, reminderTime: defaultTime)
+                    garden.pflanzeHinzufuegenAusOnboarding(
+                        customName: customName,
+                        icon: data.customHabitIcons[plantID],
+                        color: data.customHabitColors[plantID],
+                        category: data.customHabitCategories[plantID] ?? .lifestyle,
+                        reminderTime: defaultTime
+                    )
                 } else {
                     garden.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: defaultTime)
                     if !purchased.contains(plantID) { purchased.append(plantID) }

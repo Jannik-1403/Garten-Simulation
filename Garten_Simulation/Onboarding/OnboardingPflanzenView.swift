@@ -9,24 +9,44 @@ struct OnboardingPflanzenView: View {
 
     @State private var searchText: String = ""
     @FocusState private var searchFocused: Bool
+    @State private var showCreationSheet = false
+    @State private var creationPrefillName: String = ""
 
-    // All plants sorted alphabetically by localized habit name
+    // All plants filtered (no seeds) and sorted alphabetically by habit name
     private var allPlants: [Plant] {
         GameDatabase.allPlants
             .filter { $0.habitCategory != .seeds }
             .sorted { NSLocalizedString($0.habitName, comment: "") < NSLocalizedString($1.habitName, comment: "") }
     }
 
+    // Plants matching the search query
     private var filteredPlants: [Plant] {
-        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return allPlants }
-        let q = searchText.lowercased()
+        let q = searchText.trimmingCharacters(in: .whitespaces).lowercased()
+        guard !q.isEmpty else { return allPlants }
         return allPlants.filter {
             NSLocalizedString($0.habitName, comment: "").lowercased().contains(q) ||
             NSLocalizedString($0.localizedName, comment: "").lowercased().contains(q)
         }
     }
 
-    // True if no plant matches the current search query
+    // Selected plants always appear at the top of the list
+    private var sortedPlants: [Plant] {
+        let selected = filteredPlants.filter { data.gewaehltePflanzenIDs.contains($0.id) }
+        let unselected = filteredPlants.filter { !data.gewaehltePflanzenIDs.contains($0.id) }
+        return selected + unselected
+    }
+
+    // Selected custom habits (user-created, no plant in DB)
+    private var selectedCustomHabits: [(id: String, name: String)] {
+        data.gewaehltePflanzenIDs
+            .filter { $0.hasPrefix("custom.") }
+            .compactMap { id in
+                guard let name = data.customHabitNames[id] else { return nil }
+                return (id: id, name: name)
+            }
+    }
+
+    // Show "create" row only when search has text and no plants match
     private var showCreateRow: Bool {
         let q = searchText.trimmingCharacters(in: .whitespaces)
         return !q.isEmpty && filteredPlants.isEmpty
@@ -81,8 +101,6 @@ struct OnboardingPflanzenView: View {
                     }
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
             .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
             .padding(.top, 16)
             .padding(.bottom, 8)
@@ -90,7 +108,20 @@ struct OnboardingPflanzenView: View {
             // List
             ScrollView(showsIndicators: false) {
                 LazyVStack(spacing: 10) {
-                    ForEach(filteredPlants) { plant in
+
+                    // Selected custom habits (user-created) — always at top
+                    ForEach(selectedCustomHabits, id: \.id) { habit in
+                        CustomHabitListRow(
+                            name: habit.name,
+                            isSelected: true
+                        ) {
+                            removeCustomHabit(id: habit.id)
+                        }
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
+
+                    // Plant rows (selected first)
+                    ForEach(sortedPlants) { plant in
                         PlantListRow(
                             plant: plant,
                             isSelected: data.gewaehltePflanzenIDs.contains(plant.id)
@@ -100,15 +131,18 @@ struct OnboardingPflanzenView: View {
                         .transition(.opacity.combined(with: .move(edge: .top)))
                     }
 
+                    // "Create custom habit" row — only when no search results
                     if showCreateRow {
                         CreateCustomHabitRow(name: searchText) {
-                            createCustomHabit(name: searchText)
+                            creationPrefillName = searchText
+                            showCreationSheet = true
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))
                     }
                 }
-                .animation(.spring(response: 0.35, dampingFraction: 0.75), value: filteredPlants.map(\.id))
+                .animation(.spring(response: 0.35, dampingFraction: 0.75), value: sortedPlants.map(\.id))
                 .animation(.spring(response: 0.35, dampingFraction: 0.75), value: showCreateRow)
+                .animation(.spring(response: 0.35, dampingFraction: 0.75), value: selectedCustomHabits.map(\.id))
                 .padding(.vertical, 4)
             }
 
@@ -138,8 +172,11 @@ struct OnboardingPflanzenView: View {
         .frame(maxWidth: 650)
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
-        .onTapGesture {
-            hideKeyboard()
+        .onTapGesture { hideKeyboard() }
+        .sheet(isPresented: $showCreationSheet) {
+            OnboardingHabitCreationSheet(prefillName: creationPrefillName)
+                .environmentObject(data)
+                .environmentObject(settings)
         }
     }
 
@@ -153,34 +190,32 @@ struct OnboardingPflanzenView: View {
                 data.gewaehltePflanzenIDs.removeAll { $0 == id }
             } else {
                 if data.gewaehltePflanzenIDs.count >= 2 {
-                    data.gewaehltePflanzenIDs.removeFirst()
+                    // Remove first non-custom selection to replace it
+                    if let firstNormal = data.gewaehltePflanzenIDs.first(where: { !$0.hasPrefix("custom.") }) {
+                        data.gewaehltePflanzenIDs.removeAll { $0 == firstNormal }
+                    } else {
+                        data.gewaehltePflanzenIDs.removeFirst()
+                    }
                 }
                 data.gewaehltePflanzenIDs.append(id)
             }
         }
     }
 
-    private func createCustomHabit(name: String) {
-        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return }
-        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+    private func removeCustomHabit(id: String) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         FeedbackManager.shared.playTap()
-        // Create a synthetic plant ID for this custom habit
-        let customID = "custom.\(UUID().uuidString)"
-        // Store the custom habit name in OnboardingData for later processing
         withAnimation(.spring(response: 0.3, dampingFraction: 0.65)) {
-            if data.gewaehltePflanzenIDs.count >= 2 {
-                data.gewaehltePflanzenIDs.removeFirst()
-            }
-            data.gewaehltePflanzenIDs.append(customID)
-            // Save the name so GardenStore can create the real habit
-            data.customHabitNames[customID] = trimmed
-            searchText = ""
+            data.gewaehltePflanzenIDs.removeAll { $0 == id }
+            data.customHabitNames.removeValue(forKey: id)
+            data.customHabitIcons.removeValue(forKey: id)
+            data.customHabitColors.removeValue(forKey: id)
+            data.customHabitCategories.removeValue(forKey: id)
         }
     }
 }
 
-// MARK: - Plant List Row
+// MARK: - Plant List Row (Item3DButton-Stil)
 
 struct PlantListRow: View {
     @Environment(\.horizontalSizeClass) var hSize
@@ -189,28 +224,27 @@ struct PlantListRow: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            HStack(spacing: 14) {
+        Item3DButton(
+            farbe: .white,
+            sekundaerFarbe: isSelected ? Color.gruenPrimary.opacity(0.5) : Color(UIColor.systemGray5),
+            groesse: 72,
+            shadowDepthFactor: 0.07,
+            isRectangular: true,
+            isPermanentlyPressed: false,
+            aktion: action
+        ) {
+            HStack(spacing: 16) {
                 // Plant icon
-                ZStack {
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(isSelected ? Color.gruenPrimary.opacity(0.15) : Color(UIColor.systemGray6))
-                        .frame(width: 52, height: 52)
-
-                    PlantIconView(plant: plant, seltenheit: .bronze, size: 60, alwaysShowFullGrown: true)
-                        .frame(width: 52, height: 52)
-                        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .stroke(isSelected ? Color.gruenPrimary : Color.clear, lineWidth: 2)
-                )
+                PlantIconView(plant: plant, seltenheit: .bronze, size: 52, alwaysShowFullGrown: true)
+                    .frame(width: 52, height: 52)
+                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
 
                 // Labels
                 VStack(alignment: .leading, spacing: 2) {
                     Text(NSLocalizedString(plant.habitName, comment: ""))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundStyle(isSelected ? .primary : .primary)
+                        .foregroundStyle(.primary)
+                        .lineLimit(2)
 
                     Text(NSLocalizedString(plant.localizedName, comment: ""))
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
@@ -219,24 +253,89 @@ struct PlantListRow: View {
 
                 Spacer()
 
-                // Checkmark
+                // Checkmark circle
                 ZStack {
                     Circle()
                         .fill(isSelected ? Color.gruenPrimary : Color(UIColor.systemGray5))
-                        .frame(width: 26, height: 26)
+                        .frame(width: 28, height: 28)
+                        .overlay(
+                            Circle()
+                                .stroke(isSelected ? Color.gruenPrimary.darker() : Color(UIColor.systemGray4), lineWidth: 2)
+                        )
 
                     if isSelected {
                         Image(systemName: "checkmark")
-                            .font(.system(size: 12, weight: .black))
+                            .font(.system(size: 13, weight: .black))
                             .foregroundStyle(.white)
                     }
                 }
                 .animation(.spring(response: 0.25, dampingFraction: 0.65), value: isSelected)
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.vertical, 10)
         }
-        .buttonStyle(PlantRowButtonStyle(isSelected: isSelected))
+    }
+}
+
+// MARK: - Custom Habit List Row (user-created, always selected)
+
+struct CustomHabitListRow: View {
+    let name: String
+    let isSelected: Bool
+    let onRemove: () -> Void
+
+    var body: some View {
+        Item3DButton(
+            farbe: .white,
+            sekundaerFarbe: Color.gruenPrimary.opacity(0.5),
+            groesse: 72,
+            shadowDepthFactor: 0.07,
+            isRectangular: true,
+            isPermanentlyPressed: false,
+            aktion: {}
+        ) {
+            HStack(spacing: 16) {
+                // Star icon for custom habits
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(Color.blauPrimary.opacity(0.12))
+                        .frame(width: 52, height: 52)
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundStyle(Color.blauPrimary)
+                }
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(name)
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .foregroundStyle(.primary)
+                        .lineLimit(2)
+
+                    Text(String(localized: "onboarding.habit.create.subtitle", defaultValue: "Eigene Gewohnheit"))
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundStyle(Color.blauPrimary)
+                }
+
+                Spacer()
+
+                // Remove button
+                Button(action: onRemove) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.gruenPrimary)
+                            .frame(width: 28, height: 28)
+                            .overlay(Circle().stroke(Color.gruenPrimary.darker(), lineWidth: 2))
+
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 13, weight: .black))
+                            .foregroundStyle(.white)
+                    }
+                }
+                .buttonStyle(.plain)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+        }
     }
 }
 
@@ -247,14 +346,20 @@ struct CreateCustomHabitRow: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            HStack(spacing: 14) {
-                // Plus icon
+        Item3DButton(
+            farbe: .white,
+            sekundaerFarbe: Color.blauPrimary.opacity(0.3),
+            groesse: 72,
+            shadowDepthFactor: 0.07,
+            isRectangular: true,
+            isPermanentlyPressed: false,
+            aktion: action
+        ) {
+            HStack(spacing: 16) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .fill(Color.blauPrimary.opacity(0.12))
                         .frame(width: 52, height: 52)
-
                     Image(systemName: "plus")
                         .font(.system(size: 22, weight: .bold))
                         .foregroundStyle(Color.blauPrimary)
@@ -275,38 +380,16 @@ struct CreateCustomHabitRow: View {
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 13, weight: .bold))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.blauPrimary)
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.vertical, 10)
         }
-        .buttonStyle(PlantRowButtonStyle(isSelected: false, accentColor: Color.blauPrimary.opacity(0.08)))
     }
 }
 
-// MARK: - Row Button Style (3D Liquid Look)
+// MARK: - Kept for backward compatibility
 
-struct PlantRowButtonStyle: ButtonStyle {
-    let isSelected: Bool
-    var accentColor: Color = Color(UIColor.systemBackground)
-    private let cornerRadius: CGFloat = 20
-
-    func makeBody(configuration: Configuration) -> some View {
-        // No press-offset: only the checkmark circle animates on selection
-        configuration.label
-            .background(isSelected ? Color.gruenPrimary.opacity(0.08) : accentColor)
-            .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-            .overlay(
-                RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                    .stroke(isSelected ? Color.gruenPrimary.opacity(0.4) : Color.black.opacity(0.07), lineWidth: 1.5)
-            )
-            .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
-            .animation(.spring(response: 0.2, dampingFraction: 0.7), value: configuration.isPressed)
-            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isSelected)
-    }
-}
-
-// Kept for backward compat (still referenced from OnboardingView if needed)
 struct SelectionCardButtonStyle: ButtonStyle {
     let isSelected: Bool
     private let depth: CGFloat = 6
@@ -314,20 +397,16 @@ struct SelectionCardButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         let isPressed = configuration.isPressed
-
         ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .fill(isSelected ? Color.green : Color.black.opacity(0.1))
                 .frame(maxHeight: .infinity)
                 .offset(y: depth)
-
             configuration.label
                 .background(Color(.systemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .stroke(isSelected ? Color.green : Color.black.opacity(0.12), lineWidth: isSelected ? 3 : 1)
-                )
+                .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                    .stroke(isSelected ? Color.green : Color.black.opacity(0.12), lineWidth: isSelected ? 3 : 1))
                 .offset(y: isPressed ? depth : 0)
         }
         .animation(.spring(response: 0.2, dampingFraction: 0.7), value: isPressed)
@@ -342,22 +421,18 @@ struct CategoryHeaderView: View {
 
     var body: some View {
         let isIPad = hSize == .regular
-
         HStack(spacing: 12) {
             ZStack {
                 Circle()
                     .fill(category.color.opacity(0.15))
                     .frame(width: isIPad ? 48 : 36, height: isIPad ? 48 : 36)
-
                 Image(systemName: category.iconName)
                     .font(.system(size: isIPad ? 22 : 16, weight: .bold))
                     .foregroundStyle(category.color)
             }
-
             Text(NSLocalizedString(category.labelKey, comment: ""))
                 .font(.system(size: isIPad ? 28 : 20, weight: .black, design: .rounded))
                 .foregroundStyle(.primary)
-
             Spacer()
         }
         .padding(.top, 16)

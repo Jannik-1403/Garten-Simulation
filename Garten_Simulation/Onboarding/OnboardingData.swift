@@ -19,4 +19,11 @@ class OnboardingData: ObservableObject {
     @Published var globalXPMultiplier: Double = 1.0
     /// Maps synthetic "custom.<UUID>" IDs → user-entered habit name for custom habits
     @Published var customHabitNames: [String: String] = [:]
+    /// Maps custom IDs → selected icon asset/symbol name
+    @Published var customHabitIcons: [String: String] = [:]
+    /// Maps custom IDs → selected color name string
+    @Published var customHabitColors: [String: String] = [:]
+    /// Maps custom IDs → selected HabitCategory
+    @Published var customHabitCategories: [String: HabitCategory] = [:]
 }
+

@@ -920,17 +920,26 @@ class GardenStore: ObservableObject {
     }
 
     /// Erstellt eine Gewohnheit mit eigenem Namen (Custom Habit aus dem Onboarding)
-    func pflanzeHinzufuegenAusOnboarding(customName: String, reminderTime: Date? = nil) {
+    func pflanzeHinzufuegenAusOnboarding(
+        customName: String,
+        icon: String? = nil,
+        color: String? = nil,
+        category: HabitCategory = .lifestyle,
+        reminderTime: Date? = nil
+    ) {
         // Use the Bambus plant as a generic template for custom habits
         let template = GameDatabase.allPlants.first { $0.id == "plant.bambus" }
             ?? GameDatabase.allPlants.first!
 
+        let resolvedIcon = icon ?? template.symbolName
+        let resolvedColor = color ?? template.symbolColor
+
         let neue = HabitModel(
             id: UUID().uuidString,
             name: template.name,
-            symbolName: template.symbolName,
-            symbolColor: template.symbolColor,
-            habitCategory: .lifestyle,
+            symbolName: resolvedIcon,
+            symbolColor: resolvedColor,
+            habitCategory: category,
             symbolism: template.symbolism,
             habitName: customName,
             maxLevel: template.maxLevel,
@@ -948,6 +957,7 @@ class GardenStore: ObservableObject {
             NotificationManager.shared.scheduleAll(for: pflanzen)
         }
     }
+
 
 
     func onboardingSetup() {
