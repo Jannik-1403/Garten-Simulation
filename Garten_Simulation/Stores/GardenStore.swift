@@ -919,6 +919,37 @@ class GardenStore: ObservableObject {
         }
     }
 
+    /// Erstellt eine Gewohnheit mit eigenem Namen (Custom Habit aus dem Onboarding)
+    func pflanzeHinzufuegenAusOnboarding(customName: String, reminderTime: Date? = nil) {
+        // Use the Bambus plant as a generic template for custom habits
+        let template = GameDatabase.allPlants.first { $0.id == "plant.bambus" }
+            ?? GameDatabase.allPlants.first!
+
+        let neue = HabitModel(
+            id: UUID().uuidString,
+            name: template.name,
+            symbolName: template.symbolName,
+            symbolColor: template.symbolColor,
+            habitCategory: .lifestyle,
+            symbolism: template.symbolism,
+            habitName: customName,
+            maxLevel: template.maxLevel,
+            xpPerCompletion: template.xpPerCompletion,
+            waterNeedPerDay: template.waterNeedPerDay,
+            decayDays: template.decayDays,
+            plantID: template.id,
+            reminderTime: reminderTime
+        )
+
+        withAnimation(.spring(response: 0.4)) {
+            neue.individualSchwierigkeit = "fortgeschritten"
+            pflanzen.append(neue)
+            savePlants()
+            NotificationManager.shared.scheduleAll(for: pflanzen)
+        }
+    }
+
+
     func onboardingSetup() {
         // Initial setup for coins etc. - only if starting fresh
         if self.coins == 0 {

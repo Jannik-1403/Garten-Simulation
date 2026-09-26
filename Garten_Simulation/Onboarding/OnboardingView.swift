@@ -113,8 +113,14 @@ struct OnboardingView: View {
             }
         } else {
             for plantID in data.gewaehltePflanzenIDs {
-                garden.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: defaultTime)
-                if !purchased.contains(plantID) { purchased.append(plantID) }
+                if plantID.hasPrefix("custom."),
+                   let customName = data.customHabitNames[plantID] {
+                    // User-created custom habit — no plant template to purchase
+                    garden.pflanzeHinzufuegenAusOnboarding(customName: customName, reminderTime: defaultTime)
+                } else {
+                    garden.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: defaultTime)
+                    if !purchased.contains(plantID) { purchased.append(plantID) }
+                }
             }
         }
         

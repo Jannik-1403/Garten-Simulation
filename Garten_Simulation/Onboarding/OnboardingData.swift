@@ -17,4 +17,6 @@ class OnboardingData: ObservableObject {
     @Published var tutorialMuenzen: Int = 0
     @Published var erinnerungsZeiten: [String: Date] = [:]
     @Published var globalXPMultiplier: Double = 1.0
+    /// Maps synthetic "custom.<UUID>" IDs → user-entered habit name for custom habits
+    @Published var customHabitNames: [String: String] = [:]
 }
