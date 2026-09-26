@@ -234102,6 +234102,7 @@
       }
     },
     "onboarding.habit.create.habitname.label" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -234202,6 +234203,7 @@
       }
     },
     "onboarding.habit.create.habitname.placeholder" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

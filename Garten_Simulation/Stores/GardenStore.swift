@@ -927,26 +927,24 @@ class GardenStore: ObservableObject {
         category: HabitCategory = .lifestyle,
         reminderTime: Date? = nil
     ) {
-        // Use the Bambus plant as a generic template for custom habits
-        let template = GameDatabase.allPlants.first { $0.id == "plant.bambus" }
-            ?? GameDatabase.allPlants.first!
+        let newCustomID = "custom_\(UUID().uuidString)"
 
-        let resolvedIcon = icon ?? template.symbolName
-        let resolvedColor = color ?? template.symbolColor
+        let resolvedIcon = icon ?? "leaf.fill"
+        let resolvedColor = color ?? "green"
 
         let neue = HabitModel(
             id: UUID().uuidString,
-            name: template.name,
+            name: String(localized: "onboarding.habit.create.subtitle", defaultValue: "Eigene Gewohnheit"),
             symbolName: resolvedIcon,
             symbolColor: resolvedColor,
             habitCategory: category,
-            symbolism: template.symbolism,
+            symbolism: "",
             habitName: customName,
-            maxLevel: template.maxLevel,
-            xpPerCompletion: template.xpPerCompletion,
-            waterNeedPerDay: template.waterNeedPerDay,
-            decayDays: template.decayDays,
-            plantID: template.id,
+            maxLevel: 10,
+            xpPerCompletion: 100,
+            waterNeedPerDay: 1,
+            decayDays: 3,
+            plantID: newCustomID,
             reminderTime: reminderTime
         )
 

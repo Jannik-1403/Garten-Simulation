@@ -37,12 +37,14 @@ struct OnboardingPflanzenView: View {
     }
 
     // Selected custom habits (user-created, no plant in DB)
-    private var selectedCustomHabits: [(id: String, name: String)] {
+    private var selectedCustomHabits: [(id: String, name: String, icon: String, color: String)] {
         data.gewaehltePflanzenIDs
             .filter { $0.hasPrefix("custom.") }
             .compactMap { id in
                 guard let name = data.customHabitNames[id] else { return nil }
-                return (id: id, name: name)
+                let icon = data.customHabitIcons[id] ?? "leaf.fill"
+                let color = data.customHabitColors[id] ?? "green"
+                return (id: id, name: name, icon: icon, color: color)
             }
     }
 
@@ -113,6 +115,8 @@ struct OnboardingPflanzenView: View {
                     ForEach(selectedCustomHabits, id: \.id) { habit in
                         CustomHabitListRow(
                             name: habit.name,
+                            icon: habit.icon,
+                            color: habit.color,
                             isSelected: true
                         ) {
                             removeCustomHabit(id: habit.id)
@@ -282,8 +286,28 @@ struct PlantListRow: View {
 
 struct CustomHabitListRow: View {
     let name: String
+    let icon: String
+    let color: String
     let isSelected: Bool
     let onRemove: () -> Void
+
+    private var uiColor: Color {
+        switch color {
+        case "green":   return .green
+        case "mint":    return .mint
+        case "teal":    return .teal
+        case "cyan":    return .cyan
+        case "yellow":  return .yellow
+        case "orange":  return .orange
+        case "red":     return .red
+        case "pink":    return .pink
+        case "purple":  return .purple
+        case "blue":    return .blue
+        case "indigo":  return .indigo
+        case "brown":   return .brown
+        default:        return .green
+        }
+    }
 
     var body: some View {
         Item3DButton(
@@ -296,15 +320,18 @@ struct CustomHabitListRow: View {
             aktion: {}
         ) {
             HStack(spacing: 16) {
-                // Star icon for custom habits
-                ZStack {
-                    RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .fill(Color.blauPrimary.opacity(0.12))
-                        .frame(width: 52, height: 52)
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundStyle(Color.blauPrimary)
-                }
+                // Mimic PlantIconView style
+                PflanzenButton(
+                    plant: nil,
+                    seltenheit: .bronze,
+                    farbe: uiColor,
+                    sekundaerFarbe: uiColor.darker(),
+                    groesse: 52,
+                    fallbackIcon: icon
+                )
+                .allowsHitTesting(false)
+                .frame(width: 52, height: 52)
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(name)
@@ -314,7 +341,7 @@ struct CustomHabitListRow: View {
 
                     Text(String(localized: "onboarding.habit.create.subtitle", defaultValue: "Eigene Gewohnheit"))
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
-                        .foregroundStyle(Color.blauPrimary)
+                        .foregroundStyle(.secondary)
                 }
 
                 Spacer()

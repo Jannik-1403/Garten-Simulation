@@ -2,9 +2,7 @@ import SwiftUI
 import TelemetryDeck
 
 /// Onboarding-Version der CustomPlantCreationView.
-/// Exakte UI-Kopie aus dem Profil-Bereich – nur der Save-Vorgang ist angepasst:
-/// statt Samen zu verbrauchen ruft sie `gardenStore.addCustomPlantFromOnboarding` auf
-/// und informiert das Onboarding via Callback über das neue Habit.
+/// Erstellt eine "gute" Gewohnheit.
 struct OnboardingHabitCreationSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
@@ -18,18 +16,13 @@ struct OnboardingHabitCreationSheet: View {
     @State private var selectedIcon: String = "leaf.fill"
     @State private var selectedColor: String = "green"
     @State private var selectedCategory: HabitCategory = .fitness
-    @State private var isNegative: Bool = false
     @State private var showSeedInfo = false
     @State private var showAllIcons = false
 
     private var availableIcons: [String] {
-        if isNegative {
-            return Array(Set(GameDatabase.allDecorations.map { $0.sfSymbol })).sorted()
-        } else {
-            return Array(Set(GameDatabase.allPlants.compactMap { $0.assetName ?? $0.symbolName }))
-                .filter { $0 != "Samen" }
-                .sorted()
-        }
+        return Array(Set(GameDatabase.allPlants.compactMap { $0.assetName ?? $0.symbolName }))
+            .filter { $0 != "Samen" }
+            .sorted()
     }
 
     private let availableColors = [
@@ -64,26 +57,24 @@ struct OnboardingHabitCreationSheet: View {
 
                             VStack(spacing: 4) {
                                 Text(plantName.isEmpty
-                                     ? (isNegative ? String(localized: "plant.create.preview.trash_name") : String(localized: "plant.create.preview.name"))
+                                     ? String(localized: "plant.create.preview.name")
                                      : plantName)
                                     .font(.system(size: 24, weight: .black, design: .rounded))
                                     .foregroundStyle(.primary)
 
                                 Text(habitName.isEmpty
-                                     ? (isNegative ? String(localized: "plant.create.preview.bad_habit") : String(localized: "plant.create.preview.habit"))
+                                     ? String(localized: "plant.create.preview.habit")
                                      : habitName)
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
 
-                                if !isNegative {
-                                    HStack(spacing: 4) {
-                                        Image(systemName: selectedCategory.icon)
-                                        Text(NSLocalizedString(selectedCategory.localizationKey, comment: ""))
-                                    }
-                                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.primary)
-                                    .padding(.top, 2)
+                                HStack(spacing: 4) {
+                                    Image(systemName: selectedCategory.icon)
+                                    Text(NSLocalizedString(selectedCategory.localizationKey, comment: ""))
                                 }
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(.primary)
+                                .padding(.top, 2)
                             }
                         }
                         .padding(.top, 20)
@@ -92,132 +83,71 @@ struct OnboardingHabitCreationSheet: View {
                         VStack(spacing: 24) {
                             VStack(alignment: .leading, spacing: 20) {
                                 customTextField(
-                                    title: isNegative ? String(localized: "plant.create.field.trash_name") : String(localized: "plant.create.field.plant_name"),
-                                    placeholder: isNegative ? String(localized: "plant.create.placeholder.trash_name") : String(localized: "plant.create.placeholder.plant"),
+                                    title: String(localized: "plant.create.field.plant_name"),
+                                    placeholder: String(localized: "plant.create.placeholder.plant"),
                                     text: $plantName
                                 )
 
                                 customTextField(
-                                    title: isNegative ? String(localized: "plant.create.preview.bad_habit") : String(localized: "plant.create.field.habit_name"),
-                                    placeholder: isNegative ? String(localized: "plant.create.placeholder.bad_habit") : String(localized: "plant.create.placeholder.habit"),
+                                    title: String(localized: "plant.create.field.habit_name"),
+                                    placeholder: String(localized: "plant.create.placeholder.habit"),
                                     text: $habitName
                                 )
                             }
 
-                            // Bad Habit 3D Toggle
+                            // Category Picker
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(String(localized: "plant.create.habit_type"))
+                                Text(String(localized: "shop.category.label"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .padding(.horizontal, 4)
 
-                                HStack(spacing: 16) {
-                                    Button {
-                                        FeedbackManager.shared.playTap()
-                                        isNegative = false
-                                        selectedColor = "green"
-                                        if let firstIcon = GameDatabase.allPlants.compactMap({ $0.assetName ?? $0.symbolName }).sorted().first {
-                                            selectedIcon = firstIcon
+                                Menu {
+                                    ForEach(HabitCategory.allCases.filter { $0 != .seeds }, id: \.self) { cat in
+                                        Button {
+                                            selectedCategory = cat
+                                            FeedbackManager.shared.playTap()
+                                        } label: {
+                                            Label(NSLocalizedString(cat.localizationKey, comment: ""), systemImage: cat.icon)
                                         }
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "plus.circle.fill")
-                                            Text(String(localized: "plant.create.good_habit.short", defaultValue: "Gute"))
-                                        }
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 12)
                                     }
-                                    .buttonStyle(Item3DButtonStyle(
-                                        farbe: !isNegative ? Color.gruenPrimary : .white,
-                                        sekundaerFarbe: !isNegative ? Color.gruenSecondary : Color(hex: "#E5E5EA"),
-                                        groesse: 48,
-                                        shadowDepthFactor: 0.08,
-                                        isRectangular: true,
-                                        isPermanentlyPressed: !isNegative
-                                    ))
+                                } label: {
+                                    ZStack(alignment: .leading) {
+                                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                            .fill(Color(hex: "#E5E5EA"))
+                                            .frame(height: 56)
 
-                                    Button {
-                                        FeedbackManager.shared.playTap()
-                                        isNegative = true
-                                        selectedColor = "red"
-                                        if let firstIcon = GameDatabase.allDecorations.map({ $0.sfSymbol }).sorted().first {
-                                            selectedIcon = firstIcon
-                                        }
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "minus.circle.fill")
-                                            Text(String(localized: "plant.create.bad_habit.short", defaultValue: "Schlechte"))
-                                        }
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 12)
-                                    }
-                                    .buttonStyle(Item3DButtonStyle(
-                                        farbe: isNegative ? Color.red : .white,
-                                        sekundaerFarbe: isNegative ? Color.red.darker() : Color(hex: "#E5E5EA"),
-                                        groesse: 48,
-                                        shadowDepthFactor: 0.08,
-                                        isRectangular: true,
-                                        isPermanentlyPressed: isNegative
-                                    ))
-                                }
-                            }
+                                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                            .fill(Color.white)
+                                            .frame(height: 56)
+                                            .overlay(
+                                                HStack {
+                                                    Image(systemName: selectedCategory.icon)
+                                                        .font(.system(size: 20, weight: .bold))
+                                                        .foregroundStyle(.primary)
+                                                        .frame(width: 32, height: 32)
 
-                            // Category Picker (nur bei guten Gewohnheiten)
-                            if !isNegative {
-                                VStack(alignment: .leading, spacing: 12) {
-                                    Text(String(localized: "shop.category.label"))
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .padding(.horizontal, 4)
-
-                                    Menu {
-                                        ForEach(HabitCategory.allCases.filter { $0 != .seeds }, id: \.self) { cat in
-                                            Button {
-                                                selectedCategory = cat
-                                                FeedbackManager.shared.playTap()
-                                            } label: {
-                                                Label(NSLocalizedString(cat.localizationKey, comment: ""), systemImage: cat.icon)
-                                            }
-                                        }
-                                    } label: {
-                                        ZStack(alignment: .leading) {
-                                            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                .fill(Color(hex: "#E5E5EA"))
-                                                .frame(height: 56)
-
-                                            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                .fill(Color.white)
-                                                .frame(height: 56)
-                                                .overlay(
-                                                    HStack {
-                                                        Image(systemName: selectedCategory.icon)
-                                                            .font(.system(size: 20, weight: .bold))
+                                                    VStack(alignment: .leading, spacing: 2) {
+                                                        Text(NSLocalizedString(selectedCategory.localizationKey, comment: ""))
+                                                            .font(.system(size: 16, weight: .bold, design: .rounded))
                                                             .foregroundStyle(.primary)
-                                                            .frame(width: 32, height: 32)
-
-                                                        VStack(alignment: .leading, spacing: 2) {
-                                                            Text(NSLocalizedString(selectedCategory.localizationKey, comment: ""))
-                                                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                                .foregroundStyle(.primary)
-                                                            Text(String(localized: "category.selection_hint"))
-                                                                .font(.system(size: 12))
-                                                                .foregroundStyle(.secondary)
-                                                        }
-
-                                                        Spacer()
-
-                                                        Image(systemName: "chevron.up.chevron.down")
-                                                            .font(.system(size: 14, weight: .bold))
+                                                        Text(String(localized: "category.selection_hint"))
+                                                            .font(.system(size: 12))
                                                             .foregroundStyle(.secondary)
                                                     }
-                                                    .padding(.horizontal, 16)
-                                                )
-                                                .offset(y: -4)
-                                        }
-                                        .frame(height: 60)
+
+                                                    Spacer()
+
+                                                    Image(systemName: "chevron.up.chevron.down")
+                                                        .font(.system(size: 14, weight: .bold))
+                                                        .foregroundStyle(.secondary)
+                                                }
+                                                .padding(.horizontal, 16)
+                                            )
+                                            .offset(y: -4)
                                     }
-                                    .tint(.primary)
+                                    .frame(height: 60)
                                 }
+                                .tint(.primary)
                             }
 
                             // Icon Picker
@@ -241,7 +171,7 @@ struct OnboardingHabitCreationSheet: View {
                                 }
                                 .padding(.horizontal, 4)
 
-                                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: isNegative ? 6 : 4), spacing: 12) {
+                                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), spacing: 12) {
                                     ForEach(availableIcons, id: \.self) { icon in
                                         Button {
                                             selectedIcon = icon
@@ -250,17 +180,16 @@ struct OnboardingHabitCreationSheet: View {
                                             ZStack {
                                                 Circle()
                                                     .fill(selectedIcon == icon ? uiColor(for: selectedColor).opacity(0.15) : Color.clear)
-                                                    .frame(width: isNegative ? 44 : 74)
+                                                    .frame(width: 74)
 
                                                 if UIImage(named: icon) != nil {
                                                     Image(icon)
                                                         .resizable()
                                                         .scaledToFit()
-                                                        .frame(width: isNegative ? 28 : 70, height: isNegative ? 28 : 70)
-                                                        .scaleEffect(isNegative ? 2.2 : 1.0)
+                                                        .frame(width: 70, height: 70)
                                                 } else {
                                                     Image(systemName: icon)
-                                                        .font(.system(size: isNegative ? 20 : 40))
+                                                        .font(.system(size: 40))
                                                         .foregroundStyle(selectedIcon == icon ? uiColor(for: selectedColor) : .secondary)
                                                 }
                                             }
@@ -269,31 +198,29 @@ struct OnboardingHabitCreationSheet: View {
                                 }
                             }
 
-                            // Color Picker (nur bei guten Gewohnheiten)
-                            if !isNegative {
-                                VStack(alignment: .leading, spacing: 12) {
-                                    Text(String(localized: "plant.create.select_color"))
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .padding(.horizontal, 4)
+                            // Color Picker
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(String(localized: "plant.create.select_color"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .padding(.horizontal, 4)
 
-                                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 6), spacing: 12) {
-                                        ForEach(availableColors, id: \.self) { color in
-                                            Button {
-                                                selectedColor = color
-                                                FeedbackManager.shared.playTap()
-                                            } label: {
-                                                ZStack {
+                                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 6), spacing: 12) {
+                                    ForEach(availableColors, id: \.self) { color in
+                                        Button {
+                                            selectedColor = color
+                                            FeedbackManager.shared.playTap()
+                                        } label: {
+                                            ZStack {
+                                                Circle()
+                                                    .fill(uiColor(for: color))
+                                                    .frame(width: 34, height: 34)
+                                                    .shadow(color: selectedColor == color ? uiColor(for: color).opacity(0.6) : .clear, radius: 8)
+
+                                                if selectedColor == color {
                                                     Circle()
-                                                        .fill(uiColor(for: color))
-                                                        .frame(width: 34, height: 34)
-                                                        .shadow(color: selectedColor == color ? uiColor(for: color).opacity(0.6) : .clear, radius: 8)
-
-                                                    if selectedColor == color {
-                                                        Circle()
-                                                            .stroke(uiColor(for: color), lineWidth: 3)
-                                                            .frame(width: 44, height: 44)
-                                                            .opacity(0.8)
-                                                    }
+                                                        .stroke(uiColor(for: color), lineWidth: 3)
+                                                        .frame(width: 44, height: 44)
+                                                        .opacity(0.8)
                                                 }
                                             }
                                         }
@@ -322,7 +249,7 @@ struct OnboardingHabitCreationSheet: View {
                     }
                 }
             }
-            .navigationTitle(isNegative ? String(localized: "plant.create.preview.bad_habit") : String(localized: "onboarding.habit.create.title", defaultValue: "Eigene Gewohnheit"))
+            .navigationTitle(String(localized: "onboarding.habit.create.title", defaultValue: "Eigene Gewohnheit"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -334,7 +261,7 @@ struct OnboardingHabitCreationSheet: View {
                     selectedIcon: $selectedIcon,
                     selectedColor: uiColor(for: selectedColor),
                     icons: availableIcons,
-                    isNegative: isNegative
+                    isNegative: false
                 )
                 .environmentObject(settings)
             }
@@ -419,7 +346,7 @@ struct OnboardingHabitCreationSheet: View {
             data.customHabitNames[customID] = trimmedHabit
             data.customHabitIcons[customID] = selectedIcon
             data.customHabitColors[customID] = selectedColor
-            data.customHabitCategories[customID] = isNegative ? .lifestyle : selectedCategory
+            data.customHabitCategories[customID] = selectedCategory
         }
 
         Task {
@@ -429,4 +356,3 @@ struct OnboardingHabitCreationSheet: View {
         dismiss()
     }
 }
-
