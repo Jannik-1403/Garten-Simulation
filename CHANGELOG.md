@@ -1283,3 +1283,6 @@
 - 3D Liquid-Listenzeilen statt Grid-Cards
 - "Eigene Gewohnheit erstellen"-Zeile erscheint automatisch wenn keine Suchtreffer vorhanden
 - Eigener Gewohnheitsname wird direkt übernommen (kein zusätzliches Sheet)
+- Fix: Eigene Gewohnheiten aus dem Onboarding werden nicht mehr fälschlicherweise als 'Krafttraining' kategorisiert und tracken kein Gewicht mehr.
+- Fix: UI-Design der eigens erstellten Gewohnheit im Onboarding sieht nun genauso aus wie die Standard-Pflanzen (kein blauer Stern mehr).
+- Fix: Option 'Schlechte Gewohnheit' aus dem Onboarding entfernt, da nur gute Gewohnheiten am Anfang erstellt werden sollen.

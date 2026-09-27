@@ -317,19 +317,21 @@ struct CustomHabitListRow: View {
             shadowDepthFactor: 0.07,
             isRectangular: true,
             isPermanentlyPressed: false,
-            aktion: {}
+            aktion: onRemove
         ) {
             HStack(spacing: 16) {
-                // Mimic PlantIconView style
-                PflanzenButton(
-                    plant: nil,
-                    seltenheit: .bronze,
-                    farbe: uiColor,
-                    sekundaerFarbe: uiColor.darker(),
-                    groesse: 52,
-                    fallbackIcon: icon
-                )
-                .allowsHitTesting(false)
+                Group {
+                    if UIImage(named: icon) != nil {
+                        Image(icon)
+                            .resizable()
+                            .scaledToFit()
+                    } else {
+                        Image(systemName: icon)
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundStyle(uiColor)
+                    }
+                }
                 .frame(width: 52, height: 52)
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
 
@@ -346,20 +348,20 @@ struct CustomHabitListRow: View {
 
                 Spacer()
 
-                // Remove button
-                Button(action: onRemove) {
-                    ZStack {
-                        Circle()
-                            .fill(Color.gruenPrimary)
-                            .frame(width: 28, height: 28)
-                            .overlay(Circle().stroke(Color.gruenPrimary.darker(), lineWidth: 2))
+                // Checkmark circle (always selected for custom habits in this list)
+                ZStack {
+                    Circle()
+                        .fill(Color.gruenPrimary)
+                        .frame(width: 28, height: 28)
+                        .overlay(
+                            Circle()
+                                .stroke(Color.gruenPrimary.darker(), lineWidth: 2)
+                        )
 
-                        Image(systemName: "checkmark")
-                            .font(.system(size: 13, weight: .black))
-                            .foregroundStyle(.white)
-                    }
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 13, weight: .black))
+                        .foregroundStyle(.white)
                 }
-                .buttonStyle(.plain)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
