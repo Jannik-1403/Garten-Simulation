@@ -29,6 +29,9 @@ struct GroovyWidgetBundle: WidgetBundle {
         // Interactive (Pro)
         GroovyInteractiveHabitsWidget()
         
+        // Routine Start Widget
+        GroovyRoutineStartWidget()
+        
         // Live Activities:
         FocusTimerLiveActivity()
     }
@@ -114,5 +117,22 @@ struct GroovyInteractiveHabitsWidget: Widget {
         .configurationDisplayName(String(localized: "widget_interactive_todos_title", defaultValue: "To-Dos (Pro)", locale: widgetLocale))
         .description(String(localized: "widget_interactive_todos_desc", defaultValue: "Erledige deine To-Dos direkt vom Homescreen.", locale: widgetLocale))
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+    }
+}
+
+// MARK: - ROUTINE START WIDGET (Small)
+struct GroovyRoutineStartWidget: Widget {
+    let kind = "GroovyRoutineStartWidgetV1"
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: SelectRoutineIntent.self, provider: RoutineTimelineProvider()) { entry in
+            RoutineStartWidgetView(entry: entry)
+                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
+                .containerBackground(for: .widget) {
+                    DuoStyle.backgroundView(for: entry.style, defaultGradient: DuoStyle.greenGradient)
+                }
+        }
+        .configurationDisplayName(String(localized: "widget_routine_start_display_name", defaultValue: "Routine starten", locale: widgetLocale))
+        .description(String(localized: "widget_routine_start_desc", defaultValue: "Starte eine Routine direkt vom Homescreen.", locale: widgetLocale))
+        .supportedFamilies([.systemSmall])
     }
 }

@@ -250,6 +250,12 @@ struct AppRootView: View {
                             container.gardenStore.triggerWaterDetail = true
                         case "routines":
                             container.gardenStore.selectedTab = 4
+                            // Optionale Routine-ID → direkt starten
+                            if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                               let routineIdItem = components.queryItems?.first(where: { $0.name == "routineId" }),
+                               let routineId = routineIdItem.value {
+                                container.gardenStore.pendingRoutineStartID = routineId
+                            }
                         case "pro":
                             container.gardenStore.triggerPaywall = true
                         case "focus":

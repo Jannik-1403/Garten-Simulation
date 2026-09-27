@@ -261,9 +261,15 @@ struct RoutinenView: View {
             }
             .onAppear {
                 loadRoutines()
+                // Falls ein Widget-Deep-Link schon wartet, sofort auslösen
+                handlePendingRoutineStart()
             }
             .onChange(of: routines) { _, _ in
                 saveRoutines()
+            }
+            .onChange(of: gardenStore.pendingRoutineStartID) { _, newValue in
+                guard newValue != nil else { return }
+                handlePendingRoutineStart()
             }
         }
     }
@@ -310,6 +316,19 @@ struct RoutinenView: View {
     private func saveRoutines() {
         if let encoded = try? JSONEncoder().encode(routines) {
             customRoutinesData = encoded
+        }
+    }
+    
+    /// Startet die Routine, die per Widget-Deep-Link übergeben wurde
+    private func handlePendingRoutineStart() {
+        guard let routineId = gardenStore.pendingRoutineStartID else { return }
+        gardenStore.pendingRoutineStartID = nil
+        
+        // Routines könnten noch nicht geladen sein → kurz warten
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            if let routine = routines.first(where: { $0.id.uuidString == routineId }) {
+                routineToPlay = routine
+            }
         }
     }
     

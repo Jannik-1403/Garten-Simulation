@@ -141,6 +141,8 @@ class GardenStore: ObservableObject {
     @Published var pendingImportURL: URL? = nil
     /// Wird per Live Activity Deep Link gesetzt, um die passende FocusSessionView zu öffnen
     @Published var activeFocusHabitId: String? = nil
+    /// Wird per Routine-Widget Deep Link gesetzt, um die Routine direkt zu starten
+    @Published var pendingRoutineStartID: String? = nil
     
     private var isLoading = false
     

@@ -575,3 +575,74 @@ struct InteractiveHabitsWidgetView: View {
         .widgetURL(URL(string: isPro ? "grovy://todos" : "grovy://pro"))
     }
 }
+
+// MARK: - SMALL: Routine Start Widget
+
+struct RoutineStartWidgetView: View {
+    let entry: GroovyRoutineEntry
+    
+    private var routineName: String {
+        guard let routine = entry.routine else {
+            return String(localized: "widget_routine_none", defaultValue: "Keine Routine", locale: widgetLocale)
+        }
+        return String(localized: String.LocalizationValue(routine.titleKey), locale: widgetLocale)
+    }
+    
+    private var routineIcon: String {
+        entry.routine?.icon ?? "🌿"
+    }
+    
+    private var deepLinkURL: URL {
+        if let routine = entry.routine {
+            return URL(string: "grovy://routines?routineId=\(routine.id)")!
+        }
+        return URL(string: "grovy://routines")!
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header: "Routine starten"
+            Text(String(localized: "widget_routine_start_title", defaultValue: "Routine starten", locale: widgetLocale))
+                .font(.system(size: 10, weight: .black))
+                .tracking(0.8)
+                .foregroundStyle(.white.opacity(0.75))
+                .textCase(.uppercase)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+            
+            Spacer(minLength: 4)
+            
+            // Routine Icon
+            Text(routineIcon)
+                .font(.system(size: 30))
+            
+            Spacer(minLength: 2)
+            
+            // Routine Name
+            Text(routineName)
+                .font(.system(size: 13, weight: .black, design: .rounded))
+                .foregroundStyle(.white)
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .minimumScaleFactor(0.6)
+                .padding(.horizontal, 4)
+            
+            Spacer(minLength: 6)
+            
+            // Play Arrow Button
+            ZStack {
+                Circle()
+                    .fill(.white.opacity(0.2))
+                    .frame(width: 36, height: 36)
+                Image(systemName: "play.fill")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.white)
+                    .offset(x: 1) // optischer Ausgleich
+            }
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 8)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .widgetURL(deepLinkURL)
+    }
+}
