@@ -1286,3 +1286,4 @@
 - Fix: Eigene Gewohnheiten aus dem Onboarding werden nicht mehr fälschlicherweise als 'Krafttraining' kategorisiert und tracken kein Gewicht mehr.
 - Fix: UI-Design der eigens erstellten Gewohnheit im Onboarding sieht nun genauso aus wie die Standard-Pflanzen (kein blauer Stern mehr).
 - Fix: Option 'Schlechte Gewohnheit' aus dem Onboarding entfernt, da nur gute Gewohnheiten am Anfang erstellt werden sollen.
+- Fix: Eigens erstellte Gewohnheiten im Onboarding (Liste) sehen nun exakt aus wie Standard-Pflanzen (kein doppelter 3D-Button Effekt mehr) und die gesamte Zeile ist zum Abwählen klickbar.
