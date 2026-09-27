@@ -1941,7 +1941,7 @@ extension GardenStore {
             // Check based on effective metric (both manual and automatic)
             guard let metric = pflanze.effectiveHealthMetric else { continue }
             
-            var target = pflanze.healthTarget ?? pflanze.defaultHealthTarget
+            var target = pflanze.effectiveHealthTarget
             if metric == .water {
                 target = WaterGoalManager.shared.currentGoal
             }

@@ -105,7 +105,7 @@ class DailyFeedbackViewModel: ObservableObject {
             let key = plant.habitName.lowercased(); if lowerName.contains("kochen") || key.contains("koch") || lowerName.contains("ernährung") || key.contains("ernaehrung") || key.contains("nutrition") { return true }
             return false
         })
-        let energyGoal = energyPlant?.healthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
+        let energyGoal = energyPlant?.effectiveHealthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
 
         let cm = CleaningManager.shared
         var hasCleaningTaskToday = false

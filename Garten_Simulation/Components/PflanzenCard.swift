@@ -63,7 +63,7 @@ struct PflanzenCard: View {
             let hasSetGoals = UserDefaults.standard.bool(forKey: "has_set_nutrition_goals")
             guard hasSetGoals && isGoalValid else { return 0.0 }
             
-            let goal = pflanze.healthTarget ?? (goalEnergy > 0 ? goalEnergy : 2000.0)
+            let goal = pflanze.effectiveHealthTarget
             return min(1.0, max(0.0, healthManager.todaysEnergy / goal))
         }
 
@@ -73,7 +73,7 @@ struct PflanzenCard: View {
             }
         }
         
-        var effectiveTarget = pflanze.healthTarget ?? pflanze.defaultHealthTarget
+        var effectiveTarget = pflanze.effectiveHealthTarget
         if metric == .water {
             effectiveTarget = WaterGoalManager.shared.currentGoal
         }

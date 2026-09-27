@@ -397,10 +397,7 @@ class HealthManager: ObservableObject {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: waterType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
-            guard let result = result, let sum = result.sumQuantity() else {
-                return
-            }
-            let ml = sum.doubleValue(for: HKUnit.literUnit(with: .milli))
+            let ml = result?.sumQuantity()?.doubleValue(for: HKUnit.literUnit(with: .milli)) ?? 0.0
             DispatchQueue.main.async {
                 self.todaysWater = ml
             }
@@ -415,8 +412,7 @@ class HealthManager: ObservableObject {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: fiberType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            guard let result = result, let sum = result.sumQuantity() else { return }
-            let grams = sum.doubleValue(for: HKUnit.gram())
+            let grams = result?.sumQuantity()?.doubleValue(for: HKUnit.gram()) ?? 0.0
             DispatchQueue.main.async {
                 self.todaysFiber = grams
             }
@@ -430,8 +426,7 @@ class HealthManager: ObservableObject {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: calciumType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            guard let result = result, let sum = result.sumQuantity() else { return }
-            let mg = sum.doubleValue(for: HKUnit.gramUnit(with: .milli))
+            let mg = result?.sumQuantity()?.doubleValue(for: HKUnit.gramUnit(with: .milli)) ?? 0.0
             DispatchQueue.main.async {
                 self.todaysCalcium = mg
             }
@@ -445,8 +440,7 @@ class HealthManager: ObservableObject {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: energyType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            guard let result = result, let sum = result.sumQuantity() else { return }
-            let kcal = sum.doubleValue(for: HKUnit.kilocalorie())
+            let kcal = result?.sumQuantity()?.doubleValue(for: HKUnit.kilocalorie()) ?? 0.0
             DispatchQueue.main.async {
                 self.todaysEnergy = kcal
             }

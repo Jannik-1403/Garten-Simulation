@@ -391,6 +391,20 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case .calcium: return 1000.0
         }
     }
+    
+    var effectiveHealthTarget: Double {
+        if let metric = effectiveHealthMetric {
+            if metric == .energy, (healthTarget == 2000.0 || healthTarget == nil) {
+                let appGoal = UserDefaults.standard.double(forKey: "goal_energy")
+                return appGoal > 0 ? appGoal : 2000.0
+            }
+            if metric == .water, (healthTarget == 2000.0 || healthTarget == nil) {
+                let appGoal = WaterGoalManager.shared.currentGoal
+                return appGoal > 0 ? appGoal : 2000.0
+            }
+        }
+        return healthTarget ?? defaultHealthTarget
+    }
 
     
     // Eigener Tracker (Manuell)

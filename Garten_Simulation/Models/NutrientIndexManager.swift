@@ -212,8 +212,7 @@ class NutrientIndexManager: ObservableObject {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            guard let result = result, let sum = result.sumQuantity() else { return }
-            let value = sum.doubleValue(for: item.unit)
+            let value = result?.sumQuantity()?.doubleValue(for: item.unit) ?? 0.0
             
             var mutableItem = item
             DispatchQueue.main.async {

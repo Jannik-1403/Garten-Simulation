@@ -662,7 +662,7 @@ struct PflanzeDetailSheet: View {
         .sheet(isPresented: $showTargetEdit) {
             HealthTargetEditSheet(
                 target: Binding(
-                    get: { pflanze.healthTarget ?? pflanze.defaultHealthTarget },
+                    get: { pflanze.effectiveHealthTarget },
                     set: { newVal in
                         pflanze.healthTarget = newVal
                         gardenStore.savePlants()
@@ -704,7 +704,7 @@ struct PflanzeDetailSheet: View {
                                     if pflanze.effectiveHealthMetric == nil {
                                         IntradayProgressChartView(
                                             history: pflanze.intradayProgressHistory,
-                                            target: pflanze.healthTarget ?? pflanze.defaultHealthTarget,
+                                            target: pflanze.effectiveHealthTarget,
                                             customUnit: pflanze.customTargetUnit,
                                             onEditTarget: { showTargetEdit = true },
                                             onLink: (pflanze.automaticHealthMetric != nil || pflanze.linkedHealthMetric != nil) ? {
@@ -750,7 +750,7 @@ struct PflanzeDetailSheet: View {
                                                             HealthChartView(
                                                                 data: hourlyHealthData,
                                                                 metric: metric,
-                                                                target: pflanze.healthTarget ?? pflanze.defaultHealthTarget,
+                                                                target: pflanze.effectiveHealthTarget,
                                                                 hourlyAverageData: hourlyAvgData,
                                                                 onEditTarget: { showTargetEdit = true },
                                                                 onUnlink: { zeigeAppleHealthEntkoppelnAlert = true }
