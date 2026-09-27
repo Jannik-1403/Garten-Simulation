@@ -128114,6 +128114,107 @@
         }
       }
     },
+    "common.continueWithout": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohne Blockieren fortfahren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue without blocking"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar sin bloquear"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer sans bloquer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बिना ब्लॉक किए जारी रखें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua senza bloccare"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロックせずに続行"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단 없이 계속"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doorgaan zonder te blokkeren"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontynuuj bez blokowania"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar sem bloquear"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar sem bloquear"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Продолжить без блокировки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engellemeden devam et"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在不阻止的情况下继续"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在不封鎖的情況下繼續"
+          }
+        }
+      }
+    },
     "common.day": {
       "comment": "",
       "extractionState": "manual",
@@ -367987,6 +368088,208 @@
         }
       }
     },
+    "routine.screentime.error.message": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitte aktiviere Screen Time in den iOS-Einstellungen für Grovy, damit du Apps während der Routine blockieren kannst."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please enable Screen Time for Grovy in iOS Settings so you can block apps during your routine."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por favor, habilita el Tiempo en pantalla para Grovy en los Ajustes de iOS para poder bloquear aplicaciones."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veuillez activer Temps d'écran pour Grovy dans les Réglages iOS afin de pouvoir bloquer des applications."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कृपया iOS सेटिंग्स में ग्रोवी के लिए स्क्रीन टाइम सक्षम करें ताकि आप ऐप्स को ब्लॉक कर सकें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per favore, abilita Tempo di utilizzo per Grovy nelle Impostazioni di iOS per bloccare le app."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルーティン中にアプリをブロックするには、iOSの設定でGrovyのスクリーンタイムを有効にしてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "루틴 중 앱을 차단하려면 iOS 설정에서 Grovy의 스크린 타임을 활성화해주세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schakel Schermtijd voor Grovy in bij de iOS-instellingen om apps te kunnen blokkeren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proszę, włącz Czas przed ekranem dla Grovy w Ustawieniach iOS, aby móc blokować aplikacje."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por favor, ative o Tempo de Uso para o Grovy nos Ajustes do iOS para bloquear aplicativos."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ative o Tempo de Uso para o Grovy nos Ajustes do iOS para poder bloquear apps."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пожалуйста, включите Экранное время для Grovy в настройках iOS, чтобы блокировать приложения."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamaları engelleyebilmek için lütfen iOS Ayarlarından Grovy için Ekran Süresi'ni etkinleştirin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在 iOS 设置中为 Grovy 启用屏幕使用时间，以便您能够阻止应用程序。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請在 iOS 設定中為 Grovy 啟用螢幕使用時間，以便您能夠封鎖應用程式。"
+          }
+        }
+      }
+    },
+    "routine.screentime.error.title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen Time nicht aktiviert"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen Time not enabled"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo en pantalla no habilitado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps d'écran non activé"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्क्रीन टाइम चालू नहीं है"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo di utilizzo non attivato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイム未有効"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스크린 타임 비활성화됨"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermtijd niet ingeschakeld"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czas przed ekranem wyłączony"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo de Uso não ativado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo de Uso não ativado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экранное время не включено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran Süresi etkin değil"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未启用屏幕使用时间"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未啟用螢幕使用時間"
+          }
+        }
+      }
+    },
     "routine.session.alreadyCompleted": {
       "comment": "A label displayed when a user has already completed a habit.",
       "isCommentAutoGenerated": true,
@@ -375664,6 +375967,107 @@
           "stringUnit": {
             "state": "translated",
             "value": "選擇活動"
+          }
+        }
+      }
+    },
+    "screenTime.picker.header.block": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu blockierende Apps auswählen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select apps to block"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccionar aplicaciones a bloquear"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionner les apps à bloquer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ब्लॉक करने के लिए ऐप्स चुनें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona app da bloccare"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロックするアプリを選択"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단할 앱 선택"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecteer apps om te blokkeren"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz aplikacje do zablokowania"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecione aplicativos para bloquear"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecionar apps para bloquear"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выберите приложения для блокировки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engellenecek uygulamaları seç"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择要阻止的应用程序"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇要封鎖的應用程式"
           }
         }
       }

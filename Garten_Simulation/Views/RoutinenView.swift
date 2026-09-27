@@ -327,7 +327,10 @@ struct RoutinenView: View {
         // Routines könnten noch nicht geladen sein → kurz warten
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             if let routine = routines.first(where: { $0.id.uuidString == routineId }) {
-                routineToPlay = routine
+                let currentHabits = habits(for: routine)
+                if !currentHabits.isEmpty && !isRoutineCompleted(routine) {
+                    routineToPlay = routine
+                }
             }
         }
     }

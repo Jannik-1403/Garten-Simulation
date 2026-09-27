@@ -38,8 +38,8 @@ struct RoutineSessionView: View {
     @State private var showStrictModeAlert = false
     @State private var showScreenTimePicker = false
     @State private var showSettings = false
+    @State private var showScreenTimeError = false
     
-
     @State private var showBlockNotice = false
     
     var timeString: String {
@@ -99,6 +99,10 @@ struct RoutineSessionView: View {
                     }
                     UIApplication.shared.isIdleTimerDisabled = true
                     isTimerRunning = true
+                    // Block neu anwenden, da Apple's DeviceActivityCenter ihn außerhalb des regulären Plans verwirft
+                    if screenTimeManager.isAuthorized {
+                        screenTimeManager.applyFocusBlock(selection: screenTimeManager.focusPartialBlockSelection)
+                    }
                 }
             }
         }
@@ -118,10 +122,10 @@ struct RoutineSessionView: View {
                             if screenTimeManager.isAuthorized {
                                 showScreenTimePicker = true
                             } else {
-                                startSession()
+                                showScreenTimeError = true
                             }
                         } catch {
-                            startSession()
+                            showScreenTimeError = true
                         }
                     }
                 }
@@ -133,12 +137,43 @@ struct RoutineSessionView: View {
                 // Do nothing
             }
         }
-        .familyActivityPicker(headerText: String(localized: "screenTime.picker.header", defaultValue: "Apps auswählen"), isPresented: $showScreenTimePicker, selection: $screenTimeManager.allowedSelection)
+        .familyActivityPicker(headerText: String(localized: "screenTime.picker.header.block", defaultValue: "Zu blockierende Apps auswählen"), isPresented: $showScreenTimePicker, selection: $screenTimeManager.focusPartialBlockSelection)
         .onChange(of: showScreenTimePicker) { _, isOpen in
             if !isOpen {
-                screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
+                screenTimeManager.applyFocusBlock(selection: screenTimeManager.focusPartialBlockSelection)
                 startSession()
             }
+        }
+        .sheet(isPresented: $showScreenTimeError) {
+            VStack(spacing: 24) {
+                Image(systemName: "hourglass.badge.exclamationmark")
+                    .font(.system(size: 64))
+                    .foregroundStyle(.orange)
+                Text(String(localized: "routine.screentime.error.title", defaultValue: "Screen Time nicht aktiviert"))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .multilineTextAlignment(.center)
+                Text(String(localized: "routine.screentime.error.message", defaultValue: "Bitte aktiviere Screen Time in den iOS-Einstellungen für Grovy, damit du Apps während der Routine blockieren kannst."))
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+                
+                Item3DButton(
+                    farbe: .orange,
+                    sekundaerFarbe: .orange.darker(),
+                    groesse: 56,
+                    isRectangular: true,
+                    aktion: {
+                        showScreenTimeError = false
+                        startSession()
+                    }
+                ) {
+                    Text(String(localized: "common.continueWithout", defaultValue: "Ohne Blockieren fortfahren"))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                }
+                .padding(.horizontal, 32)
+            }
+            .presentationDetents([.fraction(0.6)])
         }
         .alert(String(localized: "routine.strict_mode.blocked.title", defaultValue: "Handy blockiert"), isPresented: $showBlockNotice) {
             Button(String(localized: "routine.strict_mode.blocked.ok", defaultValue: "Verstanden"), role: .cancel) {

@@ -588,10 +588,6 @@ struct RoutineStartWidgetView: View {
         return String(localized: String.LocalizationValue(routine.titleKey), locale: widgetLocale)
     }
     
-    private var routineIcon: String {
-        entry.routine?.icon ?? "🌿"
-    }
-    
     private var deepLinkURL: URL {
         if let routine = entry.routine {
             return URL(string: "grovy://routines?routineId=\(routine.id)")!
@@ -600,49 +596,38 @@ struct RoutineStartWidgetView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            // Header: "Routine starten"
+        VStack(alignment: .leading, spacing: 0) {
+            // Header: "Routine starten" - links oben, etwas kleiner
             Text(String(localized: "widget_routine_start_title", defaultValue: "Routine starten", locale: widgetLocale))
-                .font(.system(size: 10, weight: .black))
-                .tracking(0.8)
-                .foregroundStyle(.white.opacity(0.75))
-                .textCase(.uppercase)
-                .lineLimit(1)
+                .font(.system(size: 11, weight: .bold))
+                .foregroundStyle(.white.opacity(0.8))
+                .padding(.bottom, 6)
+            
+            // Routine Name - größer und weiter oben
+            Text(routineName)
+                .font(.system(size: 18, weight: .black, design: .rounded))
+                .foregroundStyle(.white)
+                .lineLimit(3)
                 .minimumScaleFactor(0.7)
             
-            Spacer(minLength: 4)
+            Spacer()
             
-            // Routine Icon
-            Text(routineIcon)
-                .font(.system(size: 30))
-            
-            Spacer(minLength: 2)
-            
-            // Routine Name
-            Text(routineName)
-                .font(.system(size: 13, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-                .minimumScaleFactor(0.6)
-                .padding(.horizontal, 4)
-            
-            Spacer(minLength: 6)
-            
-            // Play Arrow Button
-            ZStack {
-                Circle()
-                    .fill(.white.opacity(0.2))
-                    .frame(width: 36, height: 36)
-                Image(systemName: "play.fill")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(.white)
-                    .offset(x: 1) // optischer Ausgleich
+            // Play Button - weißer Hintergrund, schwarzes Icon, unten rechts
+            HStack {
+                Spacer()
+                ZStack {
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 40, height: 40)
+                    Image(systemName: "play.fill")
+                        .font(.system(size: 16, weight: .black))
+                        .foregroundStyle(Color.black)
+                        .offset(x: 1.5) // Optischer Ausgleich für Play-Button
+                }
             }
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 8)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(14)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .widgetURL(deepLinkURL)
     }
 }
