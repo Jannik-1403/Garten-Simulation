@@ -531,34 +531,16 @@ class GardenStore: ObservableObject {
         guard coins >= GameConstants.wiederbelebungsKosten else { return }
         coinsAbziehen(amount: GameConstants.wiederbelebungsKosten, beschreibung: NSLocalizedString("transaction.revive", comment: ""))
         
+        // Gestern Mitternacht: Pflanze ist wieder lebendig, aber noch NICHT heute gegossen
+        let gesternMitternacht = Calendar.current.startOfDay(for: Date()).addingTimeInterval(-1)
+        
         objectWillChange.send()
         withAnimation {
             pflanze.wiederbelebtAm = Date()
-            pflanze.letzteBewaesserung = Date() // Reset the watering timer
+            pflanze.letzteBewaesserung = gesternMitternacht
             pflanze.missedCycles = 0
             pflanze.lastNotifiedCycle = 0
             pflanze.isDead = false
-            savePlants()
-        }
-    }
-
-    // MARK: Alle toten Pflanzen wiederbeleben
-    func reviveAll() {
-        let deadPlants = pflanzen.filter { $0.isDead }
-        guard !deadPlants.isEmpty else { return }
-        guard coins >= GameConstants.wiederbelebungsKostenAlle else { return }
-        
-        coinsAbziehen(amount: GameConstants.wiederbelebungsKostenAlle, beschreibung: String(localized: "transaction.revive.all", defaultValue: "Alle Pflanzen wiederbelebt"))
-        
-        objectWillChange.send()
-        withAnimation {
-            for pflanze in deadPlants {
-                pflanze.wiederbelebtAm = Date()
-                pflanze.letzteBewaesserung = Date() // Reset the watering timer
-                pflanze.missedCycles = 0
-                pflanze.lastNotifiedCycle = 0
-                pflanze.isDead = false
-            }
             savePlants()
         }
     }
@@ -569,10 +551,12 @@ class GardenStore: ObservableObject {
             gekaufteItems.remove(at: index)
             saveInventory()
             
+            let gesternMitternacht = Calendar.current.startOfDay(for: Date()).addingTimeInterval(-1)
+            
             objectWillChange.send()
             withAnimation {
                 pflanze.wiederbelebtAm = Date()
-                pflanze.letzteBewaesserung = Date()
+                pflanze.letzteBewaesserung = gesternMitternacht
                 pflanze.missedCycles = 0
                 pflanze.lastNotifiedCycle = 0
                 pflanze.isDead = false
