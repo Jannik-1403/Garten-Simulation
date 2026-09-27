@@ -595,38 +595,67 @@ struct RoutineStartWidgetView: View {
         return URL(string: "grovy://routines")!
     }
     
+    private var isCompleted: Bool {
+        guard let routine = entry.routine else { return false }
+        
+        guard let routinesData = SharedUserDefaults.suite.data(forKey: "customRoutinesData"),
+              let routines = try? JSONDecoder().decode([WidgetRoutineUIData].self, from: routinesData),
+              let fullRoutine = routines.first(where: { $0.id.uuidString == routine.id }) else { return false }
+        
+        if let lastCompleted = fullRoutine.lastCompletedDate, Calendar.current.isDateInToday(lastCompleted) {
+            return true
+        }
+        
+        return false
+    }
+    
+    // Farben abhängig vom WidgetBackgroundStyle
+    private var textColor: Color {
+        entry.style == .light ? .black : .white
+    }
+    
+    private var buttonBgColor: Color {
+        entry.style == .light ? .black : .white
+    }
+    
+    private var buttonIconColor: Color {
+        entry.style == .light ? .white : .black
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            // Header: "Routine starten" - links oben, etwas kleiner
+            // Header: "Routine starten" - links oben, nah am Rand
             Text(String(localized: "widget_routine_start_title", defaultValue: "Routine starten", locale: widgetLocale))
                 .font(.system(size: 11, weight: .bold))
-                .foregroundStyle(.white.opacity(0.8))
-                .padding(.bottom, 6)
+                .foregroundStyle(textColor.opacity(0.8))
+                .padding(.bottom, 2)
             
-            // Routine Name - größer und weiter oben
+            // Routine Name - groß
             Text(routineName)
                 .font(.system(size: 18, weight: .black, design: .rounded))
-                .foregroundStyle(.white)
+                .foregroundStyle(textColor)
                 .lineLimit(3)
                 .minimumScaleFactor(0.7)
             
-            Spacer()
+            Spacer(minLength: 4)
             
-            // Play Button - weißer Hintergrund, schwarzes Icon, unten rechts
+            // Arrow oder Checkmark Button - unten links
             HStack {
-                Spacer()
                 ZStack {
                     Circle()
-                        .fill(Color.white)
+                        .fill(isCompleted ? Color.green : buttonBgColor)
                         .frame(width: 40, height: 40)
-                    Image(systemName: "play.fill")
-                        .font(.system(size: 16, weight: .black))
-                        .foregroundStyle(Color.black)
-                        .offset(x: 1.5) // Optischer Ausgleich für Play-Button
+                    Image(systemName: isCompleted ? "checkmark" : "arrow.right")
+                        .font(.system(size: 17, weight: .black))
+                        .foregroundStyle(isCompleted ? Color.white : buttonIconColor)
+                        .offset(x: isCompleted ? 0 : 1.5) // Ausgleich nur für Pfeil
                 }
+                Spacer()
             }
         }
-        .padding(14)
+        .padding(.horizontal, 10)
+        .padding(.top, 10)
+        .padding(.bottom, 10)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .widgetURL(deepLinkURL)
     }

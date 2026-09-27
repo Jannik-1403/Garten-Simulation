@@ -114,6 +114,8 @@ enum GameConstants {
     static let weedRemovalCostPlantDeath: Int = 500
     /// Fallback-Kosten für Unkraut aus dem Glücksrad
     static let weedRemovalCostSpin: Int = 150
+    /// Kosten, um ALLE aktiven Unkräuter auf einmal zu entfernen
+    static let weedRemoveAllCost: Int = 1000
     /// Tage bis Unkraut Pflanzen schwächt
     static let weedSpreadDays: Int = 3
     /// Max. Coin-Strafe pro Gießen: Anteil am aktuellen Guthaben (0.5 = 50 %)

@@ -82,6 +82,32 @@ struct WeedDetailView: View {
                                 foregroundColor: .white
                             ))
                             .disabled(gardenStore.coins < gardenStore.weedRemovalCost)
+                            
+                            if gardenStore.weedCount > 1 {
+                                Button(action: {
+                                    if gardenStore.removeAllWeedsWithCoins() {
+                                        dismiss()
+                                    }
+                                }) {
+                                    HStack(spacing: 6) {
+                                        Text(String(localized: "weed.remove_all.button", defaultValue: "Alle Unkräuter entfernen"))
+                                            .font(.system(size: 15, weight: .bold))
+                                        Image("coin")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 16, height: 16)
+                                        Text(verbatim: "\(GameConstants.weedRemoveAllCost)")
+                                            .font(.system(size: 15, weight: .black))
+                                    }
+                                }
+                                .buttonStyle(DuolingoButtonStyle(
+                                    size: .large,
+                                    backgroundColor: gardenStore.coins >= GameConstants.weedRemoveAllCost ? Color(red: 0.7, green: 0.1, blue: 0.1) : Color(uiColor: .systemGray4),
+                                    shadowColor: gardenStore.coins >= GameConstants.weedRemoveAllCost ? Color(red: 0.5, green: 0.05, blue: 0.05) : Color(uiColor: .systemGray3),
+                                    foregroundColor: .white
+                                ))
+                                .disabled(gardenStore.coins < GameConstants.weedRemoveAllCost)
+                            }
                         }
                     }
                     .padding(24)

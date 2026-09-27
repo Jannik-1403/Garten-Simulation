@@ -586,8 +586,16 @@ struct RevivePlantSheet: View {
                         gardenStore.revive(pflanze: pflanze)
                         dismiss()
                     } label: {
-                        Text(String(localized: "pflanze.wiederbeleben.button"))
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                        HStack(spacing: 6) {
+                            Text(String(localized: "pflanze.wiederbeleben.button"))
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                            Image("coin")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18, height: 18)
+                            Text("\(GameConstants.wiederbelebungsKosten)")
+                                .font(.system(size: 18, weight: .black, design: .rounded))
+                        }
                     }
                     .buttonStyle(DuolingoButtonStyle(
                         backgroundColor: .gruenPrimary,

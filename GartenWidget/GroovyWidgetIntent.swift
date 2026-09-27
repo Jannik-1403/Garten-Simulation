@@ -79,6 +79,7 @@ struct WidgetRoutineUIData: Identifiable, Codable {
     var colorHex: String
     var filterType: WidgetRoutineFilterType
     var assignedHabitIDs: [String]?
+    var lastCompletedDate: Date?
 }
 
 struct RoutineEntity: AppEntity {

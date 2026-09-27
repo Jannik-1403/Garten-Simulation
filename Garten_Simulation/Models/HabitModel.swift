@@ -647,7 +647,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var remainingHoursInCycle: Int {
-        let maxHours: Double = 72.0
+        let maxHours: Double = 168.0 // 7 Tage
         let elapsed = hoursSinceThirstStarted
         let diff = maxHours - elapsed
         return max(0, Int(ceil(diff)))

@@ -1267,6 +1267,21 @@ class GardenStore: ObservableObject {
         return true
     }
 
+    @discardableResult
+    func removeAllWeedsWithCoins() -> Bool {
+        guard !activeWeeds.isEmpty, coins >= GameConstants.weedRemoveAllCost else { return false }
+        coinsAbziehen(
+            amount: GameConstants.weedRemoveAllCost,
+            beschreibung: String(localized: "weed.remove_all.transaction", defaultValue: "Alle Unkräuter entfernt")
+        )
+        withAnimation {
+            activeWeeds.removeAll()
+        }
+        handleWeedQueueEmptied(clearedByHabits: false)
+        saveStats()
+        return true
+    }
+
     private func handleWeedQueueEmptied(clearedByHabits: Bool, allowComeback: Bool = true) {
         if clearedByHabits {
             weedCrisis.weedsClearedByHabits += 1
@@ -1780,11 +1795,11 @@ class GardenStore: ObservableObject {
         for pflanze in pflanzen {
             let hours = pflanze.hoursSinceThirstStarted
             
-            // 72h window: 0-36 (OK), 36-72 (Warning), >72 (Death)
+            // 168h window (7 Tage): 0-84h (OK), 84-168h (Warning), >168h (Death)
             var verpasst = 0
-            if hours >= 72 {
+            if hours >= 168 {
                 verpasst = 2
-            } else if hours >= 36 {
+            } else if hours >= 84 {
                 verpasst = 1
             }
             
