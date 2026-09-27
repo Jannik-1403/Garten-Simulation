@@ -1287,3 +1287,5 @@
 - Fix: UI-Design der eigens erstellten Gewohnheit im Onboarding sieht nun genauso aus wie die Standard-Pflanzen (kein blauer Stern mehr).
 - Fix: Option 'Schlechte Gewohnheit' aus dem Onboarding entfernt, da nur gute Gewohnheiten am Anfang erstellt werden sollen.
 - Fix: Eigens erstellte Gewohnheiten im Onboarding (Liste) sehen nun exakt aus wie Standard-Pflanzen (kein doppelter 3D-Button Effekt mehr) und die gesamte Zeile ist zum Abwählen klickbar.
+- Fix: Apple Health Sync lädt jetzt nicht mehr fälschlicherweise die Werte vom Vortag, wenn am aktuellen Tag noch nichts getrackt wurde (z. B. bei Obst & Gemüse / Vitaminen).
+- Fix: Die Ziel-Werte für Kalorien und Wasser in den Gewohnheiten passen sich jetzt dynamisch dem globalen Ziel an (z. B. 2900 kcal), anstatt stur beim Standard von 2000 zu bleiben.
