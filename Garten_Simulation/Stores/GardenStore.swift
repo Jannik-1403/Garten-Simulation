@@ -397,9 +397,6 @@ class GardenStore: ObservableObject {
         pflanze.letzteBewaesserung = Date()
         pflanze.wateringDates.append(Date()) // Log für Verlauf-Tab
         pflanze.streak += 1
-        if pflanze.streak > 0 && pflanze.streak % 7 == 0 && pflanze.challengeJokers < pflanze.maxChallengeJokers {
-            pflanze.challengeJokers += 1
-        }
         
         let milestones = [5, 10, 30, 50, 100]
         if milestones.contains(pflanze.streak) {
@@ -495,27 +492,7 @@ class GardenStore: ObservableObject {
     }
     
     private func checkGlobalStreak() {
-        let standalonePlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative && !$0.isGenericFocus }
-        
-        var activeRoutineHabitIDs = Set<String>()
-        if let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData"),
-           let routines = try? JSONDecoder().decode([RoutineUIData].self, from: data) {
-            for routine in routines {
-                activeRoutineHabitIDs.formUnion(routine.assignedHabitIDs)
-            }
-        }
-        
-        let routinePlants = pflanzen.filter { $0.isRoutineOnly && !$0.isDead && !$0.isNegative && !$0.isGenericFocus && activeRoutineHabitIDs.contains($0.id) }
-        
-        let hasAnyPlant = !standalonePlants.isEmpty || !routinePlants.isEmpty
-        guard hasAnyPlant else { return }
-        
-        let allStandaloneWatered = standalonePlants.isEmpty || standalonePlants.allSatisfy({ $0.istBewässert })
-        let allRoutinesWatered = routinePlants.isEmpty || routinePlants.allSatisfy({ $0.istBewässert })
-        
-        if allStandaloneWatered && allRoutinesWatered {
-            onWatering?()
-        }
+        onWatering?()
     }
 
     // MARK: Pflanze entfernen
@@ -817,21 +794,7 @@ class GardenStore: ObservableObject {
         for pflanze in pflanzen {
             let isProtected = false
             if pflanze.streakAbgelaufen && !isProtected {
-                if pflanze.challengeJokers > 0 {
-                    // Joker wird eingesetzt
-                    pflanze.challengeJokers -= 1
-                    
-                    // Setze letzteBewaesserung auf gestern, damit der heutige Tag gerettet ist
-                    if let gestern = Calendar.current.date(byAdding: .day, value: -1, to: Date()) {
-                        pflanze.letzteBewaesserung = gestern
-                    }
-                    
-                    let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
-                    let noteText = "\(timeString) - \(String(localized: "note.joker_used", defaultValue: "Schutzschild (Joker) automatisch aktiviert. Streak gerettet!"))"
-                    pflanze.notizen.insert(noteText, at: 0)
-                } else {
-                    pflanze.streak = 0
-                }
+                pflanze.streak = 0
             }
         }
         
