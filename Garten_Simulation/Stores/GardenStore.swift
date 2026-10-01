@@ -156,10 +156,7 @@ class GardenStore: ObservableObject {
     @Published var letzteGiessCoins: Int = 0
     @Published var letzteGiessPflanzeID: String? = nil
     @Published var giessTriggerID = UUID()
-    @Published var coinPopTrigger: Int = 0
-    @Published var newlyAchievedRarity: PflanzenSeltenheit? = nil
-    @Published var newlyAchievedHabit: HabitModel? = nil
-    
+    @Published var coinPopTrigger: Int = 0    
     var titelStore: TitelStore? = nil
 
     // Live Activity was moved to Focus Timer
@@ -337,23 +334,7 @@ class GardenStore: ObservableObject {
             finalXPGewonnen = Int(Double(finalXPGewonnen) * WeedMechanics.xpMultiplier(weedCount: activeWeeds.count))
         }
 
-        let alteRarity = pflanze.seltenheit
         pflanze.currentXP += finalXPGewonnen
-        let neueRarity = pflanze.seltenheit
-        
-        let allRarities = PflanzenSeltenheit.allCases
-        if let oldIdx = allRarities.firstIndex(of: alteRarity),
-           let newIdx = allRarities.firstIndex(of: neueRarity),
-           newIdx > oldIdx {
-            
-            // Wenn wir Diamant erreicht haben, schalten wir vielleicht einen Titel frei? (wird extern gemacht oder hier?)
-            // Trigger das Overlay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.newlyAchievedHabit = pflanze
-                self.newlyAchievedRarity = neueRarity
-            }
-        }
-        
         // Bonus-Info kommunizieren
         if bonusAusgeloest {
             self.letzteBonusPflanzeID = pflanze.id

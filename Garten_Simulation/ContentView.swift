@@ -90,18 +90,7 @@ struct ContentView: View {
                     .environmentObject(activeGardenStore)
             }
             
-            // Rarity Level Up Overlay
-            if let rarity = gardenStore.newlyAchievedRarity {
-                RarityLevelUpOverlay(rarity: rarity, habit: gardenStore.newlyAchievedHabit) {
-                    withAnimation {
-                        gardenStore.newlyAchievedRarity = nil
-                        gardenStore.newlyAchievedHabit = nil
-                    }
-                }
-                .environmentObject(settings)
-                .zIndex(10001)
-            }
-            
+
             if showWeeklyReviewTeaser {
                 WeeklyReviewTeaserPopup {
                     showWeeklyReviewTeaser = false
