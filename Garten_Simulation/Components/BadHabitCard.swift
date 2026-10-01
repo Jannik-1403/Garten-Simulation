@@ -41,27 +41,23 @@ struct BadHabitCard: View {
     }
 
     var body: some View {
-        ZStack(alignment: .leading) {
+        ZStack(alignment: .bottom) {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color(white: 0.7))
+                .padding(.horizontal, 1)
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 120)
             
             ZStack(alignment: .leading) {
-                Color.white
-                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                if currentProgress > 0 {
-                    Color.red.opacity(0.3)
-                        .frame(width: max(0, cardWidth * currentProgress))
-                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                GeometryReader { proxy in
+                    ZStack(alignment: .leading) {
+                        Color.white
+                        if currentProgress > 0 {
+                            Color.red.opacity(0.3)
+                                .frame(width: proxy.size.width * currentProgress)
+                        }
+                    }
                 }
-            }
-            .overlay(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
-            )
-
-            // MARK: - Interactive Card Content
             HStack(spacing: 24) {
                 
                 // MARK: Left Column - 3D Button
@@ -154,14 +150,26 @@ struct BadHabitCard: View {
             .frame(maxWidth: .infinity)
             .frame(minHeight: 120)
             .contentShape(Rectangle())
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
+            )
+            .offset(y: isLocked ? 0 : -5)
         }
         .onTapGesture {
             guard !isLocked else { return }
-            isLocked = true
+            withAnimation(.spring(response: 0.22, dampingFraction: 0.5)) {
+                isLocked = true
+            }
             FeedbackManager.shared.playTap()
-            onTap()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                isLocked = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                withAnimation(.spring(response: 0.22, dampingFraction: 0.5)) {
+                    isLocked = false
+                }
+                onTap()
             }
         }
         .highPriorityGesture(

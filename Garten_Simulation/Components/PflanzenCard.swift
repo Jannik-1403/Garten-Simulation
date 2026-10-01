@@ -106,25 +106,23 @@ struct PflanzenCard: View {
     var body: some View {
         ZStack {
             // MARK: - Card Content & Button
-            ZStack(alignment: .leading) {
+            ZStack(alignment: .bottom) {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .fill(Color(white: 0.7))
+                    .padding(.horizontal, 1)
                     .frame(maxWidth: .infinity)
                     .frame(minHeight: 120)
                 
                 ZStack(alignment: .leading) {
-                    Color.white
-                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    if currentProgress > 0 {
-                        Color.gruenPrimary.opacity(0.3)
-                            .frame(width: max(0, cardWidth * currentProgress))
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    GeometryReader { proxy in
+                        ZStack(alignment: .leading) {
+                            Color.white
+                            if currentProgress > 0 {
+                                Color.gruenPrimary.opacity(0.3)
+                                    .frame(width: proxy.size.width * currentProgress)
+                            }
+                        }
                     }
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
-                )
 
                 HStack(spacing: 24) {
                 
@@ -286,19 +284,31 @@ struct PflanzenCard: View {
                 }
             )
             }
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
+            )
+            .offset(y: isLocked ? 0 : -5)
             .onTapGesture {
                 guard !isLocked else { return }
-                isLocked = true
-                FeedbackManager.shared.playTap()
-                if pflanze.isDead {
-                    showReviveSheet = true
-                } else {
-                    onTap()
+                withAnimation(.spring(response: 0.22, dampingFraction: 0.5)) {
+                    isLocked = true
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                    isLocked = false
+                FeedbackManager.shared.playTap()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                    withAnimation(.spring(response: 0.22, dampingFraction: 0.5)) {
+                        isLocked = false
+                    }
+                    if pflanze.isDead {
+                        showReviveSheet = true
+                    } else {
+                        onTap()
+                    }
                 }
             }
+        }
         .highPriorityGesture(
             DragGesture(minimumDistance: 25)
                 .onChanged { value in
