@@ -78,7 +78,7 @@ class GardenStore: ObservableObject {
     var gekauftePflanzenAnzahl: Int { pflanzen.count }
     
     var diamantPflanzenAnzahl: Int {
-        pflanzen.filter { $0.stufe == .diamant3 || $0.stufe == .diamant2 || $0.stufe == .diamant1 }.count
+        pflanzen.filter { $0.seltenheit == .diamant }.count
     }
     
 
