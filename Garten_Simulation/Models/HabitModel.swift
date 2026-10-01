@@ -339,16 +339,16 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     @Published var currentXP: Int
     @Published var streak: Int
-    @Published var letzteBewaesserung: Date?
+    @Published var lastCompletionDate: Date?
     var gekauftAm: Date
     
-    var istBewässert: Bool {
-        guard let d = letzteBewaesserung else { return false }
+    var isCompleted: Bool {
+        guard let d = lastCompletionDate else { return false }
         return Calendar.current.isDateInToday(d)
     }
     @Published var missedCycles: Int   // Wie viele 24h-Fenster verpasst?
     @Published var lastNotifiedCycle: Int // Welcher Zyklus wurde bereits "bestraft" (Herz-Abzug)?
-    @Published var totalMlGegossen: Double = 0
+    @Published var totalCompletions: Double = 0
     @Published var lebenBereitsAbgezogen: Bool = false
     @Published var isDead: Bool = false
     @Published var isNegative: Bool = false
@@ -581,7 +581,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var streakAbgelaufen: Bool {
-        guard let letzte = letzteBewaesserung else { return false }
+        guard let letzte = lastCompletionDate else { return false }
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         let letzteDay = calendar.startOfDay(for: letzte)
@@ -608,10 +608,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var formattedVolume: String {
-        let liter = totalMlGegossen / 1000
+        let liter = totalCompletions / 1000
         if liter < 1 {
             let unit = NSLocalizedString("common.ml", comment: "")
-            return String(format: "%.0f %@", totalMlGegossen, unit)
+            return String(format: "%.0f %@", totalCompletions, unit)
         } else {
             let unit = NSLocalizedString("common.liter", comment: "")
             return String(format: "%.1f %@", liter, unit)
@@ -626,7 +626,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var hoursSinceThirstStarted: Double {
-        let reference = letzteBewaesserung ?? gekauftAm
+        let reference = lastCompletionDate ?? gekauftAm
         let calendar = Calendar.current
         // Der Countdown beginnt erst ab der nächsten Mitternacht nach der letzten Aktion
         guard let naechsteMitternacht = calendar.nextDate(after: reference, matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime) else {
@@ -714,7 +714,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         
         self.currentXP = 0
         self.streak = 0
-        self.letzteBewaesserung = nil
+        self.lastCompletionDate = nil
         self.gekauftAm = Date()
 
         self.isDead = false
@@ -749,9 +749,11 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, name, symbolName, symbolColor, habitCategory, habitCategories, symbolism, habitName
-        case currentXP, streak, letzteBewaesserung, gekauftAm
+        case currentXP, streak, gekauftAm
+        case lastCompletionDate = "lastCompletionDate"
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
-        case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
+        case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, plantID
+        case totalCompletions = "totalCompletions"
         case wiederbelebtAm, strafTage, reminderTime, customReminderMessage, wateringDates
         case lebenBereitsAbgezogen, isDead, isNegative
         case reminderSchedule
@@ -814,7 +816,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         
         currentXP = try container.decode(Int.self, forKey: .currentXP)
         streak = try container.decode(Int.self, forKey: .streak)
-        letzteBewaesserung = try container.decodeIfPresent(Date.self, forKey: .letzteBewaesserung)
+        lastCompletionDate = try container.decodeIfPresent(Date.self, forKey: .lastCompletionDate)
         gekauftAm = try container.decode(Date.self, forKey: .gekauftAm)
         
         maxLevel = try container.decode(Int.self, forKey: .maxLevel)
@@ -836,7 +838,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         timerDatum = try container.decodeIfPresent(Date.self, forKey: .timerDatum)
         xpHistory = try container.decodeIfPresent([String: Int].self, forKey: .xpHistory) ?? [:]
         totalCoinsEarned = try container.decodeIfPresent(Int.self, forKey: .totalCoinsEarned) ?? 0
-        totalMlGegossen = try container.decodeIfPresent(Double.self, forKey: .totalMlGegossen) ?? 0
+        totalCompletions = try container.decodeIfPresent(Double.self, forKey: .totalCompletions) ?? 0
         wiederbelebtAm = try container.decodeIfPresent(Date.self, forKey: .wiederbelebtAm)
         strafTage = try container.decodeIfPresent(Int.self, forKey: .strafTage) ?? 3
         reminderTime = try container.decodeIfPresent(Date.self, forKey: .reminderTime)
@@ -906,7 +908,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         
         try container.encode(currentXP, forKey: .currentXP)
         try container.encode(streak, forKey: .streak)
-        try container.encode(letzteBewaesserung, forKey: .letzteBewaesserung)
+        try container.encode(lastCompletionDate, forKey: .lastCompletionDate)
         try container.encode(gekauftAm, forKey: .gekauftAm)
         
         try container.encode(maxLevel, forKey: .maxLevel)
@@ -920,7 +922,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(timerDatum, forKey: .timerDatum)
         try container.encode(xpHistory, forKey: .xpHistory)
         try container.encode(totalCoinsEarned, forKey: .totalCoinsEarned)
-        try container.encode(totalMlGegossen, forKey: .totalMlGegossen)
+        try container.encode(totalCompletions, forKey: .totalCompletions)
         try container.encode(plantID, forKey: .plantID)
         try container.encodeIfPresent(wiederbelebtAm, forKey: .wiederbelebtAm)
         try container.encode(strafTage, forKey: .strafTage)

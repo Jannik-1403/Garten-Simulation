@@ -31,7 +31,7 @@ class GardenStore: ObservableObject {
     
     var sichtbarePflanzen: [HabitModel] {
         let visible = activeHabits
-        return visible.filter { !$0.istBewässert } + visible.filter { $0.istBewässert }
+        return visible.filter { !$0.isCompleted } + visible.filter { $0.isCompleted }
     }
     
     @Published var coins: Int = GameConstants.startCoins
@@ -153,9 +153,9 @@ class GardenStore: ObservableObject {
     @Published var letzterBonus: GiessBonus? = nil
     @Published var letzteBonusPflanzeID: String? = nil
     @Published var letzteGiessXP: Int = 0
-    @Published var letzteGiessCoins: Int = 0
-    @Published var letzteGiessPflanzeID: String? = nil
-    @Published var giessTriggerID = UUID()
+    @Published var lastCompletionCoins: Int = 0
+    @Published var lastCompletedHabitID: String? = nil
+    @Published var completionTriggerID = UUID()
     @Published var coinPopTrigger: Int = 0    
     var titelStore: TitelStore? = nil
 
@@ -167,7 +167,7 @@ class GardenStore: ObservableObject {
     }
 
     var heuteGegossen: Bool {
-        pflanzen.contains(where: { $0.istBewässert })
+        pflanzen.contains(where: { $0.isCompleted })
     }
 
     var gekauftePowerUps: [ShopDetailPayload] {
@@ -176,7 +176,7 @@ class GardenStore: ObservableObject {
 
 
     var gesamtMlGegossen: Double {
-        Double(gesamtGegossen) * GameConstants.mlProGiessen
+        Double(gesamtGegossen)
     }
 
     var gesamtLiterFormatiert: String {
@@ -192,7 +192,7 @@ class GardenStore: ObservableObject {
     }
 
     var pflanzenNachMlSortiert: [HabitModel] {
-        sichtbarePflanzen.sorted { $0.totalMlGegossen > $1.totalMlGegossen }
+        sichtbarePflanzen.sorted { $0.totalCompletions > $1.totalCompletions }
     }
     
     // Streak-Integration
@@ -278,11 +278,11 @@ class GardenStore: ObservableObject {
     }
     
     // MARK: Pflanze gießen
-    func giessen(pflanze: HabitModel, fromRoutine: Bool = false) {
+    func completeHabit(pflanze: HabitModel, fromRoutine: Bool = false) {
         HealthManager.shared.requestAuthorizationIfNeeded()
         
         // Synchronous idempotency check to prevent race conditions
-        guard !pflanze.istBewässert else { return }
+        guard !pflanze.isCompleted else { return }
 
         // Tagesziel automatisch erfüllen (Andersrum-Sync)
         if let target = pflanze.customTrackerTarget, target > 0 {
@@ -293,12 +293,12 @@ class GardenStore: ObservableObject {
         
         if pflanze.isRoutineOnly {
             self.letzteGiessXP = 0
-            self.letzteGiessCoins = 0
+            self.lastCompletionCoins = 0
             self.letzterBonus = nil
             self.letzteBonusPflanzeID = nil
-            self.letzteGiessPflanzeID = pflanze.id
+            self.lastCompletedHabitID = pflanze.id
             
-            pflanze.letzteBewaesserung = Date()
+            pflanze.lastCompletionDate = Date()
             
             let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
             let routineString = fromRoutine ? String(localized: "note.auto.routine", defaultValue: "(mit Routine)") : String(localized: "note.auto.no_routine", defaultValue: "(ohne Routine)")
@@ -323,7 +323,7 @@ class GardenStore: ObservableObject {
         let xpGewonnen = bonusAusgeloest ? Int(Double(xpBasis) * GameConstants.bonusXPMultiplier) : xpBasis
         let gemsGewonnen = bonusAusgeloest ? GameConstants.bonusGemAmount : 0
         
-        let coinsGewonnen = Int(Double(GameConstants.coinsProGiessen) * coinMult)
+        let coinsGewonnen = Int(Double(GameConstants.coinsPerCompletion) * coinMult)
         var finalXPGewonnen = xpGewonnen
         
         let weedPenaltiesApply = isWeedActive
@@ -344,8 +344,8 @@ class GardenStore: ObservableObject {
             self.letzteBonusPflanzeID = nil
         }
         self.letzteGiessXP = finalXPGewonnen
-        self.letzteGiessCoins = coinsGewonnen
-        self.letzteGiessPflanzeID = pflanze.id
+        self.lastCompletionCoins = coinsGewonnen
+        self.lastCompletedHabitID = pflanze.id
 
         // XP Verlauf für die Pflanze speichern
         let formatter = DateFormatter()
@@ -358,9 +358,9 @@ class GardenStore: ObservableObject {
         // 3. XP zum Garten-Gesamt addieren
         xpHinzufuegen(amount: finalXPGewonnen)
         
-        self.giessTriggerID = UUID()
+        self.completionTriggerID = UUID()
         
-        pflanze.letzteBewaesserung = Date()
+        pflanze.lastCompletionDate = Date()
         pflanze.wateringDates.append(Date()) // Log für Verlauf-Tab
         pflanze.streak += 1
         
@@ -381,7 +381,7 @@ class GardenStore: ObservableObject {
         
         pflanze.missedCycles = 0 // Reset Gesundheit
         pflanze.lastNotifiedCycle = 0 // Reset Herz-Abzug-Trigger
-        pflanze.totalMlGegossen += GameConstants.mlProGiessen
+        pflanze.totalCompletions += 1
         
         // Auto-generierte Notiz
         let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
@@ -480,7 +480,7 @@ class GardenStore: ObservableObject {
         objectWillChange.send()
         withAnimation {
             pflanze.wiederbelebtAm = Date()
-            pflanze.letzteBewaesserung = gesternMitternacht
+            pflanze.lastCompletionDate = gesternMitternacht
             pflanze.missedCycles = 0
             pflanze.lastNotifiedCycle = 0
             pflanze.isDead = false
@@ -499,7 +499,7 @@ class GardenStore: ObservableObject {
             objectWillChange.send()
             withAnimation {
                 pflanze.wiederbelebtAm = Date()
-                pflanze.letzteBewaesserung = gesternMitternacht
+                pflanze.lastCompletionDate = gesternMitternacht
                 pflanze.missedCycles = 0
                 pflanze.lastNotifiedCycle = 0
                 pflanze.isDead = false
@@ -1442,7 +1442,7 @@ class GardenStore: ObservableObject {
             if !UserDefaults.standard.bool(forKey: "screenTimeStreakResetBugfix") {
                 if let tracker = pflanzen.first(where: { $0.habitName == "habit.bildschirmzeit" }) {
                     tracker.streak = 0
-                    tracker.letzteBewaesserung = nil
+                    tracker.lastCompletionDate = nil
                     tracker.wateringDates.removeAll()
                     UserDefaults.standard.set(true, forKey: "screenTimeStreakResetBugfix")
                     savePlants()
@@ -1781,7 +1781,7 @@ class GardenStore: ObservableObject {
             
             // Check if removing this plant completed the streak for today
             let streakPlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative }
-            if !streakPlants.isEmpty && streakPlants.allSatisfy({ $0.istBewässert }) {
+            if !streakPlants.isEmpty && streakPlants.allSatisfy({ $0.isCompleted }) {
                 onWatering?()
             }
         }
@@ -1791,8 +1791,8 @@ class GardenStore: ObservableObject {
     func simulateTimeJump(hours: Double) {
         let seconds = hours * 3600
         for pflanze in pflanzen {
-            if let letzte = pflanze.letzteBewaesserung {
-                pflanze.letzteBewaesserung = letzte.addingTimeInterval(-seconds)
+            if let letzte = pflanze.lastCompletionDate {
+                pflanze.lastCompletionDate = letzte.addingTimeInterval(-seconds)
             }
         }
         pruefePflanzenStatus()
@@ -1876,7 +1876,7 @@ extension GardenStore {
             }
             
             // Skip if already watered today
-            if let letzteBewaesserung = pflanze.letzteBewaesserung, calendar.isDateInToday(letzteBewaesserung) {
+            if let lastCompletionDate = pflanze.lastCompletionDate, calendar.isDateInToday(lastCompletionDate) {
                 continue
             }
             
@@ -1884,7 +1884,7 @@ extension GardenStore {
                 DispatchQueue.main.async {
                     if currentValue > 0 && currentValue >= target {
                         // giessen() will do the final idempotency check
-                        self?.giessen(pflanze: pflanze)
+                        self?.completeHabit(pflanze: pflanze)
                     }
                 }
             }

@@ -39,7 +39,7 @@ public struct WaterPlantIntent: AppIntent {
                 }
             }
             
-            if pflanze.istBewässert {
+            if pflanze.isCompleted {
                 let msgTemplate = String(localized: "intent_water_already_done", defaultValue: "%@ wurde bereits gegossen.")
                 let msg = String(format: msgTemplate, displayName)
                 return .result(dialog: IntentDialog(stringLiteral: msg))
@@ -49,7 +49,7 @@ public struct WaterPlantIntent: AppIntent {
             
             // 1. XP & Coins calculation
             let xpGewonnen = pflanze.xpPerCompletion
-            let coinsGewonnen = 10 // GameConstants.coinsProGiessen (Usually 10)
+            let coinsGewonnen = 10 // GameConstants.coinsPerCompletion (Usually 10)
             
             pflanze.currentXP += xpGewonnen
             
@@ -75,13 +75,13 @@ public struct WaterPlantIntent: AppIntent {
             shared.set(currentGesamtGegossen + 1, forKey: "stats_gesamt_gegossen")
             
             // 3. Plant State
-            pflanze.istBewässert = true
-            pflanze.letzteBewaesserung = Date()
+            pflanze.isCompleted = true
+            pflanze.lastCompletionDate = Date()
             pflanze.wateringDates.append(Date())
             pflanze.streak += 1
             pflanze.missedCycles = 0
             pflanze.lastNotifiedCycle = 0
-            pflanze.totalMlGegossen += 250 // GameConstants.mlProGiessen
+            pflanze.totalCompletions += 1
             
             // 4. Streak Store Sync (Simplified)
             var completedDates = Set<Date>()

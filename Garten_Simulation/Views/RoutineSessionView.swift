@@ -305,7 +305,7 @@ struct RoutineSessionView: View {
                         .padding(.top, 8)
                 }
                 
-                if currentHabit.istBewässert {
+                if currentHabit.isCompleted {
                     HStack(spacing: 6) {
                         Image(systemName: "checkmark.circle.fill")
                         Text(String(localized: "routine.session.alreadyCompleted", defaultValue: "Bereits erledigt - keine Belohnung"))

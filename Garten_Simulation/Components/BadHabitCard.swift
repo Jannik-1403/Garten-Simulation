@@ -8,7 +8,6 @@ struct BadHabitCard: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
-    @State private var isVisualPressed = false
     @State private var isLocked = false
     @State private var position: CGPoint = .zero
     @State private var wobble: CGFloat = 1.0
@@ -42,19 +41,26 @@ struct BadHabitCard: View {
     }
 
     var body: some View {
-        Button {
-            guard !isLocked else { return }
-            isLocked = true
-            isVisualPressed = true
-            FeedbackManager.shared.playTap()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                isVisualPressed = false
-                onTap()
+        ZStack(alignment: .leading) {
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color(white: 0.7))
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: 120)
+            
+            ZStack(alignment: .leading) {
+                Color.white
+                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                if currentProgress > 0 {
+                    Color.red.opacity(0.3)
+                        .frame(width: max(0, cardWidth * currentProgress))
+                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                isLocked = false
-            }
-        } label: {
+            .overlay(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
+            )
+
             // MARK: - Interactive Card Content
             HStack(spacing: 24) {
                 
@@ -149,13 +155,15 @@ struct BadHabitCard: View {
             .frame(minHeight: 120)
             .contentShape(Rectangle())
         }
-        .buttonStyle(PflanzenCardHorizontalButtonStyle(
-            isVisualPressed: isVisualPressed,
-            isDead: false,
-            longPressProgress: currentProgress,
-            progressColor: Color.red.opacity(0.3),
-            onIsPressedChange: nil
-        ))
+        .onTapGesture {
+            guard !isLocked else { return }
+            isLocked = true
+            FeedbackManager.shared.playTap()
+            onTap()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                isLocked = false
+            }
+        }
         .highPriorityGesture(
             DragGesture(minimumDistance: 25)
                 .onChanged { value in

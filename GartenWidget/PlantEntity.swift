@@ -34,7 +34,7 @@ public struct PlantEntity: AppEntity {
 
         
         return pflanzen
-            .filter { !$0.istBewässert } // Nur Pflanzen zeigen, die noch nicht gegossen wurden
+            .filter { !$0.isCompleted } // Nur Pflanzen zeigen, die noch nicht gegossen wurden
             .map { habit in
                 var finalName = habit.habitName
                 

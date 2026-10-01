@@ -69,13 +69,13 @@ struct PflanzenSaveData: Codable {
     let plantID: String                     // Referenz auf GameDatabase
     let xp: Int
     let streak: Int
-    let letzteBewaesserung: Date?
+    let lastCompletionDate: Date?
     let customName: String?
     let gekauftAm: Date?
-    let istBewässert: Bool?
+    let isCompleted: Bool?
     let missedCycles: Int?
     let lastNotifiedCycle: Int?
-    let totalMlGegossen: Double?
+    let totalCompletions: Double?
     let lebenBereitsAbgezogen: Bool?
     let isDead: Bool?
     let isNegative: Bool?
@@ -186,13 +186,13 @@ final class DataExportImportManager: ObservableObject {
                     plantID: habit.plantID,
                     xp: habit.currentXP,
                     streak: habit.streak,
-                    letzteBewaesserung: habit.letzteBewaesserung,
+                    lastCompletionDate: habit.lastCompletionDate,
                     customName: habit.habitName,
                     gekauftAm: habit.gekauftAm,
-                    istBewässert: habit.istBewässert,
+                    isCompleted: habit.isCompleted,
                     missedCycles: habit.missedCycles,
                     lastNotifiedCycle: habit.lastNotifiedCycle,
-                    totalMlGegossen: habit.totalMlGegossen,
+                    totalCompletions: habit.totalCompletions,
                     lebenBereitsAbgezogen: habit.lebenBereitsAbgezogen,
                     isDead: habit.isDead,
                     isNegative: habit.isNegative,
@@ -428,13 +428,13 @@ final class DataExportImportManager: ObservableObject {
             
             habit.currentXP = data.xp
             habit.streak = data.streak
-            habit.letzteBewaesserung = data.letzteBewaesserung
+            habit.lastCompletionDate = data.lastCompletionDate
             
             if let gekauftAm = data.gekauftAm { habit.gekauftAm = gekauftAm }
 
             if let missedCycles = data.missedCycles { habit.missedCycles = missedCycles }
             if let lastNotifiedCycle = data.lastNotifiedCycle { habit.lastNotifiedCycle = lastNotifiedCycle }
-            if let totalMlGegossen = data.totalMlGegossen { habit.totalMlGegossen = totalMlGegossen }
+            if let totalCompletions = data.totalCompletions { habit.totalCompletions = totalCompletions }
             if let lebenBereitsAbgezogen = data.lebenBereitsAbgezogen { habit.lebenBereitsAbgezogen = lebenBereitsAbgezogen }
             if let isDead = data.isDead { habit.isDead = isDead }
             if let isNegative = data.isNegative { habit.isNegative = isNegative }

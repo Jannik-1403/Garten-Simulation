@@ -101,7 +101,7 @@ struct GroovyWidgetDataProvider {
                 name: finalName,
                 imageName: habit.plantImageName,
                 streak: habit.streak,
-                isWateredToday: habit.istBewässert,
+                isWateredToday: habit.isCompleted,
                 rarityColor: habit.seltenheit.rawValue,
                 xp: habit.currentXP,
                 xpForNextRarity: habit.seltenheit.naechste?.xpSchwelle ?? (habit.seltenheit.xpSchwelle + 500)

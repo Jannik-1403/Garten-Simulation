@@ -52,7 +52,7 @@ class NotificationManager: ObservableObject {
         // 1. Trigger A & B (Pflanzspezifisch)
         for habit in habits {
             // Nur wenn heute noch nicht gegossen
-            guard !habit.istBewässert, let lastWatered = habit.letzteBewaesserung else { continue }
+            guard !habit.isCompleted, let lastWatered = habit.lastCompletionDate else { continue }
             
             // Trigger A: 18h nach letztem Gießen
             let aTime = lastWatered.addingTimeInterval(18 * 3600)
@@ -99,7 +99,7 @@ class NotificationManager: ObservableObject {
         
         // 3. Trigger D: Stiller Abend (20:00 Uhr)
         // Nur wenn heute noch NICHT alle gegossen wurden
-        let unwateredCount = habits.filter { !$0.istBewässert }.count
+        let unwateredCount = habits.filter { !$0.isCompleted }.count
         if unwateredCount > 0 {
             var dTime = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: now) ?? now
             if dTime < now {
@@ -116,7 +116,7 @@ class NotificationManager: ObservableObject {
         // 4. Trigger E: Individuelle Erinnerung (Pflanzenspezifisch)
         for habit in habits {
             // Nur wenn heute noch nicht gegossen und eine Zeit gesetzt ist
-            guard !habit.istBewässert, let reminderTime = habit.reminderTime else { continue }
+            guard !habit.isCompleted, let reminderTime = habit.reminderTime else { continue }
             
             let reminderComponents = calendar.dateComponents([.hour, .minute], from: reminderTime)
             var scheduledTime = calendar.date(bySettingHour: reminderComponents.hour ?? 8, 
@@ -232,7 +232,7 @@ class NotificationManager: ObservableObject {
         switch candidate.type {
         case .triggerA:
             let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
-            let h = Int(candidate.time.timeIntervalSince(candidate.habit?.letzteBewaesserung ?? Date()) / 3600)
+            let h = Int(candidate.time.timeIntervalSince(candidate.habit?.lastCompletionDate ?? Date()) / 3600)
             texts = NotificationTexts.wartet(pflanzenName: name, stunden: h)
             
         case .triggerB:

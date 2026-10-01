@@ -73,7 +73,7 @@ struct GartenView: View {
     @State private var streakHeaderPosition: CGPoint = .zero
     
 
-    var wateredCount: Int { gardenStore.sichtbarePflanzen.filter { $0.istBewässert }.count }
+    var wateredCount: Int { gardenStore.sichtbarePflanzen.filter { $0.isCompleted }.count }
     var totalPlants: Int { gardenStore.sichtbarePflanzen.count }
     var wateringProgress: Double {
         guard totalPlants > 0 else { return 0 }
@@ -189,7 +189,7 @@ struct GartenView: View {
             .overlay(alignment: .topLeading) { flyingCoinsOverlay }
             .overlay { globalFabsOverlay }
             .onPreferenceChange(HeaderPositionPreferenceKey.self, perform: handleHeaderPositions)
-            .onChange(of: gardenStore.giessTriggerID) { _, _ in
+            .onChange(of: gardenStore.completionTriggerID) { _, _ in
                 handleGiessTrigger()
             }
     }
@@ -529,7 +529,7 @@ struct GartenView: View {
     
     private func handleGiessTrigger() {
         guard !gardenStore.sichtbarePflanzen.isEmpty else { return }
-        let coinsEarned: Int = gardenStore.letzteGiessCoins
+        let coinsEarned: Int = gardenStore.lastCompletionCoins
         let coinCount: Int = min(8, max(2, coinsEarned / 5))
         for i in 0..<coinCount {
             let delay = Double(i) * 0.08 + Double.random(in: 0...0.05)

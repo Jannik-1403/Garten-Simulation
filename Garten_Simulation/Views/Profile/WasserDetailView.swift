@@ -151,7 +151,7 @@ struct WasserRankingRow: View {
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 
-                let zyklen = Int(habit.totalMlGegossen / 300)
+                let zyklen = Int(habit.totalCompletions / 300)
                 let cycleText = zyklen == 1 
                     ? String(localized: "wasser.zyklus.singular")
                     : String(format: String(localized: "wasser.zyklus.plural"), zyklen)
@@ -164,7 +164,7 @@ struct WasserRankingRow: View {
             Spacer()
             
             // Wert (ml oder Liter)
-            Text(formatVolume(habit.totalMlGegossen))
+            Text(formatVolume(habit.totalCompletions))
                 .font(.subheadline)
                 .fontWeight(.medium)
                 .foregroundStyle(Color.blauPrimary.opacity(0.8))

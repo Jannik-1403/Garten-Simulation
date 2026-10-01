@@ -3,10 +3,9 @@ import Foundation
 enum GameConstants {
 
     // MARK: Belohnungen pro Gießvorgang
-    static let coinsProGiessen: Int = 20
-    static let xpProGiessen: Int = 100
-    static let mlProGiessen: Double = 300
-    static let gemsProGiessen: Int = 1
+    static let coinsPerCompletion: Int = 20
+    static let xpPerCompletion: Int = 100
+    static let gemsPerCompletion: Int = 1
  
     static let bonusChance: Double = 0.15          // 15% Wahrscheinlichkeit
     static let bonusXPMultiplier: Double = 2.0     // Bonus: doppelte XP

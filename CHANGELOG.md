@@ -1291,3 +1291,9 @@
 - Fix: Eigens erstellte Gewohnheiten im Onboarding (Liste) sehen nun exakt aus wie Standard-Pflanzen (kein doppelter 3D-Button Effekt mehr) und die gesamte Zeile ist zum Abwählen klickbar.
 - Fix: Apple Health Sync lädt jetzt nicht mehr fälschlicherweise die Werte vom Vortag, wenn am aktuellen Tag noch nichts getrackt wurde (z. B. bei Obst & Gemüse / Vitaminen).
 - Fix: Die Ziel-Werte für Kalorien und Wasser in den Gewohnheiten passen sich jetzt dynamisch dem globalen Ziel an (z. B. 2900 kcal), anstatt stur beim Standard von 2000 zu bleiben.
+
+## Refactor: Remove Gießen Mechanic (2026-10-01)
+- Removed all references to watering/giessen
+- Switched to completeHabit and isCompleted nomenclature
+- Replaced laggy PflanzenCardHorizontalButtonStyle with native Slider+TapGesture
+- Dropped totalMlGegossen in favor of totalCompletions
