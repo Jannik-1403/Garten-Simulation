@@ -303,6 +303,9 @@ struct PflanzenCard: View {
                     }
                     if pflanze.isDead {
                         showReviveSheet = true
+                    } else if let p = healthProgress, p >= 1.0, !pflanze.isCompleted {
+                        gardenStore.completeHabit(pflanze: pflanze)
+                        triggerWatering()
                     } else {
                         onTap()
                     }
@@ -343,13 +346,7 @@ struct PflanzenCard: View {
         .onChange(of: healthProgress) { _, newProgress in
             if let p = newProgress, p >= 1.0, !pflanze.isCompleted, !pflanze.isDead {
                 DispatchQueue.main.async {
-                    triggerWatering()
-                }
-            }
-        }
-        .onAppear {
-            if let p = healthProgress, p >= 1.0, !pflanze.isCompleted, !pflanze.isDead {
-                DispatchQueue.main.async {
+                    gardenStore.completeHabit(pflanze: pflanze)
                     triggerWatering()
                 }
             }
