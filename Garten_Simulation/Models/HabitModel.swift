@@ -574,16 +574,6 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
 
-    var stufe: PflanzenStufe {
-        PflanzenStufe.allCases.last { GameConstants.xpSchwelle(fuer: $0) <= self.currentXP } ?? .bronze1
-    }
-
-    var fortschrittZurNaechstenStufe: Double {
-        guard let naechste = stufe.naechste else { return 1.0 }
-        let aktuelleMin = GameConstants.xpSchwelle(fuer: stufe)
-        let naechsteMin = GameConstants.xpSchwelle(fuer: naechste)
-        return Double(currentXP - aktuelleMin) / Double(naechsteMin - aktuelleMin)
-    }
 
     var timerLaeuftAb: Date? {
         // Find next 0:00:00 starting from today

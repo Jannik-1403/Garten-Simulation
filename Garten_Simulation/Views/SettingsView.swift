@@ -29,9 +29,7 @@ struct SettingsView: View {
     @State private var showPDFExport = false
     @State private var showHealthInfoAlert = false
     
-    private var aktuelleTierStufe: GartenTierStufe {
-        GartenTierStufe.fuer(level: gardenStore.gartenStufe)
-    }
+
 
     // MARK: - Sub-Views
     @ViewBuilder

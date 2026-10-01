@@ -15,7 +15,6 @@ struct ShopDetailPayload: Identifiable, Codable {
     let symbolColor: String // String Name für HabitModel
     let shadowColorHex: String // Persistent hex string
     let tag: String?
-    let minGartenLevel: Int
     
     let itemType: ShopItemType
     let habitCategory: HabitCategory?
@@ -41,7 +40,6 @@ struct ShopDetailPayload: Identifiable, Codable {
         symbolColor: String,
         shadowColorHex: String,
         tag: String? = nil,
-        minGartenLevel: Int = 1,
         itemType: ShopItemType,
         habitCategory: HabitCategory? = nil,
         symbolism: String? = nil,
@@ -60,7 +58,6 @@ struct ShopDetailPayload: Identifiable, Codable {
         self.symbolColor = symbolColor
         self.shadowColorHex = shadowColorHex
         self.tag = tag
-        self.minGartenLevel = minGartenLevel
         self.itemType = itemType
         self.habitCategory = habitCategory
         self.symbolism = symbolism
@@ -83,7 +80,6 @@ extension ShopDetailPayload {
             colorHex: "#27AE60", // Default green
             symbolColor: plant.symbolColor,
             shadowColorHex: "#1E8449",
-            minGartenLevel: plant.minGartenLevel,
             itemType: .plant,
             habitCategory: plant.habitCategory,
             symbolism: plant.symbolism,
@@ -104,7 +100,6 @@ extension ShopDetailPayload {
             colorHex: "#9B59B6", // Default purple
             symbolColor: "purple",
             shadowColorHex: "#8E44AD",
-            minGartenLevel: decoration.minGartenLevel,
             itemType: .decoration,
             habitTitleKey: decoration.habitNameKey,
             habitDescriptionKey: decoration.habitDescriptionKey

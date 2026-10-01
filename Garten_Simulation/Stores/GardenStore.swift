@@ -177,9 +177,6 @@ class GardenStore: ObservableObject {
         []
     }
 
-    var gartenStufe: Int {
-        GartenLevel.level(fuerXP: gesamtXP)
-    }
 
     var gesamtMlGegossen: Double {
         Double(gesamtGegossen) * GameConstants.mlProGiessen
@@ -279,19 +276,7 @@ class GardenStore: ObservableObject {
     }
 
     func xpHinzufuegen(amount: Int) {
-        let vor = gartenStufe
         gesamtXP += amount
-        let nach = gartenStufe
-        
-        if nach > vor {
-            // Level-Up Belohnungen verarbeiten (z.B. Spins)
-            let freigeschaltet = GartenLevel.freischaltungenFuer(level: nach)
-            for f in freigeschaltet {
-                if case .gluecksradDrehung(let anzahl) = f.typ {
-                    gluecksradDrehungen = min(gluecksradDrehungen + anzahl, GameConstants.maxGluecksradDrehungen)
-                }
-            }
-        }
         saveStats()
     }
     
@@ -937,7 +922,7 @@ class GardenStore: ObservableObject {
     }
 
     func coinMultiplikator(for pflanze: HabitModel) -> Double {
-        var mult = GartenLevel.coinMultiplikator(fuerLevel: gartenStufe)
+        var mult = 1.0
         
         // 2. Penalty (Revive)
         if let start = pflanze.wiederbelebtAm {
@@ -959,7 +944,7 @@ class GardenStore: ObservableObject {
     }
 
     func focusCoinMultiplikator() -> Double {
-        var mult = GartenLevel.coinMultiplikator(fuerLevel: gartenStufe)
+        var mult = 1.0
         
 
         
@@ -1027,8 +1012,7 @@ class GardenStore: ObservableObject {
                 habitDescriptionKey: habit,
                 sfSymbol: icon,
                 price: 0,
-                category: .deko,
-                minGartenLevel: 1
+                category: .deko
             )
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                 placedDecorations.append(customDecoration)

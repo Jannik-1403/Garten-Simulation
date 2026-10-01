@@ -20,6 +20,7 @@ struct PflanzenCard: View {
     @State private var showWaterSplash: Bool = false
     @State private var zeigeBonusText: Bool = false
     @State private var bonusText: String = ""
+    @State private var bonusColor: Color? = nil
     
     // Slider-to-Complete
     @State private var dragWidth: CGFloat = 0.0
@@ -342,7 +343,7 @@ struct PflanzenCard: View {
         }
         
         if zeigeBonusText {
-            BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText, isProMode: gardenStore.isProUser)
+            BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText, isProMode: gardenStore.isProUser, customColor: bonusColor)
                 .zIndex(300)
         }
     }
@@ -366,10 +367,12 @@ struct PflanzenCard: View {
             }
             
             if gardenStore.isProUser {
-                bonusText = "PRO"
+                bonusText = pflanze.seltenheit.lokalisiertTitel.uppercased()
+                bonusColor = pflanze.seltenheit.farbe
                 zeigeBonusText = true
             } else if gardenStore.letzterBonus != nil {
                 bonusText = String(localized: "bonus_text", defaultValue: "Bonus!")
+                bonusColor = nil
                 zeigeBonusText = true
             }
         }
@@ -406,10 +409,12 @@ struct PflanzenCard: View {
             }
         }
         if gardenStore.isProUser {
-            bonusText = "PRO"
+            bonusText = pflanze.seltenheit.lokalisiertTitel.uppercased()
+            bonusColor = pflanze.seltenheit.farbe
             zeigeBonusText = true
         } else if gardenStore.letzterBonus != nil {
             bonusText = String(localized: "bonus_text", defaultValue: "Bonus!")
+            bonusColor = nil
             zeigeBonusText = true
         }
     }

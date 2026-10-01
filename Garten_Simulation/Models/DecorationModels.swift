@@ -9,7 +9,6 @@ struct DecorationItem: Identifiable, Codable {
     let sfSymbol: String
     let price: Int
     let category: DecorationCategory
-    let minGartenLevel: Int
 
     init(
         id: String,
@@ -19,8 +18,7 @@ struct DecorationItem: Identifiable, Codable {
         habitDescriptionKey: String,
         sfSymbol: String,
         price: Int,
-        category: DecorationCategory,
-        minGartenLevel: Int = 1
+        category: DecorationCategory
     ) {
         self.id = id
         self.objectNameKey = objectNameKey
@@ -30,7 +28,6 @@ struct DecorationItem: Identifiable, Codable {
         self.sfSymbol = sfSymbol
         self.price = price
         self.category = category
-        self.minGartenLevel = minGartenLevel
     }
 }
 
