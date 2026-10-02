@@ -72,6 +72,7 @@ struct GartenView: View {
     @State private var coinHeaderPosition: CGPoint = .zero
     @State private var streakHeaderPosition: CGPoint = .zero
     @State private var dayOffset: Int = 0
+    @State private var showCalendarSheet: Bool = false
     @StateObject private var dailyFeedbackVM = DailyFeedbackViewModel()
     
 
@@ -290,16 +291,50 @@ struct GartenView: View {
         }
     }
 
+    func defaultFormattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: settings.appLanguage)
+        formatter.setLocalizedDateFormatFromTemplate("EEEE d. MMMM")
+        return formatter.string(from: date).replacingOccurrences(of: ",", with: "")
+    }
+
+    @ViewBuilder
+    func dateLabel(for date: Date) -> some View {
+        let appLocale = Locale(identifier: settings.appLanguage)
+        if Calendar.current.isDateInToday(date) {
+            Text(String(localized: "history.today", defaultValue: "Heute", table: "Localizable", locale: appLocale))
+        } else if Calendar.current.isDateInYesterday(date) {
+            Text(String(localized: "history.yesterday", defaultValue: "Gestern", table: "Localizable", locale: appLocale))
+        } else {
+            Text(defaultFormattedDate(date))
+        }
+    }
+
     @ViewBuilder
     private var staticHeaderBar: some View {
-        GartenStatsBar(
-            streak: streakStore.currentStreak,
-            coins: gardenStore.coins,
-            leben: gardenStore.leben,
-            onStreakTap: { zeigeStreakDetail = true },
-            onCoinsTap: { zeigeCoinsDetail = true },
-            onLebenTap: { zeigeLebenDetail = true }
-        )
+        HStack {
+            Button {
+                showCalendarSheet = true
+            } label: {
+                dateLabel(for: dailyFeedbackVM.targetDate)
+                    .font(.system(size: 15, weight: .bold))
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 8)
+                    .background(.ultraThinMaterial)
+                    .clipShape(Capsule())
+                    .foregroundColor(.primary)
+            }
+            Spacer()
+            GartenStatsBar(
+                streak: streakStore.currentStreak,
+                coins: gardenStore.coins,
+                leben: gardenStore.leben,
+                onStreakTap: { zeigeStreakDetail = true },
+                onCoinsTap: { zeigeCoinsDetail = true },
+                onLebenTap: { zeigeLebenDetail = true }
+            )
+            .frame(maxWidth: 300)
+        }
         .padding(.horizontal)
         .padding(.vertical, 8)
         .frame(maxWidth: 850)

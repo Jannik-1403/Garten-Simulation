@@ -6,22 +6,9 @@ struct DailyHealthScoreCard: View {
     @EnvironmentObject var gardenStore: GardenStore
     @StateObject private var settings = SettingsStore.shared
     @State private var showDetailSheet: Bool = false
-    @State private var showCalendarSheet: Bool = false
-
+    
     var body: some View {
         VStack(spacing: 12) {
-            // Date Header
-            HStack {
-                Button {
-                    showCalendarSheet = true
-                } label: {
-                    dateLabel(for: vm.targetDate)
-                        .font(.system(size: 20, weight: .black, design: .rounded))
-                        .foregroundColor(.primary)
-                }
-                Spacer()
-            }
-
             // MARK: Kopfzeile (Score)
             Button {
                 showDetailSheet = true
@@ -64,11 +51,7 @@ struct DailyHealthScoreCard: View {
             DailyFeedbackDetailView(vm: vm)
                 .environment(\.locale, Locale(identifier: settings.appLanguage))
         }
-        .sheet(isPresented: $showCalendarSheet) {
-            HistoryCalendarSheet(vm: vm)
-                .environmentObject(gardenStore)
-                .environment(\.locale, Locale(identifier: settings.appLanguage))
-        }
+
         .onAppear {
             vm.activeHabits = gardenStore.sichtbarePflanzen
             vm.reevaluate()
