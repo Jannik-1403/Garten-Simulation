@@ -259,7 +259,8 @@ struct GartenView: View {
                     Spacer().frame(height: 10)
                     
                     if !gardenStore.sichtbarePflanzen.isEmpty {
-                        DailyHealthScoreCard(vm: dailyFeedbackVM)
+                        let pageDate = Calendar.current.date(byAdding: .day, value: offset, to: Date()) ?? Date()
+                        DailyHealthScoreCardWrapper(date: pageDate)
                             .padding(.vertical, 8)
                             .frame(maxWidth: 850)
                             .padding(.horizontal)

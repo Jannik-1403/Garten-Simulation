@@ -64,7 +64,23 @@ struct GartenStatsBar: View {
         .background(
             Capsule()
                 .fill(.ultraThinMaterial)
-                .overlay(Capsule().stroke(Color.primary.opacity(0.1), lineWidth: 1))
+                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+        )
+        .overlay(
+            Capsule()
+                .stroke(
+                    LinearGradient(
+                        colors: [
+                            .white.opacity(0.6),
+                            .white.opacity(0.1),
+                            .white.opacity(0.0),
+                            .white.opacity(0.2)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 1
+                )
         )
     }
 

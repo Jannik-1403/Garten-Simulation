@@ -1,6 +1,26 @@
 import SwiftUI
 import Combine
 
+
+struct DailyHealthScoreCardWrapper: View {
+    let date: Date
+    @EnvironmentObject var gardenStore: GardenStore
+    @StateObject private var vm = DailyFeedbackViewModel()
+    
+    var body: some View {
+        DailyHealthScoreCard(vm: vm)
+            .onAppear {
+                vm.activeHabits = gardenStore.sichtbarePflanzen
+                vm.targetDate = date
+                vm.reevaluate()
+            }
+            .onChange(of: gardenStore.sichtbarePflanzen.count) { _ in
+                vm.activeHabits = gardenStore.sichtbarePflanzen
+                vm.reevaluate()
+            }
+    }
+}
+
 struct DailyHealthScoreCard: View {
     @ObservedObject var vm: DailyFeedbackViewModel
     @EnvironmentObject var gardenStore: GardenStore
