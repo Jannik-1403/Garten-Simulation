@@ -1332,3 +1332,5 @@
 - 'Heute' und 'Gestern' sind wieder da, und werden über die Apple-Localizable Architektur in allen 16 Sprachen korrekt übersetzt angezeigt.
 - Die Schriftgröße vom Datum ist nicht mehr so riesig (Größe 22 statt 32) und passt sich harmonisch ins Bild ein.
 - Die Herzen/Leben sind zurück in der Statusbar und das Kalendersymbol wurde entfernt. Der Kalender öffnet sich wieder durch Antippen des Datums.
+- BUGFIX: Kalender-Sheet fehlte komplett (der showCalendarSheet = true Button hatte keinen .sheet() Modifier dahinter) - jetzt behoben.
+- Native iOS 26 .glassEffect(.regular.interactive(), in: Capsule()) API auf der Stats-Bar Pill aktiviert. Auf iOS < 26 wird ein hochwertiger ultraThinMaterial Fallback gerendert.

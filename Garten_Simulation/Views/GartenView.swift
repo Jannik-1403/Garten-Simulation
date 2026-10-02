@@ -562,7 +562,7 @@ struct GartenView: View {
                 )
             LazyVStack(spacing: 16) {
                 ForEach(gardenStore.sichtbarePflanzen) { pflanze in
-                    pflanzenCardRow(pflanze: pflanze)
+                    pflanzenCardRow(pflanze: pflanze, pageOffset: dayOffset)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -576,16 +576,20 @@ struct GartenView: View {
     }
     
     @ViewBuilder
-    private func pflanzenCardRow(pflanze: HabitModel) -> some View {
+    private func pflanzenCardRow(pflanze: HabitModel, pageOffset: Int) -> some View {
         let isFirst = pflanze.id == gardenStore.sichtbarePflanzen.first?.id
+        let pageDate = Calendar.current.date(byAdding: .day, value: pageOffset, to: Date()) ?? Date()
         PflanzenCard(
                                 pflanze: pflanze,
-                                targetDate: Calendar.current.date(byAdding: .day, value: dayOffset, to: Date()) ?? Date(),
+                                targetDate: pageDate,
             onTap: {
                 HealthManager.shared.requestAuthorizationIfNeeded()
                 ausgewaehltePflanze = pflanze
             }
         )
+        // Wichtig: kombinierte ID aus Pflanze + Datum erzwingt eine neue View-Instanz
+        // pro Tag, damit @State (dragWidth, isDragging etc.) nicht zwischen Seiten geteilt wird.
+        .id("\(pflanze.id)-\(pageOffset)")
         .accessibilityIdentifier("habit_\(pflanze.name)")
         .tourAnchor(.intro, condition: isFirst)
         .id(isFirst ? TourStep.intro : nil)
