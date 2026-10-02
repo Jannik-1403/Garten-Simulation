@@ -23,9 +23,8 @@ struct GroovyWidgetBundle: WidgetBundle {
         GroovyStreakWidget()
         GroovyVerlaufMediumWidget()
         GroovyVerlaufLargeWidget()
-        // Lock Screen (Pro)
-        GroovyLockScreenStreakWidget()
-        
+        // Lock Screen
+        GroovyLockScreenScoreWidget()
         // Interactive (Pro)
         GroovyInteractiveHabitsWidget()
         
@@ -89,17 +88,21 @@ struct GroovyVerlaufLargeWidget: Widget {
     }
 }
 
-// MARK: - LOCK SCREEN: Streak Widget (Pro)
-struct GroovyLockScreenStreakWidget: Widget {
-    let kind = "GroovyLockScreenStreakWidgetV3"
+// MARK: - LOCK SCREEN: Score Widget
+struct GroovyLockScreenScoreWidget: Widget {
+    let kind = "GroovyLockScreenScoreWidget"
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
-            LockScreenStreakWidgetView(entry: entry)
+            LockScreenScoreWidgetView(entry: entry)
                 .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
+                .containerBackground(for: .widget) {
+                    Color.clear
+                }
         }
-        .configurationDisplayName(String(localized: "widget_lock_streak_title", defaultValue: "Streak (Pro)", locale: widgetLocale))
-        .description(String(localized: "widget_lock_streak_desc", defaultValue: "Dein aktueller Streak auf dem Sperrbildschirm.", locale: widgetLocale))
+        .configurationDisplayName(String(localized: "widget_lock_score_title", defaultValue: "Tagesscore", locale: widgetLocale))
+        .description(String(localized: "widget_lock_score_desc", defaultValue: "Dein aktueller Tagesscore auf dem Sperrbildschirm.", locale: widgetLocale))
         .supportedFamilies([.accessoryCircular, .accessoryRectangular])
+        .contentMarginsDisabled()
     }
 }
 

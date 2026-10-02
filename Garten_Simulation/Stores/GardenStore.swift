@@ -1388,6 +1388,9 @@ class GardenStore: ObservableObject {
             streakCompletedDates: dates,
             todos: widgetTodos
         )
+        
+        // Tagesscore für das Lock Screen Widget im Hintergrund neu berechnen
+        DailyFeedbackViewModel.calculateAndSaveWidgetScore(activeHabits: pflanzen)
     }
 
     private func loadStandaloneTodos() {

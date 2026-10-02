@@ -26,7 +26,6 @@ class HabitProgressionGenerator {
         
         // Lifestyle
         "plant.weizenfeld": HabitProgression(plantID: "plant.weizenfeld", strategy: DeepWorkProgressionStrategy()),
-        "plant.chrysantheme": HabitProgression(plantID: "plant.chrysantheme", strategy: CleaningProgressionStrategy()),
         "plant.mandelbaum": HabitProgression(plantID: "plant.mandelbaum", strategy: SavingProgressionStrategy()),
         "plant.kirschbaum": HabitProgression(plantID: "plant.kirschbaum", strategy: SelfcareProgressionStrategy()),
         "plant.aloe_vera": HabitProgression(plantID: "plant.aloe_vera", strategy: ScreentimeProgressionStrategy()),

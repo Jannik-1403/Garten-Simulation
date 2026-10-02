@@ -428,40 +428,38 @@ struct VerlaufLargeWidgetView: View {
 }
 
 
-// MARK: - LOCK SCREEN: Streak Widget
-struct LockScreenStreakWidgetView: View {
+// MARK: - LOCK SCREEN: Score Widget
+struct LockScreenScoreWidgetView: View {
     let entry: GroovyStreakEntry
-    var streak: Int { entry.appData?.totalStreak ?? 0 }
+    @Environment(\.widgetFamily) var family
     
-    var isPro: Bool {
-        SharedUserDefaults.suite.bool(forKey: "isProUser_active") || SharedUserDefaults.suite.bool(forKey: "debug_isProUser")
+    var score: Int {
+        SharedUserDefaults.suite.integer(forKey: "widget_daily_score")
     }
 
     var body: some View {
         ZStack {
-            if #available(iOSApplicationExtension 16.0, *) {
-                AccessoryWidgetBackground()
-            }
-            if isPro {
-                VStack(spacing: 0) {
-                    PNGImage("streak")
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
-                    Text("\(streak)")
-                        .font(.system(size: 18, weight: .black, design: .rounded))
+            if family == .accessoryCircular {
+                Gauge(value: Double(score), in: 0...100) {
+                    Text("Score")
+                } currentValueLabel: {
+                    Text("\(score)")
                 }
+                .gaugeStyle(.accessoryCircular)
             } else {
-                VStack(spacing: 2) {
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(Color(red: 1.0, green: 0.84, blue: 0.0))
-                    Text("PRO")
-                        .font(.system(size: 10, weight: .black))
-                        .foregroundStyle(Color(red: 1.0, green: 0.84, blue: 0.0))
+                Gauge(value: Double(score), in: 0...100) {
+                    Text(String(localized: "widget_score_title", defaultValue: "Tagesscore", locale: widgetLocale))
+                } currentValueLabel: {
+                    Text("\(score)")
+                } minimumValueLabel: {
+                    Text("0")
+                } maximumValueLabel: {
+                    Text("100")
                 }
+                .gaugeStyle(.accessoryLinear)
             }
         }
-        .widgetURL(URL(string: isPro ? "grovy://streak" : "grovy://pro"))
+        .widgetURL(URL(string: "grovy://home"))
     }
 }
 

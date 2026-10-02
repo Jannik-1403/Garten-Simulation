@@ -9,7 +9,6 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
     case running
     case nutrition
     case gratitude
-    case cleaning
 
     var id: String { rawValue }
 
@@ -21,7 +20,6 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
         case .running:   return "figure.run"
         case .nutrition: return "fork.knife"
         case .gratitude: return "book.fill"
-        case .cleaning:  return "sparkles"
         }
     }
 }
@@ -87,11 +85,6 @@ struct FeedbackScoringEngine {
         var hasGratitudePlant: Bool
         var gratitudeTodayDone: Bool
         var gratitudeYesterdayEntry: GratitudeJournalEntry?
-        
-        var hasCleaningTaskToday: Bool
-        var isCleaningTaskDone: Bool
-        var nextCleaningDate: Date?
-
         var waterToday: Double
         var waterGoal: Double
         var waterHistory7Days: [Date: Double]
@@ -403,30 +396,7 @@ struct FeedbackScoringEngine {
             results.append(CategoryFeedback(category: .gratitude, status: gratStatus, summaryText: gratSummary, detailText: gratDetail, progress: input.gratitudeTodayDone ? 1.0 : 0.0, goal: 1.0))
         }
 
-        // MARK: Aufräumen
-        if input.hasCleaningTaskToday {
-            let cleaningStatus: CategoryStatus = input.isCleaningTaskDone ? .good : .critical
-            let cleaningSummary = input.isCleaningTaskDone
-                ? String(localized: "fitness.cleaning.summary.good", defaultValue: "Sauber ✓")
-                : String(localized: "fitness.cleaning.summary.critical", defaultValue: "Aufräumen!")
-                
-            var cleaningDetail = input.isCleaningTaskDone
-                ? String(localized: "fitness.cleaning.detail.good", defaultValue: "Toll, du hast heute schon alle fälligen Aufgaben erledigt!")
-                : String(localized: "fitness.cleaning.detail.critical", defaultValue: "Um immer sauber zu sein und dich frisch zu fühlen, musst du heute unbedingt aufräumen.")
 
-            if input.isCleaningTaskDone, let nextDate = input.nextCleaningDate {
-                if Calendar.current.isDateInTomorrow(nextDate) {
-                    cleaningDetail += " " + String(localized: "fitness.cleaning.next.tomorrow", defaultValue: "Morgen musst du wieder aufräumen.")
-                } else {
-                    let formatter = DateFormatter()
-                    formatter.dateStyle = .long
-                    let dateString = formatter.string(from: nextDate)
-                    cleaningDetail += " " + String(format: String(localized: "fitness.cleaning.next.date", defaultValue: "Das nächste Mal aufräumen musst du am %@."), dateString)
-                }
-            }
-
-            results.append(CategoryFeedback(category: .cleaning, status: cleaningStatus, summaryText: cleaningSummary, detailText: cleaningDetail, progress: input.isCleaningTaskDone ? 1.0 : 0.0, goal: 1.0))
-        }
 
         return results
     }
@@ -452,7 +422,6 @@ struct FeedbackScoringEngine {
         case .running:   return String(localized: "fitness.category.running",   defaultValue: "Laufen")
         case .nutrition: return String(localized: "fitness.category.nutrition", defaultValue: "Ernährung")
         case .gratitude: return String(localized: "fitness.category.gratitude", defaultValue: "Dankbarkeits-Check")
-        case .cleaning:  return String(localized: "fitness.category.cleaning",  defaultValue: "Aufräumen")
         }
     }
 }

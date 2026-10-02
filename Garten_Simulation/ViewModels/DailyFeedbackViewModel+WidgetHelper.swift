@@ -1,53 +1,15 @@
 import Foundation
-import Combine
-import SwiftUI
 import WidgetKit
 
-// MARK: - DailyFeedbackViewModel
-
-@MainActor
-class DailyFeedbackViewModel: ObservableObject {
-
-    @Published var categoryFeedbacks: [CategoryFeedback] = []
-    @Published var issueFeedbacks: [CategoryFeedback] = []
-    @Published var dailyScore: Int = 100
-    @Published var headerText: String = ""
-    @Published var primaryKey: FeedbackKey = .feedbackPositiv1
-    @Published var targetDate: Date = Date()
-    @Published var isSwipingToPast: Bool = false
-
-    @Published var activeHabits: [HabitModel] = []
-
-    private var cancellables = Set<AnyCancellable>()
-
-    init() {
-        let hm = HealthManager.shared
-        let wgm = WaterGoalManager.shared
-        Publishers.MergeMany(
-            hm.$todaysWater.map { _ in () }.eraseToAnyPublisher(),
-            hm.$waterHistory7Days.map { _ in () }.eraseToAnyPublisher(),
-            hm.$todaysSleep.map { _ in () }.eraseToAnyPublisher(),
-            hm.$lastStrengthWorkoutDate.map { _ in () }.eraseToAnyPublisher(),
-            hm.$todaysRunning.map { _ in () }.eraseToAnyPublisher(),
-            hm.$todaysEnergy.map { _ in () }.eraseToAnyPublisher(),
-            hm.$todaysProtein.map { _ in () }.eraseToAnyPublisher(),
-            hm.$todaysFiber.map { _ in () }.eraseToAnyPublisher(),
-            wgm.$currentGoal.map { _ in () }.eraseToAnyPublisher()
-        )
-        .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
-        .sink { [weak self] in self?.reevaluate() }
-        .store(in: &cancellables)
-
-        reevaluate()
-    }
-
-    func reevaluate() {
+extension DailyFeedbackViewModel {
+    @MainActor
+    static func calculateAndSaveWidgetScore(activeHabits: [HabitModel]) {
+        let targetDate = Date()
         let hm = HealthManager.shared
         let wgm = WaterGoalManager.shared
         let nim = NutrientIndexManager.shared
         let store = FeedbackStore.shared
 
-        // Stärkstes Krafttraining in Tagen berechnen relativ zum targetDate
         let strengthDaysAgo: Int?
         if let lastDate = hm.lastStrengthWorkoutDate {
             let days = Calendar.current.dateComponents([.day],
@@ -58,7 +20,6 @@ class DailyFeedbackViewModel: ObservableObject {
             strengthDaysAgo = nil
         }
 
-        // Schlechtesten Mineralstoff ermitteln
         let worstMineral = nim.minerals
             .filter { $0.isEnabled && $0.targetDGE > 0 }
             .min(by: { $0.score < $1.score })
@@ -87,65 +48,50 @@ class DailyFeedbackViewModel: ObservableObject {
             let link = plant.linkedHealthMetric
             let auto = plant.automaticHealthMetric
             
-            // Water
             if eff == .water || link == .water || auto == .water {
                 hasWaterPlant = true
                 if waterPlant == nil { waterPlant = plant }
             }
-            
-            // Sleep
             if eff == .sleep || link == .sleep || auto == .sleep {
                 hasSleepPlant = true
                 if sleepPlant == nil { sleepPlant = plant }
             }
-            
-            // Strength
             if eff == .strengthTraining || link == .strengthTraining || auto == .strengthTraining || lowerName.contains("kraft") {
                 hasStrengthPlant = true
                 if strengthPlant == nil { strengthPlant = plant }
             }
-            
-            // Running / Steps
             if eff == .steps || eff == .running || link == .steps || link == .running || auto == .steps || auto == .running || lowerName.contains("laufen") || lowerName.contains("joggen") || lowerName.contains("schritt") {
                 hasRunningPlant = true
                 if runningPlant == nil { runningPlant = plant }
             }
             
-            // Nutrition (Energy, Fiber, "kochen", "gemüse")
             let isNutrition = eff == .energy || link == .energy || auto == .energy ||
                               eff == .fiber || link == .fiber || auto == .fiber ||
                               lowerName.contains("gemüse") || lowerName.contains("kochen") || lowerHabitName.contains("koch") ||
                               lowerName.contains("ernährung") || lowerHabitName.contains("ernaehrung") || lowerHabitName.contains("nutrition")
-            
             if isNutrition {
                 hasNutritionPlant = true
             }
-            
             if eff == .fiber || link == .fiber || auto == .fiber {
                 if fiberPlant == nil { fiberPlant = plant }
             }
-            
             let isEnergy = eff == .energy || link == .energy || auto == .energy || lowerName.contains("kochen") || lowerHabitName.contains("koch") || lowerName.contains("ernährung") || lowerHabitName.contains("ernaehrung") || lowerHabitName.contains("nutrition")
             if isEnergy {
                 if energyPlant == nil { energyPlant = plant }
             }
-            
             if lowerName.contains("protein") {
                 if proteinPlant == nil { proteinPlant = plant }
             }
-            
             if plant.habitName == "habit.dankbarkeit" {
                 hasGratitudePlant = true
                 if gratitudePlant == nil { gratitudePlant = plant }
             }
         }
 
-        // Protein-Ziel aus UserDefaults (wird von MacroCalculator/HealthManager gesetzt)
         let proteinGoal = UserDefaults.standard.double(forKey: "goal_protein")
-
         let strengthGoalMinutes = strengthPlant?.healthTarget ?? 30.0
         let stepsGoal = runningPlant?.healthTarget ?? 10000.0
-        let fiberGoal = fiberPlant?.healthTarget ?? 30.0 // DGE-Empfehlung
+        let fiberGoal = fiberPlant?.healthTarget ?? 30.0
         
         let gratitudeTodayDone = gratitudePlant?.journalEntries.contains(where: { Calendar.current.isDate($0.date, inSameDayAs: targetDate) }) ?? false
         let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: targetDate) ?? targetDate
@@ -167,9 +113,7 @@ class DailyFeedbackViewModel: ObservableObject {
                     .last?.progress ?? 0.0
                 return todaysManualProgress * goal
             }
-            // Wenn targetDate in der Vergangenheit liegt, nutze den History-Wert aus Health
             if !Calendar.current.isDateInToday(targetDate) {
-                 // Wenn HealthMetric gesetzt ist, nehmen wir intradayProgressHistory als Fallback
                  let todaysManualProgress = p.intradayProgressHistory
                      .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
                      .last?.progress ?? 0.0
@@ -233,46 +177,26 @@ class DailyFeedbackViewModel: ObservableObject {
         )
 
         let feedbacks = FeedbackScoringEngine.evaluateAll(input: input)
-        categoryFeedbacks = feedbacks
-        issueFeedbacks = feedbacks.filter { $0.status != CategoryStatus.unavailable }
-        headerText = FeedbackScoringEngine.headerText(from: feedbacks)
-
-        // Tages-Score berechnen (Präzise Berechnung auf Basis des tatsächlichen Fortschritts)
         let availableFeedbacks = feedbacks.filter { $0.status != CategoryStatus.unavailable }
-        if availableFeedbacks.isEmpty {
-            dailyScore = 0
-            SharedUserDefaults.suite.set(0, forKey: "widget_daily_score")
-            WidgetCenter.shared.reloadAllTimelines()
-        } else {
+        
+        var dailyScore = 0
+        if !availableFeedbacks.isEmpty {
             let total = availableFeedbacks.reduce(0.0) { sum, fb in
                 var scoreForCategory: Double = 0
-                
                 if fb.category == FitnessCategory.gratitude {
-                    // Binäre Aufgaben: 100% wenn gut (erledigt), sonst 0%
                     scoreForCategory = fb.status == .good ? 100 : 0
                 } else {
-                    // Kontinuierliche Aufgaben: Nutze exakten prozentualen Fortschritt (max 100%)
                     let progress = fb.progress ?? 0
                     let goal = fb.goal ?? 0
                     let pct = goal > 0 ? (progress / goal) : 0
                     scoreForCategory = min(100.0, pct * 100.0)
                 }
-                
                 return sum + scoreForCategory
             }
             dailyScore = Int(total / Double(availableFeedbacks.count))
         }
-        
+
         SharedUserDefaults.suite.set(dailyScore, forKey: "widget_daily_score")
         WidgetCenter.shared.reloadAllTimelines()
-
-        // Primären Key für FeedbackStore bestimmen (schlechteste Kategorie)
-        if feedbacks.contains(where: { $0.status == CategoryStatus.critical }) {
-            primaryKey = .feedbackWasserKritisch
-        } else if feedbacks.contains(where: { $0.status == CategoryStatus.warning }) {
-            primaryKey = .feedbackWasserLeicht
-        } else {
-            primaryKey = FeedbackKey.positiveKeys.randomElement() ?? .feedbackPositiv1
-        }
     }
 }

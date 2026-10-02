@@ -127,12 +127,7 @@ struct PflanzeDetailSheet: View {
                             .padding(.bottom, 16)
                     }
                     
-                    // Aufräumen
-                    if pflanze.habitName == "habit.aufraeumen" && pflanze.showStats {
-                        CleaningDashboardView()
-                            .padding(.horizontal, 24)
-                            .padding(.bottom, 16)
-                    }
+
                     
                     // Dankbarkeitsjournal (Accordion wie Notizen)
                     if pflanze.habitName == "habit.dankbarkeit" && pflanze.showStats {

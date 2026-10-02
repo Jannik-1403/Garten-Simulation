@@ -827,65 +827,6 @@ class DeepWorkProgressionStrategy: HabitProgressionStrategy {
     }
 }
 
-// MARK: - Cleaning/Tidying (Chrysantheme) Strategy
-class CleaningProgressionStrategy: HabitProgressionStrategy {
-    func generateProgression(dayNum: Int, difficulty: String) -> ProgressionData {
-        let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
-        let cycleDay = ((dayNum - 1) % 7) + 1
-        
-        let isBeginner = difficulty.lowercased() == "anfaenger"
-        let isIntermediate = difficulty.lowercased() == "fortgeschritten"
-        
-        let baseMin = isBeginner ? 5 : (isIntermediate ? 15 : 30)
-        let currentMin = baseMin + (phaseNumber - 1)
-        
-        var title = ""
-        var desc = ""
-        var todos: [String] = []
-        
-        switch cycleDay {
-        case 1:
-            title = String(localized: "prog_cleaning_d1_title", defaultValue: "Küche & Spüle")
-            desc = String(localized: "prog_cleaning_d1_desc", defaultValue: "Eine saubere Küche ist das Herzstück. Gehe niemals mit dreckigem Geschirr in der Spüle ins Bett.")
-            todos = [String(localized: "prog_cleaning_d1_t1", defaultValue: "\(currentMin) Min aufgeräumt"), String(localized: "prog_cleaning_d1_t2", defaultValue: "Spüle komplett leer und sauber")]
-        case 2:
-            title = String(localized: "prog_cleaning_d2_title", defaultValue: "Bodenfreiheit")
-            desc = String(localized: "prog_cleaning_d2_desc", defaultValue: "Räume alles vom Boden auf, was dort nicht hingehört (Kleidung, Schuhe, Taschen). Der Raum wirkt sofort größer.")
-            todos = [String(localized: "prog_cleaning_d2_t1", defaultValue: "\(currentMin) Min aufgeräumt"), String(localized: "prog_cleaning_d2_t2", defaultValue: "Alle Böden komplett freigeräumt")]
-        case 3:
-            title = String(localized: "prog_cleaning_d3_title", defaultValue: "Hotspot-Tackling")
-            desc = String(localized: "prog_cleaning_d3_desc", defaultValue: "Jeder hat diesen einen Stuhl oder Tisch, auf dem sich alles sammelt. Nimm dir heute diesen Hotspot vor.")
-            todos = [String(localized: "prog_cleaning_d3_t1", defaultValue: "\(currentMin) Min aufgeräumt"), String(localized: "prog_cleaning_d3_t2", defaultValue: "Deinen größten Chaos-Hotspot bereinigt")]
-        case 4:
-            title = String(localized: "prog_cleaning_d4_title", defaultValue: "Trash & Recycle")
-            desc = String(localized: "prog_cleaning_d4_desc", defaultValue: "Geh durch alle Räume: Mülleimer leeren, Pfandflaschen zusammenstellen, Papiermüll entsorgen.")
-            todos = [String(localized: "prog_cleaning_d4_t1", defaultValue: "\(currentMin) Min aufgeräumt"), String(localized: "prog_cleaning_d4_t2", defaultValue: "Allen Müll aus der Wohnung entfernt")]
-        case 5:
-            title = String(localized: "prog_cleaning_d5_title", defaultValue: "Declutter (Entmisten)")
-            desc = String(localized: "prog_cleaning_d5_desc", defaultValue: "Finde heute 3 Dinge in deiner Wohnung, die du nicht mehr brauchst. Wegwerfen, spenden oder verkaufen.")
-            todos = [String(localized: "prog_cleaning_d5_t1", defaultValue: "\(currentMin) Min aufgeräumt"), String(localized: "prog_cleaning_d5_t2", defaultValue: "Mindestens 3 Gegenstände aussortiert")]
-        case 6:
-            title = String(localized: "prog_cleaning_d6_title", defaultValue: "Das Bett & Schlafzimmer")
-            desc = String(localized: "prog_cleaning_d6_desc", defaultValue: "Wasche deine Bettwäsche oder beziehe das Bett neu. Ein frisches Bett verbessert die Schlafqualität enorm.")
-            todos = [String(localized: "prog_cleaning_d6_t1", defaultValue: "\(currentMin) Min aufgeräumt"), String(localized: "prog_cleaning_d6_t2", defaultValue: "Schlafzimmer in eine Oase verwandelt")]
-        case 7:
-            title = String(localized: "prog_cleaning_d7_title", defaultValue: "Sunday Reset")
-            desc = String(localized: "prog_cleaning_d7_desc", defaultValue: "Die 10-Minuten-Runde durch die ganze Wohnung. Bring alles dorthin zurück, wo es eigentlich wohnt. Bereite den Raum für die neue Woche vor.")
-            todos = [String(localized: "prog_cleaning_d7_t1", defaultValue: "\(currentMin) Min Sunday Reset"), String(localized: "prog_cleaning_d7_t2", defaultValue: "Mit einem guten Gefühl in die Woche starten")]
-        default:
-            break
-        }
-        
-        return ProgressionData(
-            phaseNumber: phaseNumber,
-            phaseTitle: String(localized: "prog_cleaning_phase_title_woche___phasenumber_", defaultValue: "Woche \(phaseNumber)"),
-            phaseDescription: String(localized: "prog_cleaning_phase_desc_ordnung_im_außen___r", defaultValue: "Ordnung im Außen = Ruhe im Innen"),
-            dailyTitle: title,
-            dailyDescription: desc,
-            dailyTodos: todos
-        )
-    }
-}
 
 // MARK: - Saving Money (Mandelbaum) Strategy
 class SavingProgressionStrategy: HabitProgressionStrategy {

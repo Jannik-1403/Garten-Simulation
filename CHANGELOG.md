@@ -1348,3 +1348,12 @@
 - Vollständige Übersetzung für fehlende Strings (Heute, Gestern, Datum auswählen, Game Over Texte) in alle 16 Sprachen hinzugefügt.
 
 - 'Ohne Routinen' Button auf der Routineseite entfernt und durch einen Empty-State Text ersetzt, wenn keine Routinen vorhanden sind.
+- Feature: Lock Screen Widget für den Tagesscore hinzugefügt und altes Widget entfernt.
+- Fix: Lock Screen Score Widget verwendet jetzt ein natives Apple Gauge-Design, um Platzhalter (P. L) zu vermeiden.
+- Fix: Halluzinierte 'iOS 26' und '.glassEffect' API entfernt. Korrektes Liquid Glass Design mit '.ultraThinMaterial' und nativen SwiftUI Shadown/Strokes in GartenStatsBar etabliert.
+- Fix: Fehlender .containerBackground() Modifier beim Lockscreen-Score-Widget hinzugefügt, um 'Please adopt'-Fehler zu vermeiden.
+- Fix: ContainerBackground API Fehler im Tagesscore Lock Screen Widget (iOS 17+) durch Ergänzung von .containerBackground() und .contentMarginsDisabled() behoben.
+- Fix: Das Lock Screen Widget für den Tagesscore wird jetzt live aktualisiert, wenn auf dem Home-Screen eine Gewohnheit abgehakt wird (Sync-Problem behoben).
+- Fix: Tagesscore Lock Screen Widget aktualisiert sich nun automatisch im Hintergrund, wenn Gewohnheiten abgehakt werden (Live-Sync).
+- Fix: SwiftData Predicate Fehler beim Filtern der aktiven Gewohnheiten behoben.
+- Fix: GardenStore Compiler-Fehler (isVisible/isArchived) durch korrekte Array-Übergabe behoben.
