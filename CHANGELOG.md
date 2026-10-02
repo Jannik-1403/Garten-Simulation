@@ -1334,3 +1334,5 @@
 - Die Herzen/Leben sind zurück in der Statusbar und das Kalendersymbol wurde entfernt. Der Kalender öffnet sich wieder durch Antippen des Datums.
 - BUGFIX: Kalender-Sheet fehlte komplett (der showCalendarSheet = true Button hatte keinen .sheet() Modifier dahinter) - jetzt behoben.
 - Native iOS 26 .glassEffect(.regular.interactive(), in: Capsule()) API auf der Stats-Bar Pill aktiviert. Auf iOS < 26 wird ein hochwertiger ultraThinMaterial Fallback gerendert.
+- ROOT CAUSE FIX: SwiftUI hat für eine Gewohnheit dieselbe View-Instanz auf 'Heute' und 'Gestern' wiederverwendet, weil die View-ID nur die Pflanze, nicht das Datum, enthielt. Dadurch hat @State (dragWidth etc.) und der gerenderte Abschluss-Status zwischen den Tagen 'geblurt'.
+- Fix: PflanzenCard bekommt jetzt .id(pflanzeId + pageOffset). Jede Seite erzwingt damit eine eigene frische View-Instanz mit isoliertem State und korrekten Habit-Completion-Daten für genau diesen Tag.

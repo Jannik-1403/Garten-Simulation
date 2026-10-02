@@ -55,8 +55,8 @@ struct DailyHealthScoreCard: View {
                 .clipped()
             }
             .buttonStyle(PillButtonStyle(
-                farbe: .white,
-                sekundaerFarbe: Color(white: 0.85),
+                farbe: Color(.secondarySystemGroupedBackground),
+                sekundaerFarbe: Color(.systemFill),
                 cornerRadius: 16,
                 shadowDepth: 6
             ))
