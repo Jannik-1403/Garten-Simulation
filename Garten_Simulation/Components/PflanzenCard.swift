@@ -86,14 +86,18 @@ struct PflanzenCard: View {
     }
     
     private var baseProgress: Double {
-        let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDateInToday($0.timestamp) }
-        if let hp = healthProgress, !hasManualOverride {
-            return hp
-        }
         if pflanze.wasCompleted(on: targetDate) {
             return 1.0
         }
-        return pflanze.sliderProgress
+        if Calendar.current.isDateInToday(targetDate) {
+            let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDateInToday($0.timestamp) }
+            if let hp = healthProgress, !hasManualOverride {
+                return hp
+            }
+            return pflanze.sliderProgress
+        } else {
+            return 0.0
+        }
     }
     
     private var currentProgress: Double {
@@ -304,7 +308,7 @@ struct PflanzenCard: View {
                     if pflanze.isDead {
                         showReviveSheet = true
                     } else if let p = healthProgress, p >= 1.0, !pflanze.wasCompleted(on: targetDate) {
-                        gardenStore.completeHabit(pflanze: pflanze)
+                        gardenStore.completeHabit(pflanze: pflanze, on: targetDate)
                         triggerWatering()
                     } else {
                         onTap()
@@ -313,7 +317,7 @@ struct PflanzenCard: View {
             }
         }
         .highPriorityGesture(
-            DragGesture(minimumDistance: 25)
+            DragGesture(minimumDistance: 5)
                 .onChanged { value in
                     guard healthProgress == nil, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead else { return }
                     if !isDragging { isDragging = true }
@@ -325,14 +329,16 @@ struct PflanzenCard: View {
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
                     
-                    pflanze.sliderProgress = finalProgress
-                    pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
-                    if finalProgress > 0 {
-                        pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
+                    if Calendar.current.isDateInToday(targetDate) {
+                        pflanze.sliderProgress = finalProgress
+                        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+                        if finalProgress > 0 {
+                            pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
+                        }
                     }
                     
                     if finalProgress >= 1.0 {
-                        gardenStore.completeHabit(pflanze: pflanze)
+                        gardenStore.completeHabit(pflanze: pflanze, on: targetDate)
                         triggerWatering()
                     } else {
                         gardenStore.savePlants()
@@ -346,7 +352,7 @@ struct PflanzenCard: View {
         .onChange(of: healthProgress) { _, newProgress in
             if let p = newProgress, p >= 1.0, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead {
                 DispatchQueue.main.async {
-                    gardenStore.completeHabit(pflanze: pflanze)
+                    gardenStore.completeHabit(pflanze: pflanze, on: targetDate)
                     triggerWatering()
                 }
             }

@@ -46,13 +46,11 @@ struct DailyHealthScoreCard: View {
                     .padding(.horizontal, 16)
                 }
                 .clipped()
+                .background(.ultraThinMaterial)
+                .cornerRadius(16)
+                .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 4)
             }
-            .buttonStyle(PillButtonStyle(
-                farbe: .white,
-                sekundaerFarbe: Color(white: 0.85),
-                cornerRadius: 16,
-                shadowDepth: 6
-            ))
+            .buttonStyle(.plain)
         }
         .id(vm.targetDate.timeIntervalSince1970)
         .transition(.asymmetric(

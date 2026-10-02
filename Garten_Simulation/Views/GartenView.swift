@@ -233,7 +233,6 @@ struct GartenView: View {
             VStack(spacing: 0) {
                 // Statische Header Bar (ohne DailyHealthScoreCard)
                 staticHeaderBar
-                    .background(.ultraThinMaterial)
                     .zIndex(1)
 
                 TabView(selection: $dayOffset) {
@@ -301,8 +300,12 @@ struct GartenView: View {
             onCoinsTap: { zeigeCoinsDetail = true },
             onLebenTap: { zeigeLebenDetail = true }
         )
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(.ultraThinMaterial)
+        .cornerRadius(20)
+        .padding(.horizontal)
         .padding(.top, 16)
-        .padding(.bottom, 10)
         .frame(maxWidth: 850)
     }
 
