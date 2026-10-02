@@ -1342,3 +1342,4 @@
 - Daily Score Karte: Das Design wurde auf den ursprünglichen, weißen 3D-Button (PillButtonStyle) zurückgesetzt.
 - Stats-Bar (Münzen): Bei mehr als 1000 Münzen wurde der Text oft mit Punkten (...) abgeschnitten. Die Zahl schrumpft nun dynamisch oder dehnt das Feld aus, sodass immer der volle Wert sichtbar bleibt.
 - Gesten-Konflikt gelöst: Auf der Gewohnheits-Karte muss der Nutzer nun 0.3 Sekunden gedrückt halten (Hold-to-Drag) um den Fortschrittsbalken zu bewegen. Ein einfaches, schnelles Wischen blättert nun sofort zum nächsten/vorherigen Tag. Ein einfaches Tippen öffnet die Details.
+- UX / Gesten: Der Fortschritts-Slider auf der Gewohnheitskarte wurde entfernt, da er das vertikale Scrollen und horizontale Wischen blockiert hat. Die Karte fungiert nun als reiner Button: Ein Tippen öffnet die Detailansicht, in der der Fortschritt eingetragen werden kann. Wischen und Scrollen funktionieren nun überall perfekt.

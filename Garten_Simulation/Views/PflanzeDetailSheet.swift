@@ -59,6 +59,7 @@ struct PflanzeDetailSheet: View {
     @State private var screenTimeMinutes: Int = 0
     @State private var showScreenTimeConfirm = false
     @State private var isEditingScreenTime = false
+    @State private var tempSliderProgress: Double = 0.0
     
     @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
     
@@ -535,6 +536,8 @@ struct PflanzeDetailSheet: View {
         }
         .background(Color(UIColor.secondarySystemBackground))
         .onAppear {
+            tempSliderProgress = pflanze.sliderProgress
+            
             // Wenn linkedHealthMetric noch nil ist (Toggle wurde entfernt), automatisch setzen
             if pflanze.linkedHealthMetric == nil, let autoMetric = pflanze.automaticHealthMetric {
                 pflanze.linkedHealthMetric = autoMetric
@@ -731,6 +734,37 @@ struct PflanzeDetailSheet: View {
                                         )
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 4)
+                                        
+                                        // Manual Slider
+                                        VStack(alignment: .leading, spacing: 8) {
+                                            Text(String(localized: "habit.manual_progress", defaultValue: "Dein Fortschritt"))
+                                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                .foregroundStyle(.secondary)
+                                            
+                                            HStack {
+                                                Slider(value: $tempSliderProgress, in: 0...1, step: 0.01) { editing in
+                                                    if !editing {
+                                                        updateManualProgress()
+                                                    }
+                                                }
+                                                .tint(Color.orangePrimary)
+                                                
+                                                Text("\(Int(tempSliderProgress * 100))%")
+                                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                    .foregroundStyle(Color.orangePrimary)
+                                                    .frame(width: 45, alignment: .trailing)
+                                            }
+                                        }
+                                        .padding(16)
+                                        .background(Color(UIColor.systemBackground))
+                                        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                                        .padding(.horizontal, 16)
+                                        .padding(.bottom, 8)
+                                        .onChange(of: pflanze.sliderProgress) { _, new in
+                                            if abs(tempSliderProgress - new) > 0.01 {
+                                                tempSliderProgress = new
+                                            }
+                                        }
                                     }
                                         
                                     if pflanze.automaticHealthMetric != nil || pflanze.linkedHealthMetric != nil {
@@ -786,16 +820,22 @@ struct PflanzeDetailSheet: View {
                         .id(TourStep.plantHealth)
                     }
 
-    private func sicherstellenDassPfadExistiert() {
-        pfadBereit = true
+    private func updateManualProgress() {
+        let finalProgress = tempSliderProgress
+        pflanze.sliderProgress = finalProgress
+        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+        if finalProgress > 0 {
+            pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
+        }
+        
+        if finalProgress >= 1.0 {
+            gardenStore.completeHabit(pflanze: pflanze, on: Date())
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        } else {
+            gardenStore.savePlants()
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
     }
-
-
-    
-
-
-
-
 }
 
 // MARK: - Flame Streak Button
