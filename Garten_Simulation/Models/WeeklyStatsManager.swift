@@ -112,9 +112,6 @@ final class WeeklyStatsManager {
         var dailyFocus: [DailyFocusTime] = []
         var dailyHabits: [DailyHabitsCount] = []
         
-        var currentDailyScores: [Double] = []
-        var prevDailyScores: [Double] = []
-        
         let weekdayNames = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
         
         for i in 0..<7 {
@@ -127,35 +124,17 @@ final class WeeklyStatsManager {
                 .reduce(0) { $0 + $1.durationMinutes }
             
             var habitsDone = 0
-            var dailyScore = 0.0
             
             for plant in gardenStore.sichtbarePflanzen {
                 let doneToday = plant.wateringDates.contains(where: { $0 >= dayStart && $0 <= dayEnd })
                 if doneToday {
                     habitsDone += 1
-                    var weight = 1.0
-                    if plant.streak >= 3 { weight += 0.5 }
-                    if plant.seltenheit == .diamant || plant.seltenheit == .gold { weight += 0.5 }
-                    dailyScore += weight
                 }
             }
-            currentDailyScores.append(dailyScore)
             
             let pDay = calendar.date(byAdding: .day, value: i, to: prevMonday)!
             let pDayStart = calendar.startOfDay(for: pDay)
             let pDayEnd = calendar.date(byAdding: .second, value: 24 * 3600 - 1, to: pDayStart)!
-            
-            var pDailyScore = 0.0
-            for plant in gardenStore.sichtbarePflanzen {
-                let donePrev = plant.wateringDates.contains(where: { $0 >= pDayStart && $0 <= pDayEnd })
-                if donePrev {
-                    var weight = 1.0
-                    if plant.streak >= 3 { weight += 0.5 }
-                    if plant.seltenheit == .diamant || plant.seltenheit == .gold { weight += 0.5 }
-                    pDailyScore += weight
-                }
-            }
-            prevDailyScores.append(pDailyScore)
             
             let localizedDayKey = "common.day.\(i)" // Mo=0
             let localizedDay = NSLocalizedString(localizedDayKey, comment: "")
@@ -165,14 +144,7 @@ final class WeeklyStatsManager {
             dailyHabits.append(DailyHabitsCount(date: dayStart, count: habitsDone, dayName: dayName))
         }
         
-        func calculateStdDev(_ data: [Double]) -> Double {
-            let count = Double(data.count)
-            guard count > 0 else { return 0.0 }
-            let mean = data.reduce(0, +) / count
-            let variance = data.reduce(0) { $0 + pow($1 - mean, 2) } / count
-            return sqrt(variance)
-        }
-        
+
         // 5. Generate Dynamic Tips
         let title = String(localized: "smart.weekly.title.tip", defaultValue: "Tipp")
         var tips: [String] = []
