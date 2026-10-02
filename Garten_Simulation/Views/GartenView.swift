@@ -301,23 +301,19 @@ struct GartenView: View {
     }
 
     func dateLabel(for date: Date) -> some View {
-        let appLocale = Locale(identifier: settings.appLanguage)
-        
         if Calendar.current.isDateInToday(date) {
-            return Text(String(localized: "history.today", defaultValue: "Heute", table: "Localizable", locale: appLocale))
+            return Text(String(localized: "history.today", defaultValue: "Heute"))
         } else if Calendar.current.isDateInYesterday(date) {
-            return Text(String(localized: "history.yesterday", defaultValue: "Gestern", table: "Localizable", locale: appLocale))
+            return Text(String(localized: "history.yesterday", defaultValue: "Gestern"))
         } else {
             let dayFmt = DateFormatter()
-            dayFmt.locale = appLocale
+            dayFmt.locale = Locale.current
             dayFmt.dateFormat = "EEE"
             let numFmt = DateFormatter()
-            numFmt.locale = appLocale
+            numFmt.locale = Locale.current
             numFmt.dateFormat = "d.M."
-            
             let dayStr = dayFmt.string(from: date).capitalized
             let numStr = numFmt.string(from: date)
-            
             return Text("\(dayStr) \(numStr)")
         }
     }

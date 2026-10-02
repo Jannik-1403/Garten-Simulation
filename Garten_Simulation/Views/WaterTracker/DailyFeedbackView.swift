@@ -86,18 +86,17 @@ struct DailyHealthScoreCard: View {
     
     func defaultFormattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: settings.appLanguage)
+        formatter.locale = Locale.current
         formatter.setLocalizedDateFormatFromTemplate("EEEE d. MMMM")
         return formatter.string(from: date).replacingOccurrences(of: ",", with: "")
     }
 
     @ViewBuilder
     func dateLabel(for date: Date) -> some View {
-        let appLocale = Locale(identifier: settings.appLanguage)
         if Calendar.current.isDateInToday(date) {
-            Text(String(localized: "history.today", defaultValue: "Heute", table: "Localizable", locale: appLocale))
+            Text(String(localized: "history.today", defaultValue: "Heute"))
         } else if Calendar.current.isDateInYesterday(date) {
-            Text(String(localized: "history.yesterday", defaultValue: "Gestern", table: "Localizable", locale: appLocale))
+            Text(String(localized: "history.yesterday", defaultValue: "Gestern"))
         } else {
             Text(defaultFormattedDate(date))
         }
