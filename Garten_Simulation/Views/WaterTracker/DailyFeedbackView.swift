@@ -4,6 +4,7 @@ import Combine
 struct DailyHealthScoreCard: View {
     @StateObject private var vm = DailyFeedbackViewModel()
     @EnvironmentObject var gardenStore: GardenStore
+    @StateObject private var settings = SettingsStore.shared
     @State private var showDetailSheet: Bool = false
     @State private var showCalendarSheet: Bool = false
 
@@ -17,6 +18,8 @@ struct DailyHealthScoreCard: View {
                     Text(dateLabel(for: vm.targetDate))
                         .font(.system(size: 20, weight: .black, design: .rounded))
                         .foregroundColor(.primary)
+                        .id(vm.targetDate)
+                        .transition(.opacity)
                 }
                 Spacer()
             }
@@ -54,26 +57,30 @@ struct DailyHealthScoreCard: View {
             ))
         }
         .contentShape(Rectangle())
-        .gesture(
+        .highPriorityGesture(
             DragGesture(minimumDistance: 30)
                 .onEnded { value in
-                    if value.translation.width > 30 {
-                        vm.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.targetDate) ?? vm.targetDate
-                        vm.reevaluate()
-                    } else if value.translation.width < -30 {
-                        if !Calendar.current.isDateInToday(vm.targetDate) {
-                            vm.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.targetDate) ?? vm.targetDate
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        if value.translation.width > 30 {
+                            vm.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.targetDate) ?? vm.targetDate
                             vm.reevaluate()
+                        } else if value.translation.width < -30 {
+                            if !Calendar.current.isDateInToday(vm.targetDate) {
+                                vm.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.targetDate) ?? vm.targetDate
+                                vm.reevaluate()
+                            }
                         }
                     }
                 }
         )
         .fullScreenCover(isPresented: $showDetailSheet) {
             DailyFeedbackDetailView(vm: vm)
+                .environment(\.locale, Locale(identifier: settings.appLanguage))
         }
         .sheet(isPresented: $showCalendarSheet) {
             HistoryCalendarSheet(vm: vm)
                 .environmentObject(gardenStore)
+                .environment(\.locale, Locale(identifier: settings.appLanguage))
         }
         .onAppear {
             vm.activeHabits = gardenStore.sichtbarePflanzen
@@ -94,7 +101,7 @@ struct DailyHealthScoreCard: View {
             return String(localized: "history.yesterday", defaultValue: "Gestern")
         } else {
             let formatter = DateFormatter()
-            formatter.locale = Locale.autoupdatingCurrent
+            formatter.locale = Locale(identifier: settings.appLanguage)
             formatter.setLocalizedDateFormatFromTemplate("EEE d.M.")
             return formatter.string(from: date)
         }

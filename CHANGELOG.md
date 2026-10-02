@@ -1304,3 +1304,4 @@
 - Redesign: Tages-Score Historie überarbeitet. Paginator aus dem Button gelöst, Wisch-Geste hinzugefügt, Datum nativ via Apple formatiert und App-Installationsdatum berücksichtigt (keine falschen ❌ in der Vergangenheit).
 - UI Polish: Datumsanzeige (Daily Score) an Screenshot angepasst: Linksbündig ohne Pfeile, fette schwarze Schrift. Kalender-Tage nutzen jetzt nur noch blaue Schrift statt blauer Bubble.
 - UI & Logic Fixes: Datums-Header ist klickbar statt long-press, Schriftgröße verringert, Locale im Formatter erzwungen, und Heute-Streak Kalkulation im Kalender korrigiert.
+- UI & Locales: Swipe geste hat nun Animation und hohe Prio für die ganze Karte. Custom In-App Language für Datum und Kalender-Texte erzwungen.
