@@ -1337,3 +1337,4 @@
 - ROOT CAUSE FIX: SwiftUI hat für eine Gewohnheit dieselbe View-Instanz auf 'Heute' und 'Gestern' wiederverwendet, weil die View-ID nur die Pflanze, nicht das Datum, enthielt. Dadurch hat @State (dragWidth etc.) und der gerenderte Abschluss-Status zwischen den Tagen 'geblurt'.
 - Fix: PflanzenCard bekommt jetzt .id(pflanzeId + pageOffset). Jede Seite erzwingt damit eine eigene frische View-Instanz mit isoliertem State und korrekten Habit-Completion-Daten für genau diesen Tag.
 - Daily Score Karte: Der weiße Kontrast-Hintergrund wurde durch systemGroupedBackground-kompatible Grautöne (secondarySystemGroupedBackground / systemFill) ersetzt. Die Karte fügt sich jetzt nahtlos in den grauen Seitenhintergrund ein.
+- Fix: Fehlerhafte Locale-Erkennung in SettingsStore behoben, wodurch 'Heute' und 'Gestern' nie übersetzt wurden
