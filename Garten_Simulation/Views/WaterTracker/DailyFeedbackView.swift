@@ -54,7 +54,12 @@ struct DailyHealthScoreCard: View {
                 }
                 .clipped()
             }
-            .buttonStyle(LiquidGlassButtonStyle(cornerRadius: 16))
+            .buttonStyle(PillButtonStyle(
+                farbe: .white,
+                sekundaerFarbe: Color(white: 0.85),
+                cornerRadius: 16,
+                shadowDepth: 6
+            ))
         }
         .id(vm.targetDate.timeIntervalSince1970)
         .transition(.asymmetric(
@@ -428,46 +433,5 @@ struct HistoryCalendarSheet: View {
             }
         }
         return false
-    }
-}
-
-// MARK: - Liquid Glass Style for Daily Score Card
-private struct ScoreCardGlassModifier: ViewModifier {
-    let cornerRadius: CGFloat
-    func body(content: Content) -> some View {
-        if #available(iOS 26, *) {
-            content
-                .glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-        } else {
-            content
-                .background(
-                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .fill(.ultraThinMaterial)
-                        .shadow(color: Color.black.opacity(0.08), radius: 6, x: 0, y: 3)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .stroke(
-                            LinearGradient(
-                                colors: [.white.opacity(0.4), .white.opacity(0.0)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 0.8
-                        )
-                )
-        }
-    }
-}
-
-private struct LiquidGlassButtonStyle: ButtonStyle {
-    var cornerRadius: CGFloat = 16
-    
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .modifier(ScoreCardGlassModifier(cornerRadius: cornerRadius))
-            .opacity(configuration.isPressed ? 0.8 : 1.0)
-            .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
-            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }

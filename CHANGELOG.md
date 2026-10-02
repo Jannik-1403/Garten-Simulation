@@ -1338,3 +1338,4 @@
 - Fix: PflanzenCard bekommt jetzt .id(pflanzeId + pageOffset). Jede Seite erzwingt damit eine eigene frische View-Instanz mit isoliertem State und korrekten Habit-Completion-Daten für genau diesen Tag.
 - Daily Score Karte: Der weiße Kontrast-Hintergrund wurde durch systemGroupedBackground-kompatible Grautöne (secondarySystemGroupedBackground / systemFill) ersetzt. Die Karte fügt sich jetzt nahtlos in den grauen Seitenhintergrund ein.
 - Fix: Fehlerhafte Locale-Erkennung in SettingsStore behoben, wodurch 'Heute' und 'Gestern' nie übersetzt wurden
+- Daily Score Karte: Das alte 3D-Band-Design mit harten, schwarzen Außenrändern wurde entfernt. Stattdessen wird nun das gleiche native iOS 26 Liquid Glass Design (.glassEffect / .ultraThinMaterial Fallback) verwendet wie in der oberen Stats-Leiste.
