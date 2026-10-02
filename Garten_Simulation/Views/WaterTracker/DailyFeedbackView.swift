@@ -81,6 +81,13 @@ struct DailyHealthScoreCard: View {
         }
     }
     
+    func defaultFormattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: settings.appLanguage)
+        formatter.setLocalizedDateFormatFromTemplate("EEE d.M.")
+        return formatter.string(from: date)
+    }
+
     @ViewBuilder
     func dateLabel(for date: Date) -> some View {
         if Calendar.current.isDateInToday(date) {
@@ -90,10 +97,7 @@ struct DailyHealthScoreCard: View {
             Text(LocalizedStringKey("history.yesterday"))
                 .environment(\.locale, Locale(identifier: settings.appLanguage))
         } else {
-            let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: settings.appLanguage)
-            formatter.setLocalizedDateFormatFromTemplate("EEE d.M.")
-            Text(formatter.string(from: date))
+            Text(defaultFormattedDate(date))
         }
     }
 }
@@ -276,7 +280,7 @@ private struct CategoryIssueRow: View {
 }
 
 #Preview {
-    DailyHealthScoreCard()
+    DailyHealthScoreCard(vm: DailyFeedbackViewModel())
         .padding()
         .background(Color(.systemGroupedBackground))
 }
