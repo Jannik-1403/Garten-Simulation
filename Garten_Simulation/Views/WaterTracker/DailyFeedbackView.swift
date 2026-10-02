@@ -11,12 +11,13 @@ struct DailyHealthScoreCard: View {
         VStack(spacing: 12) {
             // Date Header
             HStack {
-                Text(dateLabel(for: vm.targetDate))
-                    .font(.system(size: 28, weight: .black, design: .rounded))
-                    .foregroundColor(.primary)
-                    .onLongPressGesture {
-                        showCalendarSheet = true
-                    }
+                Button {
+                    showCalendarSheet = true
+                } label: {
+                    Text(dateLabel(for: vm.targetDate))
+                        .font(.system(size: 20, weight: .black, design: .rounded))
+                        .foregroundColor(.primary)
+                }
                 Spacer()
             }
 
@@ -93,6 +94,7 @@ struct DailyHealthScoreCard: View {
             return String(localized: "history.yesterday", defaultValue: "Gestern")
         } else {
             let formatter = DateFormatter()
+            formatter.locale = Locale.autoupdatingCurrent
             formatter.setLocalizedDateFormatFromTemplate("EEE d.M.")
             return formatter.string(from: date)
         }
@@ -420,8 +422,13 @@ struct HistoryCalendarSheet: View {
             if plant.wateringDates.contains(where: { Calendar.current.isDate($0, inSameDayAs: start) }) {
                 return true
             }
-            if plant.intradayProgressHistory.contains(where: { Calendar.current.isDate($0.timestamp, inSameDayAs: start) }) {
+            if plant.intradayProgressHistory.contains(where: { Calendar.current.isDate($0.timestamp, inSameDayAs: start) && $0.progress > 0 }) {
                 return true
+            }
+        }
+        if Calendar.current.isDateInToday(date) {
+            for plant in gardenStore.sichtbarePflanzen {
+                if plant.isCompleted || plant.customTrackerProgress > 0 || plant.sliderProgress > 0 { return true }
             }
         }
         return false
