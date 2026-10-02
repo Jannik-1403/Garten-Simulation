@@ -278,11 +278,11 @@ class GardenStore: ObservableObject {
     }
     
     // MARK: Pflanze gießen
-    func completeHabit(pflanze: HabitModel, fromRoutine: Bool = false) {
+    func completeHabit(pflanze: HabitModel, on date: Date = Date(), fromRoutine: Bool = false) {
         HealthManager.shared.requestAuthorizationIfNeeded()
         
         // Synchronous idempotency check to prevent race conditions
-        guard !pflanze.isCompleted else { return }
+        guard !pflanze.wasCompleted(on: date) else { return }
 
         // Tagesziel automatisch erfüllen (Andersrum-Sync)
         if let target = pflanze.customTrackerTarget, target > 0 {
@@ -350,7 +350,7 @@ class GardenStore: ObservableObject {
         // XP Verlauf für die Pflanze speichern
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let key = formatter.string(from: Date())
+        let key = formatter.string(from: date)
         pflanze.xpHistory[key] = (pflanze.xpHistory[key] ?? 0) + finalXPGewonnen
         
         pflanze.totalCoinsEarned += coinsGewonnen
@@ -361,7 +361,7 @@ class GardenStore: ObservableObject {
         self.completionTriggerID = UUID()
         
         pflanze.lastCompletionDate = Date()
-        pflanze.wateringDates.append(Date()) // Log für Verlauf-Tab
+        pflanze.wateringDates.append(date) // Log für Verlauf-Tab
         pflanze.streak += 1
         
         let milestones = [5, 10, 30, 50, 100]

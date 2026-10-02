@@ -71,6 +71,7 @@ struct GartenView: View {
     @State private var flyingCoins: [FlyingCoinItem] = []
     @State private var coinHeaderPosition: CGPoint = .zero
     @State private var streakHeaderPosition: CGPoint = .zero
+    @State private var dayOffset: Int = 0
     @StateObject private var dailyFeedbackVM = DailyFeedbackViewModel()
     
 
@@ -223,88 +224,86 @@ struct GartenView: View {
         .environmentObject(interactiveTourManager)
     }
 
+
     @ViewBuilder
     private var mainContentView: some View {
         ZStack {
-            Color.appHintergrund
-                .ignoresSafeArea()
+            Color.appHintergrund.ignoresSafeArea()
 
-            ZStack(alignment: .top) {
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        ZStack(alignment: .top) {
-                            VStack(spacing: 0) {
-                                
-                                Spacer().frame(height: headerSpacerHeight - 50)
+            VStack(spacing: 0) {
+                // Statische Header Bar (ohne DailyHealthScoreCard)
+                staticHeaderBar
+                    .background(.ultraThinMaterial)
+                    .zIndex(1)
 
-                                // MARK: - Pflanzen Grid
-                                if gardenStore.sichtbarePflanzen.isEmpty {
-                                    GartenIgelView(text: String(localized: "garden.empty.subtitle", defaultValue: "Füge deine erste Pflanze hinzu!"))
-                                        .padding(.top, 20)
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.top, 40)
-                                        .tourAnchor(.intro)
-                                } else {
-                                    pflanzenGridSection
-                                }
-
-                                Spacer().frame(height: 60)
-                            }
-                            .frame(maxWidth: 850)
-                        }
-                        .coordinateSpace(name: "GartenGrid")
+                TabView(selection: $dayOffset) {
+                    ForEach(-30...0, id: \.self) { offset in
+                        pageContent(for: offset)
+                            .tag(offset)
                     }
-                    .onChange(of: interactiveTourManager.currentStep) { _, newStep in
-                        handleTourStepChange(newStep, proxy: proxy)
-                    }
-                    .onPreferenceChange(CardPositionPreferenceKey.self) { prefs in
-                        cardPositions = prefs
-                    }
-                    .onPreferenceChange(BadHabitPositionPreferenceKey.self) { prefs in
-                        badHabitPositions = prefs
-                    }
-                    .simultaneousGesture(
-                        DragGesture(minimumDistance: 2)
-                            .onChanged { _ in
-                                if startAbstandAktiv {
-                                    withAnimation(.easeOut(duration: 0.18)) {
-                                        startAbstandAktiv = false
-                                    }
-                                }
-                            }
-                    )
-                    .onReceive(timerAktuell) { _ in
-                        gardenStore.pruefePflanzenStatus()
-                    }
-                } // End of ScrollViewReader
-                .simultaneousGesture(
-                    DragGesture(minimumDistance: 40)
-                        .onEnded { value in
-                            if abs(value.translation.width) > abs(value.translation.height) && abs(value.translation.width) > 40 {
-                                if value.translation.width > 40 {
-                                    dailyFeedbackVM.isSwipingToPast = true
-                                } else {
-                                    dailyFeedbackVM.isSwipingToPast = false
-                                }
-                                withAnimation(.easeInOut(duration: 0.3)) {
-                                    if value.translation.width > 40 {
-                                        dailyFeedbackVM.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: dailyFeedbackVM.targetDate) ?? dailyFeedbackVM.targetDate
-                                        dailyFeedbackVM.reevaluate()
-                                    } else if value.translation.width < -40 {
-                                        if !Calendar.current.isDateInToday(dailyFeedbackVM.targetDate) {
-                                            dailyFeedbackVM.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: dailyFeedbackVM.targetDate) ?? dailyFeedbackVM.targetDate
-                                            dailyFeedbackVM.reevaluate()
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                )
-
-                // MARK: - Sticky Header Bar
-                stickyHeaderBar
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .onChange(of: dayOffset) { _, newValue in
+                    dailyFeedbackVM.targetDate = Calendar.current.date(byAdding: .day, value: newValue, to: Date()) ?? Date()
+                    dailyFeedbackVM.reevaluate()
+                }
             }
         }
+    }
+
+    @ViewBuilder
+    private func pageContent(for offset: Int) -> some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: 0) {
+                    Spacer().frame(height: 10)
+                    
+                    if !gardenStore.sichtbarePflanzen.isEmpty {
+                        DailyHealthScoreCard(vm: dailyFeedbackVM)
+                            .padding(.vertical, 8)
+                            .frame(maxWidth: 850)
+                            .padding(.horizontal)
+                    }
+                    
+                    xpMultiplierSection
+                        .padding(.horizontal)
+                    
+                    VStack(spacing: 10) {
+                        comebackBoostSection
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom, 10)
+
+                    if gardenStore.sichtbarePflanzen.isEmpty {
+                        GartenIgelView(text: String(localized: "garden.empty.subtitle", defaultValue: "Füge deine erste Pflanze hinzu!"))
+                            .padding(.top, 20)
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 40)
+                    } else {
+                        pflanzenGridSection(for: offset)
+                    }
+
+                    Spacer().frame(height: 60)
+                }
+                .frame(maxWidth: 850)
+                .coordinateSpace(name: "GartenGrid")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var staticHeaderBar: some View {
+        GartenStatsBar(
+            streak: streakStore.currentStreak,
+            coins: gardenStore.coins,
+            leben: gardenStore.leben,
+            onStreakTap: { zeigeStreakDetail = true },
+            onCoinsTap: { zeigeCoinsDetail = true },
+            onLebenTap: { zeigeLebenDetail = true }
+        )
+        .padding(.top, 16)
+        .padding(.bottom, 10)
+        .frame(maxWidth: 850)
     }
 
     // MARK: - Tages-Event
@@ -505,7 +504,7 @@ struct GartenView: View {
     private var powerUpsSection: some View { EmptyView() }
     
     @ViewBuilder
-    private var pflanzenGridSection: some View {
+    private func pflanzenGridSection(for dayOffset: Int) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 40, style: .continuous)
                 .fill(
@@ -534,7 +533,8 @@ struct GartenView: View {
     private func pflanzenCardRow(pflanze: HabitModel) -> some View {
         let isFirst = pflanze.id == gardenStore.sichtbarePflanzen.first?.id
         PflanzenCard(
-            pflanze: pflanze,
+                                pflanze: pflanze,
+                                targetDate: Calendar.current.date(byAdding: .day, value: dayOffset, to: Date()) ?? Date(),
             onTap: {
                 HealthManager.shared.requestAuthorizationIfNeeded()
                 ausgewaehltePflanze = pflanze

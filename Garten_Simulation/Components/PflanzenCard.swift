@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PflanzenCard: View {
     @ObservedObject var pflanze: HabitModel
-
+    var targetDate: Date = Date()
     let onTap: () -> Void
 
     @EnvironmentObject var settings: SettingsStore
@@ -90,7 +90,7 @@ struct PflanzenCard: View {
         if let hp = healthProgress, !hasManualOverride {
             return hp
         }
-        if pflanze.isCompleted {
+        if pflanze.wasCompleted(on: targetDate) {
             return 1.0
         }
         return pflanze.sliderProgress
@@ -205,7 +205,7 @@ struct PflanzenCard: View {
                     
                     // Warning & Name Header
                     HStack(alignment: .center, spacing: 6) {
-                        if !pflanze.isCompleted && pflanze.showWarning {
+                        if !pflanze.wasCompleted(on: targetDate) && pflanze.showWarning {
                             ZStack {
                                 Image("Warndreieck")
                                     .resizable()
@@ -237,7 +237,7 @@ struct PflanzenCard: View {
                     .foregroundStyle(Color(hex: "#D95F00"))
                     
                     // Timer Info (Only if not watered)
-                    if !pflanze.isCompleted && !pflanze.isDead {
+                    if !pflanze.wasCompleted(on: targetDate) && !pflanze.isDead {
                         HStack(spacing: 4) {
                             Image(pflanze.timerIconName)
                                 .resizable()
@@ -257,10 +257,10 @@ struct PflanzenCard: View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.trailing, pflanze.isCompleted ? 0 : 16)
+                .padding(.trailing, pflanze.wasCompleted(on: targetDate) ? 0 : 16)
                 
                 // MARK: Right Column - Completed Badge
-                if pflanze.isCompleted {
+                if pflanze.wasCompleted(on: targetDate) {
                     VStack(spacing: 4) {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 24, weight: .bold))
@@ -303,7 +303,7 @@ struct PflanzenCard: View {
                     }
                     if pflanze.isDead {
                         showReviveSheet = true
-                    } else if let p = healthProgress, p >= 1.0, !pflanze.isCompleted {
+                    } else if let p = healthProgress, p >= 1.0, !pflanze.wasCompleted(on: targetDate) {
                         gardenStore.completeHabit(pflanze: pflanze)
                         triggerWatering()
                     } else {
@@ -315,7 +315,7 @@ struct PflanzenCard: View {
         .highPriorityGesture(
             DragGesture(minimumDistance: 25)
                 .onChanged { value in
-                    guard healthProgress == nil, !pflanze.isCompleted, !pflanze.isDead else { return }
+                    guard healthProgress == nil, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead else { return }
                     if !isDragging { isDragging = true }
                     let startX = pflanze.sliderProgress * maxDragWidth
                     dragWidth = startX + value.translation.width
@@ -344,7 +344,7 @@ struct PflanzenCard: View {
         )
         .allowsHitTesting(true)
         .onChange(of: healthProgress) { _, newProgress in
-            if let p = newProgress, p >= 1.0, !pflanze.isCompleted, !pflanze.isDead {
+            if let p = newProgress, p >= 1.0, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead {
                 DispatchQueue.main.async {
                     gardenStore.completeHabit(pflanze: pflanze)
                     triggerWatering()

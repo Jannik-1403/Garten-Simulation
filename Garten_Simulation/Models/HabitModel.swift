@@ -343,8 +343,14 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var gekauftAm: Date
     
     var isCompleted: Bool {
-        guard let d = lastCompletionDate else { return false }
-        return Calendar.current.isDateInToday(d)
+        return wasCompleted(on: Date())
+    }
+    
+    func wasCompleted(on date: Date) -> Bool {
+        if Calendar.current.isDate(lastCompletionDate ?? .distantPast, inSameDayAs: date) {
+            return true
+        }
+        return wateringDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
     }
     @Published var missedCycles: Int   // Wie viele 24h-Fenster verpasst?
     @Published var lastNotifiedCycle: Int // Welcher Zyklus wurde bereits "bestraft" (Herz-Abzug)?
