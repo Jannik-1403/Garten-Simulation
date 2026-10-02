@@ -9,39 +9,16 @@ struct DailyHealthScoreCard: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            // Date Paginator
+            // Date Header
             HStack {
-                Button {
-                    vm.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.targetDate) ?? vm.targetDate
-                    vm.reevaluate()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .padding(8)
-                }
-                
-                Spacer()
-                
                 Text(dateLabel(for: vm.targetDate))
-                    .font(.system(size: 20, weight: .bold))
+                    .font(.system(size: 28, weight: .black, design: .rounded))
+                    .foregroundColor(.primary)
                     .onLongPressGesture {
                         showCalendarSheet = true
                     }
-                    
                 Spacer()
-                
-                Button {
-                    if !Calendar.current.isDateInToday(vm.targetDate) {
-                        vm.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.targetDate) ?? vm.targetDate
-                        vm.reevaluate()
-                    }
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .padding(8)
-                        .opacity(Calendar.current.isDateInToday(vm.targetDate) ? 0.3 : 1.0)
-                }
-                .disabled(Calendar.current.isDateInToday(vm.targetDate))
             }
-            .foregroundColor(.primary)
 
             // MARK: Kopfzeile (Score)
             Button {
@@ -115,7 +92,9 @@ struct DailyHealthScoreCard: View {
         } else if Calendar.current.isDateInYesterday(date) {
             return String(localized: "history.yesterday", defaultValue: "Gestern")
         } else {
-            return date.formatted(.dateTime.weekday(.wide).day().month(.wide))
+            let formatter = DateFormatter()
+            formatter.setLocalizedDateFormatFromTemplate("EEE d.M.")
+            return formatter.string(from: date)
         }
     }
 }
@@ -391,7 +370,7 @@ struct HistoryCalendarSheet: View {
                             VStack(spacing: 4) {
                                 Text("\(Calendar.current.component(.day, from: date))")
                                     .font(.system(size: 16, weight: isSelected ? .bold : .regular))
-                                    .foregroundColor(isSelected ? .white : (isDisabled ? .gray : .primary))
+                                    .foregroundColor(isSelected ? .blue : (isDisabled ? .gray : .primary))
                                 
                                 if !isDisabled {
                                     if hasStreak(on: date) {
@@ -404,8 +383,6 @@ struct HistoryCalendarSheet: View {
                                 }
                             }
                             .frame(width: 40, height: 40)
-                            .background(isSelected ? Color.blue : Color.clear)
-                            .clipShape(Circle())
                         }
                         .disabled(isDisabled)
                     }
