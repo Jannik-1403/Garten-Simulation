@@ -60,6 +60,7 @@ struct PflanzeDetailSheet: View {
     @State private var showScreenTimeConfirm = false
     @State private var isEditingScreenTime = false
     @State private var tempSliderProgress: Double = 0.0
+    @State private var showCompleteConfirmAlert = false
     
     @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
     
@@ -744,10 +745,15 @@ struct PflanzeDetailSheet: View {
                                             HStack {
                                                 Slider(value: $tempSliderProgress, in: 0...1, step: 0.01) { editing in
                                                     if !editing {
-                                                        updateManualProgress()
+                                                        if tempSliderProgress >= 1.0 {
+                                                            showCompleteConfirmAlert = true
+                                                        } else {
+                                                            updateManualProgress()
+                                                        }
                                                     }
                                                 }
                                                 .tint(Color.orangePrimary)
+                                                .disabled(pflanze.wasCompleted(on: Date()))
                                                 
                                                 Text("\(Int(tempSliderProgress * 100))%")
                                                     .font(.system(size: 14, weight: .bold, design: .rounded))
@@ -755,11 +761,25 @@ struct PflanzeDetailSheet: View {
                                                     .frame(width: 45, alignment: .trailing)
                                             }
                                         }
-                                        .padding(16)
-                                        .background(Color(UIColor.systemBackground))
-                                        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                                        .padding(20)
+                                        .modifier(Item3DContainerModifier(
+                                            farbe: Color(UIColor.systemBackground),
+                                            sekundaerFarbe: Color(UIColor.systemGray5),
+                                            shadowDepth: 6
+                                        ))
                                         .padding(.horizontal, 16)
                                         .padding(.bottom, 8)
+                                        .alert(String(localized: "habit.complete_confirm.title", defaultValue: "Bist du dir sicher?"), isPresented: $showCompleteConfirmAlert) {
+                                            Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
+                                                tempSliderProgress = pflanze.sliderProgress
+                                            }
+                                            Button(String(localized: "common.confirm", defaultValue: "Bestätigen")) {
+                                                tempSliderProgress = 1.0
+                                                updateManualProgress()
+                                            }
+                                        } message: {
+                                            Text(String(localized: "habit.complete_confirm.message", defaultValue: "Sobald du 100% erreichst, kann der Fortschritt für heute nicht mehr geändert werden."))
+                                        }
                                         .onChange(of: pflanze.sliderProgress) { _, new in
                                             if abs(tempSliderProgress - new) > 0.01 {
                                                 tempSliderProgress = new
