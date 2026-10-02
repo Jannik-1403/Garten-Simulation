@@ -13,6 +13,7 @@ class DailyFeedbackViewModel: ObservableObject {
     @Published var headerText: String = ""
     @Published var primaryKey: FeedbackKey = .feedbackPositiv1
     @Published var targetDate: Date = Date()
+    @Published var isSwipingToPast: Bool = false
 
     @Published var activeHabits: [HabitModel] = []
 

@@ -281,6 +281,11 @@ struct GartenView: View {
                     DragGesture(minimumDistance: 40)
                         .onEnded { value in
                             if abs(value.translation.width) > abs(value.translation.height) && abs(value.translation.width) > 40 {
+                                if value.translation.width > 40 {
+                                    dailyFeedbackVM.isSwipingToPast = true
+                                } else {
+                                    dailyFeedbackVM.isSwipingToPast = false
+                                }
                                 withAnimation(.easeInOut(duration: 0.3)) {
                                     if value.translation.width > 40 {
                                         dailyFeedbackVM.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: dailyFeedbackVM.targetDate) ?? dailyFeedbackVM.targetDate

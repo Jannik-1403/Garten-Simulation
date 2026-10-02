@@ -56,8 +56,8 @@ struct DailyHealthScoreCard: View {
         }
         .id(vm.targetDate.timeIntervalSince1970)
         .transition(.asymmetric(
-            insertion: .move(edge: .trailing).combined(with: .opacity),
-            removal: .move(edge: .leading).combined(with: .opacity)
+            insertion: .move(edge: vm.isSwipingToPast ? .leading : .trailing).combined(with: .opacity),
+            removal: .move(edge: vm.isSwipingToPast ? .trailing : .leading).combined(with: .opacity)
         ))
         .contentShape(Rectangle())
         .fullScreenCover(isPresented: $showDetailSheet) {
@@ -84,8 +84,8 @@ struct DailyHealthScoreCard: View {
     func defaultFormattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: settings.appLanguage)
-        formatter.setLocalizedDateFormatFromTemplate("EEE d.M.")
-        return formatter.string(from: date)
+        formatter.setLocalizedDateFormatFromTemplate("EEEE d. MMMM")
+        return formatter.string(from: date).replacingOccurrences(of: ",", with: "")
     }
 
     @ViewBuilder
