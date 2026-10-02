@@ -1300,3 +1300,4 @@
 - Fixed UI visual bugs in PflanzenCard & BadHabitCard (Restored 3D base and fixed progress bar rounding)
 - Removed auto-completion on app start for Apple Health habits, requires manual tap now
 - Refactored und optimiert: Tagesscore Berechnung in DailyFeedbackViewModel deutlich performanter gemacht. Toten Score-Code aus WeeklyStatsManager entfernt.
+- Feature: Tages-Score Historie eingebaut. Man kann in die Vergangenheit blättern oder per Long-Press auf einen Kalender zugreifen.

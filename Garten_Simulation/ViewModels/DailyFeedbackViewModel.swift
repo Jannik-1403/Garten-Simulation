@@ -12,6 +12,7 @@ class DailyFeedbackViewModel: ObservableObject {
     @Published var dailyScore: Int = 100
     @Published var headerText: String = ""
     @Published var primaryKey: FeedbackKey = .feedbackPositiv1
+    @Published var targetDate: Date = Date()
 
     @Published var activeHabits: [HabitModel] = []
 
@@ -48,12 +49,12 @@ class DailyFeedbackViewModel: ObservableObject {
         let nim = NutrientIndexManager.shared
         let store = FeedbackStore.shared
 
-        // Stärkstes Krafttraining in Tagen berechnen
+        // Stärkstes Krafttraining in Tagen berechnen relativ zum targetDate
         let strengthDaysAgo: Int?
         if let lastDate = hm.lastStrengthWorkoutDate {
             let days = Calendar.current.dateComponents([.day],
                 from: Calendar.current.startOfDay(for: lastDate),
-                to: Calendar.current.startOfDay(for: Date())).day ?? 999
+                to: Calendar.current.startOfDay(for: targetDate)).day ?? 999
             strengthDaysAgo = days
         } else {
             strengthDaysAgo = nil
@@ -148,8 +149,9 @@ class DailyFeedbackViewModel: ObservableObject {
         let stepsGoal = runningPlant?.healthTarget ?? 10000.0
         let fiberGoal = fiberPlant?.healthTarget ?? 30.0 // DGE-Empfehlung
         
-        let gratitudeTodayDone = gratitudePlant?.journalEntries.contains(where: { Calendar.current.isDateInToday($0.date) }) ?? false
-        let gratitudeYesterdayEntry = gratitudePlant?.journalEntries.first(where: { Calendar.current.isDateInYesterday($0.date) })
+        let gratitudeTodayDone = gratitudePlant?.journalEntries.contains(where: { Calendar.current.isDate($0.date, inSameDayAs: targetDate) }) ?? false
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: targetDate) ?? targetDate
+        let gratitudeYesterdayEntry = gratitudePlant?.journalEntries.first(where: { Calendar.current.isDate($0.date, inSameDayAs: yesterday) })
 
         let energyGoal = energyPlant?.effectiveHealthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
 
@@ -157,7 +159,7 @@ class DailyFeedbackViewModel: ObservableObject {
         var hasCleaningTaskToday = false
         var isCleaningTaskDone = true
         let activeCleaningTasks = cm.tasks.filter { $0.isActive }
-        let todayStart = Calendar.current.startOfDay(for: Date())
+        let todayStart = Calendar.current.startOfDay(for: targetDate)
         
         var nextCleaningDate: Date? = nil
         
@@ -169,7 +171,7 @@ class DailyFeedbackViewModel: ObservableObject {
                 nextCleaningDate = due
             }
 
-            let isDoneToday = lastCompleted != nil && Calendar.current.isDateInToday(lastCompleted!)
+            let isDoneToday = lastCompleted != nil && Calendar.current.isDate(lastCompleted!, inSameDayAs: targetDate)
             
             if due <= todayStart || isDoneToday {
                 hasCleaningTaskToday = true
@@ -190,9 +192,17 @@ class DailyFeedbackViewModel: ObservableObject {
             guard let p = plant else { return healthValue }
             if p.effectiveHealthMetric == nil {
                 let todaysManualProgress = p.intradayProgressHistory
-                    .filter { Calendar.current.isDateInToday($0.timestamp) }
+                    .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
                     .last?.progress ?? 0.0
                 return todaysManualProgress * goal
+            }
+            // Wenn targetDate in der Vergangenheit liegt, nutze den History-Wert aus Health
+            if !Calendar.current.isDateInToday(targetDate) {
+                 // Wenn HealthMetric gesetzt ist, nehmen wir intradayProgressHistory als Fallback
+                 let todaysManualProgress = p.intradayProgressHistory
+                     .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
+                     .last?.progress ?? 0.0
+                 return todaysManualProgress * goal
             }
             return healthValue
         }
@@ -209,7 +219,7 @@ class DailyFeedbackViewModel: ObservableObject {
         var effectiveStrengthDaysAgo = strengthDaysAgo
         if let p = strengthPlant, p.effectiveHealthMetric == nil {
             let todaysManualProgress = p.intradayProgressHistory
-                .filter { Calendar.current.isDateInToday($0.timestamp) }
+                .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
                 .last?.progress ?? 0.0
             if todaysManualProgress > 0 {
                 effectiveStrengthDaysAgo = 0

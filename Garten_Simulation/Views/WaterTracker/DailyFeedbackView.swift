@@ -5,6 +5,7 @@ struct DailyHealthScoreCard: View {
     @StateObject private var vm = DailyFeedbackViewModel()
     @EnvironmentObject var gardenStore: GardenStore
     @State private var showDetailSheet: Bool = false
+    @State private var showCalendarSheet: Bool = false
 
     var body: some View {
         Button {
@@ -12,22 +13,57 @@ struct DailyHealthScoreCard: View {
         } label: {
             VStack(spacing: 0) {
                 // MARK: Kopfzeile (Score)
-                HStack(spacing: 16) {
-                    MiniChunkyProgressRing(
-                        progress: Double(vm.dailyScore),
-                        goal: 100,
-                        color: vm.dailyScore >= 80 ? Color(.systemGreen) : (vm.dailyScore >= 50 ? Color(.systemOrange) : Color(.systemRed))
-                    )
-                        .frame(width: 56, height: 56)
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(String(localized: "fitness.score.title", defaultValue: "Tages-Score"))
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.primary)
+                VStack(spacing: 8) {
+                    // Date Paginator
+                    HStack {
+                        Button {
+                            vm.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.targetDate) ?? vm.targetDate
+                            vm.reevaluate()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .padding(8)
+                        }
+                        
+                        Spacer()
+                        
+                        Text(dateLabel(for: vm.targetDate))
+                            .font(.system(size: 14, weight: .semibold))
+                            .onLongPressGesture {
+                                showCalendarSheet = true
+                            }
+                            
+                        Spacer()
+                        
+                        Button {
+                            if !Calendar.current.isDateInToday(vm.targetDate) {
+                                vm.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.targetDate) ?? vm.targetDate
+                                vm.reevaluate()
+                            }
+                        } label: {
+                            Image(systemName: "chevron.right")
+                                .padding(8)
+                                .opacity(Calendar.current.isDateInToday(vm.targetDate) ? 0.3 : 1.0)
+                        }
+                        .disabled(Calendar.current.isDateInToday(vm.targetDate))
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.secondary)
+                    
+                    HStack(spacing: 16) {
+                        MiniChunkyProgressRing(
+                            progress: Double(vm.dailyScore),
+                            goal: 100,
+                            color: vm.dailyScore >= 80 ? Color(.systemGreen) : (vm.dailyScore >= 50 ? Color(.systemOrange) : Color(.systemRed))
+                        )
+                            .frame(width: 56, height: 56)
+    
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(String(localized: "fitness.score.title", defaultValue: "Tages-Score"))
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.primary)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
-                .padding(.vertical, 12)
                 .padding(.horizontal, 16)
             }
             .clipped()
@@ -41,6 +77,10 @@ struct DailyHealthScoreCard: View {
         .fullScreenCover(isPresented: $showDetailSheet) {
             DailyFeedbackDetailView(vm: vm)
         }
+        .sheet(isPresented: $showCalendarSheet) {
+            HistoryCalendarSheet(vm: vm)
+                .environmentObject(gardenStore)
+        }
         .onAppear {
             vm.activeHabits = gardenStore.sichtbarePflanzen
             vm.reevaluate()
@@ -50,6 +90,19 @@ struct DailyHealthScoreCard: View {
                 vm.activeHabits = gardenStore.sichtbarePflanzen
                 vm.reevaluate()
             }
+        }
+    }
+    
+    func dateLabel(for date: Date) -> String {
+        if Calendar.current.isDateInToday(date) {
+            return String(localized: "history.today", defaultValue: "Heute")
+        } else if Calendar.current.isDateInYesterday(date) {
+            return String(localized: "history.yesterday", defaultValue: "Gestern")
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            return formatter.string(from: date)
         }
     }
 }
@@ -235,4 +288,139 @@ private struct CategoryIssueRow: View {
     DailyHealthScoreCard()
         .padding()
         .background(Color(.systemGroupedBackground))
+}
+
+// MARK: - History Calendar Sheet
+
+struct HistoryCalendarSheet: View {
+    @ObservedObject var vm: DailyFeedbackViewModel
+    @EnvironmentObject var gardenStore: GardenStore
+    @Environment(\.dismiss) var dismiss
+    @State private var selectedMonth = Date()
+    
+    let daysOfWeek = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                // Month Selector
+                HStack {
+                    Button(action: { selectedMonth = Calendar.current.date(byAdding: .month, value: -1, to: selectedMonth)! }) {
+                        Image(systemName: "chevron.left")
+                    }
+                    Spacer()
+                    Text(monthYearString(from: selectedMonth))
+                        .font(.headline)
+                    Spacer()
+                    Button(action: {
+                        let next = Calendar.current.date(byAdding: .month, value: 1, to: selectedMonth)!
+                        if next <= Date() { selectedMonth = next }
+                    }) {
+                        Image(systemName: "chevron.right")
+                    }
+                    .disabled(Calendar.current.date(byAdding: .month, value: 1, to: selectedMonth)! > Date())
+                }
+                .padding()
+                
+                // Days Header
+                HStack {
+                    ForEach(daysOfWeek, id: \.self) { day in
+                        Text(day)
+                            .font(.caption)
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                .padding(.horizontal)
+                
+                // Grid
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 16) {
+                    let dates = daysInMonth(for: selectedMonth)
+                    // Leere Spacer für den ersten Tag
+                    if let first = dates.first {
+                        let rawWeekday = Calendar.current.component(.weekday, from: first)
+                        // In Swift ist So=1, Mo=2. Wir wollen Mo=1, So=7
+                        let emptyCount = (rawWeekday + 5) % 7
+                        ForEach(0..<emptyCount, id: \.self) { _ in
+                            Spacer()
+                        }
+                    }
+                    
+                    ForEach(dates, id: \.self) { date in
+                        let isFuture = Calendar.current.startOfDay(for: date) > Calendar.current.startOfDay(for: Date())
+                        let isSelected = Calendar.current.isDate(date, inSameDayAs: vm.targetDate)
+                        
+                        Button {
+                            if !isFuture {
+                                vm.targetDate = date
+                                vm.reevaluate()
+                                dismiss()
+                            }
+                        } label: {
+                            VStack(spacing: 4) {
+                                Text("\(Calendar.current.component(.day, from: date))")
+                                    .font(.system(size: 16, weight: isSelected ? .bold : .regular))
+                                    .foregroundColor(isSelected ? .white : (isFuture ? .gray : .primary))
+                                
+                                if !isFuture {
+                                    if hasStreak(on: date) {
+                                        Text("🔥").font(.system(size: 10))
+                                    } else {
+                                        Text("❌").font(.system(size: 10))
+                                    }
+                                } else {
+                                    Text(" ").font(.system(size: 10)) // Placeholder
+                                }
+                            }
+                            .frame(width: 40, height: 40)
+                            .background(isSelected ? Color.blue : Color.clear)
+                            .clipShape(Circle())
+                        }
+                        .disabled(isFuture)
+                    }
+                }
+                .padding()
+                Spacer()
+            }
+            .navigationTitle(String(localized: "history.pick_date", defaultValue: "Datum auswählen"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(String(localized: "common.close", defaultValue: "Schließen")) {
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+    
+    func monthYearString(from date: Date) -> String {
+        let f = DateFormatter()
+        f.dateFormat = "MMMM yyyy"
+        return f.string(from: date)
+    }
+    
+    func daysInMonth(for date: Date) -> [Date] {
+        let calendar = Calendar.current
+        guard let monthInterval = calendar.dateInterval(of: .month, for: date) else { return [] }
+        var dates = [Date]()
+        var current = monthInterval.start
+        while current < monthInterval.end {
+            dates.append(current)
+            current = calendar.date(byAdding: .day, value: 1, to: current)!
+        }
+        return dates
+    }
+    
+    func hasStreak(on date: Date) -> Bool {
+        let start = Calendar.current.startOfDay(for: date)
+        for plant in gardenStore.sichtbarePflanzen {
+            if plant.wateringDates.contains(where: { Calendar.current.isDate($0, inSameDayAs: start) }) {
+                return true
+            }
+            if plant.intradayProgressHistory.contains(where: { Calendar.current.isDate($0.timestamp, inSameDayAs: start) }) {
+                return true
+            }
+        }
+        return false
+    }
 }
