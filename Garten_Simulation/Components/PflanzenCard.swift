@@ -318,58 +318,7 @@ struct PflanzenCard: View {
                 }
             }
         }
-        .highPriorityGesture(
-            LongPressGesture(minimumDuration: 0.3)
-                .sequenced(before: DragGesture(minimumDistance: 0))
-                .onChanged { value in
-                    switch value {
-                    case .first(_):
-                        break
-                    case .second(let pressSuccess, let dragValue):
-                        guard pressSuccess, let value = dragValue else { return }
-                        guard Calendar.current.isDateInToday(targetDate) else { return }
-                        guard healthProgress == nil, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead else { return }
-                        
-                        if !isDragging {
-                            isDragging = true
-                            if isHapticEnabled {
-                                UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-                            }
-                        }
-                        let startX = pflanze.sliderProgress * maxDragWidth
-                        dragWidth = startX + value.translation.width
-                    }
-                }
-                .onEnded { value in
-                    switch value {
-                    case .second(let pressSuccess, let dragValue):
-                        guard pressSuccess, dragValue != nil else { return }
-                        guard isDragging else { return }
-                        isDragging = false
-                        let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
-                        
-                        if Calendar.current.isDateInToday(targetDate) {
-                            pflanze.sliderProgress = finalProgress
-                            pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
-                            if finalProgress > 0 {
-                                pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
-                            }
-                        }
-                        
-                        if finalProgress >= 1.0 {
-                            gardenStore.completeHabit(pflanze: pflanze, on: targetDate)
-                            triggerWatering()
-                        } else {
-                            gardenStore.savePlants()
-                            if isHapticEnabled {
-                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                            }
-                        }
-                    default:
-                        isDragging = false
-                    }
-                }
-        )
+
         .allowsHitTesting(true)
         .onChange(of: healthProgress) { _, newProgress in
             if let p = newProgress, p >= 1.0, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead {
