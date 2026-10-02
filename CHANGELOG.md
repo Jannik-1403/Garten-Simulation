@@ -1301,3 +1301,4 @@
 - Removed auto-completion on app start for Apple Health habits, requires manual tap now
 - Refactored und optimiert: Tagesscore Berechnung in DailyFeedbackViewModel deutlich performanter gemacht. Toten Score-Code aus WeeklyStatsManager entfernt.
 - Feature: Tages-Score Historie eingebaut. Man kann in die Vergangenheit blättern oder per Long-Press auf einen Kalender zugreifen.
+- Redesign: Tages-Score Historie überarbeitet. Paginator aus dem Button gelöst, Wisch-Geste hinzugefügt, Datum nativ via Apple formatiert und App-Installationsdatum berücksichtigt (keine falschen ❌ in der Vergangenheit).

@@ -8,46 +8,46 @@ struct DailyHealthScoreCard: View {
     @State private var showCalendarSheet: Bool = false
 
     var body: some View {
-        Button {
-            showDetailSheet = true
-        } label: {
-            VStack(spacing: 0) {
-                // MARK: Kopfzeile (Score)
-                VStack(spacing: 8) {
-                    // Date Paginator
-                    HStack {
-                        Button {
-                            vm.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.targetDate) ?? vm.targetDate
-                            vm.reevaluate()
-                        } label: {
-                            Image(systemName: "chevron.left")
-                                .padding(8)
-                        }
-                        
-                        Spacer()
-                        
-                        Text(dateLabel(for: vm.targetDate))
-                            .font(.system(size: 14, weight: .semibold))
-                            .onLongPressGesture {
-                                showCalendarSheet = true
-                            }
-                            
-                        Spacer()
-                        
-                        Button {
-                            if !Calendar.current.isDateInToday(vm.targetDate) {
-                                vm.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.targetDate) ?? vm.targetDate
-                                vm.reevaluate()
-                            }
-                        } label: {
-                            Image(systemName: "chevron.right")
-                                .padding(8)
-                                .opacity(Calendar.current.isDateInToday(vm.targetDate) ? 0.3 : 1.0)
-                        }
-                        .disabled(Calendar.current.isDateInToday(vm.targetDate))
+        VStack(spacing: 12) {
+            // Date Paginator
+            HStack {
+                Button {
+                    vm.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.targetDate) ?? vm.targetDate
+                    vm.reevaluate()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .padding(8)
+                }
+                
+                Spacer()
+                
+                Text(dateLabel(for: vm.targetDate))
+                    .font(.system(size: 20, weight: .bold))
+                    .onLongPressGesture {
+                        showCalendarSheet = true
                     }
-                    .foregroundColor(.secondary)
                     
+                Spacer()
+                
+                Button {
+                    if !Calendar.current.isDateInToday(vm.targetDate) {
+                        vm.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.targetDate) ?? vm.targetDate
+                        vm.reevaluate()
+                    }
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .padding(8)
+                        .opacity(Calendar.current.isDateInToday(vm.targetDate) ? 0.3 : 1.0)
+                }
+                .disabled(Calendar.current.isDateInToday(vm.targetDate))
+            }
+            .foregroundColor(.primary)
+
+            // MARK: Kopfzeile (Score)
+            Button {
+                showDetailSheet = true
+            } label: {
+                VStack(spacing: 0) {
                     HStack(spacing: 16) {
                         MiniChunkyProgressRing(
                             progress: Double(vm.dailyScore),
@@ -63,17 +63,33 @@ struct DailyHealthScoreCard: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 16)
                 }
-                .padding(.horizontal, 16)
+                .clipped()
             }
-            .clipped()
+            .buttonStyle(PillButtonStyle(
+                farbe: .white,
+                sekundaerFarbe: Color(white: 0.85),
+                cornerRadius: 16,
+                shadowDepth: 6
+            ))
         }
-        .buttonStyle(PillButtonStyle(
-            farbe: .white,
-            sekundaerFarbe: Color(white: 0.85),
-            cornerRadius: 16,
-            shadowDepth: 6
-        ))
+        .contentShape(Rectangle())
+        .gesture(
+            DragGesture(minimumDistance: 30)
+                .onEnded { value in
+                    if value.translation.width > 30 {
+                        vm.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.targetDate) ?? vm.targetDate
+                        vm.reevaluate()
+                    } else if value.translation.width < -30 {
+                        if !Calendar.current.isDateInToday(vm.targetDate) {
+                            vm.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.targetDate) ?? vm.targetDate
+                            vm.reevaluate()
+                        }
+                    }
+                }
+        )
         .fullScreenCover(isPresented: $showDetailSheet) {
             DailyFeedbackDetailView(vm: vm)
         }
@@ -99,10 +115,7 @@ struct DailyHealthScoreCard: View {
         } else if Calendar.current.isDateInYesterday(date) {
             return String(localized: "history.yesterday", defaultValue: "Gestern")
         } else {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            return formatter.string(from: date)
+            return date.formatted(.dateTime.weekday(.wide).day().month(.wide))
         }
     }
 }
@@ -298,7 +311,24 @@ struct HistoryCalendarSheet: View {
     @Environment(\.dismiss) var dismiss
     @State private var selectedMonth = Date()
     
-    let daysOfWeek = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+    var daysOfWeek: [String] {
+        let symbols = Calendar.current.shortWeekdaySymbols
+        let firstWeekdayIndex = Calendar.current.firstWeekday - 1
+        return Array(symbols[firstWeekdayIndex...] + symbols[0..<firstWeekdayIndex])
+    }
+    
+    var installDate: Date {
+        var earliest: Date = Date()
+        for plant in gardenStore.sichtbarePflanzen {
+            if let firstWatering = plant.wateringDates.min(), firstWatering < earliest {
+                earliest = firstWatering
+            }
+            if let firstHistory = plant.intradayProgressHistory.min(by: { $0.timestamp < $1.timestamp })?.timestamp, firstHistory < earliest {
+                earliest = firstHistory
+            }
+        }
+        return Calendar.current.startOfDay(for: earliest)
+    }
     
     var body: some View {
         NavigationStack {
@@ -309,7 +339,7 @@ struct HistoryCalendarSheet: View {
                         Image(systemName: "chevron.left")
                     }
                     Spacer()
-                    Text(monthYearString(from: selectedMonth))
+                    Text(selectedMonth.formatted(.dateTime.month(.wide).year()))
                         .font(.headline)
                     Spacer()
                     Button(action: {
@@ -335,11 +365,11 @@ struct HistoryCalendarSheet: View {
                 // Grid
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 16) {
                     let dates = daysInMonth(for: selectedMonth)
-                    // Leere Spacer für den ersten Tag
                     if let first = dates.first {
-                        let rawWeekday = Calendar.current.component(.weekday, from: first)
-                        // In Swift ist So=1, Mo=2. Wir wollen Mo=1, So=7
-                        let emptyCount = (rawWeekday + 5) % 7
+                        let weekday = Calendar.current.component(.weekday, from: first)
+                        let firstWeekday = Calendar.current.firstWeekday
+                        let diff = weekday - firstWeekday
+                        let emptyCount = diff < 0 ? diff + 7 : diff
                         ForEach(0..<emptyCount, id: \.self) { _ in
                             Spacer()
                         }
@@ -347,10 +377,12 @@ struct HistoryCalendarSheet: View {
                     
                     ForEach(dates, id: \.self) { date in
                         let isFuture = Calendar.current.startOfDay(for: date) > Calendar.current.startOfDay(for: Date())
+                        let isBeforeInstall = Calendar.current.startOfDay(for: date) < installDate
+                        let isDisabled = isFuture || isBeforeInstall
                         let isSelected = Calendar.current.isDate(date, inSameDayAs: vm.targetDate)
                         
                         Button {
-                            if !isFuture {
+                            if !isDisabled {
                                 vm.targetDate = date
                                 vm.reevaluate()
                                 dismiss()
@@ -359,9 +391,9 @@ struct HistoryCalendarSheet: View {
                             VStack(spacing: 4) {
                                 Text("\(Calendar.current.component(.day, from: date))")
                                     .font(.system(size: 16, weight: isSelected ? .bold : .regular))
-                                    .foregroundColor(isSelected ? .white : (isFuture ? .gray : .primary))
+                                    .foregroundColor(isSelected ? .white : (isDisabled ? .gray : .primary))
                                 
-                                if !isFuture {
+                                if !isDisabled {
                                     if hasStreak(on: date) {
                                         Text("🔥").font(.system(size: 10))
                                     } else {
@@ -375,7 +407,7 @@ struct HistoryCalendarSheet: View {
                             .background(isSelected ? Color.blue : Color.clear)
                             .clipShape(Circle())
                         }
-                        .disabled(isFuture)
+                        .disabled(isDisabled)
                     }
                 }
                 .padding()
@@ -391,12 +423,6 @@ struct HistoryCalendarSheet: View {
                 }
             }
         }
-    }
-    
-    func monthYearString(from date: Date) -> String {
-        let f = DateFormatter()
-        f.dateFormat = "MMMM yyyy"
-        return f.string(from: date)
     }
     
     func daysInMonth(for date: Date) -> [Date] {
