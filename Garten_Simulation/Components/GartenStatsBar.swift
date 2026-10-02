@@ -19,15 +19,13 @@ struct GartenStatsBar: View {
     @EnvironmentObject var gardenStore: GardenStore
     @State private var coinPopScale: CGFloat = 1.0
 
-    var onCalendarTap: (() -> Void)? = nil
-
     var body: some View {
         HStack(spacing: 16) {
             // Coins
             statSektion(
                 assetName: "coin",
                 wert: coins.formatted(),
-                farbe: .primary, // Im Screenshot ist die Zahl Schwarz
+                farbe: .primary,
                 tourStep: .coinsIntro
             )
             .scaleEffect(coinPopScale)
@@ -40,7 +38,7 @@ struct GartenStatsBar: View {
             statSektion(
                 assetName: "streak",
                 wert: "\(streak)",
-                farbe: .primary, // Im Screenshot ist die Zahl Schwarz
+                farbe: .primary,
                 tourStep: .streakHeaderIntro
             )
             .contentShape(Rectangle())
@@ -49,17 +47,20 @@ struct GartenStatsBar: View {
             }
             .accessibilityIdentifier("button_streak")
             
-            // Calendar
-            Button {
-                onCalendarTap?()
-            } label: {
-                Image(systemName: "calendar")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.primary)
+            // Leben
+            statSektion(
+                assetName: leben <= 0 ? "Heart death" : (leben <= 3 ? "Heart half" : "Heart"),
+                wert: "\(leben)",
+                farbe: .primary,
+                tourStep: .livesIntro
+            )
+            .contentShape(Rectangle())
+            .onTapGesture {
+                onLebenTap?()
             }
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 8)
         .background(
             Capsule()
                 .fill(.ultraThinMaterial)

@@ -294,28 +294,37 @@ struct GartenView: View {
     func dateLabel(for date: Date) -> some View {
         let appLocale = Locale(identifier: settings.appLanguage)
         
-        let dayFmt = DateFormatter()
-        dayFmt.locale = appLocale
-        dayFmt.dateFormat = "EEE"
-        
-        let numFmt = DateFormatter()
-        numFmt.locale = appLocale
-        numFmt.dateFormat = "d.M."
-        
-        let dayStr = dayFmt.string(from: date).capitalized
-        let numStr = numFmt.string(from: date)
-        
-        return Text("\(dayStr) \(numStr)")
+        if Calendar.current.isDateInToday(date) {
+            return Text(String(localized: "history.today", defaultValue: "Heute", table: "Localizable", locale: appLocale))
+        } else if Calendar.current.isDateInYesterday(date) {
+            return Text(String(localized: "history.yesterday", defaultValue: "Gestern", table: "Localizable", locale: appLocale))
+        } else {
+            let dayFmt = DateFormatter()
+            dayFmt.locale = appLocale
+            dayFmt.dateFormat = "EEE"
+            let numFmt = DateFormatter()
+            numFmt.locale = appLocale
+            numFmt.dateFormat = "d.M."
+            
+            let dayStr = dayFmt.string(from: date).capitalized
+            let numStr = numFmt.string(from: date)
+            
+            return Text("\(dayStr) \(numStr)")
+        }
     }
 
     @ViewBuilder
     private var staticHeaderBar: some View {
         HStack {
-            dateLabel(for: dailyFeedbackVM.targetDate)
-                .font(.system(size: 32, weight: .black, design: .rounded))
-                .foregroundColor(.primary)
-                .contentTransition(.numericText())
-                .animation(.spring(), value: dailyFeedbackVM.targetDate)
+            Button {
+                showCalendarSheet = true
+            } label: {
+                dateLabel(for: dailyFeedbackVM.targetDate)
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundColor(.primary)
+                    .contentTransition(.numericText())
+                    .animation(.spring(), value: dailyFeedbackVM.targetDate)
+            }
             
             Spacer()
             
@@ -325,14 +334,13 @@ struct GartenView: View {
                 leben: gardenStore.leben,
                 onStreakTap: { zeigeStreakDetail = true },
                 onCoinsTap: { zeigeCoinsDetail = true },
-                onLebenTap: { zeigeLebenDetail = true },
-                onCalendarTap: { showCalendarSheet = true }
+                onLebenTap: { zeigeLebenDetail = true }
             )
         }
         .padding(.horizontal)
-        .padding(.top, 16)
+        .padding(.vertical, 8)
         .frame(maxWidth: 850)
-        // Kein Hintergrund, nur das rohe UI wie auf dem Screenshot
+        .background(.regularMaterial, ignoresSafeAreaEdges: .top)
     }
 
     // MARK: - Tages-Event
