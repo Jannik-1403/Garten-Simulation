@@ -1340,3 +1340,4 @@
 - Fix: Fehlerhafte Locale-Erkennung in SettingsStore behoben, wodurch 'Heute' und 'Gestern' nie übersetzt wurden
 - Daily Score Karte: Das alte 3D-Band-Design mit harten, schwarzen Außenrändern wurde entfernt. Stattdessen wird nun das gleiche native iOS 26 Liquid Glass Design (.glassEffect / .ultraThinMaterial Fallback) verwendet wie in der oberen Stats-Leiste.
 - Daily Score Karte: Das Design wurde auf den ursprünglichen, weißen 3D-Button (PillButtonStyle) zurückgesetzt.
+- Stats-Bar (Münzen): Bei mehr als 1000 Münzen wurde der Text oft mit Punkten (...) abgeschnitten. Die Zahl schrumpft nun dynamisch oder dehnt das Feld aus, sodass immer der volle Wert sichtbar bleibt.
