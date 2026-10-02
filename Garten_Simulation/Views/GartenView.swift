@@ -157,6 +157,14 @@ struct GartenView: View {
     @ViewBuilder
     private func applySheetsAndOverlays<V: View>(_ view: V) -> some View {
         view
+            .sheet(isPresented: $showCalendarSheet) {
+                HistoryCalendarSheet(vm: dailyFeedbackVM)
+                    .environmentObject(gardenStore)
+                    .environment(\.locale, Locale(identifier: settings.appLanguage))
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+                    .presentationCornerRadius(32)
+            }
             .sheet(isPresented: $zeigeStatistiken) {
                 NavigationStack {
                     StatisticsDashboard()

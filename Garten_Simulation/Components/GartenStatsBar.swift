@@ -61,27 +61,7 @@ struct GartenStatsBar: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 8)
-        .background(
-            Capsule()
-                .fill(.ultraThinMaterial)
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
-        )
-        .overlay(
-            Capsule()
-                .stroke(
-                    LinearGradient(
-                        colors: [
-                            .white.opacity(0.6),
-                            .white.opacity(0.1),
-                            .white.opacity(0.0),
-                            .white.opacity(0.2)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    lineWidth: 1
-                )
-        )
+        .modifier(StatsBarGlassModifier())
     }
 
 
@@ -149,6 +129,35 @@ struct HeaderPositionPreferenceKey: PreferenceKey {
     static var defaultValue: [HeaderPositionData] = []
     static func reduce(value: inout [HeaderPositionData], nextValue: () -> [HeaderPositionData]) {
         value.append(contentsOf: nextValue())
+    }
+}
+
+/// Nativer iOS-26-Liquid-Glass-Modifier für die Stats-Bar.
+/// Auf iOS < 26 wird ein Material-Blur-Fallback gerendert.
+private struct StatsBarGlassModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        if #available(iOS 26, *) {
+            content
+                .glassEffect(.regular.interactive(), in: Capsule())
+        } else {
+            content
+                .background(
+                    Capsule()
+                        .fill(.ultraThinMaterial)
+                        .shadow(color: Color.black.opacity(0.12), radius: 8, x: 0, y: 4)
+                )
+                .overlay(
+                    Capsule()
+                        .stroke(
+                            LinearGradient(
+                                colors: [.white.opacity(0.55), .white.opacity(0.05)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 0.8
+                        )
+                )
+        }
     }
 }
 

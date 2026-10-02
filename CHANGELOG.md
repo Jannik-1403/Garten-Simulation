@@ -1305,3 +1305,30 @@
 - UI Polish: Datumsanzeige (Daily Score) an Screenshot angepasst: Linksbündig ohne Pfeile, fette schwarze Schrift. Kalender-Tage nutzen jetzt nur noch blaue Schrift statt blauer Bubble.
 - UI & Logic Fixes: Datums-Header ist klickbar statt long-press, Schriftgröße verringert, Locale im Formatter erzwungen, und Heute-Streak Kalkulation im Kalender korrigiert.
 - UI & Locales: Swipe geste hat nun Animation und hohe Prio für die ganze Karte. Custom In-App Language für Datum und Kalender-Texte erzwungen.
+- Wisch-Geste auf der Hauptansicht hinzugefügt: Man kann jetzt überall nach links/rechts wischen, um den DailyScore-Tag zu wechseln
+- Score-Karte scrollt nun als komplette Seite zur Seite (Page-Animation)
+- Fehler mit nicht übersetzten Heute/Gestern-Texten behoben
+- Fix compile errors in DailyFeedbackView (ViewBuilder let constraint and missing vm argument)
+- Swipe-Animationen für den DailyScore sind nun richtungsabhängig (vorwärts/rückwärts)
+- Datumsformat oben korrigiert (ausgeschriebener Wochentag, Tag. Monat, ohne Komma)
+- GartenView ist nun eine Paging-View (Swipe zum fließenden Tageswechsel)
+- Pflanzen zeigen in der Historie ihren damaligen Erledigungs-Status an
+- Pflanzen in der Vergangenheit können auch rückwirkend gegossen werden
+- Slider in PflanzenCards lässt sich nun wieder trotz Paging einwandfrei wischen (Hit-Priorität korrigiert)
+- In der Vergangenheit zeigen Slider-Karten nun korrekt 0% an, falls sie damals nicht erledigt wurden (statt den heutigen Fortschritt einzublenden)
+- Top-Bar (Coins/Leben/Streak) und Daily Score nutzen nun ein einheitliches Liquid Glass Design (kein harter weißer Button-Hintergrund mehr)
+- Historische Pflanzen können nun wie gewünscht nicht mehr nachträglich verändert werden (Slider/Klicks gesperrt)
+- Daily Score Card ist wieder ein 3D Button
+- Status Bar (Top) klebt jetzt als iOS-native verschwommene Navigation Bar am oberen Rand
+- UI-Springen beim Scrollen durch versehentliche Slider-Interaktionen behoben
+- Gestern/Heute Lokalisierung repariert
+- Fortschrittsbalken (Slider) für aktuelle Habits lassen sich nun wieder sofort ziehen (minimumDistance=0), ohne vom TabView-Paging blockiert zu werden.
+- 'Heute' und 'Gestern' Überschriften reagieren jetzt fehlerfrei auf die in den Einstellungen gewählte Sprache und fallen nicht mehr auf das System-Locale zurück.
+- 'Heute / Gestern' wurde aus dem Scroll-Bereich entfernt und ganz oben links als Glass-Button in die Navigation Bar integriert.
+- Das 'Überspringen' des Datums erst ab 50% der Bildschirm-Mitte entspricht nun dem nativen iOS Paging-Verhalten (wie z.B. Apple Kalender), da das Datum nun in der festen Navigation Bar oben verankert ist.
+- Das alte 'Heute'/'Gestern' System wurde komplett aus dem Fenster geworfen. Es gibt jetzt oben links nur noch ein sauberes Datum im Format 'Mon 28.9.' ohne Hintergrund (wie auf dem Screenshot).
+- Die Streak/Coins-Leiste wurde umgebaut: Leben wurden entfernt, der Kalender-Button wurde integriert, und alles liegt nun in einer Liquid-Glass Pill auf der rechten Seite.
+- Oben wurde wieder das saubere Apple-Native Liquid-Glass (.regularMaterial) für den gesamten Header-Bereich eingefügt, wodurch sich das Datum und die Leiste vom Inhalt abheben.
+- 'Heute' und 'Gestern' sind wieder da, und werden über die Apple-Localizable Architektur in allen 16 Sprachen korrekt übersetzt angezeigt.
+- Die Schriftgröße vom Datum ist nicht mehr so riesig (Größe 22 statt 32) und passt sich harmonisch ins Bild ein.
+- Die Herzen/Leben sind zurück in der Statusbar und das Kalendersymbol wurde entfernt. Der Kalender öffnet sich wieder durch Antippen des Datums.
