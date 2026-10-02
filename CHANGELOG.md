@@ -1339,3 +1339,4 @@
 - Daily Score Karte: Der weiße Kontrast-Hintergrund wurde durch systemGroupedBackground-kompatible Grautöne (secondarySystemGroupedBackground / systemFill) ersetzt. Die Karte fügt sich jetzt nahtlos in den grauen Seitenhintergrund ein.
 - Fix: Fehlerhafte Locale-Erkennung in SettingsStore behoben, wodurch 'Heute' und 'Gestern' nie übersetzt wurden
 - Daily Score Karte: Das alte 3D-Band-Design mit harten, schwarzen Außenrändern wurde entfernt. Stattdessen wird nun das gleiche native iOS 26 Liquid Glass Design (.glassEffect / .ultraThinMaterial Fallback) verwendet wie in der oberen Stats-Leiste.
+- Daily Score Karte: Das Design wurde auf den ursprünglichen, weißen 3D-Button (PillButtonStyle) zurückgesetzt.

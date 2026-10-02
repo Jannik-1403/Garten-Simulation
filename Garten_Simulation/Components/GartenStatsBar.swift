@@ -103,7 +103,8 @@ struct GartenStatsBar: View {
                 .fontWeight(.bold)
                 .foregroundStyle(farbe)
                 .lineLimit(1)
-                .minimumScaleFactor(0.8)
+                .minimumScaleFactor(0.4)
+                .fixedSize(horizontal: true, vertical: false)
                 .contentTransition(.numericText())
                 .animation(.spring(), value: wert)
         }
