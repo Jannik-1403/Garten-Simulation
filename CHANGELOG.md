@@ -1345,3 +1345,6 @@
 - UX / Gesten: Der Fortschritts-Slider auf der Gewohnheitskarte wurde entfernt, da er das vertikale Scrollen und horizontale Wischen blockiert hat. Die Karte fungiert nun als reiner Button: Ein Tippen öffnet die Detailansicht, in der der Fortschritt eingetragen werden kann. Wischen und Scrollen funktionieren nun überall perfekt.
 - Detailansicht: Für Gewohnheiten ohne Apple Health (oder bei manueller Verwaltung) gibt es nun in der Detailansicht direkt unter dem Fortschritts-Diagramm einen Schieberegler (Slider), um den Tagesfortschritt bequem manuell einzutragen.
 - Detailansicht: Der manuelle Fortschritts-Slider hat jetzt das gleiche schicke 3D-Button-Design (inkl. Schatten) wie die Statistik-Karten. Sobald man 100% einstellt, erscheint nun eine Sicherheitsabfrage ('Bist du dir sicher?'). Nach dem Bestätigen wird der Slider deaktiviert, um versehentliche Änderungen zu verhindern.
+- Vollständige Übersetzung für fehlende Strings (Heute, Gestern, Datum auswählen, Game Over Texte) in alle 16 Sprachen hinzugefügt.
+
+- 'Ohne Routinen' Button auf der Routineseite entfernt und durch einen Empty-State Text ersetzt, wenn keine Routinen vorhanden sind.

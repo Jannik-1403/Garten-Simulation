@@ -189,20 +189,13 @@ struct RoutinenView: View {
                                 }
                             }
                             
-                            // Without Routine (Not deletable)
-                            RoutineExpandableSection(
-                                titleKey: "routine.without",
-                                icon: "tray.fill",
-                                color: .gray,
-                                habits: otherPlants,
-                                routine: nil,
-                                onHabitTap: { pflanze in
-                                    if !pflanze.isRoutineOnly {
-                                        selectedHabitToView = pflanze
-                                    }
-                                }
-                            )
-                            .padding(.top, completedRoutines.isEmpty ? 32 : 16)
+                            if routines.isEmpty {
+                                Text(String(localized: "routine.empty.state", defaultValue: "Noch keine Routinen"))
+                                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .padding(.top, 64)
+                            }
                         }
                         .padding(.top, 24)
                         
