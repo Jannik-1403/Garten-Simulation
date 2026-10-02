@@ -319,7 +319,7 @@ struct PflanzenCard: View {
             }
         }
         .highPriorityGesture(
-            DragGesture(minimumDistance: 15)
+            DragGesture(minimumDistance: 0)
                 .onChanged { value in
                     guard Calendar.current.isDateInToday(targetDate) else { return }
                     guard healthProgress == nil, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead else { return }

@@ -90,12 +90,11 @@ struct DailyHealthScoreCard: View {
 
     @ViewBuilder
     func dateLabel(for date: Date) -> some View {
+        let appLocale = Locale(identifier: settings.appLanguage)
         if Calendar.current.isDateInToday(date) {
-            Text(String(localized: "history.today", defaultValue: "Heute"))
-                .environment(\.locale, Locale(identifier: settings.appLanguage))
+            Text(String(localized: "history.today", defaultValue: "Heute", table: "Localizable", locale: appLocale))
         } else if Calendar.current.isDateInYesterday(date) {
-            Text(String(localized: "history.yesterday", defaultValue: "Gestern"))
-                .environment(\.locale, Locale(identifier: settings.appLanguage))
+            Text(String(localized: "history.yesterday", defaultValue: "Gestern", table: "Localizable", locale: appLocale))
         } else {
             Text(defaultFormattedDate(date))
         }
