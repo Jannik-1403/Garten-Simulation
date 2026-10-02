@@ -1810,7 +1810,106 @@
         }
       }
     },
-    "%lld%%": {},
+    "%lld%%": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        }
+      }
+    },
     "%lldx": {
       "extractionState": "manual",
       "localizations": {
@@ -2414,8 +2513,206 @@
         }
       }
     },
-    "❌": {},
-    "🔥": {},
+    "❌": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌"
+          }
+        }
+      }
+    },
+    "🔥": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔥"
+          }
+        }
+      }
+    },
     "0": {
       "localizations": {
         "de": {
@@ -171457,8 +171754,98 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Du hast alle deine Leben verloren. Zur Strafe wurden all deine Münzen entfernt. Deine Pflanzen bleiben dir aber erhalten!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have lost all your lives. As a penalty, all your coins have been removed. However, you will keep your plants!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Has perdido todas tus vidas. Como penalización, se han eliminado todas tus monedas. ¡Sin embargo, conservarás tus plantas!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez perdu toutes vos vies. En guise de pénalité, toutes vos pièces ont été retirées. Cependant, vous gardez vos plantes !"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने अपने सभी जीवन खो दिए हैं। दंड के रूप में, आपके सभी सिक्के हटा दिए गए हैं। हालाँकि, आपके पौधे आपके पास रहेंगे!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai perso tutte le tue vite. Come penalità, tutte le tue monete sono state rimosse. Tuttavia, manterrai le tue piante!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてのライフを失いました。ペナルティとして、すべてのコインが没収されました。ただし、植物はそのまま残ります！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 생명을 잃었습니다. 벌칙으로 모든 코인이 제거되었습니다. 하지만 식물은 그대로 유지됩니다!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt al je levens verloren. Als straf zijn al je munten verwijderd. Je planten mag je echter houden!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Straciłeś wszystkie życia. W ramach kary wszystkie twoje monety zostały usunięte. Jednak zatrzymasz swoje rośliny!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você perdeu todas as suas vidas. Como penalidade, todas as suas moedas foram removidas. No entanto, você manterá suas plantas!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você perdeu todas as suas vidas. Como penalidade, todas as suas moedas foram removidas. No entanto, você manterá suas plantas!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы потеряли все свои жизни. В качестве штрафа все ваши монеты были удалены. Однако ваши растения останутся с вами!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tüm canlarını kaybettin. Ceza olarak tüm paraların silindi. Ancak bitkilerin sende kalacak!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你失去了所有的生命。作为惩罚，你所有的硬币都被移除了。不过，你的植物还会保留！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你失去了所有的生命。作為懲罰，你所有的硬幣都被移除了。不過，你的植物還會保留！"
           }
         }
       }
@@ -171468,8 +171855,98 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Verstanden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Got it"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entendido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compris"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "समझ गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capito"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "了解"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "확인"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begrepen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zrozumiano"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entendido"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entendido"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Понятно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anladım"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "知道了"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "知道了"
           }
         }
       }
@@ -171479,8 +171956,98 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Bankrott!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bankrupt!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Bancarrota!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banqueroute !"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिवालिया!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bancarotta!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "破産！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "파산!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bankroet!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bankructwo!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falência!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falência!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Банкрот!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İflas!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "破产！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "破產！"
           }
         }
       }
@@ -179485,7 +180052,6 @@
       }
     },
     "habit.complete_confirm.message": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -179511,16 +180077,40 @@
             "value": "Une fois que vous atteignez 100 %, les progrès d'aujourd'hui ne peuvent plus être modifiés."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100% तक पहुँचने के बाद, आज की प्रगति को बदला नहीं जा सकेगा।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Una volta raggiunto il 100%, i progressi di oggi non possono più essere modificati."
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100%に達すると、今日の進捗は変更できなくなります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100%에 도달하면 오늘의 진행 상황을 더 이상 변경할 수 없습니다."
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Zodra je 100% bereikt, kan de voortgang van vandaag niet meer worden gewijzigd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gdy osiągniesz 100%, dzisiejszy postęp nie będzie mógł już zostać zmieniony."
           }
         },
         "pt": {
@@ -179547,24 +180137,6 @@
             "value": "%100'e ulaştığınızda, bugünkü ilerleme artık değiştirilemez."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gdy osiągniesz 100%, dzisiejszy postęp nie będzie mógł już zostać zmieniony."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100%に達すると、今日の進捗は変更できなくなります。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100%에 도달하면 오늘의 진행 상황을 더 이상 변경할 수 없습니다."
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -179576,17 +180148,10 @@
             "state": "translated",
             "value": "一旦達到100%，今天的進度將無法再更改。"
           }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100% तक पहुँचने के बाद, आज की प्रगति को बदला नहीं जा सकेगा।"
-          }
         }
       }
     },
     "habit.complete_confirm.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -179612,16 +180177,40 @@
             "value": "Es-tu sûr ?"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आप निश्चित हैं?"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Sei sicuro?"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本当によろしいですか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "확실합니까?"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Weet je het zeker?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jesteś pewien?"
           }
         },
         "pt": {
@@ -179648,24 +180237,6 @@
             "value": "Emin misin?"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jesteś pewien?"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "本当によろしいですか？"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "확실합니까?"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -179676,12 +180247,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你確定嗎？"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "क्या आप निश्चित हैं?"
           }
         }
       }
@@ -184949,7 +185514,6 @@
       }
     },
     "habit.manual_progress": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -184975,16 +185539,40 @@
             "value": "Ton progrès"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी प्रगति"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "I tuoi progressi"
           }
         },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたの進捗"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "진행 상황"
+          }
+        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Jouw voortgang"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój postęp"
           }
         },
         "pt": {
@@ -185011,24 +185599,6 @@
             "value": "İlerlemen"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twój postęp"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "あなたの進捗"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "진행 상황"
-          }
-        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -185039,12 +185609,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "你的進度"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपकी प्रगति"
           }
         }
       }
@@ -192031,91 +192595,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Select date"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Seleccionar fecha"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Sélectionner la date"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "तिथि चुनें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Seleziona data"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "日付を選択"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "날짜 선택"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Datum selecteren"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Wybierz datę"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Selecionar data"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Selecionar data"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Выбрать дату"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "Tarih seç"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "选择日期"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datum auswählen"
+            "value": "選擇日期"
           }
         }
       }
@@ -192131,91 +192695,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Today"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Hoy"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Aujourd'hui"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "आज"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Oggi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "今日"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "오늘"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Vandaag"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Dzisiaj"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Hoje"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Hoje"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Сегодня"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Bugün"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "今天"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "今天"
           }
         }
       }
@@ -192231,91 +192795,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Yesterday"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Ayer"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Hier"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "कल"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Ieri"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "昨日"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "어제"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Gisteren"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Wczoraj"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Ontem"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Ontem"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Вчера"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "Dün"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "昨天"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gestern"
+            "value": "昨天"
           }
         }
       }
