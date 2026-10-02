@@ -46,11 +46,13 @@ struct DailyHealthScoreCard: View {
                     .padding(.horizontal, 16)
                 }
                 .clipped()
-                .background(.ultraThinMaterial)
-                .cornerRadius(16)
-                .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 4)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(PillButtonStyle(
+                farbe: .white,
+                sekundaerFarbe: Color(white: 0.85),
+                cornerRadius: 16,
+                shadowDepth: 6
+            ))
         }
         .id(vm.targetDate.timeIntervalSince1970)
         .transition(.asymmetric(
@@ -89,10 +91,10 @@ struct DailyHealthScoreCard: View {
     @ViewBuilder
     func dateLabel(for date: Date) -> some View {
         if Calendar.current.isDateInToday(date) {
-            Text(LocalizedStringKey("history.today"))
+            Text(String(localized: "history.today", defaultValue: "Heute"))
                 .environment(\.locale, Locale(identifier: settings.appLanguage))
         } else if Calendar.current.isDateInYesterday(date) {
-            Text(LocalizedStringKey("history.yesterday"))
+            Text(String(localized: "history.yesterday", defaultValue: "Gestern"))
                 .environment(\.locale, Locale(identifier: settings.appLanguage))
         } else {
             Text(defaultFormattedDate(date))

@@ -302,11 +302,8 @@ struct GartenView: View {
         )
         .padding(.horizontal)
         .padding(.vertical, 8)
-        .background(.ultraThinMaterial)
-        .cornerRadius(20)
-        .padding(.horizontal)
-        .padding(.top, 16)
         .frame(maxWidth: 850)
+        .background(.regularMaterial, ignoresSafeAreaEdges: .top)
     }
 
     // MARK: - Tages-Event

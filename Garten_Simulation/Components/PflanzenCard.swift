@@ -311,14 +311,17 @@ struct PflanzenCard: View {
                         gardenStore.completeHabit(pflanze: pflanze, on: targetDate)
                         triggerWatering()
                     } else {
-                        onTap()
+                        if Calendar.current.isDateInToday(targetDate) {
+                            onTap()
+                        }
                     }
                 }
             }
         }
         .highPriorityGesture(
-            DragGesture(minimumDistance: 5)
+            DragGesture(minimumDistance: 15)
                 .onChanged { value in
+                    guard Calendar.current.isDateInToday(targetDate) else { return }
                     guard healthProgress == nil, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead else { return }
                     if !isDragging { isDragging = true }
                     let startX = pflanze.sliderProgress * maxDragWidth
