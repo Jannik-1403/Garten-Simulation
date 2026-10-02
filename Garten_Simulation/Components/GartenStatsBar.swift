@@ -19,26 +19,15 @@ struct GartenStatsBar: View {
     @EnvironmentObject var gardenStore: GardenStore
     @State private var coinPopScale: CGFloat = 1.0
 
+    var onCalendarTap: (() -> Void)? = nil
+
     var body: some View {
-        HStack(spacing: 0) {
-            statSektion(
-                assetName: "streak",
-                wert: "\(streak)",
-                farbe: streakFarbe,
-                tourStep: .streakHeaderIntro
-            )
-            .contentShape(Rectangle())
-            .onTapGesture {
-                onStreakTap?()
-            }
-            .accessibilityIdentifier("button_streak")
-            
-            glasseDivider
-            
+        HStack(spacing: 16) {
+            // Coins
             statSektion(
                 assetName: "coin",
                 wert: coins.formatted(),
-                farbe: Color.coinBlue,
+                farbe: .primary, // Im Screenshot ist die Zahl Schwarz
                 tourStep: .coinsIntro
             )
             .scaleEffect(coinPopScale)
@@ -47,21 +36,35 @@ struct GartenStatsBar: View {
                 onCoinsTap?()
             }
             
-            glasseDivider
-            
+            // Streak
             statSektion(
-                assetName: leben <= 0 ? "Heart death" : (leben <= 3 ? "Heart half" : "Heart"),
-                wert: "\(leben)",
-                farbe: leben <= 0 ? .gray : lebenFarbe,
-                tourStep: .livesIntro
+                assetName: "streak",
+                wert: "\(streak)",
+                farbe: .primary, // Im Screenshot ist die Zahl Schwarz
+                tourStep: .streakHeaderIntro
             )
             .contentShape(Rectangle())
             .onTapGesture {
-                onLebenTap?()
+                onStreakTap?()
+            }
+            .accessibilityIdentifier("button_streak")
+            
+            // Calendar
+            Button {
+                onCalendarTap?()
+            } label: {
+                Image(systemName: "calendar")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(.primary)
             }
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .background(
+            Capsule()
+                .fill(.ultraThinMaterial)
+                .overlay(Capsule().stroke(Color.primary.opacity(0.1), lineWidth: 1))
+        )
     }
 
 
