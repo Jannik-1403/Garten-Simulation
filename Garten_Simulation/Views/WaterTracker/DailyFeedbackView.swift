@@ -129,13 +129,12 @@ struct DailyFeedbackDetailView: View {
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                .fill(Color.white)
-                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                                .fill(Color(.secondarySystemGroupedBackground))
+                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.primary.opacity(0.08), lineWidth: 1))
                         )
                         .background(
                             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                .fill(Color(white: 0.85))
-                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                                .fill(Color(.systemFill))
                                 .offset(y: 6)
                         )
                         .padding(.bottom, 6)
@@ -152,13 +151,12 @@ struct DailyFeedbackDetailView: View {
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                .fill(Color.white)
-                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                                .fill(Color(.secondarySystemGroupedBackground))
+                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.primary.opacity(0.08), lineWidth: 1))
                         )
                         .background(
                             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                .fill(Color(white: 0.85))
-                                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                                .fill(Color(.systemFill))
                                 .offset(y: 6)
                         )
                         .padding(.bottom, 6)
@@ -294,6 +292,7 @@ struct HistoryCalendarSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
     @Environment(\.dismiss) var dismiss
     @State private var selectedMonth = Date()
+    @StateObject private var settings = SettingsStore.shared
     
     var daysOfWeek: [String] {
         let symbols = Calendar.current.shortWeekdaySymbols
@@ -395,7 +394,7 @@ struct HistoryCalendarSheet: View {
                 .padding()
                 Spacer()
             }
-            .navigationTitle(String(localized: "history.pick_date", defaultValue: "Datum auswählen"))
+            .navigationTitle(String(localized: "history.pick_date", defaultValue: "Datum auswählen", table: "Localizable", locale: Locale(identifier: settings.appLanguage)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
