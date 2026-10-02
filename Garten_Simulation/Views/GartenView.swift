@@ -71,6 +71,7 @@ struct GartenView: View {
     @State private var flyingCoins: [FlyingCoinItem] = []
     @State private var coinHeaderPosition: CGPoint = .zero
     @State private var streakHeaderPosition: CGPoint = .zero
+    @StateObject private var dailyFeedbackVM = DailyFeedbackViewModel()
     
 
     var wateredCount: Int { gardenStore.sichtbarePflanzen.filter { $0.isCompleted }.count }
@@ -276,6 +277,24 @@ struct GartenView: View {
                         gardenStore.pruefePflanzenStatus()
                     }
                 } // End of ScrollViewReader
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 40)
+                        .onEnded { value in
+                            if abs(value.translation.width) > abs(value.translation.height) && abs(value.translation.width) > 40 {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    if value.translation.width > 40 {
+                                        dailyFeedbackVM.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: dailyFeedbackVM.targetDate) ?? dailyFeedbackVM.targetDate
+                                        dailyFeedbackVM.reevaluate()
+                                    } else if value.translation.width < -40 {
+                                        if !Calendar.current.isDateInToday(dailyFeedbackVM.targetDate) {
+                                            dailyFeedbackVM.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: dailyFeedbackVM.targetDate) ?? dailyFeedbackVM.targetDate
+                                            dailyFeedbackVM.reevaluate()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                )
 
                 // MARK: - Sticky Header Bar
                 stickyHeaderBar
@@ -335,7 +354,7 @@ struct GartenView: View {
                 .frame(maxWidth: 850)
 
                 if !gardenStore.sichtbarePflanzen.isEmpty {
-                    DailyHealthScoreCard()
+                    DailyHealthScoreCard(vm: dailyFeedbackVM)
                         .padding(.vertical, 8)
                         .frame(maxWidth: 850)
                         .tourAnchor(.dailyRingIntro)

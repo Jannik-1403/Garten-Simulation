@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 
 struct DailyHealthScoreCard: View {
-    @StateObject private var vm = DailyFeedbackViewModel()
+    @ObservedObject var vm: DailyFeedbackViewModel
     @EnvironmentObject var gardenStore: GardenStore
     @StateObject private var settings = SettingsStore.shared
     @State private var showDetailSheet: Bool = false
@@ -15,11 +15,9 @@ struct DailyHealthScoreCard: View {
                 Button {
                     showCalendarSheet = true
                 } label: {
-                    Text(dateLabel(for: vm.targetDate))
+                    dateLabel(for: vm.targetDate)
                         .font(.system(size: 20, weight: .black, design: .rounded))
                         .foregroundColor(.primary)
-                        .id(vm.targetDate)
-                        .transition(.opacity)
                 }
                 Spacer()
             }
@@ -56,23 +54,12 @@ struct DailyHealthScoreCard: View {
                 shadowDepth: 6
             ))
         }
+        .id(vm.targetDate.timeIntervalSince1970)
+        .transition(.asymmetric(
+            insertion: .move(edge: .trailing).combined(with: .opacity),
+            removal: .move(edge: .leading).combined(with: .opacity)
+        ))
         .contentShape(Rectangle())
-        .highPriorityGesture(
-            DragGesture(minimumDistance: 30)
-                .onEnded { value in
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        if value.translation.width > 30 {
-                            vm.targetDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.targetDate) ?? vm.targetDate
-                            vm.reevaluate()
-                        } else if value.translation.width < -30 {
-                            if !Calendar.current.isDateInToday(vm.targetDate) {
-                                vm.targetDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.targetDate) ?? vm.targetDate
-                                vm.reevaluate()
-                            }
-                        }
-                    }
-                }
-        )
         .fullScreenCover(isPresented: $showDetailSheet) {
             DailyFeedbackDetailView(vm: vm)
                 .environment(\.locale, Locale(identifier: settings.appLanguage))
@@ -94,16 +81,19 @@ struct DailyHealthScoreCard: View {
         }
     }
     
-    func dateLabel(for date: Date) -> String {
+    @ViewBuilder
+    func dateLabel(for date: Date) -> some View {
         if Calendar.current.isDateInToday(date) {
-            return String(localized: "history.today", defaultValue: "Heute")
+            Text(LocalizedStringKey("history.today"))
+                .environment(\.locale, Locale(identifier: settings.appLanguage))
         } else if Calendar.current.isDateInYesterday(date) {
-            return String(localized: "history.yesterday", defaultValue: "Gestern")
+            Text(LocalizedStringKey("history.yesterday"))
+                .environment(\.locale, Locale(identifier: settings.appLanguage))
         } else {
             let formatter = DateFormatter()
             formatter.locale = Locale(identifier: settings.appLanguage)
             formatter.setLocalizedDateFormatFromTemplate("EEE d.M.")
-            return formatter.string(from: date)
+            Text(formatter.string(from: date))
         }
     }
 }
