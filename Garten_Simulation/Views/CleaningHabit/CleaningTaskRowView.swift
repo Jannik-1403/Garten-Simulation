@@ -48,7 +48,7 @@ struct CleaningTaskRowView: View {
                         } else {
                             Text(String(localized: "cleaning.status.due", defaultValue: "Heute fällig"))
                                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(taskColor)
+                                .foregroundStyle(.primary)
                         }
                     case .upcoming(let nextDate):
                         Text(nextDate, format: .dateTime.weekday(.wide).day().month())

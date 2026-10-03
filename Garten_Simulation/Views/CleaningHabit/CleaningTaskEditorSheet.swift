@@ -135,8 +135,9 @@ struct CleaningTaskEditorSheet: View {
                     onDelete?()
                     dismiss()
                 }
-                Button(String(localized: "button.cancel"), role: .cancel) {}
+                Button(String(localized: "button.cancel", defaultValue: "Abbrechen"), role: .cancel) {}
             }
+            .tint(.primary)
         }
     }
 

@@ -13,8 +13,6 @@ struct CleaningDashboardView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            statsCard
-            
             if viewModel.hasTasks {
                 todayCard
                 if !viewModel.upcomingItems.isEmpty {
@@ -47,84 +45,6 @@ struct CleaningDashboardView: View {
             }
             Button(String(localized: "button.cancel", defaultValue: "Abbrechen"), role: .cancel) { }
         }
-    }
-
-    // MARK: - Statistik
-
-    private var statsCard: some View {
-        let stats = viewModel.stats
-        let todayProgress = stats.dueToday > 0 ? Double(stats.doneToday) / Double(stats.dueToday) : 0
-
-        return VStack(alignment: .leading, spacing: 16) {
-            Text(String(localized: "cleaning.stats.title", defaultValue: "Statistik"))
-                .font(.system(size: 20, weight: .bold, design: .rounded))
-
-            HStack(spacing: 20) {
-                ZStack {
-                    Circle()
-                        .stroke(Color(UIColor.systemGray5), lineWidth: 10)
-                    Circle()
-                        .trim(from: 0, to: todayProgress)
-                        .stroke(Color.gruenPrimary, style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                        .rotationEffect(.degrees(-90))
-                        .animation(.spring(response: 0.5, dampingFraction: 0.8), value: todayProgress)
-                    VStack(spacing: 0) {
-                        Text("\(stats.doneToday)/\(stats.dueToday)")
-                            .font(.system(size: 20, weight: .black, design: .rounded))
-                            .contentTransition(.numericText())
-                        Text(String(localized: "cleaning.stats.today", defaultValue: "Heute"))
-                            .font(.system(size: 11, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .frame(width: 92, height: 92)
-                .accessibilityElement(children: .combine)
-
-                VStack(alignment: .leading, spacing: 10) {
-                    statRow(
-                        icon: "chart.bar.fill",
-                        color: .blauPrimary,
-                        value: stats.weekRate.map { "\(Int(($0 * 100).rounded()))%" } ?? "–",
-                        label: String(localized: "cleaning.stats.week", defaultValue: "Letzte 7 Tage")
-                    )
-                    statRow(
-                        icon: "flame.fill",
-                        color: .orangePrimary,
-                        value: "\(stats.cleanStreak)",
-                        label: String(localized: "cleaning.stats.streak", defaultValue: "Aufräum-Tage in Folge")
-                    )
-                    statRow(
-                        icon: "checkmark.seal.fill",
-                        color: .gruenPrimary,
-                        value: "\(stats.totalCompletions)",
-                        label: String(localized: "cleaning.stats.total", defaultValue: "Erledigt insgesamt")
-                    )
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-        .padding(16)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
-    }
-
-    private func statRow(icon: String, color: Color, value: String, label: String) -> some View {
-        HStack(spacing: 10) {
-            Image(systemName: icon)
-                .font(.system(size: 14, weight: .bold))
-                .foregroundStyle(color)
-                .frame(width: 20)
-            VStack(alignment: .leading, spacing: 0) {
-                Text(value)
-                    .font(.system(size: 16, weight: .black, design: .rounded))
-                Text(label)
-                    .font(.system(size: 11, weight: .medium, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-            }
-        }
-        .accessibilityElement(children: .combine)
     }
 
     // MARK: - Heute
@@ -182,7 +102,7 @@ struct CleaningDashboardView: View {
                 .font(.system(size: 20, weight: .bold, design: .rounded))
                 .foregroundStyle(.primary)
         }
-        .tint(.blauPrimary)
+        .tint(.primary)
         .padding(16)
         .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
     }

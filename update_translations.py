@@ -15,7 +15,7 @@ with open("Garten_Simulation/Localizable.xcstrings", "r") as f:
 # But let's find all keys that start with "tracking" and have only "de" or missing languages.
 target_keys = []
 for key, value in data["strings"].items():
-    if key.startswith("tracking"):
+    if key.startswith("tracking") or key.startswith("cleaning") or key.startswith("fitness.cleaning"):
         locs = value.get("localizations", {})
         if len(locs) < 16:
             target_keys.append(key)

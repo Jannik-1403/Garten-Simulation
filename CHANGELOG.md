@@ -1397,3 +1397,9 @@
 - Plus- und Minus-Buttons im Zähler-Tracker auf das `Item3DButton`-Design umgestellt (sowohl im Modal als auch in der Hauptansicht).
 - Den Tracking-Einstellungen-Button (Zahnrad) zu einem runden 3D-Button mit grauem Hintergrund und schwarzem Icon gemacht.
 - Alle unübersetzten englischen Texte für die Tracking-Beispiele in allen 16 Sprachen über den String-Katalog final lokalisiert.
+
+## UI & Localization Fixes for Cleaning Habit
+- Fixed an issue where the `statsCard` was hidden when there were no tasks, making sure the user always sees their progress.
+- Fixed all missing localizations across all 16 languages for the cleaning habit texts, so there are no longer hardcoded German strings.
+- Added `defaultValue` to missing buttons like the Cancel button.
+- Refactored `CleaningTaskRowView` to use the `Item3DContainer` style, giving the task list the requested 'white 3D button' look with a deep shadow.
