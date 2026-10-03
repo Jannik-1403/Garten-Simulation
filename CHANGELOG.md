@@ -1,3 +1,11 @@
+### 2026-10-03
+- Aufräum-Gewohnheit (Cleaning Habit) re-implementiert:
+  - `CleaningTaskEditorSheet` und `CleaningTaskRowView` erstellt.
+  - Dynamischer Rhythmus für Tasks (z. B. "Bett abziehen" wöchentlich) implementiert.
+  - Anbindung an das `DailyFeedbackViewModel` und Statistik-Dashboard integriert.
+  - Widget-Sync und Streak-Checks angepasst.
+  - Vollständig in alle 16 Sprachen übersetzt (via `Localizable.xcstrings`).
+
 ## [2026-10-03] - Feature: Konfigurierbares Habit-Tracking
 - Zahnrad-Button im Fortschritts-Block öffnet Tracking-Einstellungen (Wochentage, Modus, Tagesziel, Einheit).
 - Wochentags-Plan: Gewohnheiten erscheinen nur an fälligen Tagen; freie Gewohnheiten in einklappbarer Sektion "Heute frei".
