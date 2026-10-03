@@ -434,14 +434,19 @@ struct LockScreenScoreWidgetView: View {
     @Environment(\.widgetFamily) var family
     
     var score: Int {
-        SharedUserDefaults.suite.integer(forKey: "widget_daily_score")
+        let defaults = SharedUserDefaults.suite
+        // Score vom Vortag nicht anzeigen – nach Mitternacht startet der Tag bei 0.
+        let storedDay = defaults.double(forKey: "widget_daily_score_date")
+        let todayStart = Calendar.current.startOfDay(for: entry.date).timeIntervalSince1970
+        if storedDay > 0 && storedDay != todayStart { return 0 }
+        return min(100, max(0, defaults.integer(forKey: "widget_daily_score")))
     }
 
     var body: some View {
         ZStack {
             if family == .accessoryCircular {
                 Gauge(value: Double(score), in: 0...100) {
-                    Text("Score")
+                    Text(String(localized: "widget_score_title", defaultValue: "Tagesscore", locale: widgetLocale))
                 } currentValueLabel: {
                     Text("\(score)")
                 }

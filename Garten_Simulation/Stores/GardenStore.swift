@@ -1392,7 +1392,8 @@ class GardenStore: ObservableObject {
         )
         
         // Tagesscore für das Lock Screen Widget im Hintergrund neu berechnen
-        DailyFeedbackViewModel.calculateAndSaveWidgetScore(activeHabits: pflanzen)
+        // Gleiche Habit-Menge wie die Score-Karte in der App (sichtbarePflanzen), sonst weicht der Wert ab.
+        DailyFeedbackViewModel.calculateAndSaveWidgetScore(activeHabits: sichtbarePflanzen)
     }
 
     private func loadStandaloneTodos() {

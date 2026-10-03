@@ -2,9 +2,24 @@ import Foundation
 import WidgetKit
 
 extension DailyFeedbackViewModel {
+
+    // MARK: - Widget Keys
+
+    static let widgetScoreKey = "widget_daily_score"
+    static let widgetScoreDateKey = "widget_daily_score_date"
+    static let lockScreenScoreWidgetKind = "GroovyLockScreenScoreWidget"
+
+    struct Evaluation {
+        let feedbacks: [CategoryFeedback]
+        let dailyScore: Int
+    }
+
+    // MARK: - Single Source of Truth (Score-Berechnung)
+
+    /// Berechnet Feedbacks + Tages-Score für ein Datum. Wird sowohl vom ViewModel (UI)
+    /// als auch vom GardenStore (Widget im Hintergrund) genutzt, damit beide IMMER denselben Wert liefern.
     @MainActor
-    static func calculateAndSaveWidgetScore(activeHabits: [HabitModel]) {
-        let targetDate = Date()
+    static func evaluate(targetDate: Date, activeHabits: [HabitModel]) -> Evaluation {
         let hm = HealthManager.shared
         let wgm = WaterGoalManager.shared
         let nim = NutrientIndexManager.shared
@@ -43,28 +58,33 @@ extension DailyFeedbackViewModel {
         for plant in activeHabits {
             let lowerName = plant.name.lowercased()
             let lowerHabitName = plant.habitName.lowercased()
-            
+
             let eff = plant.effectiveHealthMetric
             let link = plant.linkedHealthMetric
             let auto = plant.automaticHealthMetric
-            
+
+            // Water
             if eff == .water || link == .water || auto == .water {
                 hasWaterPlant = true
                 if waterPlant == nil { waterPlant = plant }
             }
+            // Sleep
             if eff == .sleep || link == .sleep || auto == .sleep {
                 hasSleepPlant = true
                 if sleepPlant == nil { sleepPlant = plant }
             }
+            // Strength
             if eff == .strengthTraining || link == .strengthTraining || auto == .strengthTraining || lowerName.contains("kraft") {
                 hasStrengthPlant = true
                 if strengthPlant == nil { strengthPlant = plant }
             }
+            // Running / Steps
             if eff == .steps || eff == .running || link == .steps || link == .running || auto == .steps || auto == .running || lowerName.contains("laufen") || lowerName.contains("joggen") || lowerName.contains("schritt") {
                 hasRunningPlant = true
                 if runningPlant == nil { runningPlant = plant }
             }
-            
+
+            // Nutrition (Energy, Fiber, "kochen", "gemüse")
             let isNutrition = eff == .energy || link == .energy || auto == .energy ||
                               eff == .fiber || link == .fiber || auto == .fiber ||
                               lowerName.contains("gemüse") || lowerName.contains("kochen") || lowerHabitName.contains("koch") ||
@@ -88,23 +108,22 @@ extension DailyFeedbackViewModel {
             }
         }
 
+        // Protein-Ziel aus UserDefaults (wird von MacroCalculator/HealthManager gesetzt)
         let proteinGoal = UserDefaults.standard.double(forKey: "goal_protein")
         let strengthGoalMinutes = strengthPlant?.healthTarget ?? 30.0
         let stepsGoal = runningPlant?.healthTarget ?? 10000.0
-        let fiberGoal = fiberPlant?.healthTarget ?? 30.0
-        
+        let fiberGoal = fiberPlant?.healthTarget ?? 30.0 // DGE-Empfehlung
+
         let gratitudeTodayDone = gratitudePlant?.journalEntries.contains(where: { Calendar.current.isDate($0.date, inSameDayAs: targetDate) }) ?? false
         let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: targetDate) ?? targetDate
         let gratitudeYesterdayEntry = gratitudePlant?.journalEntries.first(where: { Calendar.current.isDate($0.date, inSameDayAs: yesterday) })
 
         let energyGoal = energyPlant?.effectiveHealthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
 
-
-
         let hasSetGoals = UserDefaults.standard.bool(forKey: "has_set_nutrition_goals")
         let isGoalValid = hm.weightGoalType != 0 && hm.weightGoalTargetKg > 0 && hm.weightGoalDateInterval > 0
         let showNutrition = hasSetGoals && isGoalValid
-        
+
         func getManualOrHealth(plant: HabitModel?, healthValue: Double, goal: Double) -> Double {
             guard let p = plant else { return healthValue }
             if p.effectiveHealthMetric == nil {
@@ -113,15 +132,16 @@ extension DailyFeedbackViewModel {
                     .last?.progress ?? 0.0
                 return todaysManualProgress * goal
             }
+            // Wenn targetDate in der Vergangenheit liegt, nutze intradayProgressHistory als Fallback
             if !Calendar.current.isDateInToday(targetDate) {
-                 let todaysManualProgress = p.intradayProgressHistory
-                     .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
-                     .last?.progress ?? 0.0
-                 return todaysManualProgress * goal
+                let todaysManualProgress = p.intradayProgressHistory
+                    .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
+                    .last?.progress ?? 0.0
+                return todaysManualProgress * goal
             }
             return healthValue
         }
-        
+
         let effectiveWater = getManualOrHealth(plant: waterPlant, healthValue: hm.todaysWater, goal: wgm.currentGoal)
         let sleepGoal = UserDefaults.standard.double(forKey: "goal_sleep") > 0 ? UserDefaults.standard.double(forKey: "goal_sleep") : 8.0
         let effectiveSleep = getManualOrHealth(plant: sleepPlant, healthValue: hm.todaysSleep, goal: sleepGoal)
@@ -130,7 +150,7 @@ extension DailyFeedbackViewModel {
         let effectiveEnergy = getManualOrHealth(plant: energyPlant, healthValue: hm.todaysEnergy, goal: energyGoal > 0 ? energyGoal : 2000.0)
         let effectiveProtein = getManualOrHealth(plant: proteinPlant, healthValue: hm.todaysProtein, goal: proteinGoal > 0 ? proteinGoal : 120.0)
         let effectiveFiber = getManualOrHealth(plant: fiberPlant, healthValue: hm.todaysFiber, goal: fiberGoal)
-        
+
         var effectiveStrengthDaysAgo = strengthDaysAgo
         if let p = strengthPlant, p.effectiveHealthMetric == nil {
             let todaysManualProgress = p.intradayProgressHistory
@@ -140,7 +160,7 @@ extension DailyFeedbackViewModel {
                 effectiveStrengthDaysAgo = 0
             }
         }
-        
+
         let input = FeedbackScoringEngine.EvaluationInput(
             hasWaterPlant: hasWaterPlant,
             hasSleepPlant: hasSleepPlant,
@@ -177,15 +197,18 @@ extension DailyFeedbackViewModel {
         )
 
         let feedbacks = FeedbackScoringEngine.evaluateAll(input: input)
+
+        // Tages-Score berechnen (Präzise Berechnung auf Basis des tatsächlichen Fortschritts)
         let availableFeedbacks = feedbacks.filter { $0.status != CategoryStatus.unavailable }
-        
         var dailyScore = 0
         if !availableFeedbacks.isEmpty {
             let total = availableFeedbacks.reduce(0.0) { sum, fb in
                 var scoreForCategory: Double = 0
                 if fb.category == FitnessCategory.gratitude {
+                    // Binäre Aufgaben: 100% wenn gut (erledigt), sonst 0%
                     scoreForCategory = fb.status == .good ? 100 : 0
                 } else {
+                    // Kontinuierliche Aufgaben: Nutze exakten prozentualen Fortschritt (max 100%)
                     let progress = fb.progress ?? 0
                     let goal = fb.goal ?? 0
                     let pct = goal > 0 ? (progress / goal) : 0
@@ -196,7 +219,31 @@ extension DailyFeedbackViewModel {
             dailyScore = Int(total / Double(availableFeedbacks.count))
         }
 
-        SharedUserDefaults.suite.set(dailyScore, forKey: "widget_daily_score")
-        WidgetCenter.shared.reloadAllTimelines()
+        return Evaluation(feedbacks: feedbacks, dailyScore: dailyScore)
+    }
+
+    // MARK: - Widget Sync
+
+    /// Einziger Schreibpfad für den Lock-Screen-Score.
+    /// Schreibt nur, wenn sich Wert oder Tag geändert hat, und lädt gezielt nur das Score-Widget neu
+    /// (spart WidgetKit-Reload-Budget).
+    static func publishWidgetScore(_ score: Int) {
+        let defaults = SharedUserDefaults.suite
+        let todayStart = Calendar.current.startOfDay(for: Date()).timeIntervalSince1970
+
+        let storedScore = defaults.object(forKey: widgetScoreKey) as? Int
+        let storedDay = defaults.double(forKey: widgetScoreDateKey)
+        guard storedScore != score || storedDay != todayStart else { return }
+
+        defaults.set(score, forKey: widgetScoreKey)
+        defaults.set(todayStart, forKey: widgetScoreDateKey)
+        WidgetCenter.shared.reloadTimelines(ofKind: lockScreenScoreWidgetKind)
+    }
+
+    /// Berechnet den heutigen Score im Hintergrund (z. B. aus dem GardenStore) und synchronisiert das Widget.
+    @MainActor
+    static func calculateAndSaveWidgetScore(activeHabits: [HabitModel]) {
+        let evaluation = evaluate(targetDate: Date(), activeHabits: activeHabits)
+        publishWidgetScore(evaluation.dailyScore)
     }
 }
