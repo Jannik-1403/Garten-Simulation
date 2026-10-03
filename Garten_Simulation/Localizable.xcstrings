@@ -436003,304 +436003,31 @@
       }
     },
     "tracking.days.preset.daily": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Täglich"
           }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daily"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Diario"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quotidien"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दैनिक"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quotidiano"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毎日"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "매일"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dagelijks"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codziennie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Diariamente"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Diariamente"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ежедневно"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlük"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每天"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每天"
-          }
         }
       }
     },
     "tracking.days.preset.weekdays": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Werktags"
           }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekdays"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Días laborables"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jours ouvrables"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सप्ताह के दिन"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Giorni feriali"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平日"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "평일"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Werkdagen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dni powszednie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dias úteis"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dias úteis"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Будни"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hafta içi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "工作日"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "工作日"
-          }
         }
       }
     },
     "tracking.days.preset.weekend": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Wochenende"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekend"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fin de semana"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Week-end"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सप्ताहांत"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fine settimana"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "週末"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주말"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekend"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekend"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fim de semana"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fim de semana"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выходные"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hafta sonu"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "周末"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "週末"
           }
         }
       }
@@ -436407,102 +436134,101 @@
       }
     },
     "tracking.mode.counter.example": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beispiel: 20 von 50 Liegestütze → 40% erledigt."
+            "value": "Beispiel: %d von %d %@ → %@ erledigt."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Example: 20 of 50 Push-ups → 40% completed."
+            "value": "Example: %d of %d %@ → %@ completed."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ejemplo: 20 de 50 Flexiones → 40% completado."
+            "value": "Ejemplo: %d de %d %@ → %@ completado."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exemple: 20 sur 50 Pompes → 40% terminé."
+            "value": "Exemple : %d sur %d %@ → %@ terminé."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "उदाहरण: 50 में से 20 पुश-अप्स → 40% पूर्ण।"
+            "value": "उदाहरण: %d में से %d %@ → %@ पूर्ण।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esempio: 20 di 50 Flessioni → 40% completato."
+            "value": "Esempio: %d di %d %@ → %@ completato."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "例: 50回の腕立て伏せのうち20回 → 40% 完了。"
+            "value": "例: %2$d 中 %1$d 回の %3$@ → %4$@ 完了。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "예시: 푸시업 50회 중 20회 → 40% 완료."
+            "value": "예시: %2$d 중 %1$d회 %3$@ → %4$@ 완료."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voorbeeld: 20 van de 50 Push-ups → 40% voltooid."
+            "value": "Voorbeeld: %d van de %d %@ → %@ voltooid."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Przykład: 20 z 50 Pompki → 40% ukończono."
+            "value": "Przykład: %d z %d %@ → %@ ukończono."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exemplo: 20 de 50 Flexões → 40% concluído."
+            "value": "Exemplo: %d de %d %@ → %@ concluído."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Exemplo: 20 de 50 Flexões → 40% concluído."
+            "value": "Exemplo: %d de %d %@ → %@ concluído."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Пример: 20 из 50 Отжимания → 40% выполнено."
+            "value": "Пример: %d из %d %@ → %@ выполнено."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Örnek: 50 Şınavdan 20'si → %40 tamamlandı."
+            "value": "Örnek: %2$d %@'den %1$d'si → %4$@ tamamlandı."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "示例：50 个俯卧撑中的 20 个 → 已完成 40%。"
+            "value": "示例：%2$d 个 %3$@ 中的 %1$d 个 → 已完成 %4$@。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "範例：50 個伏地挺身中的 20 個 → 已完成 40%。"
+            "value": "範例：%2$d 個 %3$@ 中的 %1$d 個 → 已完成 %4$@。"
           }
         }
       }
@@ -436609,102 +436335,11 @@
       }
     },
     "tracking.mode.slider.example": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beispiel: Regler auf 60% → die Gewohnheit ist zu 60% erledigt."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Example: Slider at 60% → habit is 60% completed."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ejemplo: Deslizador al 60% → el hábito está 60% completado."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Exemple : Curseur à 60 % → l'habitude est terminée à 60 %."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "उदाहरण: स्लाइडर 60% पर → आदत 60% पूर्ण हो गई है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esempio: Cursore al 60% → l'abitudine è completata al 60%."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "例: スライダーが 60% → 習慣が 60% 完了しました。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "예: 슬라이더를 60%로 설정 → 습관이 60% 완료되었습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voorbeeld: Schuifregelaar op 60% → de gewoonte is voor 60% voltooid."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przykład: Suwak na 60% → nawyk jest w 60% wykonany."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Exemplo: Controle deslizante em 60% → o hábito está 60% concluído."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Exemplo: Controle deslizante em 60% → o hábito está 60% concluído."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пример: Ползунок на 60% → привычка выполнена на 60%."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Örnek: Kaydırıcı %60'ta → alışkanlığın %60'ı tamamlandı."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "示例：滑块处于 60% → 习惯已完成 60%。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "範例：滑桿位於 60% → 習慣已完成 60%。"
+            "value": "Beispiel: Regler auf %1$@ → die Gewohnheit ist zu %2$@ erledigt."
           }
         }
       }
@@ -436721,293 +436356,111 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "If you reach the daily goal, the habit is considered completed (100%)."
+            "value": "Once you reach your daily goal, the habit counts as completed (100 %)."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Si alcanzas la meta diaria, el hábito se considera completado (100%)."
+            "value": "Al alcanzar tu objetivo diario, el hábito se considera completado (100 %)."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Si vous atteignez l'objectif quotidien, l'habitude est considérée comme terminée (100%)."
+            "value": "Quand tu atteins ton objectif quotidien, l’habitude est considérée comme accomplie (100 %)."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "यदि आप दैनिक लक्ष्य तक पहुँचते हैं, तो आदत को पूरा माना जाता है (100%)।"
+            "value": "दैनिक लक्ष्य पूरा होते ही आदत पूरी मानी जाती है (100 %)।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Se raggiungi l'obiettivo quotidiano, l'abitudine è considerata completata (100%)."
+            "value": "Quando raggiungi l’obiettivo giornaliero, l’abitudine risulta completata (100 %)."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "毎日の目標に到達すると、習慣は完了とみなされます（100％）。"
+            "value": "1日の目標に達すると、習慣は完了（100 %）になります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "일일 목표에 도달하면 습관이 완료된 것으로 간주됩니다(100%)."
+            "value": "일일 목표에 도달하면 습관이 완료(100 %)로 처리됩니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Als je het dagelijkse doel bereikt, wordt de gewoonte als voltooid beschouwd (100%)."
+            "value": "Bereik je je dagdoel, dan geldt de gewoonte als voltooid (100 %)."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jeśli osiągniesz dzienny cel, nawyk jest uważany za ukończony (100%)."
+            "value": "Po osiągnięciu celu dziennego nawyk uznaje się za wykonany (100 %)."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Se você atingir a meta diária, o hábito é considerado concluído (100%)."
+            "value": "Ao atingires o objetivo diário, o hábito conta como concluído (100 %)."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Se você atingir a meta diária, o hábito é considerado concluído (100%)."
+            "value": "Ao atingir a meta diária, o hábito conta como concluído (100 %)."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Если вы достигнете ежедневной цели, привычка считается выполненной (100%)."
+            "value": "Когда ты достигаешь цели на день, привычка считается выполненной (100 %)."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Günlük hedefe ulaşırsanız, alışkanlık tamamlanmış sayılır (%100)."
+            "value": "Günlük hedefe ulaştığında alışkanlık tamamlanmış sayılır (%100)."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "如果您达到每日目标，该习惯将被视为已完成（100%）。"
+            "value": "达到每日目标后，该习惯即视为完成（100 %）。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "如果您達到每日目標，該習慣將被視為已完成（100%）。"
+            "value": "達到每日目標後，該習慣即視為完成（100 %）。"
           }
         }
       }
     },
     "tracking.settings.days.example": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Fällig am %@. An allen anderen Tagen hast du frei – dein Streak läuft weiter."
           }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Due on %@. You are free on all other days – your streak continues."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vence el %@. Tienes libre los demás días – tu racha continúa."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "À faire le %@. Vous êtes libre tous les autres jours – votre série continue."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ को देय। आप अन्य सभी दिनों में स्वतंत्र हैं - आपका स्ट्रीक जारी है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scade il %@. Sei libero tutti gli altri giorni – la tua serie continua."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ が期限です。他のすべての日はお休みです - 連続記録は継続します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ 마감입니다. 다른 날은 쉬는 날입니다 - 연속 기록은 계속됩니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vervalt op %@. Je bent vrij op alle andere dagen - je reeks gaat door."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Termin: %@. We wszystkie inne dni masz wolne – twoja passa trwa nadal."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vence em %@. Você está livre em todos os outros dias – sua sequência continua."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vence em %@. Você está livre em todos os outros dias – sua sequência continua."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выполнить %@. Во все остальные дни вы свободны – ваша серия продолжается."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Son tarih: %@. Diğer tüm günler boşsunuz – seriniz devam ediyor."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "到期日：%@。您在所有其他日子都空闲——您的连胜记录继续。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "到期日：%@。您在所有其他日子都空閒——您的連勝記錄繼續。"
-          }
         }
       }
     },
     "tracking.settings.days.example.daily": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Jeden Tag fällig – ein verpasster Tag beendet deinen Streak."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Due every day – a missed day ends your streak."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vence todos los días – un día perdido termina tu racha."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "À faire tous les jours – un jour manqué met fin à votre série."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "हर दिन देय – एक छूटा हुआ दिन आपके स्ट्रीक को समाप्त कर देता है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scade ogni giorno – un giorno perso termina la tua serie."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "毎日が期限です – 1 日休むと連続記録が終了します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "매일 마감 – 하루를 놓치면 연속 기록이 종료됩니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Elke dag vervallen – een gemiste dag beëindigt je reeks."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Należy wykonać codziennie – opuszczony dzień kończy twoją passę."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vence todos os dias – um dia perdido termina sua sequência."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vence todos os dias – um dia perdido termina sua sequência."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выполнять каждый день – пропущенный день прерывает вашу серию."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Her gün yapılması gerekiyor - kaçırılan bir gün serinizi sonlandırır."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每天到期——错过一天就会结束您的连胜。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每天到期——錯過一天就會結束您的連勝。"
           }
         }
       }
@@ -437125,67 +436578,67 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Due Days"
+            "value": "Scheduled Days"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Días de vencimiento"
+            "value": "Días programados"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jours d'échéance"
+            "value": "Jours prévus"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "देय दिन"
+            "value": "निर्धारित दिन"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Giorni di scadenza"
+            "value": "Giorni previsti"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "期限日"
+            "value": "実施する曜日"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "마감일"
+            "value": "예정된 요일"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vervaldagen"
+            "value": "Geplande dagen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dni wymagalności"
+            "value": "Zaplanowane dni"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dias de vencimento"
+            "value": "Dias previstos"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dias de vencimento"
+            "value": "Dias programados"
           }
         },
         "ru": {
@@ -437197,19 +436650,19 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bitiş Günleri"
+            "value": "Planlanan günler"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "到期日"
+            "value": "计划日"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "到期日"
+            "value": "預定日"
           }
         }
       }
@@ -437244,25 +436697,25 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "प्रगति ट्रैक करें"
+            "value": "प्रगति दर्ज करें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Traccia progresso"
+            "value": "Registra i progressi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "進捗を追跡"
+            "value": "進捗の記録方法"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "진행 상황 추적"
+            "value": "진행 상황 기록"
           }
         },
         "nl": {
@@ -437274,43 +436727,43 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Śledź postępy"
+            "value": "Rejestruj postęp"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Acompanhar progresso"
+            "value": "Registar progresso"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Acompanhar progresso"
+            "value": "Registrar progresso"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отслеживать прогресс"
+            "value": "Учёт прогресса"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İlerlemeyi Takip Et"
+            "value": "İlerlemeyi kaydet"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "跟踪进度"
+            "value": "记录进度"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "追蹤進度"
+            "value": "記錄進度"
           }
         }
       }
@@ -437333,7 +436786,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meta diaria"
+            "value": "Objetivo diario"
           }
         },
         "fr": {
@@ -437351,13 +436804,13 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obiettivo quotidiano"
+            "value": "Obiettivo giornaliero"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "毎日の目標"
+            "value": "1日の目標"
           }
         },
         "ko": {
@@ -437369,7 +436822,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dagelijks doel"
+            "value": "Dagdoel"
           }
         },
         "pl": {
@@ -437381,7 +436834,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meta diária"
+            "value": "Objetivo diário"
           }
         },
         "pt-BR": {
@@ -437393,13 +436846,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ежедневная цель"
+            "value": "Цель на день"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Günlük Hedef"
+            "value": "Günlük hedef"
           }
         },
         "zh-Hans": {
@@ -437434,13 +436887,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Configuración de seguimiento"
+            "value": "Ajustes de seguimiento"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Paramètres de suivi"
+            "value": "Réglages du suivi"
           }
         },
         "hi": {
@@ -437452,13 +436905,13 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Impostazioni di tracciamento"
+            "value": "Impostazioni monitoraggio"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "追跡設定"
+            "value": "トラッキング設定"
           }
         },
         "ko": {
@@ -437470,7 +436923,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trackinginstellingen"
+            "value": "Tracking-instellingen"
           }
         },
         "pl": {
@@ -437482,13 +436935,13 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Configurações de rastreamento"
+            "value": "Definições de registo"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Configurações de rastreamento"
+            "value": "Configurações de acompanhamento"
           }
         },
         "ru": {
@@ -437500,13 +436953,13 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İzleme Ayarları"
+            "value": "Takip ayarları"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "跟踪设置"
+            "value": "追踪设置"
           }
         },
         "zh-Hant": {
@@ -437518,102 +436971,11 @@
       }
     },
     "tracking.settings.unit.default": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Wiederholungen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Repetitions"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Repeticiones"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Répétitions"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पुनरावृत्ति"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ripetizioni"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "繰り返し"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "반복"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herhalingen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Powtórzenia"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Repetições"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Repetições"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Повторения"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekrarlar"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "重复次数"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "重複次數"
           }
         }
       }
@@ -437630,31 +436992,31 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unit, e.g., Push-ups"
+            "value": "Unit, e.g. push-ups"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unidad, ej. Flexiones"
+            "value": "Unidad, p. ej. flexiones"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unité, par ex. Pompes"
+            "value": "Unité, p. ex. pompes"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "इकाई, उदा. पुश-अप्स"
+            "value": "इकाई, जैसे पुश-अप्स"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unità, es. Flessioni"
+            "value": "Unità, ad es. flessioni"
           }
         },
         "ja": {
@@ -437666,55 +437028,55 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "단위 (예: 푸시업)"
+            "value": "단위, 예: 팔굽혀펴기"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eenheid, bijv. Push-ups"
+            "value": "Eenheid, bijv. push-ups"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jednostka, np. Pompki"
+            "value": "Jednostka, np. pompki"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unidade, ex. Flexões"
+            "value": "Unidade, p. ex. flexões"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unidade, ex. Flexões"
+            "value": "Unidade, ex.: flexões"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Единица, напр. Отжимания"
+            "value": "Единица, напр. отжимания"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Birim, örn. Şınav"
+            "value": "Birim, ör. şınav"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "单位，例如：俯卧撑"
+            "value": "单位，例如俯卧撑"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "單位，例如：伏地挺身"
+            "value": "單位，例如伏地挺身"
           }
         }
       }

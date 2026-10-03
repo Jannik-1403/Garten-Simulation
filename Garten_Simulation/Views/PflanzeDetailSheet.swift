@@ -740,17 +740,6 @@ struct PflanzeDetailSheet: View {
                                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                                     .foregroundStyle(.secondary)
                                                 Spacer()
-                                                Button {
-                                                    zeigeTrackingSettings = true
-                                                } label: {
-                                                    Image(systemName: "gearshape.fill")
-                                                        .font(.system(size: 16, weight: .bold))
-                                                        .foregroundStyle(.secondary)
-                                                        .frame(width: 32, height: 32)
-                                                        .contentShape(Rectangle())
-                                                }
-                                                .buttonStyle(.plain)
-                                                .accessibilityLabel(String(localized: "tracking.settings.title", defaultValue: "Tracking-Einstellungen"))
                                             }
                                             
                                             if pflanze.trackingMode == .counter {
@@ -795,6 +784,19 @@ struct PflanzeDetailSheet: View {
                                             sekundaerFarbe: Color(UIColor.systemGray5),
                                             shadowDepth: 6
                                         ))
+                                        .overlay(alignment: .topTrailing) {
+                                            Item3DButton(
+                                                icon: "gearshape.fill",
+                                                farbe: Color(UIColor.systemGray6),
+                                                sekundaerFarbe: Color(UIColor.systemGray4),
+                                                groesse: 36,
+                                                iconSkalierung: 0.5,
+                                                isRectangular: true
+                                            ) {
+                                                zeigeTrackingSettings = true
+                                            }
+                                            .padding(12)
+                                        }
                                         .padding(.horizontal, 16)
                                         .padding(.bottom, 8)
                                         .sheet(isPresented: $zeigeTrackingSettings) {

@@ -1378,3 +1378,5 @@
 - Widget zeigt nach Mitternacht keinen Score vom Vortag mehr
 - Redesign von `HabitTrackingSettingsSheet` in einen 3D-Look.
 - "Kurze Beispiele" für die Auswirkung der Fälligkeitstage und der Tracking-Ziele in den Tracking-Einstellungen hinzugefügt.
+- UI-Vorschauen in den Modus-Karten der Tracking-Einstellungen entfernt und Aktiv-Zustand dezent (nur eingedrückt statt orange) gestaltet.
+- Alle verbleibenden Texte der Tracking-Einstellungen zu 100% in 16 Sprachen übersetzt.

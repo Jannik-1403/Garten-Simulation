@@ -94,7 +94,7 @@ struct HabitTrackingSettingsSheet: View {
             return String(localized: "tracking.settings.days.example.daily", defaultValue: "Jeden Tag fällig – ein verpasster Tag beendet deinen Streak.")
         }
         let list = WeekdayPicker.shortList(for: selectedDays)
-        return String(localized: "tracking.settings.days.example", defaultValue: "Fällig am \(list). An allen anderen Tagen hast du frei – dein Streak läuft weiter.")
+        return String(format: String(localized: "tracking.settings.days.example", defaultValue: "Fällig am %@. An allen anderen Tagen hast du frei – dein Streak läuft weiter."), list)
     }
 
     private func presetButton(_ title: String, days: Set<Int>) -> some View {
@@ -145,14 +145,16 @@ struct HabitTrackingSettingsSheet: View {
     private var modeExampleText: String {
         switch mode {
         case .slider:
-            let percent = "60%"
-            return String(localized: "tracking.mode.slider.example", defaultValue: "Beispiel: Regler auf \(percent) → die Gewohnheit ist zu \(percent) erledigt.")
+            return String(localized: "tracking.mode.slider.example", defaultValue: "Beispiel: Regler auf 60% → die Gewohnheit ist zu 60% erledigt.")
         case .counter:
             let count = exampleCount
             let total = target
             let unitText = exampleUnit
-            let percent = "\(Int((Double(count) / Double(max(1, total)) * 100).rounded()))%"
-            return String(localized: "tracking.mode.counter.example", defaultValue: "Beispiel: \(count) von \(total) \(unitText) → \(percent) erledigt.")
+            let percentStr = "\(Int((Double(count) / Double(max(1, total)) * 100).rounded()))%"
+            return String(
+                format: String(localized: "tracking.mode.counter.example", defaultValue: "Beispiel: %d von %d %@ → %@ erledigt."),
+                count, total, unitText, percentStr
+            )
         }
     }
 
@@ -175,7 +177,6 @@ struct HabitTrackingSettingsSheet: View {
             shadowDepth: 5,
             isPermanentlyPressed: isActive
         ))
-        .background(Color(UIColor.systemBackground).clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous)).padding(.bottom, 5))
         .accessibilityAddTraits(isActive ? .isSelected : [])
     }
 
