@@ -1376,3 +1376,5 @@
 - Kein falscher Init-Score mehr bei leeren Habits
 - Gezielter Reload nur des Score-Widgets, nur wenn sich der Wert ändert
 - Widget zeigt nach Mitternacht keinen Score vom Vortag mehr
+- Redesign von `HabitTrackingSettingsSheet` in einen 3D-Look.
+- "Kurze Beispiele" für die Auswirkung der Fälligkeitstage und der Tracking-Ziele in den Tracking-Einstellungen hinzugefügt.

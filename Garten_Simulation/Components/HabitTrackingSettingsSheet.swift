@@ -126,8 +126,8 @@ struct HabitTrackingSettingsSheet: View {
             sectionHeader(String(localized: "tracking.settings.mode.header", defaultValue: "Fortschritt erfassen"))
 
             HStack(spacing: 12) {
-                modeCard(.slider) { sliderPreview }
-                modeCard(.counter) { counterPreview }
+                modeCard(.slider)
+                modeCard(.counter)
             }
 
             exampleBox(text: modeExampleText)
@@ -156,29 +156,21 @@ struct HabitTrackingSettingsSheet: View {
         }
     }
 
-    private func modeCard<Preview: View>(_ cardMode: HabitTrackingMode, @ViewBuilder preview: () -> Preview) -> some View {
+    private func modeCard(_ cardMode: HabitTrackingMode) -> some View {
         let isActive = mode == cardMode
         return Button {
             withAnimation(.snappy) { mode = cardMode }
         } label: {
-            VStack(spacing: 10) {
-                preview()
-                    .frame(height: 36)
-                Text(cardMode.localizedTitle)
-                    .font(.system(size: 15, weight: .black, design: .rounded))
-                    .foregroundStyle(isActive ? Color.orangePrimary : Color.primary)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 14)
-            .padding(.horizontal, 10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(isActive ? Color.orangePrimary : Color.clear, lineWidth: 2.5)
-            )
+            Text(cardMode.localizedTitle)
+                .font(.system(size: 15, weight: .black, design: .rounded))
+                .foregroundStyle(Color.primary)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+                .padding(.horizontal, 10)
         }
         .buttonStyle(PillButtonStyle(
-            farbe: isActive ? Color.orangePrimary.opacity(0.08) : Color(UIColor.systemBackground),
-            sekundaerFarbe: isActive ? Color.orangePrimary : Color(UIColor.systemGray4),
+            farbe: Color(UIColor.systemBackground),
+            sekundaerFarbe: Color(UIColor.systemGray4),
             cornerRadius: 16,
             shadowDepth: 5,
             isPermanentlyPressed: isActive
@@ -187,52 +179,7 @@ struct HabitTrackingSettingsSheet: View {
         .accessibilityAddTraits(isActive ? .isSelected : [])
     }
 
-    /// Mini-Vorschau des Prozent-Reglers (60 %).
-    private var sliderPreview: some View {
-        HStack(spacing: 6) {
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(Color(UIColor.systemGray5))
-                    Capsule().fill(Color.orangePrimary).frame(width: geo.size.width * 0.6)
-                    Circle()
-                        .fill(Color.white)
-                        .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
-                        .frame(width: 16, height: 16)
-                        .offset(x: geo.size.width * 0.6 - 8)
-                }
-                .frame(height: 8)
-                .frame(maxHeight: .infinity)
-            }
-            Text(verbatim: "60%")
-                .font(.system(size: 12, weight: .black, design: .rounded))
-                .foregroundStyle(Color.orangePrimary)
-                .monospacedDigit()
-        }
-        .accessibilityHidden(true)
-    }
 
-    /// Mini-Vorschau des Zählers (− 20/50 +).
-    private var counterPreview: some View {
-        HStack(spacing: 6) {
-            miniCircle("minus")
-            Text(verbatim: "\(exampleCount)/\(target)")
-                .font(.system(size: 13, weight: .black, design: .rounded))
-                .monospacedDigit()
-                .lineLimit(1)
-                .minimumScaleFactor(0.6)
-                .foregroundStyle(Color.primary)
-            miniCircle("plus")
-        }
-        .accessibilityHidden(true)
-    }
-
-    private func miniCircle(_ systemImage: String) -> some View {
-        Image(systemName: systemImage)
-            .font(.system(size: 10, weight: .black))
-            .foregroundStyle(.white)
-            .frame(width: 22, height: 22)
-            .background(Circle().fill(Color.orangePrimary))
-    }
 
     // MARK: - Zähler-Ziel
 
