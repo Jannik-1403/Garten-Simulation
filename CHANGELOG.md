@@ -1,3 +1,11 @@
+## [2026-10-03] - Feature: Konfigurierbares Habit-Tracking
+- Zahnrad-Button im Fortschritts-Block öffnet Tracking-Einstellungen (Wochentage, Modus, Tagesziel, Einheit).
+- Wochentags-Plan: Gewohnheiten erscheinen nur an fälligen Tagen; freie Gewohnheiten in einklappbarer Sektion "Heute frei".
+- Streak bricht nur noch bei verpassten *geplanten* Tagen; Verwelk-Timer zählt nur geplante Tage.
+- Zähler-Modus mit +/- (gedrückt halten wiederholt), z. B. 50 Liegestütze = 100 %.
+- Tagesscore & Widget berücksichtigen nur heute fällige Gewohnheiten; Backup exportiert die neuen Einstellungen.
+- Lokalisierung: 10 neue Strings in allen 16 Sprachen.
+
 - Feature/Rework: Das 50-Level Garten-System und die 12 Pflanzen-Unterstufen (Bronze 1-3 etc.) wurden komplett entfernt. Es gibt nur noch 4 Pflanzen-Seltenheiten (Bronze, Silber, Gold, Diamant). Wenn man eine Gewohnheit abhakt, wird nun die korrekte, lokalisierte Stufe (z.B. "Diamant") statt "PRO" in der Farbe der Seltenheit als Floating-Text angezeigt.
 - Feature/Rework: Streak-System vereinfacht. Der fehleranfällige individuelle Challenge-Joker (Schutzschild) wurde komplett ausgebaut. Der globale App-Streak erhöht sich nun sofort um +1, sobald die allererste Aktion des Tages (Gießen, Routine, To-Do) erledigt wird (kein Warten mehr auf alle offenen Aufgaben).
 - Fix: Leben kann nicht mehr über 5 gesteigert werden. Bei 0 Leben sterben die Pflanzen nicht mehr, sondern alle Münzen werden entfernt.
