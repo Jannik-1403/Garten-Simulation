@@ -1361,3 +1361,10 @@
 - Unnötige Python-Scripte und Logs gelöscht.
 
 - Fix: Fortschrittsbalken (Slider-Progress) und Intraday-History werden nun bei einem neuen Tag korrekt zurückgesetzt.
+
+## 2026-10-03 – Lock-Screen-Score-Widget Sync
+- Score-Berechnung in eine gemeinsame Funktion zusammengelegt (App und Widget rechnen identisch)
+- Widget wird nur noch mit dem heutigen Score beschrieben (vergangene Tage überschreiben ihn nicht mehr)
+- Kein falscher Init-Score mehr bei leeren Habits
+- Gezielter Reload nur des Score-Widgets, nur wenn sich der Wert ändert
+- Widget zeigt nach Mitternacht keinen Score vom Vortag mehr
