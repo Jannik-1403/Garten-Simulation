@@ -96,6 +96,10 @@ struct PflanzenSaveData: Codable {
     let customTrackerName: String?
     let customTrackerTarget: Double?
     let customTrackerProgress: Double?
+    let scheduledWeekdays: Set<Int>?
+    let trackingMode: HabitTrackingMode?
+    let counterTarget: Int?
+    let counterUnit: String?
     let isRoutineOnly: Bool?
     let isGenericFocus: Bool?
     let challengeJokers: Int?
@@ -212,6 +216,10 @@ final class DataExportImportManager: ObservableObject {
                     customTrackerName: habit.customTrackerName,
                     customTrackerTarget: habit.customTrackerTarget,
                     customTrackerProgress: habit.customTrackerProgress,
+                    scheduledWeekdays: habit.scheduledWeekdays,
+                    trackingMode: habit.trackingMode,
+                    counterTarget: habit.counterTarget,
+                    counterUnit: habit.counterUnit,
                     isRoutineOnly: habit.isRoutineOnly,
                     isGenericFocus: habit.isGenericFocus,
                     challengeJokers: habit.challengeJokers,
@@ -455,6 +463,10 @@ final class DataExportImportManager: ObservableObject {
             if let customTrackerName = data.customTrackerName { habit.customTrackerName = customTrackerName }
             if let customTrackerTarget = data.customTrackerTarget { habit.customTrackerTarget = customTrackerTarget }
             if let customTrackerProgress = data.customTrackerProgress { habit.customTrackerProgress = customTrackerProgress }
+            if let scheduledWeekdays = data.scheduledWeekdays, !scheduledWeekdays.isEmpty { habit.scheduledWeekdays = scheduledWeekdays }
+            if let trackingMode = data.trackingMode { habit.trackingMode = trackingMode }
+            if let counterTarget = data.counterTarget { habit.counterTarget = max(1, counterTarget) }
+            if let counterUnit = data.counterUnit { habit.counterUnit = counterUnit }
             if let isRoutineOnly = data.isRoutineOnly { habit.isRoutineOnly = isRoutineOnly }
             if let isGenericFocus = data.isGenericFocus { habit.isGenericFocus = isGenericFocus }
             if let challengeJokers = data.challengeJokers { habit.challengeJokers = challengeJokers }

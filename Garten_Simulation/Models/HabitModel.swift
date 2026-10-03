@@ -433,6 +433,29 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var sliderProgress: Double = 0.0
     @Published var intradayProgressHistory: [DailyProgressEntry] = []
     
+    // MARK: Tracking-Konfiguration
+    /// Wochentage, an denen die Gewohnheit fällig ist (1=Mo … 7=So). Nie leer.
+    @Published var scheduledWeekdays: Set<Int> = Set(1...7)
+    @Published var trackingMode: HabitTrackingMode = .slider
+    @Published var counterTarget: Int = 10
+    @Published var counterProgress: Int = 0
+    @Published var counterUnit: String? = nil
+    
+    /// Ist die Gewohnheit an jedem Wochentag fällig?
+    var isScheduledDaily: Bool { scheduledWeekdays.count >= 7 || scheduledWeekdays.isEmpty }
+    
+    /// Ist die Gewohnheit am übergebenen Datum fällig?
+    func isScheduled(on date: Date) -> Bool {
+        guard !isScheduledDaily else { return true }
+        return scheduledWeekdays.contains(HabitModel.weekdayIndex(for: date))
+    }
+    
+    /// Wochentag im App-Format (1=Mo … 7=So).
+    static func weekdayIndex(for date: Date, calendar: Calendar = .current) -> Int {
+        let appleWeekday = calendar.component(.weekday, from: date) // So=1 … Sa=7
+        return appleWeekday == 1 ? 7 : appleWeekday - 1
+    }
+    
     // UI Visibility Toggles
     @Published var showStats: Bool = true
     @Published var showTodos: Bool = true
@@ -586,6 +609,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         Calendar.current.nextDate(after: Date(), matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime)
     }
 
+    /// Der Streak bricht nur, wenn zwischen der letzten Erledigung und heute
+    /// (beide exklusiv) mindestens ein *geplanter* Tag verpasst wurde.
     var streakAbgelaufen: Bool {
         guard let letzte = lastCompletionDate else { return false }
         let calendar = Calendar.current
@@ -593,7 +618,17 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         let letzteDay = calendar.startOfDay(for: letzte)
         
         let daysPassed = calendar.dateComponents([.day], from: letzteDay, to: today).day ?? 0
-        return daysPassed > 1
+        guard daysPassed > 1 else { return false }
+        if isScheduledDaily { return true }
+        
+        // Zwischentage prüfen – nach 7 Tagen wurde jeder Wochentag einmal abgedeckt.
+        let gapDays = min(daysPassed - 1, 7)
+        for offset in 1...gapDays {
+            if let day = calendar.date(byAdding: .day, value: offset, to: letzteDay), isScheduled(on: day) {
+                return true
+            }
+        }
+        return false
     }
 
 
@@ -638,8 +673,25 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         guard let naechsteMitternacht = calendar.nextDate(after: reference, matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime) else {
             return 0
         }
-        let diff = Date().timeIntervalSince(naechsteMitternacht) / 3600.0
-        return max(0, diff)
+        let now = Date()
+        guard now > naechsteMitternacht else { return 0 }
+        if isScheduledDaily {
+            return now.timeIntervalSince(naechsteMitternacht) / 3600.0
+        }
+        
+        // Nur Stunden an geplanten Tagen zählen – sonst verwelkt z. B. eine
+        // 1×/Woche-Gewohnheit, obwohl der Nutzer nichts verpasst hat.
+        let maxHours: Double = 168.0
+        var total: Double = 0
+        var dayStart = naechsteMitternacht
+        while dayStart < now, total < maxHours {
+            guard let nextDay = calendar.date(byAdding: .day, value: 1, to: dayStart) else { break }
+            if isScheduled(on: dayStart) {
+                total += min(now, nextDay).timeIntervalSince(dayStart) / 3600.0
+            }
+            dayStart = nextDay
+        }
+        return total
     }
 
     var remainingHoursInCycle: Int {
@@ -774,6 +826,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case todos
         case priority
         case sliderProgress, intradayProgressHistory
+        case scheduledWeekdays, trackingMode, counterTarget, counterProgress, counterUnit
         case showStats, showTodos, showNotes, showTimer, showGoals, showWeight, showMeasurements
         case manualWeightEntries, bodyMeasurements
         case targetWeight, targetWeightDate
@@ -886,6 +939,12 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         journalEntries = try container.decodeIfPresent([GratitudeJournalEntry].self, forKey: .journalEntries) ?? []
         sliderProgress = try container.decodeIfPresent(Double.self, forKey: .sliderProgress) ?? 0.0
         intradayProgressHistory = try container.decodeIfPresent([DailyProgressEntry].self, forKey: .intradayProgressHistory) ?? []
+        let decodedWeekdays = try container.decodeIfPresent(Set<Int>.self, forKey: .scheduledWeekdays) ?? Set(1...7)
+        scheduledWeekdays = decodedWeekdays.isEmpty ? Set(1...7) : decodedWeekdays
+        trackingMode = try container.decodeIfPresent(HabitTrackingMode.self, forKey: .trackingMode) ?? .slider
+        counterTarget = max(1, try container.decodeIfPresent(Int.self, forKey: .counterTarget) ?? 10)
+        counterProgress = try container.decodeIfPresent(Int.self, forKey: .counterProgress) ?? 0
+        counterUnit = try container.decodeIfPresent(String.self, forKey: .counterUnit)
         showStats = try container.decodeIfPresent(Bool.self, forKey: .showStats) ?? true
         showTodos = try container.decodeIfPresent(Bool.self, forKey: .showTodos) ?? true
         showNotes = try container.decodeIfPresent(Bool.self, forKey: .showNotes) ?? true
@@ -961,6 +1020,11 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(todos, forKey: .todos)
         try container.encode(sliderProgress, forKey: .sliderProgress)
         try container.encode(intradayProgressHistory, forKey: .intradayProgressHistory)
+        try container.encode(scheduledWeekdays, forKey: .scheduledWeekdays)
+        try container.encode(trackingMode, forKey: .trackingMode)
+        try container.encode(counterTarget, forKey: .counterTarget)
+        try container.encode(counterProgress, forKey: .counterProgress)
+        try container.encodeIfPresent(counterUnit, forKey: .counterUnit)
         try container.encode(showStats, forKey: .showStats)
         try container.encode(showTodos, forKey: .showTodos)
         try container.encode(showNotes, forKey: .showNotes)

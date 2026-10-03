@@ -76,8 +76,9 @@ struct GartenView: View {
     @StateObject private var dailyFeedbackVM = DailyFeedbackViewModel()
     
 
-    var wateredCount: Int { gardenStore.sichtbarePflanzen.filter { $0.isCompleted }.count }
-    var totalPlants: Int { gardenStore.sichtbarePflanzen.count }
+    var wateredCount: Int { gardenStore.faelligePflanzen().filter { $0.isCompleted }.count }
+    var totalPlants: Int { gardenStore.faelligePflanzen().count }
+    @State private var zeigeFreieGewohnheiten = false
     var wateringProgress: Double {
         guard totalPlants > 0 else { return 0 }
         return Double(wateredCount) / Double(totalPlants)
@@ -547,6 +548,9 @@ struct GartenView: View {
     
     @ViewBuilder
     private func pflanzenGridSection(for dayOffset: Int) -> some View {
+        let pageDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: Date()) ?? Date()
+        let faellig = gardenStore.faelligePflanzen(on: pageDate)
+        let frei = gardenStore.nichtFaelligePflanzen(on: pageDate)
         ZStack {
             RoundedRectangle(cornerRadius: 40, style: .continuous)
                 .fill(
@@ -557,8 +561,12 @@ struct GartenView: View {
                     )
                 )
             LazyVStack(spacing: 16) {
-                ForEach(gardenStore.sichtbarePflanzen) { pflanze in
-                    pflanzenCardRow(pflanze: pflanze, pageOffset: dayOffset)
+                ForEach(faellig) { pflanze in
+                    pflanzenCardRow(pflanze: pflanze, pageOffset: dayOffset, isFirst: pflanze.id == faellig.first?.id)
+                }
+                
+                if !frei.isEmpty {
+                    freieGewohnheitenSection(frei, pageOffset: dayOffset)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -571,9 +579,39 @@ struct GartenView: View {
         powerUpsSection
     }
     
+    /// Einklappbare Sektion für Gewohnheiten, die laut Wochentags-Plan heute frei haben.
     @ViewBuilder
-    private func pflanzenCardRow(pflanze: HabitModel, pageOffset: Int) -> some View {
-        let isFirst = pflanze.id == gardenStore.sichtbarePflanzen.first?.id
+    private func freieGewohnheitenSection(_ frei: [HabitModel], pageOffset: Int) -> some View {
+        VStack(spacing: 12) {
+            Button {
+                withAnimation(.snappy) { zeigeFreieGewohnheiten.toggle() }
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "moon.zzz.fill")
+                    Text(String(localized: "garden.rest_day.section", defaultValue: "Heute frei (\(frei.count))"))
+                    Spacer()
+                    Image(systemName: "chevron.down")
+                        .rotationEffect(.degrees(zeigeFreieGewohnheiten ? 180 : 0))
+                }
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            
+            if zeigeFreieGewohnheiten {
+                ForEach(frei) { pflanze in
+                    pflanzenCardRow(pflanze: pflanze, pageOffset: pageOffset, isFirst: false)
+                        .opacity(0.6)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func pflanzenCardRow(pflanze: HabitModel, pageOffset: Int, isFirst: Bool) -> some View {
         let pageDate = Calendar.current.date(byAdding: .day, value: pageOffset, to: Date()) ?? Date()
         PflanzenCard(
                                 pflanze: pflanze,

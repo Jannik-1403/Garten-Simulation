@@ -34,6 +34,16 @@ class GardenStore: ObservableObject {
         return visible.filter { !$0.isCompleted } + visible.filter { $0.isCompleted }
     }
     
+    /// Gewohnheiten, die am Datum laut Wochentags-Plan fällig sind (bereits erledigte immer inklusive).
+    func faelligePflanzen(on date: Date = Date()) -> [HabitModel] {
+        sichtbarePflanzen.filter { $0.isScheduled(on: date) || $0.wasCompleted(on: date) }
+    }
+    
+    /// Gewohnheiten, die am Datum planmäßig frei haben.
+    func nichtFaelligePflanzen(on date: Date = Date()) -> [HabitModel] {
+        sichtbarePflanzen.filter { !$0.isScheduled(on: date) && !$0.wasCompleted(on: date) }
+    }
+    
     @Published var coins: Int = GameConstants.startCoins
     @Published var gesamtXP: Int = 0
     @Published var gesamtGekaufteItemsCount: Int = 0
@@ -289,6 +299,9 @@ class GardenStore: ObservableObject {
             if pflanze.customTrackerProgress < target {
                 pflanze.customTrackerProgress = target
             }
+        }
+        if pflanze.trackingMode == .counter, pflanze.counterProgress < pflanze.counterTarget {
+            pflanze.counterProgress = pflanze.counterTarget
         }
         
         if pflanze.isRoutineOnly {
@@ -755,6 +768,7 @@ class GardenStore: ObservableObject {
                     pflanze.customTrackerProgress = 0
                 }
                 pflanze.sliderProgress = 0.0
+                pflanze.counterProgress = 0
                 pflanze.intradayProgressHistory.removeAll()
             }
         }
@@ -780,6 +794,31 @@ class GardenStore: ObservableObject {
         
         objectWillChange.send() // UI-Update erzwingen
         savePlants()
+    }
+
+    // MARK: Zähler-Tracking
+    /// Setzt den Tageszähler (z. B. Liegestütze) und synchronisiert Slider-Fortschritt,
+    /// Intraday-Verlauf und Abschluss. Gibt `true` zurück, wenn das Ziel erreicht wurde.
+    @discardableResult
+    func setCounterProgress(pflanze: HabitModel, to value: Int) -> Bool {
+        guard !pflanze.wasCompleted(on: Date()) else { return false }
+        let target = max(1, pflanze.counterTarget)
+        let clamped = min(max(0, value), target)
+        pflanze.counterProgress = clamped
+
+        let progress = Double(clamped) / Double(target)
+        pflanze.sliderProgress = progress
+        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+        if progress > 0 {
+            pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: progress))
+        }
+
+        if clamped >= target {
+            completeHabit(pflanze: pflanze, on: Date())
+            return true
+        }
+        savePlants()
+        return false
     }
 
     var isDailySpinAvailable: Bool {
@@ -1392,8 +1431,8 @@ class GardenStore: ObservableObject {
         )
         
         // Tagesscore für das Lock Screen Widget im Hintergrund neu berechnen
-        // Gleiche Habit-Menge wie die Score-Karte in der App (sichtbarePflanzen), sonst weicht der Wert ab.
-        DailyFeedbackViewModel.calculateAndSaveWidgetScore(activeHabits: sichtbarePflanzen)
+        // Gleiche Habit-Menge wie die Score-Karte in der App (heute fällige Pflanzen), sonst weicht der Wert ab.
+        DailyFeedbackViewModel.calculateAndSaveWidgetScore(activeHabits: faelligePflanzen())
     }
 
     private func loadStandaloneTodos() {

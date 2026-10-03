@@ -10,12 +10,12 @@ struct DailyHealthScoreCardWrapper: View {
     var body: some View {
         DailyHealthScoreCard(vm: vm)
             .onAppear {
-                vm.activeHabits = gardenStore.sichtbarePflanzen
                 vm.targetDate = date
+                vm.activeHabits = gardenStore.faelligePflanzen(on: date)
                 vm.reevaluate()
             }
             .onChange(of: gardenStore.sichtbarePflanzen.count) { _ in
-                vm.activeHabits = gardenStore.sichtbarePflanzen
+                vm.activeHabits = gardenStore.faelligePflanzen(on: date)
                 vm.reevaluate()
             }
     }
@@ -73,12 +73,12 @@ struct DailyHealthScoreCard: View {
         }
 
         .onAppear {
-            vm.activeHabits = gardenStore.sichtbarePflanzen
+            vm.activeHabits = gardenStore.faelligePflanzen(on: vm.targetDate)
             vm.reevaluate()
         }
         .onReceive(gardenStore.objectWillChange) { _ in
             DispatchQueue.main.async {
-                vm.activeHabits = gardenStore.sichtbarePflanzen
+                vm.activeHabits = gardenStore.faelligePflanzen(on: vm.targetDate)
                 vm.reevaluate()
             }
         }

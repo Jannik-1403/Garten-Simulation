@@ -61,6 +61,8 @@ struct PflanzeDetailSheet: View {
     @State private var isEditingScreenTime = false
     @State private var tempSliderProgress: Double = 0.0
     @State private var showCompleteConfirmAlert = false
+    @State private var zeigeTrackingSettings = false
+    @State private var pendingCounterValue: Int? = nil
     
     @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
     
@@ -731,29 +733,60 @@ struct PflanzeDetailSheet: View {
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 4)
                                         
-                                        // Manual Slider
-                                        VStack(alignment: .leading, spacing: 8) {
-                                            Text(String(localized: "habit.manual_progress", defaultValue: "Dein Fortschritt"))
-                                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                                .foregroundStyle(.secondary)
-                                            
+                                        // Manueller Fortschritt (Slider oder Zähler)
+                                        VStack(alignment: .leading, spacing: 12) {
                                             HStack {
-                                                Slider(value: $tempSliderProgress, in: 0...1, step: 0.01) { editing in
-                                                    if !editing {
-                                                        if tempSliderProgress >= 1.0 {
-                                                            showCompleteConfirmAlert = true
-                                                        } else {
-                                                            updateManualProgress()
+                                                Text(String(localized: "habit.manual_progress", defaultValue: "Dein Fortschritt"))
+                                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                    .foregroundStyle(.secondary)
+                                                Spacer()
+                                                Button {
+                                                    zeigeTrackingSettings = true
+                                                } label: {
+                                                    Image(systemName: "gearshape.fill")
+                                                        .font(.system(size: 16, weight: .bold))
+                                                        .foregroundStyle(.secondary)
+                                                        .frame(width: 32, height: 32)
+                                                        .contentShape(Rectangle())
+                                                }
+                                                .buttonStyle(.plain)
+                                                .accessibilityLabel(String(localized: "tracking.settings.title", defaultValue: "Tracking-Einstellungen"))
+                                            }
+                                            
+                                            if pflanze.trackingMode == .counter {
+                                                HabitCounterControl(
+                                                    value: pflanze.wasCompleted(on: Date()) ? pflanze.counterTarget : pflanze.counterProgress,
+                                                    target: pflanze.counterTarget,
+                                                    unit: pflanze.counterUnit,
+                                                    isDisabled: pflanze.wasCompleted(on: Date())
+                                                ) { newValue in
+                                                    handleCounterChange(newValue)
+                                                }
+                                            } else {
+                                                HStack {
+                                                    Slider(value: $tempSliderProgress, in: 0...1, step: 0.01) { editing in
+                                                        if !editing {
+                                                            if tempSliderProgress >= 1.0 {
+                                                                showCompleteConfirmAlert = true
+                                                            } else {
+                                                                updateManualProgress()
+                                                            }
                                                         }
                                                     }
+                                                    .tint(Color.orangePrimary)
+                                                    .disabled(pflanze.wasCompleted(on: Date()))
+                                                    
+                                                    Text("\(Int(tempSliderProgress * 100))%")
+                                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                        .foregroundStyle(Color.orangePrimary)
+                                                        .frame(width: 45, alignment: .trailing)
                                                 }
-                                                .tint(Color.orangePrimary)
-                                                .disabled(pflanze.wasCompleted(on: Date()))
-                                                
-                                                Text("\(Int(tempSliderProgress * 100))%")
-                                                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                                                    .foregroundStyle(Color.orangePrimary)
-                                                    .frame(width: 45, alignment: .trailing)
+                                            }
+                                            
+                                            if !pflanze.isScheduledDaily {
+                                                Label(scheduledDaysSummary, systemImage: "calendar")
+                                                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                                                    .foregroundStyle(.secondary)
                                             }
                                         }
                                         .padding(20)
@@ -764,13 +797,26 @@ struct PflanzeDetailSheet: View {
                                         ))
                                         .padding(.horizontal, 16)
                                         .padding(.bottom, 8)
+                                        .sheet(isPresented: $zeigeTrackingSettings) {
+                                            HabitTrackingSettingsSheet(pflanze: pflanze)
+                                                .environmentObject(gardenStore)
+                                                .presentationDetents([.medium, .large])
+                                                .presentationDragIndicator(.visible)
+                                        }
                                         .alert(String(localized: "habit.complete_confirm.title", defaultValue: "Bist du dir sicher?"), isPresented: $showCompleteConfirmAlert) {
                                             Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
                                                 tempSliderProgress = pflanze.sliderProgress
+                                                pendingCounterValue = nil
                                             }
                                             Button(String(localized: "common.confirm", defaultValue: "Bestätigen")) {
-                                                tempSliderProgress = 1.0
-                                                updateManualProgress()
+                                                if let value = pendingCounterValue {
+                                                    pendingCounterValue = nil
+                                                    gardenStore.setCounterProgress(pflanze: pflanze, to: value)
+                                                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                                } else {
+                                                    tempSliderProgress = 1.0
+                                                    updateManualProgress()
+                                                }
                                             }
                                         } message: {
                                             Text(String(localized: "habit.complete_confirm.message", defaultValue: "Sobald du 100% erreichst, kann der Fortschritt für heute nicht mehr geändert werden."))
@@ -834,6 +880,23 @@ struct PflanzeDetailSheet: View {
                         .tourAnchor(.plantHealth)
                         .id(TourStep.plantHealth)
                     }
+
+    private func handleCounterChange(_ newValue: Int) {
+        if newValue >= pflanze.counterTarget {
+            pendingCounterValue = pflanze.counterTarget
+            showCompleteConfirmAlert = true
+        } else {
+            gardenStore.setCounterProgress(pflanze: pflanze, to: newValue)
+        }
+    }
+    
+    /// z. B. "Mo, Mi, Fr" – lokalisierte Kurzformen, Montag zuerst.
+    private var scheduledDaysSummary: String {
+        let symbols = Calendar.current.shortStandaloneWeekdaySymbols
+        return pflanze.scheduledWeekdays.sorted()
+            .map { symbols[$0 == 7 ? 0 : $0] }
+            .formatted(.list(type: .and, width: .narrow))
+    }
 
     private func updateManualProgress() {
         let finalProgress = tempSliderProgress
