@@ -1380,3 +1380,6 @@
 - "Kurze Beispiele" für die Auswirkung der Fälligkeitstage und der Tracking-Ziele in den Tracking-Einstellungen hinzugefügt.
 - UI-Vorschauen in den Modus-Karten der Tracking-Einstellungen entfernt und Aktiv-Zustand dezent (nur eingedrückt statt orange) gestaltet.
 - Alle verbleibenden Texte der Tracking-Einstellungen zu 100% in 16 Sprachen übersetzt.
+- Fehlerhafter weißer Hintergrund beim Drücken der Tracking-Modus-Karten behoben.
+- Tracking-Einstellungen-Button (Zahnrad) zu einem `Item3DButton` umgebaut und oben rechts in die Ecke des Tracking-Containers verschoben.
+- Lokalisierung der Tracking-Beispieltexte korrigiert (Verwendung von `%@` Format-Strings statt SwiftUI-Interpolation), sodass diese nun in allen Sprachen korrekt übersetzt angezeigt werden.

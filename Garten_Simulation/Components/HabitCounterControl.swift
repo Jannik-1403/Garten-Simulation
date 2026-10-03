@@ -18,7 +18,6 @@ struct HabitCounterControl: View {
         VStack(spacing: 14) {
             HStack(spacing: 16) {
                 counterButton(systemImage: "minus", delta: -1)
-                    .disabled(isDisabled || value <= 0)
 
                 VStack(spacing: 2) {
                     Text(verbatim: "\(value) / \(target)")
@@ -36,7 +35,6 @@ struct HabitCounterControl: View {
                 .frame(maxWidth: .infinity)
 
                 counterButton(systemImage: "plus", delta: 1)
-                    .disabled(isDisabled || value >= target)
             }
 
             HStack(spacing: 10) {
@@ -54,18 +52,18 @@ struct HabitCounterControl: View {
     }
 
     private func counterButton(systemImage: String, delta: Int) -> some View {
-        Button {
+        let isBtnDisabled = isDisabled || (delta < 0 ? value <= 0 : value >= target)
+        return Item3DButton(
+            icon: systemImage,
+            farbe: .orangePrimary,
+            sekundaerFarbe: Color.orangePrimary.darker(),
+            groesse: 52,
+            iconSkalierung: 0.45,
+            isDisabled: isBtnDisabled
+        ) {
             onChange(value + delta)
-        } label: {
-            Image(systemName: systemImage)
-                .font(.system(size: 20, weight: .black))
-                .frame(width: 52, height: 52)
-                .foregroundStyle(.white)
-                .background(Circle().fill(Color.orangePrimary))
         }
-        .buttonStyle(.plain)
         .buttonRepeatBehavior(.enabled)
-        .opacity(isDisabled ? 0.4 : 1)
     }
 }
 

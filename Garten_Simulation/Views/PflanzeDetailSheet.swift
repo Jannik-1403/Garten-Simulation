@@ -791,7 +791,8 @@ struct PflanzeDetailSheet: View {
                                                 sekundaerFarbe: Color(UIColor.systemGray4),
                                                 groesse: 36,
                                                 iconSkalierung: 0.5,
-                                                isRectangular: true
+                                                isRectangular: false,
+                                                iconColor: .black
                                             ) {
                                                 zeigeTrackingSettings = true
                                             }

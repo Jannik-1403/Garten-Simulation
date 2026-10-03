@@ -10,6 +10,7 @@ struct Item3DButton: View {
     var isPermanentlyPressed: Bool = false
     var shadowDepthFactor: CGFloat = 0.08
     var isDisabled: Bool = false // NEU: Deaktivierter Zustand in Graustufen
+    var iconColor: Color = .white // NEU: Anpassbare Icon-Farbe
     var aktion: (() -> Void)? = nil
     
     @State private var manualPress = false
@@ -18,7 +19,7 @@ struct Item3DButton: View {
     // New: Support for custom views
     private var customLabel: AnyView? = nil
 
-    init(icon: String, farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, isDisabled: Bool = false, aktion: (() -> Void)? = nil) {
+    init(icon: String, farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, isDisabled: Bool = false, iconColor: Color = .white, aktion: (() -> Void)? = nil) {
         self.icon = icon
         self.farbe = farbe
         self.sekundaerFarbe = sekundaerFarbe
@@ -27,6 +28,7 @@ struct Item3DButton: View {
         self.isRectangular = isRectangular
         self.isPermanentlyPressed = isPermanentlyPressed
         self.isDisabled = isDisabled
+        self.iconColor = iconColor
         self.aktion = aktion
     }
 
@@ -92,11 +94,11 @@ struct Item3DButton: View {
                 Image(systemName: icon)
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(isDisabled ? Color.white : .white)
+                    .foregroundStyle(isDisabled ? iconColor.opacity(0.6) : iconColor)
             } else {
                 Text(icon)
                     .font(.system(size: groesse * 0.45))
-                    .foregroundStyle(isDisabled ? Color.white : .white)
+                    .foregroundStyle(isDisabled ? iconColor.opacity(0.6) : iconColor)
             }
         }
     }
