@@ -1,3 +1,6 @@
+### 2026-10-03 (Hotfix)
+- Fehler in der UI behoben: `CleaningDashboardView` wird nun korrekt in der `PflanzeDetailSheet` für die Aufräum-Gewohnheit angezeigt.
+
 ### 2026-10-03
 - Aufräum-Gewohnheit (Cleaning Habit) re-implementiert:
   - `CleaningTaskEditorSheet` und `CleaningTaskRowView` erstellt.
