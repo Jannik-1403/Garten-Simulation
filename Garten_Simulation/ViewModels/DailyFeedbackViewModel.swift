@@ -23,6 +23,7 @@ class DailyFeedbackViewModel: ObservableObject {
     init() {
         let hm = HealthManager.shared
         let wgm = WaterGoalManager.shared
+        let cm = CleaningManager.shared
         Publishers.MergeMany(
             hm.$todaysWater.map { _ in () }.eraseToAnyPublisher(),
             hm.$waterHistory7Days.map { _ in () }.eraseToAnyPublisher(),
@@ -32,7 +33,9 @@ class DailyFeedbackViewModel: ObservableObject {
             hm.$todaysEnergy.map { _ in () }.eraseToAnyPublisher(),
             hm.$todaysProtein.map { _ in () }.eraseToAnyPublisher(),
             hm.$todaysFiber.map { _ in () }.eraseToAnyPublisher(),
-            wgm.$currentGoal.map { _ in () }.eraseToAnyPublisher()
+            wgm.$currentGoal.map { _ in () }.eraseToAnyPublisher(),
+            cm.$tasks.map { _ in () }.eraseToAnyPublisher(),
+            cm.$logs.map { _ in () }.eraseToAnyPublisher()
         )
         .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
         .sink { [weak self] in self?.reevaluate() }

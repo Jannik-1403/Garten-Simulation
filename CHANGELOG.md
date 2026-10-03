@@ -1383,3 +1383,6 @@
 - Fehlerhafter weißer Hintergrund beim Drücken der Tracking-Modus-Karten behoben.
 - Tracking-Einstellungen-Button (Zahnrad) zu einem `Item3DButton` umgebaut und oben rechts in die Ecke des Tracking-Containers verschoben.
 - Lokalisierung der Tracking-Beispieltexte korrigiert (Verwendung von `%@` Format-Strings statt SwiftUI-Interpolation), sodass diese nun in allen Sprachen korrekt übersetzt angezeigt werden.
+- Plus- und Minus-Buttons im Zähler-Tracker auf das `Item3DButton`-Design umgestellt (sowohl im Modal als auch in der Hauptansicht).
+- Den Tracking-Einstellungen-Button (Zahnrad) zu einem runden 3D-Button mit grauem Hintergrund und schwarzem Icon gemacht.
+- Alle unübersetzten englischen Texte für die Tracking-Beispiele in allen 16 Sprachen über den String-Katalog final lokalisiert.

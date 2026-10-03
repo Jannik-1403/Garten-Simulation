@@ -441,11 +441,23 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var counterProgress: Int = 0
     @Published var counterUnit: String? = nil
     
+    /// Aufräumen-Gewohnheit mit eigenen Aufgaben: Fälligkeit kommt aus dem Aufgaben-Plan.
+    static let cleaningHabitName = "habit.aufraeumen"
+    var usesCleaningSchedule: Bool {
+        habitName == HabitModel.cleaningHabitName && CleaningManager.shared.hasTasks
+    }
+    
     /// Ist die Gewohnheit an jedem Wochentag fällig?
-    var isScheduledDaily: Bool { scheduledWeekdays.count >= 7 || scheduledWeekdays.isEmpty }
+    var isScheduledDaily: Bool {
+        guard !usesCleaningSchedule else { return false }
+        return scheduledWeekdays.count >= 7 || scheduledWeekdays.isEmpty
+    }
     
     /// Ist die Gewohnheit am übergebenen Datum fällig?
     func isScheduled(on date: Date) -> Bool {
+        if usesCleaningSchedule {
+            return CleaningManager.shared.hasTasksDue(on: date)
+        }
         guard !isScheduledDaily else { return true }
         return scheduledWeekdays.contains(HabitModel.weekdayIndex(for: date))
     }
@@ -622,7 +634,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         if isScheduledDaily { return true }
         
         // Zwischentage prüfen – nach 7 Tagen wurde jeder Wochentag einmal abgedeckt.
-        let gapDays = min(daysPassed - 1, 7)
+        // Aufräum-Aufgaben können auch alle 2–4 Wochen fällig sein → längeres Fenster.
+        let gapDays = min(daysPassed - 1, usesCleaningSchedule ? 31 : 7)
         for offset in 1...gapDays {
             if let day = calendar.date(byAdding: .day, value: offset, to: letzteDay), isScheduled(on: day) {
                 return true

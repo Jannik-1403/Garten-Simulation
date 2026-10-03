@@ -120,6 +120,16 @@ extension DailyFeedbackViewModel {
 
         let energyGoal = energyPlant?.effectiveHealthTarget ?? UserDefaults.standard.double(forKey: "goal_energy")
 
+        // Aufräumen: nur wenn die Aufräum-Pflanze im Garten ist
+        var cleaningDueTaskNames: [String] = []
+        var cleaningOpenTaskNames: [String] = []
+        if activeHabits.contains(where: { $0.usesCleaningSchedule }) {
+            let cm = CleaningManager.shared
+            let due = cm.tasksDue(on: targetDate)
+            cleaningDueTaskNames = due.map(\.name)
+            cleaningOpenTaskNames = due.filter { !cm.isCompleted($0, on: targetDate) }.map(\.name)
+        }
+
         let hasSetGoals = UserDefaults.standard.bool(forKey: "has_set_nutrition_goals")
         let isGoalValid = hm.weightGoalType != 0 && hm.weightGoalTargetKg > 0 && hm.weightGoalDateInterval > 0
         let showNutrition = hasSetGoals && isGoalValid
@@ -170,6 +180,8 @@ extension DailyFeedbackViewModel {
             hasGratitudePlant: hasGratitudePlant,
             gratitudeTodayDone: gratitudeTodayDone,
             gratitudeYesterdayEntry: gratitudeYesterdayEntry,
+            cleaningDueTaskNames: cleaningDueTaskNames,
+            cleaningOpenTaskNames: cleaningOpenTaskNames,
 
             waterToday: effectiveWater,
             waterGoal: wgm.currentGoal,

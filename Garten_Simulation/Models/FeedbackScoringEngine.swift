@@ -9,6 +9,7 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
     case running
     case nutrition
     case gratitude
+    case cleaning
 
     var id: String { rawValue }
 
@@ -20,6 +21,7 @@ enum FitnessCategory: String, CaseIterable, Identifiable {
         case .running:   return "figure.run"
         case .nutrition: return "fork.knife"
         case .gratitude: return "book.fill"
+        case .cleaning:  return "sparkles"
         }
     }
 }
@@ -85,6 +87,10 @@ struct FeedbackScoringEngine {
         var hasGratitudePlant: Bool
         var gratitudeTodayDone: Bool
         var gratitudeYesterdayEntry: GratitudeJournalEntry?
+        /// Namen der am Tag fälligen Aufräum-Aufgaben (leer = nichts fällig / keine Aufräum-Pflanze)
+        var cleaningDueTaskNames: [String] = []
+        /// Namen der davon noch offenen Aufgaben
+        var cleaningOpenTaskNames: [String] = []
         var waterToday: Double
         var waterGoal: Double
         var waterHistory7Days: [Date: Double]
@@ -396,6 +402,28 @@ struct FeedbackScoringEngine {
             results.append(CategoryFeedback(category: .gratitude, status: gratStatus, summaryText: gratSummary, detailText: gratDetail, progress: input.gratitudeTodayDone ? 1.0 : 0.0, goal: 1.0))
         }
 
+        // MARK: Aufräumen (nur an Tagen mit fälligen Aufgaben)
+        if !input.cleaningDueTaskNames.isEmpty {
+            let total = input.cleaningDueTaskNames.count
+            let open = input.cleaningOpenTaskNames.count
+            let done = total - open
+
+            let cleaningStatus: CategoryStatus = open == 0 ? .good : (done > 0 ? .warning : .critical)
+            let cleaningSummary = open == 0
+                ? String(localized: "fitness.cleaning.summary.good", defaultValue: "Sauber ✓")
+                : String(format: String(localized: "fitness.cleaning.summary.progress", defaultValue: "%1$@ / %2$@ erledigt"), "\(done)", "\(total)")
+
+            let cleaningDetail: String
+            if open == 0 {
+                cleaningDetail = String(localized: "fitness.cleaning.detail.good", defaultValue: "Toll, du hast heute schon alle fälligen Aufgaben erledigt!")
+            } else {
+                let list = ListFormatter.localizedString(byJoining: input.cleaningOpenTaskNames)
+                cleaningDetail = String(format: String(localized: "fitness.cleaning.detail.todo", defaultValue: "Heute musst du noch aufräumen: %@"), list)
+            }
+
+            results.append(CategoryFeedback(category: .cleaning, status: cleaningStatus, summaryText: cleaningSummary, detailText: cleaningDetail, progress: Double(done), goal: Double(total)))
+        }
+
 
 
         return results
@@ -422,6 +450,7 @@ struct FeedbackScoringEngine {
         case .running:   return String(localized: "fitness.category.running",   defaultValue: "Laufen")
         case .nutrition: return String(localized: "fitness.category.nutrition", defaultValue: "Ernährung")
         case .gratitude: return String(localized: "fitness.category.gratitude", defaultValue: "Dankbarkeits-Check")
+        case .cleaning:  return String(localized: "fitness.category.cleaning",  defaultValue: "Aufräumen")
         }
     }
 }
