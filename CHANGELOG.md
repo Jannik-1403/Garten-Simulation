@@ -1403,3 +1403,9 @@
 - Fixed all missing localizations across all 16 languages for the cleaning habit texts, so there are no longer hardcoded German strings.
 - Added `defaultValue` to missing buttons like the Cancel button.
 - Refactored `CleaningTaskRowView` to use the `Item3DContainer` style, giving the task list the requested 'white 3D button' look with a deep shadow.
+
+## Cleaning UI Refinements 2
+- Removed the `statsCard` entirely from the Cleaning Dashboard as requested.
+- Changed the color of 'Heute fällig' and 'Demnächst' to a neutral primary color instead of blue.
+- Changed the tint color of the `CleaningTaskEditorSheet` to primary to remove the blue 'Bearbeiten'/'Speichern' buttons.
+- Added missing translations for all hardcoded German texts in the task editor sheet across all 16 languages.
