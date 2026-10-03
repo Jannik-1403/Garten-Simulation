@@ -1359,3 +1359,5 @@
 - Fix: GardenStore Compiler-Fehler (isVisible/isArchived) durch korrekte Array-Übergabe behoben.
 - Aufräumen-Feature inkl. aller UI-Komponenten und Datenmodelle restlos entfernt.
 - Unnötige Python-Scripte und Logs gelöscht.
+
+- Fix: Fortschrittsbalken (Slider-Progress) und Intraday-History werden nun bei einem neuen Tag korrekt zurückgesetzt.
