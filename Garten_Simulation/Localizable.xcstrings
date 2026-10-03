@@ -1610,6 +1610,16 @@
         }
       }
     },
+    "%lld/%lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld/%2$lld"
+          }
+        }
+      }
+    },
     "%lld/100": {
       "localizations": {
         "de": {
@@ -104512,13 +104522,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Entfernen"
+            "value": "Löschen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Remove"
+            "value": "Delete"
           }
         },
         "es": {
@@ -104536,25 +104546,25 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "निकालना"
+            "value": "हटाएं"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rimuovi"
+            "value": "Elimina"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "取り除く"
+            "value": "削除"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "제거하다"
+            "value": "삭제"
           }
         },
         "nl": {
@@ -104566,19 +104576,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usunąć"
+            "value": "Usuń"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Remover"
+            "value": "Excluir"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Remover"
+            "value": "Excluir"
           }
         },
         "ru": {
@@ -104590,19 +104600,19 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kaldırmak"
+            "value": "Sil"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "移除"
+            "value": "删除"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "消除"
+            "value": "刪除"
           }
         }
       }
@@ -104740,7 +104750,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "संपादन करना"
+            "value": "संपादित करें"
           }
         },
         "it": {
@@ -104758,19 +104768,19 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "편집하다"
+            "value": "편집"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bewerking"
+            "value": "Bewerken"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Redagować"
+            "value": "Edytuj"
           }
         },
         "pt": {
@@ -104794,7 +104804,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Düzenlemek"
+            "value": "Düzenle"
           }
         },
         "zh-Hans": {
@@ -114155,7 +114165,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nuova attività"
+            "value": "Nuovo compito"
           }
         },
         "ja": {
@@ -115230,6 +115240,208 @@
         }
       }
     },
+    "cleaning.delete.action": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löschen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हटाएं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "削除"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "삭제"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwijderen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuń"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sil"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除"
+          }
+        }
+      }
+    },
+    "cleaning.delete.confirm": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgabe löschen?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete task?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar tarea?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer la tâche ?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कार्य हटाएं?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminare compito?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タスクを削除しますか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "작업을 삭제하시겠습니까?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taak verwijderen?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usunąć zadanie?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir tarefa?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir tarefa?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить задачу?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görevi sil?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除任务？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除任務？"
+          }
+        }
+      }
+    },
     "cleaning.delete.message": {
       "extractionState": "manual",
       "localizations": {
@@ -115533,6 +115745,118 @@
         }
       }
     },
+    "cleaning.edit.title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Aufgabe bearbeiten"
+          }
+        }
+      }
+    },
+    "cleaning.empty.explanation": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lege Aufgaben wie „Bett abziehen“ mit eigenem Rhythmus an. Die Gewohnheit ist dann nur an Tagen fällig, an denen etwas ansteht."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create tasks like 'Make bed' with your own rhythm. The habit is then only due on days when something is scheduled."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea tareas como 'Hacer la cama' con tu propio ritmo. El hábito solo se deberá realizar los días en que haya algo programado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créez des tâches comme 'Faire le lit' avec votre propre rythme. L'habitude n'est due que les jours où quelque chose est prévu."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने लय के साथ 'बिस्तर बनाएं' जैसे कार्य बनाएं। यह आदत केवल उन दिनों में देय होती है जब कुछ निर्धारित होता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea compiti come 'Rifare il letto' con il tuo ritmo. L'abitudine è prevista solo nei giorni in cui c'è qualcosa in programma."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「ベッドメイキング」のようなタスクを自分自身のリズムで作成します。習慣は、予定がある日にのみ期限になります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "'침대 정리'와 같은 작업을 자신만의 리듬으로 만드세요. 그런 다음 일정이 있는 날에만 습관 마감일이 됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maak taken zoals 'Bed opmaken' met je eigen ritme. De gewoonte is dan alleen verschuldigd op dagen waarop iets gepland is."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twórz zadania typu 'Pościel łóżko' we własnym rytmie. Nawyk ten jest obowiązkowy tylko w dniach, w których coś jest zaplanowane."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie tarefas como 'Fazer a cama' com o seu próprio ritmo. O hábito só é devido em dias em que algo está programado."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie tarefas como 'Fazer a cama' com o seu próprio ritmo. O hábito só é devido em dias em que algo está programado."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Создавайте задачи вроде 'Заправить кровать' в своем собственном ритме. Привычка будет актуальна только в дни, когда что-то запланировано."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "'Yatağı topla' gibi görevleri kendi ritminizle oluşturun. Alışkanlık yalnızca bir şeyin planlandığı günlerde geçerlidir."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以您自己的节奏创建诸如“铺床”之类的任务。只有在安排了某些事情的日子才需要完成该习惯。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以您自己的節奏建立諸如「鋪床」之類的任務。只有在安排了某些事情的日子才需要完成該習慣。"
+          }
+        }
+      }
+    },
     "cleaning.empty.subtitle": {
       "extractionState": "stale",
       "localizations": {
@@ -115736,7 +116060,6 @@
       }
     },
     "cleaning.empty.title": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -115747,7 +116070,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Tasks"
+            "value": "No tasks"
           }
         },
         "es": {
@@ -115771,7 +116094,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nessuna attività"
+            "value": "Nessun compito"
           }
         },
         "ja": {
@@ -115825,13 +116148,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "无任务"
+            "value": "没有任务"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "無任務"
+            "value": "沒有任務"
           }
         }
       }
@@ -116034,6 +116357,50 @@
           "stringUnit": {
             "state": "translated",
             "value": "歷史記錄"
+          }
+        }
+      }
+    },
+    "cleaning.recurrence.daily": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Täglich"
+          }
+        }
+      }
+    },
+    "cleaning.recurrence.everyNDays": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Alle %@ Tage"
+          }
+        }
+      }
+    },
+    "cleaning.recurrence.everyNWeeks": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Alle %1$@ Wochen: %2$@"
+          }
+        }
+      }
+    },
+    "cleaning.recurrence.weekly": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Jede Woche: %@"
           }
         }
       }
@@ -116846,13 +117213,316 @@
         }
       }
     },
+    "cleaning.stats.streak": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufräum-Tage in Folge"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleaning days in a row"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Días de limpieza seguidos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jours de nettoyage d'affilée"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लगातार सफाई के दिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giorni di pulizia di fila"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連続掃除日数"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연속 청소 일수"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schoonmaakdagen op rij"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kolejne dni sprzątania"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dias de limpeza seguidos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dias de limpeza seguidos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дни уборки подряд"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Art arda temizlik günleri"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连续打扫天数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續打掃天數"
+          }
+        }
+      }
+    },
+    "cleaning.stats.title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistik"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistics"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estadísticas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistiques"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आंकड़े"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistiche"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "統計"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "통계"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistieken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statystyki"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estatísticas"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estatísticas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Статистика"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İstatistikler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "统计"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "統計"
+          }
+        }
+      }
+    },
+    "cleaning.stats.today": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd'hui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzisiaj"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
+        }
+      }
+    },
     "cleaning.stats.total": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gesamt erledigt"
+            "value": "Erledigt insgesamt"
           }
         },
         "en": {
@@ -116876,7 +117546,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कुल पूरा"
+            "value": "कुल पूर्ण"
           }
         },
         "it": {
@@ -116906,7 +117576,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Razem ukończono"
+            "value": "Razem ukończone"
           }
         },
         "pt": {
@@ -116936,13 +117606,316 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "总共完成"
+            "value": "总计完成"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "總共完成"
+            "value": "總計完成"
+          }
+        }
+      }
+    },
+    "cleaning.stats.week": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letzte 7 Tage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 7 days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Últimos 7 días"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les 7 derniers jours"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultimi 7 giorni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去7日間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "최근 7일"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afgelopen 7 dagen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ostatnie 7 dni"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Últimos 7 dias"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Últimos 7 dias"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Последние 7 дней"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son 7 gün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近 7 天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近 7 天"
+          }
+        }
+      }
+    },
+    "cleaning.status.done": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erledigt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hecho"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूर्ण"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完了"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "완료"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gotowe"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feito"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feito"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Готово"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamamlandı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成"
+          }
+        }
+      }
+    },
+    "cleaning.status.due": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute fällig"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Due today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vence hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À faire aujourd'hui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज देय"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da fare oggi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日が期限"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 마감"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag fällig"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do wykonania dzisiaj"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vence hoje"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vence hoje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выполнить сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün tamamlanmalı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天到期"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天到期"
           }
         }
       }
@@ -118761,6 +119734,309 @@
           "stringUnit": {
             "state": "translated",
             "value": "拖地"
+          }
+        }
+      }
+    },
+    "cleaning.today.none": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute steht nichts an – genieß den freien Tag!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing due today - enjoy your day off!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay nada para hoy - ¡disfruta de tu día libre!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien de prévu aujourd'hui - profitez de votre jour de congé !"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज कुछ भी नहीं है - अपनी छुट्टी का आनंद लें!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niente in programma oggi - goditi il tuo giorno libero!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日は予定がありません - 休日をお楽しみください！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘은 일정이 없습니다 - 휴일을 즐기세요!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Er staat niets op de planning voor vandaag - geniet van je vrije dag!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dziś nic nie masz w planach - ciesz się dniem wolnym!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada programado para hoje - aproveite seu dia de folga!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada programado para hoje - aproveite seu dia de folga!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На сегодня ничего не запланировано - наслаждайтесь выходным!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün hiçbir şey planlanmadı - boş gününüzün tadını çıkarın!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天没有任务 - 享受您的休息日！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天沒有任務 - 享受您的休息日！"
+          }
+        }
+      }
+    },
+    "cleaning.today.title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute aufräumen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clean today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpiar hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nettoyer aujourd'hui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज साफ करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulisci oggi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日掃除する"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 청소하기"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag schoonmaken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprzątaj dzisiaj"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpar hoje"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpar hoje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убраться сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün temizle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天打扫"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天打掃"
+          }
+        }
+      }
+    },
+    "cleaning.upcoming.title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demnächst"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upcoming"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximamente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À venir"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आगामी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prossimamente"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "近日公開"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "예정"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binnenkort"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wkrótce"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em breve"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em breve"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скоро"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即将到来"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即將到來"
           }
         }
       }
@@ -155539,91 +156815,102 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Great, you've already completed all due tasks today!"
+            "value": "Great, you have completed all due tasks today!"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¡Genial, ya has completado todas las tareas de hoy!"
+            "value": "¡Genial, has completado todas las tareas pendientes de hoy!"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Super, tu as déjà terminé toutes les tâches du jour !"
+            "value": "Super, vous avez terminé toutes les tâches prévues aujourd'hui !"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बहुत बढ़िया, आपने आज के सभी काम पूरे कर लिए हैं!"
+            "value": "बढ़िया, आपने आज के सभी नियत कार्य पूरे कर लिए हैं!"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ottimo, hai già completato tutti i compiti di oggi!"
+            "value": "Ottimo, hai completato tutti i compiti previsti per oggi!"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "素晴らしい！今日のタスクをすべて完了しました！"
+            "value": "素晴らしい、今日のすべてのタスクを完了しました！"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "잘했어요! 오늘의 과제를 모두 완료했습니다!"
+            "value": "멋져요, 오늘 마감인 모든 작업을 완료했습니다!"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geweldig, je hebt alle taken van vandaag al voltooid!"
+            "value": "Geweldig, je hebt alle geplande taken voor vandaag voltooid!"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Świetnie, wykonałeś już wszystkie dzisiejsze zadania!"
+            "value": "Świetnie, wykonałeś wszystkie dzisiejsze zadania!"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ótimo, já completaste todas as tarefas de hoje!"
+            "value": "Ótimo, você concluiu todas as tarefas previstas para hoje!"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ótimo, você já concluiu todas as tarefas de hoje!"
+            "value": "Ótimo, você concluiu todas as tarefas de hoje!"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отлично, вы уже выполнили все задачи на сегодня!"
+            "value": "Отлично, вы выполнили все запланированные на сегодня задачи!"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Harika, bugünkü tüm görevleri zaten tamamladın!"
+            "value": "Harika, bugün yapılması gereken tüm görevleri tamamladınız!"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "太棒了，你今天已经完成了所有任务！"
+            "value": "太棒了，你已经完成了今天所有的任务！"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "太棒了，你今天已經完成了所有任務！"
+            "value": "太棒了，您已經完成了今天所有的任務！"
+          }
+        }
+      }
+    },
+    "fitness.cleaning.detail.todo": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Heute musst du noch aufräumen: %@"
           }
         }
       }
@@ -155961,7 +157248,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "साफ ✓"
+            "value": "साफ़ ✓"
           }
         },
         "it": {
@@ -155973,13 +157260,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "清潔 ✓"
+            "value": "きれい ✓"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "청결 ✓"
+            "value": "깨끗함 ✓"
           }
         },
         "nl": {
@@ -156028,6 +157315,107 @@
           "stringUnit": {
             "state": "translated",
             "value": "乾淨 ✓"
+          }
+        }
+      }
+    },
+    "fitness.cleaning.summary.progress": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ erledigt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ done"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ hecho"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ fait"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ हो गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ fatto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ 完了"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ 완료"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ klaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ zrobione"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ feito"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ feito"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ готово"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ tamamlandı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ 已完成"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ 已完成"
           }
         }
       }

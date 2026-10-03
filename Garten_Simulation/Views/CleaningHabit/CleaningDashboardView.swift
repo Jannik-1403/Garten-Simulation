@@ -13,8 +13,9 @@ struct CleaningDashboardView: View {
 
     var body: some View {
         VStack(spacing: 16) {
+            statsCard
+            
             if viewModel.hasTasks {
-                statsCard
                 todayCard
                 if !viewModel.upcomingItems.isEmpty {
                     upcomingCard
@@ -44,7 +45,7 @@ struct CleaningDashboardView: View {
             Button(String(localized: "cleaning.delete.action", defaultValue: "Löschen"), role: .destructive) {
                 viewModel.delete(task, gardenStore: gardenStore)
             }
-            Button(String(localized: "button.cancel"), role: .cancel) { }
+            Button(String(localized: "button.cancel", defaultValue: "Abbrechen"), role: .cancel) { }
         }
     }
 
