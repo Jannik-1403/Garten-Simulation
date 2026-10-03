@@ -1357,3 +1357,5 @@
 - Fix: Tagesscore Lock Screen Widget aktualisiert sich nun automatisch im Hintergrund, wenn Gewohnheiten abgehakt werden (Live-Sync).
 - Fix: SwiftData Predicate Fehler beim Filtern der aktiven Gewohnheiten behoben.
 - Fix: GardenStore Compiler-Fehler (isVisible/isArchived) durch korrekte Array-Übergabe behoben.
+- Aufräumen-Feature inkl. aller UI-Komponenten und Datenmodelle restlos entfernt.
+- Unnötige Python-Scripte und Logs gelöscht.

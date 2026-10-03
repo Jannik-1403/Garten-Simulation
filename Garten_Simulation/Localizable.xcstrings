@@ -115534,6 +115534,7 @@
       }
     },
     "cleaning.empty.subtitle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -115735,6 +115736,7 @@
       }
     },
     "cleaning.empty.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -116340,6 +116342,7 @@
       }
     },
     "cleaning.stat.times" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

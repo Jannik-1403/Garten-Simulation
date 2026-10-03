@@ -754,6 +754,8 @@ class GardenStore: ObservableObject {
                 if pflanze.customTrackerTarget != nil {
                     pflanze.customTrackerProgress = 0
                 }
+                pflanze.sliderProgress = 0.0
+                pflanze.intradayProgressHistory.removeAll()
             }
         }
         
