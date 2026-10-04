@@ -45,6 +45,10 @@ class HealthManager: ObservableObject {
     /// true wenn mind. ein Workout jemals im Store gefunden wurde
     @Published var hasAnyWorkoutHistory: Bool = false
     
+    // MARK: - Daily Values Cache
+    /// Cache für abgerufene Health-Daten historischer oder heutiger Tage: [Metrik: [StartOfDay: Wert]]
+    @Published var dailyValuesCache: [HealthMetricType: [Date: Double]] = [:]
+    
     // Body Data (HealthKit)
     @Published var latestBodyMass: Double?
     @Published var latestHeight: Double?
@@ -963,6 +967,117 @@ class HealthManager: ObservableObject {
 }
 extension HealthManager {
     /// Holt historische Daten (pro Stunde) für den heutigen Tag
+    func dailyValue(metric: HealthMetricType, on date: Date) async -> Double? {
+        guard isAuthorized else { return nil }
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        
+        // Caching: Ist der Wert bereits im Cache?
+        if let existing = dailyValuesCache[metric]?[startOfDay] {
+            return existing
+        }
+        
+        let endOfDay = calendar.isDateInToday(date) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
+        
+        return await withCheckedContinuation { continuation in
+            switch metric {
+            case .steps, .water, .fiber, .calcium, .energy:
+                let quantityType: HKQuantityType
+                let unit: HKUnit
+                if metric == .steps {
+                    quantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+                    unit = .count()
+                } else if metric == .water {
+                    quantityType = HKQuantityType.quantityType(forIdentifier: .dietaryWater)!
+                    unit = .literUnit(with: .milli)
+                } else if metric == .fiber {
+                    quantityType = HKQuantityType.quantityType(forIdentifier: .dietaryFiber)!
+                    unit = .gram()
+                } else if metric == .energy {
+                    quantityType = HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed)!
+                    unit = .kilocalorie()
+                } else {
+                    quantityType = HKQuantityType.quantityType(forIdentifier: .dietaryCalcium)!
+                    unit = .gramUnit(with: .milli)
+                }
+                
+                let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
+                    var total = 0.0
+                    if let sum = result?.sumQuantity() {
+                        total = sum.doubleValue(for: unit)
+                    }
+                    DispatchQueue.main.async {
+                        if self.dailyValuesCache[metric] == nil { self.dailyValuesCache[metric] = [:] }
+                        self.dailyValuesCache[metric]?[startOfDay] = total
+                        continuation.resume(returning: total)
+                    }
+                }
+                healthStore.execute(query)
+                
+            case .running, .strengthTraining:
+                let activityType: HKWorkoutActivityType = (metric == .running) ? .running : .traditionalStrengthTraining
+                let workoutPredicate = HKQuery.predicateForWorkouts(with: activityType)
+                let combinedPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, workoutPredicate])
+                
+                let query = HKSampleQuery(sampleType: HKObjectType.workoutType(), predicate: combinedPredicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, _ in
+                    var totalMinutes = 0.0
+                    if let workouts = samples as? [HKWorkout] {
+                        totalMinutes = workouts.reduce(0.0) { $0 + ($1.duration / 60.0) }
+                    }
+                    DispatchQueue.main.async {
+                        if self.dailyValuesCache[metric] == nil { self.dailyValuesCache[metric] = [:] }
+                        self.dailyValuesCache[metric]?[startOfDay] = totalMinutes
+                        continuation.resume(returning: totalMinutes)
+                    }
+                }
+                healthStore.execute(query)
+                
+            case .mindfulness:
+                guard let mindfulnessType = HKCategoryType.categoryType(forIdentifier: .mindfulSession) else {
+                    continuation.resume(returning: 0.0)
+                    return
+                }
+                let query = HKSampleQuery(sampleType: mindfulnessType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, _ in
+                    var totalMinutes = 0.0
+                    if let sessions = samples as? [HKCategorySample] {
+                        totalMinutes = sessions.reduce(0.0) { $0 + ($1.endDate.timeIntervalSince($1.startDate) / 60.0) }
+                    }
+                    DispatchQueue.main.async {
+                        if self.dailyValuesCache[metric] == nil { self.dailyValuesCache[metric] = [:] }
+                        self.dailyValuesCache[metric]?[startOfDay] = totalMinutes
+                        continuation.resume(returning: totalMinutes)
+                    }
+                }
+                healthStore.execute(query)
+                
+            case .sleep:
+                guard let sleepType = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) else {
+                    continuation.resume(returning: 0.0)
+                    return
+                }
+                let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, _ in
+                    var totalHours = 0.0
+                    if let sessions = samples as? [HKCategorySample] {
+                        let asleepSamples = sessions.filter {
+                            $0.value == HKCategoryValueSleepAnalysis.asleepCore.rawValue ||
+                            $0.value == HKCategoryValueSleepAnalysis.asleepDeep.rawValue ||
+                            $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
+                            $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue
+                        }
+                        totalHours = asleepSamples.reduce(0.0) { $0 + ($1.endDate.timeIntervalSince($1.startDate) / 3600.0) }
+                    }
+                    DispatchQueue.main.async {
+                        if self.dailyValuesCache[metric] == nil { self.dailyValuesCache[metric] = [:] }
+                        self.dailyValuesCache[metric]?[startOfDay] = totalHours
+                        continuation.resume(returning: totalHours)
+                    }
+                }
+                healthStore.execute(query)
+            }
+        }
+    }
+    
     func fetchHourlyData(for metric: HealthMetricType, targetDate: Date = Date(), completion: @escaping ([(Date, Double)]) -> Void) {
         guard isAuthorized else {
             DispatchQueue.main.async { completion([]) }

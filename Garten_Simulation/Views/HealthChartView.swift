@@ -66,7 +66,7 @@ struct HealthChartView: View {
         let sortedAvg = hourlyAverageData.sorted { $0.0 < $1.0 }
         
         for item in sortedAvg {
-            var pointTime = mappedTime(from: item.0).addingTimeInterval(3600)
+            var pointTime = mappedTime(from: item.0)
             if pointTime > now { pointTime = now }
             result.append((pointTime, item.1))
         }
@@ -182,17 +182,19 @@ struct HealthChartView: View {
                         .foregroundStyle(Color.orangePrimary)
                         .symbolSize(60)
 
-                    RuleMark(x: .value("Jetzt", last.0))
-                        .foregroundStyle(Color(UIColor.systemGray4))
-                        .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
-                        .annotation(position: .top, alignment: .center) {
-                            Text(timeLabel(for: last.0))
-                                .font(.system(size: 10, weight: .bold, design: .rounded))
-                                .foregroundStyle(Color(UIColor.systemGray))
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 2)
-                                .background(Capsule().fill(Color(UIColor.systemBackground)))
-                        }
+                    if calendar.isDateInToday(targetDate) {
+                        RuleMark(x: .value("Jetzt", last.0))
+                            .foregroundStyle(Color(UIColor.systemGray4))
+                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
+                            .annotation(position: .top, alignment: .center) {
+                                Text(timeLabel(for: last.0))
+                                    .font(.system(size: 10, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color(UIColor.systemGray))
+                                    .padding(.horizontal, 4)
+                                    .padding(.vertical, 2)
+                                    .background(Capsule().fill(Color(UIColor.systemBackground)))
+                            }
+                    }
                 }
                 
                 if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
@@ -336,7 +338,7 @@ struct HealthChartView: View {
         let sortedData = data.sorted { $0.0 < $1.0 }
         for item in sortedData {
             sum += item.1
-            var pointTime = mappedTime(from: item.0).addingTimeInterval(3600)
+            var pointTime = mappedTime(from: item.0)
             if pointTime > now { pointTime = now }
             result.append((pointTime, sum))
         }

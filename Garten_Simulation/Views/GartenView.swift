@@ -99,6 +99,20 @@ struct GartenView: View {
                 starteTageswechselTimer()
                 gardenStore.taeglicherStreakCheck()
             }
+            .task {
+                let metrics = gardenStore.pflanzen.compactMap { $0.effectiveHealthMetric }
+                let uniqueMetrics = Set(metrics)
+                let today = Date()
+                let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today) ?? today
+                await withTaskGroup(of: Void.self) { group in
+                    for metric in uniqueMetrics {
+                        group.addTask {
+                            _ = await HealthManager.shared.dailyValue(metric: metric, on: today)
+                            _ = await HealthManager.shared.dailyValue(metric: metric, on: yesterday)
+                        }
+                    }
+                }
+            }
         
         let v2 = applyCovers1(v1)
         let v3 = applyCovers2(v2)
@@ -263,10 +277,21 @@ struct GartenView: View {
                         dayOffset = diff
                     }
                 }
+                .task(id: dailyFeedbackVM.targetDate) {
+                // Fetch daily values for all health habits
+                let metrics = gardenStore.pflanzen.compactMap { $0.effectiveHealthMetric }
+                let uniqueMetrics = Set(metrics)
+                await withTaskGroup(of: Void.self) { group in
+                    for metric in uniqueMetrics {
+                        group.addTask {
+                            _ = await HealthManager.shared.dailyValue(metric: metric, on: dailyFeedbackVM.targetDate)
+                        }
+                    }
+                }
             }
         }
     }
-
+}
     @ViewBuilder
     private func pageContent(for offset: Int) -> some View {
         ScrollViewReader { proxy in

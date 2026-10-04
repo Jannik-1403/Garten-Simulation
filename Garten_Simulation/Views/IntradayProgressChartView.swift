@@ -141,17 +141,19 @@ struct IntradayProgressChartView: View {
                         .foregroundStyle(Color.orangePrimary)
                         .symbolSize(60)
                     
-                    RuleMark(x: .value("Jetzt", last.0))
-                        .foregroundStyle(Color(UIColor.systemGray4))
-                        .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
-                        .annotation(position: .top, alignment: .center) {
-                            Text(timeLabel(for: last.0))
-                                .font(.system(size: 10, weight: .bold, design: .rounded))
-                                .foregroundStyle(Color(UIColor.systemGray))
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 2)
-                                .background(Capsule().fill(Color(UIColor.systemBackground)))
-                        }
+                    if Calendar.current.isDateInToday(targetDate) {
+                        RuleMark(x: .value("Jetzt", last.0))
+                            .foregroundStyle(Color(UIColor.systemGray4))
+                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
+                            .annotation(position: .top, alignment: .center) {
+                                Text(timeLabel(for: last.0))
+                                    .font(.system(size: 10, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color(UIColor.systemGray))
+                                    .padding(.horizontal, 4)
+                                    .padding(.vertical, 2)
+                                    .background(Capsule().fill(Color(UIColor.systemBackground)))
+                            }
+                    }
                 }
             }
             .chartXScale(domain: dayStart...dayEnd)

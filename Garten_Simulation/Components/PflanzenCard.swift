@@ -32,28 +32,8 @@ struct PflanzenCard: View {
     }
     
     private func getBaseHealthCurrent(for metric: HealthMetricType) -> Double? {
-        if !Calendar.current.isDateInToday(targetDate) {
-            let targetStartOfDay = Calendar.current.startOfDay(for: targetDate)
-            if metric == .steps || metric == .running {
-                return healthManager.stepsHistory[targetStartOfDay] ?? 0.0
-            } else if metric == .water {
-                return healthManager.waterHistory[targetStartOfDay] ?? 0.0
-            }
-            // For other metrics, we don't have full history cached, so return nil to fallback to intradayProgressHistory.
-            return nil
-        }
-        
-        switch metric {
-        case .steps: return healthManager.todaysSteps
-        case .water: return healthManager.todaysWater
-        case .sleep: return healthManager.todaysSleep
-        case .mindfulness: return healthManager.todaysMindfulness
-        case .running: return healthManager.todaysRunning
-        case .strengthTraining: return healthManager.todaysStrengthTraining
-        case .fiber: return healthManager.todaysFiber
-        case .calcium: return healthManager.todaysCalcium
-        case .energy: return healthManager.todaysEnergy
-        }
+        let targetStartOfDay = Calendar.current.startOfDay(for: targetDate)
+        return healthManager.dailyValuesCache[metric]?[targetStartOfDay]
     }
     
     private var healthProgress: Double? {
@@ -83,21 +63,23 @@ struct PflanzenCard: View {
         return min(1.0, max(0.0, current / effectiveTarget))
     }
     
-    private var baseProgress: Double {
+    private var baseProgress: Double? {
         if pflanze.wasCompleted(on: targetDate) {
             return 1.0
         }
         
-        if Calendar.current.isDateInToday(targetDate) {
-            if let hp = healthProgress {
-                return hp
-            }
+        if let hp = healthProgress {
+            return hp
+        }
+        
+        if pflanze.effectiveHealthMetric != nil {
+            return nil // Platzhalter für Health-Gewohnheiten, solange Daten laden
         }
         
         return pflanze.progress(for: targetDate)
     }
     
-    private var currentProgress: Double {
+    private var currentProgress: Double? {
         if isDragging {
             return min(1.0, max(0.0, dragWidth / maxDragWidth))
         }
@@ -118,9 +100,9 @@ struct PflanzenCard: View {
                     GeometryReader { proxy in
                         ZStack(alignment: .leading) {
                             Color.white
-                            if currentProgress > 0 {
+                            if let prog = currentProgress, prog > 0 {
                                 Color.gruenPrimary.opacity(0.3)
-                                    .frame(width: proxy.size.width * currentProgress)
+                                    .frame(width: proxy.size.width * prog)
                             }
                         }
                     }
