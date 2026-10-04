@@ -1610,16 +1610,6 @@
         }
       }
     },
-    "%lld/%lld": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$lld/%2$lld"
-          }
-        }
-      }
-    },
     "%lld/100": {
       "localizations": {
         "de": {
@@ -96484,13 +96474,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel löschen"
+            "value": "Delete target"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eliminar meta"
+            "value": "Eliminar objetivo"
           }
         },
         "fr": {
@@ -96785,7 +96775,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manuelle Einträge"
+            "value": "Manual entries"
           }
         },
         "es": {
@@ -96797,19 +96787,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saisies manuelles"
+            "value": "Entrées manuelles"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मैन्युअल प्रविष्टियाँ"
+            "value": "मैन्युअल प्रविष्टियां"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inserimento manuale"
+            "value": "Inserimenti manuali"
           }
         },
         "ja": {
@@ -96851,7 +96841,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ручной ввод"
+            "value": "Ручные записи"
           }
         },
         "tr": {
@@ -97185,7 +97175,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Keine manuellen Einträge"
+            "value": "No manual entries"
           }
         },
         "es": {
@@ -97197,13 +97187,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aucune saisie manuelle"
+            "value": "Aucune entrée manuelle"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कोई मैन्युअल प्रविष्टियाँ नहीं"
+            "value": "कोई मैन्युअल प्रविष्टियां नहीं"
           }
         },
         "it": {
@@ -97215,7 +97205,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "手動入力はありません"
+            "value": "手動入力なし"
           }
         },
         "ko": {
@@ -97233,7 +97223,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Brak ręcznych wpisów"
+            "value": "Brak wpisów ręcznych"
           }
         },
         "pt": {
@@ -97251,7 +97241,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Никаких ручных записей"
+            "value": "Нет ручных записей"
           }
         },
         "tr": {
@@ -97263,13 +97253,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "无需手动输入"
+            "value": "无手动输入"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "無需手動輸入"
+            "value": "無手動輸入"
           }
         }
       }
@@ -97285,91 +97275,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kein Zielwert festgelegt"
+            "value": "No target set"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No se ha establecido ningún valor objetivo"
+            "value": "Ningún objetivo establecido"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aucune valeur cible définie"
+            "value": "Aucun objectif fixé"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कोई लक्ष्य मान निर्धारित नहीं है"
+            "value": "कोई लक्ष्य निर्धारित नहीं"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nessun valore target impostato"
+            "value": "Nessun obiettivo impostato"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "目標値は設定されていない"
+            "value": "目標が設定されていません"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "목표값이 설정되지 않았습니다."
+            "value": "목표가 설정되지 않음"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geen doelwaarde ingesteld"
+            "value": "Geen doel ingesteld"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nie ustawiono wartości docelowej"
+            "value": "Nie ustalono celu"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nenhum valor alvo definido"
+            "value": "Nenhum alvo definido"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nenhum valor alvo definido"
+            "value": "Nenhum alvo definido"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Целевое значение не установлено"
+            "value": "Цель не установлена"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hedef değer belirlenmedi"
+            "value": "Hedef belirlenmedi"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "未设定目标值"
+            "value": "未设置目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "未設定目標值"
+            "value": "未設置目標"
           }
         }
       }
@@ -97385,43 +97375,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kein Zielgewicht festgelegt"
+            "value": "No target weight set"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No se ha establecido ningún peso objetivo"
+            "value": "Sin peso objetivo establecido"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aucun poids cible défini"
+            "value": "Aucun poids cible fixé"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कोई लक्ष्य भार निर्धारित नहीं"
+            "value": "कोई लक्ष्य वजन निर्धारित नहीं"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nessun peso target impostato"
+            "value": "Nessun peso obiettivo impostato"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "目標体重は設定されていません"
+            "value": "目標体重が設定されていません"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "목표 체중이 설정되지 않았습니다."
+            "value": "목표 체중이 설정되지 않음"
           }
         },
         "nl": {
@@ -97433,19 +97423,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nie ustawiono wagi docelowej"
+            "value": "Brak docelowej wagi"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nenhuma meta de peso definida"
+            "value": "Sem peso alvo"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nenhuma meta de peso definida"
+            "value": "Sem peso alvo"
           }
         },
         "ru": {
@@ -97463,13 +97453,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "没有设定目标体重"
+            "value": "未设置目标体重"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "沒有設定目標體重"
+            "value": "未設置目標體重"
           }
         }
       }
@@ -101698,91 +101688,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp: Körperumfänge verändern sich langsam. Wir empfehlen, sie nur einmal im Monat zu messen, um echte Fortschritte zu sehen."
+            "value": "Tip: Body measurements change slowly. We recommend measuring them only once a month to see real progress."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consejo: las circunferencias corporales cambian lentamente. Recomendamos medirlos solo una vez al mes para ver un progreso real."
+            "value": "Consejo: Las medidas cambian lentamente. Recomendamos medirlas una vez al mes."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Astuce : les circonférences du corps changent lentement. Nous vous recommandons de ne les mesurer qu’une fois par mois pour constater de réels progrès."
+            "value": "Astuce : Les mensurations changent lentement. Nous recommandons de les mesurer une fois par mois."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सुझाव: शरीर की परिधि धीरे-धीरे बदलती है। हम वास्तविक प्रगति देखने के लिए महीने में केवल एक बार उन्हें मापने की सलाह देते हैं।"
+            "value": "युक्ति: शरीर का माप धीरे-धीरे बदलता है। हम महीने में केवल एक बार मापने की सलाह देते हैं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Suggerimento: le circonferenze del corpo cambiano lentamente. Ti consigliamo di misurarli solo una volta al mese per vedere progressi reali."
+            "value": "Suggerimento: Le misure cambiano lentamente. Si consiglia di misurare una volta al mese."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ヒント: 胴囲はゆっくりと変化します。実際の進捗状況を確認するために、月に 1 回だけ測定することをお勧めします。"
+            "value": "ヒント：体のサイズはゆっくりと変化します。月1回の測定をお勧めします。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "팁: 신체 둘레는 천천히 변합니다. 실제 진행 상황을 확인하려면 한 달에 한 번만 측정하는 것이 좋습니다."
+            "value": "팁: 신체 치수는 천천히 변합니다. 한 달에 한 번만 측정하는 것을 권장합니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tip: Lichaamsomtrekken veranderen langzaam. We raden aan om ze slechts één keer per maand te meten om echte vooruitgang te zien."
+            "value": "Tip: Lichaamsmaten veranderen langzaam. We raden aan om één keer per maand te meten."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wskazówka: Obwody ciała zmieniają się powoli. Zalecamy mierzyć je tylko raz w miesiącu, aby zobaczyć rzeczywisty postęp."
+            "value": "Wskazówka: Wymiary ciała zmieniają się powoli. Zalecamy mierzenie raz w miesiącu."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dica: As circunferências corporais mudam lentamente. Recomendamos medi-los apenas uma vez por mês para ver o progresso real."
+            "value": "Dica: As medidas mudam lentamente. Recomendamos medi-las apenas uma vez por mês."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dica: As circunferências corporais mudam lentamente. Recomendamos medi-los apenas uma vez por mês para ver o progresso real."
+            "value": "Dica: As medidas mudam lentamente. Recomendamos medi-las apenas uma vez por mês."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Совет: Окружность тела меняется медленно. Мы рекомендуем измерять их хотя бы раз в месяц, чтобы увидеть реальный прогресс."
+            "value": "Совет: Размеры тела меняются медленно. Рекомендуем измерять их раз в месяц."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İpucu: Vücut çevresi yavaş yavaş değişir. Gerçek ilerlemeyi görmek için bunları ayda yalnızca bir kez ölçmenizi öneririz."
+            "value": "İpucu: Vücut ölçüleri yavaş değişir. Ayda sadece bir kez ölçmenizi öneririz."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "提示：身体围度变化缓慢。我们建议每月测量一次，以了解真正的进展。"
+            "value": "提示：身体围度变化缓慢。我们建议每月仅测量一次以查看真正的进步。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "提示：身體圍度變化緩慢。我們建議每月測量一次，以了解真正的進展。"
+            "value": "提示：身體圍度變化緩慢。我們建議每月僅測量一次以查看真正的進步。"
           }
         }
       }
@@ -101798,91 +101788,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp: Für beste Ergebnisse empfehlen wir, das Gewicht jeden Morgen zur selben Zeit, nüchtern und ohne vorher etwas zu essen, zu tracken."
+            "value": "Tip: For best results, we recommend tracking weight every morning at the same time, before eating or drinking."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consejo: para obtener mejores resultados, recomendamos controlar el peso a la misma hora todas las mañanas, con el estómago vacío y sin comer nada primero."
+            "value": "Consejo: Para mejores resultados, recomendamos registrar el peso todas las mañanas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Astuce : Pour de meilleurs résultats, nous vous recommandons de suivre votre poids à la même heure chaque matin, à jeun et sans rien manger au préalable."
+            "value": "Astuce : Pour de meilleurs résultats, recommandez de suivre le poids chaque matin."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सुझाव: सर्वोत्तम परिणामों के लिए, हम हर सुबह एक ही समय पर, खाली पेट और पहले कुछ भी खाए बिना, वजन पर नज़र रखने की सलाह देते हैं।"
+            "value": "युक्ति: सर्वोत्तम परिणामों के लिए, हम हर सुबह वजन को ट्रैक करने की सलाह देते हैं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Suggerimento: per ottenere risultati ottimali, ti consigliamo di monitorare il peso ogni mattina alla stessa ora, a stomaco vuoto e senza mangiare prima."
+            "value": "Suggerimento: Per i migliori risultati, si consiglia di tracciare il peso ogni mattina."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ヒント: 最良の結果を得るには、毎朝同じ時間、空腹時に何も食べずに体重を記録することをお勧めします。"
+            "value": "ヒント：最良の結果を得るには、毎朝同じ時間に体重を記録することをお勧めします。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "팁: 최상의 결과를 얻으려면 먼저 아무것도 먹지 않고 공복에 매일 아침 같은 시간에 체중을 추적하는 것이 좋습니다."
+            "value": "팁: 최상의 결과를 위해 매일 아침 같은 시간에 체중을 기록하는 것을 권장합니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tip: Voor de beste resultaten raden we aan om elke ochtend op hetzelfde tijdstip uw gewicht bij te houden, op een lege maag en zonder eerst iets te eten."
+            "value": "Tip: Voor de beste resultaten raden we aan het gewicht elke ochtend bij te houden."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wskazówka: Aby uzyskać najlepsze wyniki, zalecamy śledzenie wagi każdego ranka o tej samej porze, na pusty żołądek i bez jedzenia."
+            "value": "Wskazówka: Najlepsze wyniki daje ważenie się codziennie rano na czczo."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dica: Para obter melhores resultados, recomendamos monitorar o peso no mesmo horário todas as manhãs, com o estômago vazio e sem comer nada primeiro."
+            "value": "Dica: Para melhores resultados, recomendamos registrar o peso todas as manhãs."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dica: Para obter melhores resultados, recomendamos monitorar o peso no mesmo horário todas as manhãs, com o estômago vazio e sem comer nada primeiro."
+            "value": "Dica: Para melhores resultados, recomendamos registrar o peso todas as manhãs."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Совет: для достижения наилучших результатов мы рекомендуем отслеживать вес каждое утро в одно и то же время, натощак и ничего предварительно не ешь."
+            "value": "Совет: Для достижения наилучших результатов рекомендуем отслеживать вес каждое утро натощак."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İpucu: En iyi sonuçları elde etmek için, kilonuzu her sabah aynı saatte, aç karnına ve hiçbir şey yemeden takip etmenizi öneririz."
+            "value": "İpucu: En iyi sonuçlar için her sabah aynı saatte kilonuzu izlemenizi öneririz."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "提示：为了获得最佳结果，我们建议每天早上同一时间空腹且不先吃任何东西来追踪体重。"
+            "value": "提示：为了获得最佳结果，我们建议每天早上在同一时间、空腹时记录体重。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "提示：為了獲得最佳結果，我們建議每天早上同一時間空腹且不先吃任何東西來追蹤體重。"
+            "value": "提示：為了獲得最佳結果，我們建議每天早上在同一時間、空腹時記錄體重。"
           }
         }
       }
@@ -115247,6 +115237,96 @@
             "state": "translated",
             "value": "Löschen"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हटाएं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "削除"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "삭제"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwijderen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuń"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sil"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除"
+          }
         }
       }
     },
@@ -115256,6 +115336,96 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aufgabe löschen?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete task?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar tarea?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer la tâche ?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कार्य हटाएं?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminare l'attività?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タスクを削除しますか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "작업을 삭제하시겠습니까?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taak verwijderen?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usunąć zadanie?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir tarefa?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir tarefa?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить задачу?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görev silinsin mi?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除任务？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除任務？"
           }
         }
       }
@@ -115670,11 +115840,100 @@
             "state": "translated",
             "value": "Lege Aufgaben wie „Bett abziehen“ mit eigenem Rhythmus an. Die Gewohnheit ist dann nur an Tagen fällig, an denen etwas ansteht."
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create tasks like \"Change bed sheets\" with their own rhythm. The habit is then only due on days when something is scheduled."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea tareas como \"Cambiar sábanas\" con su propio ritmo. El hábito solo vence en los días programados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créez des tâches comme « Changer les draps » avec leur propre rythme. L'habitude n'est due que les jours programmés."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\"बिस्तर की चादर बदलें\" जैसे कार्य अपनी लय के साथ बनाएं। आदत केवल उन दिनों पर देय होती है जब कुछ निर्धारित होता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea attività come \"Cambia le lenzuola\" con il proprio ritmo. L'abitudine è dovuta solo nei giorni programmati."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「ベッドのシーツを替える」などのタスクを独自のリズムで作成します。この習慣は、予定がある日にのみ期限を迎えます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\"침대 시트 교체\"와 같은 작업을 자신만의 리듬으로 만드세요. 습관은 예정된 날에만 마감됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maak taken zoals \"Bed verschonen\" met hun eigen ritme. De gewoonte is dan alleen verschuldigd op dagen dat er iets gepland is."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twórz zadania takie jak \"Zmiana pościeli\" z własnym rytmem. Nawyk jest wymagalny tylko w zaplanowane dni."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie tarefas como \"Trocar lençóis\" com seu próprio ritmo. O hábito só é devido em dias programados."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie tarefas como \"Trocar lençóis\" com seu próprio ritmo. O hábito só é devido em dias programados."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Создавайте задачи, например, «Поменять постельное белье», в своем ритме. Привычка должна быть выполнена только в запланированные дни."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\"Çarşafları değiştir\" gibi görevleri kendi ritimleriyle oluşturun. Alışkanlık yalnızca planlanan günlerde yapılmalıdır."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以自己的节奏创建诸如“换床单”之类的任务。该习惯仅在有安排的日子到期。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以自己的節奏創建諸如“換床單”之類的任務。該習慣僅在有安排的日子到期。"
+          }
         }
       }
     },
     "cleaning.empty.subtitle": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -115772,7 +116031,8 @@
             "value": "添加您的第一個清潔任務"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "cleaning.empty.suggestions": {
       "extractionState": "manual",
@@ -116184,6 +116444,96 @@
             "state": "translated",
             "value": "Täglich"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quotidien"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दैनिक"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quotidiano"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毎日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "매일"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagelijks"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codziennie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diário"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diário"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежедневно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günlük"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天"
+          }
         }
       }
     },
@@ -116193,6 +116543,96 @@
           "stringUnit": {
             "state": "translated",
             "value": "Alle %@ Tage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every %@ days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada %@ días"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les %@ jours"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर %@ दिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni %@ giorni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@日ごと"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@일마다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elke %@ dagen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Co %@ dni"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A cada %@ dias"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A cada %@ dias"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каждые %@ дн."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her %@ günde bir"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每 %@ 天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每 %@ 天"
           }
         }
       }
@@ -116204,6 +116644,96 @@
             "state": "translated",
             "value": "Alle %1$@ Wochen: %2$@"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every %1$@ weeks: %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada %1$@ semanas: %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes les %1$@ semaines : %2$@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर %1$@ सप्ताह: %2$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni %1$@ settimane: %2$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@週間ごと: %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@주마다: %2$@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elke %1$@ weken: %2$@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Co %1$@ tyg.: %2$@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A cada %1$@ semanas: %2$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A cada %1$@ semanas: %2$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каждые %1$@ нед.: %2$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her %1$@ haftada bir: %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每 %1$@ 周：%2$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每 %1$@ 週：%2$@"
+          }
         }
       }
     },
@@ -116213,6 +116743,96 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jede Woche: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every week: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada semana: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque semaine : %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर सप्ताह: %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni settimana: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毎週: %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "매주: %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elke week: %@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Co tydzień: %@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toda semana: %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toda semana: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каждую неделю: %@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her hafta: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每週：%@"
           }
         }
       }
@@ -116521,7 +117141,6 @@
       }
     },
     "cleaning.stat.times": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -116619,7 +117238,8 @@
             "value": "次"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "cleaning.stat.total": {
       "extractionState": "manual",
@@ -117032,8 +117652,99 @@
             "state": "translated",
             "value": "Aufräum-Tage in Folge"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleaning streak"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Racha de limpieza"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Série de nettoyage"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सफाई की स्ट्रीक"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serie di pulizia"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "掃除の連続記録"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "청소 연속 기록"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schoonmaakreeks"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seria sprzątania"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sequência de limpeza"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sequência de limpeza"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дней уборки подряд"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temizlik serisi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连续打扫天数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續打掃天數"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "cleaning.stats.title": {
       "localizations": {
@@ -117042,8 +117753,99 @@
             "state": "translated",
             "value": "Statistik"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistics"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estadísticas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistiques"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आँकड़े"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistiche"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "統計"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "통계"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistieken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statystyki"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estatísticas"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estatísticas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Статистика"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İstatistikler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "统计数据"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "統計數據"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "cleaning.stats.today": {
       "localizations": {
@@ -117052,8 +117854,99 @@
             "state": "translated",
             "value": "Heute"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd'hui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzisiaj"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "cleaning.stats.total": {
       "extractionState": "manual",
@@ -117163,8 +118056,99 @@
             "state": "translated",
             "value": "Letzte 7 Tage"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 7 days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Últimos 7 días"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les 7 derniers jours"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultimi 7 giorni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去7日間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 7일"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laatste 7 dagen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ostatnie 7 dni"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Últimos 7 dias"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Últimos 7 dias"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Последние 7 дней"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son 7 gün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近7天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近7天"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "cleaning.status.done": {
       "localizations": {
@@ -117172,6 +118156,96 @@
           "stringUnit": {
             "state": "translated",
             "value": "Erledigt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hecho"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हो गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatto"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完了"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "완료"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gotowe"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Concluído"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Concluído"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выполнено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamamlandı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成"
           }
         }
       }
@@ -117182,6 +118256,96 @@
           "stringUnit": {
             "state": "translated",
             "value": "Heute fällig"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Due today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vence hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À faire aujourd'hui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज देय"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scade oggi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日が期限"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 마감"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag verwacht"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na dzisiaj"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para hoje"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para hoje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün bitmeli"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日到期"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日到期"
           }
         }
       }
@@ -119011,6 +120175,96 @@
             "state": "translated",
             "value": "Heute steht nichts an – genieß den freien Tag!"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing due today - enjoy your free day!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Nada para hoy, disfruta tu día libre!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien de prévu aujourd'hui – profitez de votre jour de congé !"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज कुछ भी नहीं है - अपने खाली दिन का आनंद लें!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niente in programma oggi: goditi il giorno libero!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日は予定がありません。休みを楽しんでください！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘은 일정이 없습니다. 휴일을 즐기세요!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niets te doen vandaag – geniet van je vrije dag!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brak zadań na dzisiaj - ciesz się wolnym dniem!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada para hoje - aproveite seu dia de folga!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada para hoje - aproveite seu dia de folga!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На сегодня ничего не запланировано — наслаждайтесь выходным!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün hiçbir şey yok - boş gününüzün tadını çıkarın!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天没有安排——享受您的休息日！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天沒有安排——享受您的休息日！"
+          }
         }
       }
     },
@@ -119021,6 +120275,96 @@
             "state": "translated",
             "value": "Heute aufräumen"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clean today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpiar hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nettoyer aujourd'hui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज सफाई करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulisci oggi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日の掃除"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 청소"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag schoonmaken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posprzątaj dzisiaj"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpar hoje"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpar hoje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убраться сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün temizle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日打扫"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日打掃"
+          }
         }
       }
     },
@@ -119030,6 +120374,96 @@
           "stringUnit": {
             "state": "translated",
             "value": "Demnächst"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upcoming"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À venir"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आगामी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In arrivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "予定"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "예정"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binnenkort"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wkrótce"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Предстоящие"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşanlar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即将到来"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即將到來"
           }
         }
       }
@@ -155904,6 +157338,96 @@
             "state": "translated",
             "value": "Heute musst du noch aufräumen: %@"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today you still need to clean: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy todavía debes limpiar: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd'hui, tu dois encore nettoyer : %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज आपको अभी भी सफाई करनी है: %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi devi ancora pulire: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日はまだ掃除する必要があります: %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘 아직 청소해야 할 일: %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag moet je nog schoonmaken: %@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzisiaj musisz jeszcze posprzątać: %@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje você ainda precisa limpar: %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje você ainda precisa limpar: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сегодня вам еще нужно убрать: %@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün hala temizlemen gerekiyor: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天你还需要打扫：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天你還需要打掃：%@"
+          }
         }
       }
     },
@@ -156317,6 +157841,96 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@ / %2$@ erledigt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ done"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ listos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ fait"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ हो गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ fatti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ 完了"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ 완료"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ klaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ gotowe"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ concluído"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ concluído"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ выполнено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ tamamlandı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成 %1$@ / %2$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成 %1$@ / %2$@"
           }
         }
       }
@@ -158068,7 +159682,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld kcal / %lld kcal"
+            "value": "%lld किलो कैलोरी / %lld किलो कैलोरी"
           }
         },
         "it": {
@@ -158128,13 +159742,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 千卡 / %lld 千卡"
+            "value": "%lld kcal / %lld kcal"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld 千卡 / %lld 千卡"
+            "value": "%lld kcal / %lld kcal"
           }
         }
       }
@@ -160704,7 +162318,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld min"
+            "value": "%lld / %lld 分"
           }
         },
         "ko": {
@@ -163192,7 +164806,6 @@
       }
     },
     "focus.giveup.walkofshame.sentence1": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -163290,10 +164903,10 @@
             "value": "我百分百投降！我沒有為自己的目標而努力，而是選擇了零八十五路線。我犧牲我的#discipline來換取五分鐘廉價的多巴胺。這太可悲了；但我還是這麼做了（並接受 HP 損失）。"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "focus.giveup.walkofshame.sentence2": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -163391,10 +165004,10 @@
             "value": "[警告] 我對百分之九十九的任務來說太軟弱了。我取消：X-Y-Z 而不是 A-B-C。我的專注力降至零點零；我選擇 #失敗 而不是 #成長。為什麼？因為我的多巴胺水平 < 百分之十。"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "focus.giveup.walkofshame.sentence3": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -163492,10 +165105,10 @@
             "value": "錯誤代碼四百零四：未找到意志力！我把我的首要任務換成十分鐘毫無意義的滾動。這聰明嗎？不，我還是這麼做嗎？是的！ ！ （再見，寶貴的時間…）"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "focus.giveup.walkofshame.sentence4": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -163593,10 +165206,10 @@
             "value": "你的花園現在很傷心。"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "focus.giveup.walkofshame.sentence5": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -163694,7 +165307,8 @@
             "value": "明天會是更好的一天。"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "focus.giveup.walkofshame.subtitle": {
       "localizations": {
@@ -210499,7 +212113,6 @@
       }
     },
     "level_up.diamond.title_unlocked": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -210597,7 +212210,8 @@
             "value": "您已經解鎖了一個新的遊戲標題！"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "level_up.subtitle": {
       "comment": "",
@@ -235763,7 +237377,6 @@
       }
     },
     "onboarding.habit.create.habitname.label": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -235861,10 +237474,10 @@
             "value": "習慣名稱"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "onboarding.habit.create.habitname.placeholder": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -235962,7 +237575,8 @@
             "value": "例：彈吉他"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "onboarding.habit.create.save": {
       "localizations": {
@@ -236365,7 +237979,6 @@
       }
     },
     "onboarding.habit.selected.header": {
-      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -236463,7 +238076,8 @@
             "value": "你的選擇"
           }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "onboarding.screentime.error": {
       "localizations": {
@@ -380243,97 +381857,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selected Gegossen"
+            "value": "Ausgewähltes Gießen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selected Gegossen"
+            "value": "Selected Watering"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gegossen seleccionado"
+            "value": "Riego seleccionado"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gegossen sélectionné"
+            "value": "Arrosage sélectionné"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "चुना हुआ डाला गया"
+            "value": "चयनित पानी डालना"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gegossen selezionato"
+            "value": "Innaffiatura selezionata"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "厳選されたゲゴッセン"
+            "value": "選択された水やり"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "선정된 게고센"
+            "value": "선택된 물주기"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geselecteerd Gegossen"
+            "value": "Geselecteerde bewatering"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wybrany Gegossen"
+            "value": "Wybrane podlewanie"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gegossen selecionado"
+            "value": "Rega selecionada"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gegossen selecionado"
+            "value": "Rega selecionada"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Выбрано залитое"
+            "value": "Выбранный полив"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seçilmiş Gegossen"
+            "value": "Seçilen Sulama"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "精选演员"
+            "value": "选中浇水"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "精選演員"
+            "value": "選中澆水"
           }
         }
       }
@@ -380346,97 +381960,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selected Tag"
+            "value": "Ausgewählter Tag"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selected Tag"
+            "value": "Selected Day"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etiqueta seleccionada"
+            "value": "Día seleccionado"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balise sélectionnée"
+            "value": "Jour sélectionné"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "चयनित टैग"
+            "value": "चयनित दिन"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etichetta selezionata"
+            "value": "Giorno selezionato"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "選択したタグ"
+            "value": "選択された日"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "선택된 태그"
+            "value": "선택된 날"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geselecteerde tag"
+            "value": "Geselecteerde dag"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wybrany znacznik"
+            "value": "Wybrany dzień"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etiqueta selecionada"
+            "value": "Dia selecionado"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etiqueta selecionada"
+            "value": "Dia selecionado"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Выбранный тег"
+            "value": "Выбранный день"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seçilen Etiket"
+            "value": "Seçilen Gün"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "选定的标签"
+            "value": "选中日期"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "選定的標籤"
+            "value": "選中日期"
           }
         }
       }
@@ -389712,7 +391326,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Masculine"
+            "value": "Male"
           }
         },
         "es": {
@@ -389730,25 +391344,25 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "मदार्ना"
+            "value": "पुरुष"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Maschile"
+            "value": "Maschio"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "男性的な"
+            "value": "男性"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "남성 명사"
+            "value": "남성"
           }
         },
         "nl": {
@@ -389760,7 +391374,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Męski"
+            "value": "Mężczyzna"
           }
         },
         "pt": {
@@ -389772,25 +391386,25 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Männlich"
+            "value": "Masculino"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Männlich"
+            "value": "Мужской"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Männlich"
+            "value": "Erkek"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Männlich"
+            "value": "男性"
           }
         },
         "zh-Hant": {
@@ -389813,13 +391427,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Auswählen"
+            "value": "Select"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elegir"
+            "value": "Seleccionar"
           }
         },
         "fr": {
@@ -389831,7 +391445,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "चुनना"
+            "value": "चुनें"
           }
         },
         "it": {
@@ -389843,25 +391457,25 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "選ぶ"
+            "value": "選択"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "선택하다"
+            "value": "선택"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kiezen"
+            "value": "Selecteren"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wybierać"
+            "value": "Wybierz"
           }
         },
         "pt": {
@@ -389873,19 +391487,19 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Escolher"
+            "value": "Selecionar"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Выбирать"
+            "value": "Выбрать"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seçmek"
+            "value": "Seç"
           }
         },
         "zh-Hans": {
@@ -394693,7 +396307,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schlechte Gewohnheiten"
+            "value": "Bad Habits"
           }
         },
         "es": {
@@ -394735,7 +396349,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Slechte gewoonten"
+            "value": "Slechte gewoontes"
           }
         },
         "pl": {
@@ -394765,19 +396379,19 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kötü alışkanlıklar"
+            "value": "Kötü Alışkanlıklar"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "陋习"
+            "value": "坏习惯"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "陋習"
+            "value": "壞習慣"
           }
         }
       }
@@ -394997,7 +396611,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gute Gewohnheiten"
+            "value": "Good Habits"
           }
         },
         "es": {
@@ -395039,7 +396653,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Goede gewoonten"
+            "value": "Goede gewoontes"
           }
         },
         "pl": {
@@ -395063,13 +396677,13 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хорошие привычки"
+            "value": "Полезные привычки"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İyi alışkanlıklar"
+            "value": "İyi Alışkanlıklar"
           }
         },
         "zh-Hans": {
@@ -418194,19 +419808,19 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tag"
+            "value": "Day"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etiqueta"
+            "value": "Día"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Étiqueter"
+            "value": "Jour"
           }
         },
         "hi": {
@@ -418218,55 +419832,55 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etichetta"
+            "value": "Giorno"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "タグ"
+            "value": "日"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "꼬리표"
+            "value": "일"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Label"
+            "value": "Dag"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etykietka"
+            "value": "Dzień"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Marcação"
+            "value": "Dia"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Marcação"
+            "value": "Dia"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "день"
+            "value": "День"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etiket"
+            "value": "Gün"
           }
         },
         "zh-Hans": {
@@ -481260,85 +482874,85 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Completa tus tareas directamente desde tu pantalla de inicio."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Terminez vos tâches directement depuis votre écran d'accueil."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "अपने होमस्क्रीन से ही अपने टू-डू पूरे करें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Completa le tue attività direttamente dalla schermata iniziale."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "ホーム画面から直接To-Doを完了させましょう。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "홈 화면에서 바로 할 일을 완료하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Voltooi je To-Do's rechtstreeks vanaf je startscherm."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Kończ swoje zadania prosto z ekranu głównego."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Conclua suas tarefas diretamente da tela inicial."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Conclua suas tarefas diretamente da tela inicial."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Выполняйте свои задачи прямо с главного экрана."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "Görevlerinizi doğrudan ana ekranınızdan tamamlayın."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "直接从主屏幕完成您的待办事项。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete your To-Dos straight from your homescreen."
+            "value": "直接從主屏幕完成您的待辦事項。"
           }
         }
       }
@@ -487300,6 +488914,1319 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標"
+          }
+        }
+      }
+    },
+    "shop.item.exclusive_plant": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exklusive Pflanze"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclusive Plant"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta Exclusiva"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plante Exclusive"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विशिष्ट पौधा"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pianta Esclusiva"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "限定植物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "독점 식물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclusieve Plant"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekskluzywna Roślina"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta Exclusiva"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta Exclusiva"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эксклюзивное Растение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özel Bitki"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "专属植物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "專屬植物"
+          }
+        }
+      }
+    },
+    "habit.custom.bad_habit.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eigene schlechte Angewohnheit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom bad habit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mal hábito personalizado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mauvaise habitude personnalisée"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कस्टम बुरी आदत"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cattiva abitudine personalizzata"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カスタム悪い習慣"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용자 지정 나쁜 습관"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aangepaste slechte gewoonte"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Własny zły nawyk"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mau hábito personalizado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mau hábito personalizado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пользовательская вредная привычка"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özel kötü alışkanlık"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定义坏习惯"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定義壞習慣"
+          }
+        }
+      }
+    },
+    "screentime.exceeded.reason": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit-Limit überschritten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen time limit exceeded"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Límite de tiempo de pantalla excedido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite de temps d'écran dépassée"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्क्रीन टाइम सीमा पार हो गई"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite di tempo di utilizzo superato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイムの制限を超えました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 시간 제한 초과"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermtijdlimiet overschreden"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przekroczono limit czasu przed ekranem"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite de tempo de tela excedido"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite de tempo de tela excedido"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Превышен лимит экранного времени"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran süresi sınırı aşıldı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "超出屏幕使用时间限制"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "超出屏幕使用時間限制"
+          }
+        }
+      }
+    },
+    "notification.fallback.plant": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pflanze"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plante"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पौधा"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pianta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roślina"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Растение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitki"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        }
+      }
+    },
+    "notification.plant.singular": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pflanze"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plant"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "planta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plante"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पौधा"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pianta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plant"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "roślina"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "planta"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "planta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "растение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bitki"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        }
+      }
+    },
+    "notification.plant.plural": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pflanzen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plants"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plantas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plantes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पौधे"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "piante"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식물들"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "planten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rośliny"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plantas"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plantas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "растения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bitkiler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        }
+      }
+    },
+    "intent.plant_entity.type": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pflanze"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plante"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पौधा"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pianta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roślina"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Растение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitki"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        }
+      }
+    },
+    "intent.water_plant.parameter": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pflanze"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plante"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पौधा"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pianta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "식물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roślina"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Растение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitki"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物"
+          }
+        }
+      }
+    },
+    "habit.history.pro_insights": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO INSIGHTS"
+          }
+        }
+      }
+    },
+    "habit.history.legend.not_watered": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht gegossen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not watered"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin regar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non arrosée"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नहीं सींचा गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non innaffiato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水やりなし"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "물 안 줌"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet bewaterd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niepodlane"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não regada"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não regada"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не полито"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sulanmadı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未浇水"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未澆水"
+          }
+        }
+      }
+    },
+    "focus.session.pro_bonus": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro-Bonus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Bonus"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bono Pro"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonus Pro"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रो बोनस"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonus Pro"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プロボーナス"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "프로 보너스"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Bonus"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonus Pro"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bônus Pro"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bônus Pro"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro-бонус"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Bonusu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro奖励"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro獎勵"
+          }
+        }
+      }
+    },
+    "stats.chart.week_number": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woche %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semaine %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सप्ताह %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settimana %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@週目"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@주차"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week %@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tydzień %@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Неделя %@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hafta %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %@ 周"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %@ 週"
+          }
+        }
+      }
+    },
+    "widget_routine_unavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Routine verfügbar"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No routine available"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin rutina disponible"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune routine disponible"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई दिनचर्या उपलब्ध नहीं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna routine disponibile"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "利用可能なルーティンなし"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용 가능한 루틴 없음"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen routine beschikbaar"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brak dostępnej rutyny"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma rotina disponível"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma rotina disponível"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет доступной рутины"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kullanılabilir rutin yok"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无可用日程"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無可用日程"
           }
         }
       }

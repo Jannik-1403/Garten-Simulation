@@ -54,21 +54,7 @@ struct NotificationTexts {
         let variant = randomVariant()
         let title = NSLocalizedString("notification.evening.\(variant).title", comment: "")
         
-        // Handle pluralization for different languages
-        let unit: String
-        if lang == "de" {
-            unit = anzahlUngegossen == 1 ? "Pflanze" : "Pflanzen"
-        } else if lang == "es" {
-            unit = anzahlUngegossen == 1 ? "planta" : "plantas"
-        } else if lang == "fr" {
-            unit = anzahlUngegossen == 1 ? "plante" : "plantes"
-        } else if lang == "it" {
-            unit = anzahlUngegossen == 1 ? "pianta" : "piante"
-        } else if lang == "pt" {
-            unit = anzahlUngegossen == 1 ? "planta" : "plantas"
-        } else {
-            unit = anzahlUngegossen == 1 ? "plant" : "plants"
-        }
+        let unit = (anzahlUngegossen == 1) ? String(localized: "notification.plant.singular", defaultValue: "Pflanze") : String(localized: "notification.plant.plural", defaultValue: "Pflanzen")
         
         let body = NSLocalizedString("notification.evening.\(variant).body", comment: "")
             .replacingOccurrences(of: "%d", with: "\(anzahlUngegossen)")

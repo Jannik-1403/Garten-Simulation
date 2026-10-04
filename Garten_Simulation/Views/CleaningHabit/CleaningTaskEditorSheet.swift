@@ -95,7 +95,7 @@ struct CleaningTaskEditorSheet: View {
 
                 Section(header: Text(String(localized: "cleaning.add.interval", defaultValue: "Intervall"))) {
                     Stepper(value: $recurrenceDays, in: 1...365) {
-                        Text("\(recurrenceDays) \(recurrenceDays == 1 ? String(localized: "cleaning.add.day.singular", defaultValue: "Tag") : String(localized: "cleaning.add.days", defaultValue: "Tage"))")
+                        Text(verbatim: "\(recurrenceDays) \(recurrenceDays == 1 ? String(localized: "cleaning.add.day.singular", defaultValue: "Tag") : String(localized: "cleaning.add.days", defaultValue: "Tage"))")
                     }
                     DatePicker(String(localized: "cleaning.add.firstDue", defaultValue: "Startdatum"), selection: $startDate, displayedComponents: .date)
                 }

@@ -497,7 +497,7 @@ struct FocusSessionView: View {
                             .foregroundStyle(.secondary)
                         
                         if gardenStore.isProUser {
-                            Stat3DTitleView(title: "pro Bonus", color: .goldPrimary, size: 12)
+                            Stat3DTitleView(title: String(localized: "focus.session.pro_bonus", defaultValue: "Pro-Bonus"), color: .goldPrimary, size: 12)
                                 .padding(.top, 2)
                         }
                     }
@@ -645,7 +645,7 @@ struct FocusSessionView: View {
         let endTime = Date().addingTimeInterval(TimeInterval(remainingSeconds))
         let goalTitle = sessionGoals.first(where: { $0.priority == .high })?.text ?? 
                         sessionGoals.first?.text ?? 
-                        "Focus Session"
+                        String(localized: "focus.session.title", defaultValue: "Fokus-Session")
         let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
         let tasks = sessionGoals.isEmpty ? nil : sessionGoals.map { $0.text }
         let isPro = iapStore.isProUser
@@ -702,7 +702,7 @@ struct FocusSessionView: View {
             return pOrder[$0.priority]! > pOrder[$1.priority]!
         }
         
-        let goalTitle = sortedOpenGoals.first?.text ?? "Focus Session"
+        let goalTitle = sortedOpenGoals.first?.text ?? String(localized: "focus.session.title", defaultValue: "Fokus-Session")
                         
         let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
         let tasks = sessionGoals.isEmpty ? nil : sessionGoals.map { $0.text }

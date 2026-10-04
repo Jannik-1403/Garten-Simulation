@@ -588,6 +588,9 @@ struct RoutineStartWidgetView: View {
         guard let routine = entry.routine else {
             return String(localized: "widget_routine_none", defaultValue: "Keine Routine", locale: widgetLocale)
         }
+        if routine.id == RoutineEntity.emptyID {
+            return String(localized: "widget_routine_unavailable", defaultValue: "Keine Routine verfügbar", locale: widgetLocale)
+        }
         return String(localized: String.LocalizationValue(routine.titleKey), locale: widgetLocale)
     }
     

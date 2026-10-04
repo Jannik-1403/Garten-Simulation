@@ -231,12 +231,12 @@ class NotificationManager: ObservableObject {
         
         switch candidate.type {
         case .triggerA:
-            let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
+            let name = candidate.habit?.habitName ?? candidate.habit?.name ?? String(localized: "notification.fallback.plant", defaultValue: "Pflanze")
             let h = Int(candidate.time.timeIntervalSince(candidate.habit?.lastCompletionDate ?? Date()) / 3600)
             texts = NotificationTexts.wartet(pflanzenName: name, stunden: h)
             
         case .triggerB:
-            let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
+            let name = candidate.habit?.habitName ?? candidate.habit?.name ?? String(localized: "notification.fallback.plant", defaultValue: "Pflanze")
             texts = NotificationTexts.streakGefahr(pflanzenName: name, streak: candidate.habit?.streak ?? 0)
             
         case .triggerC:
@@ -246,7 +246,7 @@ class NotificationManager: ObservableObject {
             texts = NotificationTexts.stillerAbend(anzahlUngegossen: candidate.count)
             
         case .triggerE:
-            let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
+            let name = candidate.habit?.habitName ?? candidate.habit?.name ?? String(localized: "notification.fallback.plant", defaultValue: "Pflanze")
             // Wir nutzen hier vorerst den TriggerA Text oder einen leicht angepassten
             texts = NotificationTexts.wartet(pflanzenName: name, stunden: 0)
         }

@@ -7,7 +7,7 @@ public struct WaterPlantIntent: AppIntent {
     public static var title: LocalizedStringResource = LocalizedStringResource("intent_water_title", defaultValue: "Pflanze gießen")
     public static var description = IntentDescription(LocalizedStringResource("intent_water_desc", defaultValue: "Gieße eine deiner Pflanzen."))
 
-    @Parameter(title: "Pflanze")
+    @Parameter(title: LocalizedStringResource("intent.water_plant.parameter", defaultValue: "Pflanze"))
     public var targetPlant: PlantEntity
 
     public init() {}

@@ -2,7 +2,7 @@ import Foundation
 import AppIntents
 
 public struct PlantEntity: AppEntity {
-    public static var typeDisplayRepresentation: TypeDisplayRepresentation = "Pflanze"
+    public static var typeDisplayRepresentation: TypeDisplayRepresentation = TypeDisplayRepresentation(name: LocalizedStringResource("intent.plant_entity.type", defaultValue: "Pflanze"))
     public static var defaultQuery = PlantQuery()
 
     public let id: String

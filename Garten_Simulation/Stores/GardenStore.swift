@@ -1029,7 +1029,7 @@ class GardenStore: ObservableObject {
             let customDecoration = DecorationItem(
                 id: "trash.\(newCustomID)",
                 objectNameKey: name,
-                objectDescriptionKey: "Eigene schlechte Angewohnheit",
+                objectDescriptionKey: "habit.custom.bad_habit.desc",
                 habitNameKey: name,
                 habitDescriptionKey: habit,
                 sfSymbol: icon,
@@ -1854,7 +1854,7 @@ class GardenStore: ObservableObject {
         sharedDefaults?.set(false, forKey: "screenTimeLimitExceededToday")
         sharedDefaults?.synchronize()
         
-        let reason = sharedDefaults?.string(forKey: "screenTimeExceededReason") ?? "Bildschirmzeit-Limit überschritten"
+        let reason = sharedDefaults?.string(forKey: "screenTimeExceededReason") ?? String(localized: "screentime.exceeded.reason", defaultValue: "Bildschirmzeit-Limit überschritten")
         let habitID = "trash.junk_mail_abo" // DecorationItem ID für "Zu viel Bildschirmzeit"
         
         // Kaufe die schlechte Gewohnheit, falls noch nicht vorhanden

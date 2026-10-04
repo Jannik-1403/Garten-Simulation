@@ -137,7 +137,7 @@ struct HabitVerlaufView: View {
                             .foregroundStyle(Color.goldPrimary)
                             .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
                         
-                        Stat3DTitleView(title: "PRO INSIGHTS", color: .goldPrimary)
+                        Stat3DTitleView(title: String(localized: "habit.history.pro_insights", defaultValue: "PRO INSIGHTS"), color: .goldPrimary)
                         
                         Text(String(localized: "paywall.feature.weekly_report.desc", defaultValue: "Lerne dich selbst besser kennen. Entdecke, wann du am produktivsten bist und feiere deinen Fortschritt."))
                             .font(.system(size: 15, weight: .medium, design: .rounded))
@@ -361,8 +361,8 @@ struct HabitVerlaufView: View {
     private var legendRow: some View {
         HStack(spacing: 16) {
             Spacer()
-            legendItem(color: Color.gruenPrimary, label: "Gegossen")
-            legendItem(color: Color.black.opacity(0.06), label: "Nicht gegossen")
+            legendItem(color: Color.gruenPrimary, label: String(localized: "plant.detail.watered", defaultValue: "Gegossen"))
+            legendItem(color: Color.black.opacity(0.06), label: String(localized: "habit.history.legend.not_watered", defaultValue: "Nicht gegossen"))
         }
         .padding(.bottom, 8)
     }

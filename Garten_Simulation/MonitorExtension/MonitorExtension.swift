@@ -26,7 +26,7 @@ class MonitorExtension: DeviceActivityMonitor {
             // Create UserDefaults locally – avoids @MainActor isolation issues
             let defaults = UserDefaults(suiteName: "group.com.jannik.grovy")
             defaults?.set(true, forKey: "didExceedScreenTime")
-            defaults?.set("Limit überschritten", forKey: "screenTimeExceededReason")
+            defaults?.set("screentime.exceeded.reason", forKey: "screenTimeExceededReason")
             defaults?.synchronize()
         }
     }

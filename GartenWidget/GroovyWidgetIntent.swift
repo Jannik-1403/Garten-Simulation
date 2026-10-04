@@ -90,8 +90,17 @@ struct RoutineEntity: AppEntity {
     static var typeDisplayRepresentation: TypeDisplayRepresentation = TypeDisplayRepresentation(name: LocalizedStringResource("widget_routine_type", defaultValue: "Routine"))
     static var defaultQuery = RoutineEntityQuery()
 
+    /// Platzhalter-ID, wenn der Nutzer noch keine Routine angelegt hat.
+    static let emptyID = "empty"
+    static var unavailable: RoutineEntity {
+        RoutineEntity(id: emptyID, titleKey: "widget_routine_unavailable", icon: "⚠️")
+    }
+
     var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(String(localized: String.LocalizationValue(titleKey), locale: widgetLocale))")
+        if id == Self.emptyID {
+            return DisplayRepresentation(title: LocalizedStringResource("widget_routine_unavailable", defaultValue: "Keine Routine verfügbar"))
+        }
+        return DisplayRepresentation(title: "\(String(localized: String.LocalizationValue(titleKey), locale: widgetLocale))")
     }
 }
 
@@ -107,16 +116,16 @@ struct RoutineEntityQuery: EntityQuery {
     
     private func fetchAllRoutines() -> [RoutineEntity] {
         guard let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData") else {
-            return [RoutineEntity(id: "empty", titleKey: "Keine Routine zur Verfügung", icon: "⚠️")]
+            return [.unavailable]
         }
         do {
             let routines = try JSONDecoder().decode([WidgetRoutineUIData].self, from: data)
             if routines.isEmpty {
-                return [RoutineEntity(id: "empty", titleKey: "Keine Routine zur Verfügung", icon: "⚠️")]
+                return [.unavailable]
             }
             return routines.map { RoutineEntity(id: $0.id.uuidString, titleKey: $0.titleKey, icon: $0.icon) }
         } catch {
-            return [RoutineEntity(id: "empty", titleKey: "Keine Routine zur Verfügung", icon: "⚠️")]
+            return [.unavailable]
         }
     }
 }

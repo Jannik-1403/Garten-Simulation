@@ -63,7 +63,7 @@ struct ShopItemDetailView: View {
                         // Tag + Titel + Subtitle
                         VStack(alignment: .leading, spacing: 8) {
                             if let tag = payload.tag {
-                                let displayTag = tag == "mystic" ? "MASTER" : (tag == "legendary" ? "LEGENDÄR" : (tag == "epic" ? "EPISCH" : (tag == "rare" ? "SELTEN" : (tag == "common" ? "GEWÖHNLICH" : NSLocalizedString(tag, comment: "")))))
+                                let displayTag = Self.localizedRarityTag(tag)
                                 Text(displayTag)
                                     .font(.system(size: 11, weight: .bold))
                                     .foregroundStyle(payload.color)
@@ -380,5 +380,18 @@ struct ShopItemDetailView: View {
             TelemetryDeck.signal("shop_item_purchased", parameters: parameters)
         }
     }
-    
+
+    /// Lokalisierter, großgeschriebener Raritäts-Tag (nutzt die vorhandenen `rarity.*`-Keys).
+    static func localizedRarityTag(_ tag: String) -> String {
+        let name: String
+        switch tag {
+        case "mystic": name = String(localized: "rarity.master", defaultValue: "Master")
+        case "legendary": name = String(localized: "rarity.legendary", defaultValue: "Legendär")
+        case "epic": name = String(localized: "rarity.epic", defaultValue: "Episch")
+        case "rare": name = String(localized: "rarity.rare", defaultValue: "Selten")
+        case "common": name = String(localized: "rarity.common", defaultValue: "Gewöhnlich")
+        default: return String(localized: String.LocalizationValue(tag))
+        }
+        return name.localizedUppercase
+    }
 }

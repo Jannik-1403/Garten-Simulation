@@ -73,7 +73,7 @@ extension ShopDetailPayload {
         ShopDetailPayload(
             id: plant.id,
             titleKey: plant.name,
-            subtitle: "Exklusive Pflanze",
+            subtitle: String(localized: "shop.item.exclusive_plant", defaultValue: "Exklusive Pflanze"),
             descriptionKey: plant.symbolism,
             price: plant.basePrice,
             icon: plant.assetName ?? plant.symbolName,

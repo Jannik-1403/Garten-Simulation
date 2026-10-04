@@ -1199,15 +1199,17 @@ struct StatDetailFullscreenView: View {
             return date.formatted(.dateTime.weekday(.abbreviated).locale(Locale(identifier: settings.appLanguage)))
         case .month:
             let daysDiff = calendar.dateComponents([.day], from: date, to: today).day ?? 0
+            let weekNumber: Int
             if daysDiff >= 24 {
-                return settings.appLanguage == "de" ? "Woche 1" : "Week 1"
+                weekNumber = 1
             } else if daysDiff >= 17 {
-                return settings.appLanguage == "de" ? "Woche 2" : "Week 2"
+                weekNumber = 2
             } else if daysDiff >= 10 {
-                return settings.appLanguage == "de" ? "Woche 3" : "Week 3"
+                weekNumber = 3
             } else {
-                return settings.appLanguage == "de" ? "Woche 4" : "Week 4"
+                weekNumber = 4
             }
+            return String(format: String(localized: "stats.chart.week_number", defaultValue: "Woche %@"), "\(weekNumber)")
         case .year:
             return date.formatted(.dateTime.month(.abbreviated).locale(Locale(identifier: settings.appLanguage)))
         case .allTime:

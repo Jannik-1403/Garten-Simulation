@@ -110,9 +110,10 @@ struct EventCardView: View {
             formatter.timeStyle = .short
             formatter.dateStyle = .none
         } else if Calendar.current.isDateInTomorrow(event.startDate) {
+            // Systemseitig lokalisiert: "Morgen, 10:00" / "Tomorrow, 10:00 AM" …
             formatter.timeStyle = .short
-            formatter.dateStyle = .none
-            return "Morgen, \(formatter.string(from: event.startDate))"
+            formatter.dateStyle = .short
+            formatter.doesRelativeDateFormatting = true
         } else {
             formatter.timeStyle = .short
             formatter.dateStyle = .short
