@@ -1421,3 +1421,5 @@
 - Bugfix: Im Kalender springt die Tages-Ansicht nun korrekt zum ausgewählten Tag, anstatt nur die Überschrift zu ändern.
 
 - Bugfix: In der Vergangenheitsansicht (gestern/vorgestern) werden Apple Health Daten (wie Schritte und Wasser) nun korrekt aus dem Verlaufsgeladen, statt auf 0 zurückzufallen.
+
+- Feature: Die Apple Health-Historie für Schritte und Wasser wird nun für ein ganzes Jahr im Hintergrund geladen, sodass du problemlos Monate in die Vergangenheit springen und deine echten Health-Werte ansehen kannst.
