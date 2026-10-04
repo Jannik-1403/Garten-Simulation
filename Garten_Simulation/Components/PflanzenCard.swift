@@ -32,6 +32,17 @@ struct PflanzenCard: View {
     }
     
     private func getBaseHealthCurrent(for metric: HealthMetricType) -> Double {
+        if !Calendar.current.isDateInToday(targetDate) {
+            let targetStartOfDay = Calendar.current.startOfDay(for: targetDate)
+            if metric == .steps || metric == .running {
+                return healthManager.stepsHistory[targetStartOfDay] ?? 0.0
+            } else if metric == .water {
+                return healthManager.waterHistory[targetStartOfDay] ?? 0.0
+            }
+            // For other metrics that do not have history cached yet, return 0 for now.
+            return 0.0
+        }
+        
         switch metric {
         case .steps: return healthManager.todaysSteps
         case .water: return healthManager.todaysWater

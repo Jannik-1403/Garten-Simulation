@@ -217,6 +217,7 @@ struct GartenView: View {
             NavigationStack {
                 PflanzeDetailSheet(
                     pflanze: pflanze,
+                    targetDate: dailyFeedbackVM.targetDate,
                     onLoeschen: {
                         gardenStore.pflanzEntfernen(pflanze: pflanze)
                         ausgewaehltePflanze = nil

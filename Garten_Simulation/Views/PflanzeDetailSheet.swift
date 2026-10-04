@@ -6,6 +6,7 @@ import TelemetryDeck
 
 struct PflanzeDetailSheet: View {
     @ObservedObject var pflanze: HabitModel
+    var targetDate: Date = Date()
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var shopStore: ShopStore
@@ -191,19 +192,21 @@ struct PflanzeDetailSheet: View {
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
                                     .foregroundColor(.primary)
                                 Spacer()
-                                Item3DButton(
-                                    farbe: .blauPrimary,
-                                    sekundaerFarbe: .blauPrimary.darker(),
-                                    groesse: 36,
-                                    isRectangular: false,
-                                    aktion: {
-                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                        zeigeGratitudeJournal = true
+                                if Calendar.current.isDateInToday(targetDate) {
+                                    Item3DButton(
+                                        farbe: .blauPrimary,
+                                        sekundaerFarbe: .blauPrimary.darker(),
+                                        groesse: 36,
+                                        isRectangular: false,
+                                        aktion: {
+                                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                            zeigeGratitudeJournal = true
+                                        }
+                                    ) {
+                                        Image(systemName: "plus")
+                                            .font(.system(size: 16, weight: .bold))
+                                            .foregroundStyle(.white)
                                     }
-                                ) {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundStyle(.white)
                                 }
                             }
                         }
@@ -261,6 +264,7 @@ struct PflanzeDetailSheet: View {
                             }
                             
                         }
+                        .disabled(!Calendar.current.isDateInToday(targetDate))
                         .padding(.top, 8)
                     } label: {
                         HStack {
@@ -268,20 +272,22 @@ struct PflanzeDetailSheet: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             Spacer()
-                            Item3DButton(
-                                farbe: .gruenPrimary,
-                                sekundaerFarbe: .gruenPrimary.darker(),
-                                groesse: 36,
-                                isRectangular: false,
-                                aktion: {
-                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                    todoToEditIndex = nil
-                                    Task { @MainActor in zeigeTodoSheet = true }
+                            if Calendar.current.isDateInToday(targetDate) {
+                                Item3DButton(
+                                    farbe: .gruenPrimary,
+                                    sekundaerFarbe: .gruenPrimary.darker(),
+                                    groesse: 36,
+                                    isRectangular: false,
+                                    aktion: {
+                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                        todoToEditIndex = nil
+                                        Task { @MainActor in zeigeTodoSheet = true }
+                                    }
+                                ) {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundStyle(.white)
                                 }
-                            ) {
-                                Image(systemName: "plus")
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundStyle(.white)
                             }
                         }
                     }
@@ -328,6 +334,7 @@ struct PflanzeDetailSheet: View {
                             }
                             
                         }
+                        .disabled(!Calendar.current.isDateInToday(targetDate))
                         .padding(.top, 8)
                     } label: {
                         HStack {
@@ -335,19 +342,21 @@ struct PflanzeDetailSheet: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             Spacer()
-                            Item3DButton(
-                                farbe: .blauPrimary,
-                                sekundaerFarbe: .blauPrimary.darker(),
-                                groesse: 36,
-                                isRectangular: false,
-                                aktion: {
-                                    noteToEditIndex = nil
-                                    zeigeNotizSheet = true
+                            if Calendar.current.isDateInToday(targetDate) {
+                                Item3DButton(
+                                    farbe: .blauPrimary,
+                                    sekundaerFarbe: .blauPrimary.darker(),
+                                    groesse: 36,
+                                    isRectangular: false,
+                                    aktion: {
+                                        noteToEditIndex = nil
+                                        zeigeNotizSheet = true
+                                    }
+                                ) {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundStyle(.white)
                                 }
-                            ) {
-                                Image(systemName: "plus")
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundStyle(.white)
                             }
                         }
                     }
@@ -369,6 +378,7 @@ struct PflanzeDetailSheet: View {
                                         zeigeTimerEditSheet = true 
                                     }
                                 )
+                                .disabled(!Calendar.current.isDateInToday(targetDate))
                             } else {
                                 Text(String(localized: "plant.detail.no_reminders", defaultValue: "Keine Erinnerungen"))
                                     .font(.system(size: 14))
@@ -385,7 +395,7 @@ struct PflanzeDetailSheet: View {
                                 .foregroundColor(.primary)
                             Spacer()
                             let hatBereitsTimer = !(pflanze.reminderSchedule?.entries.isEmpty ?? true)
-                            if !hatBereitsTimer {
+                            if !hatBereitsTimer && Calendar.current.isDateInToday(targetDate) {
                                 Item3DButton(
                                     farbe: .blauPrimary,
                                     sekundaerFarbe: .blauPrimary.darker(),
@@ -420,33 +430,35 @@ struct PflanzeDetailSheet: View {
                             .padding(.top, 16)
                     }
 
-                    HStack(spacing: 40) {
-                        // Focus Session Button
-                        VStack(spacing: 8) {
-                            Item3DButton(
-                                farbe: .orangePrimary,
-                                sekundaerFarbe: .orangePrimary.darker(),
-                                groesse: 54,
-                                isRectangular: false,
-                                aktion: { zeigeFocusSession = true }
-                            ) {
-                                Image("Timer full")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
+                    if Calendar.current.isDateInToday(targetDate) {
+                        HStack(spacing: 40) {
+                            // Focus Session Button
+                            VStack(spacing: 8) {
+                                Item3DButton(
+                                    farbe: .orangePrimary,
+                                    sekundaerFarbe: .orangePrimary.darker(),
+                                    groesse: 54,
+                                    isRectangular: false,
+                                    aktion: { zeigeFocusSession = true }
+                                ) {
+                                    Image("Timer full")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 24, height: 24)
+                                }
+                                .accessibilityIdentifier("FocusTimerButton")
+                                .tourAnchor(.focusTimer)
+                                .id(TourStep.focusTimer)
+                                
+                                Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten"))
+                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.5)
                             }
-                            .accessibilityIdentifier("FocusTimerButton")
-                            .tourAnchor(.focusTimer)
-                            .id(TourStep.focusTimer)
-                            
-                            Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten"))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
                         }
+                        .padding(.top, 16)
                     }
-                    .padding(.top, 16)
 
 
 
@@ -751,10 +763,10 @@ struct PflanzeDetailSheet: View {
                                             
                                             if pflanze.trackingMode == .counter {
                                                 HabitCounterControl(
-                                                    value: pflanze.wasCompleted(on: Date()) ? pflanze.counterTarget : pflanze.counterProgress,
+                                                    value: pflanze.wasCompleted(on: targetDate) ? pflanze.counterTarget : pflanze.counterProgress,
                                                     target: pflanze.counterTarget,
                                                     unit: pflanze.counterUnit,
-                                                    isDisabled: pflanze.wasCompleted(on: Date())
+                                                    isDisabled: pflanze.wasCompleted(on: targetDate) || !Calendar.current.isDateInToday(targetDate)
                                                 ) { newValue in
                                                     handleCounterChange(newValue)
                                                 }
@@ -770,7 +782,7 @@ struct PflanzeDetailSheet: View {
                                                         }
                                                     }
                                                     .tint(Color.orangePrimary)
-                                                    .disabled(pflanze.wasCompleted(on: Date()))
+                                                    .disabled(pflanze.wasCompleted(on: targetDate) || !Calendar.current.isDateInToday(targetDate))
                                                     
                                                     Text("\(Int(tempSliderProgress * 100))%")
                                                         .font(.system(size: 14, weight: .bold, design: .rounded))
@@ -792,18 +804,20 @@ struct PflanzeDetailSheet: View {
                                             shadowDepth: 6
                                         ))
                                         .overlay(alignment: .topTrailing) {
-                                            Item3DButton(
-                                                icon: "gearshape.fill",
-                                                farbe: Color(UIColor.systemGray6),
-                                                sekundaerFarbe: Color(UIColor.systemGray4),
-                                                groesse: 36,
-                                                iconSkalierung: 0.5,
-                                                isRectangular: false,
-                                                iconColor: .black
-                                            ) {
-                                                zeigeTrackingSettings = true
+                                            if Calendar.current.isDateInToday(targetDate) {
+                                                Item3DButton(
+                                                    icon: "gearshape.fill",
+                                                    farbe: Color(UIColor.systemGray6),
+                                                    sekundaerFarbe: Color(UIColor.systemGray4),
+                                                    groesse: 36,
+                                                    iconSkalierung: 0.5,
+                                                    isRectangular: false,
+                                                    iconColor: .black
+                                                ) {
+                                                    zeigeTrackingSettings = true
+                                                }
+                                                .padding(12)
                                             }
-                                            .padding(12)
                                         }
                                         .padding(.horizontal, 16)
                                         .padding(.bottom, 8)
