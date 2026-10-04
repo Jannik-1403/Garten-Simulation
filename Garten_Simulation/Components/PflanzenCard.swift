@@ -94,7 +94,7 @@ struct PflanzenCard: View {
         } else {
             // Find the manual progress for this historical day from SnapshotStore
             if let snapshot = SnapshotStore.shared.getSnapshot(for: targetDate),
-               let progress = snapshot.habitProgress[pflanze.plantID.uuidString] {
+               let progress = snapshot.habitProgress[pflanze.plantID] {
                 return progress
             }
             return 0.0

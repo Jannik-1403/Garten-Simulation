@@ -556,7 +556,7 @@ struct PflanzeDetailSheet: View {
             if Calendar.current.isDateInToday(targetDate) {
                 tempSliderProgress = pflanze.sliderProgress
             } else {
-                tempSliderProgress = SnapshotStore.shared.getSnapshot(for: targetDate)?.habitProgress[pflanze.plantID.uuidString] ?? 0.0
+                tempSliderProgress = SnapshotStore.shared.getSnapshot(for: targetDate)?.habitProgress[pflanze.plantID] ?? 0.0
             }
             
             // Wenn linkedHealthMetric noch nil ist (Toggle wurde entfernt), automatisch setzen
@@ -593,7 +593,7 @@ struct PflanzeDetailSheet: View {
             if Calendar.current.isDateInToday(newDate) {
                 tempSliderProgress = pflanze.sliderProgress
             } else {
-                tempSliderProgress = SnapshotStore.shared.getSnapshot(for: newDate)?.habitProgress[pflanze.plantID.uuidString] ?? 0.0
+                tempSliderProgress = SnapshotStore.shared.getSnapshot(for: newDate)?.habitProgress[pflanze.plantID] ?? 0.0
             }
             
             if let metric = pflanze.effectiveHealthMetric {
@@ -787,7 +787,7 @@ struct PflanzeDetailSheet: View {
                                             if pflanze.trackingMode == .counter {
                                                 let displayedCounterProgress = Calendar.current.isDateInToday(targetDate) 
                                                     ? pflanze.counterProgress 
-                                                    : Int((SnapshotStore.shared.getSnapshot(for: targetDate)?.habitProgress[pflanze.plantID.uuidString] ?? 0.0) * Double(pflanze.counterTarget))
+                                                    : Int((SnapshotStore.shared.getSnapshot(for: targetDate)?.habitProgress[pflanze.plantID] ?? 0.0) * Double(pflanze.counterTarget))
                                                     
                                                 HabitCounterControl(
                                                     value: pflanze.wasCompleted(on: targetDate) ? pflanze.counterTarget : displayedCounterProgress,
