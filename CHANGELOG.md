@@ -1,3 +1,8 @@
+### 04.10.2026
+- Feature: Dynamische Zielhistorie (DailyTargetSnapshots) für Health-Metriken (Wasser/Kalorien) implementiert. 
+- Fix: Die Vergangenheit bleibt unberührt, wenn sich das aktuelle Ziel ändert.
+- Fix: `HabitModel` im `GartenWidget` synchronisiert nun die Historie korrekt.
+
 ### 2026-10-04 (Hotfix)
 - Apple Health UI-Fixes für historische Daten:
   - `GesundKochenCard` zeigt nun die korrekten historischen Daten anstatt der heutigen, wenn man Tage in der Vergangenheit aufruft.
