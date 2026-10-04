@@ -1411,3 +1411,5 @@
 - Added missing translations for all hardcoded German texts in the task editor sheet across all 16 languages.
 
 - Lokalisierung: Vollständige Lokalisierung aller verbleibenden hartkodierten deutschen Texte im gesamten Projekt (App und Widgets) inkl. fehlender Übersetzungen (16 Sprachen).
+
+- Bugfix: Wenn bei der Aufräum-Gewohnheit eine erledigte Aufgabe wieder unerledigt wird, wird die gesamte Gewohnheit wieder als offen (nicht gegossen) markiert.
