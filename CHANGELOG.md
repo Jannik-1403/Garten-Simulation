@@ -3,6 +3,8 @@
 - Fix: `PflanzenCard` liest Health-Daten nun aus dem `dailyValuesCache` anstatt bei fehlenden Daten auf 0% zu fallen. Solange der Wert lädt, wird ein transparenter Platzhalter gezeigt.
 - Fix: `HealthChartView` und `IntradayProgressChartView` zeigen für vergangene Tage keine gestrichelte "Jetzt"-Linie (und keinen Cut-off) mehr, sondern stellen die Daten bis 24:00 Uhr des Zieltages vollständig dar. Ein Fehler mit +1 Stunde Offset in Health-Charts wurde ebenfalls entfernt.
 - Fix: Historische Diagramme (HealthChartView & IntradayProgressChartView) abgeschnitten bei heutiger Uhrzeit behoben (Zentralisierte Datums-Logik via ChartHelper). "00:00" Beschriftung rechts unten zu "24:00" korrigiert. 
+- Fix: Das "24:00" Beschriftungs-Tag an der Spitze der Graphen für historische Daten wurde komplett entfernt.
+- Fix: Apple Health Gewohnheiten ("End of Day" etc.) können jetzt ihren "Erledigt"-Status dynamisch wieder verlieren, wenn der Health-Fortschritt (z. B. wegen veränderter Ziele oder weniger getrackter Daten) wieder unter 100 % (1.0) fällt. Die Apple Health 3D-Buttons sind jetzt zur klaren optischen Abgrenzung immer grau eingefärbt.
 
 ### 04.10.2026
 - Feature: Dynamische Zielhistorie (DailyTargetSnapshots) für Health-Metriken (Wasser/Kalorien) implementiert. 
