@@ -888,7 +888,8 @@ struct PflanzeDetailSheet: View {
                                                                 target: pflanze.target(for: targetDate),
                                                                 hourlyAverageData: hourlyAvgData,
                                                                 onEditTarget: { if !isReadOnly { showTargetEdit = true } },
-                                                                onUnlink: { if !isReadOnly { zeigeAppleHealthEntkoppelnAlert = true } }
+                                                                onUnlink: { if !isReadOnly { zeigeAppleHealthEntkoppelnAlert = true } },
+                                                                targetDate: targetDate
                                                             )
                                                             .padding(.horizontal, 16)
                                                             .padding(.vertical, 4)

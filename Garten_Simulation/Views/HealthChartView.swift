@@ -50,23 +50,24 @@ struct HealthChartView: View {
         calendar.date(byAdding: .day, value: 1, to: dayStart)!
     }
 
-    private func mappedTime(from date: Date) -> Date {
-        let h = calendar.component(.hour, from: date)
-        let m = calendar.component(.minute, from: date)
-        let s = calendar.component(.second, from: date)
-        return calendar.date(bySettingHour: h, minute: m, second: s, of: dayStart) ?? date
+
+
+    private var yAxisMax: Double {
+        let maxData = max(todayTotal, hourlyAverageData.map { $0.1 }.max() ?? 0) * 1.2
+        let maxTargetAndData = max(target ?? 10, maxData)
+        return max(10, maxTargetAndData)
     }
 
     private var adjustedHourlyAverageData: [(Date, Double)] {
         if hourlyAverageData.isEmpty { return [] }
         var result: [(Date, Double)] = []
-        let now = calendar.isDateInToday(targetDate) ? Date() : dayEnd
+        let now = ChartHelper.endOfChart(for: targetDate)
         
         result.append((dayStart, 0))
         let sortedAvg = hourlyAverageData.sorted { $0.0 < $1.0 }
         
         for item in sortedAvg {
-            var pointTime = mappedTime(from: item.0)
+            var pointTime = ChartHelper.mappedTime(from: item.0, targetDate: targetDate)
             if pointTime > now { pointTime = now }
             result.append((pointTime, item.1))
         }
@@ -102,7 +103,7 @@ struct HealthChartView: View {
             HStack(alignment: .top, spacing: 0) {
                 VStack(alignment: .leading, spacing: 1) {
                     statLabel(dotColor: Color.orangePrimary,
-                              text: calendar.isDateInToday(targetDate) ? String(localized: "health.chart.label.today", defaultValue: "Heute") : (calendar.isDateInYesterday(targetDate) ? String(localized: "health.chart.label.yesterday", defaultValue: "Gestern") : targetDate.formatted(.dateTime.day().month())))
+                              text: ChartHelper.dateLabel(for: targetDate))
                     Text(formatNumber(todayTotal))
                         .font(.system(size: 32, weight: .black, design: .rounded))
                         .foregroundStyle(Color.orangePrimary)
@@ -181,13 +182,23 @@ struct HealthChartView: View {
                     PointMark(x: .value("Uhrzeit", last.0), y: .value("Schritte", last.1))
                         .foregroundStyle(Color.orangePrimary)
                         .symbolSize(60)
+                        .annotation(position: .top, alignment: .center) {
+                            if !calendar.isDateInToday(targetDate) && last.0 == dayEnd {
+                                Text("24:00")
+                                    .font(.system(size: 10, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color(UIColor.systemGray))
+                                    .padding(.horizontal, 4)
+                                    .padding(.vertical, 2)
+                                    .background(Capsule().fill(Color(UIColor.systemBackground)))
+                            }
+                        }
 
                     if calendar.isDateInToday(targetDate) {
                         RuleMark(x: .value("Jetzt", last.0))
                             .foregroundStyle(Color(UIColor.systemGray4))
                             .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
                             .annotation(position: .top, alignment: .center) {
-                                Text(timeLabel(for: last.0))
+                                Text(ChartHelper.timeLabel(for: last.0))
                                     .font(.system(size: 10, weight: .bold, design: .rounded))
                                     .foregroundStyle(Color(UIColor.systemGray))
                                     .padding(.horizontal, 4)
@@ -209,7 +220,7 @@ struct HealthChartView: View {
                                 Text(formatNumber(selectedEntry.1))
                                     .font(.system(size: 16, weight: .black, design: .rounded))
                                     .foregroundStyle(Color.orangePrimary)
-                                Text(timeLabel(for: selectedEntry.0))
+                                Text(ChartHelper.timeLabel(for: selectedEntry.0))
                                     .font(.system(size: 10, weight: .semibold, design: .rounded))
                                     .foregroundStyle(.secondary)
                             }
@@ -225,12 +236,12 @@ struct HealthChartView: View {
             }
             .chartXSelection(value: $selectedDate)
             .chartXScale(domain: dayStart...dayEnd)
-            .chartYScale(domain: 0...max(10, max(target ?? 10, max(todayTotal, hourlyAverageData.map { $0.1 }.max() ?? 0) * 1.2)))
+            .chartYScale(domain: 0...yAxisMax)
             .chartXAxis {
                 AxisMarks(values: [dayStart, dayEnd]) { value in
                     if let date = value.as(Date.self) {
                         AxisValueLabel(anchor: date == dayStart ? .topLeading : .topTrailing) {
-                            Text(timeLabel(for: date))
+                            Text(date == dayEnd ? "24:00" : ChartHelper.timeLabel(for: date))
                                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                                 .foregroundStyle(Color(UIColor.systemGray2))
                         }
@@ -311,14 +322,7 @@ struct HealthChartView: View {
         }
     }
 
-    private func timeLabel(for date: Date) -> String {
-        let cal = Calendar.current
-        let h = cal.component(.hour, from: date)
-        let m = cal.component(.minute, from: date)
-        
-        let roundedMinute = (m >= 30) ? 30 : 0
-        return String(format: "%02d:%02d", h, roundedMinute)
-    }
+
 
     private func formatNumber(_ value: Double) -> String {
         let f = NumberFormatter()
@@ -331,14 +335,14 @@ struct HealthChartView: View {
     private func cumulativeData() -> [(Date, Double)] {
         var result: [(Date, Double)] = []
         var sum: Double = 0
-        let now = calendar.isDateInToday(targetDate) ? Date() : dayEnd
+        let now = ChartHelper.endOfChart(for: targetDate)
         
         result.append((dayStart, 0))
         
         let sortedData = data.sorted { $0.0 < $1.0 }
         for item in sortedData {
             sum += item.1
-            var pointTime = mappedTime(from: item.0)
+            var pointTime = ChartHelper.mappedTime(from: item.0, targetDate: targetDate)
             if pointTime > now { pointTime = now }
             result.append((pointTime, sum))
         }

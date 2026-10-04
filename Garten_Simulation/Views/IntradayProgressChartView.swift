@@ -46,24 +46,17 @@ struct IntradayProgressChartView: View {
     private var dayEnd: Date {
         Calendar.current.date(byAdding: .day, value: 1, to: dayStart)!
     }
-    
-    private func mappedTime(from date: Date) -> Date {
-        let cal = Calendar.current
-        let h = cal.component(.hour, from: date)
-        let m = cal.component(.minute, from: date)
-        let s = cal.component(.second, from: date)
-        return cal.date(bySettingHour: h, minute: m, second: s, of: dayStart) ?? date
-    }
+
     
     private var chartData: [(Date, Double)] {
         var result: [(Date, Double)] = []
-        let now = Calendar.current.isDateInToday(targetDate) ? Date() : dayEnd
+        let now = ChartHelper.endOfChart(for: targetDate)
         
         result.append((dayStart, 0.0))
         
         let sortedHistory = dayHistory.sorted { $0.timestamp < $1.timestamp }
         for entry in sortedHistory {
-            let pointTime = mappedTime(from: entry.timestamp)
+            let pointTime = ChartHelper.mappedTime(from: entry.timestamp, targetDate: targetDate)
             if pointTime > now { continue }
             result.append((pointTime, entry.progress * effectiveTarget))
         }
@@ -96,7 +89,7 @@ struct IntradayProgressChartView: View {
             HStack(alignment: .top, spacing: 0) {
                 VStack(alignment: .leading, spacing: 1) {
                     statLabel(dotColor: Color.orangePrimary,
-                              text: Calendar.current.isDateInToday(targetDate) ? String(localized: "health.chart.label.today", defaultValue: "Heute") : (Calendar.current.isDateInYesterday(targetDate) ? String(localized: "health.chart.label.yesterday", defaultValue: "Gestern") : targetDate.formatted(.dateTime.day().month())))
+                              text: ChartHelper.dateLabel(for: targetDate))
                     Text(formatNumber(dayTotal))
                         .font(.system(size: 32, weight: .black, design: .rounded))
                         .foregroundStyle(Color.orangePrimary)
@@ -140,13 +133,23 @@ struct IntradayProgressChartView: View {
                     PointMark(x: .value("Uhrzeit", last.0), y: .value("Prozent", last.1))
                         .foregroundStyle(Color.orangePrimary)
                         .symbolSize(60)
+                        .annotation(position: .top, alignment: .center) {
+                            if !Calendar.current.isDateInToday(targetDate) && last.0 == dayEnd {
+                                Text("24:00")
+                                    .font(.system(size: 10, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color(UIColor.systemGray))
+                                    .padding(.horizontal, 4)
+                                    .padding(.vertical, 2)
+                                    .background(Capsule().fill(Color(UIColor.systemBackground)))
+                            }
+                        }
                     
                     if Calendar.current.isDateInToday(targetDate) {
                         RuleMark(x: .value("Jetzt", last.0))
                             .foregroundStyle(Color(UIColor.systemGray4))
                             .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
                             .annotation(position: .top, alignment: .center) {
-                                Text(timeLabel(for: last.0))
+                                Text(ChartHelper.timeLabel(for: last.0))
                                     .font(.system(size: 10, weight: .bold, design: .rounded))
                                     .foregroundStyle(Color(UIColor.systemGray))
                                     .padding(.horizontal, 4)
@@ -162,7 +165,7 @@ struct IntradayProgressChartView: View {
                 AxisMarks(values: [dayStart, dayEnd]) { value in
                     if let date = value.as(Date.self) {
                         AxisValueLabel(anchor: date == dayStart ? .topLeading : .topTrailing) {
-                            Text(timeLabel(for: date))
+                            Text(date == dayEnd ? "24:00" : ChartHelper.timeLabel(for: date))
                                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                                 .foregroundStyle(Color(UIColor.systemGray2))
                         }
@@ -248,9 +251,5 @@ struct IntradayProgressChartView: View {
         return String(format: "%.0f", value)
     }
     
-    private func timeLabel(for date: Date) -> String {
-        let df = DateFormatter()
-        df.timeStyle = .short
-        return df.string(from: date)
-    }
+
 }
