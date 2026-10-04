@@ -92,11 +92,12 @@ struct PflanzenCard: View {
         if Calendar.current.isDateInToday(targetDate) {
             return pflanze.sliderProgress
         } else {
-            // Find the manual progress for this historical day
-            let historicalProgress = pflanze.intradayProgressHistory
-                .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
-                .last?.progress ?? 0.0
-            return historicalProgress
+            // Find the manual progress for this historical day from SnapshotStore
+            if let snapshot = SnapshotStore.shared.getSnapshot(for: targetDate),
+               let progress = snapshot.habitProgress[pflanze.plantID.uuidString] {
+                return progress
+            }
+            return 0.0
         }
     }
     

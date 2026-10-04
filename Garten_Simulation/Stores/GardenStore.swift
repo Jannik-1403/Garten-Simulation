@@ -237,6 +237,7 @@ class GardenStore: ObservableObject {
             taeglicherStreakCheck()
             checkUngegossenePflanzen()
             updateWidgetData()
+            SnapshotStore.shared.runBackfillIfNeeded(gardenStore: self)
         }
     }
 
@@ -1438,6 +1439,7 @@ class GardenStore: ObservableObject {
             SharedUserDefaults.suite.synchronize()
         }
         updateWidgetData()
+        SnapshotStore.shared.captureSnapshot(for: Date(), gardenStore: self)
     }
 
     func updateWidgetData() {
