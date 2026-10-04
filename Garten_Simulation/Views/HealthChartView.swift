@@ -10,6 +10,7 @@ struct HealthChartView: View {
     var hourlyAverageData: [(Date, Double)] = []
     var onEditTarget: (() -> Void)? = nil
     var onUnlink: (() -> Void)? = nil
+    var targetDate: Date = Date()
 
     @State private var selectedDate: Date? = nil
 
@@ -36,14 +37,14 @@ struct HealthChartView: View {
         case .fiber: return String(localized: "health.unit.fiber",  defaultValue: "g")
         case .calcium: return String(localized: "health.unit.calcium", defaultValue: "mg")
         case .energy: return String(localized: "health.unit.energy", defaultValue: "kcal")
-        case .strengthTraining: return String(localized: "health.unit.minutes", defaultValue: "Minuten")
+        case .strengthTraining, .running: return String(localized: "health.unit.minutes", defaultValue: "Minuten")
         default:     return String(localized: "health.unit.hours",  defaultValue: "Std")
         }
     }
 
     private var todayTotal: Double { cumulativeData().last?.1 ?? 0 }
     private var avgNow: Double     { hourlyAverageData.last?.1 ?? 0 }
-    private var dayStart: Date     { Calendar.current.startOfDay(for: Date()) }
+    private var dayStart: Date     { Calendar.current.startOfDay(for: targetDate) }
 
     private var lastDataDate: Date {
         cumulativeData().last?.0 ?? Date()
@@ -52,7 +53,7 @@ struct HealthChartView: View {
     private var adjustedHourlyAverageData: [(Date, Double)] {
         if hourlyAverageData.isEmpty { return [] }
         var result: [(Date, Double)] = []
-        let now = Date()
+        let now = calendar.isDateInToday(targetDate) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: dayStart)!
         result.append((dayStart, 0))
         for item in hourlyAverageData {
             var pointTime = item.0.addingTimeInterval(3600)
@@ -61,6 +62,8 @@ struct HealthChartView: View {
         }
         return result
     }
+    
+    private let calendar = Calendar.current
 
     // MARK: Body
 
@@ -312,7 +315,7 @@ struct HealthChartView: View {
     private func cumulativeData() -> [(Date, Double)] {
         var result: [(Date, Double)] = []
         var sum: Double = 0
-        let now = Date()
+        let now = calendar.isDateInToday(targetDate) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: dayStart)!
         
         // Immer bei 0 am Start des Tages beginnen
         result.append((dayStart, 0))

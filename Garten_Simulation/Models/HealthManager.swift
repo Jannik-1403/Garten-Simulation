@@ -808,7 +808,7 @@ class HealthManager: ObservableObject {
     
     /// Holt den Durchschnitt der letzten 7 Tage für eine Metrik.
     /// Gibt nil zurück, wenn noch keine 3 Tage Daten vorhanden.
-    func fetchWeeklyAverage(for metric: HealthMetricType, completion: @escaping (Double?) -> Void) {
+    func fetchWeeklyAverage(for metric: HealthMetricType, targetDate: Date = Date(), completion: @escaping (Double?) -> Void) {
         guard isAuthorized else {
             DispatchQueue.main.async { completion(nil) }
             return
@@ -877,7 +877,7 @@ class HealthManager: ObservableObject {
     
     /// Berechnet pro Stunde den kumulativen Durchschnitt der letzten 7 Tage.
     /// Ergibt eine Linie, die zeigt: "Um X Uhr hatte ich durchschnittlich Y Schritte gesamt."
-    func fetchHourlyWeeklyAverage(for metric: HealthMetricType, completion: @escaping ([(Date, Double)]) -> Void) {
+    func fetchHourlyWeeklyAverage(for metric: HealthMetricType, targetDate: Date = Date(), completion: @escaping ([(Date, Double)]) -> Void) {
         guard isAuthorized else {
             DispatchQueue.main.async { completion([]) }
             return
@@ -888,7 +888,7 @@ class HealthManager: ObservableObject {
         }
         
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: targetDate)
         guard let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: today) else {
             DispatchQueue.main.async { completion([]) }
             return
@@ -963,17 +963,17 @@ class HealthManager: ObservableObject {
 }
 extension HealthManager {
     /// Holt historische Daten (pro Stunde) für den heutigen Tag
-    func fetchHourlyData(for metric: HealthMetricType, completion: @escaping ([(Date, Double)]) -> Void) {
+    func fetchHourlyData(for metric: HealthMetricType, targetDate: Date = Date(), completion: @escaping ([(Date, Double)]) -> Void) {
         guard isAuthorized else {
             DispatchQueue.main.async { completion([]) }
             return
         }
         
-        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: targetDate)
         var hourlyData: [(Date, Double)] = []
         
-        let calendar = Calendar.current
-        let currentHour = calendar.component(.hour, from: Date())
+        let currentHour = calendar.isDateInToday(targetDate) ? calendar.component(.hour, from: Date()) : 23
         for h in 0...currentHour {
             if let date = calendar.date(bySettingHour: h, minute: 0, second: 0, of: startOfDay) {
                 hourlyData.append((date, 0.0))
@@ -1014,12 +1014,13 @@ extension HealthManager {
             
             var interval = DateComponents()
             interval.hour = 1
-            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+            let endOfDay = calendar.isDateInToday(targetDate) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
             
             let query = HKStatisticsCollectionQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: startOfDay, intervalComponents: interval)
             query.initialResultsHandler = { _, results, _ in
                 var resultsDict: [Date: Double] = [:]
-                results?.enumerateStatistics(from: startOfDay, to: Date()) { statistics, _ in
+                results?.enumerateStatistics(from: startOfDay, to: endOfDay) { statistics, _ in
                     if let sum = statistics.sumQuantity() {
                         resultsDict[statistics.startDate] = sum.doubleValue(for: unit)
                     }
@@ -1037,7 +1038,8 @@ extension HealthManager {
             
         case .running, .strengthTraining:
             let activityType: HKWorkoutActivityType = (metric == .running) ? .running : .traditionalStrengthTraining
-            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+            let endOfDay = calendar.isDateInToday(targetDate) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
             let workoutPredicate = HKQuery.predicateForWorkouts(with: activityType)
             let combinedPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, workoutPredicate])
             
@@ -1069,7 +1071,8 @@ extension HealthManager {
                 DispatchQueue.main.async { completion([]) }
                 return
             }
-            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+            let endOfDay = calendar.isDateInToday(targetDate) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
             let query = HKSampleQuery(sampleType: mindfulnessType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, _ in
                 guard let samples = samples as? [HKCategorySample] else {
                     DispatchQueue.main.async { completion(hourlyData) }
@@ -1096,7 +1099,8 @@ extension HealthManager {
                 DispatchQueue.main.async { completion([]) }
                 return
             }
-            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+            let endOfDay = calendar.isDateInToday(targetDate) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
             let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, _ in
                 guard let samples = samples as? [HKCategorySample] else {
                     DispatchQueue.main.async { completion(hourlyData) }

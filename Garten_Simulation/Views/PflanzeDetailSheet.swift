@@ -568,13 +568,13 @@ struct PflanzeDetailSheet: View {
             }
             let effectiveMetric = pflanze.linkedHealthMetric
             if let metric = effectiveMetric {
-                healthManager.fetchHourlyData(for: metric) { data in
+                healthManager.fetchHourlyData(for: metric, targetDate: targetDate) { data in
                     self.hourlyHealthData = data
                 }
-                healthManager.fetchWeeklyAverage(for: metric) { avg in
+                healthManager.fetchWeeklyAverage(for: metric, targetDate: targetDate) { avg in
                     self.weeklyHealthAverage = avg
                 }
-                healthManager.fetchHourlyWeeklyAverage(for: metric) { avg in
+                healthManager.fetchHourlyWeeklyAverage(for: metric, targetDate: targetDate) { avg in
                     self.hourlyAvgData = avg
                 }
             }
@@ -744,9 +744,9 @@ struct PflanzeDetailSheet: View {
                                                 gardenStore.savePlants()
                                                 
                                                 if let m = pflanze.effectiveHealthMetric {
-                                                    healthManager.fetchHourlyData(for: m) { data in self.hourlyHealthData = data }
-                                                    healthManager.fetchWeeklyAverage(for: m) { avg in self.weeklyHealthAverage = avg }
-                                                    healthManager.fetchHourlyWeeklyAverage(for: m) { avg in self.hourlyAvgData = avg }
+                                                    healthManager.fetchHourlyData(for: m, targetDate: targetDate) { data in self.hourlyHealthData = data }
+                                                    healthManager.fetchWeeklyAverage(for: m, targetDate: targetDate) { avg in self.weeklyHealthAverage = avg }
+                                                    healthManager.fetchHourlyWeeklyAverage(for: m, targetDate: targetDate) { avg in self.hourlyAvgData = avg }
                                                 }
                                                 
                                                 Task {

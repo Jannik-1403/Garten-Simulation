@@ -31,7 +31,7 @@ struct PflanzenCard: View {
         max(50, cardWidth - 110)
     }
     
-    private func getBaseHealthCurrent(for metric: HealthMetricType) -> Double {
+    private func getBaseHealthCurrent(for metric: HealthMetricType) -> Double? {
         if !Calendar.current.isDateInToday(targetDate) {
             let targetStartOfDay = Calendar.current.startOfDay(for: targetDate)
             if metric == .steps || metric == .running {
@@ -39,8 +39,8 @@ struct PflanzenCard: View {
             } else if metric == .water {
                 return healthManager.waterHistory[targetStartOfDay] ?? 0.0
             }
-            // For other metrics that do not have history cached yet, return 0 for now.
-            return 0.0
+            // For other metrics, we don't have full history cached, so return nil to fallback to intradayProgressHistory.
+            return nil
         }
         
         switch metric {
@@ -67,23 +67,7 @@ struct PflanzenCard: View {
             return Double(score) / 100.0
         }
         
-        // Kalorien/Gesund Kochen
-        if metric == .energy {
-            let hm = HealthManager.shared
-            let isGoalValid = hm.weightGoalType != 0 && hm.weightGoalTargetKg > 0 && hm.weightGoalDateInterval > 0
-            let hasSetGoals = UserDefaults.standard.bool(forKey: "has_set_nutrition_goals")
-            guard hasSetGoals && isGoalValid else { return 0.0 }
-            
-            let goal = pflanze.effectiveHealthTarget
-            let currentEnergy = getBaseHealthCurrent(for: metric)
-            return min(1.0, max(0.0, currentEnergy / goal))
-        }
 
-        if metric == .sleep {
-            if let regularity = healthManager.sleepRegularityPercentage {
-                return regularity >= 0.9 ? 1.0 : regularity
-            }
-        }
         
         var effectiveTarget = pflanze.effectiveHealthTarget
         if metric == .water {
@@ -92,8 +76,7 @@ struct PflanzenCard: View {
         guard effectiveTarget > 0 else {
             return nil
         }
-        let baseCurrent = getBaseHealthCurrent(for: metric)
-        let current = baseCurrent
+        guard let current = getBaseHealthCurrent(for: metric) else { return nil }
         return min(1.0, max(0.0, current / effectiveTarget))
     }
     
@@ -102,10 +85,7 @@ struct PflanzenCard: View {
             return 1.0
         }
         
-        let targetStartOfDay = Calendar.current.startOfDay(for: targetDate)
-        let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
-        
-        if let hp = healthProgress, !hasManualOverride {
+        if let hp = healthProgress {
             return hp
         }
         
