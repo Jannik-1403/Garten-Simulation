@@ -1959,10 +1959,17 @@ extension GardenStore {
             
             healthManager.fetchValue(for: metric) { [weak self] currentValue in
                 DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    if currentValue > 0 {
+                        let progress = min(1.0, currentValue / target)
+                        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+                        pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: progress))
+                    }
                     if currentValue > 0 && currentValue >= target {
                         // giessen() will do the final idempotency check
-                        self?.completeHabit(pflanze: pflanze)
+                        self.completeHabit(pflanze: pflanze)
                     }
+                    self.savePlants()
                 }
             }
         }

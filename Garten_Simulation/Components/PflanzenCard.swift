@@ -75,7 +75,8 @@ struct PflanzenCard: View {
             guard hasSetGoals && isGoalValid else { return 0.0 }
             
             let goal = pflanze.effectiveHealthTarget
-            return min(1.0, max(0.0, healthManager.todaysEnergy / goal))
+            let currentEnergy = getBaseHealthCurrent(for: metric)
+            return min(1.0, max(0.0, currentEnergy / goal))
         }
 
         if metric == .sleep {
@@ -100,14 +101,22 @@ struct PflanzenCard: View {
         if pflanze.wasCompleted(on: targetDate) {
             return 1.0
         }
+        
+        let targetStartOfDay = Calendar.current.startOfDay(for: targetDate)
+        let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
+        
+        if let hp = healthProgress, !hasManualOverride {
+            return hp
+        }
+        
         if Calendar.current.isDateInToday(targetDate) {
-            let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDateInToday($0.timestamp) }
-            if let hp = healthProgress, !hasManualOverride {
-                return hp
-            }
             return pflanze.sliderProgress
         } else {
-            return 0.0
+            // Find the manual progress for this historical day
+            let historicalProgress = pflanze.intradayProgressHistory
+                .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
+                .last?.progress ?? 0.0
+            return historicalProgress
         }
     }
     
@@ -322,9 +331,7 @@ struct PflanzenCard: View {
                         gardenStore.completeHabit(pflanze: pflanze, on: targetDate)
                         triggerWatering()
                     } else {
-                        if Calendar.current.isDateInToday(targetDate) {
-                            onTap()
-                        }
+                        onTap()
                     }
                 }
             }
@@ -332,7 +339,7 @@ struct PflanzenCard: View {
 
         .allowsHitTesting(true)
         .onChange(of: healthProgress) { _, newProgress in
-            if let p = newProgress, p >= 1.0, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead {
+            if Calendar.current.isDateInToday(targetDate), let p = newProgress, p >= 1.0, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead {
                 DispatchQueue.main.async {
                     gardenStore.completeHabit(pflanze: pflanze, on: targetDate)
                     triggerWatering()
