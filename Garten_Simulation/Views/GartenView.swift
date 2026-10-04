@@ -256,6 +256,12 @@ struct GartenView: View {
                     dailyFeedbackVM.targetDate = Calendar.current.date(byAdding: .day, value: newValue, to: Date()) ?? Date()
                     dailyFeedbackVM.reevaluate()
                 }
+                .onChange(of: dailyFeedbackVM.targetDate) { _, newDate in
+                    let diff = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: newDate)).day ?? 0
+                    if dayOffset != diff {
+                        dayOffset = diff
+                    }
+                }
             }
         }
     }

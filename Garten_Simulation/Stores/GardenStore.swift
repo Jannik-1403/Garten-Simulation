@@ -326,50 +326,92 @@ class GardenStore: ObservableObject {
             return
         }
 
-        // 2. XP & Coins berechnen (Multiplikative Logik)
-        let xpMult = xpMultiplikator(for: pflanze)
-        let coinMult = coinMultiplikator(for: pflanze)
-
-        // Bonus-Logik
-        let bonusAusgeloest = Double.random(in: 0...1) < GameConstants.bonusChance
-        let xpBasis = Int(Double(pflanze.xpPerCompletion) * xpMult)
-        let xpGewonnen = bonusAusgeloest ? Int(Double(xpBasis) * GameConstants.bonusXPMultiplier) : xpBasis
-        let gemsGewonnen = bonusAusgeloest ? GameConstants.bonusGemAmount : 0
-        
-        let coinsGewonnen = Int(Double(GameConstants.coinsPerCompletion) * coinMult)
-        var finalXPGewonnen = xpGewonnen
-        
-        let weedPenaltiesApply = isWeedActive
-        let weedCoinDeduction = weedPenaltiesApply
-            ? WeedMechanics.appliedCoinPenalty(currentCoins: coins, weedCount: activeWeeds.count)
-            : 0
-        if weedPenaltiesApply {
-            finalXPGewonnen = Int(Double(finalXPGewonnen) * WeedMechanics.xpMultiplier(weedCount: activeWeeds.count))
-        }
-
-        pflanze.currentXP += finalXPGewonnen
-        // Bonus-Info kommunizieren
-        if bonusAusgeloest {
-            self.letzteBonusPflanzeID = pflanze.id
-            self.letzterBonus = GiessBonus(xp: xpGewonnen, gems: gemsGewonnen)
-        } else {
-            self.letzterBonus = nil
-            self.letzteBonusPflanzeID = nil
-        }
-        self.letzteGiessXP = finalXPGewonnen
-        self.lastCompletionCoins = coinsGewonnen
-        self.lastCompletedHabitID = pflanze.id
-
-        // XP Verlauf für die Pflanze speichern
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let key = formatter.string(from: date)
-        pflanze.xpHistory[key] = (pflanze.xpHistory[key] ?? 0) + finalXPGewonnen
         
-        pflanze.totalCoinsEarned += coinsGewonnen
+        let alreadyRewardedToday = (pflanze.xpHistory[key] ?? 0) > 0
 
-        // 3. XP zum Garten-Gesamt addieren
-        xpHinzufuegen(amount: finalXPGewonnen)
+        if !alreadyRewardedToday {
+            // 2. XP & Coins berechnen (Multiplikative Logik)
+            let xpMult = xpMultiplikator(for: pflanze)
+            let coinMult = coinMultiplikator(for: pflanze)
+
+            // Bonus-Logik
+            let bonusAusgeloest = Double.random(in: 0...1) < GameConstants.bonusChance
+            let xpBasis = Int(Double(pflanze.xpPerCompletion) * xpMult)
+            let xpGewonnen = bonusAusgeloest ? Int(Double(xpBasis) * GameConstants.bonusXPMultiplier) : xpBasis
+            let gemsGewonnen = bonusAusgeloest ? GameConstants.bonusGemAmount : 0
+            
+            let coinsGewonnen = Int(Double(GameConstants.coinsPerCompletion) * coinMult)
+            var finalXPGewonnen = xpGewonnen
+            
+            let weedPenaltiesApply = isWeedActive
+            let weedCoinDeduction = weedPenaltiesApply
+                ? WeedMechanics.appliedCoinPenalty(currentCoins: coins, weedCount: activeWeeds.count)
+                : 0
+            if weedPenaltiesApply {
+                finalXPGewonnen = Int(Double(finalXPGewonnen) * WeedMechanics.xpMultiplier(weedCount: activeWeeds.count))
+            }
+
+            pflanze.currentXP += finalXPGewonnen
+            // Bonus-Info kommunizieren
+            if bonusAusgeloest {
+                self.letzteBonusPflanzeID = pflanze.id
+                self.letzterBonus = GiessBonus(xp: xpGewonnen, gems: gemsGewonnen)
+            } else {
+                self.letzterBonus = nil
+                self.letzteBonusPflanzeID = nil
+            }
+            self.letzteGiessXP = finalXPGewonnen
+            self.lastCompletionCoins = coinsGewonnen
+            self.lastCompletedHabitID = pflanze.id
+
+            // XP Verlauf für die Pflanze speichern
+            pflanze.xpHistory[key] = (pflanze.xpHistory[key] ?? 0) + finalXPGewonnen
+            pflanze.totalCoinsEarned += coinsGewonnen
+
+            // 3. XP zum Garten-Gesamt addieren
+            xpHinzufuegen(amount: finalXPGewonnen)
+            
+            verteileChallengeBelohnung(fuer: pflanze)
+            
+            // Globale Stats
+            withAnimation(.spring(response: 0.4)) {
+                if weedCoinDeduction > 0 {
+                    coins = max(0, coins - weedCoinDeduction)
+                }
+                coins    += coinsGewonnen
+                seeds    += gemsGewonnen // Gems werden hier in 'seeds' gespeichert
+                gesamtVerdient += coinsGewonnen
+                
+                // Skill XP hinzufügen
+                if let skill = SkillHelper.getSkill(for: pflanze) {
+                    skillXP[skill.rawValue, default: 0] += 10
+                }
+                let transaction = CoinTransaction(
+                    datum: Date(),
+                    beschreibung: NSLocalizedString("profile.coins.tip.watering", comment: ""),
+                    betrag: coinsGewonnen,
+                    icon: "Drop water",
+                    farbeHex: "#00919E" // coinBlue
+                )
+                transactions.insert(transaction, at: 0)
+                saveTransactions()
+                
+                gesamtGegossen += 1
+                saveStats()
+            }
+            
+            // Seltenheitsstufe prüfen
+            pruefeSeltenheitUpgrade(pflanze: pflanze)
+        } else {
+            self.letzteGiessXP = 0
+            self.lastCompletionCoins = 0
+            self.letzterBonus = nil
+            self.letzteBonusPflanzeID = nil
+            self.lastCompletedHabitID = pflanze.id
+        }
         
         self.completionTriggerID = UUID()
         
@@ -390,8 +432,6 @@ class GardenStore: ObservableObject {
             }
         }
         
-        verteileChallengeBelohnung(fuer: pflanze)
-        
         pflanze.missedCycles = 0 // Reset Gesundheit
         pflanze.lastNotifiedCycle = 0 // Reset Herz-Abzug-Trigger
         pflanze.totalCompletions += 1
@@ -404,36 +444,6 @@ class GardenStore: ObservableObject {
         pflanze.notizen.insert(noteText, at: 0)
         
         savePlants()
-
-        // Globale Stats
-        withAnimation(.spring(response: 0.4)) {
-            if weedCoinDeduction > 0 {
-                coins = max(0, coins - weedCoinDeduction)
-            }
-            coins    += coinsGewonnen
-            seeds    += gemsGewonnen // Gems werden hier in 'seeds' gespeichert
-            // gesamtXP ist bereits oben addiert
-            gesamtVerdient += coinsGewonnen
-            
-            // Add real transaction
-            
-            // Skill XP hinzufügen
-            if let skill = SkillHelper.getSkill(for: pflanze) {
-                skillXP[skill.rawValue, default: 0] += 10
-            }
-            let transaction = CoinTransaction(
-                datum: Date(),
-                beschreibung: NSLocalizedString("profile.coins.tip.watering", comment: ""),
-                betrag: coinsGewonnen,
-                icon: "Drop water",
-                farbeHex: "#00919E" // coinBlue
-            )
-            transactions.insert(transaction, at: 0)
-            saveTransactions()
-            
-            gesamtGegossen += 1
-            saveStats()
-        }
 
 
         // Notify StreakStore only if ALL active plants are watered today
@@ -485,41 +495,8 @@ class GardenStore: ObservableObject {
             pflanze.totalCompletions -= 1
         }
         
-        if !pflanze.isRoutineOnly {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            let key = formatter.string(from: date)
-            
-            let xpMult = xpMultiplikator(for: pflanze)
-            let coinMult = coinMultiplikator(for: pflanze)
-            let xpBasis = Int(Double(pflanze.xpPerCompletion) * xpMult)
-            let coinsToDeduct = Int(Double(GameConstants.coinsPerCompletion) * coinMult)
-            
-            let xpToDeduct = pflanze.xpHistory[key] ?? xpBasis
-            pflanze.xpHistory[key] = 0
-            
-            pflanze.currentXP = max(0, pflanze.currentXP - xpToDeduct)
-            pflanze.totalCoinsEarned = max(0, pflanze.totalCoinsEarned - coinsToDeduct)
-            
-            withAnimation(.spring(response: 0.4)) {
-                self.coins = max(0, self.coins - coinsToDeduct)
-                self.gesamtVerdient = max(0, self.gesamtVerdient - coinsToDeduct)
-                self.gesamtXP = max(0, self.gesamtXP - xpToDeduct)
-                self.gesamtGegossen = max(0, self.gesamtGegossen - 1)
-                
-                let transaction = CoinTransaction(
-                    datum: Date(),
-                    beschreibung: String(localized: "note.auto.undone", defaultValue: "Aktion rückgängig gemacht"),
-                    betrag: -coinsToDeduct,
-                    icon: "arrow.uturn.backward",
-                    farbeHex: "#FF3B30"
-                )
-                self.transactions.insert(transaction, at: 0)
-                
-                self.saveStats()
-                self.saveTransactions()
-            }
-        }
+        // User requested NOT to deduct coins or XP. 
+        // We leave the XP in xpHistory so they don't get double rewards when they check it again today.
         
         savePlants()
         updateWidgetData()
