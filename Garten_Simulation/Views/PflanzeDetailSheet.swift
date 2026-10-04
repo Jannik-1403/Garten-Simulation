@@ -226,7 +226,7 @@ struct PflanzeDetailSheet: View {
 
                     // Obst & Gemüse / Nährstoffe
                     if (pflanze.effectiveHealthMetric == .fiber || pflanze.effectiveHealthMetric == .calcium) && pflanze.showStats {
-                        NutrientIndexView(onUnlink: {
+                        NutrientIndexView(targetDate: targetDate, onUnlink: {
                             zeigeAppleHealthEntkoppelnAlert = true
                         })
                             .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
@@ -236,7 +236,7 @@ struct PflanzeDetailSheet: View {
                     
                     // Gesund kochen
                     if pflanze.effectiveHealthMetric == .energy && pflanze.showStats {
-                        GesundKochenCard(onUnlink: {
+                        GesundKochenCard(targetDate: targetDate, onUnlink: {
                             zeigeAppleHealthEntkoppelnAlert = true
                         })
                         .padding(.horizontal, 24)
@@ -589,6 +589,27 @@ struct PflanzeDetailSheet: View {
                 let totalMins = Int(pflanze.customTrackerTarget ?? 120.0)
                 screenTimeHours = totalMins / 60
                 screenTimeMinutes = totalMins % 60
+            }
+        }
+        .onChange(of: targetDate) { _, newDate in
+            if Calendar.current.isDateInToday(newDate) {
+                tempSliderProgress = pflanze.sliderProgress
+            } else {
+                tempSliderProgress = pflanze.intradayProgressHistory
+                    .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: newDate) }
+                    .last?.progress ?? 0.0
+            }
+            
+            if let metric = pflanze.effectiveHealthMetric {
+                healthManager.fetchHourlyData(for: metric, targetDate: newDate) { data in
+                    self.hourlyHealthData = data
+                }
+                healthManager.fetchWeeklyAverage(for: metric, targetDate: newDate) { avg in
+                    self.weeklyHealthAverage = avg
+                }
+                healthManager.fetchHourlyWeeklyAverage(for: metric, targetDate: newDate) { avg in
+                    self.hourlyAvgData = avg
+                }
             }
         }
         // MARK: - Verkaufen Dialog

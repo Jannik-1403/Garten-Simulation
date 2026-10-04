@@ -937,7 +937,7 @@ class HealthManager: ObservableObject {
             }
             
             // Für jede Stunde des heutigen Tages: kumulativer Durchschnitt über alle Tage mit Daten
-            let currentHour = calendar.component(.hour, from: Date())
+            let currentHour = calendar.isDateInToday(targetDate) ? calendar.component(.hour, from: Date()) : 23
             var result: [(Date, Double)] = []
             
             for h in 0...currentHour {

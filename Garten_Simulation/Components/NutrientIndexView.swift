@@ -35,6 +35,7 @@ struct TrimmedArc: Shape {
 
 struct NutrientIndexView: View {
     @ObservedObject private var manager = NutrientIndexManager.shared
+    var targetDate: Date = Date()
     var onUnlink: (() -> Void)? = nil
     
     let vitaminColor = Color.blue
@@ -131,7 +132,10 @@ struct NutrientIndexView: View {
         }
         } // End of ZStack
         .onAppear {
-            manager.fetchAllNutrients()
+            manager.fetchAllNutrients(for: targetDate)
+        }
+        .onChange(of: targetDate) { _, newDate in
+            manager.fetchAllNutrients(for: newDate)
         }
     }
     

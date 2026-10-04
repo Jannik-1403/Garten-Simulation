@@ -3,9 +3,16 @@ import HealthKit
 
 struct GesundKochenCard: View {
     @ObservedObject var healthManager = HealthManager.shared
+    var targetDate: Date = Date()
     var onUnlink: (() -> Void)? = nil
     
     @State private var showCalorieDetail = false
+    
+    // Historical state
+    @State private var histEnergy: Double = 0
+    @State private var histProtein: Double = 0
+    @State private var histCarbs: Double = 0
+    @State private var histFat: Double = 0
     
     let energyColor = Color.red
     let proteinColor = Color.orange
@@ -21,13 +28,19 @@ struct GesundKochenCard: View {
     @AppStorage("has_set_nutrition_goals") private var hasSetGoals: Bool = false
     @State private var showCalculationSheet = false
     
-    var energyScore: Double { healthManager.todaysEnergy / max(goalEnergy, 1) }
-    var proteinScore: Double { healthManager.todaysProtein / max(goalProtein, 1) }
-    var carbsScore: Double { healthManager.todaysCarbohydrates / max(goalCarbs, 1) }
-    var fatScore: Double { healthManager.todaysFat / max(goalFat, 1) }
+    private var isToday: Bool { Calendar.current.isDateInToday(targetDate) }
+    private var energyVal: Double { isToday ? healthManager.todaysEnergy : histEnergy }
+    private var proteinVal: Double { isToday ? healthManager.todaysProtein : histProtein }
+    private var carbsVal: Double { isToday ? healthManager.todaysCarbohydrates : histCarbs }
+    private var fatVal: Double { isToday ? healthManager.todaysFat : histFat }
+    
+    var energyScore: Double { energyVal / max(goalEnergy, 1) }
+    var proteinScore: Double { proteinVal / max(goalProtein, 1) }
+    var carbsScore: Double { carbsVal / max(goalCarbs, 1) }
+    var fatScore: Double { fatVal / max(goalFat, 1) }
     
     var totalScore: Int {
-        if healthManager.todaysEnergy <= 0 && healthManager.todaysProtein <= 0 && healthManager.todaysCarbohydrates <= 0 && healthManager.todaysFat <= 0 {
+        if energyVal <= 0 && proteinVal <= 0 && carbsVal <= 0 && fatVal <= 0 {
             return 0
         }
         let e = min(energyScore, 1.0)
@@ -124,15 +137,15 @@ struct GesundKochenCard: View {
                                             .font(.headline)
                                             .foregroundColor(.primary)
                                         Spacer()
-                                        Text(verbatim: "\(Int(healthManager.todaysEnergy)) / \(Int(goalEnergy)) kcal")
+                                        Text(verbatim: "\(Int(energyVal)) / \(Int(goalEnergy)) kcal")
                                             .font(.subheadline.bold())
-                                            .foregroundColor(healthManager.todaysEnergy < goalEnergy ? Color.red.darker() : Color.green)
+                                            .foregroundColor(energyVal < goalEnergy ? Color.red.darker() : Color.green)
                                     }
                                     
                                     GeometryReader { geo in
-                                        let progress = CGFloat(healthManager.todaysEnergy / max(goalEnergy, 1))
+                                        let progress = CGFloat(energyVal / max(goalEnergy, 1))
                                         let clampedProgress = max(0, min(1, progress))
-                                        let barColor = healthManager.todaysEnergy < goalEnergy ? Color.red : Color.green
+                                        let barColor = energyVal < goalEnergy ? Color.red : Color.green
                                         
                                         ZStack(alignment: .leading) {
                                             // 3D Track (Background)
@@ -260,6 +273,16 @@ struct GesundKochenCard: View {
                 .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
             }
         }
+        .onAppear {
+            if !isToday {
+                fetchHistoricalNutrition()
+            }
+        }
+        .onChange(of: targetDate) { _, _ in
+            if !isToday {
+                fetchHistoricalNutrition()
+            }
+        }
     }
     
     private func getStatusText(score: Int) -> String {
@@ -268,6 +291,34 @@ struct GesundKochenCard: View {
         case 65...84: return String(localized: "nutrient.status.good", defaultValue: "Gut")
         case 45...64: return String(localized: "nutrient.status.medium", defaultValue: "Mäßig")
         default: return String(localized: "nutrient.status.low", defaultValue: "Niedrig")
+        }
+    }
+    
+    private func fetchHistoricalNutrition() {
+        guard healthManager.isAuthorized else { return }
+        
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: targetDate)
+        guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay) else { return }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
+        
+        let identifiers: [(HKQuantityTypeIdentifier, HKUnit, Binding<Double>)] = [
+            (.dietaryEnergyConsumed, .kilocalorie(), Binding(get: { histEnergy }, set: { histEnergy = $0 })),
+            (.dietaryProtein, .gram(), Binding(get: { histProtein }, set: { histProtein = $0 })),
+            (.dietaryCarbohydrates, .gram(), Binding(get: { histCarbs }, set: { histCarbs = $0 })),
+            (.dietaryFatTotal, .gram(), Binding(get: { histFat }, set: { histFat = $0 }))
+        ]
+        
+        for (id, unit, binding) in identifiers {
+            guard let type = HKQuantityType.quantityType(forIdentifier: id) else { continue }
+            let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+                let value = result?.sumQuantity()?.doubleValue(for: unit) ?? 0.0
+                DispatchQueue.main.async {
+                    binding.wrappedValue = value
+                }
+            }
+            healthManager.healthStore.execute(query)
         }
     }
 }

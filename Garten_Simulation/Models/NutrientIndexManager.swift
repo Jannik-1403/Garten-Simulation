@@ -173,7 +173,7 @@ class NutrientIndexManager: ObservableObject {
     }
     
     // Daten abfragen
-    func fetchAllNutrients() {
+    func fetchAllNutrients(for targetDate: Date = Date()) {
         guard HKHealthStore.isHealthDataAvailable() else { return }
         let hasRequested = UserDefaults.standard.bool(forKey: "HealthKitAuthRequested")
         guard hasRequested else { return }
@@ -185,18 +185,18 @@ class NutrientIndexManager: ObservableObject {
         
         healthStore.requestAuthorization(toShare: nil, read: typesToRead) { success, _ in
             if success {
-                self.fetchTodaySum(for: self.fiber, updateBlock: { updated in
+                self.fetchSum(for: self.fiber, date: targetDate, updateBlock: { updated in
                     self.fiber = updated
                 })
                 
                 for i in self.vitamins.indices {
-                    self.fetchTodaySum(for: self.vitamins[i], updateBlock: { updated in
+                    self.fetchSum(for: self.vitamins[i], date: targetDate, updateBlock: { updated in
                         self.vitamins[i] = updated
                     })
                 }
                 
                 for i in self.minerals.indices {
-                    self.fetchTodaySum(for: self.minerals[i], updateBlock: { updated in
+                    self.fetchSum(for: self.minerals[i], date: targetDate, updateBlock: { updated in
                         self.minerals[i] = updated
                     })
                 }
@@ -204,12 +204,13 @@ class NutrientIndexManager: ObservableObject {
         }
     }
     
-    private func fetchTodaySum(for item: NutrientItem, updateBlock: @escaping (NutrientItem) -> Void) {
+    private func fetchSum(for item: NutrientItem, date: Date, updateBlock: @escaping (NutrientItem) -> Void) {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: item.hkType) else { return }
         
-        let now = Date()
-        let startOfDay = Calendar.current.startOfDay(for: now)
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        let endOfDay = calendar.isDateInToday(date) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay)!
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
             let value = result?.sumQuantity()?.doubleValue(for: item.unit) ?? 0.0
