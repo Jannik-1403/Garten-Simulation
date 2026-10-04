@@ -1413,3 +1413,6 @@
 - Lokalisierung: Vollständige Lokalisierung aller verbleibenden hartkodierten deutschen Texte im gesamten Projekt (App und Widgets) inkl. fehlender Übersetzungen (16 Sprachen).
 
 - Bugfix: Wenn bei der Aufräum-Gewohnheit eine erledigte Aufgabe wieder unerledigt wird, wird die gesamte Gewohnheit wieder als offen (nicht gegossen) markiert.
+
+- Bugfix: Ein Exploit wurde behoben, durch den man unendlich XP und Coins durch das Ab- und Abwählen von Aufräumaufgaben erhalten konnte. XP und Coins werden beim Entfernen des Hakens nun wieder abgezogen.
+- Bugfix: Im Verlaufs-Kalender (heute) konnten manche vergangenen Tage, an denen nichts erledigt wurde, nicht mehr angetippt werden (kein rotes X). Die Berechnung des Installationsdatums wurde korrigiert.
