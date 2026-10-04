@@ -143,8 +143,8 @@ struct PflanzenCard: View {
                             PflanzenButton(
                                 plant: GameDatabase.shared.plant(for: pflanze.plantID),
                                 seltenheit: pflanze.seltenheit,
-                                farbe: pflanze.color,
-                                sekundaerFarbe: pflanze.color.darker(),
+                                farbe: pflanze.effectiveHealthMetric != nil ? Color.gray : pflanze.color,
+                                sekundaerFarbe: pflanze.effectiveHealthMetric != nil ? Color.gray.darker() : pflanze.color.darker(),
                                 groesse: 85 * scale,
                                 fallbackIcon: pflanze.symbolName,
                                 externerPress: false,
@@ -298,10 +298,15 @@ struct PflanzenCard: View {
 
         .allowsHitTesting(true)
         .onChange(of: healthProgress) { _, newProgress in
-            if Calendar.current.isDateInToday(targetDate), let p = newProgress, p >= 1.0, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead {
+            guard Calendar.current.isDateInToday(targetDate), let p = newProgress else { return }
+            if p >= 1.0, !pflanze.wasCompleted(on: targetDate), !pflanze.isDead {
                 DispatchQueue.main.async {
                     gardenStore.completeHabit(pflanze: pflanze, on: targetDate)
                     triggerWatering()
+                }
+            } else if p < 1.0, pflanze.wasCompleted(on: targetDate) {
+                DispatchQueue.main.async {
+                    gardenStore.undoCompleteHabit(pflanze: pflanze, on: targetDate)
                 }
             }
         }

@@ -133,16 +133,6 @@ struct IntradayProgressChartView: View {
                     PointMark(x: .value("Uhrzeit", last.0), y: .value("Prozent", last.1))
                         .foregroundStyle(Color.orangePrimary)
                         .symbolSize(60)
-                        .annotation(position: .top, alignment: .center) {
-                            if !Calendar.current.isDateInToday(targetDate) && last.0 == dayEnd {
-                                Text("24:00")
-                                    .font(.system(size: 10, weight: .bold, design: .rounded))
-                                    .foregroundStyle(Color(UIColor.systemGray))
-                                    .padding(.horizontal, 4)
-                                    .padding(.vertical, 2)
-                                    .background(Capsule().fill(Color(UIColor.systemBackground)))
-                            }
-                        }
                     
                     if Calendar.current.isDateInToday(targetDate) {
                         RuleMark(x: .value("Jetzt", last.0))
