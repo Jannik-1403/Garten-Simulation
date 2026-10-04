@@ -58,6 +58,10 @@ struct PflanzeDetailSheet: View {
     
     @State private var screenTimeHours: Int = 2
     @State private var screenTimeMinutes: Int = 0
+    
+    private var isReadOnly: Bool {
+        !Calendar.current.isDateInToday(targetDate)
+    }
     @State private var showScreenTimeConfirm = false
     @State private var isEditingScreenTime = false
     @State private var tempSliderProgress: Double = 0.0
@@ -552,22 +556,18 @@ struct PflanzeDetailSheet: View {
             }
         }
         .background(Color(UIColor.secondarySystemBackground))
-        .onAppear {
-            if Calendar.current.isDateInToday(targetDate) {
-                tempSliderProgress = pflanze.sliderProgress
-            } else {
-                tempSliderProgress = pflanze.intradayProgressHistory
-                    .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
-                    .last?.progress ?? 0.0
-            }
+        .task(id: targetDate) {
+            let isToday = Calendar.current.isDateInToday(targetDate)
+            
+            tempSliderProgress = pflanze.progress(for: targetDate)
             
             // Wenn linkedHealthMetric noch nil ist (Toggle wurde entfernt), automatisch setzen
             if pflanze.linkedHealthMetric == nil, let autoMetric = pflanze.automaticHealthMetric {
                 pflanze.linkedHealthMetric = autoMetric
                 gardenStore.savePlants()
             }
-            let effectiveMetric = pflanze.linkedHealthMetric
-            if let metric = effectiveMetric {
+            
+            if let metric = pflanze.effectiveHealthMetric {
                 healthManager.fetchHourlyData(for: metric, targetDate: targetDate) { data in
                     self.hourlyHealthData = data
                 }
@@ -579,8 +579,10 @@ struct PflanzeDetailSheet: View {
                 }
             }
             
-            // Auto-Watering check
-            gardenStore.evaluateAllHabits(healthManager: healthManager)
+            // Auto-Watering check nur fuer heute
+            if isToday {
+                gardenStore.evaluateAllHabits(healthManager: healthManager)
+            }
             
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 pulsieren = true
@@ -589,27 +591,6 @@ struct PflanzeDetailSheet: View {
                 let totalMins = Int(pflanze.customTrackerTarget ?? 120.0)
                 screenTimeHours = totalMins / 60
                 screenTimeMinutes = totalMins % 60
-            }
-        }
-        .onChange(of: targetDate) { _, newDate in
-            if Calendar.current.isDateInToday(newDate) {
-                tempSliderProgress = pflanze.sliderProgress
-            } else {
-                tempSliderProgress = pflanze.intradayProgressHistory
-                    .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: newDate) }
-                    .last?.progress ?? 0.0
-            }
-            
-            if let metric = pflanze.effectiveHealthMetric {
-                healthManager.fetchHourlyData(for: metric, targetDate: newDate) { data in
-                    self.hourlyHealthData = data
-                }
-                healthManager.fetchWeeklyAverage(for: metric, targetDate: newDate) { avg in
-                    self.weeklyHealthAverage = avg
-                }
-                healthManager.fetchHourlyWeeklyAverage(for: metric, targetDate: newDate) { avg in
-                    self.hourlyAvgData = avg
-                }
             }
         }
         // MARK: - Verkaufen Dialog
@@ -754,7 +735,7 @@ struct PflanzeDetailSheet: View {
                                             targetDate: targetDate,
                                             target: pflanze.effectiveHealthTarget,
                                             customUnit: pflanze.customTargetUnit,
-                                            onEditTarget: { showTargetEdit = true },
+                                            onEditTarget: isReadOnly ? nil : { showTargetEdit = true },
                                             onLink: (pflanze.automaticHealthMetric != nil || pflanze.linkedHealthMetric != nil) ? {
                                                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                                                 pflanze.isAppleHealthUnlinked = false
@@ -790,15 +771,13 @@ struct PflanzeDetailSheet: View {
                                             }
                                             
                                             if pflanze.trackingMode == .counter {
-                                                let displayedCounterProgress = Calendar.current.isDateInToday(targetDate) 
-                                                    ? pflanze.counterProgress 
-                                                    : Int((pflanze.intradayProgressHistory.filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }.last?.progress ?? 0.0) * Double(pflanze.counterTarget))
+                                                let displayedCounterProgress = Int(pflanze.progress(for: targetDate) * Double(pflanze.counterTarget))
                                                     
                                                 HabitCounterControl(
                                                     value: pflanze.wasCompleted(on: targetDate) ? pflanze.counterTarget : displayedCounterProgress,
                                                     target: pflanze.counterTarget,
                                                     unit: pflanze.counterUnit,
-                                                    isDisabled: pflanze.wasCompleted(on: targetDate) || !Calendar.current.isDateInToday(targetDate)
+                                                    isDisabled: pflanze.wasCompleted(on: targetDate) || isReadOnly
                                                 ) { newValue in
                                                     handleCounterChange(newValue)
                                                 }
@@ -814,7 +793,7 @@ struct PflanzeDetailSheet: View {
                                                         }
                                                     }
                                                     .tint(Color.orangePrimary)
-                                                    .disabled(pflanze.wasCompleted(on: targetDate) || !Calendar.current.isDateInToday(targetDate))
+                                                    .disabled(pflanze.wasCompleted(on: targetDate) || isReadOnly)
                                                     
                                                     Text("\(Int(tempSliderProgress * 100))%")
                                                         .font(.system(size: 14, weight: .bold, design: .rounded))
@@ -938,6 +917,7 @@ struct PflanzeDetailSheet: View {
                     }
 
     private func handleCounterChange(_ newValue: Int) {
+        guard !isReadOnly else { return }
         if newValue >= pflanze.counterTarget {
             pendingCounterValue = pflanze.counterTarget
             showCompleteConfirmAlert = true
@@ -955,6 +935,7 @@ struct PflanzeDetailSheet: View {
     }
 
     private func updateManualProgress() {
+        guard !isReadOnly else { return }
         let finalProgress = tempSliderProgress
         pflanze.sliderProgress = finalProgress
         pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }

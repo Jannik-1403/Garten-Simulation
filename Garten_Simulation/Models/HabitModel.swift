@@ -433,6 +433,15 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var sliderProgress: Double = 0.0
     @Published var intradayProgressHistory: [DailyProgressEntry] = []
     
+    func progress(for date: Date) -> Double {
+        if Calendar.current.isDateInToday(date) {
+            return sliderProgress
+        }
+        return intradayProgressHistory
+            .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: date) }
+            .last?.progress ?? 0.0
+    }
+    
     // MARK: Tracking-Konfiguration
     /// Wochentage, an denen die Gewohnheit fällig ist (1=Mo … 7=So). Nie leer.
     @Published var scheduledWeekdays: Set<Int> = Set(1...7)
