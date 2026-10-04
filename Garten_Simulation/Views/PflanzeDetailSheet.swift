@@ -694,8 +694,10 @@ struct PflanzeDetailSheet: View {
                 target: Binding(
                     get: { pflanze.effectiveHealthTarget },
                     set: { newVal in
-                        pflanze.healthTarget = newVal
-                        gardenStore.savePlants()
+                        if let val = newVal {
+                            pflanze.updateTarget(to: val)
+                            gardenStore.savePlants()
+                        }
                     }
                 ),
                 unitString: {
@@ -942,18 +944,10 @@ struct PflanzeDetailSheet: View {
 
     private func updateManualProgress() {
         guard !isReadOnly else { return }
-        let finalProgress = tempSliderProgress
-        pflanze.sliderProgress = finalProgress
-        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
-        if finalProgress > 0 {
-            pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
-        }
-        
-        if finalProgress >= 1.0 {
-            gardenStore.completeHabit(pflanze: pflanze, on: Date())
+        let completed = gardenStore.setManualProgress(pflanze: pflanze, to: tempSliderProgress, on: targetDate)
+        if completed {
             UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         } else {
-            gardenStore.savePlants()
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
     }

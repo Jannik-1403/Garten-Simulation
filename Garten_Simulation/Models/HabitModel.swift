@@ -295,6 +295,7 @@ struct DailyTargetSnapshot: Codable, Equatable, Hashable {
     var value: Double
     var isFinal: Bool
     var isEstimated: Bool
+    var baseTarget: Double?
 }
 
 // MARK: - HabitModel (plain class — kein SwiftData benötigt)
@@ -448,21 +449,23 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         let endOfDay = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date) ?? date
         let validEntries = targetHistory.filter { $0.effectiveFrom <= endOfDay }
         
-        if let last = validEntries.max(by: { $0.effectiveFrom < $1.effectiveFrom }) {
-            return last.target
+        let lastTarget = validEntries.max(by: { $0.effectiveFrom < $1.effectiveFrom })?.target
+        
+        let metric = effectiveHealthMetric
+        if metric == .energy, (lastTarget == 2000.0 || lastTarget == nil) {
+            let appGoal = UserDefaults.standard.double(forKey: "goal_energy")
+            return appGoal > 0 ? appGoal : 2000.0
+        }
+        if metric == .water, (lastTarget == 2000.0 || lastTarget == nil) {
+            let appGoal = WaterGoalManager.shared.baseGoal
+            return appGoal > 0 ? appGoal : 2000.0
         }
         
-        // Migration Fallback
-        if let metric = effectiveHealthMetric {
-            if metric == .energy, (healthTarget == 2000.0 || healthTarget == nil) {
-                let appGoal = UserDefaults.standard.double(forKey: "goal_energy")
-                return appGoal > 0 ? appGoal : 2000.0
-            }
-            if metric == .water, (healthTarget == 2000.0 || healthTarget == nil) {
-                // Return base goal for water (or fallback to currentGoal if baseGoal isn't saved properly)
-                let appGoal = WaterGoalManager.shared.baseGoal
-                return appGoal > 0 ? appGoal : 2000.0
-            }
+        if let target = lastTarget {
+            return target
+        }
+        
+        if metric != nil {
             return healthTarget ?? defaultHealthTarget
         } else if trackingMode == .counter {
             return Double(counterTarget)
@@ -521,16 +524,18 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             return snapshot.value
         }
         
-        // MIGRATION: Wenn das Datum älter als 3 Tage ist, generiere Snapshot als final
+        // MIGRATION: Wenn das Datum älter als 0 Tage ist (also in der Vergangenheit), generiere Snapshot als final
         let daysAgo = calendar.dateComponents([.day], from: calendar.startOfDay(for: date), to: calendar.startOfDay(for: Date())).day ?? 0
-        if daysAgo > 3 {
-            let estimatedValue = baseTarget(for: date) + dynamicAdjustment(for: date)
-            dailyTargetSnapshots[dateKey] = DailyTargetSnapshot(value: estimatedValue, isFinal: true, isEstimated: true)
+        if daysAgo > 0 {
+            let bTarget = baseTarget(for: date)
+            let estimatedValue = bTarget + dynamicAdjustment(for: date)
+            dailyTargetSnapshots[dateKey] = DailyTargetSnapshot(value: estimatedValue, isFinal: true, isEstimated: true, baseTarget: bTarget)
             return estimatedValue
         }
         
-        let estimatedValue = baseTarget(for: date) + dynamicAdjustment(for: date)
-        dailyTargetSnapshots[dateKey] = DailyTargetSnapshot(value: estimatedValue, isFinal: false, isEstimated: true)
+        let bTarget = baseTarget(for: date)
+        let estimatedValue = bTarget + dynamicAdjustment(for: date)
+        dailyTargetSnapshots[dateKey] = DailyTargetSnapshot(value: estimatedValue, isFinal: false, isEstimated: true, baseTarget: bTarget)
         return estimatedValue
     }
     
@@ -546,12 +551,14 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             guard let pastDate = calendar.date(byAdding: .day, value: -i, to: today) else { continue }
             let dateKey = formatter.string(from: pastDate)
             
-            var snapshot = dailyTargetSnapshots[dateKey] ?? DailyTargetSnapshot(value: 0, isFinal: false, isEstimated: true)
+            var snapshot = dailyTargetSnapshots[dateKey] ?? DailyTargetSnapshot(value: 0, isFinal: false, isEstimated: true, baseTarget: nil)
             
             if !snapshot.isFinal {
                 // Berechne neu (ohne today-Check = nutzt historische Daten)
-                let value = baseTarget(for: pastDate) + dynamicAdjustment(for: pastDate)
+                let bTarget = snapshot.baseTarget ?? baseTarget(for: pastDate)
+                let value = bTarget + dynamicAdjustment(for: pastDate)
                 snapshot.value = value
+                snapshot.baseTarget = bTarget
                 snapshot.isEstimated = false
                 
                 if i == 3 {

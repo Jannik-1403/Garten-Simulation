@@ -267,6 +267,7 @@ struct DailyTargetSnapshot: Codable, Equatable, Hashable {
     var value: Double
     var isFinal: Bool
     var isEstimated: Bool
+    var baseTarget: Double?
 }
 
 // MARK: - HabitModel (plain class — kein SwiftData benötigt)

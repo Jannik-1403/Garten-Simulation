@@ -316,7 +316,9 @@ class GardenStore: ObservableObject {
             self.letzteBonusPflanzeID = nil
             self.lastCompletedHabitID = pflanze.id
             
-            pflanze.lastCompletionDate = date
+            if Calendar.current.isDateInToday(date) {
+                pflanze.lastCompletionDate = date
+            }
             
             let timeString = DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
             let routineString = fromRoutine ? String(localized: "note.auto.routine", defaultValue: "(mit Routine)") : String(localized: "note.auto.no_routine", defaultValue: "(ohne Routine)")
@@ -450,14 +452,8 @@ class GardenStore: ObservableObject {
             
             pflanze.notizen.insert(noteText, at: 0)
         } else {
-            // Vergangener Tag: Nur Datum updaten, falls jünger, und eintragen
-            if let last = pflanze.lastCompletionDate {
-                if date > last {
-                    pflanze.lastCompletionDate = date
-                }
-            } else {
-                pflanze.lastCompletionDate = date
-            }
+            // Vergangener Tag: NICHT lastCompletionDate setzen (sonst Streak inkonsistent)
+            
             // In WateringDates aufnehmen
             if !pflanze.wateringDates.contains(where: { Calendar.current.isDate($0, inSameDayAs: date) }) {
                 pflanze.wateringDates.append(date)
@@ -854,8 +850,9 @@ class GardenStore: ObservableObject {
     /// Setzt den Tageszähler (z. B. Liegestütze) und synchronisiert Slider-Fortschritt,
     /// Intraday-Verlauf und Abschluss. Gibt `true` zurück, wenn das Ziel erreicht wurde.
     @discardableResult
-    func setCounterProgress(pflanze: HabitModel, to value: Int) -> Bool {
-        guard !pflanze.wasCompleted(on: Date()) else { return false }
+    func setCounterProgress(pflanze: HabitModel, to value: Int, on date: Date = Date()) -> Bool {
+        guard Calendar.current.isDateInToday(date) else { return false }
+        guard !pflanze.wasCompleted(on: date) else { return false }
         let target = max(1, Int(pflanze.target(for: Date())))
         let clamped = min(max(0, value), target)
         pflanze.counterProgress = clamped
@@ -873,6 +870,29 @@ class GardenStore: ObservableObject {
         }
         savePlants()
         return false
+    }
+
+    /// Setzt den manuellen Slider-Fortschritt
+    @discardableResult
+    func setManualProgress(pflanze: HabitModel, to progress: Double, on date: Date = Date()) -> Bool {
+        guard Calendar.current.isDateInToday(date) else { return false }
+        guard !pflanze.wasCompleted(on: date) else { return false }
+        
+        let finalProgress = min(max(0.0, progress), 1.0)
+        pflanze.sliderProgress = finalProgress
+        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+        
+        if finalProgress > 0 {
+            pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
+        }
+        
+        if finalProgress >= 1.0 {
+            completeHabit(pflanze: pflanze, on: Date())
+            return true
+        } else {
+            savePlants()
+            return false
+        }
     }
 
     var isDailySpinAvailable: Bool {

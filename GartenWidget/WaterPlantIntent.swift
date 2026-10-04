@@ -91,9 +91,32 @@ public struct WaterPlantIntent: AppIntent {
             completedDates.insert(Calendar.current.startOfDay(for: Date()))
             shared.set(completedDates.map { $0.timeIntervalSince1970 }, forKey: "streak_completed_dates")
 
-            // 5. Save everything
-            if let encoded = try? JSONEncoder().encode(pflanzen) {
-                shared.set(encoded, forKey: "garden_plants")
+            // 5. Save everything (Preserving unknown properties!)
+            if var jsonArray = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
+                if let dictIndex = jsonArray.firstIndex(where: { ($0["id"] as? String) == targetPlant.id }) {
+                    var dict = jsonArray[dictIndex]
+                    dict["currentXP"] = pflanze.currentXP
+                    dict["xpHistory"] = pflanze.xpHistory
+                    dict["totalCoinsEarned"] = pflanze.totalCoinsEarned
+                    dict["isCompleted"] = pflanze.isCompleted
+                    if let d = pflanze.lastCompletionDate {
+                        dict["lastCompletionDate"] = d.timeIntervalSinceReferenceDate
+                    }
+                    dict["wateringDates"] = pflanze.wateringDates.map { $0.timeIntervalSinceReferenceDate }
+                    dict["streak"] = pflanze.streak
+                    dict["missedCycles"] = pflanze.missedCycles
+                    dict["lastNotifiedCycle"] = pflanze.lastNotifiedCycle
+                    dict["totalCompletions"] = pflanze.totalCompletions
+                    
+                    jsonArray[dictIndex] = dict
+                    if let newEncoded = try? JSONSerialization.data(withJSONObject: jsonArray) {
+                        shared.set(newEncoded, forKey: "garden_plants")
+                    }
+                }
+            } else {
+                if let encoded = try? JSONEncoder().encode(pflanzen) {
+                    shared.set(encoded, forKey: "garden_plants")
+                }
             }
             
             // Transaction log
