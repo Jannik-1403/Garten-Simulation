@@ -485,6 +485,42 @@ class GardenStore: ObservableObject {
             pflanze.totalCompletions -= 1
         }
         
+        if !pflanze.isRoutineOnly {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let key = formatter.string(from: date)
+            
+            let xpMult = xpMultiplikator(for: pflanze)
+            let coinMult = coinMultiplikator(for: pflanze)
+            let xpBasis = Int(Double(pflanze.xpPerCompletion) * xpMult)
+            let coinsToDeduct = Int(Double(GameConstants.coinsPerCompletion) * coinMult)
+            
+            let xpToDeduct = pflanze.xpHistory[key] ?? xpBasis
+            pflanze.xpHistory[key] = 0
+            
+            pflanze.currentXP = max(0, pflanze.currentXP - xpToDeduct)
+            pflanze.totalCoinsEarned = max(0, pflanze.totalCoinsEarned - coinsToDeduct)
+            
+            withAnimation(.spring(response: 0.4)) {
+                self.coins = max(0, self.coins - coinsToDeduct)
+                self.gesamtVerdient = max(0, self.gesamtVerdient - coinsToDeduct)
+                self.gesamtXP = max(0, self.gesamtXP - xpToDeduct)
+                self.gesamtGegossen = max(0, self.gesamtGegossen - 1)
+                
+                let transaction = CoinTransaction(
+                    datum: Date(),
+                    beschreibung: String(localized: "note.auto.undone", defaultValue: "Aktion rückgängig gemacht"),
+                    betrag: -coinsToDeduct,
+                    icon: "arrow.uturn.backward",
+                    farbeHex: "#FF3B30"
+                )
+                self.transactions.insert(transaction, at: 0)
+                
+                self.saveStats()
+                self.saveTransactions()
+            }
+        }
+        
         savePlants()
         updateWidgetData()
     }

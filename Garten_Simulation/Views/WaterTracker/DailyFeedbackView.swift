@@ -301,6 +301,9 @@ struct HistoryCalendarSheet: View {
     
     var installDate: Date {
         var earliest: Date = Date()
+        if let firstBought = gardenStore.sichtbarePflanzen.map(\.gekauftAm).min() {
+            earliest = min(earliest, firstBought)
+        }
         for plant in gardenStore.sichtbarePflanzen {
             if let firstWatering = plant.wateringDates.min(), firstWatering < earliest {
                 earliest = firstWatering
