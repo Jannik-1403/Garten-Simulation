@@ -46,25 +46,35 @@ struct HealthChartView: View {
     private var avgNow: Double     { hourlyAverageData.last?.1 ?? 0 }
     private var dayStart: Date     { Calendar.current.startOfDay(for: targetDate) }
 
-    private var lastDataDate: Date {
-        if calendar.isDateInToday(targetDate) {
-            return cumulativeData().last?.0 ?? Date()
-        } else {
-            return calendar.date(bySettingHour: 23, minute: 59, second: 59, of: targetDate)!
-        }
+    private var dayEnd: Date {
+        calendar.date(byAdding: .day, value: 1, to: dayStart)!
+    }
+
+    private func mappedTime(from date: Date) -> Date {
+        let h = calendar.component(.hour, from: date)
+        let m = calendar.component(.minute, from: date)
+        let s = calendar.component(.second, from: date)
+        return calendar.date(bySettingHour: h, minute: m, second: s, of: dayStart) ?? date
     }
 
     private var adjustedHourlyAverageData: [(Date, Double)] {
         if hourlyAverageData.isEmpty { return [] }
         var result: [(Date, Double)] = []
-        let now = calendar.isDateInToday(targetDate) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: dayStart)!
+        let now = calendar.isDateInToday(targetDate) ? Date() : dayEnd
+        
         result.append((dayStart, 0))
-        for item in hourlyAverageData {
-            var pointTime = item.0.addingTimeInterval(3600)
+        let sortedAvg = hourlyAverageData.sorted { $0.0 < $1.0 }
+        
+        for item in sortedAvg {
+            var pointTime = mappedTime(from: item.0).addingTimeInterval(3600)
             if pointTime > now { pointTime = now }
             result.append((pointTime, item.1))
         }
-        return result
+        
+        if result.last?.0 != now {
+            result.append((now, result.last?.1 ?? 0))
+        }
+        return result.sorted { $0.0 < $1.0 }
     }
     
     private let calendar = Calendar.current
@@ -212,10 +222,10 @@ struct HealthChartView: View {
                 }
             }
             .chartXSelection(value: $selectedDate)
-            .chartXScale(domain: dayStart...max(dayStart.addingTimeInterval(3600), lastDataDate))
+            .chartXScale(domain: dayStart...dayEnd)
             .chartYScale(domain: 0...max(10, max(target ?? 10, max(todayTotal, hourlyAverageData.map { $0.1 }.max() ?? 0) * 1.2)))
             .chartXAxis {
-                AxisMarks(values: [dayStart, lastDataDate]) { value in
+                AxisMarks(values: [dayStart, dayEnd]) { value in
                     if let date = value.as(Date.self) {
                         AxisValueLabel(anchor: date == dayStart ? .topLeading : .topTrailing) {
                             Text(timeLabel(for: date))
@@ -319,21 +329,23 @@ struct HealthChartView: View {
     private func cumulativeData() -> [(Date, Double)] {
         var result: [(Date, Double)] = []
         var sum: Double = 0
-        let now = calendar.isDateInToday(targetDate) ? Date() : calendar.date(bySettingHour: 23, minute: 59, second: 59, of: dayStart)!
+        let now = calendar.isDateInToday(targetDate) ? Date() : dayEnd
         
-        // Immer bei 0 am Start des Tages beginnen
         result.append((dayStart, 0))
         
-        for item in data {
+        let sortedData = data.sorted { $0.0 < $1.0 }
+        for item in sortedData {
             sum += item.1
-            // Endpunkt der Stunde nehmen, oder max "jetzt"
-            var pointTime = item.0.addingTimeInterval(3600)
-            if pointTime > now {
-                pointTime = now
-            }
+            var pointTime = mappedTime(from: item.0).addingTimeInterval(3600)
+            if pointTime > now { pointTime = now }
             result.append((pointTime, sum))
         }
-        return result
+        
+        if result.last?.0 != now {
+            result.append((now, sum))
+        }
+        
+        return result.sorted { $0.0 < $1.0 }
     }
 
     private func findSelectedEntry(for date: Date) -> (Date, Double)? {

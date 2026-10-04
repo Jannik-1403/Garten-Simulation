@@ -279,22 +279,21 @@ struct PflanzeDetailSheet: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             Spacer()
-                            if Calendar.current.isDateInToday(targetDate) {
-                                Item3DButton(
-                                    farbe: .gruenPrimary,
-                                    sekundaerFarbe: .gruenPrimary.darker(),
-                                    groesse: 36,
-                                    isRectangular: false,
-                                    aktion: {
-                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                        todoToEditIndex = nil
-                                        Task { @MainActor in zeigeTodoSheet = true }
-                                    }
-                                ) {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundStyle(.white)
+                            Item3DButton(
+                                farbe: .gruenPrimary,
+                                sekundaerFarbe: .gruenPrimary.darker(),
+                                groesse: 36,
+                                isRectangular: false,
+                                isDisabled: isReadOnly,
+                                aktion: {
+                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                    todoToEditIndex = nil
+                                    Task { @MainActor in zeigeTodoSheet = true }
                                 }
+                            ) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundStyle(isReadOnly ? Color(hex: "#AFAFAF") : .white)
                             }
                         }
                     }
@@ -349,21 +348,20 @@ struct PflanzeDetailSheet: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             Spacer()
-                            if Calendar.current.isDateInToday(targetDate) {
-                                Item3DButton(
-                                    farbe: .blauPrimary,
-                                    sekundaerFarbe: .blauPrimary.darker(),
-                                    groesse: 36,
-                                    isRectangular: false,
-                                    aktion: {
-                                        noteToEditIndex = nil
-                                        zeigeNotizSheet = true
-                                    }
-                                ) {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundStyle(.white)
+                            Item3DButton(
+                                farbe: .blauPrimary,
+                                sekundaerFarbe: .blauPrimary.darker(),
+                                groesse: 36,
+                                isRectangular: false,
+                                isDisabled: isReadOnly,
+                                aktion: {
+                                    noteToEditIndex = nil
+                                    zeigeNotizSheet = true
                                 }
+                            ) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundStyle(isReadOnly ? Color(hex: "#AFAFAF") : .white)
                             }
                         }
                     }
@@ -402,17 +400,18 @@ struct PflanzeDetailSheet: View {
                                 .foregroundColor(.primary)
                             Spacer()
                             let hatBereitsTimer = !(pflanze.reminderSchedule?.entries.isEmpty ?? true)
-                            if !hatBereitsTimer && Calendar.current.isDateInToday(targetDate) {
+                            if !hatBereitsTimer {
                                 Item3DButton(
                                     farbe: .blauPrimary,
                                     sekundaerFarbe: .blauPrimary.darker(),
                                     groesse: 36,
                                     isRectangular: false,
+                                    isDisabled: isReadOnly,
                                     aktion: { zeigeTimerEditSheet = true }
                                 ) {
                                     Image(systemName: "plus")
                                         .font(.system(size: 16, weight: .bold))
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(isReadOnly ? Color(hex: "#AFAFAF") : .white)
                                 }
                             }
                         }

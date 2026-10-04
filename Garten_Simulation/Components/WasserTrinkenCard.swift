@@ -58,12 +58,12 @@ struct WasserTrinkenCard: View {
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundColor(.blue)
                     
-                    // Add Button
                     Item3DButton(
                         farbe: .cyan,
                         sekundaerFarbe: .cyan.opacity(0.8),
                         groesse: 56,
                         isRectangular: true,
+                        isDisabled: isReadOnly,
                         aktion: {
                             zeigeHinzufuegenSheet = true
                         }
@@ -73,7 +73,7 @@ struct WasserTrinkenCard: View {
                             Text(String(localized: "water.add.button", defaultValue: "Wasser hinzufügen"))
                         }
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(isReadOnly ? Color(hex: "#AFAFAF") : .white)
                     }
                     .frame(height: 56)
                     .disabled(isReadOnly)

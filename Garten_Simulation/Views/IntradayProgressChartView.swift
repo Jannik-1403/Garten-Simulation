@@ -43,21 +43,36 @@ struct IntradayProgressChartView: View {
         Calendar.current.startOfDay(for: targetDate)
     }
     
-    private var lastDataDate: Date {
-        if Calendar.current.isDateInToday(targetDate) {
-            return dayHistory.last?.timestamp ?? targetDate
-        } else {
-            return Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: targetDate)!
-        }
+    private var dayEnd: Date {
+        Calendar.current.date(byAdding: .day, value: 1, to: dayStart)!
+    }
+    
+    private func mappedTime(from date: Date) -> Date {
+        let cal = Calendar.current
+        let h = cal.component(.hour, from: date)
+        let m = cal.component(.minute, from: date)
+        let s = cal.component(.second, from: date)
+        return cal.date(bySettingHour: h, minute: m, second: s, of: dayStart) ?? date
     }
     
     private var chartData: [(Date, Double)] {
         var result: [(Date, Double)] = []
+        let now = Calendar.current.isDateInToday(targetDate) ? Date() : dayEnd
+        
         result.append((dayStart, 0.0))
-        for entry in dayHistory {
-            result.append((entry.timestamp, entry.progress * effectiveTarget))
+        
+        let sortedHistory = dayHistory.sorted { $0.timestamp < $1.timestamp }
+        for entry in sortedHistory {
+            let pointTime = mappedTime(from: entry.timestamp)
+            if pointTime > now { continue }
+            result.append((pointTime, entry.progress * effectiveTarget))
         }
-        return result
+        
+        if result.last?.0 != now {
+            result.append((now, result.last?.1 ?? 0.0))
+        }
+        
+        return result.sorted { $0.0 < $1.0 }
     }
 
     // MARK: Body
@@ -139,10 +154,10 @@ struct IntradayProgressChartView: View {
                         }
                 }
             }
-            .chartXScale(domain: dayStart...max(dayStart.addingTimeInterval(3600), lastDataDate))
+            .chartXScale(domain: dayStart...dayEnd)
             .chartYScale(domain: 0...(effectiveTarget * 1.2))
             .chartXAxis {
-                AxisMarks(values: [dayStart, lastDataDate]) { value in
+                AxisMarks(values: [dayStart, dayEnd]) { value in
                     if let date = value.as(Date.self) {
                         AxisValueLabel(anchor: date == dayStart ? .topLeading : .topTrailing) {
                             Text(timeLabel(for: date))

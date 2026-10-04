@@ -69,8 +69,8 @@ struct Item3DButton: View {
             }
         }
         .buttonStyle(Item3DButtonStyle(
-            farbe: isDisabled ? Color(UIColor.systemGray3) : farbe,
-            sekundaerFarbe: isDisabled ? Color(UIColor.systemGray) : sekundaerFarbe,
+            farbe: isDisabled ? Color(hex: "#E5E5E5") : farbe,
+            sekundaerFarbe: isDisabled ? Color(hex: "#CECECE") : sekundaerFarbe,
             groesse: groesse,
             iconSkalierung: iconSkalierung,
             shadowDepthFactor: shadowDepthFactor,
@@ -94,11 +94,11 @@ struct Item3DButton: View {
                 Image(systemName: icon)
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(isDisabled ? iconColor.opacity(0.6) : iconColor)
+                    .foregroundStyle(isDisabled ? Color(hex: "#AFAFAF") : iconColor)
             } else {
                 Text(icon)
                     .font(.system(size: groesse * 0.45))
-                    .foregroundStyle(isDisabled ? iconColor.opacity(0.6) : iconColor)
+                    .foregroundStyle(isDisabled ? Color(hex: "#AFAFAF") : iconColor)
             }
         }
     }
