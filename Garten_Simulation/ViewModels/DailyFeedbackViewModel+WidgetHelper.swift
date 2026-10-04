@@ -136,19 +136,30 @@ extension DailyFeedbackViewModel {
 
         func getManualOrHealth(plant: HabitModel?, healthValue: Double, goal: Double) -> Double {
             guard let p = plant else { return healthValue }
-            if p.effectiveHealthMetric == nil {
-                let todaysManualProgress = p.intradayProgressHistory
-                    .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
-                    .last?.progress ?? 0.0
-                return todaysManualProgress * goal
-            }
-            // Wenn targetDate in der Vergangenheit liegt, nutze intradayProgressHistory als Fallback
+            
+            // Wenn targetDate in der Vergangenheit liegt
             if !Calendar.current.isDateInToday(targetDate) {
+                let targetStartOfDay = Calendar.current.startOfDay(for: targetDate)
+                
+                // Für Apple Health verbundene Gewohnheiten historische Daten nutzen (sofern geladen)
+                if let eff = p.effectiveHealthMetric {
+                    if eff == .steps || eff == .running {
+                        return hm.stepsHistory7Days[targetStartOfDay] ?? 0.0
+                    } else if eff == .water {
+                        return hm.waterHistory7Days[targetStartOfDay] ?? 0.0
+                    }
+                    // Weitere Metriken (Schlaf, etc.) haben derzeit keinen 7-Tage-Cache in HealthManager.
+                    // Sie fallen unten auf manuellen Progress zurück oder zeigen 0.
+                }
+
+                // Fallback: manueller Fortschritt aus der App-Historie
                 let todaysManualProgress = p.intradayProgressHistory
                     .filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
                     .last?.progress ?? 0.0
                 return todaysManualProgress * goal
             }
+            
+            // Heute: direkter Live-Wert aus HealthKit
             return healthValue
         }
 

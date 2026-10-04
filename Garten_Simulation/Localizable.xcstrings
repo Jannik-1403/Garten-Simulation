@@ -217592,17 +217592,6 @@
         }
       }
     },
-    "note.auto.undone" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Aktion rückgängig gemacht"
-          }
-        }
-      }
-    },
     "note.joker_used" : {
       "extractionState" : "manual",
       "localizations" : {
