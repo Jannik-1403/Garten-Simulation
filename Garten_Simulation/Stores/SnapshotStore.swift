@@ -59,7 +59,7 @@ class SnapshotStore: ObservableObject {
             let key = formatter.string(from: dateIterator)
             var snapshot = ManualDaySnapshot(id: key, date: dateIterator, habitProgress: [:], journalEntries: [:], completedTodos: [:])
             
-            for plant in gardenStore.plants {
+            for plant in gardenStore.pflanzen {
                 let pid = plant.plantID.uuidString
                 
                 // 1. Progress
@@ -96,12 +96,12 @@ class SnapshotStore: ObservableObject {
         let calendar = Calendar.current
         var snapshot = snapshots[key] ?? ManualDaySnapshot(id: key, date: calendar.startOfDay(for: date), habitProgress: [:], journalEntries: [:], completedTodos: [:])
         
-        for plant in gardenStore.plants {
+        for plant in gardenStore.pflanzen {
             let pid = plant.plantID.uuidString
             
             if plant.effectiveHealthMetric == nil {
                 if calendar.isDateInToday(date) {
-                    let prog = plant.trackingMode == .counter ? Double(plant.counterProgress) / max(Double(plant.counterTarget), 1.0) : plant.sliderProgress
+                    let prog = plant.trackingMode == HabitTrackingMode.counter ? Double(plant.counterProgress) / max(Double(plant.counterTarget), 1.0) : plant.sliderProgress
                     snapshot.habitProgress[pid] = prog
                 } else {
                     if let hist = plant.intradayProgressHistory.filter({ calendar.isDate($0.timestamp, inSameDayAs: date) }).last {
