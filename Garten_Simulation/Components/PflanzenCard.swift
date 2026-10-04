@@ -85,8 +85,10 @@ struct PflanzenCard: View {
             return 1.0
         }
         
-        if let hp = healthProgress {
-            return hp
+        if Calendar.current.isDateInToday(targetDate) {
+            if let hp = healthProgress {
+                return hp
+            }
         }
         
         return pflanze.progress(for: targetDate)

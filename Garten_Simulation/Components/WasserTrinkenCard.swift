@@ -10,7 +10,22 @@ struct WasserTrinkenCard: View {
     @State private var manuelleMenge: String = ""
     @State private var showGoalDetails = false
     
+    var targetDate: Date = Date()
+    var historicalWater: Double? = nil
+    
     var onUnlink: (() -> Void)? = nil
+    
+    private var isReadOnly: Bool {
+        !Calendar.current.isDateInToday(targetDate)
+    }
+    
+    private var displayedWater: Double {
+        if isReadOnly {
+            return historicalWater ?? 0.0
+        } else {
+            return healthManager.todaysWater
+        }
+    }
     
     var body: some View {
         VStack(spacing: 16) {
@@ -35,11 +50,11 @@ struct WasserTrinkenCard: View {
                     }
                     
                     // Progress Ring
-                    ChunkyProgressRing(progress: healthManager.todaysWater, goal: goalManager.currentGoal)
+                    ChunkyProgressRing(progress: displayedWater, goal: goalManager.currentGoal)
                         .frame(width: 200, height: 200)
                     
                     // Text
-                    Text("\(Int(healthManager.todaysWater)) / \(Int(goalManager.currentGoal)) ml")
+                    Text("\(Int(displayedWater)) / \(Int(goalManager.currentGoal)) ml")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundColor(.blue)
                     
@@ -61,6 +76,7 @@ struct WasserTrinkenCard: View {
                         .foregroundColor(.white)
                     }
                     .frame(height: 56)
+                    .disabled(isReadOnly)
                 }
                 .padding(24)
                 
