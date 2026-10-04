@@ -229,7 +229,7 @@ extension DailyFeedbackViewModel {
                 var scoreForCategory: Double = 0
                 if fb.category == FitnessCategory.gratitude {
                     // Binäre Aufgaben: 100% wenn gut (erledigt), sonst 0%
-                    scoreForCategory = fb.status == .good ? 100 : 0
+                    scoreForCategory = fb.status == CategoryStatus.good ? 100 : 0
                 } else {
                     // Kontinuierliche Aufgaben: Nutze exakten prozentualen Fortschritt (max 100%)
                     let progress = fb.progress ?? 0

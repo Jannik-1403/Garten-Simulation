@@ -93,7 +93,7 @@ struct FeedbackScoringEngine {
         var cleaningOpenTaskNames: [String] = []
         var waterToday: Double
         var waterGoal: Double
-        var waterHistory7Days: [Date: Double]
+        var waterHistory: [Date: Double]
         var sleepHoursToday: Double         // 0 = keine Daten
         var sleepGoalHours: Double          // Default 8h
         var sleepRegularity: Double?        // 0–1 aus HealthManager
