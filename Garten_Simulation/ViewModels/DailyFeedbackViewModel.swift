@@ -26,7 +26,7 @@ class DailyFeedbackViewModel: ObservableObject {
         let cm = CleaningManager.shared
         Publishers.MergeMany(
             hm.$todaysWater.map { _ in () }.eraseToAnyPublisher(),
-            hm.$waterHistory7Days.map { _ in () }.eraseToAnyPublisher(),
+            hm.$waterHistory.map { _ in () }.eraseToAnyPublisher(),
             hm.$todaysSleep.map { _ in () }.eraseToAnyPublisher(),
             hm.$lastStrengthWorkoutDate.map { _ in () }.eraseToAnyPublisher(),
             hm.$todaysRunning.map { _ in () }.eraseToAnyPublisher(),

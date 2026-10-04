@@ -37,9 +37,9 @@ class HealthManager: ObservableObject {
 
     // MARK: - Historische Daten für Feedback-Scoring (7 Tage)
     /// ml Wasser pro Kalendertag (nur Tage mit Daten enthalten)
-    @Published var waterHistory7Days: [Date: Double] = [:]
+    @Published var waterHistory: [Date: Double] = [:]
     /// Schritte pro Kalendertag (nur Tage mit Daten enthalten)
-    @Published var stepsHistory7Days: [Date: Double] = [:]
+    @Published var stepsHistory: [Date: Double] = [:]
     /// Datum des letzten Krafttrainings (nil = nie oder kein HealthKit-Zugriff)
     @Published var lastStrengthWorkoutDate: Date? = nil
     /// true wenn mind. ein Workout jemals im Store gefunden wurde
@@ -264,18 +264,18 @@ class HealthManager: ObservableObject {
         fetchHeight()
         NutrientIndexManager.shared.fetchAllNutrients()
         // Historische Daten für Feedback-Engine
-        fetchWaterHistory7Days()
-        fetchStepsHistory7Days()
+        fetchWaterHistory()
+        fetchStepsHistory()
         fetchLastStrengthWorkout()
     }
 
     // MARK: - Historische Fetch-Methoden (7 Tage)
 
-    func fetchWaterHistory7Days() {
+    func fetchWaterHistory() {
         guard let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else { return }
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
-        guard let startDate = calendar.date(byAdding: .day, value: -7, to: today) else { return }
+        guard let startDate = calendar.date(byAdding: .day, value: -365, to: today) else { return }
 
         let query = HKStatisticsCollectionQuery(
             quantityType: waterType,
@@ -295,16 +295,16 @@ class HealthManager: ObservableObject {
                     }
                 }
             }
-            DispatchQueue.main.async { self?.waterHistory7Days = history }
+            DispatchQueue.main.async { self?.waterHistory = history }
         }
         healthStore.execute(query)
     }
 
-    func fetchStepsHistory7Days() {
+    func fetchStepsHistory() {
         guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return }
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
-        guard let startDate = calendar.date(byAdding: .day, value: -7, to: today) else { return }
+        guard let startDate = calendar.date(byAdding: .day, value: -365, to: today) else { return }
 
         let query = HKStatisticsCollectionQuery(
             quantityType: stepType,
@@ -324,7 +324,7 @@ class HealthManager: ObservableObject {
                     }
                 }
             }
-            DispatchQueue.main.async { self?.stepsHistory7Days = history }
+            DispatchQueue.main.async { self?.stepsHistory = history }
         }
         healthStore.execute(query)
     }

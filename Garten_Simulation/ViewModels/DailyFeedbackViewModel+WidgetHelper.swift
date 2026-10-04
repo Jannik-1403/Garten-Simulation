@@ -144,9 +144,9 @@ extension DailyFeedbackViewModel {
                 // Für Apple Health verbundene Gewohnheiten historische Daten nutzen (sofern geladen)
                 if let eff = p.effectiveHealthMetric {
                     if eff == .steps || eff == .running {
-                        return hm.stepsHistory7Days[targetStartOfDay] ?? 0.0
+                        return hm.stepsHistory[targetStartOfDay] ?? 0.0
                     } else if eff == .water {
-                        return hm.waterHistory7Days[targetStartOfDay] ?? 0.0
+                        return hm.waterHistory[targetStartOfDay] ?? 0.0
                     }
                     // Weitere Metriken (Schlaf, etc.) haben derzeit keinen 7-Tage-Cache in HealthManager.
                     // Sie fallen unten auf manuellen Progress zurück oder zeigen 0.
@@ -196,7 +196,7 @@ extension DailyFeedbackViewModel {
 
             waterToday: effectiveWater,
             waterGoal: wgm.currentGoal,
-            waterHistory7Days: hm.waterHistory7Days,
+            waterHistory: hm.waterHistory,
             sleepHoursToday: effectiveSleep,
             sleepGoalHours: sleepGoal,
             sleepRegularity: hm.sleepRegularityPercentage,
