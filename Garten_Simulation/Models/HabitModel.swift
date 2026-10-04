@@ -285,6 +285,18 @@ enum HealthMetricType: String, Codable, CaseIterable {
     }
 }
 
+// MARK: - Target History
+struct TargetHistoryEntry: Codable, Equatable, Hashable {
+    var effectiveFrom: Date
+    var target: Double
+}
+
+struct DailyTargetSnapshot: Codable, Equatable, Hashable {
+    var value: Double
+    var isFinal: Bool
+    var isEstimated: Bool
+}
+
 // MARK: - HabitModel (plain class — kein SwiftData benötigt)
 class HabitModel: Identifiable, ObservableObject, Codable {
     let id: String
@@ -429,6 +441,137 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // Priorität für "Heute im Fokus" Ansicht
     @Published var priority: GoalPriority = .medium
     
+    // Historie der Ziele
+    @Published var targetHistory: [TargetHistoryEntry] = []
+    
+    func baseTarget(for date: Date) -> Double {
+        let endOfDay = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date) ?? date
+        let validEntries = targetHistory.filter { $0.effectiveFrom <= endOfDay }
+        
+        if let last = validEntries.max(by: { $0.effectiveFrom < $1.effectiveFrom }) {
+            return last.target
+        }
+        
+        // Migration Fallback
+        if let metric = effectiveHealthMetric {
+            if metric == .energy, (healthTarget == 2000.0 || healthTarget == nil) {
+                let appGoal = UserDefaults.standard.double(forKey: "goal_energy")
+                return appGoal > 0 ? appGoal : 2000.0
+            }
+            if metric == .water, (healthTarget == 2000.0 || healthTarget == nil) {
+                // Return base goal for water (or fallback to currentGoal if baseGoal isn't saved properly)
+                let appGoal = WaterGoalManager.shared.baseGoal
+                return appGoal > 0 ? appGoal : 2000.0
+            }
+            return healthTarget ?? defaultHealthTarget
+        } else if trackingMode == .counter {
+            return Double(counterTarget)
+        } else if customTrackerTarget != nil {
+            return customTrackerTarget ?? 1.0
+        } else {
+            return 1.0
+        }
+    }
+    
+    func dynamicAdjustment(for date: Date) -> Double {
+        guard let metric = effectiveHealthMetric else { return 0.0 }
+        
+        if metric == .water {
+            let hm = HealthManager.shared
+            var steps = hm.todaysSteps
+            var endurance = hm.todaysRunning
+            var strength = hm.todaysStrengthTraining
+            
+            if !Calendar.current.isDateInToday(date) {
+                // Versuche alte Daten zu lesen, falls vorhanden
+                let startOfDay = Calendar.current.startOfDay(for: date)
+                steps = hm.stepsHistory[startOfDay] ?? 0.0
+                endurance = 0.0 // Keine Historie für Workouts im RAM
+                strength = 0.0
+            }
+            
+            var bonus = 0.0
+            let stepThreshold = 8000.0
+            if steps > stepThreshold {
+                bonus += ((steps - stepThreshold) / 1000.0) * 150.0
+            }
+            if endurance > 0 {
+                bonus += (endurance / 30.0) * 250.0
+            }
+            if strength > 0 {
+                bonus += (strength / 45.0) * 200.0
+            }
+            return bonus
+        }
+        return 0.0
+    }
+    
+    func target(for date: Date) -> Double {
+        let calendar = Calendar.current
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateKey = formatter.string(from: date)
+        
+        if calendar.isDateInToday(date) {
+            return baseTarget(for: date) + dynamicAdjustment(for: date)
+        }
+        
+        if let snapshot = dailyTargetSnapshots[dateKey] {
+            return snapshot.value
+        }
+        
+        // MIGRATION: Wenn das Datum älter als 3 Tage ist, generiere Snapshot als final
+        let daysAgo = calendar.dateComponents([.day], from: calendar.startOfDay(for: date), to: calendar.startOfDay(for: Date())).day ?? 0
+        if daysAgo > 3 {
+            let estimatedValue = baseTarget(for: date) + dynamicAdjustment(for: date)
+            dailyTargetSnapshots[dateKey] = DailyTargetSnapshot(value: estimatedValue, isFinal: true, isEstimated: true)
+            return estimatedValue
+        }
+        
+        let estimatedValue = baseTarget(for: date) + dynamicAdjustment(for: date)
+        dailyTargetSnapshots[dateKey] = DailyTargetSnapshot(value: estimatedValue, isFinal: false, isEstimated: true)
+        return estimatedValue
+    }
+    
+    func finalizeTargetSnapshots() {
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let today = calendar.startOfDay(for: Date())
+        
+        // Letzte 3 Tage aktualisieren, falls nicht final
+        for i in 1...3 {
+            guard let pastDate = calendar.date(byAdding: .day, value: -i, to: today) else { continue }
+            let dateKey = formatter.string(from: pastDate)
+            
+            var snapshot = dailyTargetSnapshots[dateKey] ?? DailyTargetSnapshot(value: 0, isFinal: false, isEstimated: true)
+            
+            if !snapshot.isFinal {
+                // Berechne neu (ohne today-Check = nutzt historische Daten)
+                let value = baseTarget(for: pastDate) + dynamicAdjustment(for: pastDate)
+                snapshot.value = value
+                snapshot.isEstimated = false
+                
+                if i == 3 {
+                    snapshot.isFinal = true // Nach 3 Tagen sperren
+                }
+                dailyTargetSnapshots[dateKey] = snapshot
+            }
+        }
+    }
+    
+    func updateTarget(to newTarget: Double) {
+        let today = Calendar.current.startOfDay(for: Date())
+        if let index = targetHistory.firstIndex(where: { Calendar.current.isDate($0.effectiveFrom, inSameDayAs: today) }) {
+            targetHistory[index].target = newTarget
+        } else {
+            targetHistory.append(TargetHistoryEntry(effectiveFrom: today, target: newTarget))
+            targetHistory.sort(by: { $0.effectiveFrom < $1.effectiveFrom })
+        }
+    }
+    
     // Slider Progress (0.0 to 1.0)
     @Published var sliderProgress: Double = 0.0
     @Published var intradayProgressHistory: [DailyProgressEntry] = []
@@ -448,6 +591,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var trackingMode: HabitTrackingMode = .slider
     @Published var counterTarget: Int = 10
     @Published var counterProgress: Int = 0
+    @Published var dailyTargetSnapshots: [String: DailyTargetSnapshot] = [:]
     @Published var counterUnit: String? = nil
     
     /// Aufräumen-Gewohnheit mit eigenen Aufgaben: Fälligkeit kommt aus dem Aufgaben-Plan.
@@ -849,6 +993,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case priority
         case sliderProgress, intradayProgressHistory
         case scheduledWeekdays, trackingMode, counterTarget, counterProgress, counterUnit
+        case targetHistory, dailyTargetSnapshots
         case showStats, showTodos, showNotes, showTimer, showGoals, showWeight, showMeasurements
         case manualWeightEntries, bodyMeasurements
         case targetWeight, targetWeightDate
@@ -965,6 +1110,24 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         scheduledWeekdays = decodedWeekdays.isEmpty ? Set(1...7) : decodedWeekdays
         trackingMode = try container.decodeIfPresent(HabitTrackingMode.self, forKey: .trackingMode) ?? .slider
         counterTarget = max(1, try container.decodeIfPresent(Int.self, forKey: .counterTarget) ?? 10)
+        targetHistory = try container.decodeIfPresent([TargetHistoryEntry].self, forKey: .targetHistory) ?? []
+        dailyTargetSnapshots = try container.decodeIfPresent([String: DailyTargetSnapshot].self, forKey: .dailyTargetSnapshots) ?? [:]
+        
+        // Migration: Start-Eintrag hinzufügen
+        if targetHistory.isEmpty {
+            let startTarget: Double
+            if let _ = effectiveHealthMetric {
+                startTarget = effectiveHealthTarget
+            } else if trackingMode == .counter {
+                startTarget = Double(counterTarget)
+            } else if let customTarget = customTrackerTarget {
+                startTarget = customTarget
+            } else {
+                startTarget = 1.0
+            }
+            targetHistory.append(TargetHistoryEntry(effectiveFrom: gekauftAm, target: startTarget))
+        }
+        
         counterProgress = try container.decodeIfPresent(Int.self, forKey: .counterProgress) ?? 0
         counterUnit = try container.decodeIfPresent(String.self, forKey: .counterUnit)
         showStats = try container.decodeIfPresent(Bool.self, forKey: .showStats) ?? true
@@ -1045,6 +1208,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(scheduledWeekdays, forKey: .scheduledWeekdays)
         try container.encode(trackingMode, forKey: .trackingMode)
         try container.encode(counterTarget, forKey: .counterTarget)
+        try container.encode(targetHistory, forKey: .targetHistory)
+        try container.encode(dailyTargetSnapshots, forKey: .dailyTargetSnapshots)
         try container.encode(counterProgress, forKey: .counterProgress)
         try container.encodeIfPresent(counterUnit, forKey: .counterUnit)
         try container.encode(showStats, forKey: .showStats)

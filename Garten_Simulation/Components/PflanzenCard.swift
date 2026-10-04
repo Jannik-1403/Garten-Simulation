@@ -69,9 +69,12 @@ struct PflanzenCard: View {
         
 
         
-        var effectiveTarget = pflanze.effectiveHealthTarget
+        var effectiveTarget = pflanze.target(for: targetDate)
         if metric == .water {
-            effectiveTarget = WaterGoalManager.shared.currentGoal
+            // Water target fallback is handled inside `HabitModel.effectiveHealthTarget`, but just in case:
+            if effectiveTarget <= 0 {
+                effectiveTarget = WaterGoalManager.shared.currentGoal
+            }
         }
         guard effectiveTarget > 0 else {
             return nil

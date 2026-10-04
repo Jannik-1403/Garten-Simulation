@@ -277,6 +277,7 @@ struct HabitTrackingSettingsSheet: View {
         pflanze.scheduledWeekdays = selectedDays
         pflanze.trackingMode = mode
         pflanze.counterTarget = newTarget
+        pflanze.updateTarget(to: Double(newTarget))
         let trimmedUnit = unit.trimmingCharacters(in: .whitespacesAndNewlines)
         pflanze.counterUnit = trimmedUnit.isEmpty ? nil : trimmedUnit
 

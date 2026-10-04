@@ -257,6 +257,17 @@ struct ReminderSchedule: Codable, Equatable {
     }
 }
 
+// MARK: - Target History
+struct TargetHistoryEntry: Codable, Equatable, Hashable {
+    var effectiveFrom: Date
+    var target: Double
+}
+
+struct DailyTargetSnapshot: Codable, Equatable, Hashable {
+    var value: Double
+    var isFinal: Bool
+    var isEstimated: Bool
+}
 
 // MARK: - HabitModel (plain class — kein SwiftData benötigt)
 class HabitModel: Identifiable, ObservableObject, Codable {
@@ -321,6 +332,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     // Gieß-Log: jeder Gießvorgang wird mit Zeitstempel gespeichert
     @Published var wateringDates: [Date] = []
+    @Published var targetHistory: [TargetHistoryEntry] = []
+    @Published var dailyTargetSnapshots: [String: DailyTargetSnapshot] = [:]
     
     // Lebenslange Einnahmen durch diese Pflanze
     @Published var totalCoinsEarned: Int = 0
@@ -524,6 +537,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case lebenBereitsAbgezogen, isDead, isNegative
         case reminderSchedule
         case pfadAktiviertAm, pfadCheckedDates
+        case targetHistory, dailyTargetSnapshots
     }
 
     required init(from decoder: Decoder) throws {
@@ -595,6 +609,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         isNegative = try container.decodeIfPresent(Bool.self, forKey: .isNegative) ?? false
         pfadAktiviertAm = try container.decodeIfPresent(Date.self, forKey: .pfadAktiviertAm)
         pfadCheckedDates = try container.decodeIfPresent([Date].self, forKey: .pfadCheckedDates) ?? []
+        targetHistory = try container.decodeIfPresent([TargetHistoryEntry].self, forKey: .targetHistory) ?? []
+        dailyTargetSnapshots = try container.decodeIfPresent([String: DailyTargetSnapshot].self, forKey: .dailyTargetSnapshots) ?? [:]
         
         // Migration: reminderSchedule laden oder aus Legacy-Feldern erstellen
         if let schedule = try container.decodeIfPresent(ReminderSchedule.self, forKey: .reminderSchedule) {
@@ -646,6 +662,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(reminderSchedule, forKey: .reminderSchedule)
         try container.encodeIfPresent(pfadAktiviertAm, forKey: .pfadAktiviertAm)
         try container.encode(pfadCheckedDates, forKey: .pfadCheckedDates)
+        try container.encode(targetHistory, forKey: .targetHistory)
+        try container.encode(dailyTargetSnapshots, forKey: .dailyTargetSnapshots)
     }
 }
 

@@ -735,30 +735,32 @@ struct PflanzeDetailSheet: View {
                                         IntradayProgressChartView(
                                             history: pflanze.intradayProgressHistory,
                                             targetDate: targetDate,
-                                            target: pflanze.effectiveHealthTarget,
+                                            target: pflanze.target(for: targetDate),
                                             customUnit: pflanze.customTargetUnit,
-                                            onEditTarget: isReadOnly ? nil : { showTargetEdit = true },
-                                            onLink: (pflanze.automaticHealthMetric != nil || pflanze.linkedHealthMetric != nil) ? {
-                                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                                pflanze.isAppleHealthUnlinked = false
-                                                if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
-                                                    pflanze.linkedHealthMetric = .steps
+                                            onEditTarget: { if !isReadOnly { showTargetEdit = true } },
+                                            onLink: {
+                                                if !isReadOnly && (pflanze.automaticHealthMetric != nil || pflanze.linkedHealthMetric != nil) {
+                                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                                    pflanze.isAppleHealthUnlinked = false
+                                                    if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
+                                                        pflanze.linkedHealthMetric = .steps
+                                                    }
+                                                    
+                                                    pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+                                                    gardenStore.savePlants()
+                                                    
+                                                    if let m = pflanze.effectiveHealthMetric {
+                                                        healthManager.fetchHourlyData(for: m, targetDate: targetDate) { data in self.hourlyHealthData = data }
+                                                        healthManager.fetchWeeklyAverage(for: m, targetDate: targetDate) { avg in self.weeklyHealthAverage = avg }
+                                                        healthManager.fetchHourlyWeeklyAverage(for: m, targetDate: targetDate) { avg in self.hourlyAvgData = avg }
+                                                    }
+                                                    
+                                                    Task {
+                                                        let safeParams: [String: String] = ["enabled": "true"]
+                                                        TelemetryDeck.signal("health_integration_toggled", parameters: safeParams)
+                                                    }
                                                 }
-                                                
-                                                pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
-                                                gardenStore.savePlants()
-                                                
-                                                if let m = pflanze.effectiveHealthMetric {
-                                                    healthManager.fetchHourlyData(for: m, targetDate: targetDate) { data in self.hourlyHealthData = data }
-                                                    healthManager.fetchWeeklyAverage(for: m, targetDate: targetDate) { avg in self.weeklyHealthAverage = avg }
-                                                    healthManager.fetchHourlyWeeklyAverage(for: m, targetDate: targetDate) { avg in self.hourlyAvgData = avg }
-                                                }
-                                                
-                                                Task {
-                                                    let safeParams: [String: String] = ["enabled": "true"]
-                                                    TelemetryDeck.signal("health_integration_toggled", parameters: safeParams)
-                                                }
-                                            } : nil
+                                            }
                                         )
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 4)
@@ -773,11 +775,12 @@ struct PflanzeDetailSheet: View {
                                             }
                                             
                                             if pflanze.trackingMode == .counter {
-                                                let displayedCounterProgress = Int(pflanze.progress(for: targetDate) * Double(pflanze.counterTarget))
+                                                let targetAtDate = Int(pflanze.target(for: targetDate))
+                                                let displayedCounterProgress = Int(pflanze.progress(for: targetDate) * Double(targetAtDate))
                                                     
                                                 HabitCounterControl(
-                                                    value: pflanze.wasCompleted(on: targetDate) ? pflanze.counterTarget : displayedCounterProgress,
-                                                    target: pflanze.counterTarget,
+                                                    value: pflanze.wasCompleted(on: targetDate) ? targetAtDate : displayedCounterProgress,
+                                                    target: targetAtDate,
                                                     unit: pflanze.counterUnit,
                                                     isDisabled: pflanze.wasCompleted(on: targetDate) || isReadOnly
                                                 ) { newValue in
@@ -882,10 +885,10 @@ struct PflanzeDetailSheet: View {
                                                             HealthChartView(
                                                                 data: hourlyHealthData,
                                                                 metric: metric,
-                                                                target: pflanze.effectiveHealthTarget,
+                                                                target: pflanze.target(for: targetDate),
                                                                 hourlyAverageData: hourlyAvgData,
-                                                                onEditTarget: { showTargetEdit = true },
-                                                                onUnlink: { zeigeAppleHealthEntkoppelnAlert = true }
+                                                                onEditTarget: { if !isReadOnly { showTargetEdit = true } },
+                                                                onUnlink: { if !isReadOnly { zeigeAppleHealthEntkoppelnAlert = true } }
                                                             )
                                                             .padding(.horizontal, 16)
                                                             .padding(.vertical, 4)

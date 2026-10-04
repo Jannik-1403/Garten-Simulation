@@ -237,7 +237,6 @@ class GardenStore: ObservableObject {
             taeglicherStreakCheck()
             checkUngegossenePflanzen()
             updateWidgetData()
-            SnapshotStore.shared.runBackfillIfNeeded(gardenStore: self)
         }
     }
 
@@ -295,14 +294,19 @@ class GardenStore: ObservableObject {
         // Synchronous idempotency check to prevent race conditions
         guard !pflanze.wasCompleted(on: date) else { return }
 
-        // Tagesziel automatisch erfüllen (Andersrum-Sync)
-        if let target = pflanze.customTrackerTarget, target > 0 {
-            if pflanze.customTrackerProgress < target {
-                pflanze.customTrackerProgress = target
+        // Tagesziel automatisch erfüllen (Andersrum-Sync) - nur wenn es für heute ist
+        if Calendar.current.isDateInToday(date) {
+            if let target = pflanze.customTrackerTarget, target > 0 {
+                if pflanze.customTrackerProgress < target {
+                    pflanze.customTrackerProgress = target
+                }
             }
-        }
-        if pflanze.trackingMode == .counter, pflanze.counterProgress < pflanze.counterTarget {
-            pflanze.counterProgress = pflanze.counterTarget
+            if pflanze.trackingMode == .counter {
+                let targetForDate = Int(pflanze.target(for: date))
+                if pflanze.counterProgress < targetForDate {
+                    pflanze.counterProgress = targetForDate
+                }
+            }
         }
         
         if pflanze.isRoutineOnly {
@@ -312,9 +316,9 @@ class GardenStore: ObservableObject {
             self.letzteBonusPflanzeID = nil
             self.lastCompletedHabitID = pflanze.id
             
-            pflanze.lastCompletionDate = Date()
+            pflanze.lastCompletionDate = date
             
-            let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
+            let timeString = DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
             let routineString = fromRoutine ? String(localized: "note.auto.routine", defaultValue: "(mit Routine)") : String(localized: "note.auto.no_routine", defaultValue: "(ohne Routine)")
             let noteText = "\(timeString) -  \(String(localized: "note.auto.completed", defaultValue: "Gewohnheit abgeschlossen")) \(routineString)"
             
@@ -416,33 +420,50 @@ class GardenStore: ObservableObject {
         
         self.completionTriggerID = UUID()
         
-        pflanze.lastCompletionDate = Date()
-        pflanze.wateringDates.append(date) // Log für Verlauf-Tab
-        pflanze.streak += 1
-        
-        let milestones = [5, 10, 30, 50, 100]
-        if milestones.contains(pflanze.streak) {
-            let streakDays = String(pflanze.streak)
-            let habitTitle = pflanze.habitName
-            Task {
-                let params: [String: String] = [
-                    "streak_days": streakDays,
-                    "habit_name": habitTitle
-                ]
-                TelemetryDeck.signal("streak_milestone_reached", parameters: params)
+        // Nur wenn wir heute abschließen, vergeben wir XP/Coins/Items/Streak-Bonus.
+        if Calendar.current.isDateInToday(date) {
+            pflanze.lastCompletionDate = date
+            pflanze.wateringDates.append(date) // Log für Verlauf-Tab
+            pflanze.streak += 1
+            
+            let milestones = [5, 10, 30, 50, 100]
+            if milestones.contains(pflanze.streak) {
+                let streakDays = String(pflanze.streak)
+                let habitTitle = pflanze.habitName
+                Task {
+                    let params: [String: String] = [
+                        "streak_days": streakDays,
+                        "habit_name": habitTitle
+                    ]
+                    TelemetryDeck.signal("streak_milestone_reached", parameters: params)
+                }
+            }
+            
+            pflanze.missedCycles = 0 // Reset Gesundheit
+            pflanze.lastNotifiedCycle = 0 // Reset Herz-Abzug-Trigger
+            pflanze.totalCompletions += 1
+            
+            // Auto-generierte Notiz
+            let timeString = DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
+            let routineString = fromRoutine ? String(localized: "note.auto.routine", defaultValue: "(mit Routine)") : String(localized: "note.auto.no_routine", defaultValue: "(ohne Routine)")
+            let noteText = "\(timeString) -  \(String(localized: "note.auto.completed", defaultValue: "Gewohnheit abgeschlossen")) \(routineString)"
+            
+            pflanze.notizen.insert(noteText, at: 0)
+        } else {
+            // Vergangener Tag: Nur Datum updaten, falls jünger, und eintragen
+            if let last = pflanze.lastCompletionDate {
+                if date > last {
+                    pflanze.lastCompletionDate = date
+                }
+            } else {
+                pflanze.lastCompletionDate = date
+            }
+            // In WateringDates aufnehmen
+            if !pflanze.wateringDates.contains(where: { Calendar.current.isDate($0, inSameDayAs: date) }) {
+                pflanze.wateringDates.append(date)
+                pflanze.totalCompletions += 1
             }
         }
-        
-        pflanze.missedCycles = 0 // Reset Gesundheit
-        pflanze.lastNotifiedCycle = 0 // Reset Herz-Abzug-Trigger
-        pflanze.totalCompletions += 1
-        
-        // Auto-generierte Notiz
-        let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
-        let routineString = fromRoutine ? String(localized: "note.auto.routine", defaultValue: "(mit Routine)") : String(localized: "note.auto.no_routine", defaultValue: "(ohne Routine)")
-        let noteText = "\(timeString) -  \(String(localized: "note.auto.completed", defaultValue: "Gewohnheit abgeschlossen")) \(routineString)"
-        
-        pflanze.notizen.insert(noteText, at: 0)
         
         savePlants()
 
@@ -835,7 +856,7 @@ class GardenStore: ObservableObject {
     @discardableResult
     func setCounterProgress(pflanze: HabitModel, to value: Int) -> Bool {
         guard !pflanze.wasCompleted(on: Date()) else { return false }
-        let target = max(1, pflanze.counterTarget)
+        let target = max(1, Int(pflanze.target(for: Date())))
         let clamped = min(max(0, value), target)
         pflanze.counterProgress = clamped
 
@@ -1439,7 +1460,6 @@ class GardenStore: ObservableObject {
             SharedUserDefaults.suite.synchronize()
         }
         updateWidgetData()
-        SnapshotStore.shared.captureSnapshot(for: Date(), gardenStore: self)
     }
 
     func updateWidgetData() {
@@ -1946,13 +1966,13 @@ extension GardenStore {
     func evaluateAllHabits(healthManager: HealthManager) {
         let calendar = Calendar.current
         for pflanze in pflanzen {
+            // Finalisiere Snapshots für vergangene Tage
+            pflanze.finalizeTargetSnapshots()
+            
             // Check based on effective metric (both manual and automatic)
             guard let metric = pflanze.effectiveHealthMetric else { continue }
             
-            var target = pflanze.effectiveHealthTarget
-            if metric == .water {
-                target = WaterGoalManager.shared.currentGoal
-            }
+            let target = pflanze.target(for: Date())
             
             // Skip if already watered today
             if let lastCompletionDate = pflanze.lastCompletionDate, calendar.isDateInToday(lastCompletionDate) {
