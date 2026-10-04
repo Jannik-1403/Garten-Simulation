@@ -3,6 +3,7 @@ import Charts
 
 struct IntradayProgressChartView: View {
     let history: [DailyProgressEntry]
+    var targetDate: Date = Date()
     var target: Double? = nil
     var customUnit: String? = nil
     var onEditTarget: (() -> Void)? = nil
@@ -30,26 +31,26 @@ struct IntradayProgressChartView: View {
         return customUnit ?? "%"
     }
     
-    private var todaysHistory: [DailyProgressEntry] {
-        return history.filter { Calendar.current.isDateInToday($0.timestamp) }
+    private var dayHistory: [DailyProgressEntry] {
+        return history.filter { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
     }
     
-    private var todayTotal: Double {
-        return (todaysHistory.last?.progress ?? 0.0) * effectiveTarget
+    private var dayTotal: Double {
+        return (dayHistory.last?.progress ?? 0.0) * effectiveTarget
     }
     
     private var dayStart: Date {
-        Calendar.current.startOfDay(for: Date())
+        Calendar.current.startOfDay(for: targetDate)
     }
     
     private var lastDataDate: Date {
-        todaysHistory.last?.timestamp ?? Date()
+        dayHistory.last?.timestamp ?? targetDate
     }
     
     private var chartData: [(Date, Double)] {
         var result: [(Date, Double)] = []
         result.append((dayStart, 0.0))
-        for entry in todaysHistory {
+        for entry in dayHistory {
             result.append((entry.timestamp, entry.progress * effectiveTarget))
         }
         return result
@@ -76,8 +77,8 @@ struct IntradayProgressChartView: View {
             HStack(alignment: .top, spacing: 0) {
                 VStack(alignment: .leading, spacing: 1) {
                     statLabel(dotColor: Color.orangePrimary,
-                              text: String(localized: "health.chart.label.today", defaultValue: "Heute"))
-                    Text(formatNumber(todayTotal))
+                              text: Calendar.current.isDateInToday(targetDate) ? String(localized: "health.chart.label.today", defaultValue: "Heute") : targetDate.formatted(.dateTime.day().month()))
+                    Text(formatNumber(dayTotal))
                         .font(.system(size: 32, weight: .black, design: .rounded))
                         .foregroundStyle(Color.orangePrimary)
                         .minimumScaleFactor(0.7)
