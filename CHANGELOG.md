@@ -1419,3 +1419,5 @@
 
 - Feature-Anpassung: Das Abwählen einer Gewohnheit zieht nun kein Geld/XP mehr ab. Um den Exploit weiterhin zu verhindern, gibt es beim erneuten Abhaken am selben Tag einfach kein zweites Mal eine Belohnung.
 - Bugfix: Im Kalender springt die Tages-Ansicht nun korrekt zum ausgewählten Tag, anstatt nur die Überschrift zu ändern.
+
+- Bugfix: In der Vergangenheitsansicht (gestern/vorgestern) werden Apple Health Daten (wie Schritte und Wasser) nun korrekt aus dem Verlaufsgeladen, statt auf 0 zurückzufallen.
