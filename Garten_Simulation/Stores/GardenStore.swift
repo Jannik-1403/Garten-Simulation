@@ -470,6 +470,25 @@ class GardenStore: ObservableObject {
         }
     }
     
+    // MARK: - Undo Completion
+    func undoCompleteHabit(pflanze: HabitModel, on date: Date = Date()) {
+        guard pflanze.wasCompleted(on: date) else { return }
+        
+        // Remove the date from wateringDates
+        pflanze.wateringDates.removeAll { Calendar.current.isDate($0, inSameDayAs: date) }
+        pflanze.lastCompletionDate = pflanze.wateringDates.max()
+        
+        if pflanze.streak > 0 {
+            pflanze.streak -= 1
+        }
+        if pflanze.totalCompletions > 0 {
+            pflanze.totalCompletions -= 1
+        }
+        
+        savePlants()
+        updateWidgetData()
+    }
+    
     private func checkGlobalStreak() {
         onWatering?()
     }

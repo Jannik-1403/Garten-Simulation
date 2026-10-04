@@ -114,7 +114,11 @@ final class CleaningDashboardViewModel: ObservableObject {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
             gardenStore.completeHabit(pflanze: pflanze)
         } else {
-            gardenStore.updateWidgetData()
+            if !isNowDone, pflanze.wasCompleted(on: Date()) {
+                gardenStore.undoCompleteHabit(pflanze: pflanze)
+            } else {
+                gardenStore.updateWidgetData()
+            }
         }
     }
 
