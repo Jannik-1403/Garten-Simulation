@@ -44,7 +44,11 @@ struct IntradayProgressChartView: View {
     }
     
     private var lastDataDate: Date {
-        dayHistory.last?.timestamp ?? targetDate
+        if Calendar.current.isDateInToday(targetDate) {
+            return dayHistory.last?.timestamp ?? targetDate
+        } else {
+            return Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: targetDate)!
+        }
     }
     
     private var chartData: [(Date, Double)] {
@@ -77,7 +81,7 @@ struct IntradayProgressChartView: View {
             HStack(alignment: .top, spacing: 0) {
                 VStack(alignment: .leading, spacing: 1) {
                     statLabel(dotColor: Color.orangePrimary,
-                              text: Calendar.current.isDateInToday(targetDate) ? String(localized: "health.chart.label.today", defaultValue: "Heute") : targetDate.formatted(.dateTime.day().month()))
+                              text: Calendar.current.isDateInToday(targetDate) ? String(localized: "health.chart.label.today", defaultValue: "Heute") : (Calendar.current.isDateInYesterday(targetDate) ? String(localized: "health.chart.label.yesterday", defaultValue: "Gestern") : targetDate.formatted(.dateTime.day().month())))
                     Text(formatNumber(dayTotal))
                         .font(.system(size: 32, weight: .black, design: .rounded))
                         .foregroundStyle(Color.orangePrimary)

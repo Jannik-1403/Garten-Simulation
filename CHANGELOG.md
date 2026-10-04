@@ -1,3 +1,13 @@
+### 2026-10-04 (Hotfix)
+- Apple Health UI-Fixes für historische Daten:
+  - `GesundKochenCard` zeigt nun die korrekten historischen Daten anstatt der heutigen, wenn man Tage in der Vergangenheit aufruft.
+  - Das Health-Chart für Apple Health Gewohnheiten geht nun auch in der Vergangenheit über den gesamten Tag (0 bis 23 Uhr) statt bei der aktuellen Uhrzeit abgeschnitten zu werden.
+  - Vergangene Tage sind ab sofort strikt schreibgeschützt: Slider, +/- Buttons, To-Dos, Notizen, Timer und alle Bearbeiten-Buttons sind deaktiviert. Zusätzlicher Schutz im Model blockiert Änderungen auf alten Tagen.
+  - Einheitliche `progress(for: date)` Funktion im HabitModel für Tagesübersicht, Detailansicht und Statistik implementiert.
+  - `NutrientIndexView` (Obst & Gemüse) nutzt jetzt den `targetDate` Parameter um historische Daten statt heute zu laden.
+  - Fix in `PflanzeDetailSheet`, wodurch Counter- und Apple-Health-Daten beim Wechseln des Datums sofort aktualisiert werden.
+  - Fix in `IntradayProgressChartView`, damit das Diagramm für manuelle Gewohnheiten (wie Wasser trinken) bei fehlenden Einträgen in der Vergangenheit 0 anzeigt, anstatt den heutigen Wert anzuzeigen.
+
 ### 2026-10-03 (Hotfix)
 - Fehler in der UI behoben: `CleaningDashboardView` wird nun korrekt in der `PflanzeDetailSheet` für die Aufräum-Gewohnheit angezeigt.
 

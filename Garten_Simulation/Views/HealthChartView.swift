@@ -47,7 +47,11 @@ struct HealthChartView: View {
     private var dayStart: Date     { Calendar.current.startOfDay(for: targetDate) }
 
     private var lastDataDate: Date {
-        cumulativeData().last?.0 ?? Date()
+        if calendar.isDateInToday(targetDate) {
+            return cumulativeData().last?.0 ?? Date()
+        } else {
+            return calendar.date(bySettingHour: 23, minute: 59, second: 59, of: targetDate)!
+        }
     }
 
     private var adjustedHourlyAverageData: [(Date, Double)] {
@@ -88,7 +92,7 @@ struct HealthChartView: View {
             HStack(alignment: .top, spacing: 0) {
                 VStack(alignment: .leading, spacing: 1) {
                     statLabel(dotColor: Color.orangePrimary,
-                              text: String(localized: "health.chart.label.today", defaultValue: "Today"))
+                              text: calendar.isDateInToday(targetDate) ? String(localized: "health.chart.label.today", defaultValue: "Heute") : (calendar.isDateInYesterday(targetDate) ? String(localized: "health.chart.label.yesterday", defaultValue: "Gestern") : targetDate.formatted(.dateTime.day().month())))
                     Text(formatNumber(todayTotal))
                         .font(.system(size: 32, weight: .black, design: .rounded))
                         .foregroundStyle(Color.orangePrimary)
