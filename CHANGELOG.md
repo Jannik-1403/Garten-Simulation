@@ -2,6 +2,7 @@
 - Fix: `GartenView` lädt beim Datumswechsel (und beim App-Start für heute/gestern) automatisch alle Apple-Health-Werte für das gewählte Datum in den Cache (`dailyValue(metric:on:)`), damit Health-Karten beim Wischen direkt befüllt sind und nicht erst nach dem Öffnen.
 - Fix: `PflanzenCard` liest Health-Daten nun aus dem `dailyValuesCache` anstatt bei fehlenden Daten auf 0% zu fallen. Solange der Wert lädt, wird ein transparenter Platzhalter gezeigt.
 - Fix: `HealthChartView` und `IntradayProgressChartView` zeigen für vergangene Tage keine gestrichelte "Jetzt"-Linie (und keinen Cut-off) mehr, sondern stellen die Daten bis 24:00 Uhr des Zieltages vollständig dar. Ein Fehler mit +1 Stunde Offset in Health-Charts wurde ebenfalls entfernt.
+- Fix: Historische Diagramme (HealthChartView & IntradayProgressChartView) abgeschnitten bei heutiger Uhrzeit behoben (Zentralisierte Datums-Logik via ChartHelper). "00:00" Beschriftung rechts unten zu "24:00" korrigiert. 
 
 ### 04.10.2026
 - Feature: Dynamische Zielhistorie (DailyTargetSnapshots) für Health-Metriken (Wasser/Kalorien) implementiert. 
