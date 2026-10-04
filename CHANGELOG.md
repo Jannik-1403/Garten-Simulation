@@ -1423,3 +1423,5 @@
 - Bugfix: In der Vergangenheitsansicht (gestern/vorgestern) werden Apple Health Daten (wie Schritte und Wasser) nun korrekt aus dem Verlaufsgeladen, statt auf 0 zurückzufallen.
 
 - Feature: Die Apple Health-Historie für Schritte und Wasser wird nun für ein ganzes Jahr im Hintergrund geladen, sodass du problemlos Monate in die Vergangenheit springen und deine echten Health-Werte ansehen kannst.
+
+- Feature: Du kannst jetzt auf der Startseite im Kalender in die Vergangenheit reisen und dort auf jede deiner Pflanzen tippen, um dir deinen Fortschritt und das Journal von damals anzuschauen (ohne, dass du versehentlich noch etwas ändern kannst).
