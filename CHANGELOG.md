@@ -1409,3 +1409,5 @@
 - Changed the color of 'Heute fällig' and 'Demnächst' to a neutral primary color instead of blue.
 - Changed the tint color of the `CleaningTaskEditorSheet` to primary to remove the blue 'Bearbeiten'/'Speichern' buttons.
 - Added missing translations for all hardcoded German texts in the task editor sheet across all 16 languages.
+
+- Lokalisierung: Vollständige Lokalisierung aller verbleibenden hartkodierten deutschen Texte im gesamten Projekt (App und Widgets) inkl. fehlender Übersetzungen (16 Sprachen).
