@@ -1416,3 +1416,6 @@
 
 - Bugfix: Ein Exploit wurde behoben, durch den man unendlich XP und Coins durch das Ab- und Abwählen von Aufräumaufgaben erhalten konnte. XP und Coins werden beim Entfernen des Hakens nun wieder abgezogen.
 - Bugfix: Im Verlaufs-Kalender (heute) konnten manche vergangenen Tage, an denen nichts erledigt wurde, nicht mehr angetippt werden (kein rotes X). Die Berechnung des Installationsdatums wurde korrigiert.
+
+- Feature-Anpassung: Das Abwählen einer Gewohnheit zieht nun kein Geld/XP mehr ab. Um den Exploit weiterhin zu verhindern, gibt es beim erneuten Abhaken am selben Tag einfach kein zweites Mal eine Belohnung.
+- Bugfix: Im Kalender springt die Tages-Ansicht nun korrekt zum ausgewählten Tag, anstatt nur die Überschrift zu ändern.
