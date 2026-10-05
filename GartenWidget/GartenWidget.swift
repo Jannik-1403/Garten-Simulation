@@ -21,6 +21,7 @@ struct GroovyWidgetBundle: WidgetBundle {
     var body: some Widget {
         // Neue Widgets:
         GroovyStreakWidget()
+        GroovyDailyScoreWidget()
         GroovyVerlaufMediumWidget()
         GroovyVerlaufLargeWidget()
         // Lock Screen
@@ -50,6 +51,23 @@ struct GroovyStreakWidget: Widget {
         }
         .configurationDisplayName(String(localized: "widget_streak_title", defaultValue: "Streak", locale: widgetLocale))
         .description(String(localized: "widget_streak_description", defaultValue: "Dein aktueller Streak.", locale: widgetLocale))
+        .supportedFamilies([.systemSmall])
+    }
+}
+
+// MARK: - Tages-Score Widget (Small)
+struct GroovyDailyScoreWidget: Widget {
+    let kind = "GroovyDailyScoreWidgetV1"
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
+            DailyScoreWidgetView(entry: entry)
+                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
+                .containerBackground(for: .widget) {
+                    StreakBackgroundView(style: entry.backgroundStyle)
+                }
+        }
+        .configurationDisplayName(String(localized: "widget_daily_score_display_name", defaultValue: "Tages-Score", locale: widgetLocale))
+        .description(String(localized: "widget_daily_score_desc", defaultValue: "Dein aktueller Tages-Score auf dem Homescreen.", locale: widgetLocale))
         .supportedFamilies([.systemSmall])
     }
 }

@@ -666,3 +666,95 @@ struct RoutineStartWidgetView: View {
         .widgetURL(deepLinkURL)
     }
 }
+
+// MARK: - WIDGET CHUNKY PROGRESS RING (3D-Stil)
+
+struct WidgetChunkyProgressRing: View {
+    var progress: Double
+    var goal: Double
+    var color: Color = .orange
+    var fontSize: CGFloat = 34
+    
+    var percent: Double {
+        if goal <= 0 { return 0 }
+        return min(1.0, progress / goal)
+    }
+    
+    var body: some View {
+        ZStack {
+            // Background Shadow
+            Circle()
+                .stroke(color.opacity(0.15), lineWidth: 16)
+                .offset(y: 3)
+            
+            // Background Track
+            Circle()
+                .stroke(color.opacity(0.2), lineWidth: 16)
+            
+            // Foreground Progress Shadow
+            Circle()
+                .trim(from: 0.0, to: percent)
+                .stroke(color.opacity(0.5), style: StrokeStyle(lineWidth: 16, lineCap: .round))
+                .rotationEffect(Angle(degrees: -90))
+                .offset(y: 3)
+            
+            // Foreground Progress
+            Circle()
+                .trim(from: 0.0, to: percent)
+                .stroke(color, style: StrokeStyle(lineWidth: 16, lineCap: .round))
+                .rotationEffect(Angle(degrees: -90))
+                
+            VStack(spacing: 0) {
+                Text("\(Int(progress))")
+                    .font(.system(size: fontSize, weight: .black, design: .rounded))
+                    .foregroundColor(color)
+                    .minimumScaleFactor(0.5)
+            }
+        }
+    }
+}
+
+// MARK: - SMALL: Tages-Score Widget (3D Stil)
+
+struct DailyScoreWidgetView: View {
+    let entry: GroovyStreakEntry
+    
+    var score: Int {
+        let defaults = SharedUserDefaults.suite
+        // Score vom Vortag nicht anzeigen – nach Mitternacht startet der Tag bei 0.
+        let storedDay = defaults.double(forKey: "widget_daily_score_date")
+        let todayStart = Calendar.current.startOfDay(for: entry.date).timeIntervalSince1970
+        if storedDay > 0 && storedDay != todayStart { return 0 }
+        return min(100, max(0, defaults.integer(forKey: "widget_daily_score")))
+    }
+    
+    var scoreColor: Color {
+        if score >= 80 {
+            return Color(.systemGreen)
+        } else if score >= 50 {
+            return Color(.systemOrange)
+        } else {
+            return Color(.systemRed)
+        }
+    }
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Text(String(localized: "widget_daily_score_title_small", defaultValue: "Tages-Score", locale: widgetLocale))
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
+                .padding(.top, 4)
+            
+            WidgetChunkyProgressRing(
+                progress: Double(score),
+                goal: 100,
+                color: scoreColor,
+                fontSize: 32
+            )
+            .padding(10)
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .widgetURL(URL(string: "grovy://home"))
+    }
+}
