@@ -177,46 +177,22 @@ struct ToggleTodoIntent: AppIntent {
         }
         
         // 2. Fallback: Habit To-Dos (sehr aufwendig für Intents, aber wir togglen es im Widget Cache)
-        if let widgetData = shared.data(forKey: GroovyWidgetDataProvider.userDefaultsKey) {
+        if let widgetData = shared.data(forKey: "groovyWidgetData") {
             do {
-                let cache = try JSONDecoder().decode(WidgetAppData.self, from: widgetData)
-                var newTodos = cache.todos
+                var cache = try JSONDecoder().decode(WidgetAppData.self, from: widgetData)
                 var found = false
-                
-                for i in 0..<newTodos.count {
-                    if newTodos[i].id == todoID {
-                        let oldTodo = newTodos[i]
-                        newTodos[i] = WidgetTodoData(
-                            id: oldTodo.id,
-                            text: oldTodo.text,
-                            isCompleted: !oldTodo.isCompleted,
-                            prioritySortValue: oldTodo.prioritySortValue
-                        )
+                for i in 0..<cache.todos.count {
+                    if cache.todos[i].id == todoID {
+                        cache.todos[i].isCompleted.toggle()
                         found = true
                         break
                     }
                 }
-                
                 if found {
-                    let newCache = WidgetAppData(
-                        plants: cache.plants,
-                        totalStreak: cache.totalStreak,
-                        gems: cache.gems,
-                        lastUpdated: cache.lastUpdated,
-                        totalWateringCount: cache.totalWateringCount,
-                        wateringCountToday: cache.wateringCountToday,
-                        wateringCountThisWeek: cache.wateringCountThisWeek,
-                        wateringCountThisMonth: cache.wateringCountThisMonth,
-                        completedStreakDates: cache.completedStreakDates,
-                        todos: newTodos
-                    )
-                    if let newEncoded = try? JSONEncoder().encode(newCache) {
-                        shared.set(newEncoded, forKey: GroovyWidgetDataProvider.userDefaultsKey)
-                    }
+                    let newEncoded = try JSONEncoder().encode(cache)
+                    shared.set(newEncoded, forKey: "groovyWidgetData")
                 }
-            } catch {
-                print("Widget Intent Error: \(error)")
-            }
+            } catch {}
         }
         
         WidgetCenter.shared.reloadAllTimelines()

@@ -4,7 +4,7 @@ import WidgetKit
 struct WidgetTodoData: Codable, Sendable, Identifiable {
     let id: String
     let text: String
-    let isCompleted: Bool
+    var isCompleted: Bool
     let prioritySortValue: Int
 }
 
@@ -32,7 +32,7 @@ struct WidgetAppData: Codable, Sendable {
     let wateringCountThisWeek: Int       // Diese Woche (Mo–So)
     let wateringCountThisMonth: Int      // Dieser Monat
     let completedStreakDates: [Date]      // Aus StreakStore.completedDates
-    let todos: [WidgetTodoData]
+    var todos: [WidgetTodoData]
 
     init(plants: [WidgetPlantData], totalStreak: Int, gems: Int, lastUpdated: Date, totalWateringCount: Int, wateringCountToday: Int, wateringCountThisWeek: Int, wateringCountThisMonth: Int, completedStreakDates: [Date], todos: [WidgetTodoData] = []) {
         self.plants = plants
