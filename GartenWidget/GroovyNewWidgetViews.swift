@@ -137,9 +137,9 @@ struct StreakBackgroundView: View {
     var body: some View {
         ZStack {
             if style == .light {
-                Color.white
+                LinearGradient(colors: [Color(red: 1.0, green: 0.85, blue: 0.7), Color.white], startPoint: .top, endPoint: .bottom)
             } else {
-                Color(red: 28/255, green: 28/255, blue: 30/255)
+                LinearGradient(colors: [Color(red: 0.35, green: 0.15, blue: 0.0), Color(red: 28/255, green: 28/255, blue: 30/255)], startPoint: .top, endPoint: .bottom)
             }
         }
     }
@@ -216,7 +216,7 @@ struct WaterWidgetView: View {
                     .font(.system(size: 10, weight: .bold))
                     .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.6))
         }
-        .padding(12)
+        .padding(16)
         .widgetURL(URL(string: "grovy://water"))
     }
 }
@@ -244,8 +244,7 @@ struct StreakSmallWidgetView: View {
             
             Spacer()
         }
-        .padding(.top, 16)
-        .padding(.horizontal, 12)
+        .padding(16)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .widgetURL(URL(string: "grovy://streak"))
     }
@@ -422,7 +421,7 @@ struct VerlaufLargeWidgetView: View {
                 }
             }
         }
-        .padding(18)
+        .padding(16)
         .widgetURL(URL(string: "grovy://streak"))
     }
 }
@@ -483,18 +482,20 @@ struct InteractiveHabitsWidgetView: View {
     }
     
     var maxTodos: Int {
-        family == .systemSmall ? 2 : 4
+        family == .systemSmall ? 3 : 4
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if isPro {
-                HStack(spacing: 6) {
-                    Text(String(localized: "widget_todos_title", defaultValue: "To-Dos", locale: widgetLocale))
-                        .font(.system(size: 14, weight: .black, design: .rounded))
+                if family != .systemSmall {
+                    HStack(spacing: 6) {
+                        Text(String(localized: "widget_todos_title", defaultValue: "To-Dos", locale: widgetLocale))
+                            .font(.system(size: 14, weight: .black, design: .rounded))
+                    }
+                    .foregroundStyle(DuoStyle.contentColor(for: entry.style))
+                    .padding(.bottom, 2)
                 }
-                .foregroundStyle(DuoStyle.contentColor(for: entry.style))
-                .padding(.bottom, 2)
                 
                 let todos = widgetTodos
                 if todos.isEmpty {
@@ -541,14 +542,37 @@ struct InteractiveHabitsWidgetView: View {
                                         .font(.system(size: 13, weight: .bold))
                                         .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(todo.isCompleted ? 0.5 : 1.0))
                                         .strikethrough(todo.isCompleted)
-                                        .lineLimit(family == .systemSmall ? 2 : 1)
+                                        .lineLimit(2)
+                                        .minimumScaleFactor(0.8)
                                     
                                     Spacer()
                                     
-                                    if !todo.isCompleted {
-                                        Image(systemName: "circle")
-                                            .font(.system(size: 14, weight: .bold))
-                                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.3))
+                                    if #available(iOS 17.0, *) {
+                                        Button(intent: ToggleTodoIntent(todoID: todo.id)) {
+                                            ZStack {
+                                                Circle()
+                                                    .fill(todo.isCompleted ? Color.green : Color.blue)
+                                                    .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 2)
+                                                    .shadow(color: .white.opacity(0.4), radius: 1, x: 0, y: -1)
+                                                    .frame(width: 24, height: 24)
+                                                if todo.isCompleted {
+                                                    Image(systemName: "checkmark")
+                                                        .font(.system(size: 11, weight: .black))
+                                                        .foregroundColor(.white)
+                                                } else {
+                                                    Image(systemName: "circle")
+                                                        .font(.system(size: 12, weight: .bold))
+                                                        .foregroundColor(.white.opacity(0.5))
+                                                }
+                                            }
+                                        }
+                                        .buttonStyle(.plain)
+                                    } else {
+                                        if !todo.isCompleted {
+                                            Image(systemName: "circle")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.3))
+                                        }
                                     }
                                 }
                                 .padding(.bottom, isLast ? 0 : (family == .systemSmall ? 6 : 10))
@@ -574,7 +598,7 @@ struct InteractiveHabitsWidgetView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        .padding(14)
+        .padding(16)
         .widgetURL(URL(string: isPro ? "grovy://todos" : "grovy://pro"))
     }
 }
@@ -647,21 +671,36 @@ struct RoutineStartWidgetView: View {
             
             // Arrow oder Checkmark Button - unten links
             HStack {
-                ZStack {
-                    Circle()
-                        .fill(isCompleted ? Color.green : buttonBgColor)
-                        .frame(width: 40, height: 40)
-                    Image(systemName: isCompleted ? "checkmark" : "arrow.right")
-                        .font(.system(size: 17, weight: .black))
-                        .foregroundStyle(isCompleted ? Color.white : buttonIconColor)
-                        .offset(x: isCompleted ? 0 : 1.5) // Ausgleich nur für Pfeil
+                if #available(iOS 17.0, *), let r = entry.routine {
+                    Button(intent: StartRoutineIntent(routineID: r.id)) {
+                        ZStack {
+                            Circle()
+                                .fill(isCompleted ? Color.green : Color.orange)
+                                .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 3)
+                                .shadow(color: .white.opacity(0.4), radius: 1, x: 0, y: -2)
+                                .frame(width: 44, height: 44)
+                            Image(systemName: isCompleted ? "checkmark" : "arrow.right")
+                                .font(.system(size: 17, weight: .black))
+                                .foregroundStyle(Color.white)
+                                .offset(x: isCompleted ? 0 : 1.5)
+                        }
+                    }
+                    .buttonStyle(.plain)
+                } else {
+                    ZStack {
+                        Circle()
+                            .fill(isCompleted ? Color.green : buttonBgColor)
+                            .frame(width: 40, height: 40)
+                        Image(systemName: isCompleted ? "checkmark" : "arrow.right")
+                            .font(.system(size: 17, weight: .black))
+                            .foregroundStyle(isCompleted ? Color.white : buttonIconColor)
+                            .offset(x: isCompleted ? 0 : 1.5)
+                    }
                 }
                 Spacer()
             }
         }
-        .padding(.horizontal, 10)
-        .padding(.top, 10)
-        .padding(.bottom, 10)
+        .padding(16)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .widgetURL(deepLinkURL)
     }
@@ -730,11 +769,11 @@ struct DailyScoreWidgetView: View {
     
     var scoreColor: Color {
         if score >= 80 {
-            return Color(.systemGreen)
+            return Color(red: 0.1, green: 0.85, blue: 0.5) // Emerald Green
         } else if score >= 50 {
-            return Color(.systemOrange)
+            return Color(red: 1.0, green: 0.6, blue: 0.0) // Orange Glow
         } else {
-            return Color(.systemRed)
+            return Color(red: 0.9, green: 0.3, blue: 0.3) // Bright Red
         }
     }
     

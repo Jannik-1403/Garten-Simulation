@@ -143,3 +143,89 @@ struct SelectRoutineIntent: WidgetConfigurationIntent {
     init() {}
 }
 
+
+// MARK: - Interactive Widget Intents
+
+struct ToggleTodoIntent: AppIntent {
+    static var title: LocalizedStringResource = LocalizedStringResource("intent_toggle_todo_title", defaultValue: "To-Do umschalten")
+    
+    @Parameter(title: "To-Do ID")
+    var todoID: String
+    
+    init() {}
+    init(todoID: String) { self.todoID = todoID }
+    
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        let shared = SharedUserDefaults.suite
+        
+        // 1. Standalone To-Dos aktualisieren
+        if var data = shared.data(forKey: "todos"),
+           var todos = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
+            var updated = false
+            for i in 0..<todos.count {
+                if let id = todos[i]["id"] as? String, id == todoID {
+                    let wasCompleted = todos[i]["isCompleted"] as? Bool ?? false
+                    todos[i]["isCompleted"] = !wasCompleted
+                    updated = true
+                    break
+                }
+            }
+            if updated, let newEncoded = try? JSONSerialization.data(withJSONObject: todos) {
+                shared.set(newEncoded, forKey: "todos")
+            }
+        }
+        
+        // 2. Fallback: Habit To-Dos (sehr aufwendig für Intents, aber wir togglen es im Widget Cache)
+        if let widgetData = shared.data(forKey: "groovy_widget_data") {
+            do {
+                var cache = try JSONDecoder().decode(GroovyWidgetDataProvider.WidgetData.self, from: widgetData)
+                var found = false
+                for i in 0..<cache.todos.count {
+                    if cache.todos[i].id == todoID {
+                        cache.todos[i].isCompleted.toggle()
+                        found = true
+                        break
+                    }
+                }
+                if found {
+                    let newEncoded = try JSONEncoder().encode(cache)
+                    shared.set(newEncoded, forKey: "groovy_widget_data")
+                }
+            } catch {}
+        }
+        
+        WidgetCenter.shared.reloadAllTimelines()
+        shared.synchronize()
+        return .result()
+    }
+}
+
+struct StartRoutineIntent: AppIntent {
+    static var title: LocalizedStringResource = LocalizedStringResource("intent_start_routine_title", defaultValue: "Routine starten")
+    
+    @Parameter(title: "Routine ID")
+    var routineID: String
+    
+    init() {}
+    init(routineID: String) { self.routineID = routineID }
+    
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        let shared = SharedUserDefaults.suite
+        guard let data = shared.data(forKey: "customRoutinesData") else { return .result() }
+        
+        do {
+            var routines = try JSONDecoder().decode([WidgetRoutineUIData].self, from: data)
+            if let index = routines.firstIndex(where: { $0.id.uuidString == routineID }) {
+                routines[index].lastCompletedDate = Date()
+                let newEncoded = try JSONEncoder().encode(routines)
+                shared.set(newEncoded, forKey: "customRoutinesData")
+                WidgetCenter.shared.reloadAllTimelines()
+                shared.synchronize()
+            }
+        } catch {}
+        
+        return .result()
+    }
+}
