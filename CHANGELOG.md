@@ -1,3 +1,6 @@
+### 06.10.2026 (Part 2)
+- Bugfix (Race Condition): Es wurde ein Fehler behoben, bei dem das Abspeichern ("Fertig"-Drücken) eines Zeitlimits sofort das Schild wieder gelöscht hat, falls das Limit bereits erreicht war. Das Schild bleibt nun auch dann bestehen, wenn die Limits gespeichert werden.
+
 ### 06.10.2026
 - Bugfix: Appsperre Limit wurde behoben, sodass die App nach dem Ablaufen des Timers (z.B. 5 Minuten) wieder zuverlässig blockiert wird. Das Speichern und Auslesen der Zeitlimits in den Shared UserDefaults wurde repariert.
 
