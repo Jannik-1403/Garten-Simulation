@@ -41,7 +41,7 @@ struct GrovyOnboardingView: View {
                         foregroundColor: .white
                     ))
                     .padding(.horizontal, 40)
-                    .transition(.spring(response: 0.5, dampingFraction: 0.6).combined(with: .opacity))
+                    .transition(.scale.combined(with: .opacity))
                 }
             }
             .padding(.vertical, 40)

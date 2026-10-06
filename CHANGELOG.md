@@ -1,3 +1,6 @@
+### 06.10.2026 (Part 5)
+- Feature: Neuer interaktiver 3D-Onboarding-Screen ("Grovy-Stil") hinzugefügt. Das Design nutzt sprunghafte Animationen, Custom-Slider und haptisches Feedback für ein modernes Erlebnis. Alle neuen Texte wurden vollständig in 16 Sprachen lokalisiert.
+
 ### 06.10.2026 (Part 4)
 - Bugfix (Speichern der Limits): Ein schwerwiegender Fehler wurde behoben, durch den der "Zeitplan" (Ebene 2) nach dem Neustart der App komplett vergessen wurde. Die ausgewählten Apps wurden zwar an Apple übergeben, aber nicht im permanenten Speicher (UserDefaults.standard) der App hinterlegt. Dies ist nun repariert.
 
