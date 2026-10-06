@@ -1,14 +1,12 @@
 import SwiftUI
 
 struct GrovyOnboardingView: View {
+    @EnvironmentObject var data: OnboardingData
     @State private var progress: Double = 0.0
     @State private var isCompleted: Bool = false
     
     var body: some View {
         ZStack {
-            // Background
-            Color(white: 0.95).ignoresSafeArea() // Helle graue Hintergrundfarbe typisch für solche Apps
-            
             VStack(spacing: 40) {
                 // Header (Oben)
                 GrovyOnboardingHeaderView(progress: progress)
@@ -28,7 +26,10 @@ struct GrovyOnboardingView: View {
                     Button {
                         let impact = UIImpactFeedbackGenerator(style: .medium)
                         impact.impactOccurred()
-                        // Hier geht's weiter im echten Onboarding
+                        
+                        withAnimation(.easeInOut(duration: 0.35)) {
+                            data.currentStep += 1
+                        }
                     } label: {
                         Text(String(localized: "grovy_onboarding_button_start", defaultValue: "Loslegen"))
                             .font(.system(size: 20, weight: .bold, design: .rounded))

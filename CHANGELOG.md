@@ -1,3 +1,6 @@
+### 06.10.2026 (Part 6)
+- Bugfix: Compiler-Fehler in `GrovyOnboardingView` behoben (ungültige `AnyTransition.spring` durch `.scale` ersetzt).
+
 ### 06.10.2026 (Part 5)
 - Feature: Neuer interaktiver 3D-Onboarding-Screen ("Grovy-Stil") hinzugefügt. Das Design nutzt sprunghafte Animationen, Custom-Slider und haptisches Feedback für ein modernes Erlebnis. Alle neuen Texte wurden vollständig in 16 Sprachen lokalisiert.
 
