@@ -138562,7 +138562,198 @@
         }
       }
     },
+    "dopamine_story_fin_sub": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استبدل التمرير المستمر بإنجازات حقيقية."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tausche endlose Feeds gegen echte Erfolge."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trade endless feeds for real accomplishments."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambia los feeds interminables por logros reales."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échange les fils d'actualité infinis contre de vraies réussites."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंतहीन फ़ीड्स को असली सफलताओं से बदलें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scambia i feed infiniti con veri successi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "終わりのないフィードを本物の達成感に変えましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "끝없는 피드 대신 진정한 성취를 얻으세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verruil eindeloze feeds voor echte successen."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troca feeds intermináveis por sucessos reais."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Променяйте бесконечные ленты на настоящие достижения."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonsuz akışları gerçek başarılarla değiştir."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用无尽的信息流换取真实的成就。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用無盡的資訊流換取真實的成就。"
+          }
+        }
+      }
+    },
+    "dopamine_story_fin_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حديقتك في انتظارك"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Garten wartet"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your garden awaits"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu jardín te espera"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton jardin t'attend"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका बगीचा इंतजार कर रहा है"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo giardino ti aspetta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたの庭が待っています"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "당신의 정원이 기다립니다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je tuin wacht op je"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O teu jardim espera-te"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваш сад ждёт вас"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bahçen seni bekliyor"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的花园在等你"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的花園在等你"
+          }
+        }
+      }
+    },
     "dopamine_story_formula": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -138663,6 +138854,7 @@
       }
     },
     "dopamine_story_like": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -138762,7 +138954,198 @@
         }
       }
     },
+    "dopamine_story_prob_sub": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تقدم وسائل التواصل الاجتماعي مكافآت سريعة. الدماغ يريد المزيد، والتركيز يقل."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Social Media liefert schnelle, unerwartete Belohnungen. Das Gehirn will immer mehr, der echte Fokus sinkt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Social media delivers quick, unexpected rewards. The brain wants more, and true focus drops."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las redes sociales dan recompensas rápidas. El cerebro quiere más y el enfoque cae."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les réseaux sociaux offrent des récompenses rapides. Le cerveau en veut toujours plus, et la concentration baisse."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोशल मीडिया त्वरित इनाम देता है। दिमाग और अधिक चाहता है, और असली ध्यान कम हो जाता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I social media offrono ricompense rapide. Il cervello ne vuole di più, e la concentrazione cala."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SNSは手軽な報酬を与えます。脳はもっと欲しがり、集中力は低下します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "소셜 미디어는 빠르고 예기치 않은 보상을 제공합니다. 뇌는 더 원하고 집중력은 떨어집니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Social media geeft snelle beloningen. Je brein wil meer, en je focus daalt."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As redes sociais dão recompensas rápidas. O cérebro quer mais, e o foco diminui."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Соцсети дают быстрые награды. Мозг хочет больше, и концентрация падает."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sosyal medya hızlı ödüller sunar. Beyin daha fazlasını ister ve odaklanma düşer."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "社交媒体提供快速奖励。大脑想要更多，而真正的专注力下降。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "社交媒體提供快速獎勵。大腦想要更多，而真正的專注力下降。"
+          }
+        }
+      }
+    },
+    "dopamine_story_prob_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اندفاع الدوبامين"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Dopamin-Kick"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The dopamine hit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El chute de dopamina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le pic de dopamine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डोपामाइन का असर"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il picco di dopamina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ドーパミンの急上昇"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "도파민 분비"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De dopamine-kick"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O pico de dopamina"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Всплеск дофамина"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamin patlaması"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多巴胺冲击"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多巴胺衝擊"
+          }
+        }
+      }
+    },
     "dopamine_story_s1_source": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -138863,6 +139246,7 @@
       }
     },
     "dopamine_story_s1_sub": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -138963,6 +139347,7 @@
       }
     },
     "dopamine_story_s1_title": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139063,6 +139448,7 @@
       }
     },
     "dopamine_story_s2_label": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139163,6 +139549,7 @@
       }
     },
     "dopamine_story_s2_source": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139263,6 +139650,7 @@
       }
     },
     "dopamine_story_s2_sub": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139363,6 +139751,7 @@
       }
     },
     "dopamine_story_s2_t1": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139463,6 +139852,7 @@
       }
     },
     "dopamine_story_s2_t2": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139563,6 +139953,7 @@
       }
     },
     "dopamine_story_s2_t3": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139663,6 +140054,7 @@
       }
     },
     "dopamine_story_s2_tag1": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139763,6 +140155,7 @@
       }
     },
     "dopamine_story_s2_tag2": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139863,6 +140256,7 @@
       }
     },
     "dopamine_story_s2_tag3": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -139963,6 +140357,7 @@
       }
     },
     "dopamine_story_s2_title": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140063,6 +140458,7 @@
       }
     },
     "dopamine_story_s3_days": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140163,6 +140559,7 @@
       }
     },
     "dopamine_story_s3_minutes": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140263,6 +140660,7 @@
       }
     },
     "dopamine_story_s3_source": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140363,6 +140761,7 @@
       }
     },
     "dopamine_story_s3_sub": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140463,6 +140862,7 @@
       }
     },
     "dopamine_story_s3_title": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140562,7 +140962,293 @@
         }
       }
     },
+    "dopamine_story_s4_l1": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سابقاً"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Früher"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Past"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avant"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहले"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "昔"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "과거"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vroeger"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Раньше"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eskiden"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以前"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以前"
+          }
+        }
+      }
+    },
+    "dopamine_story_s4_l2": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبل سنتين"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vor 2 Jahren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 years ago"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hace 2 años"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il y a 2 ans"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 साल पहले"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 anni fa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2年前"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2년 전"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 jaar geleden"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Há 2 anos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 года назад"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 yıl önce"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "两年前"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "兩年前"
+          }
+        }
+      }
+    },
+    "dopamine_story_s4_l3": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اليوم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd'hui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오늘"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vandaag"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
+        }
+      }
+    },
     "dopamine_story_s4_return": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140663,6 +141349,7 @@
       }
     },
     "dopamine_story_s4_source": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140763,6 +141450,7 @@
       }
     },
     "dopamine_story_s4_sub": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140863,6 +141551,7 @@
       }
     },
     "dopamine_story_s4_title": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -140963,6 +141652,7 @@
       }
     },
     "dopamine_story_s5_d0": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141063,6 +141753,7 @@
       }
     },
     "dopamine_story_s5_d66": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141163,6 +141854,7 @@
       }
     },
     "dopamine_story_s5_d100": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141263,6 +141955,7 @@
       }
     },
     "dopamine_story_s5_habit": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141363,6 +142056,7 @@
       }
     },
     "dopamine_story_s5_label": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141463,6 +142157,7 @@
       }
     },
     "dopamine_story_s5_miss": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141563,6 +142258,7 @@
       }
     },
     "dopamine_story_s5_range": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141663,6 +142359,7 @@
       }
     },
     "dopamine_story_s5_source": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141763,6 +142460,7 @@
       }
     },
     "dopamine_story_s5_sub": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141863,6 +142561,7 @@
       }
     },
     "dopamine_story_s5_title": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -141963,6 +142662,7 @@
       }
     },
     "dopamine_story_seconds": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -142062,7 +142762,863 @@
         }
       }
     },
+    "dopamine_story_sol_sub": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بدلاً من المكافآت السريعة، تبني عادات حقيقية. يستغرق الأمر 66 يوماً في المتوسط لتصبح العادات تلقائية."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statt schnellen Kicks baust du echte Gewohnheiten auf. Im Schnitt dauert es 66 Tage, bis sie automatisch ablaufen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick hits, you build real habits. It takes an average of 66 days for them to become automatic."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En lugar de picos rápidos, construyes hábitos reales. Tardan una media de 66 días en volverse automáticos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Au lieu de pics rapides, tu construis de vraies habitudes. Il faut en moyenne 66 jours pour qu'elles deviennent automatiques."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तेज़ किक के बजाय, आप असली आदतें बनाते हैं। इन्हें स्वचालित होने में औसतन 66 दिन लगते हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invece di picchi veloci, costruisci vere abitudini. Ci vogliono in media 66 giorni perché diventino automatiche."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手軽な刺激の代わりに、本物の習慣を築きます。自動的にできるようになるまで平均66日かかります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "빠른 쾌감 대신 진정한 습관을 만듭니다. 습관이 자동으로 자리 잡는 데 평균 66일이 걸립니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In plaats van snelle kicks bouw je echte gewoontes op. Gemiddeld duurt het 66 dagen voordat ze automatisch gaan."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em vez de picos rápidos, constróis hábitos reais. Demora em média 66 dias para se tornarem automáticos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вместо быстрых наград вы строите настоящие привычки. В среднем требуется 66 дней, чтобы они стали автоматическими."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı ödüller yerine gerçek alışkanlıklar edinirsiniz. Bunların otomatik hale gelmesi ortalama 66 gün sürer."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不再追求快速刺激，而是养成真正的习惯。平均需要66天，习惯才会自然形成。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不再追求快速刺激，而是養成真正的習慣。平均需要66天，習慣才會自然形成。"
+          }
+        }
+      }
+    },
+    "dopamine_story_sol_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روتين مستدام"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nachhaltige Routinen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sustainable routines"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutinas sostenibles"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routines durables"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "टिकाऊ दिनचर्या"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routine sostenibili"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "持続可能なルーティン"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지속 가능한 습관"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duurzame routines"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotinas sustentáveis"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Устойчивые привычки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sürdürülebilir rutinler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可持续的日常习惯"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可持續的日常習慣"
+          }
+        }
+      }
+    },
+    "dopamine_story_time_3h": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أكثر من 3 ساعات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3+ Stunden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3+ hours"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más de 3 horas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus de 3 heures"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3+ घंटे"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più di 3 ore"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3時間以上"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3시간 이상"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3+ uur"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais de 3 horas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Более 3 часов"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3+ saat"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3小时以上"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3小時以上"
+          }
+        }
+      }
+    },
+    "dopamine_story_time_10y": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 سنوات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 Jahre"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 years"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 años"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 ans"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 वर्ष"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 anni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10年"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10년"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 jaar"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 anos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 лет"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 yıl"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10年"
+          }
+        }
+      }
+    },
+    "dopamine_story_time_46d": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 يوماً"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 Tage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 días"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 jours"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 दिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 giorni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46일"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 dagen"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 dias"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 дней"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46 gün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "46天"
+          }
+        }
+      }
+    },
+    "dopamine_story_time_day": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في اليوم"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Am Tag"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per day"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por día"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par jour"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रति दिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al giorno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1日で"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "하루에"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per dag"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por dia"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В день"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günde"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天"
+          }
+        }
+      }
+    },
+    "dopamine_story_time_life": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في حياتك"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In deinem Leben"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In your life"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En tu vida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans ta vie"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके जीवन में"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella tua vita"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたの一生で"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일생 동안"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In je leven"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na tua vida"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В вашей жизни"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hayatın boyunca"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的一生"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的一生"
+          }
+        }
+      }
+    },
+    "dopamine_story_time_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "وقت الشاشة الخاص بك"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Bildschirmzeit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Screen Time"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu tiempo de pantalla"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton temps d'écran"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका स्क्रीन समय"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo tempo di utilizzo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたのスクリーンタイム"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je schermtijd"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O teu tempo de ecrã"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваше экранное время"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran süren"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的屏幕使用时间"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的螢幕使用時間"
+          }
+        }
+      }
+    },
+    "dopamine_story_time_year": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في السنة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Jahr"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per year"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por año"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par an"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रति वर्ष"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All'anno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1年で"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per jaar"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por ano"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В год"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yılda"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每年"
+          }
+        }
+      }
+    },
     "dopamine_story_want": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -496997,1522 +498553,1237 @@
         }
       }
     },
-    "dopamine_story_s4_l1": {
+    "dop_score_title": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Früher"
+            "value": "Dopamin-Ausschüttung"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Past"
+            "value": "Dopamine Release"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Antes"
+            "value": "Liberación de dopamina"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avant"
+            "value": "Libération de dopamine"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prima"
+            "value": "Dopamine Release"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Antes"
+            "value": "Dopamine Release"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vroeger"
+            "value": "Dopamine Release"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eskiden"
+            "value": "Dopamine Release"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Раньше"
+            "value": "Dopamine Release"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "以前"
+            "value": "Dopamine Release"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "以前"
+            "value": "Dopamine Release"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "昔"
+            "value": "Dopamine Release"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "과거"
+            "value": "Dopamine Release"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "سابقاً"
+            "value": "Dopamine Release"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पहले"
+            "value": "Dopamine Release"
           }
         }
       }
     },
-    "dopamine_story_s4_l2": {
+    "dop_score_food": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vor 2 Jahren"
+            "value": "Leckeres Essen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "2 years ago"
+            "value": "Tasty Food"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hace 2 años"
+            "value": "Comida rica"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il y a 2 ans"
+            "value": "Repas savoureux"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "2 anni fa"
+            "value": "Tasty Food"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Há 2 anos"
+            "value": "Tasty Food"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "2 jaar geleden"
+            "value": "Tasty Food"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "2 yıl önce"
+            "value": "Tasty Food"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "2 года назад"
+            "value": "Tasty Food"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "两年前"
+            "value": "Tasty Food"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "兩年前"
+            "value": "Tasty Food"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "2年前"
+            "value": "Tasty Food"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "2년 전"
+            "value": "Tasty Food"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "قبل سنتين"
+            "value": "Tasty Food"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "2 साल पहले"
+            "value": "Tasty Food"
           }
         }
       }
     },
-    "dopamine_story_s4_l3": {
+    "dop_score_sport": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute"
+            "value": "Sport"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Today"
+            "value": "Workout"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hoy"
+            "value": "Deporte"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aujourd'hui"
+            "value": "Sport"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oggi"
+            "value": "Workout"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hoje"
+            "value": "Workout"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vandaag"
+            "value": "Workout"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bugün"
+            "value": "Workout"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сегодня"
+            "value": "Workout"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "今天"
+            "value": "Workout"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "今天"
+            "value": "Workout"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "今日"
+            "value": "Workout"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "오늘"
+            "value": "Workout"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "اليوم"
+            "value": "Workout"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आज"
+            "value": "Workout"
           }
         }
       }
     },
-    "dopamine_story_time_title": {
+    "dop_score_tiktok": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Bildschirmzeit"
+            "value": "Infinite Scrolling"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Screen Time"
+            "value": "Infinite Scrolling"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu tiempo de pantalla"
+            "value": "Scroll infinito"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ton temps d'écran"
+            "value": "Défilement infini"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il tuo tempo di utilizzo"
+            "value": "Infinite Scrolling"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O teu tempo de ecrã"
+            "value": "Infinite Scrolling"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je schermtijd"
+            "value": "Infinite Scrolling"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekran süren"
+            "value": "Infinite Scrolling"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ваше экранное время"
+            "value": "Infinite Scrolling"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的屏幕使用时间"
+            "value": "Infinite Scrolling"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的螢幕使用時間"
+            "value": "Infinite Scrolling"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "あなたのスクリーンタイム"
+            "value": "Infinite Scrolling"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "화면 시간"
+            "value": "Infinite Scrolling"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "وقت الشاشة الخاص بك"
+            "value": "Infinite Scrolling"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपका स्क्रीन समय"
+            "value": "Infinite Scrolling"
           }
         }
       }
     },
-    "dopamine_story_time_life": {
+    "dop_routines_title": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "In deinem Leben"
+            "value": "Echte Routinen aufbauen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "In your life"
+            "value": "Build real routines"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "En tu vida"
+            "value": "Construir rutinas reales"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dans ta vie"
+            "value": "Construire de vraies routines"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nella tua vita"
+            "value": "Build real routines"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Na tua vida"
+            "value": "Build real routines"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "In je leven"
+            "value": "Build real routines"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hayatın boyunca"
+            "value": "Build real routines"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В вашей жизни"
+            "value": "Build real routines"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的一生"
+            "value": "Build real routines"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的一生"
+            "value": "Build real routines"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "あなたの一生で"
+            "value": "Build real routines"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "일생 동안"
+            "value": "Build real routines"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في حياتك"
+            "value": "Build real routines"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपके जीवन में"
+            "value": "Build real routines"
           }
         }
       }
     },
-    "dopamine_story_time_10y": {
+    "dop_routines_sub": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 Jahre"
+            "value": "Statt schnellen Kicks baust du einen Garten voller Gewohnheiten."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 years"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 años"
+            "value": "En lugar de estímulos rápidos, construye un jardín de hábitos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 ans"
+            "value": "Au lieu de pics rapides, construis un jardin d'habitudes."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 anni"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 anos"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 jaar"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 yıl"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 лет"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "10年"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "10年"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "10年"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "10년"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 سنوات"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 वर्ष"
+            "value": "Instead of quick kicks, build a garden of habits."
           }
         }
       }
     },
-    "dopamine_story_time_year": {
+    "dop_routines_read": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Im Jahr"
+            "value": "Lesen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per year"
+            "value": "Reading"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Por año"
+            "value": "Leer"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Par an"
+            "value": "Lire"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "All'anno"
+            "value": "Reading"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Por ano"
+            "value": "Reading"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per jaar"
+            "value": "Reading"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yılda"
+            "value": "Reading"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В год"
+            "value": "Reading"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "每年"
+            "value": "Reading"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "每年"
+            "value": "Reading"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "1年で"
+            "value": "Reading"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "연간"
+            "value": "Reading"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في السنة"
+            "value": "Reading"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "प्रति वर्ष"
+            "value": "Reading"
           }
         }
       }
     },
-    "dopamine_story_time_46d": {
+    "dop_routines_meditate": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 Tage"
+            "value": "Meditation"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 days"
+            "value": "Meditation"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 días"
+            "value": "Meditación"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 jours"
+            "value": "Méditation"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 giorni"
+            "value": "Meditation"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 dias"
+            "value": "Meditation"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 dagen"
+            "value": "Meditation"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 gün"
+            "value": "Meditation"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 дней"
+            "value": "Meditation"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "46天"
+            "value": "Meditation"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "46天"
+            "value": "Meditation"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "46日"
+            "value": "Meditation"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "46일"
+            "value": "Meditation"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 يوماً"
+            "value": "Meditation"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "46 दिन"
+            "value": "Meditation"
           }
         }
       }
     },
-    "dopamine_story_time_day": {
+    "dop_routines_water": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Am Tag"
+            "value": "Wasser trinken"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per day"
+            "value": "Drink Water"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Por día"
+            "value": "Beber agua"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Par jour"
+            "value": "Boire de l'eau"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Al giorno"
+            "value": "Drink Water"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Por dia"
+            "value": "Drink Water"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per dag"
+            "value": "Drink Water"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Günde"
+            "value": "Drink Water"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В день"
+            "value": "Drink Water"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "每天"
+            "value": "Drink Water"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "每天"
+            "value": "Drink Water"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "1日で"
+            "value": "Drink Water"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "하루에"
+            "value": "Drink Water"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "في اليوم"
+            "value": "Drink Water"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "प्रति दिन"
+            "value": "Drink Water"
           }
         }
       }
     },
-    "dopamine_story_time_3h": {
+    "dop_routines_run": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "3+ Stunden"
+            "value": "Laufen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "3+ hours"
+            "value": "Running"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Más de 3 horas"
+            "value": "Correr"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plus de 3 heures"
+            "value": "Courir"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Più di 3 ore"
+            "value": "Running"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mais de 3 horas"
+            "value": "Running"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "3+ uur"
+            "value": "Running"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "3+ saat"
+            "value": "Running"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Более 3 часов"
+            "value": "Running"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "3小时以上"
+            "value": "Running"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "3小時以上"
+            "value": "Running"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "3時間以上"
+            "value": "Running"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "3시간 이상"
+            "value": "Running"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أكثر من 3 ساعات"
+            "value": "Running"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "3+ घंटे"
+            "value": "Running"
           }
         }
       }
     },
-    "dopamine_story_prob_title": {
+    "dop_routines_learn": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Der Dopamin-Kick"
+            "value": "Lernen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The dopamine hit"
+            "value": "Learning"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El chute de dopamina"
+            "value": "Aprender"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le pic de dopamine"
+            "value": "Apprendre"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il picco di dopamina"
+            "value": "Learning"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O pico de dopamina"
+            "value": "Learning"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De dopamine-kick"
+            "value": "Learning"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamin patlaması"
+            "value": "Learning"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Всплеск дофамина"
+            "value": "Learning"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "多巴胺冲击"
+            "value": "Learning"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "多巴胺衝擊"
+            "value": "Learning"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ドーパミンの急上昇"
+            "value": "Learning"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "도파민 분비"
+            "value": "Learning"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "اندفاع الدوبامين"
+            "value": "Learning"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "डोपामाइन का असर"
+            "value": "Learning"
           }
         }
       }
     },
-    "dopamine_story_prob_sub": {
+    "dop_routines_sleep": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Social Media liefert schnelle, unerwartete Belohnungen. Das Gehirn will immer mehr, der echte Fokus sinkt."
+            "value": "Schlaf"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Social media delivers quick, unexpected rewards. The brain wants more, and true focus drops."
+            "value": "Sleep"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Las redes sociales dan recompensas rápidas. El cerebro quiere más y el enfoque cae."
+            "value": "Sueño"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les réseaux sociaux offrent des récompenses rapides. Le cerveau en veut toujours plus, et la concentration baisse."
+            "value": "Sommeil"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "I social media offrono ricompense rapide. Il cervello ne vuole di più, e la concentrazione cala."
+            "value": "Sleep"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "As redes sociais dão recompensas rápidas. O cérebro quer mais, e o foco diminui."
+            "value": "Sleep"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Social media geeft snelle beloningen. Je brein wil meer, en je focus daalt."
+            "value": "Sleep"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sosyal medya hızlı ödüller sunar. Beyin daha fazlasını ister ve odaklanma düşer."
+            "value": "Sleep"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Соцсети дают быстрые награды. Мозг хочет больше, и концентрация падает."
+            "value": "Sleep"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "社交媒体提供快速奖励。大脑想要更多，而真正的专注力下降。"
+            "value": "Sleep"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "社交媒體提供快速獎勵。大腦想要更多，而真正的專注力下降。"
+            "value": "Sleep"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "SNSは手軽な報酬を与えます。脳はもっと欲しがり、集中力は低下します。"
+            "value": "Sleep"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "소셜 미디어는 빠르고 예기치 않은 보상을 제공합니다. 뇌는 더 원하고 집중력은 떨어집니다."
+            "value": "Sleep"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تقدم وسائل التواصل الاجتماعي مكافآت سريعة. الدماغ يريد المزيد، والتركيز يقل."
+            "value": "Sleep"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सोशल मीडिया त्वरित इनाम देता है। दिमाग और अधिक चाहता है, और असली ध्यान कम हो जाता है।"
+            "value": "Sleep"
           }
         }
       }
     },
-    "dopamine_story_sol_title": {
+    "dop_btn_ziele": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nachhaltige Routinen"
+            "value": "Ziele definieren"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sustainable routines"
+            "value": "Set Goals"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rutinas sostenibles"
+            "value": "Definir metas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Routines durables"
+            "value": "Définir des objectifs"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Routine sostenibili"
+            "value": "Set Goals"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rotinas sustentáveis"
+            "value": "Set Goals"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Duurzame routines"
+            "value": "Set Goals"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sürdürülebilir rutinler"
+            "value": "Set Goals"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Устойчивые привычки"
+            "value": "Set Goals"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "可持续的日常习惯"
+            "value": "Set Goals"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "可持續的日常習慣"
+            "value": "Set Goals"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "持続可能なルーティン"
+            "value": "Set Goals"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "지속 가능한 습관"
+            "value": "Set Goals"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "روتين مستدام"
+            "value": "Set Goals"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "टिकाऊ दिनचर्या"
-          }
-        }
-      }
-    },
-    "dopamine_story_sol_sub": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Statt schnellen Kicks baust du echte Gewohnheiten auf. Im Schnitt dauert es 66 Tage, bis sie automatisch ablaufen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Instead of quick hits, you build real habits. It takes an average of 66 days for them to become automatic."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "En lugar de picos rápidos, construyes hábitos reales. Tardan una media de 66 días en volverse automáticos."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Au lieu de pics rapides, tu construis de vraies habitudes. Il faut en moyenne 66 jours pour qu'elles deviennent automatiques."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invece di picchi veloci, costruisci vere abitudini. Ci vogliono in media 66 giorni perché diventino automatiche."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Em vez de picos rápidos, constróis hábitos reais. Demora em média 66 dias para se tornarem automáticos."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In plaats van snelle kicks bouw je echte gewoontes op. Gemiddeld duurt het 66 dagen voordat ze automatisch gaan."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hızlı ödüller yerine gerçek alışkanlıklar edinirsiniz. Bunların otomatik hale gelmesi ortalama 66 gün sürer."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вместо быстрых наград вы строите настоящие привычки. В среднем требуется 66 дней, чтобы они стали автоматическими."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不再追求快速刺激，而是养成真正的习惯。平均需要66天，习惯才会自然形成。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不再追求快速刺激，而是養成真正的習慣。平均需要66天，習慣才會自然形成。"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "手軽な刺激の代わりに、本物の習慣を築きます。自動的にできるようになるまで平均66日かかります。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "빠른 쾌감 대신 진정한 습관을 만듭니다. 습관이 자동으로 자리 잡는 데 평균 66일이 걸립니다."
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "بدلاً من المكافآت السريعة، تبني عادات حقيقية. يستغرق الأمر 66 يوماً في المتوسط لتصبح العادات تلقائية."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "तेज़ किक के बजाय, आप असली आदतें बनाते हैं। इन्हें स्वचालित होने में औसतन 66 दिन लगते हैं।"
-          }
-        }
-      }
-    },
-    "dopamine_story_fin_title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein Garten wartet"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your garden awaits"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu jardín te espera"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ton jardin t'attend"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Il tuo giardino ti aspetta"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O teu jardim espera-te"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je tuin wacht op je"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bahçen seni bekliyor"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ваш сад ждёт вас"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的花园在等你"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的花園在等你"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "あなたの庭が待っています"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "당신의 정원이 기다립니다"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "حديقتك في انتظارك"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपका बगीचा इंतजार कर रहा है"
-          }
-        }
-      }
-    },
-    "dopamine_story_fin_sub": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tausche endlose Feeds gegen echte Erfolge."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trade endless feeds for real accomplishments."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cambia los feeds interminables por logros reales."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Échange les fils d'actualité infinis contre de vraies réussites."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scambia i feed infiniti con veri successi."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Troca feeds intermináveis por sucessos reais."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verruil eindeloze feeds voor echte successen."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonsuz akışları gerçek başarılarla değiştir."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Променяйте бесконечные ленты на настоящие достижения."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "用无尽的信息流换取真实的成就。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "用無盡的資訊流換取真實的成就。"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "終わりのないフィードを本物の達成感に変えましょう。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "끝없는 피드 대신 진정한 성취를 얻으세요."
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "استبدل التمرير المستمر بإنجازات حقيقية."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अंतहीन फ़ीड्स को असली सफलताओं से बदलें।"
+            "value": "Set Goals"
           }
         }
       }
