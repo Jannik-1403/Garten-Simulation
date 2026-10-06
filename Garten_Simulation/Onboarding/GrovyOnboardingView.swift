@@ -320,10 +320,10 @@ private struct GOGraphScene: View {
     @State private var chips = 0
     @State private var start = Date()
 
-    private let chipData: [(icon: String, key: String, def: String)] = [
-        ("bolt.fill", "grovy_story_graph_kick", "Kick"),
-        ("arrow.down.right", "grovy_story_graph_crash", "Crash"),
-        ("arrow.triangle.2.circlepath", "grovy_story_graph_more", "Mehr davon!")
+    private let chipData: [(icon: String, text: LocalizedStringResource)] = [
+        ("bolt.fill", LocalizedStringResource("grovy_story_graph_kick", defaultValue: "Kick")),
+        ("arrow.down.right", LocalizedStringResource("grovy_story_graph_crash", defaultValue: "Crash")),
+        ("arrow.triangle.2.circlepath", LocalizedStringResource("grovy_story_graph_more", defaultValue: "Mehr davon!"))
     ]
 
     var body: some View {
@@ -344,7 +344,7 @@ private struct GOGraphScene: View {
                     ForEach(0..<chipData.count, id: \.self) { i in
                         HStack(spacing: 6) {
                             Image(systemName: chipData[i].icon)
-                            Text(String(localized: LocalizedStringResource(stringLiteral: chipData[i].key), defaultValue: String.LocalizationValue(chipData[i].def)))
+                            Text(String(localized: chipData[i].text))
                         }
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
@@ -494,12 +494,12 @@ private struct GOGardenScene: View {
     @State private var done = 0
     @State private var soil = false
 
-    private let habits: [(icon: String, key: String, def: String)] = [
-        ("figure.run", "grovy_story_habit_move", "Bewegung"),
-        ("book.fill", "grovy_story_habit_read", "Lesen"),
-        ("drop.fill", "grovy_story_habit_water", "Wasser"),
-        ("moon.zzz.fill", "grovy_story_habit_sleep", "Schlaf"),
-        ("sun.max.fill", "grovy_story_habit_morning", "Morgen")
+    private let habits: [(icon: String, text: LocalizedStringResource)] = [
+        ("figure.run", LocalizedStringResource("grovy_story_habit_move", defaultValue: "Bewegung")),
+        ("book.fill", LocalizedStringResource("grovy_story_habit_read", defaultValue: "Lesen")),
+        ("drop.fill", LocalizedStringResource("grovy_story_habit_water", defaultValue: "Wasser")),
+        ("moon.zzz.fill", LocalizedStringResource("grovy_story_habit_sleep", defaultValue: "Schlaf")),
+        ("sun.max.fill", LocalizedStringResource("grovy_story_habit_morning", defaultValue: "Morgen"))
     ]
     private let plantSizes: [CGFloat] = [60, 84, 70, 96, 76]
     private let greens: [Color] = [
@@ -540,7 +540,7 @@ private struct GOGardenScene: View {
                                     .scaleEffect(done > i ? 1 : 0)
                             }
 
-                            Text(String(localized: LocalizedStringResource(stringLiteral: habits[i].key), defaultValue: String.LocalizationValue(habits[i].def)))
+                            Text(String(localized: habits[i].text))
                                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                                 .foregroundColor(.white.opacity(0.85))
                                 .lineLimit(1)

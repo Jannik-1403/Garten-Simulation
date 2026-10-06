@@ -1,3 +1,7 @@
+### 06.10.2026 (Part 8)
+- Feature: `GrovyOnboardingView` wurde durch ein komplett neues, Instagram-Story-basiertes Layout mit 5 iterativen, animierten Szenen (inkl. Dopamin-Graph, welkendem Fokus und sprießendem Garten) ersetzt.
+- Localization: Alle neuen, englisch/deutschen Strings aus der Story (insg. 23 Keys wie z. B. "Dopamin", "Kick", "Crash") wurden extrahiert und per Skript in 16 Sprachen auf 100% übersetzt in die `Localizable.xcstrings` integriert.
+
 ### 06.10.2026 (Part 7)
 - Feature: Die alte Startansicht (`OnboardingWillkommenView`) wurde aus dem Onboarding entfernt und nahtlos durch die neue interaktive `GrovyOnboardingView` ersetzt. Nach Abschluss der Slider-Animation leitet der "Loslegen"-Button direkt zur nächsten Onboarding-Phase (Zielsetzung) weiter.
 
