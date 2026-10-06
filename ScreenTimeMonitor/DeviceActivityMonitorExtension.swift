@@ -3,6 +3,11 @@ import Foundation
 import ManagedSettings
 import FamilyControls
 
+struct LimitEntry: Codable {
+    var limit: Int
+    var selection: FamilyActivitySelection
+}
+
 // MARK: - DeviceActivityMonitorExtension
 // This extension runs in the background and is called by iOS when a DeviceActivitySchedule
 // interval starts or ends. It activates/deactivates the App Shield without needing
@@ -85,12 +90,10 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         
         if event.rawValue.hasPrefix("dailyLimitEvent.") {
             let components = event.rawValue.components(separatedBy: ".")
-            if components.count == 2, let index = Int(components[1]) {
+            if components.count == 2, let minutes = Int(components[1]) {
                 if let data = sharedDefaults?.data(forKey: "screenTimeLimitsArray_appGroup"),
-                   let selections = try? JSONDecoder().decode([FamilyActivitySelection].self, from: data),
-                   index < selections.count {
-                    
-                    let newlyBlockedSelection = selections[index]
+                   let entries = try? JSONDecoder().decode([LimitEntry].self, from: data),
+                   let newlyBlockedSelection = entries.first(where: { $0.limit == minutes })?.selection {
                     
                     // Merge with currently blocked selection
                     var currentBlockedSelection = FamilyActivitySelection()

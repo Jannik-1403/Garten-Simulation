@@ -321,7 +321,7 @@ class ScreenTimeManager: ObservableObject {
             prevScheduledLimits = dict
         }
         
-        var activeLimitSelections: [FamilyActivitySelection] = []
+        var activeLimitEntries: [LimitEntry] = []
         var newScheduledLimits: [Int: FamilyActivitySelection] = [:]
         
         for (minutes, selection) in limitSelections {
@@ -335,7 +335,7 @@ class ScreenTimeManager: ObservableObject {
                 }
                 
                 newScheduledLimits[minutes] = selection
-                activeLimitSelections.append(selection)
+                activeLimitEntries.append(LimitEntry(limit: minutes, selection: selection))
                 
                 // Only start monitoring if the selection actually changed
                 if prevScheduledLimits[minutes] != selection {
@@ -354,7 +354,7 @@ class ScreenTimeManager: ObservableObject {
             }
         }
         
-        if let limitsData = try? JSONEncoder().encode(activeLimitSelections) {
+        if let limitsData = try? JSONEncoder().encode(activeLimitEntries) {
             defaults?.set(limitsData, forKey: "screenTimeLimitsArray_appGroup")
             defaults?.synchronize()
         }
