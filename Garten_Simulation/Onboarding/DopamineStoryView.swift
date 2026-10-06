@@ -22,6 +22,25 @@ struct DopamineStoryTheme {
     )
 }
 
+// "Altes 3D Design" Modifier (iTunes/iOS6 Skeuomorphism)
+struct ITunes3DTextModifier: ViewModifier {
+    let color: Color
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(color)
+            // Heller Rand oben (Highlight)
+            .shadow(color: .white.opacity(0.8), radius: 1, x: 0, y: -1)
+            // Harter Schatten unten (Drop Shadow)
+            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
+    }
+}
+
+extension View {
+    func iTunes3DStyle(color: Color) -> some View {
+        self.modifier(ITunes3DTextModifier(color: color))
+    }
+}
+
 struct DopamineStoryView: View {
     let theme: DopamineStoryTheme
     let onFinish: () -> Void
@@ -30,7 +49,7 @@ struct DopamineStoryView: View {
     // 0 = Start (Unsichtbar)
     // 1 = Grid zoomt auf
     // 2 = Rote Boxen knallen rein
-    // 3 = Dopamin-Szene zoomt auf
+    // 3 = Grid weg, Dopamin-Szene rein
     // 4 = Dopamin-Balken schießen hoch
     // 5 = TikTok flackert
     // 6 = Mega-Zoom in den Bildschirm (Übergang)
@@ -128,7 +147,7 @@ private struct LifeGridScene: View {
         VStack(spacing: 30) {
             Text(String(localized: "dop_box_life", defaultValue: "Dein Leben in Kästchen"))
                 .font(.system(size: 32, weight: .heavy, design: theme.fontDesign))
-                .foregroundColor(theme.primaryText)
+                .iTunes3DStyle(color: theme.primaryText)
                 .multilineTextAlignment(.center)
             
             // 80 Kästchen (10x8)
@@ -147,7 +166,7 @@ private struct LifeGridScene: View {
             
             Text(String(localized: "dopamine_story_time_title", defaultValue: "10 Jahre deines Lebens verschwinden auf Bildschirmen."))
                 .font(.system(size: 16, weight: .bold, design: theme.fontDesign))
-                .foregroundColor(theme.secondaryText)
+                .iTunes3DStyle(color: theme.secondaryText)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
                 .opacity(showRed ? 1 : 0)
@@ -166,7 +185,7 @@ private struct DopamineScene: View {
         VStack(spacing: 30) {
             Text(String(localized: "dop_score_title", defaultValue: "Warum passiert das?"))
                 .font(.system(size: 32, weight: .heavy, design: theme.fontDesign))
-                .foregroundColor(theme.primaryText)
+                .iTunes3DStyle(color: theme.primaryText)
                 .multilineTextAlignment(.center)
             
             ZStack(alignment: .bottom) {
@@ -176,7 +195,7 @@ private struct DopamineScene: View {
                     HStack {
                         Text(String(localized: "dop_baseline", defaultValue: "Gehirn Normalwert"))
                             .font(.system(size: 12, weight: .bold))
-                            .foregroundColor(theme.secondaryText)
+                            .iTunes3DStyle(color: theme.secondaryText)
                         Line()
                             .stroke(style: StrokeStyle(lineWidth: 2, dash: [6]))
                             .frame(height: 2)
@@ -223,7 +242,7 @@ private struct DopamineScene: View {
             
             Text(String(localized: "dopamine_story_prob_sub", defaultValue: "Social Media liefert unnatürliche Dopamin-Spitzen. Das Gehirn wird süchtig nach dem Bildschirm."))
                 .font(.system(size: 16, weight: .bold, design: theme.fontDesign))
-                .foregroundColor(theme.secondaryText)
+                .iTunes3DStyle(color: theme.secondaryText)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
                 .opacity(showBars ? 1 : 0)
@@ -245,7 +264,7 @@ private struct DopamineBarView: View {
         VStack(spacing: 12) {
             Text("\(score)%")
                 .font(.system(size: isWarning ? 20 : 16, weight: .heavy, design: theme.fontDesign))
-                .foregroundColor(isWarning ? color : theme.primaryText)
+                .iTunes3DStyle(color: isWarning ? color : theme.primaryText)
                 .scaleEffect(isWarning ? 1.2 : 1.0)
                 .opacity(show ? 1 : 0)
             
