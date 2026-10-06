@@ -1,3 +1,6 @@
+### 06.10.2026
+- Bugfix: Appsperre Limit wurde behoben, sodass die App nach dem Ablaufen des Timers (z.B. 5 Minuten) wieder zuverlässig blockiert wird. Das Speichern und Auslesen der Zeitlimits in den Shared UserDefaults wurde repariert.
+
 ### 04.10.2026 (History-Loading Hotfix)
 - Fix: `GartenView` lädt beim Datumswechsel (und beim App-Start für heute/gestern) automatisch alle Apple-Health-Werte für das gewählte Datum in den Cache (`dailyValue(metric:on:)`), damit Health-Karten beim Wischen direkt befüllt sind und nicht erst nach dem Öffnen.
 - Fix: `PflanzenCard` liest Health-Daten nun aus dem `dailyValuesCache` anstatt bei fehlenden Daten auf 0% zu fallen. Solange der Wert lädt, wird ein transparenter Platzhalter gezeigt.
