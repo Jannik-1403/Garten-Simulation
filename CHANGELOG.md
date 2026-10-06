@@ -1,3 +1,6 @@
+### 06.10.2026 (Part 7)
+- Feature: Die alte Startansicht (`OnboardingWillkommenView`) wurde aus dem Onboarding entfernt und nahtlos durch die neue interaktive `GrovyOnboardingView` ersetzt. Nach Abschluss der Slider-Animation leitet der "Loslegen"-Button direkt zur nächsten Onboarding-Phase (Zielsetzung) weiter.
+
 ### 06.10.2026 (Part 6)
 - Bugfix: Compiler-Fehler in `GrovyOnboardingView` behoben (ungültige `AnyTransition.spring` durch `.scale` ersetzt).
 
