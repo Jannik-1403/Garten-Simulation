@@ -1,3 +1,6 @@
+### 06.10.2026 (Part 4)
+- Bugfix (Speichern der Limits): Ein schwerwiegender Fehler wurde behoben, durch den der "Zeitplan" (Ebene 2) nach dem Neustart der App komplett vergessen wurde. Die ausgewählten Apps wurden zwar an Apple übergeben, aber nicht im permanenten Speicher (UserDefaults.standard) der App hinterlegt. Dies ist nun repariert.
+
 ### 06.10.2026 (Part 3)
 - Bugfix (Zeitplan Ebene 2): Ein Fehler wurde behoben, durch den Apps heimlich ("silent") aus dem Zeitplan entfernt wurden, wenn man sie zuvor schon im "Täglichen Limit" ausgewählt hatte. Man kann ab sofort dieselbe App sowohl im Limit als auch im Zeitplan auswählen und Apple wird beide Einschränkungen korrekt kombinieren.
 - Bugfix (Schild löschen über Nacht): Es wurde ein Fehler behoben, bei dem ein Zeitplan, der über Nacht geht (z.B. bis 06:00 Uhr morgens), fälschlicherweise um 00:00 Uhr entblockiert wurde, weil das Limit-Reset-Event das Schild gelöscht hat.
