@@ -1,63 +1,46 @@
 import SwiftUI
+import Combine
 
-// MARK: - DopamineStoryView
-// ZackZack Intro-Story
-// Szene 1: Riesiges Grid zoomt rein, rote Kästchen knallen rein (Haptic!)
-// Szene 2: Dopamin-Säulen wachsen (Canvas 3D) (Haptic!)
-// Szene 3: Kamera zoomt ins Unendliche -> Habit Auswahl (onFinish)
+// MARK: - DopamineStoryView (The Marvel Logo 6-Step Intro)
+// Entwickelt exakt nach dem 6-Schritte-Plan.
 
 struct DopamineStoryTheme {
     var primaryText: Color
     var secondaryText: Color
-    var accent: Color
-    var warning: Color
     var fontDesign: Font.Design
 
     static let grovy = DopamineStoryTheme(
         primaryText: .primary,
         secondaryText: .secondary,
-        accent: Color(red: 0.36, green: 0.86, blue: 0.52),
-        warning: Color(red: 0.9, green: 0.1, blue: 0.15), // Blutrot!
         fontDesign: .rounded
     )
-}
-
-// "Altes 3D Design" Modifier (iTunes/iOS6 Skeuomorphism)
-struct ITunes3DTextModifier: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-        content
-            .foregroundColor(color)
-            // Heller Rand oben (Highlight)
-            .shadow(color: .white.opacity(0.8), radius: 1, x: 0, y: -1)
-            // Harter Schatten unten (Drop Shadow)
-            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
-    }
-}
-
-extension View {
-    func iTunes3DStyle(color: Color) -> some View {
-        self.modifier(ITunes3DTextModifier(color: color))
-    }
 }
 
 struct DopamineStoryView: View {
     let theme: DopamineStoryTheme
     let onFinish: () -> Void
 
-    // Timeline Phases
-    // 0 = Start (Unsichtbar)
-    // 1 = Grid zoomt auf
-    // 2 = Rote Boxen knallen rein
-    // 3 = Grid weg, Dopamin-Szene rein
-    // 4 = Dopamin-Balken schießen hoch
-    // 5 = TikTok flackert
-    // 6 = Mega-Zoom in den Bildschirm (Übergang)
-    @State private var phase = 0
+    // Schritt 1: Architektur und Zustandsverwaltung
+    @State private var animationsPhase = 0
+    // 0 = Start / Flackern (Phase 1)
+    // 1 = Masken-Bewegung / Logo Reveal (Phase 2)
+    // 2 = Call-to-Action sichtbar (Phase 3)
+
+    @State private var currentImageIndex = 0
+    @State private var continuousOffset: CGFloat = 0.0
+
+    // Chaos/Dopamin-Bilder (Da wir keine Assets haben, nutzen wir Emojis/Symbole, die wie Bilder wirken)
+    private let chaosImages = ["📱", "🔥", "💀", "🍔", "🎮", "📉", "💥", "⏳"]
+    
+    // Fokus-Bilder (Gewohnheiten, Hanteln)
+    private let focusImages = ["📚", "🏋️‍♀️", "✅", "🧠", "🌱", "💧", "📈", "🧘‍♂️"]
+
+    // Der Timer für Phase 1
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     init(
         theme: DopamineStoryTheme = .grovy,
-        showsProgress: Bool = false, // Ignoriert, wir machen ein Kino-Intro
+        showsProgress: Bool = false,
         showsFinishButton: Bool = false,
         finishTitle: String = "",
         onFinish: @escaping () -> Void = {}
@@ -68,281 +51,114 @@ struct DopamineStoryView: View {
 
     var body: some View {
         ZStack {
-            Color(UIColor.systemBackground)
+            // Schritt 3: Der Übergang zum hellblauen/weißen Hintergrund
+            // Weicher Übergang von Chaos (Dunkelgrau/Rot) zu Fokus (Reinweiß / SystemBackground)
+            Color(animationsPhase == 0 ? UIColor(red: 0.1, green: 0.05, blue: 0.05, alpha: 1.0) : UIColor.systemBackground)
                 .ignoresSafeArea()
+                .animation(.easeInOut(duration: 1.5), value: animationsPhase)
 
-            // Szene 1: Leben-Grid
-            if phase >= 1 && phase < 3 {
-                LifeGridScene(theme: theme, showRed: phase >= 2)
-                    .transition(.scale(scale: 0.0).combined(with: .opacity))
-                    .zIndex(1)
-            }
-
-            // Szene 2: Dopamin-Balken
-            if phase >= 3 {
-                DopamineScene(theme: theme, showBars: phase >= 4, tiktokWarning: phase >= 5)
-                    .transition(.scale(scale: 0.0).combined(with: .opacity))
-                    .zIndex(2)
-            }
-        }
-        // Mega Zoom für den Übergang am Ende (Phase 6)
-        .scaleEffect(phase == 6 ? 50.0 : 1.0)
-        .opacity(phase == 6 ? 0.0 : 1.0)
-        .onAppear {
-            runZackZackTimeline()
-        }
-    }
-
-    private func runZackZackTimeline() {
-        // Timeline zack zack zack
-        
-        // 1. Grid erscheint groß und wird kleiner
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) { phase = 1 }
-        }
-        
-        // 2. Rote Boxen knallen rein!
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) { phase = 2 }
-        }
-        
-        // 3. Grid weg, Dopamin Szene rein
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) { phase = 3 }
-        }
-        
-        // 4. Balken schießen hoch!
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.8) {
-            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) { phase = 4 }
-        }
-        
-        // 5. TikTok wird blutrot!
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) { phase = 5 }
-        }
-        
-        // 6. MEGA ZOOM in den Bildschirm und Finish
-        DispatchQueue.main.asyncAfter(deadline: .now() + 7.5) {
-            UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-            withAnimation(.easeIn(duration: 0.5)) { phase = 6 }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                onFinish() // Nahtloser Übergang
-            }
-        }
-    }
-}
-
-// MARK: - Szene 1: Grid
-private struct LifeGridScene: View {
-    let theme: DopamineStoryTheme
-    let showRed: Bool
-    
-    var body: some View {
-        VStack(spacing: 30) {
-            Text(String(localized: "dop_box_life", defaultValue: "Dein Leben in Kästchen"))
-                .font(.system(size: 32, weight: .heavy, design: theme.fontDesign))
-                .iTunes3DStyle(color: theme.primaryText)
-                .multilineTextAlignment(.center)
-            
-            // 80 Kästchen (10x8)
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 10), spacing: 6) {
-                ForEach(0..<80, id: \.self) { i in
-                    let isRed = i < 10 // 10 Jahre am Bildschirm
+            // Schritt 2: Phase 1 – Das schnelle Flackern (Dopamin-Chaos)
+            if animationsPhase == 0 {
+                ZStack {
+                    // Bildschirmfüllendes Bildelement
+                    Color.black.ignoresSafeArea()
                     
-                    RoundedRectangle(cornerRadius: 4, style: .continuous)
-                        .fill(isRed && showRed ? theme.warning : theme.primaryText.opacity(0.1))
-                        .aspectRatio(1, contentMode: .fit)
-                        .scaleEffect(isRed && showRed ? 1.1 : 1.0)
-                        .shadow(color: isRed && showRed ? theme.warning.opacity(0.5) : .clear, radius: 4, x: 0, y: 0)
+                    Text(chaosImages[currentImageIndex % chaosImages.count])
+                        .font(.system(size: 250))
+                        .shadow(color: .red, radius: 40, x: 0, y: 0)
+                        .scaleEffect(1.0 + CGFloat(currentImageIndex % 2) * 0.2) // Leichtes Pochen
+                }
+                .transition(.opacity)
+                .onReceive(timer) { _ in
+                    UIImpactFeedbackGenerator(style: .rigid).impactOccurred(intensity: 0.5)
+                    currentImageIndex += 1
                 }
             }
-            .padding(.horizontal, 30)
-            
-            Text(String(localized: "dopamine_story_time_title", defaultValue: "10 Jahre deines Lebens verschwinden auf Bildschirmen."))
-                .font(.system(size: 16, weight: .bold, design: theme.fontDesign))
-                .iTunes3DStyle(color: theme.secondaryText)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 30)
-                .opacity(showRed ? 1 : 0)
-                .offset(y: showRed ? 0 : 20)
-        }
-    }
-}
 
-// MARK: - Szene 2: Dopamin
-private struct DopamineScene: View {
-    let theme: DopamineStoryTheme
-    let showBars: Bool
-    let tiktokWarning: Bool
-    
-    var body: some View {
-        VStack(spacing: 30) {
-            Text(String(localized: "dop_score_title", defaultValue: "Warum passiert das?"))
-                .font(.system(size: 32, weight: .heavy, design: theme.fontDesign))
-                .iTunes3DStyle(color: theme.primaryText)
-                .multilineTextAlignment(.center)
+            // Schritt 4 & 5: Der 3D-Text ("GROVY") und die Masken-Logik
+            if animationsPhase >= 1 {
+                ZStack {
+                    // Der Container: Lange horizontale Reihe mit Fokus-Bildern
+                    HStack(spacing: 0) {
+                        ForEach(0..<100, id: \.self) { i in
+                            Text(focusImages[i % focusImages.count])
+                                .font(.system(size: 150))
+                                .frame(width: 150, height: 150)
+                                .background(Color(white: 0.95)) // Leichter Kontrast im Buchstabe
+                        }
+                    }
+                    // Schritt 5: Fließende Bewegung innerhalb der Buchstaben
+                    .offset(x: continuousOffset)
+                    .onAppear {
+                        withAnimation(.linear(duration: 40.0).repeatForever(autoreverses: false)) {
+                            continuousOffset = -3000 // Endlos gleitend von rechts nach links
+                        }
+                    }
+                }
+                // Die Maske: Der Text "GROVY"
+                .mask {
+                    Text("GROVY")
+                        .font(.system(size: 120, weight: .heavy, design: theme.fontDesign))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.1)
+                        .padding(.horizontal, 10)
+                }
+                // Der 3D-Effekt: Schräg im Raum stehend wie das Marvel-Logo
+                .rotation3DEffect(
+                    .degrees(15),
+                    axis: (x: 1, y: -0.5, z: 0),
+                    perspective: 0.8
+                )
+                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 15) // Mächtiger 3D Schatten
+                .transition(.scale(scale: 0.5).combined(with: .opacity))
+                .offset(y: animationsPhase >= 2 ? -60 : 0) // Macht Platz für den Button
+            }
             
-            ZStack(alignment: .bottom) {
-                // Baseline
+            // Schritt 6: Der Abschluss (Call-to-Action)
+            if animationsPhase >= 2 {
                 VStack {
                     Spacer()
-                    HStack {
-                        Text(String(localized: "dop_baseline", defaultValue: "Gehirn Normalwert"))
-                            .font(.system(size: 12, weight: .bold))
-                            .iTunes3DStyle(color: theme.secondaryText)
-                        Line()
-                            .stroke(style: StrokeStyle(lineWidth: 2, dash: [6]))
-                            .frame(height: 2)
-                            .foregroundColor(theme.secondaryText.opacity(0.5))
+                    
+                    Button {
+                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                        onFinish()
+                    } label: {
+                        Text(String(localized: "grovy_intro_btn", defaultValue: "Loslegen"))
+                            .font(.system(size: 20, weight: .heavy, design: theme.fontDesign))
                     }
-                    .offset(y: -40) // 100% is 40px
-                }
-                .padding(.bottom, 70) // Text offset
-                
-                HStack(alignment: .bottom, spacing: 30) {
-                    DopamineBarView(
-                        title: String(localized: "dop_score_food", defaultValue: "Essen"),
-                        icon: "🍔",
-                        score: 150,
-                        color: Color.blue,
-                        show: showBars,
-                        isWarning: false,
-                        theme: theme
-                    )
-                    
-                    DopamineBarView(
-                        title: String(localized: "dop_score_sport", defaultValue: "Workout"),
-                        icon: "🏃‍♂️",
-                        score: 200,
-                        color: theme.accent,
-                        show: showBars,
-                        isWarning: false,
-                        theme: theme
-                    )
-                    
-                    DopamineBarView(
-                        title: String(localized: "dop_score_tiktok", defaultValue: "Infinite Scrolling"),
-                        icon: "📱",
-                        score: 400,
-                        color: tiktokWarning ? theme.warning : Color.purple,
-                        show: showBars,
-                        isWarning: tiktokWarning,
-                        theme: theme
-                    )
+                    .buttonStyle(DuolingoButtonStyle(
+                        size: .large,
+                        backgroundColor: Color.blauPrimary,
+                        shadowColor: Color.blauPrimary.darker(),
+                        foregroundColor: .white
+                    ))
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 40)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
-            .frame(height: 350)
-            .padding(.horizontal, 20)
-            
-            Text(String(localized: "dopamine_story_prob_sub", defaultValue: "Social Media liefert unnatürliche Dopamin-Spitzen. Das Gehirn wird süchtig nach dem Bildschirm."))
-                .font(.system(size: 16, weight: .bold, design: theme.fontDesign))
-                .iTunes3DStyle(color: theme.secondaryText)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 30)
-                .opacity(showBars ? 1 : 0)
+        }
+        .onAppear {
+            runOrchestration()
         }
     }
-}
 
-// Einzelne Säule + Text
-private struct DopamineBarView: View {
-    let title: String
-    let icon: String
-    let score: Int
-    let color: Color
-    let show: Bool
-    let isWarning: Bool
-    let theme: DopamineStoryTheme
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            Text("\(score)%")
-                .font(.system(size: isWarning ? 20 : 16, weight: .heavy, design: theme.fontDesign))
-                .iTunes3DStyle(color: isWarning ? color : theme.primaryText)
-                .scaleEffect(isWarning ? 1.2 : 1.0)
-                .opacity(show ? 1 : 0)
+    private func runOrchestration() {
+        // Nach einer festgelegten Zeit (z.B. 2 Sekunden) wechselst du die Animationsphase.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+            timer.upstream.connect().cancel() // Das Flackern stoppt abrupt
             
-            // Die echte 3D Canvas Säule!
-            SolidIsometricBar(
-                width: 36,
-                maxHeight: 200,
-                scoreHeight: show ? min(200, CGFloat(score) * 0.4) : 0,
-                depth: 14,
-                color: color
-            )
-            .shadow(color: isWarning ? color.opacity(0.8) : .clear, radius: 20, x: 0, y: 0)
+            withAnimation(.spring(response: 0.8, dampingFraction: 0.7)) {
+                animationsPhase = 1
+            }
             
-            Text(icon)
-                .font(.system(size: 32))
-            
-            Text(title)
-                .font(.system(size: 11, weight: .bold))
-                .foregroundColor(theme.secondaryText)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-                .frame(width: 80, height: 30) // Feste Box damit Text nicht abschneidet
+            // Mit einer leichten Verzögerung (z.B. nach weiteren 2 Sekunden) den Button einblenden
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                    animationsPhase = 2
+                }
+            }
         }
-    }
-}
-
-// MARK: - Echte 3D Säule (Von unten nach oben!)
-private struct SolidIsometricBar: View {
-    let width: CGFloat
-    let maxHeight: CGFloat
-    let scoreHeight: CGFloat
-    let depth: CGFloat
-    let color: Color
-    
-    var body: some View {
-        Canvas { context, size in
-            let bottomY = size.height
-            let startX: CGFloat = 0
-            
-            // Wenn keine Höhe da ist, malen wir nichts
-            guard scoreHeight > 0.5 else { return }
-            
-            // Front (Gesicht zur Kamera)
-            var front = Path()
-            front.move(to: CGPoint(x: startX, y: bottomY))
-            front.addLine(to: CGPoint(x: startX + width, y: bottomY))
-            front.addLine(to: CGPoint(x: startX + width, y: bottomY - scoreHeight))
-            front.addLine(to: CGPoint(x: startX, y: bottomY - scoreHeight))
-            front.closeSubpath()
-            context.fill(front, with: .color(color))
-            
-            // Rechts (Seite)
-            var right = Path()
-            right.move(to: CGPoint(x: startX + width, y: bottomY))
-            right.addLine(to: CGPoint(x: startX + width + depth, y: bottomY - depth))
-            right.addLine(to: CGPoint(x: startX + width + depth, y: bottomY - scoreHeight - depth))
-            right.addLine(to: CGPoint(x: startX + width, y: bottomY - scoreHeight))
-            right.closeSubpath()
-            context.fill(right, with: .color(color.opacity(0.7)))
-            
-            // Oben (Deckel)
-            var top = Path()
-            top.move(to: CGPoint(x: startX, y: bottomY - scoreHeight))
-            top.addLine(to: CGPoint(x: startX + width, y: bottomY - scoreHeight))
-            top.addLine(to: CGPoint(x: startX + width + depth, y: bottomY - scoreHeight - depth))
-            top.addLine(to: CGPoint(x: startX + depth, y: bottomY - scoreHeight - depth))
-            top.closeSubpath()
-            context.fill(top, with: .color(color.opacity(0.85)))
-        }
-        .frame(width: width + depth, height: maxHeight + depth)
-    }
-}
-
-private struct Line: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: rect.width, y: 0))
-        return path
     }
 }
