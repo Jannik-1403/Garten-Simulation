@@ -150,13 +150,14 @@ struct PflanzeDetailSheet: View {
                     if pflanze.habitName == "habit.dankbarkeit" && pflanze.showStats {
                         DisclosureGroup(isExpanded: $isGratitudeExpanded) {
                             VStack(spacing: 8) {
-                                if pflanze.journalEntries.isEmpty {
-                                    Text(String(localized: "habit.gratitude.empty", defaultValue: "Noch keine Einträge"))
+                                let entriesForDate = pflanze.journalEntries.filter { Calendar.current.isDate($0.date, inSameDayAs: targetDate) }
+                                if entriesForDate.isEmpty {
+                                    Text(String(localized: "habit.gratitude.empty", defaultValue: "Noch keine Einträge für diesen Tag"))
                                         .font(.system(size: 14))
                                         .foregroundStyle(.secondary)
                                         .padding(.top, 8)
                                 } else {
-                                    let sortedEntries = pflanze.journalEntries.sorted(by: { $0.date > $1.date })
+                                    let sortedEntries = entriesForDate.sorted(by: { $0.date > $1.date })
                                     ForEach(sortedEntries) { entry in
                                         Button {
                                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -227,7 +228,10 @@ struct PflanzeDetailSheet: View {
                                 .environmentObject(gardenStore)
                         }
                         .fullScreenCover(item: $selectedJournalEntry) { entry in
-                            GratitudeJournalDetailView(entry: entry)
+                            GratitudeJournalDetailView(entry: entry) {
+                                pflanze.journalEntries.removeAll { $0.id == entry.id }
+                                gardenStore.savePlants()
+                            }
                         }
                     }
 
@@ -562,6 +566,13 @@ struct PflanzeDetailSheet: View {
             let isToday = Calendar.current.isDateInToday(targetDate)
             
             tempSliderProgress = pflanze.progress(for: targetDate)
+            
+            let entriesForDate = pflanze.journalEntries.filter { Calendar.current.isDate($0.date, inSameDayAs: targetDate) }
+            if isToday || !entriesForDate.isEmpty {
+                isGratitudeExpanded = true
+            } else {
+                isGratitudeExpanded = false
+            }
             
             // Wenn linkedHealthMetric noch nil ist (Toggle wurde entfernt), automatisch setzen
             if pflanze.linkedHealthMetric == nil, let autoMetric = pflanze.automaticHealthMetric {
@@ -944,10 +955,18 @@ struct PflanzeDetailSheet: View {
 
     private func updateManualProgress() {
         guard !isReadOnly else { return }
-        let completed = gardenStore.setManualProgress(pflanze: pflanze, to: tempSliderProgress, on: targetDate)
-        if completed {
+        let finalProgress = tempSliderProgress
+        pflanze.sliderProgress = finalProgress
+        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+        if finalProgress > 0 {
+            pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
+        }
+        
+        if finalProgress >= 1.0 {
+            gardenStore.completeHabit(pflanze: pflanze, on: Date())
             UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         } else {
+            gardenStore.savePlants()
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
     }

@@ -143,13 +143,17 @@ extension DailyFeedbackViewModel {
                 
                 // Für Apple Health verbundene Gewohnheiten historische Daten nutzen (sofern geladen)
                 if let eff = p.effectiveHealthMetric {
+                    // Verwende gecachte Werte aus dailyValuesCache
+                    if let cachedValue = hm.dailyValuesCache[eff]?[targetStartOfDay] {
+                        return cachedValue
+                    }
+                    
+                    // Fallback auf die History Dicts für water und steps
                     if eff == .steps || eff == .running {
                         return hm.stepsHistory[targetStartOfDay] ?? 0.0
                     } else if eff == .water {
                         return hm.waterHistory[targetStartOfDay] ?? 0.0
                     }
-                    // Weitere Metriken (Schlaf, etc.) haben derzeit keinen 7-Tage-Cache in HealthManager.
-                    // Sie fallen unten auf manuellen Progress zurück oder zeigen 0.
                 }
 
                 // Fallback: manueller Fortschritt aus der App-Historie

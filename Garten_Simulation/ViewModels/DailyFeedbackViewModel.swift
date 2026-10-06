@@ -40,8 +40,36 @@ class DailyFeedbackViewModel: ObservableObject {
         .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
         .sink { [weak self] in self?.reevaluate() }
         .store(in: &cancellables)
+        
+        $targetDate
+            .dropFirst()
+            .sink { [weak self] newDate in
+                self?.reevaluate()
+                Task { [weak self] in
+                    await self?.fetchHistoricalDataIfNeeded(for: newDate)
+                }
+            }
+            .store(in: &cancellables)
 
         reevaluate()
+    }
+    
+    private func fetchHistoricalDataIfNeeded(for date: Date) async {
+        guard !Calendar.current.isDateInToday(date) else { return }
+        
+        var hasChanges = false
+        for habit in activeHabits {
+            if let metric = habit.effectiveHealthMetric {
+                let _ = await HealthManager.shared.dailyValue(metric: metric, on: date)
+                hasChanges = true
+            }
+        }
+        
+        if hasChanges {
+            await MainActor.run {
+                self.reevaluate()
+            }
+        }
     }
 
     /// `true`, sobald die View echte Habits übergeben hat. Verhindert, dass der Init-Durchlauf

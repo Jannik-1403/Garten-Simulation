@@ -143,8 +143,8 @@ struct PflanzenCard: View {
                             PflanzenButton(
                                 plant: GameDatabase.shared.plant(for: pflanze.plantID),
                                 seltenheit: pflanze.seltenheit,
-                                farbe: pflanze.effectiveHealthMetric != nil ? Color.gray : pflanze.color,
-                                sekundaerFarbe: pflanze.effectiveHealthMetric != nil ? Color.gray.darker() : pflanze.color.darker(),
+                                farbe: pflanze.color,
+                                sekundaerFarbe: pflanze.color.darker(),
                                 groesse: 85 * scale,
                                 fallbackIcon: pflanze.symbolName,
                                 externerPress: false,

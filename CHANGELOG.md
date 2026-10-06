@@ -1448,3 +1448,10 @@
 - Feature: Die Apple Health-Historie für Schritte und Wasser wird nun für ein ganzes Jahr im Hintergrund geladen, sodass du problemlos Monate in die Vergangenheit springen und deine echten Health-Werte ansehen kannst.
 
 - Feature: Du kannst jetzt auf der Startseite im Kalender in die Vergangenheit reisen und dort auf jede deiner Pflanzen tippen, um dir deinen Fortschritt und das Journal von damals anzuschauen (ohne, dass du versehentlich noch etwas ändern kannst).
+- Fixed target history for past days and global goals
+- Store now strictly protects past days from manual/counter progress modifications
+- Fixed widget property serialization
+- Added a new Home Screen Widget for the Daily Score with the 3D ring style matching the app.
+- Improved UI/UX of Widgets: Fixed To-Do text truncation, added 3D interactive buttons for iOS 17+, introduced warm and vibrant color accents, and aligned padding strictly to 16pt.
+- Fixed compiler errors in GartenWidgetExtension caused by type mismatch and immutable arrays.
+- Adjusted the Daily Score widget design: larger ring, no title, and better scalable typography for 2- and 3-digit numbers.

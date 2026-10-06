@@ -226,6 +226,11 @@ struct GratitudeJournalView: View {
         )
         
         habit.journalEntries.append(entry)
+        
+        habit.sliderProgress = 1.0
+        habit.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+        habit.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: 1.0))
+        
         gardenStore.savePlants()
         
         dismiss()
@@ -234,6 +239,7 @@ struct GratitudeJournalView: View {
 
 struct GratitudeJournalDetailView: View {
     let entry: GratitudeJournalEntry
+    var onDelete: () -> Void
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -307,10 +313,21 @@ struct GratitudeJournalDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(.primary)
+                    HStack(spacing: 16) {
+                        Button(action: {
+                            onDelete()
+                            dismiss()
+                        }) {
+                            Image(systemName: "trash")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.red)
+                        }
+                        
+                        Button(action: { dismiss() }) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.primary)
+                        }
                     }
                 }
             }

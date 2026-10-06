@@ -524,9 +524,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             return snapshot.value
         }
         
-        // MIGRATION: Wenn das Datum älter als 0 Tage ist (also in der Vergangenheit), generiere Snapshot als final
+        // MIGRATION: Wenn das Datum älter als 3 Tage ist, generiere Snapshot als final
         let daysAgo = calendar.dateComponents([.day], from: calendar.startOfDay(for: date), to: calendar.startOfDay(for: Date())).day ?? 0
-        if daysAgo > 0 {
+        if daysAgo > 3 {
             let bTarget = baseTarget(for: date)
             let estimatedValue = bTarget + dynamicAdjustment(for: date)
             dailyTargetSnapshots[dateKey] = DailyTargetSnapshot(value: estimatedValue, isFinal: true, isEstimated: true, baseTarget: bTarget)

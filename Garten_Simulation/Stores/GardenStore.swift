@@ -872,29 +872,6 @@ class GardenStore: ObservableObject {
         return false
     }
 
-    /// Setzt den manuellen Slider-Fortschritt
-    @discardableResult
-    func setManualProgress(pflanze: HabitModel, to progress: Double, on date: Date = Date()) -> Bool {
-        guard Calendar.current.isDateInToday(date) else { return false }
-        guard !pflanze.wasCompleted(on: date) else { return false }
-        
-        let finalProgress = min(max(0.0, progress), 1.0)
-        pflanze.sliderProgress = finalProgress
-        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
-        
-        if finalProgress > 0 {
-            pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
-        }
-        
-        if finalProgress >= 1.0 {
-            completeHabit(pflanze: pflanze, on: Date())
-            return true
-        } else {
-            savePlants()
-            return false
-        }
-    }
-
     var isDailySpinAvailable: Bool {
         if pendingDailySpin { return true }
         if let lastSpin = lastSpinTimestamp {

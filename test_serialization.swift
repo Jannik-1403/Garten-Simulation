@@ -38,13 +38,7 @@ let jsonString = """
     "trackingMode": "slider",
     "counterTarget": 10,
     "targetHistory": [],
-    "dailyTargetSnapshots": {
-        "2026-10-04": {
-            "value": 1.0,
-            "isFinal": true,
-            "isEstimated": false
-        }
-    },
+    "dailyTargetSnapshots": {},
     "counterProgress": 0,
     "showStats": true,
     "showTodos": true,
@@ -63,21 +57,8 @@ let jsonString = """
 
 let data = jsonString.data(using: .utf8)!
 
-struct DailyTargetSnapshot: Codable {
-    var value: Double
-    var isFinal: Bool
-    var isEstimated: Bool
-    var baseTarget: Double?
-}
-
-struct TestPlant: Codable {
-    var dailyTargetSnapshots: [String: DailyTargetSnapshot]
-}
-
-do {
-    let decoder = JSONDecoder()
-    let result = try decoder.decode([TestPlant].self, from: data)
-    print("Success: \(result)")
-} catch {
-    print("Error: \(error)")
+if var jsonArray = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] {
+    print("JSONSerialization SUCCESS. Contains \(jsonArray.count) objects")
+} else {
+    print("JSONSerialization FAILED")
 }
