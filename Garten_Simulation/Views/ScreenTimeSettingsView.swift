@@ -760,6 +760,14 @@ struct ScreenTimeSettingsView: View {
         manager.applyPermanentBlocks()
         
         let blockData = try? JSONEncoder().encode(blockSelection)
+        if let data = blockData {
+            UserDefaults.standard.set(data, forKey: "screenTimeBlockSelectionData")
+        }
+        if let data = try? JSONEncoder().encode(daySchedules) {
+            UserDefaults.standard.set(data, forKey: "screenTimeDaySchedulesData")
+        }
+        UserDefaults.standard.set(isScheduleActive, forKey: "isScreenTimeScheduleActive")
+        
         manager.scheduleBlockActivities(daySchedules: daySchedules, blockSelectionData: blockData)
     }
     
