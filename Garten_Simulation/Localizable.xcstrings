@@ -2613,6 +2613,9 @@
         }
       }
     },
+    "🍔": {},
+    "🏃‍♂️": {},
+    "📱": {},
     "🔥": {
       "localizations": {
         "de": {
@@ -3113,6 +3116,7 @@
         }
       }
     },
+    "50": {},
     "100": {
       "localizations": {
         "de": {
@@ -3213,6 +3217,8 @@
         }
       }
     },
+    "130": {},
+    "400+": {},
     "500": {
       "localizations": {
         "de": {
@@ -138562,6 +138568,1241 @@
         }
       }
     },
+    "dop_btn_ziele": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziele definieren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definir metas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Définir des objectifs"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Goals"
+          }
+        }
+      }
+    },
+    "dop_routines_learn": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lernen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprender"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apprendre"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        }
+      }
+    },
+    "dop_routines_meditate": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Méditation"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation"
+          }
+        }
+      }
+    },
+    "dop_routines_read": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lesen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leer"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lire"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        }
+      }
+    },
+    "dop_routines_run": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laufen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correr"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Courir"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        }
+      }
+    },
+    "dop_routines_sleep": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlaf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sueño"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sommeil"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        }
+      }
+    },
+    "dop_routines_sub": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statt schnellen Kicks baust du einen Garten voller Gewohnheiten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En lugar de estímulos rápidos, construye un jardín de hábitos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Au lieu de pics rapides, construis un jardin d'habitudes."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instead of quick kicks, build a garden of habits."
+          }
+        }
+      }
+    },
+    "dop_routines_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Echte Routinen aufbauen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Construir rutinas reales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Construire de vraies routines"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build real routines"
+          }
+        }
+      }
+    },
+    "dop_routines_water": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasser trinken"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beber agua"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boire de l'eau"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink Water"
+          }
+        }
+      }
+    },
+    "dop_score_food": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leckeres Essen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comida rica"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repas savoureux"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasty Food"
+          }
+        }
+      }
+    },
+    "dop_score_sport": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sport"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deporte"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sport"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        }
+      }
+    },
+    "dop_score_tiktok": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scroll infinito"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Défilement infini"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Infinite Scrolling"
+          }
+        }
+      }
+    },
+    "dop_score_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamin-Ausschüttung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liberación de dopamina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Libération de dopamine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Release"
+          }
+        }
+      }
+    },
     "dopamine_story_fin_sub": {
       "extractionState": "manual",
       "localizations": {
@@ -187416,17 +188657,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "專注與活力"
-          }
-        }
-      }
-    },
-    "grovy_story_btn_los": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Los geht's"
           }
         }
       }
@@ -498553,1237 +499783,572 @@
         }
       }
     },
-    "dop_score_title": {
+    "dop_box_life": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamin-Ausschüttung"
+            "value": "Leben (80 Jahre)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Liberación de dopamina"
+            "value": "Vida (80 años)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Libération de dopamine"
+            "value": "Vie (80 ans)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Release"
+            "value": "Life (80 Years)"
           }
         }
       }
     },
-    "dop_score_food": {
+    "dop_box_year": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Leckeres Essen"
+            "value": "Jahr (12 Monate)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comida rica"
+            "value": "Año (12 meses)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Repas savoureux"
+            "value": "Année (12 mois)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasty Food"
+            "value": "Year (12 Months)"
           }
         }
       }
     },
-    "dop_score_sport": {
+    "dop_box_day": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sport"
+            "value": "Tag (24 Stunden)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deporte"
+            "value": "Día (24 horas)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sport"
+            "value": "Jour (24 heures)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workout"
+            "value": "Day (24 Hours)"
           }
         }
       }
     },
-    "dop_score_tiktok": {
+    "dop_btn_gewohnheiten": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Gewohnheiten wählen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scroll infinito"
+            "value": "Elegir hábitos"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Défilement infini"
+            "value": "Choisir habitudes"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Infinite Scrolling"
+            "value": "Select Habits"
           }
         }
       }
     },
-    "dop_routines_title": {
+    "dop_baseline": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Echte Routinen aufbauen"
+            "value": "Basiswert"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Construir rutinas reales"
+            "value": "Línea base"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Construire de vraies routines"
+            "value": "Ligne de base"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Build real routines"
+            "value": "Baseline"
           }
         }
       }
     },
-    "dop_routines_sub": {
+    "dop_unit_percent": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Statt schnellen Kicks baust du einen Garten voller Gewohnheiten."
+            "value": "% vom Basiswert"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "En lugar de estímulos rápidos, construye un jardín de hábitos."
+            "value": "% de base"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Au lieu de pics rapides, construis un jardin d'habitudes."
+            "value": "% de base"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
+            "value": "% of Baseline"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instead of quick kicks, build a garden of habits."
-          }
-        }
-      }
-    },
-    "dop_routines_read": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lesen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Leer"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lire"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reading"
-          }
-        }
-      }
-    },
-    "dop_routines_meditate": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditación"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Méditation"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meditation"
-          }
-        }
-      }
-    },
-    "dop_routines_water": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wasser trinken"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beber agua"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Boire de l'eau"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drink Water"
-          }
-        }
-      }
-    },
-    "dop_routines_run": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Laufen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Correr"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Courir"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Running"
-          }
-        }
-      }
-    },
-    "dop_routines_learn": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lernen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aprender"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apprendre"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learning"
-          }
-        }
-      }
-    },
-    "dop_routines_sleep": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlaf"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sueño"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sommeil"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep"
-          }
-        }
-      }
-    },
-    "dop_btn_ziele": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ziele definieren"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Definir metas"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Définir des objectifs"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Set Goals"
+            "value": "% of Baseline"
           }
         }
       }

@@ -2,9 +2,8 @@ import SwiftUI
 
 // MARK: - DopamineStoryView
 // Komprimierte, stark animierte Story (Zoom & Haptics)
-// Scene 0: Zeit (Karten ploppen auf)
-// Scene 1: Dopamin-Score (Balkendiagramm explodiert)
-// Scene 2: Routinen-Grid (Kacheln ploppen auf + Finale)
+// Scene 0: Zeit (Kästchen füllen sich rot)
+// Scene 1: Dopamin-Score (iTunes 3D Balkendiagramm + Ende)
 
 struct DopamineStoryTheme {
     var background: [Color]?
@@ -34,14 +33,14 @@ struct DopamineStoryView: View {
     let onFinish: () -> Void
 
     @State private var scene = 0
-    private let durations: [Double] = [5.5, 6.0, 0]
+    private let durations: [Double] = [6.0, 0] // Nur noch 2 Szenen!
     private var lastIndex: Int { durations.count - 1 }
 
     init(
         theme: DopamineStoryTheme = .grovy,
         showsProgress: Bool = true,
         showsFinishButton: Bool = true,
-        finishTitle: String = String(localized: "dop_btn_ziele", defaultValue: "Ziele definieren"),
+        finishTitle: String = String(localized: "dop_btn_gewohnheiten", defaultValue: "Gewohnheiten wählen"),
         onFinish: @escaping () -> Void = {}
     ) {
         self.theme = theme
@@ -79,10 +78,9 @@ struct DopamineStoryView: View {
     @ViewBuilder
     private var currentScene: some View {
         switch scene {
-        case 0: GOReducedTimeScene(theme: theme)
-        case 1: GODopamineScoreScene(theme: theme)
+        case 0: GOVisualTimeScene(theme: theme)
         default:
-            GORoutinesGridScene(
+            GODopamineScoreScene(
                 theme: theme,
                 showsButton: showsFinishButton,
                 buttonTitle: finishTitle,
@@ -150,14 +148,17 @@ private struct GOProgressSegment: View {
 // MARK: - 3D Container
 struct GOWhite3DContainer<Content: View>: View {
     let content: Content
+    let horizontalPadding: CGFloat
     
-    init(@ViewBuilder content: () -> Content) {
+    init(horizontalPadding: CGFloat = 20, @ViewBuilder content: () -> Content) {
+        self.horizontalPadding = horizontalPadding
         self.content = content()
     }
     
     var body: some View {
         content
-            .padding(20)
+            .padding(.horizontal, horizontalPadding)
+            .padding(.vertical, 20)
             .background(
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .fill(Color(UIColor.systemBackground))
@@ -170,9 +171,13 @@ struct GOWhite3DContainer<Content: View>: View {
     }
 }
 
-// MARK: - Szene 0: Zeitverlust
-private struct GOReducedTimeScene: View {
+// MARK: - Szene 0: Visual Time Boxes
+private struct GOVisualTimeScene: View {
     let theme: DopamineStoryTheme
+    @State private var fillLife = 0.0
+    @State private var fillYear = 0.0
+    @State private var fillDay = 0.0
+    
     @State private var show1 = false
     @State private var show2 = false
     @State private var show3 = false
@@ -188,31 +193,37 @@ private struct GOReducedTimeScene: View {
             
             VStack(spacing: 16) {
                 if show1 {
-                    timeCard(
-                        title: String(localized: "dopamine_story_time_life", defaultValue: "In deinem Leben"),
-                        value: String(localized: "dopamine_story_time_10y", defaultValue: "10 Jahre"),
-                        icon: "infinity",
+                    timeBoxCard(
+                        title: String(localized: "dop_box_life", defaultValue: "Leben (80 Jahre)"),
+                        icon: "hourglass.bottomhalf.filled",
+                        total: 80,
+                        cols: 10,
+                        highlighted: fillLife,
                         color: theme.warning
                     )
                     .transition(.scale(scale: 0.5).combined(with: .opacity))
                 }
                 
                 if show2 {
-                    timeCard(
-                        title: String(localized: "dopamine_story_time_year", defaultValue: "Im Jahr"),
-                        value: String(localized: "dopamine_story_time_46d", defaultValue: "46 Tage"),
+                    timeBoxCard(
+                        title: String(localized: "dop_box_year", defaultValue: "Jahr (12 Monate)"),
                         icon: "calendar",
+                        total: 12,
+                        cols: 6,
+                        highlighted: fillYear,
                         color: Color.orange
                     )
                     .transition(.scale(scale: 0.5).combined(with: .opacity))
                 }
                 
                 if show3 {
-                    timeCard(
-                        title: String(localized: "dopamine_story_time_day", defaultValue: "Am Tag"),
-                        value: String(localized: "dopamine_story_time_3h", defaultValue: "3+ Stunden"),
-                        icon: "clock.fill",
-                        color: theme.accent
+                    timeBoxCard(
+                        title: String(localized: "dop_box_day", defaultValue: "Tag (24 Stunden)"),
+                        icon: "timer",
+                        total: 24,
+                        cols: 8,
+                        highlighted: fillDay,
+                        color: theme.warning
                     )
                     .transition(.scale(scale: 0.5).combined(with: .opacity))
                 }
@@ -225,51 +236,69 @@ private struct GOReducedTimeScene: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) { show1 = true }
+                withAnimation(.easeOut(duration: 1.0).delay(0.2)) { fillLife = 10.0 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) { show2 = true }
+                withAnimation(.easeOut(duration: 0.6).delay(0.2)) { fillYear = 1.5 } // 1.5 Monate = 46 Tage
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) { show3 = true }
+                withAnimation(.easeOut(duration: 0.6).delay(0.2)) { fillDay = 3.5 } // 3.5 Stunden
             }
         }
     }
     
-    private func timeCard(title: String, value: String, icon: String, color: Color) -> some View {
+    private func timeBoxCard(title: String, icon: String, total: Int, cols: Int, highlighted: Double, color: Color) -> some View {
         GOWhite3DContainer {
-            HStack(spacing: 16) {
-                Image(systemName: icon)
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.white)
-                    .frame(width: 50, height: 50)
-                    .background(color)
-                    .clipShape(Circle())
-                
-                VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(spacing: 8) {
+                    Image(systemName: icon)
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(color)
                     Text(title)
                         .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
-                        .foregroundColor(theme.secondaryText)
-                    Text(value)
-                        .font(.system(size: 24, weight: .black, design: theme.fontDesign))
                         .foregroundColor(theme.primaryText)
                 }
-                Spacer()
+                
+                // Box Grid
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: cols), spacing: 4) {
+                    ForEach(0..<total, id: \.self) { i in
+                        let fill = max(0.0, min(1.0, highlighted - Double(i)))
+                        
+                        ZStack(alignment: .leading) {
+                            RoundedRectangle(cornerRadius: 3)
+                                .fill(theme.primaryText.opacity(0.08))
+                            
+                            GeometryReader { geo in
+                                RoundedRectangle(cornerRadius: 3)
+                                    .fill(color)
+                                    .frame(width: geo.size.width * CGFloat(fill))
+                            }
+                        }
+                        .aspectRatio(1, contentMode: .fit)
+                    }
+                }
             }
         }
     }
 }
 
-// MARK: - Szene 1: Das Dopamin Problem (TikTok Score)
+// MARK: - Szene 1: Das Dopamin Problem (iTunes 3D Score)
 private struct GODopamineScoreScene: View {
     let theme: DopamineStoryTheme
+    let showsButton: Bool
+    let buttonTitle: String
+    let onFinish: () -> Void
     
     @State private var showBars = false
     @State private var tiktokExplode = false
+    @State private var showButton = false
     
     var body: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 24) {
             Spacer()
             
             Text(String(localized: "dop_score_title", defaultValue: "Dopamin-Ausschüttung"))
@@ -277,67 +306,62 @@ private struct GODopamineScoreScene: View {
                 .foregroundColor(theme.primaryText)
                 .multilineTextAlignment(.center)
             
-            GOWhite3DContainer {
-                HStack(alignment: .bottom, spacing: 24) {
-                    // Bar 1: Essen
-                    VStack(spacing: 8) {
-                        Text("50")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(theme.secondaryText)
-                            .opacity(showBars ? 1 : 0)
-                        
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.blue.opacity(0.8))
-                            .frame(width: 40, height: showBars ? 50 : 0)
-                        
-                        Text("🍔")
-                            .font(.system(size: 24))
-                        Text(String(localized: "dop_score_food", defaultValue: "Essen"))
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(theme.secondaryText)
-                            .lineLimit(1)
+            GOWhite3DContainer(horizontalPadding: 16) {
+                ZStack {
+                    // Dotted Baseline
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Text(String(localized: "dop_baseline", defaultValue: "Basiswert"))
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(theme.secondaryText)
+                            
+                            Line()
+                                .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
+                                .frame(height: 1)
+                                .foregroundColor(theme.secondaryText.opacity(0.5))
+                        }
+                        .offset(y: -50) // Baseline at 100% (50 height)
                     }
+                    .padding(.bottom, 60)
+                    .opacity(showBars ? 1 : 0)
                     
-                    // Bar 2: Sport
-                    VStack(spacing: 8) {
-                        Text("130")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(theme.secondaryText)
-                            .opacity(showBars ? 1 : 0)
+                    HStack(alignment: .bottom, spacing: 20) {
+                        // Bar 1: Essen
+                        GOiTunes3DBar(
+                            score: 150,
+                            title: String(localized: "dop_score_food", defaultValue: "Essen"),
+                            icon: "🍔",
+                            color: Color.blue.opacity(0.8),
+                            show: showBars,
+                            isWarning: false,
+                            theme: theme
+                        )
                         
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(theme.accent)
-                            .frame(width: 40, height: showBars ? 130 : 0)
+                        // Bar 2: Sport
+                        GOiTunes3DBar(
+                            score: 200,
+                            title: String(localized: "dop_score_sport", defaultValue: "Sport"),
+                            icon: "🏃‍♂️",
+                            color: theme.accent,
+                            show: showBars,
+                            isWarning: false,
+                            theme: theme
+                        )
                         
-                        Text("🏃‍♂️")
-                            .font(.system(size: 24))
-                        Text(String(localized: "dop_score_sport", defaultValue: "Sport"))
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(theme.secondaryText)
-                            .lineLimit(1)
+                        // Bar 3: TikTok
+                        GOiTunes3DBar(
+                            score: 400,
+                            title: String(localized: "dop_score_tiktok", defaultValue: "Scrolling"),
+                            icon: "📱",
+                            color: tiktokExplode ? theme.warning : Color.purple,
+                            show: showBars,
+                            isWarning: tiktokExplode,
+                            theme: theme
+                        )
                     }
-                    
-                    // Bar 3: TikTok
-                    VStack(spacing: 8) {
-                        Text("400+")
-                            .font(.system(size: tiktokExplode ? 20 : 14, weight: .heavy))
-                            .foregroundColor(tiktokExplode ? theme.warning : theme.secondaryText)
-                            .opacity(showBars ? 1 : 0)
-                        
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(tiktokExplode ? theme.warning : Color.purple)
-                            .frame(width: 40, height: showBars ? (tiktokExplode ? 240 : 20) : 0)
-                            .shadow(color: tiktokExplode ? theme.warning.opacity(0.6) : .clear, radius: 10, x: 0, y: 0)
-                        
-                        Text("📱")
-                            .font(.system(size: 24))
-                        Text(String(localized: "dop_score_tiktok", defaultValue: "Scrolling"))
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(tiktokExplode ? theme.warning : theme.secondaryText)
-                            .lineLimit(1)
-                    }
+                    .frame(height: 250, alignment: .bottom)
                 }
-                .frame(height: 300, alignment: .bottom)
             }
             
             Text(String(localized: "dopamine_story_prob_sub", defaultValue: "Social Media liefert schnelle, unerwartete Belohnungen. Das Gehirn will immer mehr, der echte Fokus sinkt."))
@@ -346,74 +370,8 @@ private struct GODopamineScoreScene: View {
                 .multilineTextAlignment(.center)
             
             Spacer()
-        }
-        .padding(.horizontal, 24)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
-                    showBars = true
-                }
-                UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-            }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                withAnimation(.spring(response: 0.4, dampingFraction: 0.4)) {
-                    tiktokExplode = true
-                }
-                UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-            }
-        }
-    }
-}
-
-// MARK: - Szene 2: Die Routinen & Button
-private struct GORoutinesGridScene: View {
-    let theme: DopamineStoryTheme
-    let showsButton: Bool
-    let buttonTitle: String
-    let onFinish: () -> Void
-    
-    @State private var itemsAppeared = 0
-    @State private var buttonAppeared = false
-    
-    private let routines = [
-        (icon: "book.fill", text: String(localized: "dop_routines_read", defaultValue: "Lesen"), color: Color.blue),
-        (icon: "drop.fill", text: String(localized: "dop_routines_water", defaultValue: "Wasser"), color: Color.cyan),
-        (icon: "figure.run", text: String(localized: "dop_routines_run", defaultValue: "Sport"), color: Color.green),
-        (icon: "moon.zzz.fill", text: String(localized: "dop_routines_sleep", defaultValue: "Schlaf"), color: Color.purple),
-        (icon: "brain", text: String(localized: "dop_routines_learn", defaultValue: "Lernen"), color: Color.orange),
-        (icon: "leaf.fill", text: String(localized: "dop_routines_meditate", defaultValue: "Meditation"), color: Color(red: 0.36, green: 0.86, blue: 0.52))
-    ]
-    
-    var body: some View {
-        VStack(spacing: 24) {
-            Spacer()
-            
-            Text(String(localized: "dop_routines_title", defaultValue: "Echte Routinen aufbauen"))
-                .font(.system(size: 28, weight: .heavy, design: theme.fontDesign))
-                .foregroundColor(theme.primaryText)
-                .multilineTextAlignment(.center)
-            
-            Text(String(localized: "dop_routines_sub", defaultValue: "Statt schnellen Kicks baust du einen Garten voller Gewohnheiten."))
-                .font(.system(size: 16, weight: .medium, design: theme.fontDesign))
-                .foregroundColor(theme.secondaryText)
-                .multilineTextAlignment(.center)
-            
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                ForEach(0..<routines.count, id: \.self) { i in
-                    if itemsAppeared > i {
-                        routineCard(routine: routines[i])
-                            .transition(.scale(scale: 0.5).combined(with: .opacity))
-                    } else {
-                        Color.clear.frame(height: 80)
-                    }
-                }
-            }
-            .padding(.vertical, 16)
-            
-            Spacer()
-            
-            if showsButton && buttonAppeared {
+            if showsButton && showButton {
                 Button {
                     UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                     onFinish()
@@ -434,43 +392,84 @@ private struct GORoutinesGridScene: View {
         }
         .padding(.horizontal, 24)
         .onAppear {
-            for i in 0..<routines.count {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 + Double(i) * 0.15) {
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
-                        itemsAppeared += 1
-                    }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+                    showBars = true
                 }
+                UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 + Double(routines.count) * 0.15 + 0.4) {
-                UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-                withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
-                    buttonAppeared = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.4)) {
+                    tiktokExplode = true
+                }
+                UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                    showButton = true
                 }
             }
         }
     }
+}
+
+// iTunes 3D Bar
+struct GOiTunes3DBar: View {
+    let score: Int
+    let title: String
+    let icon: String
+    let color: Color
+    let show: Bool
+    let isWarning: Bool
+    let theme: DopamineStoryTheme
     
-    private func routineCard(routine: (icon: String, text: String, color: Color)) -> some View {
+    var body: some View {
         VStack(spacing: 8) {
-            Image(systemName: routine.icon)
-                .font(.system(size: 24))
-                .foregroundColor(routine.color)
-            Text(routine.text)
-                .font(.system(size: 13, weight: .bold, design: theme.fontDesign))
-                .foregroundColor(theme.primaryText)
+            VStack(spacing: 2) {
+                Text("\(score)%")
+                    .font(.system(size: isWarning && show ? 18 : 14, weight: .heavy))
+                    .foregroundColor(isWarning && show ? color : theme.primaryText)
+                
+                Text(String(localized: "dop_unit_percent", defaultValue: "% vom Basiswert"))
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundColor(theme.secondaryText)
+            }
+            .opacity(show ? 1 : 0)
+            
+            // 3D Bar
+            ZStack(alignment: .bottom) {
+                // Background Track (Limits the height)
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(Color(UIColor.systemGray6))
+                    .frame(width: 48, height: 200) // max height is 200
+                
+                // Filled Bar (clipped to max height so it doesn't break out)
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(color)
+                    .frame(width: 48, height: show ? min(200, CGFloat(score) * 0.5) : 0)
+                    .shadow(color: color.opacity(0.3), radius: 6, x: 0, y: 0)
+            }
+            .frame(height: 200, alignment: .bottom)
+            .clipped()
+            
+            Text(icon)
+                .font(.system(size: 26))
+            Text(title)
+                .font(.system(size: 11, weight: .bold))
+                .foregroundColor(theme.secondaryText)
+                .lineLimit(1)
+                .frame(width: 80) // Prevents wrapping
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 80)
-        .background(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(Color(UIColor.systemBackground))
-                .shadow(color: Color.black.opacity(0.08), radius: 0, x: 0, y: 4)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .strokeBorder(Color.black.opacity(0.05), lineWidth: 1)
-        )
+    }
+}
+
+struct Line: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: rect.width, y: 0))
+        return path
     }
 }

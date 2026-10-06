@@ -51,19 +51,16 @@ struct OnboardingView: View {
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
 
                     case 2:
-                        GoalOnboardingView()
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        OnboardingPflanzenView()
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     case 3:
-                        WeeklyGoalOnboardingView()
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        GoalOnboardingView()
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     case 4:
-                        OnboardingPflanzenView()
-                            .transition(AnyTransition.asymmetric(
-                                insertion: .move(edge: .trailing),
-                                removal: .move(edge: .leading)
-                            ))
+                        WeeklyGoalOnboardingView()
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                             
                     case 5:
                         OnboardingNotificationView()
