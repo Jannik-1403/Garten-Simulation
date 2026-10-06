@@ -1455,3 +1455,10 @@
 - Improved UI/UX of Widgets: Fixed To-Do text truncation, added 3D interactive buttons for iOS 17+, introduced warm and vibrant color accents, and aligned padding strictly to 16pt.
 - Fixed compiler errors in GartenWidgetExtension caused by type mismatch and immutable arrays.
 - Adjusted the Daily Score widget design: larger ring, no title, and better scalable typography for 2- and 3-digit numbers.
+
+### 06.10.2026 - Journal & History Fixes
+- Das Journal filtert jetzt korrekt nach dem ausgewählten Tag in der Historie.
+- Es werden in der Heute-Ansicht keine alten Journale angezeigt und das aktuelle Journal klappt automatisch auf.
+- Das Speichern eines neuen Journals füllt den Fortschrittsbalken sofort auf 100%.
+- Eine Löschen-Funktion (Trash-Icon) wurde im Journal-Detail hinzugefügt.
+- In der Tageshistorie (Vergangenheit) werden nun gecachte Werte aus Apple Health (wie Kalorien & Krafttraining) korrekt ausgelesen, sodass die 0%-Bugs behoben sind.
