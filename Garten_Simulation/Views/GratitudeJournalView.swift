@@ -2,6 +2,7 @@ import SwiftUI
 
 struct GratitudeJournalView: View {
     @ObservedObject var habit: HabitModel
+    var targetDate: Date = Date()
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var gardenStore: GardenStore
     
@@ -217,7 +218,7 @@ struct GratitudeJournalView: View {
     
     private func saveEntry() {
         let entry = GratitudeJournalEntry(
-            date: Date(),
+            date: targetDate,
             mood: mood,
             thankfulFor: thankfulFor.trimmingCharacters(in: .whitespacesAndNewlines),
             wentWell: wentWell.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -227,9 +228,13 @@ struct GratitudeJournalView: View {
         
         habit.journalEntries.append(entry)
         
-        habit.sliderProgress = 1.0
-        habit.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
-        habit.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: 1.0))
+        gardenStore.completeHabit(pflanze: habit, on: targetDate)
+        
+        if Calendar.current.isDateInToday(targetDate) {
+            habit.sliderProgress = 1.0
+        }
+        habit.intradayProgressHistory.removeAll { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
+        habit.intradayProgressHistory.append(DailyProgressEntry(timestamp: targetDate, progress: 1.0))
         
         gardenStore.savePlants()
         

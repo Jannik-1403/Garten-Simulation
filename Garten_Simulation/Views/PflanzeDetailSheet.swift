@@ -223,13 +223,21 @@ struct PflanzeDetailSheet: View {
                         .padding(.bottom, 16)
                         .tint(.primary)
                         .fullScreenCover(isPresented: $zeigeGratitudeJournal) {
-                            GratitudeJournalView(habit: pflanze)
+                            GratitudeJournalView(habit: pflanze, targetDate: targetDate)
                                 .environmentObject(settings)
                                 .environmentObject(gardenStore)
                         }
                         .fullScreenCover(item: $selectedJournalEntry) { entry in
                             GratitudeJournalDetailView(entry: entry) {
                                 pflanze.journalEntries.removeAll { $0.id == entry.id }
+                                let entriesForDate = pflanze.journalEntries.filter { Calendar.current.isDate($0.date, inSameDayAs: targetDate) }
+                                if entriesForDate.isEmpty {
+                                    gardenStore.undoCompleteHabit(pflanze: pflanze, on: targetDate)
+                                    pflanze.intradayProgressHistory.removeAll { Calendar.current.isDate($0.timestamp, inSameDayAs: targetDate) }
+                                    if Calendar.current.isDateInToday(targetDate) {
+                                        pflanze.sliderProgress = 0.0
+                                    }
+                                }
                                 gardenStore.savePlants()
                             }
                         }
