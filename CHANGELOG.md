@@ -1,3 +1,7 @@
+### 06.10.2026 (Part 3)
+- Bugfix (Zeitplan Ebene 2): Ein Fehler wurde behoben, durch den Apps heimlich ("silent") aus dem Zeitplan entfernt wurden, wenn man sie zuvor schon im "Täglichen Limit" ausgewählt hatte. Man kann ab sofort dieselbe App sowohl im Limit als auch im Zeitplan auswählen und Apple wird beide Einschränkungen korrekt kombinieren.
+- Bugfix (Schild löschen über Nacht): Es wurde ein Fehler behoben, bei dem ein Zeitplan, der über Nacht geht (z.B. bis 06:00 Uhr morgens), fälschlicherweise um 00:00 Uhr entblockiert wurde, weil das Limit-Reset-Event das Schild gelöscht hat.
+
 ### 06.10.2026 (Part 2)
 - Bugfix (Race Condition): Es wurde ein Fehler behoben, bei dem das Abspeichern ("Fertig"-Drücken) eines Zeitlimits sofort das Schild wieder gelöscht hat, falls das Limit bereits erreicht war. Das Schild bleibt nun auch dann bestehen, wenn die Limits gespeichert werden.
 
