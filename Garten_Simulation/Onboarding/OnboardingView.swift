@@ -7,7 +7,7 @@ struct OnboardingView: View {
     
     @StateObject var data = OnboardingData()
     @State private var showConfetti = false
-    private let totalSteps = 7
+    private let totalSteps = 8
     
     var body: some View {
         ZStack {
@@ -43,6 +43,14 @@ struct OnboardingView: View {
                 ZStack {
                     switch data.currentStep {
                     case 1:
+                        DopamineStoryView(theme: .grovy, showsProgress: false, showsFinishButton: true, finishTitle: String(localized: "common_weiter", defaultValue: "Weiter")) {
+                            withAnimation(.easeInOut(duration: 0.35)) {
+                                data.currentStep += 1
+                            }
+                        }
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+
+                    case 2:
                         GrovyOnboardingView(onFinish: {
                             withAnimation(.easeInOut(duration: 0.35)) {
                                 data.currentStep += 1
@@ -50,30 +58,30 @@ struct OnboardingView: View {
                         })
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
-                    case 2:
+                    case 3:
                         GoalOnboardingView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
-                    case 3:
+                    case 4:
                         WeeklyGoalOnboardingView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
-                    case 4:
+                    case 5:
                         OnboardingPflanzenView()
                             .transition(AnyTransition.asymmetric(
                                 insertion: .move(edge: .trailing),
                                 removal: .move(edge: .leading)
                             ))
                             
-                    case 5:
+                    case 6:
                         OnboardingNotificationView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
-                    case 6:
+                    case 7:
                         OnboardingScreenTimeView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
-                    case 7:
+                    case 8:
                         OnboardingLegalView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         

@@ -181748,6 +181748,2811 @@
         }
       }
     },
+    "grovy_onboarding_button_start": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loslegen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get Started"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शुरू करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizia"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "はじめる"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시작하기"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginnen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rozpocznij"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начать"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başla"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始"
+          }
+        }
+      }
+    },
+    "grovy_onboarding_slider_hint": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wischen zum Ändern"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swipe to change"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desliza para cambiar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glissez pour changer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बदलने के लिए स्वाइप करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scorri per cambiare"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スワイプして変更"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스와이프하여 변경"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veeg om te veranderen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przesuń, aby zmienić"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deslize para mudar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deslize para mudar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проведите, чтобы изменить"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değiştirmek için kaydır"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "滑动以更改"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "滑動以更改"
+          }
+        }
+      }
+    },
+    "grovy_onboarding_subtitle": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finde deine Balance"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find your balance"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encuentra tu equilibrio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trouve ton équilibre"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपना संतुलन खोजें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trova il tuo equilibrio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バランスを見つける"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "균형을 찾으세요"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vind je balans"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Znajdź swoją równowagę"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encontre o seu equilíbrio"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encontre o seu equilíbrio"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Найди свой баланс"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dengeni bul"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找到你的平衡"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找到你的平衡"
+          }
+        }
+      }
+    },
+    "grovy_onboarding_title_problem": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamin-Chaos"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Chaos"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caos de Dopamina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaos de la Dopamine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डोपामाइन अराजकता"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caos di Dopamina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ドーパミンの混乱"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "도파민 혼란"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine Chaos"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaos Dopaminowy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caos de Dopamina"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caos de Dopamina"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дофаминовый хаос"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamin Kaosu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多巴胺混乱"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多巴胺混亂"
+          }
+        }
+      }
+    },
+    "grovy_onboarding_title_solution": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fokus & Energie"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus & Energy"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enfoque y Energía"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus & Énergie"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ध्यान और ऊर्जा"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus ed Energia"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "集中とエネルギー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중과 에너지"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus & Energie"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skupienie i Energia"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foco e Energia"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foco e Energia"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фокус и Энергия"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odak ve Enerji"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "专注与活力"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "專注與活力"
+          }
+        }
+      }
+    },
+    "grovy_story_graph_crash": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crash"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crash"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caída"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chute"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दुर्घटना"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crollo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "クラッシュ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "추락"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crash"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spadek"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Queda"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Queda"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Спад"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düşüş"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "崩溃"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "崩潰"
+          }
+        }
+      }
+    },
+    "grovy_story_graph_kick": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kick"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kick"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estímulo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensation"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किक"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stimolo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刺激"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자극"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kick"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kop"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estímulo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estímulo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стимул"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyarıcı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刺激"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刺激"
+          }
+        }
+      }
+    },
+    "grovy_story_graph_label_dopamine": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamin"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डोपामाइन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ドーパミン"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "도파민"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamine"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamina"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamina"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamina"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дофамин"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopamin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多巴胺"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多巴胺"
+          }
+        }
+      }
+    },
+    "grovy_story_graph_label_normal": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Normal-Level"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Normal Level"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Nivel Normal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Niveau Normal"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - सामान्य स्तर"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Livello Normale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - 通常レベル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - 정상 수준"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Normaal niveau"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Poziom Normalny"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Nível Normal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Nível Normal"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Нормальный уровень"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - Normal Seviye"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - 正常水平"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "- - 正常水平"
+          }
+        }
+      }
+    },
+    "grovy_story_graph_more": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr davon!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More of this!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Más de esto!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encore !"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इसका अधिक!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancora!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "もっと！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "더 많이!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meer hiervan!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Więcej!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais disto!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais disso!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Еще!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha fazla!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更多！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更多！"
+          }
+        }
+      }
+    },
+    "grovy_story_habit_morning": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mañana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matin"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुबह"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mattina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "朝"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아침"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ochtend"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poranek"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manhã"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manhã"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Утро"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sabah"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "早晨"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "早晨"
+          }
+        }
+      }
+    },
+    "grovy_story_habit_move": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bewegung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movement"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimiento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mouvement"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गतिविधि"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "運動"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "운동"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beweging"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruch"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Движение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hareket"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运动"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "運動"
+          }
+        }
+      }
+    },
+    "grovy_story_habit_read": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lesen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lectura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lecture"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पढ़ना"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lettura"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "読書"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "독서"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lezen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czytanie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leitura"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leitura"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чтение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okuma"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "阅读"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "閱讀"
+          }
+        }
+      }
+    },
+    "grovy_story_habit_sleep": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlaf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sueño"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sommeil"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नींद"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "수면"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slaap"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sono"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sono"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сон"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyku"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠"
+          }
+        }
+      }
+    },
+    "grovy_story_habit_water": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasser"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agua"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eau"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पानी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acqua"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woda"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Água"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Água"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вода"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "喝水"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "喝水"
+          }
+        }
+      }
+    },
+    "grovy_story_habits_done": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld von %lld Gewohnheiten erledigt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of %lld habits completed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld hábitos completados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld sur %lld habitudes complétées"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld में से %lld आदतें पूरी हुईं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld su %lld abitudini completate"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld の習慣が完了"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld개의 습관 중 %lld개 완료"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld van %lld gewoonten voltooid"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld z %lld nawyków ukończone"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld hábitos concluídos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld hábitos concluídos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld из %lld привычек выполнено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld / %lld alışkanlık tamamlandı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成 %lld / %lld 个习惯"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成 %lld / %lld 個習慣"
+          }
+        }
+      }
+    },
+    "grovy_story_scene1_sub": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jede Benachrichtigung, jeder Like und jedes Video schüttet Dopamin aus."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every notification, every like, and every video releases dopamine."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada notificación, cada me gusta y cada video libera dopamina."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque notification, chaque like et chaque vidéo libère de la dopamine."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर अधिसूचना, हर लाइक और हर वीडियो डोपामाइन जारी करता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni notifica, ogni like e ogni video rilascia dopamina."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべての通知、いいね、ビデオがドーパミンを放出します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 알림, 좋아요, 비디오는 도파민을 분비합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elke melding, elke like en elke video maakt dopamine vrij."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Każde powiadomienie, polubienie i wideo uwalnia dopaminę."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada notificação, like e vídeo liberta dopamina."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada notificação, like e vídeo libera dopamina."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каждое уведомление, лайк и видео высвобождают дофамин."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her bildirim, her beğeni ve her video dopamin salgılar."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每个通知、每个赞和每个视频都会释放多巴胺。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每個通知、每個讚和每個視頻都會釋放多巴胺。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene1_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Gehirn liebt\nschnelle Kicks."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your brain loves\nquick kicks."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu cerebro ama\nlos estímulos rápidos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton cerveau adore\nles sensations rapides."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके मस्तिष्क को\nत्वरित किक पसंद हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo cervello ama\ngli stimoli veloci."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "脳は\n素早い刺激が好き。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "당신의 뇌는\n빠른 자극을 좋아합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je brein houdt\nvan snelle kicks."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój mózg uwielbia\nszybkie pobudzenia."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O teu cérebro adora\nestímulos rápidos."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O seu cérebro adora\nestímulos rápidos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Твой мозг любит\nбыстрые стимулы."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beynin hızlı\nuyarıcıları sever."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的大脑喜欢\n快速刺激。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的大腦喜歡\n快速刺激。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene2_sub": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeder Kick senkt dein Normal-Level – du brauchst immer mehr, um dich gut zu fühlen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every kick lowers your normal level – you need more and more to feel good."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada estímulo baja tu nivel normal – necesitas cada vez más para sentirte bien."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque sensation abaisse ton niveau normal – tu en as de plus en plus besoin pour te sentir bien."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर किक आपके सामान्य स्तर को कम करता है - आपको अच्छा महसूस करने के लिए और अधिक की आवश्यकता होती है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni stimolo abbassa il tuo livello normale – hai bisogno di sempre di più per sentirti bene."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刺激ごとに通常のレベルが下がり、気分を良くするにはもっと必要になります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자극을 받을 때마다 정상 수준이 낮아져, 기분이 좋아지려면 점점 더 많은 자극이 필요합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elke kick verlaagt je normale niveau – je hebt steeds meer nodig om je goed te voelen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Każdy kop obniża twój normalny poziom – potrzebujesz coraz więcej, by czuć się dobrze."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada estímulo baixa o teu nível normal – precisas cada vez de mais para te sentires bem."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada estímulo baixa o seu nível normal – você precisa de cada vez mais para se sentir bem."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каждый стимул снижает твой нормальный уровень – тебе нужно все больше, чтобы чувствовать себя хорошо."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her uyarıcı normal seviyeni düşürür – iyi hissetmek için giderek daha fazlasına ihtiyacın olur."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次刺激都会降低你的正常水平——你需要越来越多才能感觉良好。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次刺激都會降低你的正常水平——你需要越來越多才能感覺良好。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene2_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kick. Crash.\nWiederholen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kick. Crash.\nRepeat."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estímulo. Caída.\nRepetir."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensation. Chute.\nRépéter."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किक. दुर्घटना.\nदोहराएं."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stimolo. Crollo.\nRipeti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刺激。クラッシュ。\n繰り返す。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자극. 추락.\n반복."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kick. Crash.\nHerhalen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kop. Spadek.\nPowtórz."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estímulo. Queda.\nRepetir."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estímulo. Queda.\nRepetir."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стимул. Спад.\nПовторить."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyarıcı. Düşüş.\nTekrar et."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刺激。崩溃。\n重复。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刺激。崩潰。\n重複。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene3_sub": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ständige Reize machen es schwer, dranzubleiben – gute Gewohnheiten gehen unter."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Constant stimuli make it hard to stick with it – good habits get lost."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los estímulos constantes dificultan la perseverancia – los buenos hábitos se pierden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les stimuli constants rendent difficile la persévérance – les bonnes habitudes se perdent."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निरंतर उत्तेजनाओं से बने रहना मुश्किल हो जाता है - अच्छी आदतें खो जाती हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gli stimoli costanti rendono difficile la costanza – le buone abitudini si perdono."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "絶え間ない刺激は続けることを難しくし、良い習慣が失われます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지속적인 자극은 인내하기 어렵게 만들며, 좋은 습관을 잃게 합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Constante prikkels maken het moeilijk om vol te houden – goede gewoonten gaan verloren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciągłe bodźce utrudniają wytrwałość – dobre nawyki zanikają."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estímulos constantes dificultam a perseverança – os bons hábitos perdem-se."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estímulos constantes dificultam a perseverança – os bons hábitos se perdem."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Постоянные стимулы затрудняют постоянство – хорошие привычки теряются."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sürekli uyarıcılar tutarlı olmayı zorlaştırır – iyi alışkanlıklar kaybolur."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "持续的刺激让你很难坚持下去——好习惯逐渐消失。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "持續的刺激讓你很難堅持下去——好習慣逐漸消失。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene3_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Und dein Fokus\nwelkt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "And your focus\nwilts."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Y tu enfoque\nse marchita."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Et ton attention\nse fane."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "और आपका ध्यान\nकमजोर हो जाता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E il tuo focus\nappassisce."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "そして集中力が\n枯れます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "그리고 집중력이\n시듭니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En je focus\nverwelkt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A twój focus\nwiędnie."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E o teu foco\nmurcha."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E o seu foco\nmurcha."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "А твой фокус\nвянет."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ve odağın\nsolar."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的注意力\n也会枯萎。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的注意力\n也會枯萎。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene4_sub": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jede erledigte Gewohnheit lässt deinen Garten wachsen – echter Fortschritt statt Scroll-Kick."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every completed habit makes your garden grow – real progress instead of a scroll kick."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada hábito completado hace crecer tu jardín – progreso real en lugar de un estímulo de scroll."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque habitude complétée fait grandir ton jardin – de vrais progrès au lieu d'une sensation de scroll."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर पूरी हुई आदत से आपका बगीचा बढ़ता है - स्क्रॉल किक के बजाय वास्तविक प्रगति।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni abitudine completata fa crescere il tuo giardino – progressi reali invece di uno stimolo da scroll."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "習慣を完了するごとに庭が成長します。スクロール刺激ではなく、本当の進歩です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "습관을 완료할 때마다 정원이 자라납니다. 스크롤 자극이 아닌 진정한 발전입니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elke voltooide gewoonte laat je tuin groeien – echte vooruitgang in plaats van een scroll-kick."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Każdy ukończony nawyk sprawia, że twój ogród rośnie – prawdziwy postęp zamiast kopu z przewijania."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada hábito concluído faz o teu jardim crescer – progresso real em vez de um estímulo de scroll."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada hábito concluído faz o seu jardim crescer – progresso real em vez de um estímulo de scroll."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каждая выполненная привычка заставляет твой сад расти – настоящий прогресс вместо стимула от скроллинга."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamamlanan her alışkanlık bahçeni büyütür – kaydırma uyarıcısı yerine gerçek ilerleme."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成的每个习惯都会让你的花园成长——这是真正的进步，而不是刷屏带来的刺激。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成的每個習慣都會讓你的花園成長——這是真正的進步，而不是刷屏帶來的刺激。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene4_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy dreht\nden Spieß um."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy turns\nthe tables."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy cambia\nlas reglas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy renverse\nla situation."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ग्रोवी ने\nस्थिति बदल दी।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy ribalta\nla situazione."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovyが\n状況を逆転させます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy가\n상황을 역전시킵니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy draait\nde rollen om."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy odwraca\nsytuację."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Grovy vira\no jogo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Grovy vira\no jogo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy меняет\nправила игры."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy durumu\ntersine çeviriyor."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy 扭转\n了局面。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy 扭轉\n了局面。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene5_sub": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starte mit einer kleinen Gewohnheit. Der Rest wächst von selbst."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start with a small habit. The rest grows by itself."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comienza con un pequeño hábito. El resto crece por sí solo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commence avec une petite habitude. Le reste pousse tout seul."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक छोटी सी आदत से शुरू करें। बाकी खुद बढ़ता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizia con una piccola abitudine. Il resto cresce da solo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小さな習慣から始めましょう。残りは自然に成長します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "작은 습관부터 시작하세요. 나머지는 저절로 자라납니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begin met een kleine gewoonte. De rest groeit vanzelf."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zacznij od małego nawyku. Reszta rośnie sama."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começa com um pequeno hábito. O resto cresce por si só."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comece com um pequeno hábito. O resto cresce por si só."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начни с маленькой привычки. Остальное вырастет само."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Küçük bir alışkanlıkla başla. Gerisi kendiliğinden büyür."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从小习惯开始。其余的会自然生长。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "從小習慣開始。其餘的會自然生長。"
+          }
+        }
+      }
+    },
+    "grovy_story_scene5_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Garten\nwartet."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your garden\nis waiting."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu jardín\nte espera."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton jardin\nt'attend."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका बगीचा\nप्रतीक्षा कर रहा है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo giardino\nti aspetta."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたの庭が\n待っています。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "당신의 정원이\n기다리고 있습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je tuin\nwacht."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój ogród\nczeka."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O teu jardim\nespera-te."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O seu jardim\nespera por você."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Твой сад\nждет."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bahçen\nseni bekliyor."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的花园\n正在等待。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的花園\n正在等待。"
+          }
+        }
+      }
+    },
+    "grovy_story_skip": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Überspringen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omitir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "छोड़ें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スキップ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "건너뛰기"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Overslaan"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pomiń"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pular"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pular"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пропустить"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atla"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跳过"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跳過"
+          }
+        }
+      }
+    },
+    "grovy_story_start": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los geht's"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Let's go"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vamos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C'est parti"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चलिए शुरू करते हैं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andiamo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "さあ、始めよう"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시작합시다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laten we gaan"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaczynamy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vamos"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vamos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поехали"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hadi gidelim"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始吧"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始吧"
+          }
+        }
+      }
+    },
     "Gym-Routine": {
       "comment": "",
       "extractionState": "manual",
@@ -490570,2802 +493375,3602 @@
         }
       }
     },
-    "grovy_onboarding_title_problem": {
+    "dopamine_story_formula": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamin-Chaos"
+            "value": "Dopamin · C₈H₁₁NO₂"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Chaos"
+            "value": "Dopamine · C₈H₁₁NO₂"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Caos de Dopamina"
+            "value": "Dopamina · C₈H₁₁NO₂"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaos de la Dopamine"
+            "value": "Dopamine · C₈H₁₁NO₂"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "डोपामाइन अराजकता"
+            "value": "डोपामाइन · C₈H₁₁NO₂"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Caos di Dopamina"
+            "value": "Dopamina · C₈H₁₁NO₂"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ドーパミンの混乱"
+            "value": "ドーパミン · C₈H₁₁NO₂"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "도파민 혼란"
+            "value": "도파민 · C₈H₁₁NO₂"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine Chaos"
+            "value": "Dopamine · C₈H₁₁NO₂"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaos Dopaminowy"
+            "value": "Dopamina · C₈H₁₁NO₂"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Caos de Dopamina"
+            "value": "Dopamina · C₈H₁₁NO₂"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Caos de Dopamina"
+            "value": "Dopamina · C₈H₁₁NO₂"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дофаминовый хаос"
+            "value": "Дофамин · C₈H₁₁NO₂"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamin Kaosu"
+            "value": "Dopamin · C₈H₁₁NO₂"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "多巴胺混乱"
+            "value": "多巴胺 · C₈H₁₁NO₂"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "多巴胺混亂"
+            "value": "多巴胺 · C₈H₁₁NO₂"
           }
         }
       }
     },
-    "grovy_onboarding_title_solution": {
+    "dopamine_story_want": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fokus & Energie"
+            "value": "Wollen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus & Energy"
+            "value": "Wanting"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enfoque y Energía"
+            "value": "Querer"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus & Énergie"
+            "value": "Vouloir"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ध्यान और ऊर्जा"
+            "value": "चाहना"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus ed Energia"
+            "value": "Volere"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "集中とエネルギー"
+            "value": "欲求"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "집중과 에너지"
+            "value": "원함"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus & Energie"
+            "value": "Willen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skupienie i Energia"
+            "value": "Chcenie"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foco e Energia"
+            "value": "Querer"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foco e Energia"
+            "value": "Querer"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Фокус и Энергия"
+            "value": "Желание"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Odak ve Enerji"
+            "value": "İsteme"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "专注与活力"
+            "value": "想要"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "專注與活力"
+            "value": "想要"
           }
         }
       }
     },
-    "grovy_onboarding_subtitle": {
+    "dopamine_story_like": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Finde deine Balance"
+            "value": "Genuss"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Find your balance"
+            "value": "Liking"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Encuentra tu equilibrio"
+            "value": "Placer"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trouve ton équilibre"
+            "value": "Plaisir"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अपना संतुलन खोजें"
+            "value": "आनंद"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trova il tuo equilibrio"
+            "value": "Piacere"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "バランスを見つける"
+            "value": "快楽"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "균형을 찾으세요"
+            "value": "즐거움"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vind je balans"
+            "value": "Genieten"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Znajdź swoją równowagę"
+            "value": "Przyjemność"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Encontre o seu equilíbrio"
+            "value": "Prazer"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Encontre o seu equilíbrio"
+            "value": "Prazer"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Найди свой баланс"
+            "value": "Удовольствие"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dengeni bul"
+            "value": "Zevk"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "找到你的平衡"
+            "value": "享受"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "找到你的平衡"
+            "value": "享受"
           }
         }
       }
     },
-    "grovy_onboarding_slider_hint": {
+    "dopamine_story_s1_title": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wischen zum Ändern"
+            "value": "Dopamin ist nicht\ndein Glücksgefühl."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Swipe to change"
+            "value": "Dopamine is not\nyour happiness."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desliza para cambiar"
+            "value": "La dopamina no es\ntu felicidad."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Glissez pour changer"
+            "value": "La dopamine n'est pas\nton bonheur."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बदलने के लिए स्वाइप करें"
+            "value": "डोपामाइन आपकी\nखुशी नहीं है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scorri per cambiare"
+            "value": "La dopamina non è\nla tua felicità."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "スワイプして変更"
+            "value": "ドーパミンは\n幸福感ではありません。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "스와이프하여 변경"
+            "value": "도파민은\n행복감이 아닙니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Veeg om te veranderen"
+            "value": "Dopamine is niet\nje geluksgevoel."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Przesuń, aby zmienić"
+            "value": "Dopamina to nie\ntwoje szczęście."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deslize para mudar"
+            "value": "A dopamina não é\na tua felicidade."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deslize para mudar"
+            "value": "A dopamina não é\na sua felicidade."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Проведите, чтобы изменить"
+            "value": "Дофамин - это не\nтвое счастье."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Değiştirmek için kaydır"
+            "value": "Dopamin senin\nmutluluğun değildir."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "滑动以更改"
+            "value": "多巴胺不是\n你的幸福感。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "滑動以更改"
+            "value": "多巴胺不是\n你的幸福感。"
           }
         }
       }
     },
-    "grovy_onboarding_button_start": {
+    "dopamine_story_s1_sub": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Loslegen"
+            "value": "Es treibt vor allem das Wollen an – nicht den Genuss. Beides läuft im Gehirn getrennt."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get Started"
+            "value": "It mainly drives wanting – not liking. Both run separately in the brain."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Empezar"
+            "value": "Principalmente impulsa el deseo, no el placer. Ambos ocurren por separado en el cerebro."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Commencer"
+            "value": "Elle stimule principalement l'envie – pas le plaisir. Les deux fonctionnent séparément dans le cerveau."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "शुरू करें"
+            "value": "यह मुख्य रूप से चाहने को प्रेरित करता है - पसंद करने को नहीं। दोनों मस्तिष्क में अलग-अलग चलते हैं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inizia"
+            "value": "Guida principalmente il volere, non il piacere. Entrambi avvengono separatamente nel cervello."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "はじめる"
+            "value": "それは主に「欲求」を駆り立てます。「快楽」ではありません。脳内では両者は別々に働きます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "시작하기"
+            "value": "그것은 주로 '즐거움'이 아닌 '원함'을 유도합니다. 두 가지는 뇌에서 분리되어 작용합니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beginnen"
+            "value": "Het drijft vooral het willen aan – niet het genieten. Beide werken gescheiden in de hersenen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rozpocznij"
+            "value": "Napędza głównie pragnienie – nie przyjemność. Oba procesy zachodzą w mózgu oddzielnie."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Começar"
+            "value": "Impulsiona principalmente o desejo – não o prazer. Ambos ocorrem separadamente no cérebro."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Começar"
+            "value": "Impulsiona principalmente o desejo – não o prazer. Ambos ocorrem separadamente no cérebro."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Начать"
+            "value": "Он в основном стимулирует желание, а не удовольствие. Оба процесса в мозге протекают раздельно."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Başla"
+            "value": "Esas olarak zevki değil, istemeyi yönlendirir. İkisi beyinde ayrı ayrı çalışır."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "开始"
+            "value": "它主要驱动欲望——而不是享受。两者在大脑中独立运作。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "開始"
+            "value": "它主要驅動慾望——而不是享受。兩者在大腦中獨立運作。"
           }
         }
       }
     },
-    "grovy_story_skip": {
+    "dopamine_story_s1_source": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Überspringen"
+            "value": "Prinzip-Grafik nach Berridge & Robinson (Wollen ≠ Mögen)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skip"
+            "value": "Principle chart based on Berridge & Robinson (Wanting ≠ Liking)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Omitir"
+            "value": "Gráfico conceptual según Berridge & Robinson (Querer ≠ Gustar)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passer"
+            "value": "Graphique de principe d'après Berridge & Robinson (Vouloir ≠ Aimer)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "छोड़ें"
+            "value": "Berridge & Robinson पर आधारित सिद्धांत चार्ट (चाहना ≠ पसंद करना)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salta"
+            "value": "Grafico concettuale basato su Berridge & Robinson (Volere ≠ Piacere)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "スキップ"
+            "value": "Berridge＆Robinsonに基づく原理図（Wanting ≠ Liking）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "건너뛰기"
+            "value": "Berridge & Robinson을 바탕으로 한 원리 그래프 (원함 ≠ 좋음)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Overslaan"
+            "value": "Principe-grafiek volgens Berridge & Robinson (Willen ≠ Leuk vinden)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pomiń"
+            "value": "Wykres na podstawie Berridge'a i Robinsona (Chcenie ≠ Lubienie)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pular"
+            "value": "Gráfico conceptual segundo Berridge & Robinson (Querer ≠ Gostar)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pular"
+            "value": "Gráfico conceitual segundo Berridge & Robinson (Querer ≠ Gostar)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Пропустить"
+            "value": "Принципиальный график по Берриджу и Робинсону (Желание ≠ Симпатия)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Atla"
+            "value": "Berridge ve Robinson'a dayalı prensip grafiği (İsteme ≠ Beğenme)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "跳过"
+            "value": "基于 Berridge & Robinson 的原理图（想要 ≠ 喜欢）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "跳過"
+            "value": "基於 Berridge & Robinson 的原理圖（想要 ≠ 喜歡）"
           }
         }
       }
     },
-    "grovy_story_scene1_title": {
+    "dopamine_story_s2_label": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Gehirn liebt\nschnelle Kicks."
+            "value": "Dopamin-Signal im Moment der Belohnung (gestrichelt)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your brain loves\nquick kicks."
+            "value": "Dopamine signal at the moment of reward (dashed)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu cerebro ama\nlos estímulos rápidos."
+            "value": "Señal de dopamina en el momento de la recompensa (línea discontinua)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ton cerveau adore\nles sensations rapides."
+            "value": "Signal de dopamine au moment de la récompense (pointillé)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपके मस्तिष्क को\nत्वरित किक पसंद हैं।"
+            "value": "इनाम के समय डोपामाइन संकेत (धराशायी)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il tuo cervello ama\ngli stimoli veloci."
+            "value": "Segnale di dopamina al momento della ricompensa (tratteggiato)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "脳は\n素早い刺激が好き。"
+            "value": "報酬時のドーパミンシグナル（破線）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "당신의 뇌는\n빠른 자극을 좋아합니다."
+            "value": "보상 순간의 도파민 신호 (점선)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je brein houdt\nvan snelle kicks."
+            "value": "Dopaminesignaal op het moment van beloning (gestreept)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Twój mózg uwielbia\nszybkie pobudzenia."
+            "value": "Sygnał dopaminy w momencie nagrody (linia przerywana)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O teu cérebro adora\nestímulos rápidos."
+            "value": "Sinal de dopamina no momento da recompensa (tracejado)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O seu cérebro adora\nestímulos rápidos."
+            "value": "Sinal de dopamina no momento da recompensa (tracejado)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твой мозг любит\nбыстрые стимулы."
+            "value": "Сигнал дофамина в момент награды (пунктир)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beynin hızlı\nuyarıcıları sever."
+            "value": "Ödül anında dopamin sinyali (kesikli)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的大脑喜欢\n快速刺激。"
+            "value": "奖励时刻的多巴胺信号（虚线）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的大腦喜歡\n快速刺激。"
+            "value": "獎勵時刻的多巴胺信號（虛線）"
           }
         }
       }
     },
-    "grovy_story_scene1_sub": {
+    "dopamine_story_s2_t1": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jede Benachrichtigung, jeder Like und jedes Video schüttet Dopamin aus."
+            "value": "Unerwarteter Like"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every notification, every like, and every video releases dopamine."
+            "value": "Unexpected Like"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada notificación, cada me gusta y cada video libera dopamina."
+            "value": "Me gusta inesperado"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaque notification, chaque like et chaque vidéo libère de la dopamine."
+            "value": "Like inattendu"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "हर अधिसूचना, हर लाइक और हर वीडियो डोपामाइन जारी करता है।"
+            "value": "अप्रत्याशित लाइक"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ogni notifica, ogni like e ogni video rilascia dopamina."
+            "value": "Like inaspettato"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "すべての通知、いいね、ビデオがドーパミンを放出します。"
+            "value": "予期せぬ「いいね」"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "모든 알림, 좋아요, 비디오는 도파민을 분비합니다."
+            "value": "예상치 못한 좋아요"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elke melding, elke like en elke video maakt dopamine vrij."
+            "value": "Onverwachte Like"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Każde powiadomienie, polubienie i wideo uwalnia dopaminę."
+            "value": "Niespodziewany Like"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada notificação, like e vídeo liberta dopamina."
+            "value": "Gosto inesperado"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada notificação, like e vídeo libera dopamina."
+            "value": "Like inesperado"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Каждое уведомление, лайк и видео высвобождают дофамин."
+            "value": "Неожиданный лайк"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Her bildirim, her beğeni ve her video dopamin salgılar."
+            "value": "Beklenmedik Beğeni"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "每个通知、每个赞和每个视频都会释放多巴胺。"
+            "value": "意想不到的赞"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "每個通知、每個讚和每個視頻都會釋放多巴胺。"
+            "value": "意想不到的讚"
           }
         }
       }
     },
-    "grovy_story_graph_kick": {
+    "dopamine_story_s2_tag1": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kick"
+            "value": "Peak"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kick"
+            "value": "Peak"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estímulo"
+            "value": "Pico"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensation"
+            "value": "Pic"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "किक"
+            "value": "चरम"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stimolo"
+            "value": "Picco"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺激"
+            "value": "ピーク"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "자극"
+            "value": "피크"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kick"
+            "value": "Piek"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kop"
+            "value": "Szczyt"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estímulo"
+            "value": "Pico"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estímulo"
+            "value": "Pico"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Стимул"
+            "value": "Пик"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uyarıcı"
+            "value": "Zirve"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺激"
+            "value": "峰值"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺激"
+            "value": "峰值"
           }
         }
       }
     },
-    "grovy_story_graph_crash": {
+    "dopamine_story_s2_t2": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Crash"
+            "value": "Erwartete Belohnung"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Crash"
+            "value": "Expected Reward"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Caída"
+            "value": "Recompensa esperada"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chute"
+            "value": "Récompense attendue"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "दुर्घटना"
+            "value": "अपेक्षित इनाम"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Crollo"
+            "value": "Ricompensa attesa"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "クラッシュ"
+            "value": "期待された報酬"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "추락"
+            "value": "기대되는 보상"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Crash"
+            "value": "Verwachte Beloning"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spadek"
+            "value": "Oczekiwana Nagroda"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Queda"
+            "value": "Recompensa esperada"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Queda"
+            "value": "Recompensa esperada"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Спад"
+            "value": "Ожидаемая награда"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Düşüş"
+            "value": "Beklenen Ödül"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "崩溃"
+            "value": "预期奖励"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "崩潰"
+            "value": "預期獎勵"
           }
         }
       }
     },
-    "grovy_story_graph_more": {
+    "dopamine_story_s2_tag2": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mehr davon!"
+            "value": "kein Peak"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "More of this!"
+            "value": "no Peak"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¡Más de esto!"
+            "value": "sin Pico"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Encore !"
+            "value": "pas de Pic"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "इसका अधिक!"
+            "value": "कोई चरम नहीं"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ancora!"
+            "value": "nessun Picco"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "もっと！"
+            "value": "ピークなし"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "더 많이!"
+            "value": "피크 없음"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meer hiervan!"
+            "value": "geen Piek"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Więcej!"
+            "value": "brak Szczytu"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mais disto!"
+            "value": "sem Pico"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mais disso!"
+            "value": "sem Pico"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Еще!"
+            "value": "без Пика"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daha fazla!"
+            "value": "Zirve yok"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "更多！"
+            "value": "无峰值"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "更多！"
+            "value": "無峰值"
           }
         }
       }
     },
-    "grovy_story_scene2_title": {
+    "dopamine_story_s2_t3": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kick. Crash.\nWiederholen."
+            "value": "Like bleibt aus"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kick. Crash.\nRepeat."
+            "value": "No Like"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estímulo. Caída.\nRepetir."
+            "value": "Sin Me gusta"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensation. Chute.\nRépéter."
+            "value": "Pas de Like"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "किक. दुर्घटना.\nदोहराएं."
+            "value": "कोई लाइक नहीं"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stimolo. Crollo.\nRipeti."
+            "value": "Nessun Like"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺激。クラッシュ。\n繰り返す。"
+            "value": "「いいね」なし"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "자극. 추락.\n반복."
+            "value": "좋아요 없음"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kick. Crash.\nHerhalen."
+            "value": "Geen Like"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kop. Spadek.\nPowtórz."
+            "value": "Brak Like'a"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estímulo. Queda.\nRepetir."
+            "value": "Sem Gosto"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estímulo. Queda.\nRepetir."
+            "value": "Sem Like"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Стимул. Спад.\nПовторить."
+            "value": "Нет лайка"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uyarıcı. Düşüş.\nTekrar et."
+            "value": "Beğeni Yok"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺激。崩溃。\n重复。"
+            "value": "没有赞"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺激。崩潰。\n重複。"
+            "value": "沒有讚"
           }
         }
       }
     },
-    "grovy_story_scene2_sub": {
+    "dopamine_story_s2_tag3": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jeder Kick senkt dein Normal-Level – du brauchst immer mehr, um dich gut zu fühlen."
+            "value": "Dip unter Normal"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every kick lowers your normal level – you need more and more to feel good."
+            "value": "Dip below normal"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada estímulo baja tu nivel normal – necesitas cada vez más para sentirte bien."
+            "value": "Caída bajo lo normal"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaque sensation abaisse ton niveau normal – tu en as de plus en plus besoin pour te sentir bien."
+            "value": "Chute sous la normale"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "हर किक आपके सामान्य स्तर को कम करता है - आपको अच्छा महसूस करने के लिए और अधिक की आवश्यकता होती है।"
+            "value": "सामान्य से नीचे गिरावट"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ogni stimolo abbassa il tuo livello normale – hai bisogno di sempre di più per sentirti bene."
+            "value": "Crollo sotto il normale"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺激ごとに通常のレベルが下がり、気分を良くするにはもっと必要になります。"
+            "value": "通常以下の低下"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "자극을 받을 때마다 정상 수준이 낮아져, 기분이 좋아지려면 점점 더 많은 자극이 필요합니다."
+            "value": "정상치 아래로 하락"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elke kick verlaagt je normale niveau – je hebt steeds meer nodig om je goed te voelen."
+            "value": "Dip onder normaal"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Każdy kop obniża twój normalny poziom – potrzebujesz coraz więcej, by czuć się dobrze."
+            "value": "Spadek poniżej normy"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada estímulo baixa o teu nível normal – precisas cada vez de mais para te sentires bem."
+            "value": "Queda abaixo do normal"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada estímulo baixa o seu nível normal – você precisa de cada vez mais para se sentir bem."
+            "value": "Queda abaixo do normal"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Каждый стимул снижает твой нормальный уровень – тебе нужно все больше, чтобы чувствовать себя хорошо."
+            "value": "Падение ниже нормы"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Her uyarıcı normal seviyeni düşürür – iyi hissetmek için giderek daha fazlasına ihtiyacın olur."
+            "value": "Normalin altına düşüş"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "每次刺激都会降低你的正常水平——你需要越来越多才能感觉良好。"
+            "value": "跌破正常水平"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "每次刺激都會降低你的正常水平——你需要越來越多才能感覺良好。"
+            "value": "跌破正常水平"
           }
         }
       }
     },
-    "grovy_story_graph_label_dopamine": {
+    "dopamine_story_s2_title": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamin"
+            "value": "Überraschung ist\nder Treibstoff."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine"
+            "value": "Surprise is\nthe fuel."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamina"
+            "value": "La sorpresa es\nel combustible."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine"
+            "value": "La surprise est\nle carburant."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "डोपामाइन"
+            "value": "आश्चर्य\nईंधन है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamina"
+            "value": "La sorpresa è\nil carburante."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ドーパミン"
+            "value": "驚きは\n燃料です。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "도파민"
+            "value": "놀라움이\n원료입니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamine"
+            "value": "Verrassing is\nde brandstof."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamina"
+            "value": "Niespodzianka to\npaliwo."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamina"
+            "value": "A surpresa é\no combustível."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamina"
+            "value": "A surpresa é\no combustível."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дофамин"
+            "value": "Сюрприз - это\nтопливо."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopamin"
+            "value": "Sürpriz\nyakıttır."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "多巴胺"
+            "value": "惊喜是\n燃料。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "多巴胺"
+            "value": "驚喜是\n燃料。"
           }
         }
       }
     },
-    "grovy_story_graph_label_normal": {
+    "dopamine_story_s2_sub": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Normal-Level"
+            "value": "Unerwartete Belohnungen feuern Dopamin am stärksten. Genau dieses „Mal gibt's was, mal nicht“ steckt in jedem Feed."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Normal Level"
+            "value": "Unexpected rewards fire dopamine the strongest. Exactly this 'sometimes there is something, sometimes not' is in every feed."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Nivel Normal"
+            "value": "Las recompensas inesperadas estimulan más la dopamina. Precisamente esto de 'a veces hay algo, a veces no' está en cada feed."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Niveau Normal"
+            "value": "Les récompenses inattendues libèrent le plus de dopamine. C'est exactement ce 'parfois il y a quelque chose, parfois non' que l'on trouve dans chaque feed."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - सामान्य स्तर"
+            "value": "अप्रत्याशित इनाम डोपामाइन को सबसे मजबूत बनाते हैं। ठीक यही 'कभी कुछ होता है, कभी नहीं' हर फ़ीड में होता है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Livello Normale"
+            "value": "Le ricompense inaspettate stimolano maggiormente la dopamina. Esattamente questo 'a volte c'è qualcosa, a volte no' si trova in ogni feed."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - 通常レベル"
+            "value": "予期せぬ報酬はドーパミンを最も強く発火させます。まさにこの「たまに何かある、たまに何もない」がすべてのフィードに潜んでいます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - 정상 수준"
+            "value": "예상치 못한 보상은 도파민을 가장 강하게 분비시킵니다. '어떨 때는 있고, 어떨 때는 없는' 이것이 모든 피드에 숨어 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Normaal niveau"
+            "value": "Onverwachte beloningen vuren dopamine het sterkst. Precies dit 'soms is er iets, soms niet' zit in elke feed."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Poziom Normalny"
+            "value": "Niespodziewane nagrody najsilniej uwalniają dopaminę. Właśnie to 'czasem coś jest, czasem nie' kryje się w każdym feedzie."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Nível Normal"
+            "value": "Recompensas inesperadas disparam mais a dopamina. Exatamente este 'às vezes há algo, às vezes não' está em cada feed."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Nível Normal"
+            "value": "Recompensas inesperadas disparam a dopamina de forma mais forte. Exatamente esse 'às vezes tem algo, às vezes não' está presente em todos os feeds."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Нормальный уровень"
+            "value": "Неожиданные награды сильнее всего стимулируют дофамин. Именно это 'иногда есть что-то, иногда нет' кроется в каждой ленте."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - Normal Seviye"
+            "value": "Beklenmedik ödüller dopamini en güçlü şekilde ateşler. Tam olarak bu 'bazen bir şey var, bazen yok' her akışta bulunur."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - 正常水平"
+            "value": "意想不到的奖励最能刺激多巴胺。正是这种“有时候有，有时候没有”的感觉充斥在每个信息流中。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "- - 正常水平"
+            "value": "意想不到的獎勵最能刺激多巴胺。正是這種「有時候有，有時候沒有」的感覺充斥在每個信息流中。"
           }
         }
       }
     },
-    "grovy_story_scene3_title": {
+    "dopamine_story_s2_source": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Und dein Fokus\nwelkt."
+            "value": "Nach Wolfram Schultz et al. (Belohnungsvorhersagefehler)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "And your focus\nwilts."
+            "value": "According to Wolfram Schultz et al. (Reward prediction error)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Y tu enfoque\nse marchita."
+            "value": "Según Wolfram Schultz et al. (Error de predicción de recompensa)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Et ton attention\nse fane."
+            "value": "D'après Wolfram Schultz et al. (Erreur de prédiction de récompense)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "और आपका ध्यान\nकमजोर हो जाता है।"
+            "value": "Wolfram Schultz et al. के अनुसार (इनाम भविष्यवाणी त्रुटि)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "E il tuo focus\nappassisce."
+            "value": "Secondo Wolfram Schultz et al. (Errore di previsione della ricompensa)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "そして集中力が\n枯れます。"
+            "value": "Wolfram Schultzらによる（報酬予測誤差）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "그리고 집중력이\n시듭니다."
+            "value": "Wolfram Schultz 등 (보상 예측 오류)에 따름"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "En je focus\nverwelkt."
+            "value": "Volgens Wolfram Schultz et al. (Beloningsvoorspellingsfout)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "A twój focus\nwiędnie."
+            "value": "Według Wolframa Schultza i in. (Błąd przewidywania nagrody)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "E o teu foco\nmurcha."
+            "value": "Segundo Wolfram Schultz et al. (Erro de previsão de recompensa)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "E o seu foco\nmurcha."
+            "value": "Segundo Wolfram Schultz et al. (Erro de previsão de recompensa)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "А твой фокус\nвянет."
+            "value": "По Вольфраму Шульцу и др. (Ошибка предсказания награды)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ve odağın\nsolar."
+            "value": "Wolfram Schultz ve ark. göre (Ödül tahmin hatası)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的注意力\n也会枯萎。"
+            "value": "基于 Wolfram Schultz 等人（奖励预测误差）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的注意力\n也會枯萎。"
+            "value": "基於 Wolfram Schultz 等人（獎勵預測誤差）"
           }
         }
       }
     },
-    "grovy_story_scene3_sub": {
+    "dopamine_story_s3_minutes": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ständige Reize machen es schwer, dranzubleiben – gute Gewohnheiten gehen unter."
+            "value": "Minuten pro Tag am Smartphone"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Constant stimuli make it hard to stick with it – good habits get lost."
+            "value": "Minutes per day on the smartphone"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los estímulos constantes dificultan la perseverancia – los buenos hábitos se pierden."
+            "value": "Minutos al día en el smartphone"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les stimuli constants rendent difficile la persévérance – les bonnes habitudes se perdent."
+            "value": "Minutes par jour sur le smartphone"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "निरंतर उत्तेजनाओं से बने रहना मुश्किल हो जाता है - अच्छी आदतें खो जाती हैं।"
+            "value": "स्मार्टफोन पर प्रतिदिन मिनट"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gli stimoli costanti rendono difficile la costanza – le buone abitudini si perdono."
+            "value": "Minuti al giorno sullo smartphone"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "絶え間ない刺激は続けることを難しくし、良い習慣が失われます。"
+            "value": "スマートフォンの1日あたりの使用時間（分）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "지속적인 자극은 인내하기 어렵게 만들며, 좋은 습관을 잃게 합니다."
+            "value": "스마트폰 일일 사용 시간(분)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Constante prikkels maken het moeilijk om vol te houden – goede gewoonten gaan verloren."
+            "value": "Minuten per dag op de smartphone"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ciągłe bodźce utrudniają wytrwałość – dobre nawyki zanikają."
+            "value": "Minut dziennie na smartfonie"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estímulos constantes dificultam a perseverança – os bons hábitos perdem-se."
+            "value": "Minutos por dia no smartphone"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estímulos constantes dificultam a perseverança – os bons hábitos se perdem."
+            "value": "Minutos por dia no smartphone"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Постоянные стимулы затрудняют постоянство – хорошие привычки теряются."
+            "value": "Минут в день на смартфоне"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sürekli uyarıcılar tutarlı olmayı zorlaştırır – iyi alışkanlıklar kaybolur."
+            "value": "Akıllı telefonda günde geçirilen dakika"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "持续的刺激让你很难坚持下去——好习惯逐渐消失。"
+            "value": "每天在智能手机上的分钟数"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "持續的刺激讓你很難堅持下去——好習慣逐漸消失。"
+            "value": "每天在智慧型手機上的分鐘數"
           }
         }
       }
     },
-    "grovy_story_habit_move": {
+    "dopamine_story_s3_days": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bewegung"
+            "value": "%lld / 365 Tage"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Movement"
+            "value": "%lld / 365 Days"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Movimiento"
+            "value": "%lld / 365 Días"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mouvement"
+            "value": "%lld / 365 Jours"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "गतिविधि"
+            "value": "%lld / 365 दिन"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Movimento"
+            "value": "%lld / 365 Giorni"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "運動"
+            "value": "%lld / 365日"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "운동"
+            "value": "%lld / 365일"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beweging"
+            "value": "%lld / 365 Dagen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ruch"
+            "value": "%lld / 365 Dni"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Movimento"
+            "value": "%lld / 365 Dias"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Movimento"
+            "value": "%lld / 365 Dias"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Движение"
+            "value": "%lld / 365 Дней"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hareket"
+            "value": "%lld / 365 Gün"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "运动"
+            "value": "%lld / 365 天"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "運動"
+            "value": "%lld / 365 天"
           }
         }
       }
     },
-    "grovy_story_habit_read": {
+    "dopamine_story_s3_title": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lesen"
+            "value": "Das sind 46 Tage\npro Jahr."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Reading"
+            "value": "That is 46 days\nper year."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lectura"
+            "value": "Eso son 46 días\nal año."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lecture"
+            "value": "Cela fait 46 jours\npar an."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पढ़ना"
+            "value": "यह प्रति वर्ष\n46 दिन है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lettura"
+            "value": "Sono 46 giorni\nall'anno."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "読書"
+            "value": "これは年間\n46日に相当します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "독서"
+            "value": "이것은 연간\n46일에 해당합니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lezen"
+            "value": "Dat is 46 dagen\nper jaar."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Czytanie"
+            "value": "To jest 46 dni\nw roku."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Leitura"
+            "value": "Isso são 46 dias\npor ano."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Leitura"
+            "value": "Isso são 46 dias\npor ano."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Чтение"
+            "value": "Это 46 дней\nв году."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Okuma"
+            "value": "Bu yılda\n46 gün eder."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "阅读"
+            "value": "这相当于每年\n46 天。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "閱讀"
+            "value": "這相當於每年\n46 天。"
           }
         }
       }
     },
-    "grovy_story_habit_water": {
+    "dopamine_story_s3_sub": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wasser"
+            "value": "Fast anderthalb Monate nur am Handy. Bei 16- bis 29-Jährigen sind es mit 216 Minuten sogar rund 55 Tage."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Water"
+            "value": "Almost a month and a half just on the phone. For 16 to 29-year-olds, it's even around 55 days with 216 minutes."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Agua"
+            "value": "Casi un mes y medio solo en el teléfono. Para los de 16 a 29 años, son incluso unos 55 días con 216 minutos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eau"
+            "value": "Près d'un mois et demi uniquement sur le téléphone. Chez les 16-29 ans, c'est même environ 55 jours avec 216 minutes."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पानी"
+            "value": "लगभग डेढ़ महीने सिर्फ फोन पर। 16 से 29 साल के बच्चों के लिए, यह 216 मिनट के साथ लगभग 55 दिन है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Acqua"
+            "value": "Quasi un mese e mezzo solo al telefono. Per la fascia 16-29 anni, sono addirittura circa 55 giorni con 216 minuti."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "水"
+            "value": "スマホだけで約1ヶ月半。16〜29歳では216分で約55日にもなります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "물"
+            "value": "스마트폰에서만 약 한 달 반. 16-29세의 경우 216분으로 약 55일에 달합니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Water"
+            "value": "Bijna anderhalve maand alleen op de telefoon. Bij 16- tot 29-jarigen is dat zelfs zo'n 55 dagen met 216 minuten."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Woda"
+            "value": "Prawie półtora miesiąca tylko na telefonie. Wśród 16-29 latków to z 216 minutami nawet około 55 dni."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Água"
+            "value": "Quase um mês e meio apenas no telemóvel. Para jovens de 16 a 29 anos, são mesmo cerca de 55 dias com 216 minutos."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Água"
+            "value": "Quase um mês e meio apenas no celular. Para jovens de 16 a 29 anos, são cerca de 55 dias com 216 minutos."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вода"
+            "value": "Почти полтора месяца только на телефоне. У 16-29-летних это 216 минут, что составляет около 55 дней."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Su"
+            "value": "Sadece telefonda neredeyse bir buçuk ay. 16-29 yaş arası için 216 dakika ile bu yaklaşık 55 gün."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "喝水"
+            "value": "几乎有一个半月时间仅仅花在手机上。对于 16 至 29 岁的年轻人来说，每天 216 分钟甚至相当于 55 天。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "喝水"
+            "value": "幾乎有一個半月時間僅僅花在手機上。對於 16 至 29 歲的年輕人來說，每天 216 分鐘甚至相當於 55 天。"
           }
         }
       }
     },
-    "grovy_story_habit_sleep": {
+    "dopamine_story_s3_source": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schlaf"
+            "value": "Quelle: Bitkom 2026, Ø in Deutschland (Selbsteinschätzung)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep"
+            "value": "Source: Bitkom 2026, Ø in Germany (Self-assessment)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sueño"
+            "value": "Fuente: Bitkom 2026, Ø en Alemania (Autoevaluación)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sommeil"
+            "value": "Source : Bitkom 2026, Ø en Allemagne (Auto-évaluation)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "नींद"
+            "value": "स्रोत: Bitkom 2026, Ø जर्मनी में (स्व-मूल्यांकन)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sonno"
+            "value": "Fonte: Bitkom 2026, Ø in Germania (Autovalutazione)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠"
+            "value": "出典：Bitkom 2026、ドイツでの平均（自己評価）"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "수면"
+            "value": "출처: Bitkom 2026, 독일 평균 (자기 평가)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Slaap"
+            "value": "Bron: Bitkom 2026, Ø in Duitsland (Zelfevaluatie)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sen"
+            "value": "Źródło: Bitkom 2026, Ø w Niemczech (Samoocena)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sono"
+            "value": "Fonte: Bitkom 2026, Ø na Alemanha (Autoavaliação)"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sono"
+            "value": "Fonte: Bitkom 2026, Ø na Alemanha (Autoavaliação)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сон"
+            "value": "Источник: Bitkom 2026, Ø в Германии (Самооценка)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uyku"
+            "value": "Kaynak: Bitkom 2026, Ø Almanya (Öz değerlendirme)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠"
+            "value": "来源：Bitkom 2026，德国平均水平（自我评估）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠"
+            "value": "來源：Bitkom 2026，德國平均水平（自我評估）"
           }
         }
       }
     },
-    "grovy_story_habit_morning": {
+    "dopamine_story_seconds": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Morgen"
+            "value": "%lld s"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Morning"
+            "value": "%lld s"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mañana"
+            "value": "%lld s"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Matin"
+            "value": "%lld s"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सुबह"
+            "value": "%lld s"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mattina"
+            "value": "%lld s"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "朝"
+            "value": "%lld s"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "아침"
+            "value": "%lld s"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ochtend"
+            "value": "%lld s"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Poranek"
+            "value": "%lld s"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manhã"
+            "value": "%lld s"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manhã"
+            "value": "%lld s"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Утро"
+            "value": "%lld с"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sabah"
+            "value": "%lld sn"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "早晨"
+            "value": "%lld 秒"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "早晨"
+            "value": "%lld 秒"
           }
         }
       }
     },
-    "grovy_story_habits_done": {
+    "dopamine_story_s4_return": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld von %lld Gewohnheiten erledigt"
+            "value": "Zurück im Fokus: fast eine halbe Stunde"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld of %lld habits completed"
+            "value": "Back in focus: almost half an hour"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld de %lld hábitos completados"
+            "value": "De vuelta al enfoque: casi media hora"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld sur %lld habitudes complétées"
+            "value": "Retour à la concentration : près d'une demi-heure"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld में से %lld आदतें पूरी हुईं"
+            "value": "वापस फोकस में: लगभग आधा घंटा"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld su %lld abitudini completate"
+            "value": "Ritorno al focus: quasi mezz'ora"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld の習慣が完了"
+            "value": "集中に戻るまで：約30分"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld개의 습관 중 %lld개 완료"
+            "value": "집중력 회복: 약 30분"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld van %lld gewoonten voltooid"
+            "value": "Terug in focus: bijna een half uur"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld z %lld nawyków ukończone"
+            "value": "Powrót do skupienia: prawie pół godziny"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld de %lld hábitos concluídos"
+            "value": "De volta ao foco: quase meia hora"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld de %lld hábitos concluídos"
+            "value": "De volta ao foco: quase meia hora"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld из %lld привычек выполнено"
+            "value": "Возвращение к фокусу: почти полчаса"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld / %lld alışkanlık tamamlandı"
+            "value": "Tekrar odaklanma: neredeyse yarım saat"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "已完成 %lld / %lld 个习惯"
+            "value": "恢复专注：大约需要半小时"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "已完成 %lld / %lld 個習慣"
+            "value": "恢復專注：大約需要半小時"
           }
         }
       }
     },
-    "grovy_story_scene4_title": {
+    "dopamine_story_s4_title": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy dreht\nden Spieß um."
+            "value": "Dein Fokus\nschrumpft."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy turns\nthe tables."
+            "value": "Your focus\nshrinks."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy cambia\nlas reglas."
+            "value": "Tu enfoque\nse reduce."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy renverse\nla situation."
+            "value": "Ta concentration\ndiminue."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ग्रोवी ने\nस्थिति बदल दी।"
+            "value": "आपका फोकस\nसिकुड़ता है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy ribalta\nla situazione."
+            "value": "Il tuo focus\nsi riduce."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovyが\n状況を逆転させます。"
+            "value": "集中力が\n縮小しています。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy가\n상황을 역전시킵니다."
+            "value": "집중력이\n줄어듭니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy draait\nde rollen om."
+            "value": "Je focus\nkrimpt."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy odwraca\nsytuację."
+            "value": "Twój czas skupienia\nkurczy się."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Grovy vira\no jogo."
+            "value": "O teu foco\nencolhe."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Grovy vira\no jogo."
+            "value": "O seu foco\nencolhe."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy меняет\nправила игры."
+            "value": "Твой фокус\nсокращается."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy durumu\ntersine çeviriyor."
+            "value": "Odağın\nküçülüyor."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy 扭转\n了局面。"
+            "value": "你的注意力\n在萎缩。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy 扭轉\n了局面。"
+            "value": "你的注意力\n在萎縮。"
           }
         }
       }
     },
-    "grovy_story_scene4_sub": {
+    "dopamine_story_s4_sub": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jede erledigte Gewohnheit lässt deinen Garten wachsen – echter Fortschritt statt Scroll-Kick."
+            "value": "Im Schnitt bleibt dein Blick nur noch 47 Sekunden auf einem Bildschirm. 2004 waren es 150."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every completed habit makes your garden grow – real progress instead of a scroll kick."
+            "value": "On average, your gaze only stays on a screen for 47 seconds. In 2004, it was 150."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada hábito completado hace crecer tu jardín – progreso real en lugar de un estímulo de scroll."
+            "value": "En promedio, tu mirada se mantiene en una pantalla por solo 47 segundos. En 2004, eran 150."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaque habitude complétée fait grandir ton jardin – de vrais progrès au lieu d'une sensation de scroll."
+            "value": "En moyenne, ton regard ne reste sur un écran que pendant 47 secondes. En 2004, c'était 150."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "हर पूरी हुई आदत से आपका बगीचा बढ़ता है - स्क्रॉल किक के बजाय वास्तविक प्रगति।"
+            "value": "औसतन, आपकी नज़र एक स्क्रीन पर केवल 47 सेकंड तक टिकी रहती है। 2004 में, यह 150 था।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ogni abitudine completata fa crescere il tuo giardino – progressi reali invece di uno stimolo da scroll."
+            "value": "In media, il tuo sguardo rimane su uno schermo solo per 47 secondi. Nel 2004, erano 150."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "習慣を完了するごとに庭が成長します。スクロール刺激ではなく、本当の進歩です。"
+            "value": "平均して、画面を見つめる時間はわずか47秒です。2004年は150秒でした。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "습관을 완료할 때마다 정원이 자라납니다. 스크롤 자극이 아닌 진정한 발전입니다."
+            "value": "평균적으로 화면에 시선이 머무는 시간은 47초에 불과합니다. 2004년에는 150초였습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elke voltooide gewoonte laat je tuin groeien – echte vooruitgang in plaats van een scroll-kick."
+            "value": "Gemiddeld blijft je blik maar 47 seconden op een scherm. In 2004 was dit 150."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Każdy ukończony nawyk sprawia, że twój ogród rośnie – prawdziwy postęp zamiast kopu z przewijania."
+            "value": "Średnio twój wzrok pozostaje na ekranie tylko przez 47 sekund. W 2004 roku było to 150."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada hábito concluído faz o teu jardim crescer – progresso real em vez de um estímulo de scroll."
+            "value": "Em média, o teu olhar permanece num ecrã apenas 47 segundos. Em 2004, eram 150."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada hábito concluído faz o seu jardim crescer – progresso real em vez de um estímulo de scroll."
+            "value": "Em média, seu olhar permanece em uma tela por apenas 47 segundos. Em 2004, eram 150."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Каждая выполненная привычка заставляет твой сад расти – настоящий прогресс вместо стимула от скроллинга."
+            "value": "В среднем твой взгляд задерживается на экране всего 47 секунд. В 2004 году это было 150."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tamamlanan her alışkanlık bahçeni büyütür – kaydırma uyarıcısı yerine gerçek ilerleme."
+            "value": "Ortalama olarak, bakışın bir ekranda sadece 47 saniye kalır. 2004'te bu 150'ydi."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "完成的每个习惯都会让你的花园成长——这是真正的进步，而不是刷屏带来的刺激。"
+            "value": "平均而言，你的目光在屏幕上只停留 47 秒。在 2004 年，这个数字是 150。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "完成的每個習慣都會讓你的花園成長——這是真正的進步，而不是刷屏帶來的刺激。"
+            "value": "平均而言，你的目光在螢幕上只停留 47 秒。在 2004 年，這個數字是 150。"
           }
         }
       }
     },
-    "grovy_story_scene5_title": {
+    "dopamine_story_s4_source": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Garten\nwartet."
+            "value": "Quelle: Gloria Mark, UC Irvine · Ø Sekunden pro Bildschirm"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your garden\nis waiting."
+            "value": "Source: Gloria Mark, UC Irvine · Ø Seconds per screen"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu jardín\nte espera."
+            "value": "Fuente: Gloria Mark, UC Irvine · Ø Segundos por pantalla"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ton jardin\nt'attend."
+            "value": "Source : Gloria Mark, UC Irvine · Ø Secondes par écran"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपका बगीचा\nप्रतीक्षा कर रहा है।"
+            "value": "स्रोत: Gloria Mark, UC Irvine · Ø सेकंड प्रति स्क्रीन"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il tuo giardino\nti aspetta."
+            "value": "Fonte: Gloria Mark, UC Irvine · Ø Secondi per schermo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "あなたの庭が\n待っています。"
+            "value": "出典：Gloria Mark、UC Irvine · 画面あたりの平均秒数"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "당신의 정원이\n기다리고 있습니다."
+            "value": "출처: Gloria Mark, UC Irvine · 화면당 평균 초"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je tuin\nwacht."
+            "value": "Bron: Gloria Mark, UC Irvine · Ø Seconden per scherm"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Twój ogród\nczeka."
+            "value": "Źródło: Gloria Mark, UC Irvine · Ø Sekundy na ekran"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O teu jardim\nespera-te."
+            "value": "Fonte: Gloria Mark, UC Irvine · Ø Segundos por ecrã"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O seu jardim\nespera por você."
+            "value": "Fonte: Gloria Mark, UC Irvine · Ø Segundos por tela"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твой сад\nждет."
+            "value": "Источник: Глория Марк, UC Irvine · Ø секунд на экран"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bahçen\nseni bekliyor."
+            "value": "Kaynak: Gloria Mark, UC Irvine · Ekran başına Ø Saniye"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的花园\n正在等待。"
+            "value": "来源：Gloria Mark，加州大学欧文分校 · 每屏幕平均秒数"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的花園\n正在等待。"
+            "value": "來源：Gloria Mark，加州大學歐文分校 · 每螢幕平均秒數"
           }
         }
       }
     },
-    "grovy_story_scene5_sub": {
+    "dopamine_story_s5_label": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starte mit einer kleinen Gewohnheit. Der Rest wächst von selbst."
+            "value": "Wie automatisch fühlt sich die Gewohnheit an?"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Start with a small habit. The rest grows by itself."
+            "value": "How automatic does the habit feel?"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comienza con un pequeño hábito. El resto crece por sí solo."
+            "value": "¿Qué tan automático se siente el hábito?"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Commence avec une petite habitude. Le reste pousse tout seul."
+            "value": "À quel point l'habitude semble-t-elle automatique ?"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "एक छोटी सी आदत से शुरू करें। बाकी खुद बढ़ता है।"
+            "value": "आदत कितनी स्वचालित महसूस होती है?"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inizia con una piccola abitudine. Il resto cresce da solo."
+            "value": "Quanto sembra automatica l'abitudine?"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "小さな習慣から始めましょう。残りは自然に成長します。"
+            "value": "習慣はどれくらい自動的に感じられますか？"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "작은 습관부터 시작하세요. 나머지는 저절로 자라납니다."
+            "value": "습관이 얼마나 자동으로 느껴지나요?"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Begin met een kleine gewoonte. De rest groeit vanzelf."
+            "value": "Hoe automatisch voelt de gewoonte?"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zacznij od małego nawyku. Reszta rośnie sama."
+            "value": "Jak automatyczny wydaje się nawyk?"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Começa com um pequeno hábito. O resto cresce por si só."
+            "value": "Quão automático parece o hábito?"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comece com um pequeno hábito. O resto cresce por si só."
+            "value": "Quão automático parece o hábito?"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Начни с маленькой привычки. Остальное вырастет само."
+            "value": "Насколько автоматической кажется привычка?"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Küçük bir alışkanlıkla başla. Gerisi kendiliğinden büyür."
+            "value": "Alışkanlık ne kadar otomatik hissettiriyor?"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "从小习惯开始。其余的会自然生长。"
+            "value": "这个习惯感觉有多自动化？"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "從小習慣開始。其餘的會自然生長。"
+            "value": "這個習慣感覺有多自動化？"
           }
         }
       }
     },
-    "grovy_story_start": {
+    "dopamine_story_s5_habit": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los geht's"
+            "value": "Gewohnheit sitzt"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Let's go"
+            "value": "Habit is set"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vamos"
+            "value": "Hábito establecido"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "C'est parti"
+            "value": "Habitude ancrée"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "चलिए शुरू करते हैं"
+            "value": "आदत सेट है"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Andiamo"
+            "value": "Abitudine acquisita"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "さあ、始めよう"
+            "value": "習慣が定着"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "시작합시다"
+            "value": "습관 정착"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laten we gaan"
+            "value": "Gewoonte zit erin"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zaczynamy"
+            "value": "Nawyk utrwalony"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vamos"
+            "value": "Hábito estabelecido"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vamos"
+            "value": "Hábito estabelecido"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Поехали"
+            "value": "Привычка закреплена"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hadi gidelim"
+            "value": "Alışkanlık yerleşti"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "开始吧"
+            "value": "习惯养成"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "開始吧"
+            "value": "習慣養成"
+          }
+        }
+      }
+    },
+    "dopamine_story_s5_d0": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tag 0"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day 0"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día 0"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jour 0"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिन 0"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giorno 0"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0日目"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0일차"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dag 0"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzień 0"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia 0"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia 0"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "День 0"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0. Gün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 0 天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 0 天"
+          }
+        }
+      }
+    },
+    "dopamine_story_s5_d66": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tag 66"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day 66"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día 66"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jour 66"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिन 66"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giorno 66"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "66日目"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "66일차"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dag 66"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzień 66"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia 66"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia 66"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "День 66"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "66. Gün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 66 天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 66 天"
+          }
+        }
+      }
+    },
+    "dopamine_story_s5_d100": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tag 100"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day 100"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día 100"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jour 100"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिन 100"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giorno 100"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100日目"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100일차"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dag 100"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzień 100"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia 100"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia 100"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "День 100"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100. Gün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 100 天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 100 天"
+          }
+        }
+      }
+    },
+    "dopamine_story_s5_range": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spanne: 18 bis 254 Tage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Range: 18 to 254 days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rango: 18 a 254 días"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fourchette : 18 à 254 jours"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सीमा: 18 से 254 दिन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervallo: da 18 a 254 giorni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "範囲：18〜254日"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "범위: 18일~254일"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reikwijdte: 18 tot 254 dagen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zakres: od 18 do 254 dni"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervalo: 18 a 254 dias"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervalo: 18 a 254 dias"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Диапазон: от 18 до 254 дней"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aralık: 18 ila 254 gün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跨度：18 至 254 天"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跨度：18 至 254 天"
+          }
+        }
+      }
+    },
+    "dopamine_story_s5_miss": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein verpasster Tag schadet kaum"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One missed day hardly hurts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un día perdido apenas afecta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un jour manqué n'affecte presque pas"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक छूटा हुआ दिन शायद ही नुकसान पहुँचाता है"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un giorno perso fa a malapena danni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1日休んでも影響は少ない"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "하루 빠지는 것은 거의 해롭지 않음"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Een gemiste dag doet nauwelijks pijn"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeden pominięty dzień rzadko szkodzi"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um dia perdido não prejudica muito"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um dia perdido quase não prejudica"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Один пропущенный день почти не вредит"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaçırılan bir gün neredeyse hiç zarar vermez"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "错过一天几乎没有影响"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "錯過一天幾乎沒有影響"
+          }
+        }
+      }
+    },
+    "dopamine_story_s5_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy gibt deinen\nGewohnheiten Zeit."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy gives your\nhabits time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy le da tiempo a\ntus hábitos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy donne du temps\nà tes habitudes."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ग्रोवी आपकी आदतों\nको समय देता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy dà tempo alle\ntue abitudini."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovyはあなたの習慣に\n時間を与えます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy는 당신의 습관에\n시간을 줍니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy geeft je\ngewoonten de tijd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy daje czas twoim\nnawykom."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Grovy dá tempo aos\nteus hábitos."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Grovy dá tempo aos\nseus hábitos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy дает время твоим\nпривычкам."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy alışkanlıklarına\nzaman tanır."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy 给你的\n习惯一些时间。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy 給你的\n習慣一些時間。"
+          }
+        }
+      }
+    },
+    "dopamine_story_s5_sub": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Schnitt läuft etwas nach 66 Tagen automatisch. In deinem Garten wird jeder dieser Tage sichtbar – statt dem nächsten Kick."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On average, something runs automatically after 66 days. In your garden, each of these days becomes visible – instead of the next kick."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En promedio, algo se vuelve automático después de 66 días. En tu jardín, cada uno de esos días se hace visible – en lugar del siguiente estímulo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En moyenne, une action devient automatique après 66 jours. Dans ton jardin, chacun de ces jours devient visible – au lieu de la prochaine sensation."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "औसतन, 66 दिनों के बाद कुछ स्वचालित रूप से चलता है। आपके बगीचे में, इनमें से प्रत्येक दिन दिखाई देता है - अगले किक के बजाय।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In media, qualcosa diventa automatico dopo 66 giorni. Nel tuo giardino, ognuno di questi giorni diventa visibile – invece del prossimo stimolo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均して、何かは66日後に自動化されます。あなたの庭では、次の刺激の代わりに、これらの日がすべて可視化されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "평균적으로 66일이 지나면 무언가가 자동으로 실행됩니다. 정원에서는 다음 자극 대신 이 매일매일이 눈에 보이게 됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gemiddeld gaat iets na 66 dagen automatisch. In je tuin wordt elk van die dagen zichtbaar – in plaats van de volgende kick."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Średnio coś staje się automatyczne po 66 dniach. W twoim ogrodzie każdy z tych dni staje się widoczny – zamiast kolejnego kopu."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em média, algo torna-se automático após 66 dias. No teu jardim, cada um desses dias torna-se visível – em vez do próximo estímulo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em média, algo se torna automático após 66 dias. No seu jardim, cada um desses dias se torna visível – em vez do próximo estímulo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В среднем что-то становится автоматическим через 66 дней. В твоем саду каждый из этих дней становится видимым – вместо очередного стимула."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ortalama olarak, bir şey 66 gün sonra otomatik hale gelir. Bahçende bu günlerin her biri görünür hale gelir – bir sonraki uyarıcı yerine."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均而言，有些事情在 66 天后会自动进行。在你的花园里，每一天都会清晰可见——而不是下一次刺激。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均而言，有些事情在 66 天後會自動進行。在你的花園裡，每一天都會清晰可見——而不是下一次刺激。"
+          }
+        }
+      }
+    },
+    "dopamine_story_s5_source": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quelle: Lally et al., University College London (96 Teilnehmende)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source: Lally et al., University College London (96 participants)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuente: Lally et al., University College London (96 participantes)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source : Lally et al., University College London (96 participants)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्रोत: Lally et al., University College London (96 प्रतिभागी)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonte: Lally et al., University College London (96 partecipanti)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "出典：Lally et al., ユニバーシティ・カレッジ・ロンドン（参加者96人）"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "출처: Lally et al., University College London (96명 참가자)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bron: Lally et al., University College London (96 deelnemers)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Źródło: Lally et al., University College London (96 uczestników)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonte: Lally et al., University College London (96 participantes)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonte: Lally et al., University College London (96 participantes)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Источник: Lally et al., Университетский колледж Лондона (96 участников)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaynak: Lally et al., University College London (96 katılımcı)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "来源：Lally 等人，伦敦大学学院（96 名参与者）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "來源：Lally 等人，倫敦大學學院（96 名參與者）"
           }
         }
       }
