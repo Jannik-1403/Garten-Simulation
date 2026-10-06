@@ -111,22 +111,7 @@ struct ScreenTimeSettingsView: View {
         }
         .onChange(of: dailyLimitSelection) { _, newValue in
             guard isLoaded else { return }
-            var enforcedSelection = newValue
-            
-            // Verhindern, dass etwas abgewählt wird (Wegklicken)
-            enforcedSelection.applicationTokens.formUnion(oldDailyLimitSelection.applicationTokens)
-            enforcedSelection.categoryTokens.formUnion(oldDailyLimitSelection.categoryTokens)
-            enforcedSelection.webDomainTokens.formUnion(oldDailyLimitSelection.webDomainTokens)
-            
-            // Wenn in Ebene 1 ausgewählt, aus Ebene 2 entfernen
-            var newPermanent = permanentBlockSelection
-            newPermanent.applicationTokens.subtract(enforcedSelection.applicationTokens)
-            newPermanent.categoryTokens.subtract(enforcedSelection.categoryTokens)
-            newPermanent.webDomainTokens.subtract(enforcedSelection.webDomainTokens)
-            if newPermanent != permanentBlockSelection {
-                permanentBlockSelection = newPermanent
-                oldPermanentBlockSelection = newPermanent
-            }
+            let enforcedSelection = newValue
             
             if dailyLimitSelection != enforcedSelection {
                 dailyLimitSelection = enforcedSelection
@@ -141,17 +126,7 @@ struct ScreenTimeSettingsView: View {
         }
         .onChange(of: blockSelection) { _, newValue in
             guard isLoaded else { return }
-            var filteredValue = newValue
-            
-            // Apps that are in layer 1 (permanentBlockSelection) or layer 0 (dailyLimitSelection)
-            // should not be selectable in layer 2 (blockSelection).
-            filteredValue.applicationTokens.subtract(dailyLimitSelection.applicationTokens)
-            filteredValue.categoryTokens.subtract(dailyLimitSelection.categoryTokens)
-            filteredValue.webDomainTokens.subtract(dailyLimitSelection.webDomainTokens)
-            
-            filteredValue.applicationTokens.subtract(permanentBlockSelection.applicationTokens)
-            filteredValue.categoryTokens.subtract(permanentBlockSelection.categoryTokens)
-            filteredValue.webDomainTokens.subtract(permanentBlockSelection.webDomainTokens)
+            let filteredValue = newValue
             
             if filteredValue != blockSelection {
                 DispatchQueue.main.async {
@@ -164,12 +139,7 @@ struct ScreenTimeSettingsView: View {
         }
         .onChange(of: permanentBlockSelection) { _, newValue in
             guard isLoaded else { return }
-            var enforcedSelection = newValue
-            
-            // Verhindern, dass etwas abgewählt wird (Wegklicken)
-            enforcedSelection.applicationTokens.formUnion(oldPermanentBlockSelection.applicationTokens)
-            enforcedSelection.categoryTokens.formUnion(oldPermanentBlockSelection.categoryTokens)
-            enforcedSelection.webDomainTokens.formUnion(oldPermanentBlockSelection.webDomainTokens)
+            let enforcedSelection = newValue
             
             let hasNewItems = !enforcedSelection.applicationTokens.isSubset(of: oldPermanentBlockSelection.applicationTokens) ||
                               !enforcedSelection.categoryTokens.isSubset(of: oldPermanentBlockSelection.categoryTokens) ||
@@ -183,26 +153,6 @@ struct ScreenTimeSettingsView: View {
                     permanentBlockSelection = oldPermanentBlockSelection
                 }
                 return
-            }
-            
-            // Wenn in Ebene 2 ausgewählt, aus Ebene 1 entfernen (da Ebene 2 stärker ist)
-            var newDaily = dailyLimitSelection
-            newDaily.applicationTokens.subtract(enforcedSelection.applicationTokens)
-            newDaily.categoryTokens.subtract(enforcedSelection.categoryTokens)
-            newDaily.webDomainTokens.subtract(enforcedSelection.webDomainTokens)
-            if newDaily != dailyLimitSelection {
-                dailyLimitSelection = newDaily
-                oldDailyLimitSelection = newDaily
-            }
-            
-            // Auch aus Zeitleiste (blockSelection) entfernen
-            var newBlock = blockSelection
-            newBlock.applicationTokens.subtract(enforcedSelection.applicationTokens)
-            newBlock.categoryTokens.subtract(enforcedSelection.categoryTokens)
-            newBlock.webDomainTokens.subtract(enforcedSelection.webDomainTokens)
-            if newBlock != blockSelection {
-                blockSelection = newBlock
-                oldBlockSelection = newBlock
             }
             
             if permanentBlockSelection != enforcedSelection {

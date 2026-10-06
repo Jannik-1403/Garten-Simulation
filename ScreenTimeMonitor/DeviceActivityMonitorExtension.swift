@@ -80,6 +80,11 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
             return
         }
         
+        // Do not clear the scheduled store if a daily limit schedule ended!
+        if activity.rawValue.hasPrefix("com.jannik.grovy.screentime.block.limit.") {
+            return
+        }
+        
         // Remove all scheduled shields
         store.shield.applications = nil
         store.shield.applicationCategories = nil
