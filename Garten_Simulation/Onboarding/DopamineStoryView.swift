@@ -19,8 +19,8 @@ struct DopamineStoryTheme {
 
     static let grovy = DopamineStoryTheme(
         background: nil,
-        primaryText: .white,
-        secondaryText: Color.white.opacity(0.72),
+        primaryText: .primary,
+        secondaryText: .secondary,
         accent: Color(red: 0.36, green: 0.86, blue: 0.52),
         onAccent: Color(red: 0.03, green: 0.20, blue: 0.12),
         warning: Color(red: 1.0, green: 0.36, blue: 0.45),
@@ -712,8 +712,11 @@ private struct GOTraceRow: View {
             }
         }
         .padding(12)
-        .background(shape.fill(theme.primaryText.opacity(0.07)))
-        .overlay(shape.strokeBorder(theme.primaryText.opacity(0.12), lineWidth: 1))
+        .background(
+            shape.fill(Color(UIColor.systemBackground))
+                .shadow(color: Color.black.opacity(0.1), radius: 0, x: 0, y: 5)
+        )
+        .overlay(shape.strokeBorder(Color.black.opacity(0.05), lineWidth: 1))
         .opacity(appear)
         .offset(y: CGFloat((1.0 - appear) * 20.0))
         .padding(.horizontal, 24)
@@ -932,7 +935,11 @@ private struct GOBar3D: View {
 private struct GOFocusScene: View {
     let theme: DopamineStoryTheme
 
-    private let labels: [String] = ["2004", "2012", "2016–20"]
+    private let labels: [String] = [
+        String(localized: "dopamine_story_s4_l1", defaultValue: "Früher"),
+        String(localized: "dopamine_story_s4_l2", defaultValue: "Vor 2 Jahren"),
+        String(localized: "dopamine_story_s4_l3", defaultValue: "Heute")
+    ]
     private let values: [Double] = [150, 75, 47]
     private let palette: [[Color]] = [GOColors.green, GOColors.amber, GOColors.pink]
     private let delays: [Double] = [0.5, 1.4, 2.3]
@@ -1117,8 +1124,11 @@ private struct GOHabitScene: View {
                         .frame(height: 190)
                 }
                 .padding(16)
-                .background(shape.fill(theme.primaryText.opacity(0.07)))
-                .overlay(shape.strokeBorder(theme.primaryText.opacity(0.12), lineWidth: 1))
+                .background(
+                    shape.fill(Color(UIColor.systemBackground))
+                        .shadow(color: Color.black.opacity(0.1), radius: 0, x: 0, y: 5)
+                )
+                .overlay(shape.strokeBorder(Color.black.opacity(0.05), lineWidth: 1))
                 .padding(.horizontal, 24)
                 .opacity(goProg(t, 0.0, 0.5))
 
@@ -1210,13 +1220,13 @@ private struct GOFinaleScene: View {
                     let b = goOut(goProg(t, 1.6, 0.6))
                     Button(action: onFinish) {
                         Text(buttonTitle)
-                            .font(.system(size: 19, weight: .bold, design: theme.fontDesign))
-                            .foregroundColor(theme.onAccent)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 17)
-                            .background(Capsule().fill(theme.accent))
-                            .shadow(color: theme.accent.opacity(0.5), radius: 16, x: 0, y: 6)
                     }
+                    .buttonStyle(DuolingoButtonStyle(
+                        size: .large,
+                        backgroundColor: Color.blauPrimary,
+                        shadowColor: Color.blauPrimary.darker(),
+                        foregroundColor: .white
+                    ))
                     .padding(.horizontal, 32)
                     .scaleEffect(CGFloat(0.8 + 0.2 * b))
                     .opacity(b)
