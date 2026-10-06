@@ -26,14 +26,21 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         super.intervalDidStart(for: activity)
         
         if activity.rawValue.hasPrefix("com.jannik.grovy.screentime.block.limit.") {
-            // New day started for daily limit tracker, clear the shield
-            dailyLimitStore.shield.applications = nil
-            dailyLimitStore.shield.applicationCategories = nil
-            dailyLimitStore.shield.webDomains = nil
-            dailyLimitStore.shield.webDomainCategories = nil
-            sharedDefaults?.set(false, forKey: "screenTimeLimitExceededToday")
-            sharedDefaults?.removeObject(forKey: "screenTimeDailyBlockedTokensData_appGroup")
-            sharedDefaults?.synchronize()
+            let todayString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
+            let lastCleared = sharedDefaults?.string(forKey: "lastClearedDailyLimitDate")
+            
+            // Only clear the shield if it's actually a new day,
+            // avoiding race conditions where startMonitoring triggers intervalDidStart mid-day.
+            if todayString != lastCleared {
+                dailyLimitStore.shield.applications = nil
+                dailyLimitStore.shield.applicationCategories = nil
+                dailyLimitStore.shield.webDomains = nil
+                dailyLimitStore.shield.webDomainCategories = nil
+                sharedDefaults?.set(false, forKey: "screenTimeLimitExceededToday")
+                sharedDefaults?.removeObject(forKey: "screenTimeDailyBlockedTokensData_appGroup")
+                sharedDefaults?.set(todayString, forKey: "lastClearedDailyLimitDate")
+                sharedDefaults?.synchronize()
+            }
             return
         }
         
