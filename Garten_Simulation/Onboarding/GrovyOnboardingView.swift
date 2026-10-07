@@ -4,6 +4,7 @@ import SwiftUI
 struct GrovyOnboardingView: View {
     var onFinish: () -> Void = {}
 
+    @AppStorage("hasSeenIntro") private var hasSeenIntro = false
     @State private var scene = 0
 
     /// Dauer jeder Szene in Sekunden (letzte Szene bleibt stehen)
@@ -16,24 +17,44 @@ struct GrovyOnboardingView: View {
             GOParticles(color: GOPalette.particles[scene])
                 .ignoresSafeArea()
 
-            currentScene
-                .id(scene)
-                .transition(
-                    .asymmetric(
-                        insertion: AnyTransition.opacity.combined(with: .scale(scale: 1.08)),
-                        removal: AnyTransition.opacity.combined(with: .scale(scale: 0.92))
-                    )
-                )
-
-            topBar
+            if !hasSeenIntro {
+                GrovyIntroView(onFinish: {
+                    withAnimation(.easeInOut(duration: 0.8)) {
+                        hasSeenIntro = true
+                    }
+                })
+                .transition(.opacity)
+                .zIndex(2)
+            } else {
+                currentScene
+                    .id(scene)
+                    .transition(AnyTransition.scale.combined(with: .opacity))
+                    .zIndex(1)
+                
+                topBar
+                    .zIndex(2)
+            }
         }
         .contentShape(Rectangle())
         .onTapGesture { next() }
         .task(id: scene) {
+            guard hasSeenIntro else { return }
             let d = durations[scene]
             guard d > 0 else { return }
             try? await Task.sleep(nanoseconds: UInt64(d * 1_000_000_000))
             if !Task.isCancelled { next() }
+        }
+        .onChange(of: hasSeenIntro) { _, newValue in
+            if newValue {
+                // Kickoff the first scene's timer when intro is done
+                let d = durations[scene]
+                if d > 0 {
+                    Task {
+                        try? await Task.sleep(nanoseconds: UInt64(d * 1_000_000_000))
+                        if !Task.isCancelled { next() }
+                    }
+                }
+            }
         }
     }
 
