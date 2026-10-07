@@ -2,12 +2,12 @@ import SwiftUI
 import AVFoundation
 import Combine
 
-// MARK: - GrovyIntroView  v3
+// MARK: - GrovyIntroView  v4
 //
 // Ablauf (Finger halten → Animation läuft):
 //   0.0 -  4.8  TikTok-Word-Build-Up (1 Wort → 2 → 3 gleichzeitig)
 //   4.8 -  6.0  Herzschlag
-//   5.8 -  9.8  Speed-Linien (loopend) + 3 Slam-Zahlen
+//   5.8 -  9.8  Speed-Linien (Continuous Warp) + 3 Slam-Zahlen
 //   9.8 - 11.0  Fade
 //  11.0 - 12.8  "Dein Gehirn will mehr."
 //  12.8 - 17.0  Habit-Statistiken (relevant zur App)
@@ -64,7 +64,7 @@ struct GrovyIntroView: View {
                         // Phase 1: Herzschlag
                         if t > 4.8 && t < 6.2 { heartbeat(t - 4.8) }
 
-                        // Phase 2: Speed-Linien (loopend) + Slams
+                        // Phase 2: Speed-Linien (Continuous) + Slams
                         if t > 5.8 && t < 9.8 { layerA(t) }
 
                         // Fade
@@ -98,9 +98,8 @@ struct GrovyIntroView: View {
                 }
             }
 
-            // 3D Hold-Button – zentriert, etwas tiefer
+            // 3D Hold-Button – tiefer unten positioniert
             VStack {
-                Spacer()
                 Spacer()
                 GI3DButton(
                     ringProgress: ringProgress,
@@ -131,9 +130,8 @@ struct GrovyIntroView: View {
                             endWiggle = 0
                         }
                 )
-                Spacer()
+                .padding(.bottom, 40)
             }
-            .padding(.bottom, 20)
         }
         .onReceive(Timer.publish(every: 0.03, on: .main, in: .common).autoconnect()) { _ in
             guard let tick = startTick else { return }
@@ -144,7 +142,6 @@ struct GrovyIntroView: View {
             if elapsed > kIntroDuration - 2.0 {
                 let wiggleT = elapsed - (kIntroDuration - 2.0)
                 endWiggle = wiggleT
-                // Zunehmende Haptik am Ende
                 let wStep = (wiggleT * 3).rounded(.down)
                 if wStep > (endWiggle * 3 - 1).rounded(.down) {
                     giHaptic(2)
@@ -198,7 +195,7 @@ struct GrovyIntroView: View {
         }
     }
 
-    // MARK: - Layer A: Speed + Slam
+    // MARK: - Layer A: Continuous Speed + Slam
 
     @ViewBuilder
     private func layerA(_ t: Double) -> some View {
@@ -207,8 +204,8 @@ struct GrovyIntroView: View {
         let slam = slams[idx]
         let local = t - slam.start
         ZStack {
-            // Speed-Linien loopend: alle 2s von neuem
-            GISpeedLines(t: t.truncatingRemainder(dividingBy: 2.0)).ignoresSafeArea()
+            // Speed-Linien als ununterbrochener Strahl nach vorne
+            GISpeedLines(t: t).ignoresSafeArea()
             GISlam(big: slam.big, small: slam.small, local: local, color: warning)
             background.opacity(0.65 * exp(-max(0.0, local) * 10.0))
                 .ignoresSafeArea().allowsHitTesting(false)
@@ -287,7 +284,7 @@ struct GrovyIntroView: View {
     }
 }
 
-// MARK: - 3D Hold-Button
+// MARK: - 3D Hold-Button (Standard App Style)
 
 private struct GI3DButton: View {
     let ringProgress: Double
@@ -297,16 +294,15 @@ private struct GI3DButton: View {
     let accent: Color
 
     private let btnSize: CGFloat = 84
-    private let ringSize: CGFloat = 104
-    private let depth: CGFloat = 10  // 3D-Tiefe
+    private let ringSize: CGFloat = 112
+    private let depth: CGFloat = 7  // Standard 3D-Tiefe (entspricht Item3DButton Shadow-Depth)
     private let lineW: CGFloat = 6
 
     var body: some View {
-        let pressOffset: CGFloat = isPressed ? depth : 0
-
         ZStack {
-            // Hintergrund-Ring
-            Circle().stroke(Color.white.opacity(0.14), lineWidth: lineW)
+            // Hintergrund-Ring (immer an gleicher Position)
+            Circle()
+                .stroke(Color.white.opacity(0.14), lineWidth: lineW)
                 .frame(width: ringSize, height: ringSize)
 
             // Fortschritts-Ring
@@ -321,79 +317,70 @@ private struct GI3DButton: View {
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 0.05), value: ringProgress)
 
-            // 3D-Sockel (immer an derselben Position – wird kleiner wenn gedrückt)
-            Circle()
-                .fill(Color.orange.opacity(0.85))
-                .frame(width: btnSize, height: btnSize)
-                .offset(y: isPressed ? pressOffset * 0.3 : depth)  // Sockel verschmilzt mit Button
-
-            // Haupt-Button-Fläche (bewegt sich runter beim Drücken)
-            Circle()
-                .fill(LinearGradient(
-                    colors: [Color.yellow, Color.orange.opacity(0.85)],
-                    startPoint: .topLeading, endPoint: .bottomTrailing
-                ))
-                .frame(width: btnSize, height: btnSize)
-                .overlay {
-                    // Glanzfleck oben
-                    Ellipse()
-                        .fill(Color.white.opacity(0.18))
-                        .frame(width: btnSize * 0.5, height: btnSize * 0.28)
-                        .offset(y: -btnSize * 0.22)
-                }
-                .offset(y: pressOffset)
-
-            // Icon (bewegt sich mit dem Button)
-            Image(systemName: isHolding ? "fingerprint" : "hand.tap.fill")
-                .font(.system(size: 30, weight: .bold))
-                .foregroundColor(.white)
-                .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 2)
-                .offset(y: pressOffset)
+            // 3D-Button Container (Sockel & Top Layer)
+            ZStack {
+                // Sockel (Schatten)
+                Circle()
+                    .fill(Color(red: 0.8, green: 0.4, blue: 0.0)) // Dunkleres Orange
+                    .overlay(Circle().stroke(Color.black.opacity(0.1), lineWidth: 1))
+                    .frame(width: btnSize, height: btnSize)
+                
+                // Top-Layer (Bewegt sich beim Drücken runter zum Sockel)
+                Circle()
+                    .fill(Color.orange) // Basis-Farbe
+                    .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
+                    .frame(width: btnSize, height: btnSize)
+                    .overlay {
+                        Image(systemName: isHolding ? "fingerprint" : "hand.tap.fill")
+                            .font(.system(size: 32, weight: .bold))
+                            .foregroundColor(.white)
+                            .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
+                    }
+                    .offset(y: isPressed ? 0 : -depth)
+            }
+            .offset(y: depth / 2) // Ausgleich für optische Mitte
+            
         }
         // Wackeln am Ende
         .offset(
             x: wiggle > 0 ? CGFloat(sin(wiggle * 28.0) * min(wiggle * 6, 8)) : 0,
             y: wiggle > 0 ? CGFloat(cos(wiggle * 21.0) * min(wiggle * 4, 5)) : 0
         )
-        .animation(.spring(response: 0.18, dampingFraction: 0.5), value: isPressed)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
     }
 }
 
-// MARK: - TikTok Word Build-Up (1 → 2 → 3 Wörter)
+// MARK: - TikTok Word Build-Up mit 3D Text Style
 
 private struct GIWordBuildUp: View {
     let t: Double
 
-    // Jede "Szene" hat 3 Stufen die aufbauen
     private struct WordScene {
         struct Step { let words: [String]; let colors: [Color]; let sizes: [CGFloat] }
         let steps: [Step]
         let start: Double
-        let stepDur: Double  // Dauer pro Stufe
-        let gap: Double      // Pause zwischen Szenen
+        let stepDur: Double
+        let gap: Double
     }
 
+    // Lokalisierte Wörter
     private let scenes: [WordScene] = [
-        // Szene 1: "DU." → "DU. / SCROLLST." → "DU. / SCROLLST. / TÄGLICH."
         WordScene(steps: [
-            .init(words: ["DU."],              colors: [.white],  sizes: [88]),
-            .init(words: ["DU.", "SCROLLST."], colors: [.white, .yellow], sizes: [56, 64]),
-            .init(words: ["DU.", "SCROLLST.", "TÄGLICH."], colors: [.white, .yellow, .orange], sizes: [44, 52, 60]),
+            .init(words: [String(localized: "intro_flash_you", defaultValue: "DU.")], colors: [.white], sizes: [88]),
+            .init(words: [String(localized: "intro_flash_you", defaultValue: "DU."), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST.")], colors: [.white, .yellow], sizes: [56, 64]),
+            .init(words: [String(localized: "intro_flash_you", defaultValue: "DU."), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST."), String(localized: "intro_flash_everyday", defaultValue: "TÄGLICH.")], colors: [.white, .yellow, .orange], sizes: [44, 52, 60]),
         ], start: 0.0, stepDur: 0.45, gap: 0.25),
 
-        // Szene 2: "WIE LANG?" → + "AM TAG?" → + "WIRKLICH?"
         WordScene(steps: [
-            .init(words: ["WIE LANG?"],                    colors: [.red],   sizes: [80]),
-            .init(words: ["WIE LANG?", "AM TAG?"],         colors: [.red, .white], sizes: [60, 56]),
-            .init(words: ["WIE LANG?", "AM TAG?", "WIRKLICH?"], colors: [.red, .white, .gray], sizes: [48, 46, 44]),
+            .init(words: [String(localized: "intro_flash_how_long", defaultValue: "WIE LANGE")], colors: [.red], sizes: [72]),
+            .init(words: [String(localized: "intro_flash_how_long", defaultValue: "WIE LANGE"), String(localized: "intro_flash_tap", defaultValue: "TIPPST.")], colors: [.red, .white], sizes: [56, 56]),
+            .init(words: [String(localized: "intro_flash_how_long", defaultValue: "WIE LANGE"), String(localized: "intro_flash_tap", defaultValue: "TIPPST."), String(localized: "intro_flash_really", defaultValue: "WIRKLICH?")], colors: [.red, .white, .gray], sizes: [46, 46, 42]),
         ], start: 1.7, stepDur: 0.40, gap: 0.25),
 
-        // Szene 3: "180" → + "MINUTEN" → + "JEDEN TAG."
         WordScene(steps: [
-            .init(words: ["180"],                       colors: [.yellow], sizes: [110]),
-            .init(words: ["180", "MINUTEN"],            colors: [.yellow, .white], sizes: [72, 56]),
-            .init(words: ["180", "MINUTEN", "JEDEN TAG."], colors: [.yellow, .white, .orange], sizes: [54, 48, 44]),
-        ], start: 3.2, stepDur: 0.38, gap: 0.25),
+            .init(words: [String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU")], colors: [.yellow], sizes: [90]),
+            .init(words: [String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU"), String(localized: "intro_flash_long", defaultValue: "LANGE.")], colors: [.yellow, .white], sizes: [72, 64]),
+        ], start: 3.2, stepDur: 0.45, gap: 0.25),
     ]
 
     var body: some View {
@@ -413,17 +400,27 @@ private struct GIWordBuildUp: View {
 
                     VStack(spacing: 14) {
                         ForEach(Array(step.words.enumerated()), id: \.offset) { wordIdx, word in
-                            let isNew = wordIdx == stepIdx  // Nur neues Wort hat Einschlag
+                            let isNew = wordIdx == stepIdx
                             let decay = isNew ? exp(-stepLocal * 12.0) : 0.0
-                            Text(word)
-                                .font(.system(size: step.sizes[wordIdx], weight: .black, design: .rounded))
-                                .foregroundColor(step.colors[wordIdx])
-                                .shadow(color: step.colors[wordIdx].opacity(0.5), radius: 20)
-                                .scaleEffect(CGFloat(1.0 + (isNew ? 0.16 * exp(-stepLocal * 14.0) : 0.0)))
-                                .rotation3DEffect(
-                                    .degrees(isNew ? 18.0 * decay : 0),
-                                    axis: (x: 0.7, y: -0.5, z: 0.1)
-                                )
+                            
+                            // 3D Text Style
+                            ZStack {
+                                // Schatten-Layer
+                                Text(word)
+                                    .font(.system(size: step.sizes[wordIdx], weight: .black, design: .rounded))
+                                    .foregroundColor(step.colors[wordIdx].opacity(0.35))
+                                    .offset(y: 4)
+                                // Top-Layer
+                                Text(word)
+                                    .font(.system(size: step.sizes[wordIdx], weight: .black, design: .rounded))
+                                    .foregroundColor(step.colors[wordIdx])
+                            }
+                            .shadow(color: step.colors[wordIdx].opacity(0.5), radius: 20)
+                            .scaleEffect(CGFloat(1.0 + (isNew ? 0.16 * exp(-stepLocal * 14.0) : 0.0)))
+                            .rotation3DEffect(
+                                .degrees(isNew ? 18.0 * decay : 0),
+                                axis: (x: 0.7, y: -0.5, z: 0.1)
+                            )
                         }
                     }
                     .opacity(fadeIn * totalFade)
@@ -464,6 +461,7 @@ private func goInOutI(_ x: Double) -> Double {
     x < 0.5 ? 4.0 * x * x * x : 1.0 - pow(-2.0 * x + 2.0, 3.0) / 2.0
 }
 private func giPulse(_ t: Double, _ at: Double) -> Double { t >= at ? exp(-(t - at) * 9.0) : 0.0 }
+private func giFract(_ x: Double) -> Double { x - floor(x) }
 
 private struct GITimed<Content: View>: View {
     let startDate: Date?
@@ -480,34 +478,52 @@ private struct GITimed<Content: View>: View {
     }
 }
 
-// MARK: - Speed-Linien (loopend via truncatingRemainder)
+// MARK: - Continuous Speed-Linien (Warp Effekt)
 
 private struct GISpeedLines: View {
     let t: Double
     var body: some View {
         Canvas { ctx, size in
             let w = Double(size.width); let h = Double(size.height)
-            let cx = w / 2.0; let cy = h / 2.0; let n = 80
-            let p = goClamp01I(t / 0.5)
-            let speed = 0.8 + t * 2.0
+            let cx = w / 2.0; let cy = h / 2.0; let n = 100
+            
+            // Kontinuierliche Vorwärtsbewegung
+            let speed = 0.8
+            
             for i in 0..<n {
                 let ang = Double(i) / Double(n) * Double.pi * 2.0
-                let r = (Double(i % 7) / 7.0 * 0.3 + 0.3) * min(w, h) * speed
-                let alpha = p * (1.0 - goClamp01I((t - 1.6) / 0.3))
-                let lineLen = r * 0.45 + 35.0
+                
+                // Jede Linie hat einen eigenen Offset, um sie zu verteilen
+                let phase = Double(i * 13 % 100) / 100.0
+                
+                // Distanz wächst von 0.0 bis 1.0, dann loop
+                let dist = giFract(t * speed + phase)
+                
+                // Vermeide das Flackern in der Mitte, indem Linien erst ab dist > 0.1 auftauchen
+                if dist < 0.05 { continue }
+                
+                // Radius skaliert exponentiell für Warp-Effekt
+                let r = pow(dist, 1.5) * max(w, h)
+                let lineLen = dist * 120.0 + 10.0
+                
                 var lp = Path()
                 let x = cx + cos(ang) * r; let y = cy + sin(ang) * r
-                lp.move(to: CGPoint(x: cx + cos(ang) * (r - lineLen), y: cy + sin(ang) * (r - lineLen)))
+                let xStart = cx + cos(ang) * (r - lineLen); let yStart = cy + sin(ang) * (r - lineLen)
+                
+                lp.move(to: CGPoint(x: xStart, y: yStart))
                 lp.addLine(to: CGPoint(x: x, y: y))
+                
                 let lc = i % 5 == 0 ? Color.red : (i % 3 == 0 ? Color.white : Color.gray)
+                let alpha = sin(dist * Double.pi) // Fade in am Anfang, fade out am Rand
+                
                 ctx.stroke(lp, with: .color(lc.opacity(alpha * (i % 5 == 0 ? 0.8 : 0.4))),
-                           style: StrokeStyle(lineWidth: CGFloat(2.0 + p * 2.0), lineCap: .round))
+                           style: StrokeStyle(lineWidth: CGFloat(1.5 + dist * 3.0), lineCap: .round))
             }
         }
     }
 }
 
-// MARK: - Slam-Zahl (3D Button)
+// MARK: - Slam-Zahl (3D Text Style)
 
 private struct GISlam: View {
     let big: String; let small: String; let local: Double; let color: Color
@@ -519,22 +535,26 @@ private struct GISlam: View {
         let offsetY = CGFloat(20.0 * (1.0 - p) + cos(local * 70.0) * 15.0 * decay)
         let rotDeg = 15.0 * decay
         return VStack(spacing: 12) {
-            Text(big)
-                .font(.system(size: 80, weight: .black, design: .rounded))
-                .foregroundColor(.white)
-                .padding(.horizontal, 40).padding(.vertical, 16)
-                .background(ZStack {
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .fill(Color(white: 0.08)).offset(y: 14)
-                    RoundedRectangle(cornerRadius: 24, style: .continuous).fill(color)
-                })
-                .scaleEffect(s)
-                .rotation3DEffect(.degrees(rotDeg), axis: (x: 1, y: -0.5, z: 0))
+            
+            // 3D Text Style für die große Zahl
+            ZStack {
+                Text(big)
+                    .font(.system(size: 110, weight: .black, design: .rounded))
+                    .foregroundColor(color.opacity(0.35))
+                    .offset(y: 6)
+                
+                Text(big)
+                    .font(.system(size: 110, weight: .black, design: .rounded))
+                    .foregroundColor(.white)
+            }
+            .scaleEffect(s)
+            .rotation3DEffect(.degrees(rotDeg), axis: (x: 1, y: -0.5, z: 0))
+            
             if !small.isEmpty {
                 Text(small)
                     .font(.system(size: 28, weight: .heavy, design: .rounded)).tracking(10)
                     .foregroundColor(color).padding(.horizontal, 24).padding(.vertical, 8)
-                    .background(Capsule().fill(Color(white: 0.1)))
+                    .background(Capsule().fill(Color(white: 0.12)))
                     .scaleEffect(CGFloat(1.0 + decay * 0.5))
                     .opacity(goClamp01I(local * 12.0) * p)
             }
@@ -544,8 +564,7 @@ private struct GISlam: View {
     }
 }
 
-// MARK: - Habit-Statistiken (App-relevante Fakten)
-// Quellen: James Clear "Atomic Habits", Forschung zu Habit-Tracking
+// MARK: - Habit-Statistiken
 
 private struct GIHabitStats: View {
     let t: Double; let accent: Color
@@ -558,7 +577,6 @@ private struct GIHabitStats: View {
 
             guard p > 0 else { return }
 
-            // Fakten-Karten – erscheinen nacheinander
             let facts: [(value: String, label: String, sub: String, color: Color)] = [
                 ("8 %",  "erreichen ihre Ziele",     "ohne System",          .red),
                 ("3×",   "erfolgreicher",              "mit täglichem Tracking", accent),
@@ -576,17 +594,14 @@ private struct GIHabitStats: View {
                 let fy = startY + Double(i) * (cardH + h * 0.03)
                 let fx = (w - cardW) / 2.0
 
-                // Karten-Hintergrund
                 let cardRect = CGRect(x: fx, y: fy, width: cardW * fp, height: cardH)
                 ctx.fill(Path(roundedRect: cardRect, cornerRadius: 16),
                          with: .color(Color(white: 0.12).opacity(fp)))
 
-                // Farb-Akzent links
                 let accentRect = CGRect(x: fx, y: fy, width: 5, height: cardH)
                 ctx.fill(Path(roundedRect: accentRect, cornerRadius: 2),
                          with: .color(fact.color.opacity(fp)))
 
-                // Texte
                 if fp > 0.5 {
                     ctx.draw(Text(fact.value)
                         .font(.system(size: 32, weight: .black, design: .rounded))
@@ -606,20 +621,18 @@ private struct GIHabitStats: View {
                 }
             }
 
-            // Titel
             let titleP = goProgI(t, 13.8, 0.5)
             ctx.draw(Text(String(localized: "intro_stats_title", defaultValue: "GEWOHNHEITEN & ERFOLG"))
                 .font(.system(size: 12, weight: .heavy, design: .rounded))
                 .foregroundColor(Color(white: 0.4).opacity(titleP)),
                      at: CGPoint(x: cx, y: h * 0.11), anchor: .center)
 
-            // Glühwürmchen
             let fireP = goProgI(t, 15.5, 2.0)
             if fireP > 0 {
                 for i in 0..<20 {
                     let fi = Double(i)
                     let fx2 = cx + sin(fi * 1.9 + t * 0.5) * w * 0.42
-                    let fy2 = h * 0.85 - fi / 20.0 * h * 0.6 - giFract2(t * 0.05 + fi * 0.08) * h * 0.08
+                    let fy2 = h * 0.85 - fi / 20.0 * h * 0.6 - giFract(t * 0.05 + fi * 0.08) * h * 0.08
                     let fa = fireP * (0.5 + 0.5 * sin(t * 2.8 + fi))
                     let fr = 2.5 + sin(fi * 1.7 + t) * 1.2
                     ctx.fill(Path(ellipseIn: CGRect(x: fx2-fr, y: fy2-fr, width: fr*2, height: fr*2)),
@@ -629,8 +642,6 @@ private struct GIHabitStats: View {
         }
     }
 }
-
-private func giFract2(_ x: Double) -> Double { x - floor(x) }
 
 // MARK: - Sound
 
