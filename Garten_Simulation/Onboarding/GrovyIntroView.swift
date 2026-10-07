@@ -106,15 +106,10 @@ struct GrovyIntroView: View {
 
     var body: some View {
         ZStack {
-            background.ignoresSafeArea()
+            // Immer schwarzer Hintergrund
+            Color.black.ignoresSafeArea()
 
             ZStack {
-                // Hintergrund wird nahtlos bei 7.6 schwarz
-                if t > 7.6 {
-                    Color.black
-                        .opacity(goClamp01I((t - 7.6) / 0.5))
-                        .ignoresSafeArea().allowsHitTesting(false)
-                }
 
                 // Speed-Linien beginnen nahtlos exakt bei 7.6
                 if t > 7.6 && t < 15.0 { 
@@ -467,31 +462,33 @@ private struct GIWordBuildUp: View {
                     let fadeOutT = scene.fadeOutAt - t
                     let totalFade = fadeOutT < 0.2 ? max(0.0, fadeOutT / 0.2) : 1.0
 
-                    // VStack mit allen Wörtern der Szene von Beginn an, um Springen zu verhindern!
+                    // Nur sichtbare Wörter werden angezeigt – kein reservierter Platz für unsichtbare
                     VStack(spacing: 14) {
                         ForEach(0..<scene.words.count, id: \.self) { wordIdx in
                             let isVisible = wordIdx <= stepIdx
                             let isNew = wordIdx == stepIdx
                             let decay = isNew ? exp(-stepLocal * 8.0) : 0.0
                             let pop = isNew ? 0.12 * exp(-stepLocal * 10.0) : 0.0
-                            
-                            ZStack {
-                                Text(scene.words[wordIdx])
-                                    .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
-                                    .foregroundColor(scene.colors[wordIdx].opacity(0.35))
-                                    .offset(y: 4)
-                                Text(scene.words[wordIdx])
-                                    .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
-                                    .foregroundColor(scene.colors[wordIdx])
+                            let fadeIn = isNew ? min(1.0, stepLocal / 0.15) : 1.0
+
+                            if isVisible {
+                                ZStack {
+                                    Text(scene.words[wordIdx])
+                                        .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
+                                        .foregroundColor(scene.colors[wordIdx].opacity(0.35))
+                                        .offset(y: 4)
+                                    Text(scene.words[wordIdx])
+                                        .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
+                                        .foregroundColor(scene.colors[wordIdx])
+                                }
+                                .shadow(color: scene.colors[wordIdx].opacity(0.5), radius: 20)
+                                .scaleEffect(CGFloat(1.0 + pop))
+                                .rotation3DEffect(
+                                    .degrees(isNew ? 12.0 * decay : 0),
+                                    axis: (x: 0.7, y: -0.5, z: 0.1)
+                                )
+                                .opacity(fadeIn)
                             }
-                            .shadow(color: scene.colors[wordIdx].opacity(0.5), radius: 20)
-                            .scaleEffect(CGFloat(1.0 + pop))
-                            .rotation3DEffect(
-                                .degrees(isNew ? 12.0 * decay : 0),
-                                axis: (x: 0.7, y: -0.5, z: 0.1)
-                            )
-                            // Unsichtbare Wörter nehmen Platz ein -> Kein Springen!
-                            .opacity(isVisible ? (isNew ? min(1.0, stepLocal / 0.15) : 1.0) : 0.0)
                         }
                     }
                     .opacity(totalFade)
