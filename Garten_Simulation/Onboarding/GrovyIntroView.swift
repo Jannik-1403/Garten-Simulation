@@ -354,7 +354,7 @@ private struct GITiles: View {
             let cy = Double(size.height) / 2.0
             let reach = max(Double(size.width), Double(size.height)) * 0.8
 
-            for i in 0..<46 {
+            for i in 0..<60 { // Mehr Partikel für den Tunnel
                 let seed = Double(i)
                 let ang = giFract(sin(seed * 12.9898) * 43758.5453) * 2.0 * Double.pi
                 let delay = giFract(seed * 0.37) * 1.6
@@ -363,12 +363,22 @@ private struct GITiles: View {
 
                 let period = 2.2
                 let p = local.truncatingRemainder(dividingBy: period) / period
-                let r = pow(p, 2.0) * reach
-                let w = 40.0 * (0.15 + 3.2 * pow(p, 1.6))
+                let r = pow(p, 3.0) * reach * 1.5 // Schneller am Rand für Tunnel-Sog
+                let w = 40.0 * (0.15 + 4.0 * pow(p, 1.8))
                 let x = cx + cos(ang) * r
                 let y = cy + sin(ang) * r
                 let fadeOut = 1.0 - max(0.0, p - 0.85) / 0.15
                 let alpha = min(1.0, local * 4.0) * fadeOut
+
+                // Speed-Linien
+                if i % 3 == 0 {
+                    let lineLen = r * 0.6
+                    let lineW = 3.0 * p
+                    var linePath = Path()
+                    linePath.move(to: CGPoint(x: cx + cos(ang) * (r - lineLen), y: cy + sin(ang) * (r - lineLen)))
+                    linePath.addLine(to: CGPoint(x: x, y: y))
+                    ctx.stroke(linePath, with: .color(Color.white.opacity(alpha * 0.7)), style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
+                }
 
                 let rect = giRect(x - w / 2.0, y - w / 2.0, w, w)
                 let colors = giPalette[i % giPalette.count]
@@ -406,33 +416,42 @@ private struct GISlam: View {
     var body: some View {
         let p = goOutI(goClamp01I(local / 0.25))
         let decay = exp(-max(0.0, local) * 9.0)
-        let s = 2.6 - 1.6 * p
+        let s = 3.6 - 2.6 * p // Viel größer! Bildschirmfüllend!
 
         VStack(spacing: 2) {
             ZStack {
+                // 3D-Extrusion (Fake)
+                ForEach(0..<18, id: \.self) { i in
+                    Text(big)
+                        .foregroundColor(Color(white: 0.15))
+                        .offset(x: CGFloat(i) * 2.0, y: CGFloat(i) * 2.0)
+                        .opacity(1.0 - Double(i) / 18.0)
+                }
+
                 Text(big)
                     .foregroundColor(Color.red)
-                    .offset(x: CGFloat(-9.0 * decay))
+                    .offset(x: CGFloat(-14.0 * decay))
                     .blendMode(.plusLighter)
                 Text(big)
                     .foregroundColor(Color.cyan)
-                    .offset(x: CGFloat(9.0 * decay))
+                    .offset(x: CGFloat(14.0 * decay))
                     .blendMode(.plusLighter)
                 Text(big)
                     .foregroundColor(.white)
-                    .shadow(color: color.opacity(0.9), radius: 30)
+                    .shadow(color: color.opacity(1.0), radius: 40)
             }
-            .font(.system(size: 132, weight: .black, design: .rounded))
+            .font(.system(size: 170, weight: .black, design: .rounded))
+            .rotation3DEffect(.degrees(12 * decay), axis: (x: 1, y: -1, z: 0.2)) // 3D-Kippen beim Einschlag
 
             Text(small)
-                .font(.system(size: 22, weight: .heavy, design: .rounded))
-                .tracking(6)
+                .font(.system(size: 28, weight: .heavy, design: .rounded))
+                .tracking(10)
                 .foregroundColor(color)
         }
         .scaleEffect(CGFloat(s))
         .offset(
-            x: CGFloat(sin(local * 90.0) * 14.0 * decay),
-            y: CGFloat(cos(local * 70.0) * 10.0 * decay)
+            x: CGFloat(sin(local * 90.0) * 20.0 * decay),
+            y: CGFloat(cos(local * 70.0) * 15.0 * decay)
         )
         .opacity(goClamp01I(local * 12.0))
     }
@@ -452,8 +471,69 @@ private struct GIPlant: View {
             let baseY = h * 0.72
             let maxH = h * 0.34
 
-            let g = goInOutI(goProgI(t, 9.4, 3.0))
+            // 1. Sonnenaufgang (Hintergrund)
+            let sunP = goProgI(t, 8.4, 4.0)
+            if sunP > 0 {
+                let sunRect = giRect(cx - w, baseY - w, w * 2.0, w * 2.0)
+                ctx.fill(
+                    Path(ellipseIn: sunRect),
+                    with: .radialGradient(
+                        Gradient(colors: [
+                            Color(red: 1.0, green: 0.8, blue: 0.4).opacity(0.4 * sunP),
+                            Color(red: 0.9, green: 0.4, blue: 0.1).opacity(0.2 * sunP),
+                            Color.clear
+                        ]),
+                        center: CGPoint(x: cx, y: baseY),
+                        startRadius: 0,
+                        endRadius: CGFloat(w * 0.8)
+                    )
+                )
+            }
 
+            // 2. Hügel und Gras
+            let hillP = goInOutI(goProgI(t, 8.5, 2.0))
+            if hillP > 0 {
+                var hill1 = Path()
+                hill1.move(to: CGPoint(x: 0, y: h))
+                hill1.addLine(to: CGPoint(x: 0, y: baseY + 40.0 - 40.0 * hillP))
+                hill1.addQuadCurve(to: CGPoint(x: w, y: baseY + 80.0 - 40.0 * hillP), control: CGPoint(x: cx * 0.8, y: baseY - 60.0 * hillP))
+                hill1.addLine(to: CGPoint(x: w, y: h))
+                ctx.fill(hill1, with: .color(Color(red: 0.05, green: 0.25, blue: 0.15).opacity(0.8 * hillP)))
+
+                var hill2 = Path()
+                hill2.move(to: CGPoint(x: 0, y: h))
+                hill2.addLine(to: CGPoint(x: 0, y: baseY + 90.0 - 50.0 * hillP))
+                hill2.addQuadCurve(to: CGPoint(x: w, y: baseY + 20.0 - 20.0 * hillP), control: CGPoint(x: cx * 1.4, y: baseY - 80.0 * hillP))
+                hill2.addLine(to: CGPoint(x: w, y: h))
+                ctx.fill(hill2, with: .color(Color(red: 0.02, green: 0.18, blue: 0.10).opacity(0.9 * hillP)))
+            }
+
+            // 3. Fallende Gewohnheiten (Tropfen)
+            let dropP = goProgI(t, 8.6, 2.0)
+            if dropP > 0 && dropP < 1.0 {
+                for i in 0..<5 {
+                    let delay = Double(i) * 0.2
+                    let localP = goProgI(t, 8.6 + delay, 0.6)
+                    if localP > 0 && localP < 1.0 {
+                        let dropY = -50.0 + (baseY + 50.0) * pow(localP, 2.0) // Fall-Beschleunigung
+                        let dropX = cx + sin(Double(i) * 123.4) * 40.0
+                        let dropR = 4.0
+                        
+                        var drop = Path()
+                        drop.move(to: CGPoint(x: dropX, y: dropY - dropR * 2.0)) // Spitze
+                        drop.addQuadCurve(to: CGPoint(x: dropX - dropR, y: dropY), control: CGPoint(x: dropX - dropR, y: dropY - dropR))
+                        drop.addQuadCurve(to: CGPoint(x: dropX + dropR, y: dropY), control: CGPoint(x: dropX, y: dropY + dropR))
+                        drop.addQuadCurve(to: CGPoint(x: dropX, y: dropY - dropR * 2.0), control: CGPoint(x: dropX + dropR, y: dropY - dropR))
+                        
+                        ctx.fill(drop, with: .color(Color.cyan.opacity(1.0 - localP)))
+                        ctx.blendMode = .plusLighter
+                        ctx.fill(drop, with: .color(Color.white.opacity((1.0 - localP) * 0.8)))
+                        ctx.blendMode = .normal
+                    }
+                }
+            }
+
+            let g = goInOutI(goProgI(t, 9.4, 3.0))
             func stemPoint(_ s: Double) -> CGPoint {
                 CGPoint(x: cx + 16.0 * sin(s * 3.6), y: baseY - maxH * s)
             }
@@ -561,20 +641,47 @@ private struct GIPlant: View {
                 )
             }
 
-            // Knospe oben
+            // Aufblühende Blume (statt nur Knospe)
             if g > 0.02 {
+                let bloomP = goInOutI(goProgI(t, 11.0, 1.5)) // Blume blüht auf
+                
+                // Zentrum (Knospe/Leuchten)
                 let budR = 9.0 + 4.0 * sin(t * 6.0)
                 ctx.blendMode = .plusLighter
                 ctx.fill(
                     Path(ellipseIn: giRect(Double(top.x) - budR * 3.0, Double(top.y) - budR * 3.0, budR * 6.0, budR * 6.0)),
                     with: .radialGradient(
-                        Gradient(colors: [Color.white.opacity(0.9), accent.opacity(0.4), Color.clear]),
+                        Gradient(colors: [Color.white.opacity(0.9), accent.opacity(0.8), Color.clear]),
                         center: top,
                         startRadius: 0,
                         endRadius: CGFloat(budR * 3.0)
                     )
                 )
                 ctx.blendMode = .normal
+
+                // Blütenblätter
+                if bloomP > 0 {
+                    let numPetals = 8
+                    for i in 0..<numPetals {
+                        let angle = Double(i) * (2.0 * Double.pi / Double(numPetals)) + t * 0.2
+                        let petalLen = 35.0 * bloomP + 3.0 * sin(t * 3.0 + Double(i))
+                        let petalW = 15.0 * bloomP
+
+                        let pPath = Path(ellipseIn: giRect(0.0, -petalW / 2.0, petalLen, petalW))
+                        let tf = CGAffineTransform(rotationAngle: CGFloat(angle))
+                            .concatenating(CGAffineTransform(translationX: top.x, y: top.y))
+                        
+                        ctx.fill(
+                            pPath.applying(tf),
+                            with: .radialGradient(
+                                Gradient(colors: [Color(red: 1.0, green: 0.9, blue: 0.5).opacity(0.9), accent.opacity(0.7), Color.clear]),
+                                center: top,
+                                startRadius: 0,
+                                endRadius: CGFloat(petalLen)
+                            )
+                        )
+                    }
+                }
             }
 
             // Glühwürmchen
