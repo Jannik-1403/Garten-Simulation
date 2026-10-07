@@ -66,9 +66,10 @@ struct GrovyIntroView: View {
                     layerA(t)
                 }
 
+                // Weicher Fadeout statt harter Blitz
                 if t > 5.0 && t < 6.0 {
-                    Color.white
-                        .opacity(giFlash(t))
+                    Color.black
+                        .opacity(goClamp01I((t - 5.0) / 0.6))
                         .ignoresSafeArea()
                         .allowsHitTesting(false)
                 }
@@ -165,13 +166,13 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerA(_ t: Double) -> some View {
-        let cut = 1.0 - goClamp01I((t - 5.3) / 0.15)
+        let cut = 1.0 - goClamp01I((t - 5.0) / 0.6) // Weicher, längerer Fade-out
         let idx = currentSlam(t)
         let slam = slams[idx]
         let local = t - slam.start
 
         ZStack {
-            GITiles(t: t - 1.2, warning: warning)
+            GIDeadLeaves(t: t - 1.2)
                 .ignoresSafeArea()
             GISlam(big: slam.big, small: slam.small, local: local, color: warning)
             Color.white
@@ -310,11 +311,7 @@ private func goInOutI(_ x: Double) -> Double {
 }
 private func giFract(_ x: Double) -> Double { x - floor(x) }
 private func giPulse(_ t: Double, _ at: Double) -> Double { t >= at ? exp(-(t - at) * 9.0) : 0.0 }
-private func giFlash(_ t: Double) -> Double {
-    let up = goClamp01I((t - 5.1) / 0.3)
-    let down = 1.0 - goClamp01I((t - 5.4) / 0.4)
-    return up * down
-}
+private func giFlash(_ t: Double) -> Double { 0.0 } // Nicht mehr genutzt, durch weichen Fade ersetzt
 private func giRect(_ x: Double, _ y: Double, _ w: Double, _ h: Double) -> CGRect {
     CGRect(x: x, y: y, width: w, height: h)
 }
@@ -334,19 +331,10 @@ private struct GITimed<Content: View>: View {
     }
 }
 
-// MARK: - Kachel-Sturm (Canvas)
+// MARK: - Verdorrende Blätter (Canvas)
 
-private let giPalette: [[Color]] = [
-    [Color(red: 1.00, green: 0.60, blue: 0.70), Color(red: 0.90, green: 0.18, blue: 0.40)],
-    [Color(red: 1.00, green: 0.80, blue: 0.40), Color(red: 0.95, green: 0.48, blue: 0.12)],
-    [Color(red: 0.55, green: 0.72, blue: 1.00), Color(red: 0.28, green: 0.36, blue: 0.88)],
-    [Color(red: 0.50, green: 0.90, blue: 1.00), Color(red: 0.10, green: 0.55, blue: 0.85)],
-    [Color(red: 0.78, green: 0.62, blue: 1.00), Color(red: 0.48, green: 0.25, blue: 0.85)]
-]
-
-private struct GITiles: View {
+private struct GIDeadLeaves: View {
     let t: Double
-    let warning: Color
 
     var body: some View {
         Canvas { ctx, size in
@@ -354,7 +342,7 @@ private struct GITiles: View {
             let cy = Double(size.height) / 2.0
             let reach = max(Double(size.width), Double(size.height)) * 0.8
 
-            for i in 0..<60 { // Mehr Partikel für den Tunnel
+            for i in 0..<80 { // Mehr Blätter/Ranken
                 let seed = Double(i)
                 let ang = giFract(sin(seed * 12.9898) * 43758.5453) * 2.0 * Double.pi
                 let delay = giFract(seed * 0.37) * 1.6
@@ -363,42 +351,38 @@ private struct GITiles: View {
 
                 let period = 2.2
                 let p = local.truncatingRemainder(dividingBy: period) / period
-                let r = pow(p, 3.0) * reach * 1.5 // Schneller am Rand für Tunnel-Sog
-                let w = 40.0 * (0.15 + 4.0 * pow(p, 1.8))
+                let r = pow(p, 2.5) * reach * 1.5
+                let w = 40.0 * (0.15 + 3.0 * pow(p, 1.8))
                 let x = cx + cos(ang) * r
                 let y = cy + sin(ang) * r
                 let fadeOut = 1.0 - max(0.0, p - 0.85) / 0.15
                 let alpha = min(1.0, local * 4.0) * fadeOut
 
-                // Speed-Linien
-                if i % 3 == 0 {
-                    let lineLen = r * 0.6
-                    let lineW = 3.0 * p
+                // Dezente Speed-Linien
+                if i % 4 == 0 {
+                    let lineLen = r * 0.4
+                    let lineW = 2.0 * p
                     var linePath = Path()
                     linePath.move(to: CGPoint(x: cx + cos(ang) * (r - lineLen), y: cy + sin(ang) * (r - lineLen)))
                     linePath.addLine(to: CGPoint(x: x, y: y))
-                    ctx.stroke(linePath, with: .color(Color.white.opacity(alpha * 0.7)), style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
+                    ctx.stroke(linePath, with: .color(Color.white.opacity(alpha * 0.3)), style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
                 }
 
-                let rect = giRect(x - w / 2.0, y - w / 2.0, w, w)
-                let colors = giPalette[i % giPalette.count]
-
+                // Verdorrendes Blatt zeichnen
                 ctx.opacity = alpha
+                let leafAngle = t * 3.0 + seed * 5.0
+                let tf = CGAffineTransform(rotationAngle: CGFloat(leafAngle))
+                    .concatenating(CGAffineTransform(translationX: x, y: y))
+                
+                let leafPath = Path(ellipseIn: giRect(-w/2, -w/4, w, w/2))
                 ctx.fill(
-                    Path(roundedRect: rect, cornerRadius: CGFloat(w * 0.28), style: .continuous),
+                    leafPath.applying(tf),
                     with: .linearGradient(
-                        Gradient(colors: colors),
-                        startPoint: CGPoint(x: rect.minX, y: rect.minY),
-                        endPoint: CGPoint(x: rect.maxX, y: rect.maxY)
+                        Gradient(colors: [Color(red: 0.3, green: 0.2, blue: 0.1), Color(red: 0.1, green: 0.05, blue: 0.0)]),
+                        startPoint: CGPoint(x: x, y: y),
+                        endPoint: CGPoint(x: x + w, y: y + w)
                     )
                 )
-                let gloss = giRect(x - w * 0.44, y - w * 0.45, w * 0.88, w * 0.4)
-                ctx.fill(
-                    Path(roundedRect: gloss, cornerRadius: CGFloat(w * 0.2), style: .continuous),
-                    with: .color(Color.white.opacity(0.28))
-                )
-                let badge = giRect(x + w * 0.28, y - w * 0.56, w * 0.34, w * 0.34)
-                ctx.fill(Path(ellipseIn: badge), with: .color(Color.red))
             }
             ctx.opacity = 1.0
         }
@@ -420,25 +404,26 @@ private struct GISlam: View {
 
         VStack(spacing: 2) {
             ZStack {
-                // 3D-Extrusion (Fake)
+                // 3D-Extrusion (Fake) - Besser Lesbar
                 ForEach(0..<18, id: \.self) { i in
                     Text(big)
-                        .foregroundColor(Color(white: 0.15))
+                        .foregroundColor(Color(white: 0.1))
                         .offset(x: CGFloat(i) * 2.0, y: CGFloat(i) * 2.0)
                         .opacity(1.0 - Double(i) / 18.0)
                 }
 
                 Text(big)
-                    .foregroundColor(Color.red)
+                    .foregroundColor(Color.red.opacity(0.8))
                     .offset(x: CGFloat(-14.0 * decay))
                     .blendMode(.plusLighter)
                 Text(big)
-                    .foregroundColor(Color.cyan)
+                    .foregroundColor(Color.cyan.opacity(0.8))
                     .offset(x: CGFloat(14.0 * decay))
                     .blendMode(.plusLighter)
                 Text(big)
                     .foregroundColor(.white)
-                    .shadow(color: color.opacity(1.0), radius: 40)
+                    .shadow(color: Color.black.opacity(1.0), radius: 10, x: 0, y: 5) // Stärkerer Kontrast-Schatten
+                    .shadow(color: color.opacity(0.7), radius: 30) // Sanfterer Farb-Glow
             }
             .font(.system(size: 170, weight: .black, design: .rounded))
             .rotation3DEffect(.degrees(12 * decay), axis: (x: 1, y: -1, z: 0.2)) // 3D-Kippen beim Einschlag
@@ -447,6 +432,7 @@ private struct GISlam: View {
                 .font(.system(size: 28, weight: .heavy, design: .rounded))
                 .tracking(10)
                 .foregroundColor(color)
+                .shadow(color: Color.black.opacity(0.8), radius: 5, x: 0, y: 3) // Lesbarkeit verbessert
         }
         .scaleEffect(CGFloat(s))
         .offset(
@@ -639,6 +625,12 @@ private struct GIPlant: View {
                         endPoint: tip
                     )
                 )
+
+                // Blattadern
+                var vein = Path()
+                vein.move(to: .zero)
+                vein.addQuadCurve(to: CGPoint(x: len * 0.9, y: 0), control: CGPoint(x: len * 0.45, y: -side * wd * 0.15))
+                ctx.stroke(vein.applying(tf), with: .color(Color(red: 0.05, green: 0.35, blue: 0.15).opacity(0.6)), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
             }
 
             // Aufblühende Blume (statt nur Knospe)
