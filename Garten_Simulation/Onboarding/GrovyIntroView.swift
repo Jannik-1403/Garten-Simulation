@@ -34,7 +34,7 @@ struct GrovyIntroView: View {
     init(
         accent: Color = .blauPrimary, // Angepasst an Grovy
         warning: Color = .red, // Angepasst an Grovy Warn-Farbe
-        background: Color = Color(UIColor.systemBackground),
+        background: Color = .clear,
         soundEnabled: Bool = true,
         buttonTitle: String = "Los geht's",
         onFinish: @escaping () -> Void = {}
@@ -335,7 +335,7 @@ private struct GITimed<Content: View>: View {
 
 private struct GIDopamineIcons: View {
     let t: Double
-    let icons = ["📱", "💬", "🎮", "▶️", "❤️"]
+    let icons = ["XP", "Powerup", "coin", "Drop water", "Heart", "streak", "Powerup-Diamanterde", "Powerup-Zauberstarb"]
 
     var body: some View {
         Canvas { ctx, size in
@@ -375,8 +375,14 @@ private struct GIDopamineIcons: View {
                     .concatenating(CGAffineTransform(translationX: x, y: y))
                 
                 let iconStr = icons[i % icons.count]
-                let resolvedText = ctx.resolve(Text(iconStr).font(.system(size: CGFloat(w))))
-                ctx.draw(resolvedText, at: CGPoint(x: x, y: y))
+                if let uiImage = UIImage(named: iconStr) {
+                    let image = Image(uiImage: uiImage)
+                    let resolved = ctx.resolve(image)
+                    
+                    var innerCtx = ctx
+                    innerCtx.transform = tf
+                    innerCtx.draw(resolved, in: giRect(-w/2, -w/2, w, w))
+                }
             }
             ctx.opacity = 1.0
         }

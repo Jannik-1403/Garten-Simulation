@@ -14,30 +14,32 @@ struct OnboardingView: View {
             FloatingBackgroundView()
             
             VStack(spacing: 0) {
-                // Header: Back & Progress
-                HStack(spacing: 16) {
-                    if data.currentStep > 1 && data.currentStep <= totalSteps {
-                        Button {
-                            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                                data.currentStep -= 1
+                if data.currentStep > 1 {
+                    // Header: Back & Progress
+                    HStack(spacing: 16) {
+                        if data.currentStep > 1 && data.currentStep <= totalSteps {
+                            Button {
+                                withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                                    data.currentStep -= 1
+                                }
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundStyle(.secondary)
                             }
-                        } label: {
-                            Image(systemName: "chevron.left")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundStyle(.secondary)
+                        } else {
+                            Spacer().frame(width: 24)
                         }
-                    } else {
+                        
+                        // Progressive Bar
+                        OnboardingProgressBar(currentStep: data.currentStep, totalSteps: totalSteps)
+                        
                         Spacer().frame(width: 24)
                     }
-                    
-                    // Progressive Bar
-                    OnboardingProgressBar(currentStep: data.currentStep, totalSteps: totalSteps)
-                    
-                    Spacer().frame(width: 24)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 20)
+                    .padding(.bottom, 10)
                 }
-                .padding(.horizontal, 24)
-                .padding(.top, 20)
-                .padding(.bottom, 10)
                 
                 // Content
                 ZStack {
