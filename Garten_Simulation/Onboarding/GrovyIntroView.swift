@@ -109,7 +109,7 @@ struct GrovyIntroView: View {
 
                 // Ring-Fortschrittsbalken am Bildschirmrand
                 if holdProgress > 0 || startTick != nil {
-                    GIRingProgress(progress: holdProgress, size: geo.size)
+                    GIRingProgress(progress: holdProgress)
                         .ignoresSafeArea()
                         .allowsHitTesting(false)
                         .animation(.linear(duration: 0.05), value: holdProgress)
@@ -377,57 +377,44 @@ private struct GITimed<Content: View>: View {
 }
 
 // MARK: - Ring-Fortschrittsbalken am Bildschirmrand
+// Passt sich automatisch an jedes Gerät (iPhone, iPad, alle Größen) an.
 
 private struct GIRingProgress: View {
     let progress: Double   // 0...1
-    let size: CGSize
+
+    private var deviceCornerRadius: CGFloat {
+        UIDevice.current.userInterfaceIdiom == .pad ? 20 : 44
+    }
 
     var body: some View {
-        Canvas { ctx, canvasSize in
-            let w = Double(canvasSize.width)
-            let h = Double(canvasSize.height)
-            let inset = 8.0
-            let lineW = 6.0
-            let cornerR = 44.0
+        GeometryReader { geo in
+            let inset: CGFloat = 6
+            let lineW: CGFloat = 6
+            let cr = max(0, deviceCornerRadius - inset)
 
-            // Gesamtperimeter des abgerundeten Rechtecks
-            let perim = 2 * (w - 2 * cornerR) + 2 * (h - 2 * cornerR) + 2 * Double.pi * cornerR
+            ZStack {
+                // Dezente Hintergrund-Spur
+                RoundedRectangle(cornerRadius: cr, style: .continuous)
+                    .inset(by: inset)
+                    .stroke(Color.white.opacity(0.12),
+                            style: StrokeStyle(lineWidth: lineW, lineCap: .round))
 
-            // Startpunkt: oben-mitte, Uhrzeigersinn
-            let start = CGPoint(x: w / 2, y: inset)
-
-            var path = Path()
-            // Top-right
-            path.move(to: start)
-            path.addLine(to: CGPoint(x: w - cornerR - inset, y: inset))
-            path.addArc(center: CGPoint(x: w - cornerR - inset, y: cornerR + inset),
-                        radius: cornerR, startAngle: .degrees(-90), endAngle: .degrees(0), clockwise: false)
-            // Right
-            path.addLine(to: CGPoint(x: w - inset, y: h - cornerR - inset))
-            path.addArc(center: CGPoint(x: w - cornerR - inset, y: h - cornerR - inset),
-                        radius: cornerR, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
-            // Bottom
-            path.addLine(to: CGPoint(x: cornerR + inset, y: h - inset))
-            path.addArc(center: CGPoint(x: cornerR + inset, y: h - cornerR - inset),
-                        radius: cornerR, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: false)
-            // Left
-            path.addLine(to: CGPoint(x: inset, y: cornerR + inset))
-            path.addArc(center: CGPoint(x: cornerR + inset, y: cornerR + inset),
-                        radius: cornerR, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: false)
-            // Back to top-left → top-center
-            path.addLine(to: start)
-
-            // Hintergrund-Ring (dezent grau)
-            ctx.stroke(path, with: .color(.white.opacity(0.08)),
-                       style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
-
-            // Fortschritts-Anteil als Dash
-            let dashLen = perim * progress
-            ctx.stroke(path, with: .color(Color.yellow.opacity(0.9)),
-                       style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round,
-                                          dash: [CGFloat(dashLen), CGFloat(perim)]))
+                // Fortschritts-Spur (Gelb → Orange, Uhrzeigersinn von oben)
+                RoundedRectangle(cornerRadius: cr, style: .continuous)
+                    .inset(by: inset)
+                    .trim(from: 0, to: CGFloat(progress))
+                    .stroke(
+                        LinearGradient(
+                            colors: [Color.yellow, Color.orange],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        style: StrokeStyle(lineWidth: lineW, lineCap: .round)
+                    )
+                    .rotationEffect(.degrees(-90))
+            }
+            .frame(width: geo.size.width, height: geo.size.height)
         }
-        .frame(width: size.width, height: size.height)
     }
 }
 
