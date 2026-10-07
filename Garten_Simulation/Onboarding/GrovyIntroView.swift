@@ -82,16 +82,16 @@ struct GrovyIntroView: View {
                 sizes: [110, 24],
                 start: 12.0, stepDur: 1.2, gap: 1.0, fadeOutAt: 14.5
             ),
-            // SOLUTION TEXTS – 3 Teile, echtes Wort-für-Wort wie am Anfang
+            // SOLUTION TEXTS – 1:1 wie Intro (gleiche Größen, Farben, Timing)
             GIWordScene(
                 words: [
                     String(localized: "intro_sol_time_1", defaultValue: "WIE VIEL ZEIT"),
                     String(localized: "intro_sol_time_2", defaultValue: "HÄTTEST DU"),
                     String(localized: "intro_sol_time_3", defaultValue: "FÜR ANDERE SACHEN?")
                 ],
-                colors: [.white, .white, Color(white: 0.85)],
-                sizes: [44, 52, 36],
-                start: 14.5, stepDur: 1.5, gap: 1.2, fadeOutAt: 19.5
+                colors: [.white, .yellow, .orange],
+                sizes: [88, 64, 56],
+                start: 14.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 18.5
             ),
             GIWordScene(
                 words: [
@@ -99,9 +99,9 @@ struct GrovyIntroView: View {
                     String(localized: "intro_sol_invest_2", defaultValue: "DIESE ZEIT"),
                     String(localized: "intro_sol_invest_3", defaultValue: "IN DICH.")
                 ],
-                colors: [.white, .white, accent],
-                sizes: [48, 56, 62],
-                start: 19.5, stepDur: 1.5, gap: 1.0, fadeOutAt: 24.0
+                colors: [.white, .yellow, accent],
+                sizes: [88, 64, 72],
+                start: 18.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 22.5
             ),
             GIWordScene(
                 words: [
@@ -109,9 +109,9 @@ struct GrovyIntroView: View {
                     String(localized: "intro_sol_build_2", defaultValue: "GEWOHNHEITEN"),
                     String(localized: "intro_sol_build_3", defaultValue: "AUF.")
                 ],
-                colors: [.white, accent, accent],
-                sizes: [44, 52, 62],
-                start: 24.0, stepDur: 1.5, gap: 1.0, fadeOutAt: 28.0
+                colors: [.white, accent, .orange],
+                sizes: [72, 64, 88],
+                start: 22.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 26.5
             )
         ]
     }
@@ -136,16 +136,21 @@ struct GrovyIntroView: View {
                 if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
 
                 // Einheitliche 3D Text Szenen (inkl. TikTok Wörter, Slams und Solution)
-                if t < 23.0 {
+                if t < 27.0 {
                     GIWordBuildUp(t: t, scenes: textScenes).ignoresSafeArea()
                 }
 
                 // Phase 5: Logo
-                if t > 27.5 { layerD(t) }
+                if t > 26.0 { layerD(t) }
 
                 // Auto-Finish
-                if t > 30.0 { Color.clear.onAppear { finishNow() } }
+                if t > 29.0 { Color.clear.onAppear { finishNow() } }
             }
+            // Ganzer Screen schüttelt am Ende – nicht nur der Button
+            .offset(
+                x: endWiggle > 0 ? CGFloat(sin(endWiggle * 28.0) * min(endWiggle * 5, 7)) : 0,
+                y: endWiggle > 0 ? CGFloat(cos(endWiggle * 21.0) * min(endWiggle * 3, 4)) : 0
+            )
 
             // --- INPUT SCREEN ---
             if inputMode {
@@ -238,13 +243,16 @@ struct GrovyIntroView: View {
                 }
             }
             
-            // Wackeln am Ende
+            // Wackeln am Ende – ganzer Screen + starke Vibration
             if t > kIntroDuration - 2.0 {
                 let wiggleT = t - (kIntroDuration - 2.0)
                 endWiggle = wiggleT
-                let wStep = (wiggleT * 3).rounded(.down)
-                if wStep > (endWiggle * 3 - 1).rounded(.down) {
-                    giHaptic(2)
+                let wStep = (wiggleT * 4).rounded(.down)
+                let prevStep = ((wiggleT - 0.02) * 4).rounded(.down)
+                if wStep > prevStep {
+                    #if canImport(UIKit)
+                    UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                    #endif
                 }
             }
             
@@ -290,9 +298,9 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerD(_ t: Double) -> some View {
-        let lp = goProgI(t, 27.6, 1.4); let lpE = goOutI(lp)
-        let sweep = goInOutI(goProgI(t, 28.3, 1.1))
-        let btn = goOutI(goProgI(t, 28.8, 0.6))
+        let lp = goProgI(t, 26.1, 1.4); let lpE = goOutI(lp)
+        let sweep = goInOutI(goProgI(t, 26.8, 1.1))
+        let btn = goOutI(goProgI(t, 27.3, 0.6))
         let word = Text("GROVY")
             .font(.system(size: 58, weight: .black, design: .rounded))
             .tracking(CGFloat(26.0 - 20.0 * lpE))
