@@ -34,7 +34,7 @@ struct GrovyIntroView: View {
     init(
         accent: Color = .blauPrimary, // Angepasst an Grovy
         warning: Color = .red, // Angepasst an Grovy Warn-Farbe
-        background: Color = .black,
+        background: Color = Color(UIColor.systemBackground),
         soundEnabled: Bool = true,
         buttonTitle: String = "Los geht's",
         onFinish: @escaping () -> Void = {}
@@ -68,7 +68,7 @@ struct GrovyIntroView: View {
 
                 // Weicher Fadeout statt harter Blitz
                 if t > 5.0 && t < 6.0 {
-                    Color.black
+                    background
                         .opacity(goClamp01I((t - 5.0) / 0.6))
                         .ignoresSafeArea()
                         .allowsHitTesting(false)
@@ -79,7 +79,7 @@ struct GrovyIntroView: View {
                 }
 
                 if t > 8.3 {
-                    GIPlant(t: t, accent: accent)
+                    GIStats(t: t, accent: accent)
                         .ignoresSafeArea()
                         .scaleEffect(CGFloat(1.0 + 0.08 * goProgI(t, 9.4, 5.0)))
                         .opacity(goProgI(t, 8.3, 0.8))
@@ -172,11 +172,11 @@ struct GrovyIntroView: View {
         let local = t - slam.start
 
         ZStack {
-            GIDeadLeaves(t: t - 1.2)
+            GIDopamineIcons(t: t - 1.2)
                 .ignoresSafeArea()
             GISlam(big: slam.big, small: slam.small, local: local, color: warning)
-            Color.white
-                .opacity(0.45 * exp(-max(0.0, local) * 10.0))
+            background
+                .opacity(0.65 * exp(-max(0.0, local) * 10.0))
                 .ignoresSafeArea()
                 .allowsHitTesting(false)
         }
@@ -201,7 +201,7 @@ struct GrovyIntroView: View {
         VStack(spacing: 12) {
             Text("Dein Gehirn will mehr.")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(Color.primary)
                 .opacity(a1)
                 .offset(y: CGFloat((1.0 - a1) * 16.0))
             Text("Nicht besser.")
@@ -331,10 +331,11 @@ private struct GITimed<Content: View>: View {
     }
 }
 
-// MARK: - Verdorrende Blätter (Canvas)
+// MARK: - Dopamin Icons (Canvas)
 
-private struct GIDeadLeaves: View {
+private struct GIDopamineIcons: View {
     let t: Double
+    let icons = ["📱", "💬", "🎮", "▶️", "❤️"]
 
     var body: some View {
         Canvas { ctx, size in
@@ -342,7 +343,7 @@ private struct GIDeadLeaves: View {
             let cy = Double(size.height) / 2.0
             let reach = max(Double(size.width), Double(size.height)) * 0.8
 
-            for i in 0..<80 { // Mehr Blätter/Ranken
+            for i in 0..<60 {
                 let seed = Double(i)
                 let ang = giFract(sin(seed * 12.9898) * 43758.5453) * 2.0 * Double.pi
                 let delay = giFract(seed * 0.37) * 1.6
@@ -365,24 +366,17 @@ private struct GIDeadLeaves: View {
                     var linePath = Path()
                     linePath.move(to: CGPoint(x: cx + cos(ang) * (r - lineLen), y: cy + sin(ang) * (r - lineLen)))
                     linePath.addLine(to: CGPoint(x: x, y: y))
-                    ctx.stroke(linePath, with: .color(Color.white.opacity(alpha * 0.3)), style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
+                    ctx.stroke(linePath, with: .color(Color.gray.opacity(alpha * 0.3)), style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
                 }
 
-                // Verdorrendes Blatt zeichnen
                 ctx.opacity = alpha
                 let leafAngle = t * 3.0 + seed * 5.0
                 let tf = CGAffineTransform(rotationAngle: CGFloat(leafAngle))
                     .concatenating(CGAffineTransform(translationX: x, y: y))
                 
-                let leafPath = Path(ellipseIn: giRect(-w/2, -w/4, w, w/2))
-                ctx.fill(
-                    leafPath.applying(tf),
-                    with: .linearGradient(
-                        Gradient(colors: [Color(red: 0.3, green: 0.2, blue: 0.1), Color(red: 0.1, green: 0.05, blue: 0.0)]),
-                        startPoint: CGPoint(x: x, y: y),
-                        endPoint: CGPoint(x: x + w, y: y + w)
-                    )
-                )
+                let iconStr = icons[i % icons.count]
+                let resolvedText = ctx.resolve(Text(iconStr).font(.system(size: CGFloat(w))))
+                ctx.draw(resolvedText, at: CGPoint(x: x, y: y))
             }
             ctx.opacity = 1.0
         }
@@ -443,9 +437,9 @@ private struct GISlam: View {
     }
 }
 
-// MARK: - Pflanze, Strahlen, Glühwürmchen (Canvas)
+// MARK: - Statistik (Canvas)
 
-private struct GIPlant: View {
+private struct GIStats: View {
     let t: Double
     let accent: Color
 
@@ -455,234 +449,77 @@ private struct GIPlant: View {
             let h = Double(size.height)
             let cx = w / 2.0
             let baseY = h * 0.72
-            let maxH = h * 0.34
 
-            // 1. Sonnenaufgang (Hintergrund)
-            let sunP = goProgI(t, 8.4, 4.0)
-            if sunP > 0 {
-                let sunRect = giRect(cx - w, baseY - w, w * 2.0, w * 2.0)
-                ctx.fill(
-                    Path(ellipseIn: sunRect),
-                    with: .radialGradient(
-                        Gradient(colors: [
-                            Color(red: 1.0, green: 0.8, blue: 0.4).opacity(0.4 * sunP),
-                            Color(red: 0.9, green: 0.4, blue: 0.1).opacity(0.2 * sunP),
-                            Color.clear
-                        ]),
-                        center: CGPoint(x: cx, y: baseY),
-                        startRadius: 0,
-                        endRadius: CGFloat(w * 0.8)
-                    )
-                )
-            }
+            // Stat-Wachstum
+            let statP = goInOutI(goProgI(t, 8.5, 3.0))
 
-            // 2. Hügel und Gras
-            let hillP = goInOutI(goProgI(t, 8.5, 2.0))
-            if hillP > 0 {
-                var hill1 = Path()
-                hill1.move(to: CGPoint(x: 0, y: h))
-                hill1.addLine(to: CGPoint(x: 0, y: baseY + 40.0 - 40.0 * hillP))
-                hill1.addQuadCurve(to: CGPoint(x: w, y: baseY + 80.0 - 40.0 * hillP), control: CGPoint(x: cx * 0.8, y: baseY - 60.0 * hillP))
-                hill1.addLine(to: CGPoint(x: w, y: h))
-                ctx.fill(hill1, with: .color(Color(red: 0.05, green: 0.25, blue: 0.15).opacity(0.8 * hillP)))
-
-                var hill2 = Path()
-                hill2.move(to: CGPoint(x: 0, y: h))
-                hill2.addLine(to: CGPoint(x: 0, y: baseY + 90.0 - 50.0 * hillP))
-                hill2.addQuadCurve(to: CGPoint(x: w, y: baseY + 20.0 - 20.0 * hillP), control: CGPoint(x: cx * 1.4, y: baseY - 80.0 * hillP))
-                hill2.addLine(to: CGPoint(x: w, y: h))
-                ctx.fill(hill2, with: .color(Color(red: 0.02, green: 0.18, blue: 0.10).opacity(0.9 * hillP)))
-            }
-
-            // 3. Fallende Gewohnheiten (Tropfen)
-            let dropP = goProgI(t, 8.6, 2.0)
-            if dropP > 0 && dropP < 1.0 {
+            if statP > 0 {
+                // Hintergrund-Grid
                 for i in 0..<5 {
-                    let delay = Double(i) * 0.2
-                    let localP = goProgI(t, 8.6 + delay, 0.6)
-                    if localP > 0 && localP < 1.0 {
-                        let dropY = -50.0 + (baseY + 50.0) * pow(localP, 2.0) // Fall-Beschleunigung
-                        let dropX = cx + sin(Double(i) * 123.4) * 40.0
-                        let dropR = 4.0
-                        
-                        var drop = Path()
-                        drop.move(to: CGPoint(x: dropX, y: dropY - dropR * 2.0)) // Spitze
-                        drop.addQuadCurve(to: CGPoint(x: dropX - dropR, y: dropY), control: CGPoint(x: dropX - dropR, y: dropY - dropR))
-                        drop.addQuadCurve(to: CGPoint(x: dropX + dropR, y: dropY), control: CGPoint(x: dropX, y: dropY + dropR))
-                        drop.addQuadCurve(to: CGPoint(x: dropX, y: dropY - dropR * 2.0), control: CGPoint(x: dropX + dropR, y: dropY - dropR))
-                        
-                        ctx.fill(drop, with: .color(Color.cyan.opacity(1.0 - localP)))
-                        ctx.blendMode = .plusLighter
-                        ctx.fill(drop, with: .color(Color.white.opacity((1.0 - localP) * 0.8)))
-                        ctx.blendMode = .normal
-                    }
+                    let y = baseY - Double(i) * 60.0
+                    var gridLine = Path()
+                    gridLine.move(to: CGPoint(x: cx - 120, y: y))
+                    gridLine.addLine(to: CGPoint(x: cx + 120, y: y))
+                    ctx.stroke(gridLine, with: .color(Color.gray.opacity(0.2 * statP)), style: StrokeStyle(lineWidth: 1, dash: [4, 4]))
                 }
-            }
 
-            let g = goInOutI(goProgI(t, 9.4, 3.0))
-            func stemPoint(_ s: Double) -> CGPoint {
-                CGPoint(x: cx + 16.0 * sin(s * 3.6), y: baseY - maxH * s)
-            }
-            let top = stemPoint(g)
-
-            // Boden-Glow
-            let groundRect = giRect(cx - 110.0, baseY - 16.0, 220.0, 32.0)
-            ctx.fill(
-                Path(ellipseIn: groundRect),
-                with: .radialGradient(
-                    Gradient(colors: [accent.opacity(0.55 * goProgI(t, 8.4, 1.0)), Color.clear]),
-                    center: CGPoint(x: cx, y: baseY),
-                    startRadius: 0,
-                    endRadius: 110
-                )
-            )
-
-            // Lichtstrahlen vom Spross
-            let rayK = goProgI(t, 10.5, 2.0)
-            if rayK > 0 {
-                let R = max(w, h) * 0.9
-                ctx.blendMode = .plusLighter
-                for j in 0..<14 {
-                    let a = t * 0.15 + Double(j) * 2.0 * Double.pi / 14.0
-                    let spread = 0.05
-                    var tri = Path()
-                    tri.move(to: top)
-                    tri.addLine(to: CGPoint(x: Double(top.x) + R * cos(a - spread), y: Double(top.y) + R * sin(a - spread)))
-                    tri.addLine(to: CGPoint(x: Double(top.x) + R * cos(a + spread), y: Double(top.y) + R * sin(a + spread)))
-                    tri.closeSubpath()
+                // Balken
+                let bars = [0.2, 0.4, 0.6, 0.8, 1.0]
+                for (i, targetH) in bars.enumerated() {
+                    let localP = goInOutI(goProgI(t, 8.5 + Double(i) * 0.2, 1.0))
+                    let barH = 200.0 * targetH * localP
+                    let x = cx - 90.0 + Double(i) * 45.0
+                    
+                    let barRect = giRect(x - 12.0, baseY - barH, 24.0, barH)
                     ctx.fill(
-                        tri,
-                        with: .radialGradient(
-                            Gradient(colors: [accent.opacity(0.30 * rayK), Color.clear]),
-                            center: top,
-                            startRadius: 0,
-                            endRadius: CGFloat(R)
+                        Path(roundedRect: barRect, cornerRadius: 4.0),
+                        with: .linearGradient(
+                            Gradient(colors: [accent.opacity(0.8), accent]),
+                            startPoint: CGPoint(x: barRect.minX, y: barRect.maxY),
+                            endPoint: CGPoint(x: barRect.minX, y: barRect.minY)
                         )
                     )
                 }
-                ctx.blendMode = .normal
-            }
 
-            // Samen
-            let seedA = goProgI(t, 8.4, 0.8) * (1.0 - goProgI(t, 9.6, 0.6) * 0.0)
-            let pulse = 1.0 + 0.25 * sin(t * 9.0)
-            let seedR = 7.0 * pulse
-            ctx.blendMode = .plusLighter
-            ctx.fill(
-                Path(ellipseIn: giRect(cx - seedR * 4.0, baseY - seedR * 4.0, seedR * 8.0, seedR * 8.0)),
-                with: .radialGradient(
-                    Gradient(colors: [accent.opacity(0.6 * seedA), Color.clear]),
-                    center: CGPoint(x: cx, y: baseY),
-                    startRadius: 0,
-                    endRadius: CGFloat(seedR * 4.0)
-                )
-            )
-            ctx.blendMode = .normal
-            ctx.fill(
-                Path(ellipseIn: giRect(cx - seedR, baseY - seedR, seedR * 2.0, seedR * 2.0)),
-                with: .color(Color.white.opacity(seedA))
-            )
+                // Trend-Pfeil (steigt)
+                if statP > 0.5 {
+                    let arrowP = goInOutI(goProgI(t, 9.8, 1.5))
+                    var arrow = Path()
+                    let startPoint = CGPoint(x: cx - 90.0, y: baseY - 40.0)
+                    let endPoint = CGPoint(x: cx + 90.0, y: baseY - 200.0)
+                    
+                    let currentX = startPoint.x + (endPoint.x - startPoint.x) * arrowP
+                    let currentY = startPoint.y + (endPoint.y - startPoint.y) * arrowP
 
-            // Stiel
-            if g > 0.01 {
-                var stem = Path()
-                let steps = 70
-                let n = max(1, Int(Double(steps) * g))
-                for i in 0...n {
-                    let pt = stemPoint(Double(i) / Double(steps))
-                    if i == 0 {
-                        stem.move(to: pt)
-                    } else {
-                        stem.addLine(to: pt)
-                    }
-                }
-                ctx.stroke(stem, with: .color(accent), style: StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round))
-            }
+                    arrow.move(to: startPoint)
+                    arrow.addLine(to: CGPoint(x: currentX, y: currentY))
 
-            // Blätter
-            let nodes: [Double] = [0.28, 0.42, 0.56, 0.70, 0.84, 0.97]
-            for k in 0..<nodes.count {
-                let s = nodes[k]
-                let lp = goOutI(goClamp01I((g - s) / 0.12))
-                if lp <= 0 { continue }
-                let side: Double = (k % 2 == 0) ? 1.0 : -1.0
-                let len = (50.0 - 4.0 * Double(k)) * lp
-                let wd = len * 0.45
-                let sway = 0.06 * sin(t * 2.0 + Double(k))
-                let angle = side > 0 ? (-0.6 + sway) : (Double.pi + 0.6 - sway)
-                let base = stemPoint(s)
-
-                let leaf = Path(ellipseIn: giRect(0.0, -wd / 2.0, len, wd))
-                let tf = CGAffineTransform(rotationAngle: CGFloat(angle))
-                    .concatenating(CGAffineTransform(translationX: base.x, y: base.y))
-                let placed = leaf.applying(tf)
-                let tip = CGPoint(x: Double(base.x) + len * cos(angle), y: Double(base.y) + len * sin(angle))
-                ctx.fill(
-                    placed,
-                    with: .linearGradient(
-                        Gradient(colors: [Color(red: 0.70, green: 1.0, blue: 0.70), accent, Color(red: 0.10, green: 0.55, blue: 0.30)]),
-                        startPoint: base,
-                        endPoint: tip
-                    )
-                )
-
-                // Blattadern
-                var vein = Path()
-                vein.move(to: .zero)
-                vein.addQuadCurve(to: CGPoint(x: len * 0.9, y: 0), control: CGPoint(x: len * 0.45, y: -side * wd * 0.15))
-                ctx.stroke(vein.applying(tf), with: .color(Color(red: 0.05, green: 0.35, blue: 0.15).opacity(0.6)), style: StrokeStyle(lineWidth: 1.5, lineCap: .round))
-            }
-
-            // Aufblühende Blume (statt nur Knospe)
-            if g > 0.02 {
-                let bloomP = goInOutI(goProgI(t, 11.0, 1.5)) // Blume blüht auf
-                
-                // Zentrum (Knospe/Leuchten)
-                let budR = 9.0 + 4.0 * sin(t * 6.0)
-                ctx.blendMode = .plusLighter
-                ctx.fill(
-                    Path(ellipseIn: giRect(Double(top.x) - budR * 3.0, Double(top.y) - budR * 3.0, budR * 6.0, budR * 6.0)),
-                    with: .radialGradient(
-                        Gradient(colors: [Color.white.opacity(0.9), accent.opacity(0.8), Color.clear]),
-                        center: top,
-                        startRadius: 0,
-                        endRadius: CGFloat(budR * 3.0)
-                    )
-                )
-                ctx.blendMode = .normal
-
-                // Blütenblätter
-                if bloomP > 0 {
-                    let numPetals = 8
-                    for i in 0..<numPetals {
-                        let angle = Double(i) * (2.0 * Double.pi / Double(numPetals)) + t * 0.2
-                        let petalLen = 35.0 * bloomP + 3.0 * sin(t * 3.0 + Double(i))
-                        let petalW = 15.0 * bloomP
-
-                        let pPath = Path(ellipseIn: giRect(0.0, -petalW / 2.0, petalLen, petalW))
-                        let tf = CGAffineTransform(rotationAngle: CGFloat(angle))
-                            .concatenating(CGAffineTransform(translationX: top.x, y: top.y))
+                    ctx.stroke(arrow, with: .color(Color.orange.opacity(arrowP)), style: StrokeStyle(lineWidth: 6.0, lineCap: .round, lineJoin: .round))
+                    
+                    if arrowP > 0.95 {
+                        var tip = Path()
+                        tip.move(to: CGPoint(x: currentX, y: currentY - 12.0))
+                        tip.addLine(to: CGPoint(x: currentX - 10.0, y: currentY + 5.0))
+                        tip.addLine(to: CGPoint(x: currentX + 10.0, y: currentY + 5.0))
+                        tip.closeSubpath()
                         
-                        ctx.fill(
-                            pPath.applying(tf),
-                            with: .radialGradient(
-                                Gradient(colors: [Color(red: 1.0, green: 0.9, blue: 0.5).opacity(0.9), accent.opacity(0.7), Color.clear]),
-                                center: top,
-                                startRadius: 0,
-                                endRadius: CGFloat(petalLen)
-                            )
-                        )
+                        let angle = atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x)
+                        let tf = CGAffineTransform(translationX: -currentX, y: -currentY)
+                            .concatenating(CGAffineTransform(rotationAngle: angle + .pi / 2))
+                            .concatenating(CGAffineTransform(translationX: currentX, y: currentY))
+                            
+                        ctx.fill(tip.applying(tf), with: .color(Color.orange))
                     }
                 }
             }
 
-            // Glühwürmchen
+            // Aufsteigende Partikel
             let flyK = goProgI(t, 9.8, 1.5)
             if flyK > 0 {
                 ctx.blendMode = .plusLighter
-                for i in 0..<28 {
+                for i in 0..<20 {
                     let seed = Double(i)
-                    let rise = (t * 22.0 + seed * 37.0).truncatingRemainder(dividingBy: maxH * 1.5)
+                    let rise = (t * 40.0 + seed * 37.0).truncatingRemainder(dividingBy: 250.0)
                     let px = cx + 150.0 * sin(seed * 7.1 + t * 0.35)
                     let py = baseY - rise
                     let r = 2.0 + giFract(seed * 0.618) * 3.0
@@ -693,6 +530,20 @@ private struct GIPlant: View {
                     )
                 }
                 ctx.blendMode = .normal
+            }
+            
+            // Text: Statistiken / Gewonnene Zeit
+            if statP > 0.8 {
+                let textP = goInOutI(goProgI(t, 10.2, 1.0))
+                if textP > 0 {
+                    ctx.opacity = textP
+                    let text = ctx.resolve(Text(String(localized: "intro.stats.focus_gain", defaultValue: "Mehr Fokus & Zeit")).font(.system(size: 26, weight: .bold, design: .rounded)).foregroundColor(Color.primary))
+                    ctx.draw(text, at: CGPoint(x: cx, y: baseY - 260.0))
+                    
+                    let sub = ctx.resolve(Text(String(localized: "intro.stats.subtitle", defaultValue: "Dein Fortschritt mit Grovy")).font(.system(size: 16, weight: .medium, design: .rounded)).foregroundColor(Color.gray))
+                    ctx.draw(sub, at: CGPoint(x: cx, y: baseY - 230.0))
+                    ctx.opacity = 1.0
+                }
             }
         }
     }

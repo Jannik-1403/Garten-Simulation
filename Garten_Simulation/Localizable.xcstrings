@@ -89402,6 +89402,7 @@
         }
       }
     },
+    "Aus Gewohnheiten wächst dein Garten.": {},
     "Auswahl": {
       "localizations": {
         "de": {
@@ -122701,17 +122702,6 @@
         }
       }
     },
-    "common_weiter": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Weiter"
-          }
-        }
-      }
-    },
     "common.aborted": {
       "comment": "",
       "extractionState": "manual",
@@ -136944,6 +136934,7 @@
         }
       }
     },
+    "Dein Gehirn will mehr.": {},
     "Deine Ziele": {
       "extractionState": "manual",
       "localizations": {
@@ -140268,6 +140259,196 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dopamine Release"
+          }
+        }
+      }
+    },
+    "dop_transition_sub": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle deine Gewohnheiten und hol dir den Fokus zurück."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige tus hábitos y recupera el enfoque."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez vos habitudes et retrouvez votre concentration."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose your habits and regain focus."
+          }
+        }
+      }
+    },
+    "dop_transition_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeit für Veränderung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora de cambiar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps de changer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time for Change"
           }
         }
       }
@@ -188720,6 +188901,18 @@
         }
       }
     },
+    "GROVY": {},
+    "grovy_intro_btn": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Loslegen →"
+          }
+        }
+      }
+    },
     "grovy_onboarding_button_start": {
       "extractionState": "stale",
       "localizations": {
@@ -226896,6 +227089,7 @@
         }
       }
     },
+    "Nicht besser.": {},
     "Niedrig": {
       "comment": "",
       "extractionState": "manual",
@@ -472792,6 +472986,7 @@
         }
       }
     },
+    "Überspringen": {},
     "Uhrzeit": {
       "localizations": {
         "de": {
@@ -500347,192 +500542,204 @@
         }
       }
     },
-    "dop_transition_title": {
+    "intro.stats.focus_gain": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zeit für Veränderung"
+            "value": "Mehr Fokus & Zeit"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "More Focus & Time"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hora de cambiar"
+            "value": "Más Enfoque y Tiempo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Temps de changer"
+            "value": "Plus de Focus & Temps"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "Più Focus e Tempo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais Foco e Tempo"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Time for Change"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Time for Change"
+            "value": "Mais Foco e Tempo"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "Больше фокуса и времени"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "更多的专注与时间"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "更多的專注與時間"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "より多くの集中と時間"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "더 많은 집중과 시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meer Focus & Tijd"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha Fazla Odak ve Zaman"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "المزيد من التركيز والوقت"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Time for Change"
+            "value": "अधिक ध्यान और समय"
           }
         }
       }
     },
-    "dop_transition_sub": {
+    "intro.stats.subtitle": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wähle deine Gewohnheiten und hol dir den Fokus zurück."
+            "value": "Dein Fortschritt mit Grovy"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "Your progress with Grovy"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elige tus hábitos y recupera el enfoque."
+            "value": "Tu progreso con Grovy"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choisissez vos habitudes et retrouvez votre concentration."
+            "value": "Vos progrès avec Grovy"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "Il tuo progresso con Grovy"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu progresso com Grovy"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Choose your habits and regain focus."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "O teu progresso com Grovy"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "Ваш прогресс с Grovy"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "你在 Grovy 的进步"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "你在 Grovy 的進步"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "Grovyでのあなたの進歩"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "Grovy와 함께하는 진행 상황"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je voortgang met Grovy"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grovy ile ilerlemeniz"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "تقدمك مع Grovy"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose your habits and regain focus."
+            "value": "Grovy के साथ आपकी प्रगति"
           }
         }
       }
