@@ -14,7 +14,7 @@ import Combine
 //  14.5 - 23.0  Solution Text (Ebenfalls im TikTok 3D Style!)
 //  22.5 - 25.5  GROVY-Logo + Button
 
-private let kIntroDuration: Double = 25.5
+private let kIntroDuration: Double = 27.0
 
 struct GrovyIntroView: View {
     let accent: Color
@@ -82,24 +82,36 @@ struct GrovyIntroView: View {
                 sizes: [110, 24],
                 start: 12.0, stepDur: 1.2, gap: 1.0, fadeOutAt: 14.5
             ),
-            // SOLUTION TEXTS
+            // SOLUTION TEXTS – 3 Teile, echtes Wort-für-Wort wie am Anfang
             GIWordScene(
-                words: [String(localized: "intro_sol_time_1", defaultValue: "WIE VIEL ZEIT HÄTTEST DU"), String(localized: "intro_sol_time_2", defaultValue: "FÜR ANDERE SACHEN?")],
-                colors: [.white, .white],
-                sizes: [32, 42],
-                start: 14.5, stepDur: 1.2, gap: 1.0, fadeOutAt: 18.0
+                words: [
+                    String(localized: "intro_sol_time_1", defaultValue: "WIE VIEL ZEIT"),
+                    String(localized: "intro_sol_time_2", defaultValue: "HÄTTEST DU"),
+                    String(localized: "intro_sol_time_3", defaultValue: "FÜR ANDERE SACHEN?")
+                ],
+                colors: [.white, .white, Color(white: 0.85)],
+                sizes: [44, 52, 36],
+                start: 14.5, stepDur: 1.5, gap: 1.2, fadeOutAt: 19.5
             ),
             GIWordScene(
-                words: [String(localized: "intro_sol_invest_1", defaultValue: "INVESTIERE DIESE ZEIT"), String(localized: "intro_sol_invest_2", defaultValue: "IN DICH.")],
-                colors: [.white, accent],
-                sizes: [28, 42],
-                start: 18.0, stepDur: 1.2, gap: 0.5, fadeOutAt: 20.5
+                words: [
+                    String(localized: "intro_sol_invest_1", defaultValue: "INVESTIERE"),
+                    String(localized: "intro_sol_invest_2", defaultValue: "DIESE ZEIT"),
+                    String(localized: "intro_sol_invest_3", defaultValue: "IN DICH.")
+                ],
+                colors: [.white, .white, accent],
+                sizes: [48, 56, 62],
+                start: 19.5, stepDur: 1.5, gap: 1.0, fadeOutAt: 24.0
             ),
             GIWordScene(
-                words: [String(localized: "intro_sol_build_1", defaultValue: "BAUE ECHTE"), String(localized: "intro_sol_build_2", defaultValue: "GEWOHNHEITEN AUF.")],
-                colors: [.white, accent],
-                sizes: [32, 42],
-                start: 20.5, stepDur: 1.2, gap: 0.5, fadeOutAt: 23.0
+                words: [
+                    String(localized: "intro_sol_build_1", defaultValue: "BAUE ECHTE"),
+                    String(localized: "intro_sol_build_2", defaultValue: "GEWOHNHEITEN"),
+                    String(localized: "intro_sol_build_3", defaultValue: "AUF.")
+                ],
+                colors: [.white, accent, accent],
+                sizes: [44, 52, 62],
+                start: 24.0, stepDur: 1.5, gap: 1.0, fadeOutAt: 28.0
             )
         ]
     }
@@ -129,10 +141,10 @@ struct GrovyIntroView: View {
                 }
 
                 // Phase 5: Logo
-                if t > 22.5 { layerD(t) }
+                if t > 27.5 { layerD(t) }
 
                 // Auto-Finish
-                if t > 25.5 { Color.clear.onAppear { finishNow() } }
+                if t > 30.0 { Color.clear.onAppear { finishNow() } }
             }
 
             // --- INPUT SCREEN ---
@@ -278,10 +290,9 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerD(_ t: Double) -> some View {
-        let lp = goProgI(t, 22.6, 1.4); let lpE = goOutI(lp)
-        let sweep = goInOutI(goProgI(t, 23.3, 1.1))
-        let tag = goProgI(t, 23.7, 0.8)
-        let btn = goOutI(goProgI(t, 24.1, 0.6))
+        let lp = goProgI(t, 27.6, 1.4); let lpE = goOutI(lp)
+        let sweep = goInOutI(goProgI(t, 28.3, 1.1))
+        let btn = goOutI(goProgI(t, 28.8, 0.6))
         let word = Text("GROVY")
             .font(.system(size: 58, weight: .black, design: .rounded))
             .tracking(CGFloat(26.0 - 20.0 * lpE))
@@ -296,10 +307,6 @@ struct GrovyIntroView: View {
                     }
                     .shadow(color: accent.opacity(0.7 * lp), radius: 24)
                     .scaleEffect(CGFloat(1.25 - 0.25 * lpE)).opacity(lp)
-                Text(String(localized: "intro_tagline", defaultValue: "Aus Gewohnheiten wächst dein Garten."))
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .foregroundColor(.white.opacity(0.75)).opacity(tag)
-                    .offset(y: CGFloat((1.0 - tag) * 10.0))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).padding(.top, 110)
             VStack {
