@@ -31,9 +31,7 @@ struct GrovyIntroView: View {
     @StateObject private var audio = GIAudio()
     @State private var alive = true
     
-    // Hold to Start State
-    @State private var hasStarted = false
-    @State private var holdProgress = 0.0
+    // Hold to Play State
     @State private var startTick: Date? = nil
 
     init(
@@ -62,75 +60,9 @@ struct GrovyIntroView: View {
         ZStack {
             background.ignoresSafeArea()
             
-            if !hasStarted {
-                // Hold to Start Button
-                VStack {
-                    Spacer()
-                    
-                    Text(String(localized: "intro_hold_to_start", defaultValue: "Gedrückt halten"))
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 32)
-                        .padding(.vertical, 16)
-                        .background(
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                    .fill(Color.orange.opacity(0.8))
-                                    .offset(y: 8)
-                                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                    .fill(Color.yellow)
-                                
-                                // Progress Fill
-                                GeometryReader { geo in
-                                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                        .fill(Color.white.opacity(0.3))
-                                        .frame(width: geo.size.width * holdProgress)
-                                }
-                                .mask(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                            }
-                        )
-                        .scaleEffect(1.0 - holdProgress * 0.05)
-                        .offset(x: holdProgress > 0 ? CGFloat.random(in: -2...2) * holdProgress : 0,
-                                y: holdProgress > 0 ? CGFloat.random(in: -2...2) * holdProgress : 0)
-                        .gesture(
-                            DragGesture(minimumDistance: 0)
-                                .onChanged { _ in
-                                    if startTick == nil {
-                                        startTick = Date()
-                                        giHaptic(1)
-                                    }
-                                }
-                                .onEnded { _ in
-                                    startTick = nil
-                                    withAnimation(.spring()) {
-                                        holdProgress = 0.0
-                                    }
-                                }
-                        )
-                        .padding(.bottom, 60)
-                }
-                .onReceive(Timer.publish(every: 0.03, on: .main, in: .common).autoconnect()) { _ in
-                    if let start = startTick {
-                        let elapsed = Date().timeIntervalSince(start)
-                        holdProgress = min(1.0, elapsed / 1.5) // 1.5 seconds to start
-                        
-                        if holdProgress > 0.1 {
-                            giHaptic(holdProgress > 0.7 ? 2 : 0) // Vibrate stronger
-                        }
-                        
-                        if holdProgress >= 1.0 {
-                            startTick = nil
-                            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                                hasStarted = true
-                            }
-                            schedule()
-                        }
-                    }
-                }
-            } else {
-                GITimed { t in
-                    ZStack {
+            GITimed(startDate: startTick) { t in
+                ZStack {
+                    if startTick != nil {
                         if t < 1.5 {
                             heartbeat(t)
                         }
@@ -162,23 +94,62 @@ struct GrovyIntroView: View {
                         if t > 12.3 {
                             layerD(t)
                         }
-
-                        if t < 13.5 {
-                            VStack {
-                                HStack {
-                                    Spacer()
-                                    Button(action: finishNow) {
-                                        Text("Überspringen")
-                                            .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                            .foregroundColor(Color.gray.opacity(0.6))
-                                    }
-                                }
-                                Spacer()
-                            }
-                            .padding(.horizontal, 20)
-                            .padding(.top, 10)
+                        
+                        if t > 14.5 {
+                            // Finish automatically if played to the end
+                            Color.clear.onAppear { finishNow() }
+                        }
+                    } else {
+                        // Intro text before playing
+                        VStack {
+                            Spacer()
+                            Text(String(localized: "intro_hold_to_play", defaultValue: "Zum Abspielen gedrückt halten"))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(Color.gray.opacity(0.8))
+                                .padding(.bottom, 120)
                         }
                     }
+                }
+                
+                // The Button
+                VStack {
+                    Spacer()
+                    ZStack {
+                        Circle()
+                            .fill(Color.orange.opacity(0.8))
+                            .frame(width: 80, height: 80)
+                            .offset(y: 8)
+                        
+                        Circle()
+                            .fill(Color.yellow)
+                            .frame(width: 80, height: 80)
+                        
+                        // Fingerprint or Play icon
+                        Image(systemName: startTick != nil ? "fingerprint" : "play.fill")
+                            .font(.system(size: 32, weight: .black))
+                            .foregroundColor(.white)
+                            .opacity(startTick != nil ? (sin(t * 15.0) * 0.5 + 0.5) : 1.0)
+                    }
+                    .scaleEffect(startTick != nil ? 0.9 : 1.0)
+                    .offset(
+                         x: startTick != nil ? CGFloat(sin(t * 50.0) * 2.0) : 0,
+                         y: startTick != nil ? CGFloat(cos(t * 40.0) * 2.0) : 0
+                    )
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { _ in
+                                if startTick == nil {
+                                    startTick = Date()
+                                    giHaptic(1)
+                                    schedule()
+                                }
+                            }
+                            .onEnded { _ in
+                                startTick = nil
+                                audio.stop()
+                            }
+                    )
+                    .padding(.bottom, 60)
                 }
             }
         }
@@ -391,16 +362,21 @@ private func giRect(_ x: Double, _ y: Double, _ w: Double, _ h: Double) -> CGRec
 }
 
 private struct GITimed<Content: View>: View {
-    @State private var start = Date()
+    let startDate: Date?
     private let content: (Double) -> Content
 
-    init(@ViewBuilder _ content: @escaping (Double) -> Content) {
+    init(startDate: Date?, @ViewBuilder _ content: @escaping (Double) -> Content) {
+        self.startDate = startDate
         self.content = content
     }
 
     var body: some View {
         TimelineView(.animation) { ctx in
-            content(ctx.date.timeIntervalSince(start))
+            if let start = startDate {
+                content(max(0, ctx.date.timeIntervalSince(start)))
+            } else {
+                content(0.0)
+            }
         }
     }
 }
@@ -631,6 +607,14 @@ private final class GIAudio: ObservableObject {
             player.play()
             ready = true
         } catch {
+            ready = false
+        }
+    }
+    
+    func stop() {
+        if ready {
+            player.stop()
+            engine.stop()
             ready = false
         }
     }
