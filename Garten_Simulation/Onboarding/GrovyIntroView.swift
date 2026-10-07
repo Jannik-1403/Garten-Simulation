@@ -82,16 +82,26 @@ struct GrovyIntroView: View {
                 sizes: [110, 24],
                 start: 12.0, stepDur: 1.2, gap: 1.0, fadeOutAt: 14.5
             ),
-            // SOLUTION TEXTS – 1:1 wie Intro (gleiche Größen, Farben, Timing)
+            // SOLUTION TEXTS – 1:1 wie Intro, max 2 Wörter pro Szene
+            // Szene 1a: WIE VIEL ZEIT + HÄTTEST DU (max 5 Wörter)
             GIWordScene(
                 words: [
                     String(localized: "intro_sol_time_1", defaultValue: "WIE VIEL ZEIT"),
-                    String(localized: "intro_sol_time_2", defaultValue: "HÄTTEST DU"),
-                    String(localized: "intro_sol_time_3", defaultValue: "FÜR ANDERE SACHEN?")
+                    String(localized: "intro_sol_time_2", defaultValue: "HÄTTEST DU")
                 ],
-                colors: [.white, .yellow, .orange],
-                sizes: [88, 64, 56],
-                start: 14.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 18.5
+                colors: [.white, .yellow],
+                sizes: [88, 64],
+                start: 14.5, stepDur: 1.4, gap: 0.6, fadeOutAt: 17.5
+            ),
+            // Szene 1b: FÜR ANDERE + SACHEN? (split für klaren Rhythmus)
+            GIWordScene(
+                words: [
+                    String(localized: "intro_sol_time_3a", defaultValue: "FÜR ANDERE"),
+                    String(localized: "intro_sol_time_3b", defaultValue: "SACHEN?")
+                ],
+                colors: [.orange, .orange],
+                sizes: [72, 88],
+                start: 17.5, stepDur: 1.4, gap: 0.6, fadeOutAt: 20.5
             ),
             GIWordScene(
                 words: [
@@ -101,7 +111,7 @@ struct GrovyIntroView: View {
                 ],
                 colors: [.white, .yellow, accent],
                 sizes: [88, 64, 72],
-                start: 18.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 22.5
+                start: 20.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 24.5
             ),
             GIWordScene(
                 words: [
@@ -111,7 +121,7 @@ struct GrovyIntroView: View {
                 ],
                 colors: [.white, accent, .orange],
                 sizes: [72, 64, 88],
-                start: 22.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 26.5
+                start: 24.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 28.5
             )
         ]
     }
@@ -468,51 +478,67 @@ private struct GIWordBuildUp: View {
     var body: some View {
         ZStack {
             ForEach(Array(scenes.enumerated()), id: \.offset) { _, scene in
-                let sceneLocal = t - scene.start
-                
-                if sceneLocal >= 0 && t < scene.fadeOutAt {
-                    let stepIdx = min(scene.words.count - 1, Int(sceneLocal / scene.stepDur))
-                    let stepLocal = sceneLocal - Double(stepIdx) * scene.stepDur
-                    
-                    let fadeOutT = scene.fadeOutAt - t
-                    let totalFade = fadeOutT < 0.2 ? max(0.0, fadeOutT / 0.2) : 1.0
-
-                    // Dynamischer ForEach: Nur bereits sichtbare W\u00f6rter werden gerendert
-                    // -> Kein reservierter Platz, echtes Wort-f\u00fcr-Wort wie am Anfang
-                    VStack(spacing: 14) {
-                        let visibleRange = 0...min(stepIdx, scene.words.count - 1)
-                        ForEach(visibleRange, id: \.self) { wordIdx in
-                            let isNew = wordIdx == stepIdx
-                            let decay = isNew ? exp(-stepLocal * 8.0) : 0.0
-                            let pop = isNew ? 0.12 * exp(-stepLocal * 10.0) : 0.0
-                            let fadeIn = isNew ? min(1.0, stepLocal / 0.15) : 1.0
-
-                            ZStack {
-                                Text(scene.words[wordIdx])
-                                    .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
-                                    .foregroundColor(scene.colors[wordIdx].opacity(0.35))
-                                    .offset(y: 4)
-                                Text(scene.words[wordIdx])
-                                    .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
-                                    .foregroundColor(scene.colors[wordIdx])
-                            }
-                            .shadow(color: scene.colors[wordIdx].opacity(0.5), radius: 20)
-                            .scaleEffect(CGFloat(1.0 + pop))
-                            .rotation3DEffect(
-                                .degrees(isNew ? 12.0 * decay : 0),
-                                axis: (x: 0.7, y: -0.5, z: 0.1)
-                            )
-                            .opacity(fadeIn)
-                        }
-                    }
-                    .opacity(totalFade)
-                }
+                GISceneView(t: t, scene: scene)
             }
-
             RadialGradient(colors: [.clear, Color.black.opacity(0.5)],
                            center: .center, startRadius: 120, endRadius: 340)
                 .ignoresSafeArea().allowsHitTesting(false)
         }
+    }
+}
+
+private struct GISceneView: View {
+    let t: Double
+    let scene: GIWordScene
+
+    var body: some View {
+        let sceneLocal = t - scene.start
+        guard sceneLocal >= 0 && t < scene.fadeOutAt else { return AnyView(EmptyView()) }
+
+        let stepIdx = min(scene.words.count - 1, Int(sceneLocal / scene.stepDur))
+        let stepLocal = sceneLocal - Double(stepIdx) * scene.stepDur
+        let fadeOutT = scene.fadeOutAt - t
+        let totalFade = fadeOutT < 0.2 ? max(0.0, fadeOutT / 0.2) : 1.0
+
+        // Upward shift: keeps visual center stable as words are added
+        var upwardShift: CGFloat = 0
+        if stepIdx > 0 {
+            for i in 1...stepIdx {
+                let wordH = CGFloat(scene.sizes[i]) * 1.45 + 14.0
+                let progress: Double = i < stepIdx ? 1.0 : min(1.0, stepLocal / 0.15)
+                upwardShift += CGFloat(progress) * wordH / 2.0
+            }
+        }
+
+        return AnyView(
+            VStack(spacing: 14) {
+                ForEach(0...min(stepIdx, scene.words.count - 1), id: \.self) { wordIdx in
+                    let isNew = wordIdx == stepIdx
+                    let decay = isNew ? exp(-stepLocal * 8.0) : 0.0
+                    let pop = isNew ? 0.12 * exp(-stepLocal * 10.0) : 0.0
+                    let fadeIn = isNew ? min(1.0, stepLocal / 0.15) : 1.0
+
+                    ZStack {
+                        Text(scene.words[wordIdx])
+                            .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
+                            .foregroundColor(scene.colors[wordIdx].opacity(0.35))
+                            .offset(y: 4)
+                        Text(scene.words[wordIdx])
+                            .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
+                            .foregroundColor(scene.colors[wordIdx])
+                    }
+                    .shadow(color: scene.colors[wordIdx].opacity(0.5), radius: 20)
+                    .scaleEffect(CGFloat(1.0 + pop))
+                    .rotation3DEffect(
+                        .degrees(isNew ? 12.0 * decay : 0),
+                        axis: (x: 0.7, y: -0.5, z: 0.1)
+                    )
+                    .opacity(fadeIn)
+                }
+            }
+            .offset(y: -upwardShift)
+            .opacity(totalFade)
+        )
     }
 }
 
