@@ -30,6 +30,11 @@ struct GrovyIntroView: View {
 
     @StateObject private var audio = GIAudio()
     @State private var alive = true
+    
+    // Hold to Start State
+    @State private var hasStarted = false
+    @State private var holdProgress = 0.0
+    @State private var startTick: Date? = nil
 
     init(
         accent: Color = .blauPrimary, // Angepasst an Grovy
@@ -54,60 +59,129 @@ struct GrovyIntroView: View {
     ]
 
     var body: some View {
-        GITimed { t in
-            ZStack {
-                background.ignoresSafeArea()
-
-                if t < 1.5 {
-                    heartbeat(t)
-                }
-
-                if t > 1.1 && t < 5.6 {
-                    layerA(t)
-                }
-
-                // Weicher Fadeout statt harter Blitz
-                if t > 5.0 && t < 6.0 {
-                    background
-                        .opacity(goClamp01I((t - 5.0) / 0.6))
-                        .ignoresSafeArea()
-                        .allowsHitTesting(false)
-                }
-
-                if t > 6.4 && t < 8.5 {
-                    layerB(t)
-                }
-
-                if t > 8.3 {
-                    GIStats(t: t, accent: accent)
-                        .ignoresSafeArea()
-                        .scaleEffect(CGFloat(1.0 + 0.08 * goProgI(t, 9.4, 5.0)))
-                        .opacity(goProgI(t, 8.3, 0.8))
-                        .allowsHitTesting(false)
-                }
-
-                if t > 12.3 {
-                    layerD(t)
-                }
-
-                if t < 13.5 {
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Button(action: finishNow) {
-                                Text("Überspringen")
-                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                    .foregroundColor(Color.white.opacity(0.6))
+        ZStack {
+            background.ignoresSafeArea()
+            
+            if !hasStarted {
+                // Hold to Start Button
+                VStack {
+                    Spacer()
+                    
+                    Text(String(localized: "intro_hold_to_start", defaultValue: "Gedrückt halten"))
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 32)
+                        .padding(.vertical, 16)
+                        .background(
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                    .fill(Color.orange.opacity(0.8))
+                                    .offset(y: 8)
+                                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                    .fill(Color.yellow)
+                                
+                                // Progress Fill
+                                GeometryReader { geo in
+                                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                        .fill(Color.white.opacity(0.3))
+                                        .frame(width: geo.size.width * holdProgress)
+                                }
+                                .mask(RoundedRectangle(cornerRadius: 24, style: .continuous))
                             }
+                        )
+                        .scaleEffect(1.0 - holdProgress * 0.05)
+                        .offset(x: holdProgress > 0 ? CGFloat.random(in: -2...2) * holdProgress : 0,
+                                y: holdProgress > 0 ? CGFloat.random(in: -2...2) * holdProgress : 0)
+                        .gesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { _ in
+                                    if startTick == nil {
+                                        startTick = Date()
+                                        giHaptic(1)
+                                    }
+                                }
+                                .onEnded { _ in
+                                    startTick = nil
+                                    withAnimation(.spring()) {
+                                        holdProgress = 0.0
+                                    }
+                                }
+                        )
+                        .padding(.bottom, 60)
+                }
+                .onReceive(Timer.publish(every: 0.03, on: .main, in: .common).autoconnect()) { _ in
+                    if let start = startTick {
+                        let elapsed = Date().timeIntervalSince(start)
+                        holdProgress = min(1.0, elapsed / 1.5) // 1.5 seconds to start
+                        
+                        if holdProgress > 0.1 {
+                            giHaptic(holdProgress > 0.7 ? 2 : 0) // Vibrate stronger
                         }
-                        Spacer()
+                        
+                        if holdProgress >= 1.0 {
+                            startTick = nil
+                            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                                hasStarted = true
+                            }
+                            schedule()
+                        }
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 10)
+                }
+            } else {
+                GITimed { t in
+                    ZStack {
+                        if t < 1.5 {
+                            heartbeat(t)
+                        }
+
+                        if t > 1.1 && t < 5.6 {
+                            layerA(t)
+                        }
+
+                        // Weicher Fadeout statt harter Blitz
+                        if t > 5.0 && t < 6.0 {
+                            background
+                                .opacity(goClamp01I((t - 5.0) / 0.6))
+                                .ignoresSafeArea()
+                                .allowsHitTesting(false)
+                        }
+
+                        if t > 6.4 && t < 8.5 {
+                            layerB(t)
+                        }
+
+                        if t > 8.3 {
+                            GIStats(t: t, accent: accent)
+                                .ignoresSafeArea()
+                                .scaleEffect(CGFloat(1.0 + 0.08 * goProgI(t, 9.4, 5.0)))
+                                .opacity(goProgI(t, 8.3, 0.8))
+                                .allowsHitTesting(false)
+                        }
+
+                        if t > 12.3 {
+                            layerD(t)
+                        }
+
+                        if t < 13.5 {
+                            VStack {
+                                HStack {
+                                    Spacer()
+                                    Button(action: finishNow) {
+                                        Text("Überspringen")
+                                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                            .foregroundColor(Color.gray.opacity(0.6))
+                                    }
+                                }
+                                Spacer()
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.top, 10)
+                        }
+                    }
                 }
             }
         }
-        .onAppear { schedule() }
         .onDisappear { alive = false }
     }
 
@@ -172,7 +246,7 @@ struct GrovyIntroView: View {
         let local = t - slam.start
 
         ZStack {
-            GIDopamineIcons(t: t - 1.2)
+            GISpeedLines(t: t - 1.2)
                 .ignoresSafeArea()
             GISlam(big: slam.big, small: slam.small, local: local, color: warning)
             background
@@ -331,11 +405,10 @@ private struct GITimed<Content: View>: View {
     }
 }
 
-// MARK: - Dopamin Icons (Canvas)
+// MARK: - Speed-Linien (Canvas)
 
-private struct GIDopamineIcons: View {
+private struct GISpeedLines: View {
     let t: Double
-    let icons = ["XP", "Powerup", "coin", "Drop water", "Heart", "streak", "Powerup-Diamanterde", "Powerup-Zauberstarb"]
 
     var body: some View {
         Canvas { ctx, size in
@@ -343,7 +416,7 @@ private struct GIDopamineIcons: View {
             let cy = Double(size.height) / 2.0
             let reach = max(Double(size.width), Double(size.height)) * 0.8
 
-            for i in 0..<60 {
+            for i in 0..<120 {
                 let seed = Double(i)
                 let ang = giFract(sin(seed * 12.9898) * 43758.5453) * 2.0 * Double.pi
                 let delay = giFract(seed * 0.37) * 1.6
@@ -353,38 +426,22 @@ private struct GIDopamineIcons: View {
                 let period = 2.2
                 let p = local.truncatingRemainder(dividingBy: period) / period
                 let r = pow(p, 2.5) * reach * 1.5
-                let w = 40.0 * (0.15 + 3.0 * pow(p, 1.8))
-                let x = cx + cos(ang) * r
-                let y = cy + sin(ang) * r
                 let fadeOut = 1.0 - max(0.0, p - 0.85) / 0.15
                 let alpha = min(1.0, local * 4.0) * fadeOut
 
-                // Dezente Speed-Linien
-                if i % 4 == 0 {
-                    let lineLen = r * 0.4
-                    let lineW = 2.0 * p
-                    var linePath = Path()
-                    linePath.move(to: CGPoint(x: cx + cos(ang) * (r - lineLen), y: cy + sin(ang) * (r - lineLen)))
-                    linePath.addLine(to: CGPoint(x: x, y: y))
-                    ctx.stroke(linePath, with: .color(Color.gray.opacity(alpha * 0.3)), style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
-                }
-
-                ctx.opacity = alpha
-                let leafAngle = t * 3.0 + seed * 5.0
-                let tf = CGAffineTransform(rotationAngle: CGFloat(leafAngle))
-                    .concatenating(CGAffineTransform(translationX: x, y: y))
+                // Harte Speed-Linien
+                let lineLen = r * 0.5 + 40.0
+                let lineW = 3.0 * p + 1.0
+                var linePath = Path()
+                let x = cx + cos(ang) * r
+                let y = cy + sin(ang) * r
+                linePath.move(to: CGPoint(x: cx + cos(ang) * (r - lineLen), y: cy + sin(ang) * (r - lineLen)))
+                linePath.addLine(to: CGPoint(x: x, y: y))
                 
-                let iconStr = icons[i % icons.count]
-                if let uiImage = UIImage(named: iconStr) {
-                    let image = Image(uiImage: uiImage)
-                    let resolved = ctx.resolve(image)
-                    
-                    var innerCtx = ctx
-                    innerCtx.transform = tf
-                    innerCtx.draw(resolved, in: giRect(-w/2, -w/2, w, w))
-                }
+                // Graue, weiße oder leicht rote Linien für Intensität
+                let lineColor = i % 5 == 0 ? Color.red : (i % 3 == 0 ? Color.white : Color.gray)
+                ctx.stroke(linePath, with: .color(lineColor.opacity(alpha * (i % 5 == 0 ? 0.8 : 0.4))), style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
             }
-            ctx.opacity = 1.0
         }
     }
 }
@@ -400,46 +457,43 @@ private struct GISlam: View {
     var body: some View {
         let p = goOutI(goClamp01I(local / 0.25))
         let decay = exp(-max(0.0, local) * 9.0)
-        let s = 3.6 - 2.6 * p // Viel größer! Bildschirmfüllend!
+        let s = CGFloat(1.4 - 0.4 * p)
+        let offsetX = CGFloat(sin(local * 90.0) * 20.0 * decay)
+        let offsetY = CGFloat(20.0 * (1.0 - p) + cos(local * 70.0) * 15.0 * decay)
+        let rotDegrees = 15.0 * decay
+        let scale2 = CGFloat(1.0 + decay * 0.5)
+        let opac = goClamp01I(local * 12.0)
 
-        VStack(spacing: 2) {
-            ZStack {
-                // 3D-Extrusion (Fake) - Besser Lesbar
-                ForEach(0..<18, id: \.self) { i in
-                    Text(big)
-                        .foregroundColor(Color(white: 0.1))
-                        .offset(x: CGFloat(i) * 2.0, y: CGFloat(i) * 2.0)
-                        .opacity(1.0 - Double(i) / 18.0)
-                }
+        return VStack(spacing: 12) {
+            // Fetter 3D Button Style
+            Text(big)
+                .font(.system(size: 80, weight: .black, design: .rounded))
+                .foregroundColor(.white)
+                .padding(.horizontal, 40)
+                .padding(.vertical, 16)
+                .background(
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 24, style: .continuous).fill(Color(white: 0.1)).offset(y: 16)
+                        RoundedRectangle(cornerRadius: 24, style: .continuous).fill(color)
+                    }
+                )
+                .scaleEffect(s)
+                .rotation3DEffect(.degrees(rotDegrees), axis: (x: 1, y: -0.5, z: 0))
 
-                Text(big)
-                    .foregroundColor(Color.red.opacity(0.8))
-                    .offset(x: CGFloat(-14.0 * decay))
-                    .blendMode(.plusLighter)
-                Text(big)
-                    .foregroundColor(Color.cyan.opacity(0.8))
-                    .offset(x: CGFloat(14.0 * decay))
-                    .blendMode(.plusLighter)
-                Text(big)
-                    .foregroundColor(.white)
-                    .shadow(color: Color.black.opacity(1.0), radius: 10, x: 0, y: 5) // Stärkerer Kontrast-Schatten
-                    .shadow(color: color.opacity(0.7), radius: 30) // Sanfterer Farb-Glow
+            if !small.isEmpty {
+                Text(small)
+                    .font(.system(size: 28, weight: .heavy, design: .rounded))
+                    .tracking(10)
+                    .foregroundColor(color)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 8)
+                    .background(Capsule().fill(Color(white: 0.1)))
+                    .scaleEffect(scale2)
+                    .opacity(p)
             }
-            .font(.system(size: 170, weight: .black, design: .rounded))
-            .rotation3DEffect(.degrees(12 * decay), axis: (x: 1, y: -1, z: 0.2)) // 3D-Kippen beim Einschlag
-
-            Text(small)
-                .font(.system(size: 28, weight: .heavy, design: .rounded))
-                .tracking(10)
-                .foregroundColor(color)
-                .shadow(color: Color.black.opacity(0.8), radius: 5, x: 0, y: 3) // Lesbarkeit verbessert
         }
-        .scaleEffect(CGFloat(s))
-        .offset(
-            x: CGFloat(sin(local * 90.0) * 20.0 * decay),
-            y: CGFloat(cos(local * 70.0) * 15.0 * decay)
-        )
-        .opacity(goClamp01I(local * 12.0))
+        .offset(x: offsetX, y: offsetY)
+        .opacity(opac)
     }
 }
 
