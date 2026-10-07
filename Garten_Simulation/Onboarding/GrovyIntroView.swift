@@ -2,17 +2,17 @@ import SwiftUI
 import AVFoundation
 import Combine
 
-// MARK: - GrovyIntroView  v8
+// MARK: - GrovyIntroView  v9
 //
 // Ablauf:
 //   0.0 -  5.2  Teil 1: DU. SCROLLST. TÄGLICH. WIE LANGE?
 //   --- PAUSE FÜR INPUT ---
 //   5.2 -  9.2  Teil 2: WIRKLICH? VIEL ZU LANGE.
 //   8.8 - 10.5  Herzschlag
-//  10.0 - 15.0  Speed-Linien (Continuous Warp) + Dynamische Slam-Zahlen
-//  14.5 - 16.0  Fade to Black
-//  16.0 - 18.0  "Dein Gehirn will mehr."
-//  18.0 - 22.5  Habit-Statistiken
+//   9.5 - 25.5  Black Background Fade-In
+//  10.0 - 14.0  Speed-Linien (Continuous Warp) + Dynamische Slam-Zahlen (Nur 2)
+//  14.0 - 18.0  "Wie viel Zeit hättest du für andere Sachen?"
+//  18.0 - 22.5  Solution Text ("Investiere diese Zeit...", "Baue Gewohnheiten...", "Garten wächst...")
 //  22.5 - 25.5  GROVY-Logo + Button
 
 private let kIntroDuration: Double = 25.5
@@ -49,10 +49,11 @@ struct GrovyIntroView: View {
 
     private var slams: [(start: Double, big: String, small: String)] {
         let mins = max(1, selectedMinutes)
+        let hoursPerYear = (mins * 365) / 60
+        let daysInLife = (mins * 365 * 60) / 1440 // assuming 60 years remaining life
         return [
-            (10.5, "\(mins)", String(localized: "intro_slam_1", defaultValue: "MIN. HANDYZEIT")),
-            (12.0, "\(Int(Double(mins) / 3.8))", String(localized: "intro_slam_2", defaultValue: "MALE ENTSPERRT")),
-            (13.5, "\(Int(Double(mins) * 365.0 / 1440.0))", String(localized: "intro_slam_3", defaultValue: "TAGE VERSCHWENDET"))
+            (10.5, "\(hoursPerYear)", String(localized: "intro_slam_hours_year", defaultValue: "STUNDEN PRO JAHR")),
+            (12.0, "\(daysInLife)", String(localized: "intro_slam_days_life", defaultValue: "TAGE DEINES LEBENS"))
         ]
     }
 
@@ -61,35 +62,29 @@ struct GrovyIntroView: View {
             background.ignoresSafeArea()
 
             ZStack {
-                // Phase 0: TikTok Word Build-Up
+                // Phase 0/1: TikTok Word Build-Up
                 if t < 9.5 {
                     GIWordBuildUp(t: t).ignoresSafeArea()
                 }
 
-                // Phase 1: Herzschlag
-                if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
-
-                // Phase 2: Speed-Linien (Continuous) + Slams
-                if t > 10.0 && t < 15.0 { layerA(t) }
-
-                // Fade to black
-                if t > 14.5 {
+                // Ab hier (Slam-Phase) wird der Hintergrund schwarz
+                if t > 9.5 {
                     Color.black
-                        .opacity(goClamp01I((t - 14.5) / 1.0))
+                        .opacity(goClamp01I((t - 9.5) / 0.5))
                         .ignoresSafeArea().allowsHitTesting(false)
                 }
 
-                // Phase 3: Text
-                if t > 16.0 && t < 18.0 { layerB(t) }
+                // Phase 1.5: Herzschlag
+                if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
 
-                // Phase 4: Habit-Stats
-                if t > 18.0 {
-                    GIHabitStats(t: t, accent: accent)
-                        .ignoresSafeArea()
-                        .scaleEffect(CGFloat(1.0 + 0.06 * goProgI(t, 19.0, 4.0)))
-                        .opacity(goProgI(t, 18.0, 0.7))
-                        .allowsHitTesting(false)
-                }
+                // Phase 2: Speed-Linien + Slams
+                if t > 10.0 && t < 14.0 { layerA(t) }
+
+                // Phase 3: Wie viel Zeit...
+                if t > 14.0 && t < 18.0 { layerB(t) }
+
+                // Phase 4: Solution (Grovy)
+                if t > 18.0 && t < 22.5 { layerC(t) }
 
                 // Phase 5: Logo
                 if t > 22.5 { layerD(t) }
@@ -223,8 +218,7 @@ struct GrovyIntroView: View {
     private func finishNow() { onFinish() }
 
     private func fire(_ kind: GIKind) {
-        // Sound deaktiviert per User Feedback ("mache die sondefekt ermal raus")
-        // Stattdessen werden nur Haptics für das physische Gefühl der Animation getriggert
+        // Sound deaktiviert per User Feedback
         switch kind {
         case .beat:  giHaptic(0)
         case .slam:  giHaptic(2)
@@ -251,15 +245,13 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerA(_ t: Double) -> some View {
-        let cut = 1.0 - goClamp01I((t - 14.5) / 0.6)
+        let cut = 1.0 - goClamp01I((t - 13.5) / 0.5)
         let idx = currentSlam(t)
         let slam = slams[idx]
         let local = t - slam.start
         ZStack {
             GISpeedLines(t: t).ignoresSafeArea()
             GISlam(big: slam.big, small: slam.small, local: local, color: warning)
-            background.opacity(0.65 * exp(-max(0.0, local) * 10.0))
-                .ignoresSafeArea().allowsHitTesting(false)
         }
         .opacity(cut)
     }
@@ -271,24 +263,52 @@ struct GrovyIntroView: View {
         return idx
     }
 
-    // MARK: - Layer B: Text
+    // MARK: - Layer B: "Wie viel Zeit hättest du für andere Sachen?"
 
     @ViewBuilder
     private func layerB(_ t: Double) -> some View {
         let fade = 1.0 - goClamp01I((t - 17.5) / 0.4)
-        let a1 = goOutI(goProgI(t, 16.1, 0.7))
-        let a2 = goOutI(goProgI(t, 16.9, 1.0))
-        VStack(spacing: 12) {
-            Text(String(localized: "intro_text_line1", defaultValue: "Dein Gehirn will mehr."))
-                .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(Color.primary)
+        let a1 = goOutI(goProgI(t, 14.2, 0.7))
+        
+        Text(String(localized: "intro_text_time_for_things", defaultValue: "Wie viel Zeit hättest du für andere Sachen?"))
+            .font(.system(size: 38, weight: .black, design: .rounded))
+            .foregroundColor(.white)
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 24)
+            .opacity(a1)
+            .offset(y: CGFloat((1.0 - a1) * 20.0))
+            .opacity(fade)
+    }
+    
+    // MARK: - Layer C: Solution Texts
+
+    @ViewBuilder
+    private func layerC(_ t: Double) -> some View {
+        let fade = 1.0 - goClamp01I((t - 22.0) / 0.4)
+        
+        let a1 = goOutI(goProgI(t, 18.0, 0.8))
+        let a2 = goOutI(goProgI(t, 19.2, 0.8))
+        let a3 = goOutI(goProgI(t, 20.4, 0.8))
+
+        VStack(spacing: 32) {
+            Text(String(localized: "intro_text_invest_time", defaultValue: "Investiere diese Zeit in dich."))
+                .font(.system(size: 28, weight: .heavy, design: .rounded))
+                .foregroundColor(.white)
                 .opacity(a1).offset(y: CGFloat((1.0 - a1) * 16.0))
-            Text(String(localized: "intro_text_line2", defaultValue: "Nicht besser."))
-                .font(.system(size: 36, weight: .heavy, design: .rounded))
-                .tracking(CGFloat(10.0 - 8.0 * a2))
-                .foregroundColor(warning).opacity(a2)
+            
+            Text(String(localized: "intro_text_build_habits", defaultValue: "Baue echte Gewohnheiten auf."))
+                .font(.system(size: 32, weight: .black, design: .rounded))
+                .foregroundColor(accent)
+                .opacity(a2).offset(y: CGFloat((1.0 - a2) * 16.0))
+            
+            Text(String(localized: "intro_text_grow_garden", defaultValue: "Und lass deinen Garten wachsen."))
+                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .foregroundColor(.white.opacity(0.8))
+                .opacity(a3).offset(y: CGFloat((1.0 - a3) * 16.0))
         }
-        .multilineTextAlignment(.center).opacity(fade)
+        .multilineTextAlignment(.center)
+        .padding(.horizontal, 24)
+        .opacity(fade)
     }
 
     // MARK: - Layer D: Logo
@@ -516,7 +536,8 @@ private let giEvents: [(Double, GIKind)] = [
     (0.0, .beat), (1.2, .beat), (2.4, .beat),
     (4.0, .slam),
     (5.2, .beat), (6.4, .beat), (7.6, .slam),
-    (10.5, .slam), (12.0, .slam), (13.5, .slam),
+    (10.5, .slam), (12.0, .slam),
+    (14.2, .beat), (18.0, .beat), (19.2, .beat), (20.4, .beat),
     (23.3, .logo)
 ]
 
@@ -576,7 +597,7 @@ private struct GISpeedLines: View {
     }
 }
 
-// MARK: - Slam-Zahl (3D Text Style auch für kleine Texte)
+// MARK: - Slam-Zahl (3D Text Style)
 
 private struct GISlam: View {
     let big: String; let small: String; let local: Double; let color: Color
@@ -621,84 +642,5 @@ private struct GISlam: View {
         }
         .offset(x: offsetX, y: offsetY)
         .opacity(goClamp01I(local * 12.0))
-    }
-}
-
-// MARK: - Habit-Statistiken
-
-private struct GIHabitStats: View {
-    let t: Double; let accent: Color
-
-    var body: some View {
-        Canvas { ctx, size in
-            let w = Double(size.width); let h = Double(size.height)
-            let cx = w / 2.0
-            let p = goInOutI(goProgI(t, 18.0, 2.5))
-
-            guard p > 0 else { return }
-
-            let facts: [(value: String, label: String, sub: String, color: Color)] = [
-                ("8 %",  String(localized: "intro_stats_1_title", defaultValue: "erreichen ihre Ziele"),     String(localized: "intro_stats_1_sub", defaultValue: "ohne System"),          .red),
-                ("3×",   String(localized: "intro_stats_2_title", defaultValue: "erfolgreicher"),              String(localized: "intro_stats_2_sub", defaultValue: "mit täglichem Tracking"), accent),
-                ("66",   String(localized: "intro_stats_3_title", defaultValue: "Tage"),                      String(localized: "intro_stats_3_sub", defaultValue: "bis eine Gewohnheit sitzt"), .orange),
-                ("40 %", String(localized: "intro_stats_4_title", defaultValue: "deines Tages"),               String(localized: "intro_stats_4_sub", defaultValue: "sind Gewohnheiten"),   Color(white: 0.7)),
-            ]
-
-            let cardW = w * 0.76; let cardH = h * 0.14
-            let startY = h * 0.18
-
-            for (i, fact) in facts.enumerated() {
-                let delay = Double(i) * 0.6
-                let fp = goOutI(goProgI(t, 18.0 + delay, 0.5))
-                guard fp > 0 else { continue }
-                let fy = startY + Double(i) * (cardH + h * 0.03)
-                let fx = (w - cardW) / 2.0
-
-                let cardRect = CGRect(x: fx, y: fy, width: cardW * fp, height: cardH)
-                ctx.fill(Path(roundedRect: cardRect, cornerRadius: 16),
-                         with: .color(Color(white: 0.12).opacity(fp)))
-
-                let accentRect = CGRect(x: fx, y: fy, width: 5, height: cardH)
-                ctx.fill(Path(roundedRect: accentRect, cornerRadius: 2),
-                         with: .color(fact.color.opacity(fp)))
-
-                if fp > 0.5 {
-                    ctx.draw(Text(fact.value)
-                        .font(.system(size: 32, weight: .black, design: .rounded))
-                        .foregroundColor(fact.color.opacity(fp)),
-                             at: CGPoint(x: fx + cardW * 0.22, y: fy + cardH * 0.4),
-                             anchor: .center)
-                    ctx.draw(Text(fact.label)
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundColor(Color.white.opacity(fp)),
-                             at: CGPoint(x: fx + cardW * 0.6, y: fy + cardH * 0.32),
-                             anchor: .center)
-                    ctx.draw(Text(fact.sub)
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundColor(Color(white: 0.55).opacity(fp)),
-                             at: CGPoint(x: fx + cardW * 0.6, y: fy + cardH * 0.68),
-                             anchor: .center)
-                }
-            }
-
-            let titleP = goProgI(t, 18.0, 0.5)
-            ctx.draw(Text(String(localized: "intro_stats_title", defaultValue: "GEWOHNHEITEN & ERFOLG"))
-                .font(.system(size: 12, weight: .heavy, design: .rounded))
-                .foregroundColor(Color(white: 0.4).opacity(titleP)),
-                     at: CGPoint(x: cx, y: h * 0.11), anchor: .center)
-
-            let fireP = goProgI(t, 20.0, 2.0)
-            if fireP > 0 {
-                for i in 0..<20 {
-                    let fi = Double(i)
-                    let fx2 = cx + sin(fi * 1.9 + t * 0.5) * w * 0.42
-                    let fy2 = h * 0.85 - fi / 20.0 * h * 0.6 - giFract(t * 0.05 + fi * 0.08) * h * 0.08
-                    let fa = fireP * (0.5 + 0.5 * sin(t * 2.8 + fi))
-                    let fr = 2.5 + sin(fi * 1.7 + t) * 1.2
-                    ctx.fill(Path(ellipseIn: CGRect(x: fx2-fr, y: fy2-fr, width: fr*2, height: fr*2)),
-                             with: .color(accent.opacity(fa)))
-                }
-            }
-        }
     }
 }
