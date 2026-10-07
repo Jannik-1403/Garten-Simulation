@@ -2,7 +2,7 @@ import SwiftUI
 import AVFoundation
 import Combine
 
-// MARK: - GrovyIntroView  v7
+// MARK: - GrovyIntroView  v8
 //
 // Ablauf:
 //   0.0 -  5.2  Teil 1: DU. SCROLLST. TÄGLICH. WIE LANGE?
@@ -10,7 +10,7 @@ import Combine
 //   5.2 -  9.2  Teil 2: WIRKLICH? VIEL ZU LANGE.
 //   8.8 - 10.5  Herzschlag
 //  10.0 - 15.0  Speed-Linien (Continuous Warp) + Dynamische Slam-Zahlen
-//  14.5 - 16.0  Fade
+//  14.5 - 16.0  Fade to Black
 //  16.0 - 18.0  "Dein Gehirn will mehr."
 //  18.0 - 22.5  Habit-Statistiken
 //  22.5 - 25.5  GROVY-Logo + Button
@@ -32,9 +32,8 @@ struct GrovyIntroView: View {
     @State private var hasPassedInput: Bool = false
     @State private var endWiggle: Double = 0.0
     
-    // User Input
-    @State private var selectedHours: Int = 3
-    @State private var selectedMinutes: Int = 0
+    // User Input (in Minuten, Standard: 3h = 180)
+    @State private var selectedMinutes: Int = 180
 
     init(
         accent: Color = .blauPrimary,
@@ -49,7 +48,7 @@ struct GrovyIntroView: View {
     }
 
     private var slams: [(start: Double, big: String, small: String)] {
-        let mins = max(1, selectedHours * 60 + selectedMinutes)
+        let mins = max(1, selectedMinutes)
         return [
             (10.5, "\(mins)", String(localized: "intro_slam_1", defaultValue: "MIN. HANDYZEIT")),
             (12.0, "\(Int(Double(mins) / 3.8))", String(localized: "intro_slam_2", defaultValue: "MALE ENTSPERRT")),
@@ -62,7 +61,7 @@ struct GrovyIntroView: View {
             background.ignoresSafeArea()
 
             ZStack {
-                // Phase 0: TikTok Word Build-Up (Slower)
+                // Phase 0: TikTok Word Build-Up
                 if t < 9.5 {
                     GIWordBuildUp(t: t).ignoresSafeArea()
                 }
@@ -73,9 +72,10 @@ struct GrovyIntroView: View {
                 // Phase 2: Speed-Linien (Continuous) + Slams
                 if t > 10.0 && t < 15.0 { layerA(t) }
 
-                // Fade
-                if t > 14.5 && t < 16.0 {
-                    background.opacity(goClamp01I((t - 14.5) / 1.0))
+                // Fade to black
+                if t > 14.5 {
+                    Color.black
+                        .opacity(goClamp01I((t - 14.5) / 1.0))
                         .ignoresSafeArea().allowsHitTesting(false)
                 }
 
@@ -106,22 +106,12 @@ struct GrovyIntroView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .shadow(color: .white.opacity(0.3), radius: 10)
+                        .padding(.top, 16)
                     
-                    HStack {
-                        Picker(String(localized: "intro_input_hours", defaultValue: "Stunden"), selection: $selectedHours) {
-                            ForEach(0..<16, id: \.self) { i in Text("\(i) h").tag(i).foregroundColor(.white) }
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(width: 100).clipped()
-                        
-                        Picker(String(localized: "intro_input_minutes", defaultValue: "Minuten"), selection: $selectedMinutes) {
-                            ForEach(0..<12, id: \.self) { i in Text("\(i * 5) m").tag(i * 5).foregroundColor(.white) }
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(width: 100).clipped()
-                    }
-                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.1)))
-                    .shadow(radius: 20)
+                    // Nativer Apple Countdown-Picker
+                    GIDurationPicker(durationInMinutes: $selectedMinutes)
+                        .frame(height: 200)
+                        .background(Color.white.opacity(0.001))
                     
                     Button(action: {
                         giHaptic(2)
@@ -130,15 +120,33 @@ struct GrovyIntroView: View {
                             hasPassedInput = true
                         }
                     }) {
-                        Text(String(localized: "intro_input_confirm", defaultValue: "Bestätigen"))
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .foregroundColor(Color(red: 0.03, green: 0.20, blue: 0.12))
-                            .frame(maxWidth: .infinity).padding(.vertical, 16)
-                            .background(Capsule().fill(accent))
+                        // 3D Button Style für "Bestätigen"
+                        ZStack {
+                            Capsule().fill(Color(red: 0.0, green: 0.35, blue: 0.1)) // Schatten
+                                .offset(y: 6)
+                            
+                            Capsule().fill(accent)
+                                .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
+                            
+                            Text(String(localized: "intro_input_confirm", defaultValue: "Bestätigen"))
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .foregroundColor(Color(red: 0.03, green: 0.20, blue: 0.12))
+                        }
+                        .frame(height: 56)
                     }
-                    .padding(.horizontal, 48)
+                    .padding(.horizontal, 32)
+                    .padding(.bottom, 24)
                 }
-                .padding(32)
+                .background(
+                    // 3D-Karte als Hintergrund
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 24).fill(Color(white: 0.08)) // Schatten
+                            .offset(y: 8)
+                        RoundedRectangle(cornerRadius: 24).fill(Color(white: 0.14))
+                            .overlay(RoundedRectangle(cornerRadius: 24).stroke(Color.white.opacity(0.1), lineWidth: 1))
+                    }
+                )
+                .padding(.horizontal, 24)
                 .transition(.opacity.combined(with: .scale(scale: 0.9)))
                 .zIndex(10)
             }
@@ -390,6 +398,37 @@ private struct GI3DButton: View {
     }
 }
 
+// MARK: - Native Apple Countdown Picker
+
+private struct GIDurationPicker: UIViewRepresentable {
+    @Binding var durationInMinutes: Int
+
+    func makeUIView(context: Context) -> UIDatePicker {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .countDownTimer
+        picker.overrideUserInterfaceStyle = .dark
+        picker.addTarget(context.coordinator, action: #selector(Coordinator.changed(_:)), for: .valueChanged)
+        picker.countDownDuration = TimeInterval(durationInMinutes * 60)
+        return picker
+    }
+
+    func updateUIView(_ uiView: UIDatePicker, context: Context) {
+        if Int(uiView.countDownDuration / 60) != durationInMinutes {
+            uiView.countDownDuration = TimeInterval(durationInMinutes * 60)
+        }
+    }
+
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+
+    class Coordinator: NSObject {
+        var parent: GIDurationPicker
+        init(_ parent: GIDurationPicker) { self.parent = parent }
+        @objc func changed(_ sender: UIDatePicker) {
+            parent.durationInMinutes = Int(sender.countDownDuration / 60)
+        }
+    }
+}
+
 // MARK: - TikTok Word Build-Up mit 3D Text Style
 
 private struct GIWordBuildUp: View {
@@ -599,10 +638,10 @@ private struct GIHabitStats: View {
             guard p > 0 else { return }
 
             let facts: [(value: String, label: String, sub: String, color: Color)] = [
-                ("8 %",  "erreichen ihre Ziele",     "ohne System",          .red),
-                ("3×",   "erfolgreicher",              "mit täglichem Tracking", accent),
-                ("66",   "Tage",                      "bis eine Gewohnheit sitzt", .orange),
-                ("40 %", "deines Tages",               "sind Gewohnheiten",   Color(white: 0.7)),
+                ("8 %",  String(localized: "intro_stats_1_title", defaultValue: "erreichen ihre Ziele"),     String(localized: "intro_stats_1_sub", defaultValue: "ohne System"),          .red),
+                ("3×",   String(localized: "intro_stats_2_title", defaultValue: "erfolgreicher"),              String(localized: "intro_stats_2_sub", defaultValue: "mit täglichem Tracking"), accent),
+                ("66",   String(localized: "intro_stats_3_title", defaultValue: "Tage"),                      String(localized: "intro_stats_3_sub", defaultValue: "bis eine Gewohnheit sitzt"), .orange),
+                ("40 %", String(localized: "intro_stats_4_title", defaultValue: "deines Tages"),               String(localized: "intro_stats_4_sub", defaultValue: "sind Gewohnheiten"),   Color(white: 0.7)),
             ]
 
             let cardW = w * 0.76; let cardH = h * 0.14
