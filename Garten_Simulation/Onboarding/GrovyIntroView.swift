@@ -14,7 +14,7 @@ import Combine
 //  14.5 - 23.0  Solution Text (Ebenfalls im TikTok 3D Style!)
 //  22.5 - 25.5  GROVY-Logo + Button
 
-private let kIntroDuration: Double = 27.0
+private let kIntroDuration: Double = 36.0
 
 struct GrovyIntroView: View {
     let accent: Color
@@ -52,7 +52,7 @@ struct GrovyIntroView: View {
         let daysInLife = (mins * 365 * 60) / 1440
         return [
             GIWordScene(
-                words: [String(localized: "intro_flash_you", defaultValue: "DU."), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST."), String(localized: "intro_flash_everyday", defaultValue: "TÄGLICH.")],
+                words: [String(localized: "intro_flash_you", defaultValue: "DU"), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST"), String(localized: "intro_flash_everyday", defaultValue: "TÄGLICH")],
                 colors: [.white, .yellow, .orange],
                 sizes: [88, 64, 60],
                 start: 0.0, stepDur: 1.2, gap: 0.4, fadeOutAt: 4.0
@@ -64,7 +64,7 @@ struct GrovyIntroView: View {
                 start: 4.0, stepDur: 1.2, gap: 0.0, fadeOutAt: 5.2
             ),
             GIWordScene(
-                words: [String(localized: "intro_flash_really", defaultValue: "WIRKLICH?"), String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU"), String(localized: "intro_flash_long", defaultValue: "LANGE.")],
+                words: [String(localized: "intro_flash_really", defaultValue: "WIRKLICH?"), String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU"), String(localized: "intro_flash_long", defaultValue: "LANGE")],
                 colors: [.gray, .yellow, .white],
                 sizes: [46, 72, 64],
                 start: 5.2, stepDur: 1.2, gap: 0.8, fadeOutAt: 9.6
@@ -82,36 +82,73 @@ struct GrovyIntroView: View {
                 sizes: [110, 24],
                 start: 12.0, stepDur: 1.2, gap: 1.0, fadeOutAt: 14.5
             ),
-            // SOLUTION TEXTS – 1:1 wie Intro, max 3 Wörter pro Szene
+            // SOLUTION TEXTS – Strikter Rhythmus, max 3 Wörter pro Szene
             GIWordScene(
                 words: [
-                    String(localized: "intro_sol_time_1", defaultValue: "WIE VIEL ZEIT"),
-                    String(localized: "intro_sol_time_2", defaultValue: "HÄTTEST DU"),
-                    String(localized: "intro_sol_time_3", defaultValue: "FÜR ANDERE SACHEN")
+                    String(localized: "intro_sol_how", defaultValue: "HOW"),
+                    String(localized: "intro_sol_much", defaultValue: "MUCH"),
+                    String(localized: "intro_sol_time", defaultValue: "TIME")
                 ],
                 colors: [.white, .yellow, .orange],
                 sizes: [88, 64, 56],
-                start: 14.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 18.5
+                start: 14.5, stepDur: 1.0, gap: 0.4, fadeOutAt: 17.5
             ),
             GIWordScene(
                 words: [
-                    String(localized: "intro_sol_invest_1", defaultValue: "INVESTIERE"),
-                    String(localized: "intro_sol_invest_2", defaultValue: "DIESE ZEIT"),
-                    String(localized: "intro_sol_invest_3", defaultValue: "IN DICH")
+                    String(localized: "intro_sol_would", defaultValue: "WOULD"),
+                    String(localized: "intro_sol_you", defaultValue: "YOU"),
+                    String(localized: "intro_sol_have", defaultValue: "HAVE")
                 ],
-                colors: [.white, .yellow, accent],
-                sizes: [88, 64, 72],
-                start: 18.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 22.5
+                colors: [.white, .yellow, .orange],
+                sizes: [72, 64, 88],
+                start: 17.5, stepDur: 1.0, gap: 0.4, fadeOutAt: 20.5
             ),
             GIWordScene(
                 words: [
-                    String(localized: "intro_sol_build_1", defaultValue: "BAUE ECHTE"),
-                    String(localized: "intro_sol_build_2", defaultValue: "GEWOHNHEITEN"),
-                    String(localized: "intro_sol_build_3", defaultValue: "AUF")
+                    String(localized: "intro_sol_for", defaultValue: "FOR"),
+                    String(localized: "intro_sol_other", defaultValue: "OTHER"),
+                    String(localized: "intro_sol_things", defaultValue: "THINGS")
                 ],
                 colors: [.white, accent, .orange],
                 sizes: [72, 64, 88],
-                start: 22.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 26.5
+                start: 20.5, stepDur: 1.0, gap: 0.4, fadeOutAt: 23.5
+            ),
+            GIWordScene(
+                words: [
+                    String(localized: "intro_sol_invest", defaultValue: "INVEST"),
+                    String(localized: "intro_sol_this", defaultValue: "THIS"),
+                    String(localized: "intro_sol_time2", defaultValue: "TIME")
+                ],
+                colors: [.white, .yellow, accent],
+                sizes: [88, 64, 72],
+                start: 23.5, stepDur: 1.0, gap: 0.4, fadeOutAt: 26.5
+            ),
+            GIWordScene(
+                words: [
+                    String(localized: "intro_sol_in", defaultValue: "IN"),
+                    String(localized: "intro_sol_yourself", defaultValue: "YOURSELF")
+                ],
+                colors: [.white, accent],
+                sizes: [72, 88],
+                start: 26.5, stepDur: 1.0, gap: 0.4, fadeOutAt: 29.0
+            ),
+            GIWordScene(
+                words: [
+                    String(localized: "intro_sol_build", defaultValue: "BUILD"),
+                    String(localized: "intro_sol_real", defaultValue: "REAL"),
+                    String(localized: "intro_sol_habits", defaultValue: "HABITS")
+                ],
+                colors: [.white, accent, .orange],
+                sizes: [72, 64, 88],
+                start: 29.0, stepDur: 1.0, gap: 0.4, fadeOutAt: 32.0
+            ),
+            GIWordScene(
+                words: [
+                    String(localized: "intro_sol_up", defaultValue: "UP")
+                ],
+                colors: [accent],
+                sizes: [110],
+                start: 32.0, stepDur: 1.0, gap: 0.4, fadeOutAt: 34.5
             )
         ]
     }
@@ -136,15 +173,15 @@ struct GrovyIntroView: View {
                 if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
 
                 // Einheitliche 3D Text Szenen (inkl. TikTok Wörter, Slams und Solution)
-                if t < 27.0 {
+                if t < 36.0 {
                     GIWordBuildUp(t: t, scenes: textScenes).ignoresSafeArea()
                 }
 
                 // Phase 5: Logo
-                if t > 26.0 { layerD(t) }
+                if t > 34.5 { layerD(t) }
 
                 // Auto-Finish
-                if t > 29.0 { Color.clear.onAppear { finishNow() } }
+                if t > 38.0 { Color.clear.onAppear { finishNow() } }
             }
             // Ganzer Screen schüttelt am Ende – nicht nur der Button
             .offset(
@@ -298,9 +335,9 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerD(_ t: Double) -> some View {
-        let lp = goProgI(t, 26.1, 1.4); let lpE = goOutI(lp)
-        let sweep = goInOutI(goProgI(t, 26.8, 1.1))
-        let btn = goOutI(goProgI(t, 27.3, 0.6))
+        let lp = goProgI(t, 34.6, 1.4); let lpE = goOutI(lp)
+        let sweep = goInOutI(goProgI(t, 35.3, 1.1))
+        let btn = goOutI(goProgI(t, 35.8, 0.6))
         let word = Text("GROVY")
             .font(.system(size: 58, weight: .black, design: .rounded))
             .tracking(CGFloat(26.0 - 20.0 * lpE))
