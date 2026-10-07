@@ -43,11 +43,11 @@ struct OnboardingView: View {
                 ZStack {
                     switch data.currentStep {
                     case 1:
-                        DopamineStoryView(theme: .grovy, showsProgress: false, showsFinishButton: true, finishTitle: String(localized: "common_weiter", defaultValue: "Weiter")) {
+                        GrovyIntroView(onFinish: {
                             withAnimation(.easeInOut(duration: 0.35)) {
                                 data.currentStep += 1
                             }
-                        }
+                        })
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
 
                     case 2:
