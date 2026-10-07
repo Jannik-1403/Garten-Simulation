@@ -30,13 +30,18 @@ struct GrovyIntroView: View {
 
     @StateObject private var audio = GIAudio()
     @State private var alive = true
-    
+
     // Hold to Play State
     @State private var startTick: Date? = nil
+    @State private var holdProgress: Double = 0.0
+    @State private var lastHapticProgress: Double = 0.0
+
+    /// Dauer in Sekunden, wie lange man drücken muss
+    private let holdDuration: Double = 2.0
 
     init(
-        accent: Color = .blauPrimary, // Angepasst an Grovy
-        warning: Color = .red, // Angepasst an Grovy Warn-Farbe
+        accent: Color = .blauPrimary,
+        warning: Color = .red,
         background: Color = .clear,
         soundEnabled: Bool = true,
         buttonTitle: String = "Los geht's",
@@ -57,99 +62,89 @@ struct GrovyIntroView: View {
     ]
 
     var body: some View {
-        ZStack {
-            background.ignoresSafeArea()
-            
-            GITimed(startDate: startTick) { t in
-                ZStack {
-                    if startTick != nil {
-                        if t < 1.5 {
-                            heartbeat(t)
-                        }
+        GeometryReader { geo in
+            ZStack {
+                background.ignoresSafeArea()
 
-                        if t > 1.1 && t < 5.6 {
-                            layerA(t)
-                        }
-
-                        // Weicher Fadeout statt harter Blitz
-                        if t > 5.0 && t < 6.0 {
-                            background
-                                .opacity(goClamp01I((t - 5.0) / 0.6))
-                                .ignoresSafeArea()
-                                .allowsHitTesting(false)
-                        }
-
-                        if t > 6.4 && t < 8.5 {
-                            layerB(t)
-                        }
-
-                        if t > 8.3 {
-                            GIStats(t: t, accent: accent)
-                                .ignoresSafeArea()
-                                .scaleEffect(CGFloat(1.0 + 0.08 * goProgI(t, 9.4, 5.0)))
-                                .opacity(goProgI(t, 8.3, 0.8))
-                                .allowsHitTesting(false)
-                        }
-
-                        if t > 12.3 {
-                            layerD(t)
-                        }
-                        
-                        if t > 14.5 {
-                            // Finish automatically if played to the end
-                            Color.clear.onAppear { finishNow() }
-                        }
-                    } else {
-                        // Intro text before playing
-                        VStack {
-                            Spacer()
-                            Text(String(localized: "intro_hold_to_play", defaultValue: "Zum Abspielen gedrückt halten"))
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
-                                .foregroundColor(Color.gray.opacity(0.8))
-                                .padding(.bottom, 120)
+                // Animations-Content – läuft solange startTick gesetzt
+                GITimed(startDate: startTick) { t in
+                    ZStack {
+                        if startTick != nil {
+                            if t < 1.5 { heartbeat(t) }
+                            if t > 1.1 && t < 5.6 { layerA(t) }
+                            if t > 5.0 && t < 6.0 {
+                                background
+                                    .opacity(goClamp01I((t - 5.0) / 0.6))
+                                    .ignoresSafeArea()
+                                    .allowsHitTesting(false)
+                            }
+                            if t > 6.4 && t < 8.5 { layerB(t) }
+                            if t > 8.3 {
+                                GIStats(t: t, accent: accent)
+                                    .ignoresSafeArea()
+                                    .scaleEffect(CGFloat(1.0 + 0.08 * goProgI(t, 9.4, 5.0)))
+                                    .opacity(goProgI(t, 8.3, 0.8))
+                                    .allowsHitTesting(false)
+                            }
+                            if t > 12.3 { layerD(t) }
+                            if t > 14.5 { Color.clear.onAppear { finishNow() } }
+                        } else {
+                            // Aufforderungs-Text solange noch nicht gedrückt
+                            VStack {
+                                Spacer()
+                                VStack(spacing: 8) {
+                                    Image(systemName: "hand.tap.fill")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.gray.opacity(0.5))
+                                    Text(String(localized: "intro_hold_to_play", defaultValue: "Gedrückt halten um zu starten"))
+                                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                        .foregroundColor(.gray.opacity(0.6))
+                                        .multilineTextAlignment(.center)
+                                }
+                                .padding(.bottom, 60)
+                            }
                         }
                     }
                 }
-                
-                // The Button
-                VStack {
-                    Spacer()
-                    ZStack {
-                        Circle()
-                            .fill(Color.orange.opacity(0.8))
-                            .frame(width: 80, height: 80)
-                            .offset(y: 8)
-                        
-                        Circle()
-                            .fill(Color.yellow)
-                            .frame(width: 80, height: 80)
-                        
-                        // Fingerprint or Play icon
-                        Image(systemName: startTick != nil ? "fingerprint" : "play.fill")
-                            .font(.system(size: 32, weight: .black))
-                            .foregroundColor(.white)
-                            .opacity(startTick != nil ? (sin(t * 15.0) * 0.5 + 0.5) : 1.0)
+
+                // Ring-Fortschrittsbalken am Bildschirmrand
+                if holdProgress > 0 || startTick != nil {
+                    GIRingProgress(progress: holdProgress, size: geo.size)
+                        .ignoresSafeArea()
+                        .allowsHitTesting(false)
+                        .animation(.linear(duration: 0.05), value: holdProgress)
+                }
+            }
+            // Vollbild-Geste – kein sichtbarer Button mehr
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in
+                        if startTick == nil {
+                            startTick = Date()
+                            holdProgress = 0
+                            lastHapticProgress = 0
+                            giHaptic(1)
+                            schedule()
+                        }
                     }
-                    .scaleEffect(startTick != nil ? 0.9 : 1.0)
-                    .offset(
-                         x: startTick != nil ? CGFloat(sin(t * 50.0) * 2.0) : 0,
-                         y: startTick != nil ? CGFloat(cos(t * 40.0) * 2.0) : 0
-                    )
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { _ in
-                                if startTick == nil {
-                                    startTick = Date()
-                                    giHaptic(1)
-                                    schedule()
-                                }
-                            }
-                            .onEnded { _ in
-                                startTick = nil
-                                audio.stop()
-                            }
-                    )
-                    .padding(.bottom, 60)
+                    .onEnded { _ in
+                        startTick = nil
+                        audio.stop()
+                        withAnimation(.easeOut(duration: 0.4)) { holdProgress = 0 }
+                    }
+            )
+            // Timer: aktualisiert Fortschritt und Haptik
+            .onReceive(Timer.publish(every: 0.03, on: .main, in: .common).autoconnect()) { _ in
+                guard let tick = startTick else { return }
+                let elapsed = Date().timeIntervalSince(tick)
+                holdProgress = min(1.0, elapsed / holdDuration)
+
+                // Haptik nur alle 25%-Schritt (nicht dauerhaft)
+                let step = (holdProgress * 4).rounded(.down) / 4
+                if step > lastHapticProgress {
+                    lastHapticProgress = step
+                    giHaptic(holdProgress > 0.75 ? 2 : 1)
                 }
             }
         }
@@ -378,6 +373,61 @@ private struct GITimed<Content: View>: View {
                 content(0.0)
             }
         }
+    }
+}
+
+// MARK: - Ring-Fortschrittsbalken am Bildschirmrand
+
+private struct GIRingProgress: View {
+    let progress: Double   // 0...1
+    let size: CGSize
+
+    var body: some View {
+        Canvas { ctx, canvasSize in
+            let w = Double(canvasSize.width)
+            let h = Double(canvasSize.height)
+            let inset = 8.0
+            let lineW = 6.0
+            let cornerR = 44.0
+
+            // Gesamtperimeter des abgerundeten Rechtecks
+            let perim = 2 * (w - 2 * cornerR) + 2 * (h - 2 * cornerR) + 2 * Double.pi * cornerR
+
+            // Startpunkt: oben-mitte, Uhrzeigersinn
+            let start = CGPoint(x: w / 2, y: inset)
+
+            var path = Path()
+            // Top-right
+            path.move(to: start)
+            path.addLine(to: CGPoint(x: w - cornerR - inset, y: inset))
+            path.addArc(center: CGPoint(x: w - cornerR - inset, y: cornerR + inset),
+                        radius: cornerR, startAngle: .degrees(-90), endAngle: .degrees(0), clockwise: false)
+            // Right
+            path.addLine(to: CGPoint(x: w - inset, y: h - cornerR - inset))
+            path.addArc(center: CGPoint(x: w - cornerR - inset, y: h - cornerR - inset),
+                        radius: cornerR, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
+            // Bottom
+            path.addLine(to: CGPoint(x: cornerR + inset, y: h - inset))
+            path.addArc(center: CGPoint(x: cornerR + inset, y: h - cornerR - inset),
+                        radius: cornerR, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: false)
+            // Left
+            path.addLine(to: CGPoint(x: inset, y: cornerR + inset))
+            path.addArc(center: CGPoint(x: cornerR + inset, y: cornerR + inset),
+                        radius: cornerR, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: false)
+            // Back to top-left → top-center
+            path.addLine(to: start)
+
+            // Hintergrund-Ring (dezent grau)
+            ctx.stroke(path, with: .color(.white.opacity(0.08)),
+                       style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round))
+
+            // Fortschritts-Anteil als Dash
+            let dashLen = perim * progress
+            ctx.stroke(path, with: .color(Color.yellow.opacity(0.9)),
+                       style: StrokeStyle(lineWidth: CGFloat(lineW), lineCap: .round,
+                                          dash: [CGFloat(dashLen), CGFloat(perim)]))
+        }
+        .frame(width: size.width, height: size.height)
     }
 }
 

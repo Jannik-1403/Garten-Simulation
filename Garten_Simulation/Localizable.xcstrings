@@ -215064,113 +215064,102 @@
       }
     },
     "intro_hold_to_play": {
-      "comment": "Hold to play button label in intro animation",
+      "comment": "Hold to start label on intro screen",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zum Abspielen gedrückt halten"
+            "value": "Gedrückt halten um zu starten"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hold to play"
+            "value": "Hold to start"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mantén presionado para reproducir"
+            "value": "Mantén presionado para iniciar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Maintenir pour lire"
+            "value": "Maintenir pour démarrer"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "चलाने के लिए दबाए रखें"
+            "value": "शुरू करने के लिए दबाए रखें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tieni premuto per riprodurre"
+            "value": "Tieni premuto per iniziare"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "再生するには押し続けてください"
+            "value": "開始するには押し続けてください"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "재생하려면 길게 누르세요"
+            "value": "시작하려면 길게 누르세요"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ingedrukt houden om af te spelen"
+            "value": "Ingedrukt houden om te starten"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Przytrzymaj, aby odtworzyć"
+            "value": "Przytrzymaj, aby rozpocząć"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mantenha pressionado para reproduzir"
+            "value": "Mantenha pressionado para iniciar"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Segure para reproduzir"
+            "value": "Segure para iniciar"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Удерживайте для воспроизведения"
+            "value": "Удерживайте для запуска"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oynatmak için basılı tut"
+            "value": "Başlatmak için basılı tut"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "按住以播放"
+            "value": "按住以开始"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "按住以播放"
-          }
-        }
-      }
-    },
-    "intro_hold_to_start": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Gedrückt halten"
+            "value": "按住以開始"
           }
         }
       }
@@ -500455,7 +500444,6 @@
         }
       }
     },
-    "Überspringen": {},
     "•": {
       "localizations": {
         "de": {
