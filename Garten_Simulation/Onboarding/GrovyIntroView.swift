@@ -2,18 +2,18 @@ import SwiftUI
 import AVFoundation
 import Combine
 
-// MARK: - GrovyIntroView  v5
+// MARK: - GrovyIntroView  v6
 //
 // Ablauf (Finger halten → Animation läuft):
-//   0.0 -  7.5  TikTok-Word-Build-Up (Langsamer, 0.8s pro Wort)
-//   7.5 -  9.0  Herzschlag
-//   8.5 - 13.5  Speed-Linien (Continuous Warp) + 3 Slam-Zahlen
-//  13.0 - 14.5  Fade
-//  14.5 - 16.5  "Dein Gehirn will mehr."
-//  16.5 - 21.0  Habit-Statistiken (relevant zur App)
-//  21.0 - 24.0  GROVY-Logo + Button
+//   0.0 - 10.8  TikTok-Word-Build-Up (Noch langsamer, 1.2s pro Wort)
+//  10.5 - 12.0  Herzschlag
+//  11.5 - 16.5  Speed-Linien (Continuous Warp) + 3 Slam-Zahlen
+//  16.0 - 17.5  Fade
+//  17.5 - 19.5  "Dein Gehirn will mehr."
+//  19.5 - 24.0  Habit-Statistiken (relevant zur App)
+//  24.0 - 27.0  GROVY-Logo + Button
 
-private let kIntroDuration: Double = 24.0
+private let kIntroDuration: Double = 27.0
 
 struct GrovyIntroView: View {
     let accent: Color
@@ -44,9 +44,9 @@ struct GrovyIntroView: View {
     }
 
     private let slams: [(start: Double, big: String, small: String)] = [
-        (9.0, "180", String(localized: "intro_slam_1")),
-        (10.5, "47", String(localized: "intro_slam_2")),
-        (12.0, "46", String(localized: "intro_slam_3"))
+        (12.0, "180", String(localized: "intro_slam_1")),
+        (13.5, "47", String(localized: "intro_slam_2")),
+        (15.0, "46", String(localized: "intro_slam_3"))
     ]
 
     var body: some View {
@@ -57,39 +57,39 @@ struct GrovyIntroView: View {
                 ZStack {
                     if startTick != nil {
                         // Phase 0: TikTok Word Build-Up (Slower)
-                        if t < 7.8 {
+                        if t < 10.8 {
                             GIWordBuildUp(t: t).ignoresSafeArea()
                         }
 
                         // Phase 1: Herzschlag
-                        if t > 7.3 && t < 9.0 { heartbeat(t - 7.3) }
+                        if t > 10.5 && t < 12.0 { heartbeat(t - 10.5) }
 
                         // Phase 2: Speed-Linien (Continuous) + Slams
-                        if t > 8.5 && t < 13.5 { layerA(t) }
+                        if t > 11.5 && t < 16.5 { layerA(t) }
 
                         // Fade
-                        if t > 13.0 && t < 14.5 {
-                            background.opacity(goClamp01I((t - 13.0) / 1.0))
+                        if t > 16.0 && t < 17.5 {
+                            background.opacity(goClamp01I((t - 16.0) / 1.0))
                                 .ignoresSafeArea().allowsHitTesting(false)
                         }
 
                         // Phase 3: Text
-                        if t > 14.5 && t < 16.5 { layerB(t) }
+                        if t > 17.5 && t < 19.5 { layerB(t) }
 
                         // Phase 4: Habit-Stats
-                        if t > 16.5 {
+                        if t > 19.5 {
                             GIHabitStats(t: t, accent: accent)
                                 .ignoresSafeArea()
-                                .scaleEffect(CGFloat(1.0 + 0.06 * goProgI(t, 17.5, 4.0)))
-                                .opacity(goProgI(t, 16.5, 0.7))
+                                .scaleEffect(CGFloat(1.0 + 0.06 * goProgI(t, 20.5, 4.0)))
+                                .opacity(goProgI(t, 19.5, 0.7))
                                 .allowsHitTesting(false)
                         }
 
                         // Phase 5: Logo
-                        if t > 21.0 { layerD(t) }
+                        if t > 24.0 { layerD(t) }
 
                         // Auto-Finish
-                        if t > 24.0 { Color.clear.onAppear { finishNow() } }
+                        if t > 27.0 { Color.clear.onAppear { finishNow() } }
 
                     } else {
                         // Vor dem ersten Drücken – kein Text, nur Icon auf Button
@@ -108,28 +108,27 @@ struct GrovyIntroView: View {
                     wiggle: endWiggle,
                     accent: accent
                 )
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { _ in
-                            if !buttonPressed {
-                                buttonPressed = true
-                                giHaptic(2)  // Sofortige starke Vibration beim Drücken
-                            }
-                            if startTick == nil {
-                                startTick = Date()
-                                ringProgress = 0
-                                lastHapticProgress = 0
-                                schedule()
-                            }
+                // Nutze onLongPressGesture anstatt DragGesture für absolut verzögerungsfreies Feedback in SwiftUI
+                .onLongPressGesture(minimumDuration: 100.0, maximumDistance: 100, pressing: { isPressing in
+                    if isPressing {
+                        if !buttonPressed {
+                            buttonPressed = true
+                            giHaptic(2)
                         }
-                        .onEnded { _ in
-                            buttonPressed = false
-                            startTick = nil
-                            audio.stop()
-                            withAnimation(.easeOut(duration: 0.5)) { ringProgress = 0 }
-                            endWiggle = 0
+                        if startTick == nil {
+                            startTick = Date()
+                            ringProgress = 0
+                            lastHapticProgress = 0
+                            schedule()
                         }
-                )
+                    } else {
+                        buttonPressed = false
+                        startTick = nil
+                        audio.stop()
+                        withAnimation(.easeOut(duration: 0.5)) { ringProgress = 0 }
+                        endWiggle = 0
+                    }
+                }, perform: {})
                 .padding(.bottom, 40)
             }
         }
@@ -163,7 +162,9 @@ struct GrovyIntroView: View {
     private func finishNow() { alive = false; onFinish() }
 
     private func schedule() {
-        audio.start(enabled: soundEnabled)
+        // Sound deaktiviert per User Feedback ("mache die sondefekt ermal raus")
+        // audio.start(enabled: soundEnabled)
+        
         for event in giEvents {
             DispatchQueue.main.asyncAfter(deadline: .now() + event.0) {
                 guard alive else { return }
@@ -174,10 +175,10 @@ struct GrovyIntroView: View {
 
     private func fire(_ kind: GIKind) {
         switch kind {
-        case .beat:  giHaptic(0); audio.beat()
-        case .slam:  giHaptic(2); audio.slam()
-        case .bloom: giHaptic(0); audio.shimmer()
-        case .logo:  giHaptic(2); audio.slam()
+        case .beat:  break // giHaptic(0); audio.beat()
+        case .slam:  break // giHaptic(2); audio.slam()
+        case .bloom: break // giHaptic(0); audio.shimmer()
+        case .logo:  break // giHaptic(2); audio.slam()
         }
     }
 
@@ -199,7 +200,7 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerA(_ t: Double) -> some View {
-        let cut = 1.0 - goClamp01I((t - 13.0) / 0.6)
+        let cut = 1.0 - goClamp01I((t - 16.0) / 0.6)
         let idx = currentSlam(t)
         let slam = slams[idx]
         let local = t - slam.start
@@ -222,9 +223,9 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerB(_ t: Double) -> some View {
-        let fade = 1.0 - goClamp01I((t - 16.0) / 0.4)
-        let a1 = goOutI(goProgI(t, 14.6, 0.7))
-        let a2 = goOutI(goProgI(t, 15.4, 1.0))
+        let fade = 1.0 - goClamp01I((t - 19.0) / 0.4)
+        let a1 = goOutI(goProgI(t, 17.6, 0.7))
+        let a2 = goOutI(goProgI(t, 18.4, 1.0))
         VStack(spacing: 12) {
             Text(String(localized: "intro_text_line1", defaultValue: "Dein Gehirn will mehr."))
                 .font(.system(size: 28, weight: .bold, design: .rounded))
@@ -242,10 +243,10 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerD(_ t: Double) -> some View {
-        let lp = goProgI(t, 21.1, 1.4); let lpE = goOutI(lp)
-        let sweep = goInOutI(goProgI(t, 21.8, 1.1))
-        let tag = goProgI(t, 22.2, 0.8)
-        let btn = goOutI(goProgI(t, 22.6, 0.6))
+        let lp = goProgI(t, 24.1, 1.4); let lpE = goOutI(lp)
+        let sweep = goInOutI(goProgI(t, 24.8, 1.1))
+        let tag = goProgI(t, 25.2, 0.8)
+        let btn = goOutI(goProgI(t, 25.6, 0.6))
         let word = Text("GROVY")
             .font(.system(size: 58, weight: .black, design: .rounded))
             .tracking(CGFloat(26.0 - 20.0 * lpE))
@@ -345,7 +346,7 @@ private struct GI3DButton: View {
     }
 }
 
-// MARK: - TikTok Word Build-Up mit 3D Text Style (Langsamer)
+// MARK: - TikTok Word Build-Up mit 3D Text Style (Noch Langsamer)
 
 private struct GIWordBuildUp: View {
     let t: Double
@@ -358,24 +359,24 @@ private struct GIWordBuildUp: View {
         let gap: Double
     }
 
-    // Step duration is now 0.8s (much slower)
+    // Step duration is now 1.2s (very slow)
     private let scenes: [WordScene] = [
         WordScene(steps: [
             .init(words: [String(localized: "intro_flash_you", defaultValue: "DU.")], colors: [.white], sizes: [88]),
             .init(words: [String(localized: "intro_flash_you", defaultValue: "DU."), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST.")], colors: [.white, .yellow], sizes: [56, 64]),
             .init(words: [String(localized: "intro_flash_you", defaultValue: "DU."), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST."), String(localized: "intro_flash_everyday", defaultValue: "TÄGLICH.")], colors: [.white, .yellow, .orange], sizes: [44, 52, 60]),
-        ], start: 0.0, stepDur: 0.80, gap: 0.3),
+        ], start: 0.0, stepDur: 1.20, gap: 0.4),
 
         WordScene(steps: [
             .init(words: [String(localized: "intro_flash_how_long", defaultValue: "WIE LANGE")], colors: [.red], sizes: [72]),
             .init(words: [String(localized: "intro_flash_how_long", defaultValue: "WIE LANGE"), String(localized: "intro_flash_tap", defaultValue: "TIPPST.")], colors: [.red, .white], sizes: [56, 56]),
             .init(words: [String(localized: "intro_flash_how_long", defaultValue: "WIE LANGE"), String(localized: "intro_flash_tap", defaultValue: "TIPPST."), String(localized: "intro_flash_really", defaultValue: "WIRKLICH?")], colors: [.red, .white, .gray], sizes: [46, 46, 42]),
-        ], start: 2.7, stepDur: 0.80, gap: 0.3),
+        ], start: 4.0, stepDur: 1.20, gap: 0.4),
 
         WordScene(steps: [
             .init(words: [String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU")], colors: [.yellow], sizes: [90]),
             .init(words: [String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU"), String(localized: "intro_flash_long", defaultValue: "LANGE.")], colors: [.yellow, .white], sizes: [72, 64]),
-        ], start: 5.4, stepDur: 0.80, gap: 0.3),
+        ], start: 8.0, stepDur: 1.20, gap: 0.4),
     ]
 
     var body: some View {
@@ -432,24 +433,8 @@ private struct GIWordBuildUp: View {
 
 private enum GIKind { case beat, slam, bloom, logo }
 
-// Timings matched to the new slower word flashes and new slams
-private let giEvents: [(Double, GIKind)] = [
-    // Scene 1: 0.0, 0.8, 1.6
-    (0.0, .beat), (0.8, .beat), (1.6, .slam),
-    // Scene 2: 2.7, 3.5, 4.3
-    (2.7, .beat), (3.5, .beat), (4.3, .slam),
-    // Scene 3: 5.4, 6.2
-    (5.4, .beat), (6.2, .slam),
-    
-    // Heartbeat: 7.3 offset, pulses at 0.3 and 0.6 -> 7.6, 7.9
-    (7.6, .beat), (7.9, .beat),
-    
-    // Slams: 9.0, 10.5, 12.0
-    (9.0, .slam), (10.5, .slam), (12.0, .slam),
-    
-    // Stats + Logo
-    (17.5, .bloom), (21.8, .logo)
-]
+// Array geleert wie vom Benutzer gewünscht ("mache die sondefekt ermal raus")
+private let giEvents: [(Double, GIKind)] = []
 
 private func giHaptic(_ level: Int) {
     #if canImport(UIKit)
@@ -581,7 +566,7 @@ private struct GIHabitStats: View {
         Canvas { ctx, size in
             let w = Double(size.width); let h = Double(size.height)
             let cx = w / 2.0
-            let p = goInOutI(goProgI(t, 17.5, 2.5))
+            let p = goInOutI(goProgI(t, 20.5, 2.5))
 
             guard p > 0 else { return }
 
@@ -597,7 +582,7 @@ private struct GIHabitStats: View {
 
             for (i, fact) in facts.enumerated() {
                 let delay = Double(i) * 0.6
-                let fp = goOutI(goProgI(t, 17.5 + delay, 0.5))
+                let fp = goOutI(goProgI(t, 20.5 + delay, 0.5))
                 guard fp > 0 else { continue }
                 let fy = startY + Double(i) * (cardH + h * 0.03)
                 let fx = (w - cardW) / 2.0
@@ -629,13 +614,13 @@ private struct GIHabitStats: View {
                 }
             }
 
-            let titleP = goProgI(t, 17.5, 0.5)
+            let titleP = goProgI(t, 20.5, 0.5)
             ctx.draw(Text(String(localized: "intro_stats_title", defaultValue: "GEWOHNHEITEN & ERFOLG"))
                 .font(.system(size: 12, weight: .heavy, design: .rounded))
                 .foregroundColor(Color(white: 0.4).opacity(titleP)),
                      at: CGPoint(x: cx, y: h * 0.11), anchor: .center)
 
-            let fireP = goProgI(t, 19.5, 2.0)
+            let fireP = goProgI(t, 22.5, 2.0)
             if fireP > 0 {
                 for i in 0..<20 {
                     let fi = Double(i)
