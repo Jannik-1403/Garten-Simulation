@@ -82,46 +82,36 @@ struct GrovyIntroView: View {
                 sizes: [110, 24],
                 start: 12.0, stepDur: 1.2, gap: 1.0, fadeOutAt: 14.5
             ),
-            // SOLUTION TEXTS – 1:1 wie Intro, max 2 Wörter pro Szene
-            // Szene 1a: WIE VIEL ZEIT + HÄTTEST DU (max 5 Wörter)
+            // SOLUTION TEXTS – 1:1 wie Intro, max 3 Wörter pro Szene
             GIWordScene(
                 words: [
                     String(localized: "intro_sol_time_1", defaultValue: "WIE VIEL ZEIT"),
-                    String(localized: "intro_sol_time_2", defaultValue: "HÄTTEST DU")
+                    String(localized: "intro_sol_time_2", defaultValue: "HÄTTEST DU"),
+                    String(localized: "intro_sol_time_3", defaultValue: "FÜR ANDERE SACHEN")
                 ],
-                colors: [.white, .yellow],
-                sizes: [88, 64],
-                start: 14.5, stepDur: 1.4, gap: 0.6, fadeOutAt: 17.5
-            ),
-            // Szene 1b: FÜR ANDERE + SACHEN? (split für klaren Rhythmus)
-            GIWordScene(
-                words: [
-                    String(localized: "intro_sol_time_3a", defaultValue: "FÜR ANDERE"),
-                    String(localized: "intro_sol_time_3b", defaultValue: "SACHEN?")
-                ],
-                colors: [.orange, .orange],
-                sizes: [72, 88],
-                start: 17.5, stepDur: 1.4, gap: 0.6, fadeOutAt: 20.5
+                colors: [.white, .yellow, .orange],
+                sizes: [88, 64, 56],
+                start: 14.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 18.5
             ),
             GIWordScene(
                 words: [
                     String(localized: "intro_sol_invest_1", defaultValue: "INVESTIERE"),
                     String(localized: "intro_sol_invest_2", defaultValue: "DIESE ZEIT"),
-                    String(localized: "intro_sol_invest_3", defaultValue: "IN DICH.")
+                    String(localized: "intro_sol_invest_3", defaultValue: "IN DICH")
                 ],
                 colors: [.white, .yellow, accent],
                 sizes: [88, 64, 72],
-                start: 20.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 24.5
+                start: 18.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 22.5
             ),
             GIWordScene(
                 words: [
                     String(localized: "intro_sol_build_1", defaultValue: "BAUE ECHTE"),
                     String(localized: "intro_sol_build_2", defaultValue: "GEWOHNHEITEN"),
-                    String(localized: "intro_sol_build_3", defaultValue: "AUF.")
+                    String(localized: "intro_sol_build_3", defaultValue: "AUF")
                 ],
                 colors: [.white, accent, .orange],
                 sizes: [72, 64, 88],
-                start: 24.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 28.5
+                start: 22.5, stepDur: 1.2, gap: 0.4, fadeOutAt: 26.5
             )
         ]
     }

@@ -216992,13 +216992,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "AUF."
+            "value": "AUF"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "UP."
+            "value": "UP"
           }
         },
         "es": {
@@ -217295,13 +217295,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "IN DICH."
+            "value": "IN DICH"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "IN YOURSELF."
+            "value": "IN YOURSELF"
           }
         },
         "es": {
@@ -217594,17 +217594,18 @@
     },
     "intro_sol_time_3": {
       "comment": "Grovy Intro Solution: intro_sol_time_3",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "FÜR ANDERE SACHEN?"
+            "value": "FÜR ANDERE SACHEN"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "FOR OTHER THINGS?"
+            "value": "FOR OTHER THINGS"
           }
         },
         "es": {
