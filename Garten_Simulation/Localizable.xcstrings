@@ -216278,6 +216278,7 @@
     },
     "intro_slam_1": {
       "comment": "Grovy Intro: intro_slam_1",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -216379,6 +216380,7 @@
     },
     "intro_slam_2": {
       "comment": "Grovy Intro: intro_slam_2",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -216480,6 +216482,7 @@
     },
     "intro_slam_3": {
       "comment": "Grovy Intro: intro_slam_3",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -216781,8 +216784,615 @@
         }
       }
     },
+    "intro_sol_build_1": {
+      "comment": "Grovy Intro 3D Solution: intro_sol_build_1",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BAUE ECHTE"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BUILD REAL"
+          }
+        }
+      }
+    },
+    "intro_sol_build_2": {
+      "comment": "Grovy Intro 3D Solution: intro_sol_build_2",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GEWOHNHEITEN AUF."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HABITS."
+          }
+        }
+      }
+    },
+    "intro_sol_invest_1": {
+      "comment": "Grovy Intro 3D Solution: intro_sol_invest_1",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVESTIERE DIESE ZEIT"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INVEST THIS TIME"
+          }
+        }
+      }
+    },
+    "intro_sol_invest_2": {
+      "comment": "Grovy Intro 3D Solution: intro_sol_invest_2",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN DICH."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF."
+          }
+        }
+      }
+    },
+    "intro_sol_time_1": {
+      "comment": "Grovy Intro 3D Solution: intro_sol_time_1",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WIE VIEL ZEIT HÄTTEST DU"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOW MUCH TIME WOULD YOU HAVE"
+          }
+        }
+      }
+    },
+    "intro_sol_time_2": {
+      "comment": "Grovy Intro 3D Solution: intro_sol_time_2",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FÜR ANDERE SACHEN?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FOR OTHER THINGS?"
+          }
+        }
+      }
+    },
     "intro_stats_1_sub": {
       "comment": "Grovy Intro Stats: intro_stats_1_sub",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -216884,6 +217494,7 @@
     },
     "intro_stats_1_title": {
       "comment": "Grovy Intro Stats: intro_stats_1_title",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -216985,6 +217596,7 @@
     },
     "intro_stats_2_sub": {
       "comment": "Grovy Intro Stats: intro_stats_2_sub",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217086,6 +217698,7 @@
     },
     "intro_stats_2_title": {
       "comment": "Grovy Intro Stats: intro_stats_2_title",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217187,6 +217800,7 @@
     },
     "intro_stats_3_sub": {
       "comment": "Grovy Intro Stats: intro_stats_3_sub",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217288,6 +217902,7 @@
     },
     "intro_stats_3_title": {
       "comment": "Grovy Intro Stats: intro_stats_3_title",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217389,6 +218004,7 @@
     },
     "intro_stats_4_sub": {
       "comment": "Grovy Intro Stats: intro_stats_4_sub",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217490,6 +218106,7 @@
     },
     "intro_stats_4_title": {
       "comment": "Grovy Intro Stats: intro_stats_4_title",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217591,6 +218208,7 @@
     },
     "intro_stats_title": {
       "comment": "Grovy Intro: intro_stats_title",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -218096,6 +218714,7 @@
     },
     "intro_text_line1": {
       "comment": "Grovy Intro: intro_text_line1",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -218197,6 +218816,7 @@
     },
     "intro_text_line2": {
       "comment": "Grovy Intro: intro_text_line2",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {

@@ -2,17 +2,16 @@ import SwiftUI
 import AVFoundation
 import Combine
 
-// MARK: - GrovyIntroView  v9
+// MARK: - GrovyIntroView  v10
 //
-// Ablauf:
+// Ablauf (GNADENLOSE TRANSITIONS):
 //   0.0 -  5.2  Teil 1: DU. SCROLLST. TÄGLICH. WIE LANGE?
 //   --- PAUSE FÜR INPUT ---
 //   5.2 -  9.2  Teil 2: WIRKLICH? VIEL ZU LANGE.
+//   7.6         -> Speed-Linien beginnen nahtlos mit "LANGE." ! Hintergrund wird schwarz!
 //   8.8 - 10.5  Herzschlag
-//   9.5 - 25.5  Black Background Fade-In
-//  10.0 - 14.0  Speed-Linien (Continuous Warp) + Dynamische Slam-Zahlen (Nur 2)
-//  14.0 - 18.0  "Wie viel Zeit hättest du für andere Sachen?"
-//  18.0 - 22.5  Solution Text ("Investiere diese Zeit...", "Baue Gewohnheiten...", "Garten wächst...")
+//   9.6 - 14.5  Dynamische Slam-Zahlen (TikTok 3D Style, verzögerter Aufbau, kein Springen)
+//  14.5 - 23.0  Solution Text (Ebenfalls im TikTok 3D Style!)
 //  22.5 - 25.5  GROVY-Logo + Button
 
 private let kIntroDuration: Double = 25.5
@@ -47,13 +46,61 @@ struct GrovyIntroView: View {
         self.soundEnabled = soundEnabled; self.buttonTitle = buttonTitle; self.onFinish = onFinish
     }
 
-    private var slams: [(start: Double, big: String, small: String)] {
+    private var textScenes: [GIWordScene] {
         let mins = max(1, selectedMinutes)
         let hoursPerYear = (mins * 365) / 60
-        let daysInLife = (mins * 365 * 60) / 1440 // assuming 60 years remaining life
+        let daysInLife = (mins * 365 * 60) / 1440
         return [
-            (10.5, "\(hoursPerYear)", String(localized: "intro_slam_hours_year", defaultValue: "STUNDEN PRO JAHR")),
-            (12.0, "\(daysInLife)", String(localized: "intro_slam_days_life", defaultValue: "TAGE DEINES LEBENS"))
+            GIWordScene(
+                words: [String(localized: "intro_flash_you", defaultValue: "DU."), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST."), String(localized: "intro_flash_everyday", defaultValue: "TÄGLICH.")],
+                colors: [.white, .yellow, .orange],
+                sizes: [88, 64, 60],
+                start: 0.0, stepDur: 1.2, gap: 0.4, fadeOutAt: 4.0
+            ),
+            GIWordScene(
+                words: [String(localized: "intro_flash_how_long", defaultValue: "WIE LANGE?")],
+                colors: [.red],
+                sizes: [72],
+                start: 4.0, stepDur: 1.2, gap: 0.0, fadeOutAt: 5.2
+            ),
+            GIWordScene(
+                words: [String(localized: "intro_flash_really", defaultValue: "WIRKLICH?"), String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU"), String(localized: "intro_flash_long", defaultValue: "LANGE.")],
+                colors: [.gray, .yellow, .white],
+                sizes: [46, 72, 64],
+                start: 5.2, stepDur: 1.2, gap: 0.8, fadeOutAt: 9.6
+            ),
+            // SLAMS
+            GIWordScene(
+                words: ["\(hoursPerYear)", String(localized: "intro_slam_hours_year", defaultValue: "STUNDEN PRO JAHR")],
+                colors: [.white, warning],
+                sizes: [110, 24],
+                start: 9.6, stepDur: 1.2, gap: 1.0, fadeOutAt: 12.0
+            ),
+            GIWordScene(
+                words: ["\(daysInLife)", String(localized: "intro_slam_days_life", defaultValue: "TAGE DEINES LEBENS")],
+                colors: [.white, warning],
+                sizes: [110, 24],
+                start: 12.0, stepDur: 1.2, gap: 1.0, fadeOutAt: 14.5
+            ),
+            // SOLUTION TEXTS
+            GIWordScene(
+                words: [String(localized: "intro_sol_time_1", defaultValue: "WIE VIEL ZEIT HÄTTEST DU"), String(localized: "intro_sol_time_2", defaultValue: "FÜR ANDERE SACHEN?")],
+                colors: [.white, .white],
+                sizes: [32, 42],
+                start: 14.5, stepDur: 1.2, gap: 1.0, fadeOutAt: 18.0
+            ),
+            GIWordScene(
+                words: [String(localized: "intro_sol_invest_1", defaultValue: "INVESTIERE DIESE ZEIT"), String(localized: "intro_sol_invest_2", defaultValue: "IN DICH.")],
+                colors: [.white, accent],
+                sizes: [28, 42],
+                start: 18.0, stepDur: 1.2, gap: 0.5, fadeOutAt: 20.5
+            ),
+            GIWordScene(
+                words: [String(localized: "intro_sol_build_1", defaultValue: "BAUE ECHTE"), String(localized: "intro_sol_build_2", defaultValue: "GEWOHNHEITEN AUF.")],
+                colors: [.white, accent],
+                sizes: [32, 42],
+                start: 20.5, stepDur: 1.2, gap: 0.5, fadeOutAt: 23.0
+            )
         ]
     }
 
@@ -62,29 +109,29 @@ struct GrovyIntroView: View {
             background.ignoresSafeArea()
 
             ZStack {
-                // Phase 0/1: TikTok Word Build-Up
-                if t < 9.5 {
-                    GIWordBuildUp(t: t).ignoresSafeArea()
-                }
-
-                // Ab hier (Slam-Phase) wird der Hintergrund schwarz
-                if t > 9.5 {
+                // Hintergrund wird nahtlos bei 7.6 schwarz
+                if t > 7.6 {
                     Color.black
-                        .opacity(goClamp01I((t - 9.5) / 0.5))
+                        .opacity(goClamp01I((t - 7.6) / 0.5))
                         .ignoresSafeArea().allowsHitTesting(false)
                 }
 
-                // Phase 1.5: Herzschlag
+                // Speed-Linien beginnen nahtlos exakt bei 7.6
+                if t > 7.6 && t < 15.0 { 
+                    let fadeIn = goClamp01I((t - 7.6) / 1.0)
+                    let fadeOut = 1.0 - goClamp01I((t - 14.5) / 0.5)
+                    GISpeedLines(t: t)
+                        .opacity(fadeIn * fadeOut)
+                        .ignoresSafeArea()
+                }
+
+                // Herzschlag
                 if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
 
-                // Phase 2: Speed-Linien + Slams
-                if t > 10.0 && t < 14.0 { layerA(t) }
-
-                // Phase 3: Wie viel Zeit...
-                if t > 14.0 && t < 18.0 { layerB(t) }
-
-                // Phase 4: Solution (Grovy)
-                if t > 18.0 && t < 22.5 { layerC(t) }
+                // Einheitliche 3D Text Szenen (inkl. TikTok Wörter, Slams und Solution)
+                if t < 23.0 {
+                    GIWordBuildUp(t: t, scenes: textScenes).ignoresSafeArea()
+                }
 
                 // Phase 5: Logo
                 if t > 22.5 { layerD(t) }
@@ -115,20 +162,11 @@ struct GrovyIntroView: View {
                             hasPassedInput = true
                         }
                     }) {
-                        // 3D Button Style für "Bestätigen"
-                        ZStack {
-                            Capsule().fill(Color(red: 0.0, green: 0.35, blue: 0.1)) // Schatten
-                                .offset(y: 6)
-                            
-                            Capsule().fill(accent)
-                                .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
-                            
-                            Text(String(localized: "intro_input_confirm", defaultValue: "Bestätigen"))
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
-                                .foregroundColor(Color(red: 0.03, green: 0.20, blue: 0.12))
-                        }
-                        .frame(height: 56)
+                        Text(String(localized: "intro_input_confirm", defaultValue: "Bestätigen"))
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
                     }
+                    .buttonStyle(GIConfirmButtonStyle(accent: accent)) // Korrekter Item3D Button Style
                     .padding(.horizontal, 32)
                     .padding(.bottom, 24)
                 }
@@ -241,76 +279,6 @@ struct GrovyIntroView: View {
         }
     }
 
-    // MARK: - Layer A: Continuous Speed + Slam
-
-    @ViewBuilder
-    private func layerA(_ t: Double) -> some View {
-        let cut = 1.0 - goClamp01I((t - 13.5) / 0.5)
-        let idx = currentSlam(t)
-        let slam = slams[idx]
-        let local = t - slam.start
-        ZStack {
-            GISpeedLines(t: t).ignoresSafeArea()
-            GISlam(big: slam.big, small: slam.small, local: local, color: warning)
-        }
-        .opacity(cut)
-    }
-
-    private func currentSlam(_ t: Double) -> Int {
-        var idx = 0
-        let currentSlams = slams
-        for i in 0..<currentSlams.count where t >= currentSlams[i].start { idx = i }
-        return idx
-    }
-
-    // MARK: - Layer B: "Wie viel Zeit hättest du für andere Sachen?"
-
-    @ViewBuilder
-    private func layerB(_ t: Double) -> some View {
-        let fade = 1.0 - goClamp01I((t - 17.5) / 0.4)
-        let a1 = goOutI(goProgI(t, 14.2, 0.7))
-        
-        Text(String(localized: "intro_text_time_for_things", defaultValue: "Wie viel Zeit hättest du für andere Sachen?"))
-            .font(.system(size: 38, weight: .black, design: .rounded))
-            .foregroundColor(.white)
-            .multilineTextAlignment(.center)
-            .padding(.horizontal, 24)
-            .opacity(a1)
-            .offset(y: CGFloat((1.0 - a1) * 20.0))
-            .opacity(fade)
-    }
-    
-    // MARK: - Layer C: Solution Texts
-
-    @ViewBuilder
-    private func layerC(_ t: Double) -> some View {
-        let fade = 1.0 - goClamp01I((t - 22.0) / 0.4)
-        
-        let a1 = goOutI(goProgI(t, 18.0, 0.8))
-        let a2 = goOutI(goProgI(t, 19.2, 0.8))
-        let a3 = goOutI(goProgI(t, 20.4, 0.8))
-
-        VStack(spacing: 32) {
-            Text(String(localized: "intro_text_invest_time", defaultValue: "Investiere diese Zeit in dich."))
-                .font(.system(size: 28, weight: .heavy, design: .rounded))
-                .foregroundColor(.white)
-                .opacity(a1).offset(y: CGFloat((1.0 - a1) * 16.0))
-            
-            Text(String(localized: "intro_text_build_habits", defaultValue: "Baue echte Gewohnheiten auf."))
-                .font(.system(size: 32, weight: .black, design: .rounded))
-                .foregroundColor(accent)
-                .opacity(a2).offset(y: CGFloat((1.0 - a2) * 16.0))
-            
-            Text(String(localized: "intro_text_grow_garden", defaultValue: "Und lass deinen Garten wachsen."))
-                .font(.system(size: 24, weight: .bold, design: .rounded))
-                .foregroundColor(.white.opacity(0.8))
-                .opacity(a3).offset(y: CGFloat((1.0 - a3) * 16.0))
-        }
-        .multilineTextAlignment(.center)
-        .padding(.horizontal, 24)
-        .opacity(fade)
-    }
-
     // MARK: - Layer D: Logo
 
     @ViewBuilder
@@ -353,6 +321,28 @@ struct GrovyIntroView: View {
                 .scaleEffect(CGFloat(0.8 + 0.2 * btn)).opacity(btn)
             }
         }
+    }
+}
+
+// MARK: - Input Confirm Button Style
+
+private struct GIConfirmButtonStyle: ButtonStyle {
+    let accent: Color
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            // Sockel
+            Capsule().fill(Color.black.opacity(0.4))
+                .overlay(Capsule().stroke(Color.black.opacity(0.2), lineWidth: 1))
+            
+            // Top-Layer
+            Capsule().fill(accent)
+                .overlay(Capsule().stroke(Color.white.opacity(0.15), lineWidth: 1))
+                .overlay { configuration.label }
+                .offset(y: configuration.isPressed ? 0 : -6)
+        }
+        .offset(y: 6)
+        .frame(height: 56)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: configuration.isPressed)
     }
 }
 
@@ -449,75 +439,62 @@ private struct GIDurationPicker: UIViewRepresentable {
     }
 }
 
-// MARK: - TikTok Word Build-Up mit 3D Text Style
+// MARK: - Einheitliche TikTok 3D Text Szenen
+
+private struct GIWordScene {
+    let words: [String]
+    let colors: [Color]
+    let sizes: [CGFloat]
+    let start: Double
+    let stepDur: Double
+    let gap: Double
+    let fadeOutAt: Double
+}
 
 private struct GIWordBuildUp: View {
     let t: Double
-
-    private struct WordScene {
-        struct Step { let words: [String]; let colors: [Color]; let sizes: [CGFloat] }
-        let steps: [Step]
-        let start: Double
-        let stepDur: Double
-        let gap: Double
-    }
-
-    private let scenes: [WordScene] = [
-        WordScene(steps: [
-            .init(words: [String(localized: "intro_flash_you", defaultValue: "DU.")], colors: [.white], sizes: [88]),
-            .init(words: [String(localized: "intro_flash_you", defaultValue: "DU."), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST.")], colors: [.white, .yellow], sizes: [56, 64]),
-            .init(words: [String(localized: "intro_flash_you", defaultValue: "DU."), String(localized: "intro_flash_scroll", defaultValue: "SCROLLST."), String(localized: "intro_flash_everyday", defaultValue: "TÄGLICH.")], colors: [.white, .yellow, .orange], sizes: [44, 52, 60]),
-        ], start: 0.0, stepDur: 1.20, gap: 0.4),
-
-        WordScene(steps: [
-            .init(words: [String(localized: "intro_flash_how_long", defaultValue: "WIE LANGE?")], colors: [.red], sizes: [72])
-        ], start: 4.0, stepDur: 1.20, gap: 0.0),
-
-        WordScene(steps: [
-            .init(words: [String(localized: "intro_flash_really", defaultValue: "WIRKLICH?")], colors: [.gray], sizes: [46]),
-            .init(words: [String(localized: "intro_flash_really", defaultValue: "WIRKLICH?"), String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU")], colors: [.gray, .yellow], sizes: [46, 90]),
-            .init(words: [String(localized: "intro_flash_really", defaultValue: "WIRKLICH?"), String(localized: "intro_flash_way_too", defaultValue: "VIEL ZU"), String(localized: "intro_flash_long", defaultValue: "LANGE.")], colors: [.gray, .yellow, .white], sizes: [46, 72, 64]),
-        ], start: 5.2, stepDur: 1.20, gap: 0.4),
-    ]
+    let scenes: [GIWordScene]
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
-
             ForEach(Array(scenes.enumerated()), id: \.offset) { _, scene in
                 let sceneLocal = t - scene.start
-                let sceneDur = Double(scene.steps.count) * scene.stepDur + scene.gap
-                if sceneLocal >= 0 && sceneLocal < sceneDur {
-                    let stepIdx = min(scene.steps.count - 1, Int(sceneLocal / scene.stepDur))
-                    let step = scene.steps[stepIdx]
+                
+                if sceneLocal >= 0 && t < scene.fadeOutAt {
+                    let stepIdx = min(scene.words.count - 1, Int(sceneLocal / scene.stepDur))
                     let stepLocal = sceneLocal - Double(stepIdx) * scene.stepDur
-                    let fadeIn = min(1.0, stepLocal / 0.15)
-                    let totalFade = sceneLocal > sceneDur - 0.2 ?
-                        max(0.0, 1.0 - (sceneLocal - (sceneDur - 0.2)) / 0.15) : 1.0
+                    
+                    let fadeOutT = scene.fadeOutAt - t
+                    let totalFade = fadeOutT < 0.2 ? max(0.0, fadeOutT / 0.2) : 1.0
 
+                    // VStack mit allen Wörtern der Szene von Beginn an, um Springen zu verhindern!
                     VStack(spacing: 14) {
-                        ForEach(Array(step.words.enumerated()), id: \.offset) { wordIdx, word in
+                        ForEach(0..<scene.words.count, id: \.self) { wordIdx in
+                            let isVisible = wordIdx <= stepIdx
                             let isNew = wordIdx == stepIdx
                             let decay = isNew ? exp(-stepLocal * 8.0) : 0.0
+                            let pop = isNew ? 0.12 * exp(-stepLocal * 10.0) : 0.0
                             
                             ZStack {
-                                Text(word)
-                                    .font(.system(size: step.sizes[wordIdx], weight: .black, design: .rounded))
-                                    .foregroundColor(step.colors[wordIdx].opacity(0.35))
+                                Text(scene.words[wordIdx])
+                                    .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
+                                    .foregroundColor(scene.colors[wordIdx].opacity(0.35))
                                     .offset(y: 4)
-                                Text(word)
-                                    .font(.system(size: step.sizes[wordIdx], weight: .black, design: .rounded))
-                                    .foregroundColor(step.colors[wordIdx])
+                                Text(scene.words[wordIdx])
+                                    .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
+                                    .foregroundColor(scene.colors[wordIdx])
                             }
-                            .shadow(color: step.colors[wordIdx].opacity(0.5), radius: 20)
-                            .scaleEffect(CGFloat(1.0 + (isNew ? 0.12 * exp(-stepLocal * 10.0) : 0.0)))
+                            .shadow(color: scene.colors[wordIdx].opacity(0.5), radius: 20)
+                            .scaleEffect(CGFloat(1.0 + pop))
                             .rotation3DEffect(
                                 .degrees(isNew ? 12.0 * decay : 0),
                                 axis: (x: 0.7, y: -0.5, z: 0.1)
                             )
+                            // Unsichtbare Wörter nehmen Platz ein -> Kein Springen!
+                            .opacity(isVisible ? (isNew ? min(1.0, stepLocal / 0.15) : 1.0) : 0.0)
                         }
                     }
-                    .opacity(fadeIn * totalFade)
+                    .opacity(totalFade)
                 }
             }
 
@@ -536,8 +513,11 @@ private let giEvents: [(Double, GIKind)] = [
     (0.0, .beat), (1.2, .beat), (2.4, .beat),
     (4.0, .slam),
     (5.2, .beat), (6.4, .beat), (7.6, .slam),
-    (10.5, .slam), (12.0, .slam),
-    (14.2, .beat), (18.0, .beat), (19.2, .beat), (20.4, .beat),
+    (9.6, .slam), (10.8, .beat),
+    (12.0, .slam), (13.2, .beat),
+    (14.5, .beat), (15.7, .beat),
+    (18.0, .beat), (19.2, .beat),
+    (20.5, .beat), (21.7, .beat),
     (23.3, .logo)
 ]
 
@@ -594,53 +574,5 @@ private struct GISpeedLines: View {
                            style: StrokeStyle(lineWidth: CGFloat(1.5 + dist * 3.0), lineCap: .round))
             }
         }
-    }
-}
-
-// MARK: - Slam-Zahl (3D Text Style)
-
-private struct GISlam: View {
-    let big: String; let small: String; let local: Double; let color: Color
-    var body: some View {
-        let p = goOutI(goClamp01I(local / 0.25))
-        let decay = exp(-max(0.0, local) * 9.0)
-        let s = CGFloat(1.4 - 0.4 * p)
-        let offsetX = CGFloat(sin(local * 90.0) * 20.0 * decay)
-        let offsetY = CGFloat(20.0 * (1.0 - p) + cos(local * 70.0) * 15.0 * decay)
-        let rotDeg = 15.0 * decay
-        return VStack(spacing: 12) {
-            
-            ZStack {
-                Text(big)
-                    .font(.system(size: 110, weight: .black, design: .rounded))
-                    .foregroundColor(color.opacity(0.35))
-                    .offset(y: 6)
-                
-                Text(big)
-                    .font(.system(size: 110, weight: .black, design: .rounded))
-                    .foregroundColor(.white)
-            }
-            .scaleEffect(s)
-            .rotation3DEffect(.degrees(rotDeg), axis: (x: 1, y: -0.5, z: 0))
-            
-            if !small.isEmpty {
-                ZStack {
-                    Text(small)
-                        .font(.system(size: 24, weight: .heavy, design: .rounded))
-                        .tracking(3)
-                        .foregroundColor(color.opacity(0.35))
-                        .offset(y: 3)
-                        
-                    Text(small)
-                        .font(.system(size: 24, weight: .heavy, design: .rounded))
-                        .tracking(3)
-                        .foregroundColor(color)
-                }
-                .scaleEffect(CGFloat(1.0 + decay * 0.5))
-                .opacity(goClamp01I(local * 12.0) * p)
-            }
-        }
-        .offset(x: offsetX, y: offsetY)
-        .opacity(goClamp01I(local * 12.0))
     }
 }
