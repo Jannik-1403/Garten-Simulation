@@ -462,33 +462,32 @@ private struct GIWordBuildUp: View {
                     let fadeOutT = scene.fadeOutAt - t
                     let totalFade = fadeOutT < 0.2 ? max(0.0, fadeOutT / 0.2) : 1.0
 
-                    // Nur sichtbare Wörter werden angezeigt – kein reservierter Platz für unsichtbare
+                    // Dynamischer ForEach: Nur bereits sichtbare W\u00f6rter werden gerendert
+                    // -> Kein reservierter Platz, echtes Wort-f\u00fcr-Wort wie am Anfang
                     VStack(spacing: 14) {
-                        ForEach(0..<scene.words.count, id: \.self) { wordIdx in
-                            let isVisible = wordIdx <= stepIdx
+                        let visibleRange = 0...min(stepIdx, scene.words.count - 1)
+                        ForEach(visibleRange, id: \.self) { wordIdx in
                             let isNew = wordIdx == stepIdx
                             let decay = isNew ? exp(-stepLocal * 8.0) : 0.0
                             let pop = isNew ? 0.12 * exp(-stepLocal * 10.0) : 0.0
                             let fadeIn = isNew ? min(1.0, stepLocal / 0.15) : 1.0
 
-                            if isVisible {
-                                ZStack {
-                                    Text(scene.words[wordIdx])
-                                        .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
-                                        .foregroundColor(scene.colors[wordIdx].opacity(0.35))
-                                        .offset(y: 4)
-                                    Text(scene.words[wordIdx])
-                                        .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
-                                        .foregroundColor(scene.colors[wordIdx])
-                                }
-                                .shadow(color: scene.colors[wordIdx].opacity(0.5), radius: 20)
-                                .scaleEffect(CGFloat(1.0 + pop))
-                                .rotation3DEffect(
-                                    .degrees(isNew ? 12.0 * decay : 0),
-                                    axis: (x: 0.7, y: -0.5, z: 0.1)
-                                )
-                                .opacity(fadeIn)
+                            ZStack {
+                                Text(scene.words[wordIdx])
+                                    .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
+                                    .foregroundColor(scene.colors[wordIdx].opacity(0.35))
+                                    .offset(y: 4)
+                                Text(scene.words[wordIdx])
+                                    .font(.system(size: scene.sizes[wordIdx], weight: .black, design: .rounded))
+                                    .foregroundColor(scene.colors[wordIdx])
                             }
+                            .shadow(color: scene.colors[wordIdx].opacity(0.5), radius: 20)
+                            .scaleEffect(CGFloat(1.0 + pop))
+                            .rotation3DEffect(
+                                .degrees(isNew ? 12.0 * decay : 0),
+                                axis: (x: 0.7, y: -0.5, z: 0.1)
+                            )
+                            .opacity(fadeIn)
                         }
                     }
                     .opacity(totalFade)
