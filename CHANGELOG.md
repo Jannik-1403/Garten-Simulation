@@ -1,4 +1,9 @@
 
+## [2026-10-08] - Onboarding Animation Refinement
+- Update: In der `GrovyIntroView` wurde das Bar-Chart durch eine animierte exponentielle Wachstumskurve mit einem Pfeil ersetzt. Die Kurve fliegt am Ende dynamisch nach oben aus dem Bild.
+- Hinzugefügt: Subtile schwebende Partikel (Plus-Zeichen und Kreise) wurden als Hintergrundanimation zur Szene hinzugefügt, um sie lebendiger zu machen.
+
+
 ## [2026-10-08] - AI Coach Export
 - Hinzugefügt: `ExportDailySummaryIntent` ermöglicht den Datenexport der App für Shortcuts und KI-Coaches (HealthKit, Statistiken, Schlechte Gewohnheiten, Fortschritt).
 - Hinzugefügt: "KI & Daten-Export" Button im Developer-Menü zum schnellen Testen (Kopieren des JSON in die Zwischenablage).

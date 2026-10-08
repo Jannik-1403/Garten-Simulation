@@ -164,11 +164,11 @@ struct GrovyIntroView: View {
                 // Herzschlag
                 if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
 
-                // Hintergrund-Partikel für die Lösungs-Phase
-                if t > 14.5 && t < 33.0 {
-                    let fade = goClamp01I((t - 14.5) / 1.0) * (1.0 - goClamp01I((t - 31.0) / 1.0))
+                // Hintergrund-Partikel laufen von Anfang an
+                if t < 33.0 {
+                    let fadeOut = 1.0 - goClamp01I((t - 31.0) / 2.0)
                     GIParticles(t: t, accent: accent)
-                        .opacity(fade)
+                        .opacity(fadeOut)
                         .ignoresSafeArea()
                 }
 
@@ -177,7 +177,8 @@ struct GrovyIntroView: View {
                     let solT = t - 14.5
                     let fade = goClamp01I(solT / 1.0) * (1.0 - goClamp01I((t - 30.5) / 1.5))
                     
-                    GIGrowthCurve(t: solT, accent: accent)
+                    GIGrowthCurve(t: solT, accent: .green)
+                        .shadow(color: Color.green.opacity(0.8), radius: 12)
                         .opacity(fade)
                         .ignoresSafeArea()
                 }
@@ -664,20 +665,21 @@ private struct GIGrowthCurve: View {
             let start = CGPoint(x: 20, y: h - 80)
             let end = CGPoint(x: w - 20, y: 80)
             
-            // Berechne Fortschritt (0..1)
-            let rawProgress = t / 14.0 // total duration
-            let p = min(1.0, rawProgress) // wie weit die Kurve gezeichnet wird
+            // Berechne Fortschritt (0..1) flüssig mit Ease-InOut
+            let rawProgress = t / 12.0 // total duration
+            let p = rawProgress < 0.5 ? 4.0 * pow(rawProgress, 3.0) : 1.0 - pow(-2.0 * rawProgress + 2.0, 3.0) / 2.0
+            let clampedP = min(1.0, p)
             
-            // Wenn p == 1, dann soll die Kurve hochfliegen
-            let flyOut = max(0, (t - 14.5) / 1.5) // die letzten 1.5 sekunden fliegt sie weg
-            let flyY = -pow(flyOut, 2) * h * 1.5
+            // Wenn clampedP == 1, dann soll die Kurve hochfliegen
+            let flyOut = max(0, (t - 14.0) / 2.0) // die letzten 2 Sekunden fliegt sie sanft weg
+            let flyY = -pow(flyOut, 2.5) * h * 1.5
             
             var path = Path()
             path.move(to: CGPoint(x: start.x, y: start.y + flyY))
             
             // Exponentielle Kurve (y = x^2 oder x^3 invertiert)
-            let steps = 50
-            let drawnSteps = Int(Double(steps) * p)
+            let steps = 150
+            let drawnSteps = Int(Double(steps) * clampedP)
             
             var lastPt = CGPoint(x: start.x, y: start.y + flyY)
             for i in 0...drawnSteps {
@@ -692,8 +694,8 @@ private struct GIGrowthCurve: View {
                 lastPt = pt
             }
             
-            // Linie zeichnen
-            ctx.stroke(path, with: .color(accent.opacity(0.8)), style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
+            // Linie zeichnen (leuchtend)
+            ctx.stroke(path, with: .color(accent), style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
             
             // Gradient Füllung unter der Linie
             var fillPath = path
