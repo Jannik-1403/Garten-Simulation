@@ -1,3 +1,6 @@
+### 07.10.2026
+- Bugfix: Gewohnheiten wie "Wasser trinken" zeigen auf der Hauptseite (Garten-Ansicht) nun sofort den Fortschrittsbalken an und haken sich vollautomatisch ab, sobald das Tagesziel erreicht wurde, da nun Apple-Health Live-Daten für den aktuellen Tag gelesen werden.
+
 ### 06.10.2026 (Part 8)
 - Feature: `GrovyOnboardingView` wurde durch ein komplett neues, Instagram-Story-basiertes Layout mit 5 iterativen, animierten Szenen (inkl. Dopamin-Graph, welkendem Fokus und sprießendem Garten) ersetzt.
 - Localization: Alle neuen, englisch/deutschen Strings aus der Story (insg. 23 Keys wie z. B. "Dopamin", "Kick", "Crash") wurden extrahiert und per Skript in 16 Sprachen auf 100% übersetzt in die `Localizable.xcstrings` integriert.
@@ -1488,3 +1491,19 @@
 - Das Speichern eines neuen Journals füllt den Fortschrittsbalken sofort auf 100%.
 - Eine Löschen-Funktion (Trash-Icon) wurde im Journal-Detail hinzugefügt.
 - In der Tageshistorie (Vergangenheit) werden nun gecachte Werte aus Apple Health (wie Kalorien & Krafttraining) korrekt ausgelesen, sodass die 0%-Bugs behoben sind.
+
+- Dopamin-Intro Texte in nostalgisches iTunes 3D-Design (Skeuomorphism, Prägung/Schatten) umgewandelt.
+
+- Dopamin-Intro komplett umgebaut auf echtes Marvel-Logo Design (rotierender Text, maskierte Icons, Flacker-Effekt).
+
+- Neues echtes 3D-Extrusions-Intro eingebaut (GROVY-Logo mit echten Seitenflächen, perspektivischer Drehung, und abstrakten SwiftUI Chaos-Karten).
+
+- Neues Cinematic-Intro (GrovyIntroView) vor dem Onboarding hinzugefügt (mit Sound und Haptik, iOS 15+).
+
+- DopamineStoryView im Onboarding durch GrovyIntroView ersetzt.
+
+- Cinematic-Intro extrem aufgewertet (3D-Extrusion bei Text, Tunnel-Effekt bei Kacheln, Sonnenaufgang, Regentropfen & Blume).
+- Das Intro wurde massiv auf ein natürliches Design ('Garten-Thema') umgebaut: Verdorrende Blätter statt Kacheln, weiche Übergänge statt hartem Cut, organische Blattadern.
+- Intro: Hintergrund in System-Hintergrundfarbe geändert, Ablenkungs-Icons fliegen auf die Kamera zu, Garten wurde durch eine aufsteigende App-Statistik (Balkendiagramm) ersetzt.
+- Intro: Intro-Animation ist jetzt wirklich nahtlos im Onboarding integriert (Top-Bar wird ausgeblendet, echter Hintergrund scheint durch). Emojis wurden durch die fliegenden Assets aus dem normalen Onboarding-Hintergrund ersetzt, und aus dem restlichen Onboarding entfernt.
+- Intro: "Gedrückt halten"-Mechanik eingebaut. Das wilde Intro startet erst, wenn man den goldenen Button gedrückt hält (inkl. Haptik & Shake). Die schwebenden Assets sind wieder normal im App-Hintergrund, und die Intro-Zahlen (z.B. 180 MIN) schlagen jetzt als wuchtige 3D-Buttons ins Bild, während nur noch weiße/graue/rote Linien vorbeiziehen (keine Emojis oder Bilder mehr).

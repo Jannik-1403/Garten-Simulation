@@ -32,6 +32,19 @@ struct PflanzenCard: View {
     }
     
     private func getBaseHealthCurrent(for metric: HealthMetricType) -> Double? {
+        if Calendar.current.isDateInToday(targetDate) {
+            switch metric {
+            case .steps: return healthManager.todaysSteps
+            case .water: return healthManager.todaysWater
+            case .sleep: return healthManager.todaysSleep
+            case .mindfulness: return healthManager.todaysMindfulness
+            case .running: return healthManager.todaysRunning
+            case .strengthTraining: return healthManager.todaysStrengthTraining
+            case .fiber: return healthManager.todaysFiber
+            case .calcium: return healthManager.todaysCalcium
+            case .energy: return healthManager.todaysEnergy
+            }
+        }
         let targetStartOfDay = Calendar.current.startOfDay(for: targetDate)
         return healthManager.dailyValuesCache[metric]?[targetStartOfDay]
     }

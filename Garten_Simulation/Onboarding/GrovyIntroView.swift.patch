@@ -1,0 +1,24 @@
+--- Garten_Simulation/Onboarding/GrovyIntroView.swift
++++ Garten_Simulation/Onboarding/GrovyIntroView.swift
+@@ -35,3 +35,3 @@
+         warning: Color = .red, // Angepasst an Grovy Warn-Farbe
+-        background: Color = .black,
++        background: Color = Color(UIColor.systemBackground),
+         soundEnabled: Bool = true,
+@@ -69,5 +69,5 @@
+                 // Weicher Fadeout statt harter Blitz
+                 if t > 5.0 && t < 6.0 {
+-                    Color.black
++                    background
+                         .opacity(goClamp01I((t - 5.0) / 0.6))
+@@ -172,3 +172,3 @@
+         ZStack {
+-            GIDeadLeaves(t: t - 1.2)
++            GIDopamineIcons(t: t - 1.2)
+                 .ignoresSafeArea()
+@@ -176,3 +176,3 @@
+-            Color.white
+-                .opacity(0.45 * exp(-max(0.0, local) * 10.0))
++            background
++                .opacity(0.65 * exp(-max(0.0, local) * 10.0))
+                 .ignoresSafeArea()

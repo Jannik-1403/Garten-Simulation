@@ -125,10 +125,11 @@ struct GrovyIntroView: View {
             ),
             GIWordScene(
                 words: [
-                    String(localized: "intro_sol_in_yourself", defaultValue: "IN YOURSELF")
+                    String(localized: "intro_sol_in", defaultValue: "IN"),
+                    String(localized: "intro_sol_yourself", defaultValue: "YOURSELF")
                 ],
-                colors: [accent],
-                sizes: [56],
+                colors: [.white, accent],
+                sizes: [64, 56],
                 start: 26.5, stepDur: 1.0, gap: 0.4, fadeOutAt: 29.0
             ),
             GIWordScene(
@@ -163,24 +164,30 @@ struct GrovyIntroView: View {
                 // Herzschlag
                 if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
 
-                // Dynamischer Hintergrund für Solution Phase
+                // Dynamischer Hintergrund für Solution Phase (Chart animiert nach oben)
                 if t > 14.5 && t < 32.0 {
                     let solT = t - 14.5
                     let fade = goClamp01I(solT / 1.0) * (1.0 - goClamp01I((t - 31.0) / 1.0))
                     
-                    ZStack {
-                        Circle()
-                            .fill(accent.opacity(0.15))
-                            .frame(width: 300, height: 300)
-                            .blur(radius: 60)
-                            .offset(x: CGFloat(sin(solT * 0.5) * 80), y: CGFloat(cos(solT * 0.7) * 80))
-                        
-                        Circle()
-                            .fill(Color.orange.opacity(0.1))
-                            .frame(width: 400, height: 400)
-                            .blur(radius: 80)
-                            .offset(x: CGFloat(cos(solT * 0.4) * -100), y: CGFloat(sin(solT * 0.6) * 100))
+                    HStack(alignment: .bottom, spacing: 16) {
+                        let barCount = 7
+                        ForEach(0..<barCount, id: \.self) { i in
+                            // Jede Bar fängt verzögert an zu wachsen (aufsteigender Chart)
+                            let delay = Double(i) * 0.8
+                            let barProgress = goInOutI(goClamp01I((solT - delay) / 2.0))
+                            let targetHeight = CGFloat(150 + i * 50)
+                            
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(LinearGradient(
+                                    colors: [accent.opacity(0.4), accent.opacity(0.0)],
+                                    startPoint: .top, endPoint: .bottom
+                                ))
+                                .frame(width: 32, height: targetHeight * CGFloat(barProgress))
+                                .blur(radius: 4)
+                        }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    .padding(.bottom, 80)
                     .opacity(fade)
                 }
 

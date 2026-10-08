@@ -1,6 +1,7 @@
 import SwiftUI
 import StoreKit
 import TelemetryDeck
+import AppIntents
 
 struct DeveloperView: View {
     @EnvironmentObject var settings: SettingsStore
@@ -114,6 +115,29 @@ struct DeveloperView: View {
                                 )
                             }
 #endif
+                        }
+                    }
+                    
+                    // Section 3: KI & Daten-Export
+                    settingsSection(title: String(localized: "developer.export.title", defaultValue: "KI & Daten-Export")) {
+                        VStack(spacing: 0) {
+                            Button {
+                                Task {
+                                    let intent = ExportDailySummaryIntent()
+                                    if let result = try? await intent.perform().value as? String {
+                                        UIPasteboard.general.string = result
+                                        FeedbackManager.shared.playSuccess()
+                                    } else {
+                                        FeedbackManager.shared.playError()
+                                    }
+                                }
+                            } label: {
+                                settingRow(
+                                    title: String(localized: "developer.export.copyJSON", defaultValue: "Tageszusammenfassung kopieren (JSON)"),
+                                    icon: "doc.on.doc.fill",
+                                    color: .blue
+                                )
+                            }
                         }
                     }
                 }
