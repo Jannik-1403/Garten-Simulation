@@ -1,3 +1,9 @@
+
+## [2026-10-08] - AI Coach Export
+- Hinzugefügt: `ExportDailySummaryIntent` ermöglicht den Datenexport der App für Shortcuts und KI-Coaches (HealthKit, Statistiken, Schlechte Gewohnheiten, Fortschritt).
+- Hinzugefügt: "KI & Daten-Export" Button im Developer-Menü zum schnellen Testen (Kopieren des JSON in die Zwischenablage).
+- Alle UI-Texte in `Localizable.xcstrings` 100% übersetzt (11 Sprachen).
+
 ### 07.10.2026
 - Bugfix: Gewohnheiten wie "Wasser trinken" zeigen auf der Hauptseite (Garten-Ansicht) nun sofort den Fortschrittsbalken an und haken sich vollautomatisch ab, sobald das Tagesziel erreicht wurde, da nun Apple-Health Live-Daten für den aktuellen Tag gelesen werden.
 

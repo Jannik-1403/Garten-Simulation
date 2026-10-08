@@ -164,31 +164,22 @@ struct GrovyIntroView: View {
                 // Herzschlag
                 if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
 
-                // Dynamischer Hintergrund für Solution Phase (Chart animiert nach oben)
+                // Hintergrund-Partikel für die Lösungs-Phase
+                if t > 14.5 && t < 33.0 {
+                    let fade = goClamp01I((t - 14.5) / 1.0) * (1.0 - goClamp01I((t - 31.0) / 1.0))
+                    GIParticles(t: t, accent: accent)
+                        .opacity(fade)
+                        .ignoresSafeArea()
+                }
+
+                // Dynamischer Hintergrund für Solution Phase (Exponentieller Pfeil animiert nach oben)
                 if t > 14.5 && t < 32.0 {
                     let solT = t - 14.5
-                    let fade = goClamp01I(solT / 1.0) * (1.0 - goClamp01I((t - 31.0) / 1.0))
+                    let fade = goClamp01I(solT / 1.0) * (1.0 - goClamp01I((t - 30.5) / 1.5))
                     
-                    HStack(alignment: .bottom, spacing: 16) {
-                        let barCount = 7
-                        ForEach(0..<barCount, id: \.self) { i in
-                            // Jede Bar fängt verzögert an zu wachsen (aufsteigender Chart)
-                            let delay = Double(i) * 0.8
-                            let barProgress = goInOutI(goClamp01I((solT - delay) / 2.0))
-                            let targetHeight = CGFloat(150 + i * 50)
-                            
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(LinearGradient(
-                                    colors: [accent.opacity(0.4), accent.opacity(0.0)],
-                                    startPoint: .top, endPoint: .bottom
-                                ))
-                                .frame(width: 32, height: targetHeight * CGFloat(barProgress))
-                                .blur(radius: 4)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    .padding(.bottom, 80)
-                    .opacity(fade)
+                    GIGrowthCurve(t: solT, accent: accent)
+                        .opacity(fade)
+                        .ignoresSafeArea()
                 }
 
                 // Einheitliche 3D Text Szenen (inkl. TikTok Wörter, Slams und Solution)
@@ -655,6 +646,120 @@ private struct GISpeedLines: View {
                 
                 ctx.stroke(lp, with: .color(lc.opacity(alpha * (i % 5 == 0 ? 0.8 : 0.4))),
                            style: StrokeStyle(lineWidth: CGFloat(1.5 + dist * 3.0), lineCap: .round))
+            }
+        }
+    }
+}
+
+// MARK: - Exponentielle Kurve (Graph)
+
+private struct GIGrowthCurve: View {
+    let t: Double
+    let accent: Color
+    var body: some View {
+        Canvas { ctx, size in
+            let w = size.width
+            let h = size.height
+            // Startpunkt links unten, Endpunkt rechts oben
+            let start = CGPoint(x: 20, y: h - 80)
+            let end = CGPoint(x: w - 20, y: 80)
+            
+            // Berechne Fortschritt (0..1)
+            let rawProgress = t / 14.0 // total duration
+            let p = min(1.0, rawProgress) // wie weit die Kurve gezeichnet wird
+            
+            // Wenn p == 1, dann soll die Kurve hochfliegen
+            let flyOut = max(0, (t - 14.5) / 1.5) // die letzten 1.5 sekunden fliegt sie weg
+            let flyY = -pow(flyOut, 2) * h * 1.5
+            
+            var path = Path()
+            path.move(to: CGPoint(x: start.x, y: start.y + flyY))
+            
+            // Exponentielle Kurve (y = x^2 oder x^3 invertiert)
+            let steps = 50
+            let drawnSteps = Int(Double(steps) * p)
+            
+            var lastPt = CGPoint(x: start.x, y: start.y + flyY)
+            for i in 0...drawnSteps {
+                let px = Double(i) / Double(steps)
+                let py = pow(px, 3.0) // Exponentiell
+                let cx = start.x + CGFloat(px) * (end.x - start.x)
+                let cy = (start.y - CGFloat(py) * (start.y - end.y)) + flyY
+                
+                let pt = CGPoint(x: cx, y: cy)
+                if i == 0 { path.move(to: pt) }
+                else { path.addLine(to: pt) }
+                lastPt = pt
+            }
+            
+            // Linie zeichnen
+            ctx.stroke(path, with: .color(accent.opacity(0.8)), style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
+            
+            // Gradient Füllung unter der Linie
+            var fillPath = path
+            fillPath.addLine(to: CGPoint(x: lastPt.x, y: h + flyY))
+            fillPath.addLine(to: CGPoint(x: start.x, y: h + flyY))
+            fillPath.closeSubpath()
+            ctx.fill(fillPath, with: .linearGradient(Gradient(colors: [accent.opacity(0.3), .clear]), startPoint: CGPoint(x: 0, y: start.y - h/2 + flyY), endPoint: CGPoint(x: 0, y: h + flyY)))
+            
+            // Pfeil an der Spitze (lastPt)
+            if drawnSteps > 2 {
+                let prevPx = Double(drawnSteps - 2) / Double(steps)
+                let prevPy = pow(prevPx, 3.0)
+                let prevCx = start.x + CGFloat(prevPx) * (end.x - start.x)
+                let prevCy = (start.y - CGFloat(prevPy) * (start.y - end.y)) + flyY
+                
+                let dx = lastPt.x - prevCx
+                let dy = lastPt.y - prevCy
+                let angle = atan2(dy, dx)
+                
+                let arrowLen: CGFloat = 16
+                let a1 = angle + .pi * 0.8
+                let a2 = angle - .pi * 0.8
+                
+                var arrowPath = Path()
+                arrowPath.move(to: lastPt)
+                arrowPath.addLine(to: CGPoint(x: lastPt.x + cos(a1) * arrowLen, y: lastPt.y + sin(a1) * arrowLen))
+                arrowPath.move(to: lastPt)
+                arrowPath.addLine(to: CGPoint(x: lastPt.x + cos(a2) * arrowLen, y: lastPt.y + sin(a2) * arrowLen))
+                
+                ctx.stroke(arrowPath, with: .color(accent), style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
+            }
+        }
+    }
+}
+
+// MARK: - Hintergrund-Partikel
+
+private struct GIParticles: View {
+    let t: Double
+    let accent: Color
+    var body: some View {
+        Canvas { ctx, size in
+            for i in 0..<20 {
+                let phase = Double(i) * 0.432
+                let speed = 20.0 + Double(i % 5) * 10.0
+                let x = Double(size.width) * giFract(phase * 1.3)
+                
+                let y = Double(size.height) - giFract((t * speed + phase * 100.0) / 100.0) * Double(size.height) * 1.2
+                
+                let alpha = sin(giFract((t * speed + phase * 100.0) / 100.0) * .pi)
+                
+                if i % 3 == 0 {
+                    // Draw Plus
+                    let cx = CGFloat(x); let cy = CGFloat(y)
+                    let s = CGFloat(4 + i % 4)
+                    var p = Path()
+                    p.move(to: CGPoint(x: cx - s, y: cy))
+                    p.addLine(to: CGPoint(x: cx + s, y: cy))
+                    p.move(to: CGPoint(x: cx, y: cy - s))
+                    p.addLine(to: CGPoint(x: cx, y: cy + s))
+                    ctx.stroke(p, with: .color(accent.opacity(alpha * 0.4)), style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                } else {
+                    // Draw Circle
+                    let r = CGFloat(2 + i % 3)
+                    ctx.fill(Path(ellipseIn: CGRect(x: CGFloat(x)-r, y: CGFloat(y)-r, width: r*2, height: r*2)), with: .color(accent.opacity(alpha * 0.3)))
+                }
             }
         }
     }
