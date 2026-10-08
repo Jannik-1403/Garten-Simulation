@@ -14,7 +14,7 @@ import Combine
 //  14.5 - 23.0  Solution Text (Ebenfalls im TikTok 3D Style!)
 //  22.5 - 25.5  GROVY-Logo + Button
 
-private let kIntroDuration: Double = 36.0
+private let kIntroDuration: Double = 33.0
 
 struct GrovyIntroView: View {
     let accent: Color
@@ -125,11 +125,10 @@ struct GrovyIntroView: View {
             ),
             GIWordScene(
                 words: [
-                    String(localized: "intro_sol_in", defaultValue: "IN"),
-                    String(localized: "intro_sol_yourself", defaultValue: "YOURSELF")
+                    String(localized: "intro_sol_in_yourself", defaultValue: "IN YOURSELF")
                 ],
-                colors: [.white, accent],
-                sizes: [72, 88],
+                colors: [accent],
+                sizes: [56],
                 start: 26.5, stepDur: 1.0, gap: 0.4, fadeOutAt: 29.0
             ),
             GIWordScene(
@@ -141,14 +140,6 @@ struct GrovyIntroView: View {
                 colors: [.white, accent, .orange],
                 sizes: [72, 64, 88],
                 start: 29.0, stepDur: 1.0, gap: 0.4, fadeOutAt: 32.0
-            ),
-            GIWordScene(
-                words: [
-                    String(localized: "intro_sol_up", defaultValue: "UP")
-                ],
-                colors: [accent],
-                sizes: [110],
-                start: 32.0, stepDur: 1.0, gap: 0.4, fadeOutAt: 34.5
             )
         ]
     }
@@ -172,16 +163,37 @@ struct GrovyIntroView: View {
                 // Herzschlag
                 if t > 8.8 && t < 10.5 { heartbeat(t - 8.8) }
 
+                // Dynamischer Hintergrund für Solution Phase
+                if t > 14.5 && t < 32.0 {
+                    let solT = t - 14.5
+                    let fade = goClamp01I(solT / 1.0) * (1.0 - goClamp01I((t - 31.0) / 1.0))
+                    
+                    ZStack {
+                        Circle()
+                            .fill(accent.opacity(0.15))
+                            .frame(width: 300, height: 300)
+                            .blur(radius: 60)
+                            .offset(x: CGFloat(sin(solT * 0.5) * 80), y: CGFloat(cos(solT * 0.7) * 80))
+                        
+                        Circle()
+                            .fill(Color.orange.opacity(0.1))
+                            .frame(width: 400, height: 400)
+                            .blur(radius: 80)
+                            .offset(x: CGFloat(cos(solT * 0.4) * -100), y: CGFloat(sin(solT * 0.6) * 100))
+                    }
+                    .opacity(fade)
+                }
+
                 // Einheitliche 3D Text Szenen (inkl. TikTok Wörter, Slams und Solution)
-                if t < 36.0 {
+                if t < 33.0 {
                     GIWordBuildUp(t: t, scenes: textScenes).ignoresSafeArea()
                 }
 
                 // Phase 5: Logo
-                if t > 34.5 { layerD(t) }
+                if t > 31.5 { layerD(t) }
 
                 // Auto-Finish
-                if t > 38.0 { Color.clear.onAppear { finishNow() } }
+                if t > 35.0 { Color.clear.onAppear { finishNow() } }
             }
             // Ganzer Screen schüttelt am Ende – nicht nur der Button
             .offset(
@@ -335,9 +347,9 @@ struct GrovyIntroView: View {
 
     @ViewBuilder
     private func layerD(_ t: Double) -> some View {
-        let lp = goProgI(t, 34.6, 1.4); let lpE = goOutI(lp)
-        let sweep = goInOutI(goProgI(t, 35.3, 1.1))
-        let btn = goOutI(goProgI(t, 35.8, 0.6))
+        let lp = goProgI(t, 31.6, 1.4); let lpE = goOutI(lp)
+        let sweep = goInOutI(goProgI(t, 32.3, 1.1))
+        let btn = goOutI(goProgI(t, 32.8, 0.6))
         let word = Text("GROVY")
             .font(.system(size: 58, weight: .black, design: .rounded))
             .tracking(CGFloat(26.0 - 20.0 * lpE))

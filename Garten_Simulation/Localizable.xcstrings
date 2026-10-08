@@ -216887,6 +216887,7 @@
     },
     "intro_sol_build_1": {
       "comment": "Grovy Intro Solution: intro_sol_build_1",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -216988,6 +216989,7 @@
     },
     "intro_sol_build_2": {
       "comment": "Grovy Intro Solution: intro_sol_build_2",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217089,6 +217091,7 @@
     },
     "intro_sol_build_3": {
       "comment": "Grovy Intro Solution: intro_sol_build_3",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217693,6 +217696,107 @@
         }
       }
     },
+    "intro_sol_in_yourself": {
+      "comment": "Grovy Intro Solution: intro_sol_in_yourself",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN DICH"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN YOURSELF"
+          }
+        }
+      }
+    },
     "intro_sol_invest": {
       "comment": "Grovy Intro Solution split: intro_sol_invest",
       "localizations": {
@@ -217796,6 +217900,7 @@
     },
     "intro_sol_invest_1": {
       "comment": "Grovy Intro Solution: intro_sol_invest_1",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217897,6 +218002,7 @@
     },
     "intro_sol_invest_2": {
       "comment": "Grovy Intro Solution: intro_sol_invest_2",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -217998,6 +218104,7 @@
     },
     "intro_sol_invest_3": {
       "comment": "Grovy Intro Solution: intro_sol_invest_3",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -218806,6 +218913,7 @@
     },
     "intro_sol_time_1": {
       "comment": "Grovy Intro Solution: intro_sol_time_1",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -218907,6 +219015,7 @@
     },
     "intro_sol_time_2": {
       "comment": "Grovy Intro Solution: intro_sol_time_2",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -219008,6 +219117,7 @@
     },
     "intro_sol_time_3": {
       "comment": "Grovy Intro Solution: intro_sol_time_3",
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
