@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct LiquidGlassDismissButton: View {
+    @Environment(\.colorScheme) private var colorScheme
     var action: () -> Void
 
     var body: some View {
         Button(action: action) {
             Image(systemName: "xmark")
                 .font(.system(size: 24, weight: .heavy))
-                .foregroundStyle(.black)
+                .foregroundStyle(colorScheme == .dark ? .white : .black)
                 .padding(8)
                 .contentShape(Rectangle())
         }

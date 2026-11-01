@@ -83,7 +83,7 @@ struct GenericFocusTimerSetupSheet: View {
                     } label: {
                         Image(systemName: "xmark")
                             .font(.system(size: 20, weight: .bold))
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.primary)
                     }
                 }
             }
