@@ -1,3 +1,48 @@
+## [2026-11-01] - Dark Mode Dismiss-X & 100% Übersetzungsabdeckung in allen 16 Sprachen
+
+- **Liquid Glass Dismiss Button & Focus Timer X**: `LiquidGlassDismissButton` und der Schließen-Button im Fokus-Timer-Setup nutzen nun adaptive Farbgebung (`colorScheme == .dark ? .white : .black` bzw. `.primary`), sodass das Schließen-Symbol ("X") im Dark Mode strahlend weiß und im Light Mode schwarz dargestellt wird.
+- **100% Lokalisierung für alle 16 Projektsprachen**: Alle 4.331 Keys in `Localizable.xcstrings` wurden über alle 16 Projektsprachen (`de`, `en`, `es`, `fr`, `hi`, `it`, `ja`, `ko`, `nl`, `pl`, `pt`, `pt-BR`, `ru`, `tr`, `zh-Hans`, `zh-Hant`) lückenlos auf `"state": "translated"` gesetzt. Versehentlich isolierte Spracheinträge (`ar`, `pt-PT`) wurden bereinigt.
+
+## [2026-11-01] - Übersicht: Fokus-Timer Icongröße angepasst
+
+- In der Übersicht (`ProfilView`) das Icon der Fokus-Timer-Karte auf die normale Standard-Icongröße (`Item3DButton` Standard-Skalierung) zurückgesetzt, indem die übermäßige Vergrößerung (`iconSkalierung: 1.05`, `.scaleEffect(1.15)`) entfernt wurde.
+
+## 2026-10-27 – To-do-Widgets: Datenaktualisierung
+
+- To-do-Timeline vom großen Gewohnheiten-/Statistik-Cache entkoppelt; eigener kompakter Snapshot mit Fallback auf bestehende Aufgaben.
+- Speicherung vor Timeline-Anforderung; Widget-Abhaken baut den Snapshot aus den tatsächlichen App-Datensätzen neu auf, einschließlich Unteraufgaben.
+- Bestehende To-do-Konfiguration ohne Routine-Auswahl sowie App-Group- und Widget-Kennungen beibehalten.
+- Zwölf Regressionen der Datenlogik mit `python3 scripts/test_todo_widgets.py` geprüft; Widget-Code mit iOS-SDK ohne Preview-Makros erfolgreich typgeprüft. Vollständiger Xcode-Build durch Sandbox-Zugriffe auf SwiftPM-Cache und Simulator blockiert; Gerätetest steht aus.
+
+## 2026-10-24 – Widget-Anzeigename
+
+- Widget-Anzeigename in Debug/Release auf „Zalimo“ gekürzt. Haupt-App bleibt „Zalimo Habits“; Widget-Kennungen erhalten.
+
+## 2026-10-24 – To-do- und Routinen-Widgets
+
+- Kleines To-do-Widget entfernt; Medium/Large mit Prioritätsstreifen, mehrzeiligen Titeln und getrennten 44-Punkt-Abhakflächen überarbeitet.
+- To-do-Einstellungen von Routinen getrennt. Text/Fläche öffnet den To-do-Tab; Häkchen aktualisieren echte App-Daten einschließlich Unteraufgaben.
+- Widget-Timelines lesen aktuelle Aufgaben; gelöschte und umbenannte Routinen werden neu aufgelöst. Routinenänderungen stoßen eine Aktualisierung an.
+- Erledigte Aufgaben bleiben einen Tag sichtbar statt beim App-Öffnen sofort zu verschwinden.
+- Validierung: Widget-Swift-Typecheck ohne Preview-Makros (deren Ausführung ist in dieser Umgebung gesperrt), Syntaxprüfung der geänderten App-Dateien, gezielte Mutationstests erfolgreich. Kein Gerätetest. Git-Schreibzugriff ist gesperrt; kein Commit/Push.
+
+## 2026-10-24 – Sichtbare Systemnamen nachgeprüft
+
+- System- und Erweiterungsnamen auf Zalimo Habits gesetzt; technische Identität erhalten.
+- Health-Wassereinträge anhand der Bundle-ID statt des App-Namens zugeordnet und unter dem neuen Namen angezeigt.
+- Geteilten Store-Link auf die bereits im Projekt verwendete numerische App-ID umgestellt.
+
+## 2026-10-24 – Zalimo Habits
+
+- Sichtbare App-Bezeichnungen, lokale Übersetzungen, Berechtigungsdialoge und Berichtstitel auf Zalimo Habits aktualisiert.
+- Bundle-IDs, App-Gruppe, Kauf-/Daten-/Widget-Kennungen, Deep Links, Support-Kontakt und interne Build-Namen erhalten.
+- Prüfstatus, Dateiliste und manuelle Store-Metadaten: `Documentation/ZalimoHabits-Rename.md`.
+
+
+## [2026-10-08] - Onboarding Animation Polish
+- Update: Der Wachstumspfeil in der `GrovyIntroView` ist jetzt leuchtend grün, hat einen Glow-Effekt und zeichnet sich durch flüssigere Ease-InOut-Animation auf (erhöht auf 150 Animations-Schritte).
+- Update: Die Hintergrund-Partikel laufen nun direkt von Beginn der Szene an (vor der Zeit-Eingabe) und faden am Ende weicher aus, um abrupte Übergänge zu vermeiden.
+
 
 ## [2026-10-08] - Onboarding Animation Refinement
 - Update: In der `GrovyIntroView` wurde das Bar-Chart durch eine animierte exponentielle Wachstumskurve mit einem Pfeil ersetzt. Die Kurve fliegt am Ende dynamisch nach oben aus dem Bild.
@@ -1518,3 +1563,12 @@
 - Intro: Hintergrund in System-Hintergrundfarbe geändert, Ablenkungs-Icons fliegen auf die Kamera zu, Garten wurde durch eine aufsteigende App-Statistik (Balkendiagramm) ersetzt.
 - Intro: Intro-Animation ist jetzt wirklich nahtlos im Onboarding integriert (Top-Bar wird ausgeblendet, echter Hintergrund scheint durch). Emojis wurden durch die fliegenden Assets aus dem normalen Onboarding-Hintergrund ersetzt, und aus dem restlichen Onboarding entfernt.
 - Intro: "Gedrückt halten"-Mechanik eingebaut. Das wilde Intro startet erst, wenn man den goldenen Button gedrückt hält (inkl. Haptik & Shake). Die schwebenden Assets sind wieder normal im App-Hintergrund, und die Intro-Zahlen (z.B. 180 MIN) schlagen jetzt als wuchtige 3D-Buttons ins Bild, während nur noch weiße/graue/rote Linien vorbeiziehen (keine Emojis oder Bilder mehr).
+
+## 2.0 – Produktivitätsumbau (lokaler Entwicklungsstand)
+
+- Vier Tabs: Gewohnheiten, Routinen, To-Dos und Übersicht; kostenloser Katalog mit unabhängigen Habitinstanzen.
+- Tracking in den Details, Archivierung, gespeicherte Sortierung und Programme ohne Spielwirtschaft.
+- Münzen, XP, Shop, Spielstrafen und Belohnungen aus produktiven Abläufen entfernt; Altbestand nur als lesbarer Rückblick.
+- Versionierte Migration, vollständige V2-Backups, V1-Importadapter und Wiederaufnahmejournal.
+- Unabhängiger Fokus-Timer; Pro-/Lifetime-Rechte, Widgets und Screen-Time-Funktionen weiter angebunden.
+- Releasefreigabe ausstehend: tatsächliche Käuferabwicklung, vollständiger Xcode-Build sowie Simulator-/Gerätetests prüfen. Details im Umsetzungsbericht.
